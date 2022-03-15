@@ -9,7 +9,7 @@ public class TraRecruitment {
 	 * 동행자 신청 정보등록 
 	 */
 	@GetMapping("/traRecruitment/applicationInsert")
-	public String addHeritage(Model model) {
+	public String addRecruitment(Model model) {
 		
 		model.addAttribute("title", "동행자 신청 등록페이지");
 		
@@ -20,7 +20,7 @@ public class TraRecruitment {
 	 * 동행자 신청자 리스트 조회
 	 */
 	@GetMapping("/traRecruitment/applicationList")
-	public String getHeritageSearchListByItem(Model model) {
+	public String getRecruitmentList(Model model) {
 		
 		model.addAttribute("title", "동행자 신청자 리스트");
 		
@@ -31,7 +31,7 @@ public class TraRecruitment {
 	 * 동행자 모집 공고 등록
 	 */
 	@GetMapping("/traRecruitment/noticeInsert")
-	public String getHeritageSearchListByRegion(Model model) {
+	public String addRecruitmentNotice(Model model) {
 		
 		model.addAttribute("title", "동행자 모집 공고 등록페이지");
 		
@@ -42,7 +42,7 @@ public class TraRecruitment {
 	 * 동행자 모집 공고 리스트
 	 */
 	@GetMapping("/traRecruitment/noticeList")
-	public String getHeritageSearchMap(Model model) {
+	public String getRecruitmentNoticeList(Model model) {
 		
 		model.addAttribute("title", "동행자 모집 공고 리스트");
 		
