@@ -6,12 +6,22 @@
 		<title th:text="${title}"></title>
 	</th:block>
 	<th:block layout:fragment="contentsTitle">
-		<h1>Hello, Oxoury</h1>
-		<p>The best to you each morning.</p>
+	<div class="card">
+		<div class="card-body">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="#">문화재 검색</a></li>
+				<li class="breadcrumb-item active" aria-current="page">문화재 종목별 검색</li>
+			</ol>
+		</nav>
+		<h1>문화재 종목별 검색<span class="badge badge-dark"></span></h1>
+		</div>
+	</div>
 	</th:block>
-	
+
 	<th:block layout:fragment="customContents">	
-		
+
+
 	</th:block>
 	<th:block layout:fragment="customBodyScript">
 		<!-- PRISM -->

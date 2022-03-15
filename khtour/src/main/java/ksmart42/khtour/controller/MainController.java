@@ -10,7 +10,7 @@ public class MainController {
 	@GetMapping("/")
 	public String main(Model model) {
 		
-		model.addAttribute("title", "한국 전통 여행");
+		model.addAttribute("title", "한국 문화재투어");
 		
 		return "main";
 	}
