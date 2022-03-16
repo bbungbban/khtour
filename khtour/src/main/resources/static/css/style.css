@@ -6737,3 +6737,6 @@ h6,
     margin-bottom: 10px; } }
     /***20220301 수정*****/
     .wrapper{padding-top:70px;}
+    
+    /***20220316 김민석 paging 가운데정렬****/
+    .pagination{justyfy-content :center;}
