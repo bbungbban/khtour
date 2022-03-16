@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class CommunityController {
 
-	@GetMapping("/communityDashBoard")
+	@GetMapping("/commDashboard")
 	public String main(Model model) {
 		
 		model.addAttribute("title", "커뮤니티 대시보드");
 		
-		return "/community/communityDashBoard";
+		return "/community/commDashboard";
 	}
 }
