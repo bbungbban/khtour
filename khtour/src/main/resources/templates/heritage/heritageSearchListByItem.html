@@ -17,148 +17,174 @@
 			</nav>
 		</div>
 	</div>
+
 </th:block>
 
 <th:block layout:fragment="customContents">
 
-	<form>
-		<div class="form-group">
-			<div class="search-box  col-6">
-				<div class="search">
-					<input class="form-control border-6" type="search"
-						placeholder="검색어를 입력해 주세요" aria-label="Search"> <a
-						href="#"><i class="la la-search"></i> </a>
-				</div>
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="accordion" id="accordionExample">
-				<div class="card">
-					<div class="card-header" id="headingOne">
-						<div class="accordion-title" data-toggle="collapse"
-							data-target="#collapseOne" aria-expanded="true">
-							<h5 class="mb-0">종목별 상세 검색</h5>
+	<div class="card">
+		<div class="card-body">
+			<form>
+				<div class="form-group">
+					<div class="search-box  col-6">
+						<div class="search">
+							<input class="form-control border-0" type="search"
+								placeholder="검색어를 입력해 주세요" aria-label="Search"> <a
+								href="#"><i class="la la-search"></i> </a>
 						</div>
 					</div>
-					<div id="collapseOne" class="collapse show"
-						aria-labelledby="headingOne" data-parent="#accordionExample"
-						style="">
-						<div class="card-body">
-							<div class="col">
-								<div class="btn-group" role="group"
-									aria-label="Basic checkbox toggle button group">
-									<input type="checkbox" class="btn-check"
-										id="btn-check-outlined1" autocomplete="off"> <label
-										class="btn btn-outline-primary" for="btn-check-outlined1">Single
-										toggle</label><br> <input type="checkbox" class="btn-check"
-										id="btn-check-outlined2" autocomplete="off"> <label
-										class="btn btn-outline-primary" for="btn-check-outlined2">Single
-										toggle</label><br> <input type="checkbox" class="btn-check"
-										id="btn-check-outlined3" autocomplete="off"> <label
-										class="btn btn-outline-primary" for="btn-check-outlined3">Single
-										toggle</label><br>
+				</div>
+				<div class="form-group">
+					<div class="accordion" id="accordionExample">
+						<div class="card">
+							<div class="card-header" id="headingOne">
+								<div class="accordion-title" data-toggle="collapse"
+									data-target="#collapseOne" aria-expanded="true">
+									<h5 class="mb-0">종목별 상세 검색</h5>
 								</div>
-								<div class="row g-3 align-items-center">
-									<div class="col-1">
-										<label for="inputPassword6" class="col-form-label">수신동의</label>
-									</div>
+							</div>
+							<div id="collapseOne" class="collapse show"
+								aria-labelledby="headingOne" data-parent="#accordionExample"
+								style="">
+								<div class="card-body">
+									<div class="col">
+										<div class="row g-3 align-items-center">
+											<div class="col-1">
+												<label for="inputPassword6" class="col-form-label">회원등급</label>
+											</div>
+											<div class="col-auto">
 
-									<div class="col-auto">
-
-										<div class="form-check form-check-inline">
-											<input class="form-check-input" type="checkbox"
-												id="inlineCheckbox7" value="option01"> <label
-												class="form-check-label" for="inlineCheckbox7">sms </label>
+												<div class="form-check form-check-inline">
+													<input class="form-check-input" type="checkbox"
+														id="inlineCheckbox1" value="option1"> <label
+														class="form-check-label" for="inlineCheckbox1">전체
+													</label>
+												</div>
+												<div class="form-check form-check-inline">
+													<input class="form-check-input" type="checkbox"
+														id="inlineCheckbox2" value="option2"> <label
+														class="form-check-label" for="inlineCheckbox2">전수교육조교
+													</label>
+												</div>
+												<div class="form-check form-check-inline">
+													<input class="form-check-input" type="checkbox"
+														id="inlineCheckbox3" value="option3"> <label
+														class="form-check-label" for="inlineCheckbox3">이수자</label>
+												</div>
+												<div class="form-check form-check-inline">
+													<input class="form-check-input" type="checkbox"
+														id="inlineCheckbox4" value="option4"> <label
+														class="form-check-label" for="inlineCheckbox4">전수장학생
+													</label>
+												</div>
+												<div class="form-check form-check-inline">
+													<input class="form-check-input" type="checkbox"
+														id="inlineCheckbox5" value="option5"> <label
+														class="form-check-label" for="inlineCheckbox5">보유자
+													</label>
+												</div>
+											</div>
 										</div>
-										<div class="form-check form-check-inline">
-											<input class="form-check-input" type="checkbox"
-												id="inlineCheckbox8" value="option02"> <label
-												class="form-check-label" for="inlineCheckbox8">이메일 </label>
+										<div class="row g-3 align-items-center">
+											<div class="col-1">
+												<label for="inputPassword6" class="col-form-label">수신동의</label>
+											</div>
+
+											<div class="col-auto">
+
+												<div class="form-check form-check-inline">
+													<input class="form-check-input" type="checkbox"
+														id="inlineCheckbox7" value="option01"> <label
+														class="form-check-label" for="inlineCheckbox7">sms
+													</label>
+												</div>
+												<div class="form-check form-check-inline">
+													<input class="form-check-input" type="checkbox"
+														id="inlineCheckbox8" value="option02"> <label
+														class="form-check-label" for="inlineCheckbox8">이메일
+													</label>
+												</div>
+
+											</div>
+
 										</div>
 
-									</div>
-
-								</div>
-
-								<div class="row g-3 align-items-center">
-									<div class="d-grid gap-2 col-6 mx-auto">
-										<button class="btn btn-primary" type="button">Button</button>
+										<div class="row g-3 align-items-center">
+											<div class="d-grid gap-2 col-6 mx-auto">
+												<button class="btn btn-primary" type="button">Button</button>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	</form>
-	
-	<!-- search box start -->
-	<div class="row">
-		<div class="col-md-6 col-lg-4">
-			<div class="blog mb-5">
-				<div class="blog-image">
-					<img th:src="@{/images/heritage/사본 -서울_숭례문_성곽전경_(촬영년도___2015년).jpg}" class="card-img-top" alt="...">
+			</form>
+
+
+			<!-- 검색 리스트 시작 -->
+			<div class="row row-cols-1 row-cols-md-3 g-4">
+				<div class="col">
+					<div class="card">
+							<img th:src="@{/images/heritage/사본 -서울_숭례문_성곽전경_(촬영년도___2015년).jpg}" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">서울 숭례문 (서울 崇禮門)</h5>
+							<p class="card-text">Sungnyemun Gate, Seoul</p>
+						</div>
+					</div>
 				</div>
-				<div class="blog-bottom">
-				<h2 class="mb-3">
-							<a href="#!"> 서울 숭례문 </a>
-						</h2>
-					<ul class="list-inline mb-0">
-						<li><a href="#!"> <i class="feather icon-message-circle"></i>
-								수정
-						</a></li>
-						<li><a href="#!"> <i class="feather icon-heart"></i>
-								삭제
-						</a></li>
-					</ul>
+				<div class="col">
+					<div class="card">
+							<img th:src="@{/images/heritage/서울_원각사지_십층석탑_탑신부_조각_상세.jpg}" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">서울 원각사지 십층석탑 (서울 圓覺寺址 十層石塔)</h5>
+							<p class="card-text">Ten-story Stone Pagoda at Wongaksa Temple Site, Seoul</p>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
-		<div class="col-md-6 col-lg-4">
-			<div class="blog mb-5">
-				<div class="blog-image">
-					<img th:src="@{/images/heritage/사본 -서울_숭례문_성곽전경_(촬영년도___2015년).jpg}" class="card-img-top" alt="...">
+				<div class="col">
+					<div class="card">
+							<img th:src="@{/images/heritage/서울_북한산_신라_진흥왕_순수비.jpg}" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">서울 북한산 신라 진흥왕 순수비 (서울 北漢山 新羅 眞興王 巡狩碑)</h5>
+							<p class="card-text">Monument on Bukhansan Mountain Commemorating the Border Inspection by King Jinheung of Silla, Seoul</p>
+						</div>
+					</div>
 				</div>
-				<div class="blog-bottom">
-				<h2 class="mb-3">
-							<a href="#!"> 서울 숭례문 </a>
-						</h2>
-					<ul class="list-inline mb-0">
-						<li><a href="#!"> <i class="feather icon-message-circle"></i>
-								수정
-						</a></li>
-						<li><a href="#!"> <i class="feather icon-heart"></i>
-								삭제
-						</a></li>
-					</ul>
+				<div class="col">
+					<div class="card">
+							<img th:src="@{/images/heritage/중대석용두.jpg}" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">여주 고달사지 승탑 (驪州 高達寺址 僧塔)</h5>
+							<p class="card-text">Stupa at Godalsa Temple Site, Yeoju</p>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-md-6 col-lg-4">
-			<div class="blog mb-5">
-				<div class="blog-image">
-					<img th:src="@{/images/heritage/사본 -서울_숭례문_성곽전경_(촬영년도___2015년).jpg}" class="card-img-top" alt="...">
-				</div>
-				<div class="blog-bottom">
-				<h2 class="mb-3">
-							<a href="#!"> 서울 숭례문 </a>
-						</h2>
-					<ul class="list-inline mb-0">
-						<li><a href="#!"> <i class="feather icon-message-circle"></i>
-								수정
-						</a></li>
-						<li><a href="#!"> <i class="feather icon-heart"></i>
-								삭제
-						</a></li>
-					</ul>
-				</div>
-			</div>
+			<!-- 검색 리스트 끝 -->
+			<!-- 페이징 시작 -->  
+			
+			<div class="text-center">
+			<div id="paging">                         
+	         <nav aria-label="Page navigation example">
+				<ul class="pagination" >
+				    <li class="page-item"><a class="page-link" href="#">이전</a></li>
+				    <li class="page-item"><a class="page-link" href="#">1</a></li>
+				    <li class="page-item"><a class="page-link" href="#">2</a></li>
+				    <li class="page-item"><a class="page-link" href="#">3</a></li>
+				    <li class="page-item"><a class="page-link" href="#">4</a></li>
+				    <li class="page-item"><a class="page-link" href="#">5</a></li>
+				    <li class="page-item"><a class="page-link" href="#">다음</a></li>
+				</ul>
+			</nav>
+       		<!-- 페이징 끝 -->
+		  </div>
+		  </div>
 		</div>
 	</div>
-	<!-- search box start -->
-
-
+			
+	
 </th:block>
 <th:block layout:fragment="customBodyScript">
 	<!-- PRISM -->
