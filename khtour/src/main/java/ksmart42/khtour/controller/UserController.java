@@ -68,4 +68,24 @@ public class UserController {
 		
 		return "/user/userDelete.html";
 	}
+	/*
+	 * 회원 이메일 찾기 화면
+	 */
+	@GetMapping("/user/userId.html")
+	public String getUserId(Model model) {
+		
+		model.addAttribute("title", "회원 이메일 찾기 페이지");
+		
+		return "/user/userId.html";
+	}
+	/*
+	 * 회원 비밀번호 찾기 화면
+	 */
+	@GetMapping("/user/userPassword.html")
+	public String getUserPassword(Model model) {
+		
+		model.addAttribute("title", "회원 비밀번호 찾기 페이지");
+		
+		return "/user/userPassword.html";
+	}
 }
