@@ -66,6 +66,15 @@
 	            <span class="sidebar-badge"></span>
 	         </a>
 	         </li>
+	         <li>
+				<a href="#">
+					<i class="la la-bank"></i> <span>회원관리</span> <span class="sidebar-badge"></span> <i class="la la-angle-right down-arrow"></i>
+				</a>
+				<ul class="sidebar-submenu">
+					<li><a th:href="@{/login/loginMain.html}"><i class="la la-minus"></i> <span> 로그인 </span> </a></li>
+					<li><a th:href="@{/heritage/heritageSearchListByRegion}"><i class="la la-minus"></i> <span> 문화재 지역별 검색 </span> </a></li>
+				</ul>
+			</li>
 			<li class="sidebar-header"> Extras </li>
 			<li>
 			<a href="#">
