@@ -1,22 +1,264 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{layout/default}">
-	<th:block layout:fragment="customTitle">
-		<title th:text="${title}"></title>
-	</th:block>
-	<th:block layout:fragment="contentsTitle">
-		<h1>Hello, Oxoury</h1>
-		<p>The best to you each morning.</p>
-	</th:block>
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default}">
+<th:block layout:fragment="customTitle">
+	<title th:text="${title}"></title>
+</th:block>
+<th:block layout:fragment="contentsTitle">
+	<div class="row">
+		<div class="col">
+			<h2>여행 일정 공유</h2>
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">Home</a></li>
+					<li class="breadcrumb-item active" aria-current="page">공유 게시판
+						등록</li>
+				</ol>
+			</nav>
+		</div>
+	</div>
+</th:block>
+
+<th:block layout:fragment="customContents">
+
+	<!-- 아코디언 시작 -->
+	<div class="card">
+		<div class="card-body">
+			<div class="accordion" id="accordionExample">
+				<div class="card">
+					<div class="card-header" id="headingOne">
+						<div class="accordion-title" data-toggle="collapse"
+							data-target="#collapseOne" aria-expanded="true">
+							<h5 class="mb-0">종목별 상세 검색</h5>
+						</div>
+					</div>
+					<div id="collapseOne" class="collapse show text-center"
+						aria-labelledby="headingOne" data-parent="#accordionExample"
+						style="">
+						<div class="card-body">
+
+							<div class="col">
+
+								<button class="btn btn-primary" type="button">Button</button>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 아코디언 끝 -->
 	
-	<th:block layout:fragment="customContents">	
-		
-	</th:block>
-	<th:block layout:fragment="customBodyScript">
-		<!-- PRISM -->
-		<script th:src="@{/js/prism/prism.js}"></script>
-		<!-- custom -->
-		<script th:src="@{/js/custom.js}"></script>
-	</th:block>
+	<!-- 블로그 리스트 시작 -->
+	<div class="card">
+		<div class="card-body">
+			<div class="row">
+				<div class="col-md-6 col-lg-4">
+					<div class="blog mb-5">
+						<div class="blog-image">
+<div class="embed-responsive embed-responsive-4by3">
+						<img th:src="@{/images/traShare/1.jpg}"
+							class="card-img-top h-10 img-thumbnail embed-responsive-item" alt="...">
+						</div>
+						</div>
+						<div class="blog-info">
+							<div class="blog-date">
+								<a href="#!"><i
+										class="feather icon-message-circle"></i> 여행전 </a>
+							</div>
+							<div class="blog-title mt-3">
+								<h4 class="mb-3">
+									<a href="#!">제주도 여행이 막막하다면!</a>
+								</h4>
+								<p class="mb-0">여행 기간은 한정적인데 가고 싶은 곳은 너무 많아서 뭘 어디서부터 어떻게 해야 될지 모르겠다면 집중! 가고 싶은 제주 여행지들을 모두 모으고, 지도에 싹 다 찍었다! 눈에 보기 쉬운 제주 위시리스트 78곳 총정리.</p>
+							</div>
+						</div>
+						<div class="blog-bottom">
+							<ul class="list-inline mb-0">
+								<li><a href="#!"> <i
+										class="feather icon-message-circle"></i> Comments (20)
+								</a></li>
+								<li><a href="#!"> <i class="feather icon-heart"></i>
+										22.5k
+								</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-4">
+					<div class="blog mb-5">
+						<div class="blog-image">
+												<div class="embed-responsive embed-responsive-4by3">
+						<img th:src="@{/images/heritage/보은 법주사 쌍사자 석등.jpg}"
+							class="card-img-top img-thumbnail embed-responsive-item" alt="...">
+							</div>
+						</div>
+						<div class="blog-info">
+							<div class="blog-date">
+								<a href="#!"> October 15, 2021</a>
+							</div>
+							<div class="blog-title mt-3">
+								<h4 class="mb-3">
+									<a href="#!">Dolore quasi expedita maxime!.</a>
+								</h4>
+								<p class="mb-0">Veniam veritatis deserunt similique eveniet
+									quo excepturi fugit doloremque molestiae.</p>
+							</div>
+						</div>
+						<div class="blog-bottom">
+							<ul class="list-inline mb-0">
+								<li class="user"><a href="#!"> <img
+										src="images/team/02.jpg" alt=""> Bruno Nash
+								</a></li>
+								<li><a href="#!"> <i
+										class="feather icon-message-circle"></i> Comments (22)
+								</a></li>
+								<li><a href="#!"> <i class="feather icon-heart"></i>
+										12.5k
+								</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-4">
+					<div class="blog mb-5">
+						<div class="blog-image">
+							<img class="img-fluid w-100" src="images/blog/03.jpg" alt="">
+						</div>
+						<div class="blog-info">
+							<div class="blog-date">
+								<a href="#!"> October 15, 2021</a>
+							</div>
+							<div class="blog-title mt-3">
+								<h4 class="mb-3">
+									<a href="#!">Dolore quasi expedita maxime!.</a>
+								</h4>
+								<p class="mb-0">Cupiditate aut magni ea veniam natus
+									provident. maxime dolorem nihil minus, quasi dicta.</p>
+							</div>
+						</div>
+						<div class="blog-bottom">
+							<ul class="list-inline mb-0">
+								<li class="user"><a href="#!"> <img
+										src="images/team/03.jpg" alt=""> Cedric Kelly
+								</a></li>
+								<li><a href="#!"> <i
+										class="feather icon-message-circle"></i> Comments (11)
+								</a></li>
+								<li><a href="#!"> <i class="feather icon-heart"></i>
+										42.8k
+								</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-4">
+					<div class="blog mb-5">
+						<div class="blog-image">
+							<img class="img-fluid w-100" src="images/blog/04.jpg" alt="">
+						</div>
+						<div class="blog-info">
+							<div class="blog-date">
+								<a href="#!"> October 15, 2021</a>
+							</div>
+							<div class="blog-title mt-3">
+								<h4 class="mb-3">
+									<a href="#!">Dolore quasi expedita maxime!.</a>
+								</h4>
+								<p class="mb-0">Minus, quasi, dicta cupiditate aut magni ea
+									veniam natus provident. maxime dolorem nihil.</p>
+							</div>
+						</div>
+						<div class="blog-bottom">
+							<ul class="list-inline mb-0">
+								<li class="user"><a href="#!"> <img
+										src="images/team/04.jpg" alt=""> Gavin Joyce
+								</a></li>
+								<li><a href="#!"> <i
+										class="feather icon-message-circle"></i> Comments (01)
+								</a></li>
+								<li><a href="#!"> <i class="feather icon-heart"></i>
+										36.6k
+								</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-4">
+					<div class="blog mb-5">
+						<div class="blog-image">
+							<img class="img-fluid w-100" src="images/blog/05.jpg" alt="">
+						</div>
+						<div class="blog-info">
+							<div class="blog-date">
+								<a href="#!"> October 15, 2021</a>
+							</div>
+							<div class="blog-title mt-3">
+								<h4 class="mb-3">
+									<a href="#!">Dolore quasi expedita maxime!.</a>
+								</h4>
+								<p class="mb-0">Ea veniam natus provident maxime dolorem
+									nihil minus, quasi, dicta cupiditate aut magni.</p>
+							</div>
+						</div>
+						<div class="blog-bottom">
+							<ul class="list-inline mb-0">
+								<li class="user"><a href="#!"> <img
+										src="images/team/05.jpg" alt=""> Jena Gaines
+								</a></li>
+								<li><a href="#!"> <i
+										class="feather icon-message-circle"></i> Comments (21)
+								</a></li>
+								<li><a href="#!"> <i class="feather icon-heart"></i>
+										24.8k
+								</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-4">
+					<div class="blog mb-5">
+						<div class="blog-image">
+							<img class="img-fluid w-100" src="images/blog/06.jpg" alt="">
+						</div>
+						<div class="blog-info">
+							<div class="blog-date">
+								<a href="#!"> October 15, 2021</a>
+							</div>
+							<div class="blog-title mt-3">
+								<h4 class="mb-3">
+									<a href="#!">Dolore quasi expedita maxime!.</a>
+								</h4>
+								<p class="mb-0">Nihil minus Maxime dolorem, quasi, dicta
+									cupiditate aut magni ea veniam natus provident.</p>
+							</div>
+						</div>
+						<div class="blog-bottom">
+							<ul class="list-inline mb-0">
+								<li class="user"><a href="#!"> <img
+										src="images/team/06.jpg" alt=""> Olivia Liang
+								</a></li>
+								<li><a href="#!"> <i
+										class="feather icon-message-circle"></i> Comments (11)
+								</a></li>
+								<li><a href="#!"> <i class="feather icon-heart"></i>
+										45.6k
+								</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 블로그 리스트 끝 -->
+</th:block>
+<th:block layout:fragment="customBodyScript">
+	<!-- PRISM -->
+	<script th:src="@{/js/prism/prism.js}"></script>
+	<!-- custom -->
+	<script th:src="@{/js/custom.js}"></script>
+</th:block>
 </html>
