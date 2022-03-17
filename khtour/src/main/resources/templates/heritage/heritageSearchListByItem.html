@@ -25,16 +25,19 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="row align-items-start">
-				<div class="search-box col-8">
+				<div class="search-box col-4">
 					<div class="search">
-						<input class="form-control border-12" type="search"
-							placeholder="검색어를 입력해 주세요" aria-label="Search"> <a
+						<input class="form-control border-12 border-primary" type="search"
+							placeholder="문화재 이름을 입력해 주세요" aria-label="Search"> <a
 							href="#"><i class="la la-search"></i> </a>
 					</div>
 				</div>
+				<div class="col-4"></div>
 				<div class="col-4">
 					<button type="button" class="btn btn-primary" data-toggle="modal"
-						data-target="#exampleModal-03">박물관 등록</button>
+						data-target="#exampleModal-03">
+						<i class="feather icon-plus"></i>박물관 등록
+					</button>
 					<!-- 모달 시작 -->
 					<div class="modal fade" id="exampleModal-03" tabindex="-1"
 						role="dialog" aria-labelledby="exampleModalLabel"
@@ -42,62 +45,73 @@
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel">박물관 등록</h5>
+									<h5 class="modal-title" id="exampleModalLabel">
+										<i class="feather icon-plus"></i>박물관 등록
+									</h5>
 									<button type="button" class="close" data-dismiss="modal"
 										aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
 								</div>
 								<div class="modal-body p-5">
-									<form class="cmxform" id="form2" method="get">
-										<div class="form-group">
-											<label for="email">Email</label> <input id="email"
-												class="form-control" name="email" required="" type="email">
+									<div class="card">
+										<div class="card-title">
+											<div class="card-title-left">
+												<h4 class="card-title-text">문화재 등록</h4>
+											</div>
 										</div>
-										<div class="form-group" data-select2-id="4">
-											<label for="agree">Favorite Color</label> <select id="color"
-												name="color"
-												class="js-example-basic-single select2-hidden-accessible"
-												title="Please select your favorite color!"
-												data-select2-id="color" tabindex="-1" aria-hidden="true">
-												<option data-select2-id="2">Red</option>
-												<option data-select2-id="8">Blue</option>
-												<option data-select2-id="9">Yellow</option>
-											</select><span
-												class="select2 select2-container select2-container--default select2-container--below"
-												dir="ltr" data-select2-id="1" style="width: 61px;"><span
-												class="selection"><span
-													class="select2-selection select2-selection--single"
-													role="combobox" aria-haspopup="true" aria-expanded="false"
-													title="Please select your favorite color!" tabindex="0"
-													aria-labelledby="select2-color-container"><span
-														class="select2-selection__rendered"
-														id="select2-color-container" role="textbox"
-														aria-readonly="true" title="Red">Red</span><span
-														class="select2-selection__arrow" role="presentation"><b
-															role="presentation"></b></span></span></span><span class="dropdown-wrapper"
-												aria-hidden="true"></span></span>
-										</div>
-										<div class="form-group">
-											<label for="phone">Phone</label> <input id="phone"
-												class="form-control" name="phone" required="" type="number">
-										</div>
-										<div class="form-group">
-											<label for="address">Address</label> <input id="address"
-												class="form-control" name="address" required=""
-												minlength="3">
-										</div>
-										<div class="form-group">
-											<label for="avatar">Avatar</label> <input type="file"
-												id="avatar" class="form-control" name="avatar" required="">
-										</div>
-										<div class="form-group">
-											<input class="submit btn btn-primary" type="submit"
-												value="Submit">
-										</div>
+										<div class="card-body">
+											<form>
+												<div class="form-group">
+													<label for="textFormControlInput1"> 문화재 명 </label> <input
+														type="text" class="form-control"
+														id="textFormControlInput1" placeholder="이름" required="">
+												</div>
+												<div class="form-group">
+													<label for="textFormControlInput2"> 문화재 소재지 </label> <input
+														type="text" class="form-control"
+														id="textFormControlInput2" placeholder="소재지" required="">
+												</div>
+												<div class="form-group">
+													<label for="textFormControlInput3"> 문화재 시대명 </label> <input
+														type="text" class="form-control"
+														id="exampleFormControlInput3" placeholder="시대명"
+														required="">
+												</div>
+												<div class="form-group">
+													<label>문화재 지정일</label> <input type="text"
+														class="date form-control" id="mask-date" maxlength="10"
+														placeholder="00/00/0000" required="">
+												</div>
+												<div class="form-group">
+													<label for="exampleFormControlSelect1">분류 </label> <select
+														class="form-control" id="exampleFormControlSelect1">
+														<option>문화재 분류 선택</option>
+														<option>국가 등록 문화재</option>
+														<option>국보</option>
+														<option>명승</option>
+														<option>보물</option>
+														<option>사적</option>
+														<option>시도등록문화재</option>
+														<option>천연기념물</option>
+													</select>
+												</div>
+												<div class="form-group">
+													<label for="avatar">이미지 선택</label> <input type="file"
+														id="avatar" class="form-control" name="avatar" required="">
+												</div>
+												<div class="form-group">
+													<label for="exampleFormControlTextarea1">문화재 상세 설명
+														문화재 설명</label>
+													<textarea class="form-control"
+														id="exampleFormControlTextarea1" rows="3" required=""></textarea>
+												</div>
 
-									</form>
-
+												<button type="submit" class="btn btn-primary">등록</button>
+												<button type="button" class="btn btn-danger">취소</button>
+											</form>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -112,7 +126,7 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="accordion" id="accordionExample">
-				<div class="card">
+				<div class="card border-primary">
 					<div class="card-header" id="headingOne">
 						<div class="accordion-title" data-toggle="collapse"
 							data-target="#collapseOne" aria-expanded="true">
@@ -123,12 +137,20 @@
 						aria-labelledby="headingOne" data-parent="#accordionExample"
 						style="">
 						<div class="card-body">
-
-							<div class="col">
-
-								<button class="btn btn-primary" type="button">Button</button>
-
-							</div>
+							<form id="demoform" action="#" method="post">
+								<select multiple="multiple" size="10" name="duallistbox_demo1[]"
+									style="display: none;">
+									<option value="option1" data-sortindex="0">국가 등록 문화재</option>
+									<option value="option2">국보</option>
+									<option value="option3">명승</option>
+									<option value="option4">보물</option>
+									<option value="option5">사적</option>
+									<option value="option6">사적</option>
+									<option value="option7">시도등록문화재</option>
+									<option value="option8">천연기념물</option>
+								</select> <br>
+							</form>
+							<button class="btn btn-primary" type="button"><i class="feather icon-search"></i>검색 </button>
 						</div>
 					</div>
 				</div>
@@ -145,18 +167,18 @@
 				<div class="col">
 					<div class="card h-100">
 						<div class="embed-responsive embed-responsive-4by3">
-							<img
-								th:src="@{/images/heritage/서울 숭례문.jpg}"
-								class="card-img-top h-10 img-thumbnail embed-responsive-item" alt="...">
-							</div>
+							<img th:src="@{/images/heritage/서울 숭례문.jpg}"
+								class="card-img-top h-10 img-thumbnail embed-responsive-item"
+								alt="...">
+						</div>
 						<div class="card-body">
 							<h5 class="card-title">서울 숭례문</h5>
-							<p class="card-text"> (서울 崇禮門)</p>
+							<p class="card-text">(서울 崇禮門)</p>
 						</div>
 						<div class="card-footer">
 							<ul class="list-inline mb-0">
-								<li><a href="#!"> <i
-										class="feather icon-heart-on"></i> 수정
+								<li><a href="#!"> <i class="feather icon-heart-on"></i>
+										수정
 								</a></li>
 								<li><a href="#!"> <i class="feather icon-compass"></i>
 										삭제
@@ -167,12 +189,13 @@
 				</div>
 				<div class="col">
 					<div class="card h-100">
-					 <div class="embed-responsive embed-responsive-4by3">
-						<img th:src="@{/images/heritage/서울 원각사지 십층석탑.jpg}"
-							class="card-img-top h-10 img-thumbnail embed-responsive-item" alt="...">
-					</div>
+						<div class="embed-responsive embed-responsive-4by3">
+							<img th:src="@{/images/heritage/서울 원각사지 십층석탑.jpg}"
+								class="card-img-top h-10 img-thumbnail embed-responsive-item"
+								alt="...">
+						</div>
 						<div class="card-body">
-							<h5 class="card-title">서울 원각사지 십층석탑 </h5>
+							<h5 class="card-title">서울 원각사지 십층석탑</h5>
 							<p class="card-text">(서울 圓覺寺址 十層石塔))</p>
 						</div>
 						<div class="card-footer">
@@ -183,8 +206,9 @@
 				<div class="col">
 					<div class="card h-100">
 						<div class="embed-responsive embed-responsive-4by3">
-						<img th:src="@{/images/heritage/서울 북한산 신라 진흥왕 순수비.jpg}"
-							class="card-img-top h-10 img-thumbnail embed-responsive-item" alt="...">
+							<img th:src="@{/images/heritage/서울 북한산 신라 진흥왕 순수비.jpg}"
+								class="card-img-top h-10 img-thumbnail embed-responsive-item"
+								alt="...">
 						</div>
 						<div class="card-body">
 							<h5 class="card-title">서울 북한산 신라 진흥왕 순수비</h5>
@@ -197,13 +221,14 @@
 				</div>
 				<div class="col">
 					<div class="card h-100">
-					<div class="embed-responsive embed-responsive-4by3">
-						<img th:src="@{/images/heritage/보은 법주사 쌍사자 석등.jpg}"
-							class="card-img-top img-thumbnail embed-responsive-item" alt="...">
-							</div>
+						<div class="embed-responsive embed-responsive-4by3">
+							<img th:src="@{/images/heritage/보은 법주사 쌍사자 석등.jpg}"
+								class="card-img-top img-thumbnail embed-responsive-item"
+								alt="...">
+						</div>
 						<div class="card-body">
 							<h5 class="card-title">여주 고달사지 승탑</h5>
-							<p class="card-text"> (驪州 高達寺址 僧塔)</p>
+							<p class="card-text">(驪州 高達寺址 僧塔)</p>
 						</div>
 						<div class="card-footer">
 							<small class="text-muted">Last updated 3 mins ago</small>
@@ -212,13 +237,14 @@
 				</div>
 				<div class="col">
 					<div class="card h-100">
-					<div class="embed-responsive embed-responsive-4by3">
-						<img th:src="@{/images/heritage/보은 법주사 쌍사자 석등.jpg}"
-							class="card-img-top img-thumbnail embed-responsive-item" alt="...">
-							</div>
+						<div class="embed-responsive embed-responsive-4by3">
+							<img th:src="@{/images/heritage/보은 법주사 쌍사자 석등.jpg}"
+								class="card-img-top img-thumbnail embed-responsive-item"
+								alt="...">
+						</div>
 						<div class="card-body">
 							<h5 class="card-title">여주 고달사지 승탑</h5>
-							<p class="card-text"> (驪州 高達寺址 僧塔)</p>
+							<p class="card-text">(驪州 高達寺址 僧塔)</p>
 						</div>
 						<div class="card-footer">
 							<small class="text-muted">Last updated 3 mins ago</small>
@@ -227,13 +253,14 @@
 				</div>
 				<div class="col">
 					<div class="card h-100">
-					<div class="embed-responsive embed-responsive-4by3">
-						<img th:src="@{/images/heritage/보은 법주사 쌍사자 석등.jpg}"
-							class="card-img-top img-thumbnail embed-responsive-item" alt="...">
-							</div>
+						<div class="embed-responsive embed-responsive-4by3">
+							<img th:src="@{/images/heritage/보은 법주사 쌍사자 석등.jpg}"
+								class="card-img-top img-thumbnail embed-responsive-item"
+								alt="...">
+						</div>
 						<div class="card-body">
 							<h5 class="card-title">보은 법주사 쌍사자 석등</h5>
-							<p class="card-text"> (驪州 高達寺址 僧塔)</p>
+							<p class="card-text">(驪州 高達寺址 僧塔)</p>
 						</div>
 						<div class="card-footer">
 							<small class="text-muted">Last updated 3 mins ago</small>
@@ -273,5 +300,8 @@
 	<script th:src="@{/js/prism/prism.js}"></script>
 	<!-- custom -->
 	<script th:src="@{/js/custom.js}"></script>
+	<script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
+	<script
+		th:src="@{/js/bootstrap-duallistbox/jquery.bootstrap-duallistbox.min.js}"></script>
 </th:block>
 </html>
