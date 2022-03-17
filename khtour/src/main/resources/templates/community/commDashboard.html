@@ -201,7 +201,38 @@
 					<div class="card-body m-0">
 						<h5 class="card-title">HOME</h5>
 						<a href="/createPost" class="btn btn-info active" role="button" aria-pressed="true">포스트 등록</a>
-						<button type="button" class="btn btn-info">커뮤니티 생성</button>
+							<button type="button" class="btn btn-info" data-toggle="modal"
+						data-target="#exampleModal-03">커뮤니티 등록</button>
+					<!-- 모달 시작 -->
+					<div class="modal fade" id="exampleModal-03" tabindex="-1"
+						role="dialog" aria-labelledby="exampleModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">커뮤니티 등록</h5>
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body p-5">
+									<form class="cmxform" id="form2" method="get">
+										<div class="form-group">
+											<label for="commName">커뮤니티 이름</label> <input id="commName"
+												class="form-control" name="commName" required="" type="text">
+										</div>
+										<div class="form-group">
+											<input class="submit btn btn-primary" type="submit"
+												value="커뮤니티 등록">
+										</div>
+
+									</form>
+
+								</div>
+							</div>
+						</div>
+					</div>
 					</div>
 				
 
