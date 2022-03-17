@@ -6,100 +6,21 @@
 	<title th:text="${title}"></title>
 </th:block>
 <th:block layout:fragment="contentsTitle">
-	<h4>home/커뮤니티</h4>
+	<h4>home/커뮤니티/포스트</h4>
 </th:block>
 <th:block layout:fragment="customContents">
-	<div class="card">
-			<img th:src="@{/images/commPost/img001.jpg}" class="card-img-top"
-				alt="...">
-			<div class="card-body">
-				<h5 class="card-title">포스트 제목</h5>
-				<p class="card-text">커뮤니티 이름</p>
 
-			</div>
-	</div>
+<h3>오늘의 인기포스트</h3>
 	
-
-
-	<h3>오늘의 인기포스트</h3>
-	<div class="card-group">
-		<div class="card">
-			<img th:src="@{/images/commPost/img001.jpg}" class="card-img-top"
-				alt="...">
-			<div class="card-body">
-				<h5 class="card-title">포스트 제목</h5>
-				<p class="card-text">커뮤니티 이름</p>
-
-			</div>
-		</div>
-		<div class="card">
-			<img th:src="@{/images/commPost/img002.jpg}" class="card-img-top"
-				alt="...">
-			<div class="card-body">
-				<h5 class="card-title">포스트 제목</h5>
-				<p class="card-text">커뮤니티 이름</p>
-			</div>
-		</div>
-		<div class="card">
-			<img th:src="@{/images/commPost/img003.jpg}" class="card-img-top"
-				alt="...">
-			<div class="card-body">
-				<h5 class="card-title">포스트 제목</h5>
-				<p class="card-text">커뮤니티 이름</p>
-
-			</div>
-		</div>
-		<div class="card">
-			<img th:src="@{/images/commPost/img004.jpg}" class="card-img-top"
-				alt="...">
-			<div class="card-body">
-				<h5 class="card-title">포스트 제목</h5>
-				<p class="card-text">커뮤니티 이름</p>
-
-			</div>
-		</div>
-	</div>
 	<div class="row">
 		<div class="col-8">
-			<h3 class="pt-3">인기포스트</h3>
-			<div class="card">
-				<div class="card-body">
-					<button type="button" class="btn btn-info mr-5">HOT</button>
-					<button type="button" class="btn btn-info mr-5">New</button>
-					<button type="button" class="btn btn-info">Top</button>
-				</div>
-
-			</div>
-			<div class="card-group">
-				<div class="card col-1 bg-light d-flex ml-0 mr-0 pl-0 pr-0 pt-5">
-					<div class="card-body ml-0 mr-0 pl-0 pr-0 pt-5">
-						<i class="la la-caret-up d-flex la-3x justify-content-center"></i>
-						<p class="card-text text-center">15k</p>
-						<i class=" la la-caret-down la-3x d-flex justify-content-center"></i>
-					</div>
-				</div>
-				<div class="card col-11">
-					<div class="card-body">
-						<h5 class="card-title">포스트 에대한 제목이랑 설명</h5>
-						<img th:src="@{/images/commPost/img001.jpg}" class="card-img"
-							alt="...">
-							
-						<p class="card-text">
-							<a href="#!"> <i class="feather icon-message-circle"></i> 댓글 (20) </a>
-							<a href="#!"><i class=" la la-share  pl-3"></i>공유하기</a>
-							<a href="#!"><i class="  la la-flag  pl-3"></i>신고하기</a>
-						</p>
-					</div>
-
-				</div>
-			</div>
-
 			<div class="card-group">
 				<div class="card col-1 bg-light d-flex ml-0 mr-0 pl-0 pr-0 pt-5">
 					<div class="card-body ml-0 mr-0 pl-0 pr-0 pt-5	">
 						<i class="la la-caret-up d-flex la-3x justify-content-center"></i>
 						<p class="card-text text-center">15k</p>
 						<i class=" la la-caret-down la-3x d-flex justify-content-center"></i>
+						<a href="/post" class="stretched-link"></a>	
 					</div>
 				</div>
 				<div class="card col-11">
@@ -107,152 +28,71 @@
 						<h5 class="card-title">포스트 에대한 제목이랑 설명</h5>
 						<img th:src="@{/images/commPost/img002.jpg}" class="card-img"
 							alt="...">
+							
 						<p class="card-text">
-							<a href="#!"> <i class="feather icon-message-circle"></i> 댓글 (20) </a>
-							<a href="#!"><i class=" la la-share  pl-3"></i>공유하기</a>
-							<a href="#!"><i class="  la la-flag  pl-3"></i>신고하기</a>
+							<a href="#!" style="z-index: 2; position: relative;" > <i class="feather icon-message-circle"></i> 댓글 (20) </a>
+							<a href="#!" style="z-index: 2; position: relative;"><i class=" la la-share  pl-3" ></i>공유하기</a>
+							<a href="#!" style="z-index: 2; position: relative;"><i class="  la la-flag  pl-3"></i>신고하기</a>		
+						 	<a href="/post" class="stretched-link"></a>	
 						</p>
-
+					
 					</div>
 
 				</div>
+				
 			</div>
-			<div class="card-group">
-				<div class="card col-1 bg-light d-flex ml-0 mr-0 pl-0 pr-0 pt-5">
-					<div class="card-body ml-0 mr-0 pl-0 pr-0 pt-5	">
-						<i class="la la-caret-up d-flex la-3x justify-content-center"></i>
-						<p class="card-text text-center">15k</p>
-						<i class=" la la-caret-down la-3x d-flex justify-content-center"></i>
-					</div>
-				</div>
-				<div class="card col-11">
-					<div class="card-body">
-						<h5 class="card-title">포스트 에대한 제목이랑 설명</h5>
-						<img th:src="@{/images/commPost/img003.jpg}" class="card-img"
-							alt="...">
-						<p class="card-text">
-							<a href="#!"> <i class="feather icon-message-circle"></i> 댓글 (20) </a>
-							<a href="#!"><i class=" la la-share  pl-3"></i>공유하기</a>
-							<a href="#!"><i class="  la la-flag  pl-3"></i>신고하기</a>
-						</p>
-
-					</div>
-
-				</div>
+			<div class="card">
+			<div class="card-body">
+			<form class="cmxform" id="form2" method="get">
+						<div class="form-group">
+							<label for="agree">id001 로 댓글 남기기</label>
+							<textarea id="mainText" name="mainText" class="form-control" rows="10" placeholder="댓글내용" required></textarea>
+						</div>
+						<div class="form-group">
+							<input class="submit btn btn-primary pull-right" type="submit" value="등록">
+						</div>
+					</form>
 			</div>
-			<div class="card-group">
-				<div class="card col-1 bg-light d-flex ml-0 mr-0 pl-0 pr-0 pt-5">
-					<div class="card-body ml-0 mr-0 pl-0 pr-0 pt-5	">
-						<i class="la la-caret-up d-flex la-3x justify-content-center"></i>
-						<p class="card-text text-center">15k</p>
-						<i class=" la la-caret-down la-3x d-flex justify-content-center"></i>
-					</div>
-				</div>
-				<div class="card col-11">
-					<div class="card-body">
-						<h5 class="card-title">포스트 에대한 제목이랑 설명</h5>
-						<img th:src="@{/images/commPost/img004.jpg}" class="card-img"
-							alt="...">
-						<p class="card-text">
-							<a href="#!"> <i class="feather icon-message-circle"></i> 댓글 (20) </a>
-							<a href="#!"><i class=" la la-share  pl-3"></i>공유하기</a>
-							<a href="#!"><i class="  la la-flag  pl-3"></i>신고하기</a>
-						</p>
-
-					</div>
-
-				</div>
 			</div>
-		</div>
-		
+			<div class="card">
+			<div class="card-body">
+			  <div class="card-title">댓글 공간</div>
+			</div>
+			</div>
+			</div>
 		<div class="col-4">
 			<div class="card">
-				<img th:src="@{/images/commPost/img004.jpg}" class="card-img-top"
-					alt="...">
-				
+					<div class="card-title">포스트가 상위 커뮤니티 이름</div>
 					<div class="card-body m-0">
-						<div class="table-responsive">
-							<table class="table table-centered table-hover mb-0">
-								<tbody>
-									<tr>
-										<th scope="row">1</th>
-										<td>커뮤니티이름</td>
-										<td><button type="button" class="btn btn-info">가입</button></td>
-									</tr>
-									<tr>
-									<th scope="row">1</th>
-										<td>커뮤니티이름</td>
-										<td><button type="button" class="btn btn-info">가입</button></td>
-									</tr>
-									<tr>
-									<th scope="row">1</th>
-										<td>커뮤니티이름</td>
-										<td><button type="button" class="btn btn-info">가입</button></td>
-									</tr>
-									<tr>
-										<th scope="row">1</th>
-										<td>커뮤니티이름</td>
-										<td><button type="button" class="btn btn-info ">가입</button></td>
-									</tr>
-									<tr>
-										<th colspan="3" class="text-center"><button type="button" class="btn btn-info pr-5 pl-5">모두 보기</button></th>
-									</tr>
-								</tbody>
-							</table>
-							
-						</div>
+					<div class="card-text">커뮤니티 설명</div>
+					<div class="card-text">18k 회원 </div>
+					<div class="card-text">300 온라인</div>
+					<div class="card-text">커뮤니티 생성 날짜</div>
+					<button type="button" class="btn btn-info pr-5 pl-5">커뮤니티 가입</button>
+					<button type="button" class="btn btn-info pr-5 pl-5">포스트 만들기</button>	
 					</div>
-				
-
-
 			</div>
 			<div class="card">
-				<img th:src="@{/images/commPost/img002.jpg}" class="card-img-top"
-					alt="...">
-				
+				<div class="card-title">포스트가 상위 커뮤니티 규칙</div>
 					<div class="card-body m-0">
-						<h5 class="card-title">HOME</h5>
-						<a href="/createPost" class="btn btn-info active" role="button" aria-pressed="true">포스트 등록</a>
-							<button type="button" class="btn btn-info" data-toggle="modal"
-						data-target="#exampleModal-03">커뮤니티 등록</button>
-					<!-- 모달 시작 -->
-					<div class="modal fade" id="exampleModal-03" tabindex="-1"
-						role="dialog" aria-labelledby="exampleModalLabel"
-						aria-hidden="true">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel">커뮤니티 등록</h5>
-									<button type="button" class="close" data-dismiss="modal"
-										aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>
-								<div class="modal-body p-5">
-									<form class="cmxform" id="form2" method="get">
-										<div class="form-group">
-											<label for="commName">커뮤니티 이름</label> <input id="commName"
-												class="form-control" name="commName" required="" type="text">
-										</div>
-										<div class="form-group">
-											<input class="submit btn btn-primary" type="submit"
-												value="커뮤니티 등록">
-										</div>
-
-									</form>
-
-								</div>
-							</div>
-						</div>
+					<div class="card-text">규칙 1</div>
+					<div class="card-text">규칙 2 </div>
+					<div class="card-text">규칙 3</div>
+					<div class="card-text">규칙 4</div>
 					</div>
-					</div>
-				
-
 
 			</div>
 		</div>
 		
 	</div>
+
+
+
+
+
+
+
+
 
 
 </th:block>
