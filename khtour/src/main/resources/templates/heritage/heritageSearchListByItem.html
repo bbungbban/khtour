@@ -22,6 +22,7 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="row align-items-start">
+				<div class="col-4"></div>
 				<div class="search-box col-4">
 					<div class="search">
 						<input class="form-control border-12 border-primary" type="search"
@@ -29,12 +30,14 @@
 							href="#"><i class="la la-search"></i> </a>
 					</div>
 				</div>
-				<div class="col-4"></div>
+
 				<div class="col-4">
 					<button type="button" class="btn btn-primary" data-toggle="modal"
 						data-target="#exampleModal-03">
-						<i class="feather icon-plus"></i>박물관 등록
+						<i class="feather icon-plus"></i>문화재 등록
 					</button>
+
+
 					<!-- 모달 시작 -->
 					<div class="modal fade" id="exampleModal-03" tabindex="-1"
 						role="dialog" aria-labelledby="exampleModalLabel"
@@ -147,7 +150,9 @@
 									<option value="option8">천연기념물</option>
 								</select> <br>
 							</form>
-							<button class="btn btn-primary" type="button"><i class="feather icon-search"></i>검색 </button>
+							<button class="btn btn-primary" type="button">
+								<i class="feather icon-search"></i>검색
+							</button>
 						</div>
 					</div>
 				</div>
@@ -169,7 +174,7 @@
 								alt="...">
 						</div>
 						<div class="card-body">
-							<h5 class="card-title">서울 숭례문</h5>
+							<h5 class="card-title"><a th:href="@{/heritage/heritageDetail}">서울 숭례문</a></h5>
 							<p class="card-text">(서울 崇禮門)</p>
 						</div>
 						<div class="card-footer">
