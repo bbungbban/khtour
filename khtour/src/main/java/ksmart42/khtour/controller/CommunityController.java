@@ -7,10 +7,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class CommunityController {
 
 	@GetMapping("/commDashboard")
-	public String main(Model model) {
+	public String commDashboard(Model model) {
 		
 		model.addAttribute("title", "커뮤니티 대시보드");
 		
 		return "/community/commDashboard";
+	}
+	
+	@GetMapping("/createPost")
+	public String createPost(Model model) {
+		
+		model.addAttribute("title", "커뮤니티 대시보드");
+		
+		return "/community/createPost";
 	}
 }
