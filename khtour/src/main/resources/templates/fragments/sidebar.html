@@ -1,15 +1,46 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<div class="sidebar-panel nicescrollbar sidebar-panel-light" th:fragment="sidebarFragment">
 		<ul class="sidebar-menu">
-			<li class="sidebar-header"> 메뉴</li>
+			<li class="sidebar-header"> 메뉴 </li>
 			<li>
 				<a href="#">
 					<i class="la la-bank"></i> <span>문화재 검색</span> <span class="sidebar-badge"></span> <i class="la la-angle-right down-arrow"></i>
 				</a>
 				<ul class="sidebar-submenu">
+					<li><a th:href="@{/heritage/heritageInsert}"><i class="la la-minus"></i> <span> 문화재 등록 </span> </a></li>
 					<li><a th:href="@{/heritage/heritageSearchListByItem}"><i class="la la-minus"></i> <span> 문화재 종목별 검색 </span> </a></li>
 					<li><a th:href="@{/heritage/heritageSearchListByRegion}"><i class="la la-minus"></i> <span> 문화재 지역별 검색 </span> </a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">
+					<i class="la la-camera-retro"></i> <span>특별전 관리</span> <span class="sidebar-badge"></span> <i class="la la-angle-right down-arrow"></i>
+				</a>
+				<ul class="sidebar-submenu">
+					<li><a th:href="@{/exhibition/exhibInsert}"><i class="la la-minus"></i> <span> 특별전 등록 </span> </a></li>
+					<li><a th:href="@{/exhibition/exhibList}"><i class="la la-minus"></i> <span> 특별전 조회 및 수정 </span> </a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">
+					<i class="la la-map"></i> <span>코스 관리</span> <span class="sidebar-badge"></span> <i class="la la-angle-right down-arrow"></i>
+				</a>
+				<ul class="sidebar-submenu">
+					<li><a th:href="@{/tourCourse/cosInsert}"><i class="la la-minus"></i> <span> 코스 등록 </span> </a></li>
+					<li><a th:href="@{/tourCourse/cosList}"><i class="la la-minus"></i> <span> 코스  조회 및 수정 </span> </a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">
+					<i class="la la-users"></i> <span> 여행 동행자 모집 </span> <i class="la la-angle-right down-arrow"></i>
+				</a>
+				<ul class="sidebar-submenu">
+					<li><a th:href="@{/traRecruitment/applicationInsert}"><i class="la la-minus"></i> <span> 동행자 신청 등록 </span> </a></li>
+					<li><a th:href="@{/traRecruitment/applicationList}"><i class="la la-minus"></i> <span> 동행자 신청자 리스트 </span> </a></li>
+					<li><a th:href="@{/traRecruitment/noticeInsert}"><i class="la la-minus"></i> <span> 동행자 모집 공고 등록 </span> </a></li>
+					<li><a th:href="@{/traRecruitment/noticeList}"><i class="la la-minus"></i> <span> 동행자 모집 공고 리스트 </span> </a></li>
 				</ul>
 			</li>
 			<li>
@@ -17,8 +48,8 @@
 					<i class="la la-twitter-square"></i> <span> 여행일정 공유  </span> <i class="la la-angle-right down-arrow"></i>
 				</a>
 				<ul class="sidebar-submenu">
-					<li><a th:href="@{/traShare/traShareInsert}"><i class="la la-minus"></i> <span> 공유 게시판 등록 </span> </a></li>
-					<li><a th:href="@{/traShare/traShareList}"><i class="la la-minus"></i> <span> 공유 게시판 리스트 </span> </a></li>
+					<li><a th:href="@{/traShare/traShareInsert}"><i class="la la-minus"></i> <span> 여행기록 공유 게시판 등록 </span> </a></li>
+					<li><a th:href="@{/traShare/traShareList}"><i class="la la-minus"></i> <span> 여행기록 공유 게시판 리스트 </span> </a></li>
 				</ul>
 			</li>
 			<li>
@@ -51,10 +82,22 @@
 	            </ul>
         	 </li>
         	 <li>
-	         <a th:href="@{/commDashboard}">
-	            <i class="la la-wechat"></i><span>커뮤니티</span>
-	            <span class="sidebar-badge"></span>
-	         </a>
+				<a href="#">
+					<i class="la la-money"></i> <span>포인트관리1 </span> <span class="sidebar-badge"></span> <i class="la la-angle-right down-arrow"></i>
+				</a>
+				<ul class="sidebar-submenu">
+					<li><a th:href="@{/point/pointInsert}"><i class="la la-minus"></i> <span> 포인트 등록 </span> </a></li>
+					<li><a th:href="@{/point/pointDetail}"><i class="la la-minus"></i> <span> 포인트 정보 </span> </a></li>
+					<li><a th:href="@{/point/adminPointList}"><i class="la la-minus"></i> <span> 관리자 전체 회원<br/>포인트 조회 </span> </a></li>
+					<li><a th:href="@{/point/adminPointAlram}"><i class="la la-minus"></i> <span> 관리자 포인트 소멸<br/>알림주기 설정 페이지 </span> </a></li>
+					<li><a th:href="@{/point/userPointList}"><i class="la la-minus"></i> <span> 일반회원 포인트  조회 </span> </a></li>
+				</ul>
+			</li>
+        	 <li>
+		         <a th:href="@{/commDashboard}">
+		            <i class="la la-wechat"></i><span>커뮤니티</span>
+		            <span class="sidebar-badge"></span>
+		         </a>
 	         </li>
 			<li class="sidebar-header"> Extras </li>
 			<li>
