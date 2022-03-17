@@ -15,57 +15,57 @@ public class UserController {
 		
 		model.addAttribute("title", "로그인 페이지");
 		
-		return "/login/loginMain.html";
+		return "/user/loginMain.html";
 	}
 	
 	/*
 	 * 회원가입 화면
 	 */
-	@GetMapping("/login/userInsert.html")
+	@GetMapping("/user/userInsert.html")
 	public String getUserInsert(Model model) {
 		
 		model.addAttribute("title", "회원가입 페이지");
 		
-		return "/login/userInsert.html";
+		return "/user/userInsert.html";
 	}
 	/*
 	 * 회원 정보 검색 및 전체 리스트 화면
 	 */
-	@GetMapping("/login/userList.html")
+	@GetMapping("/user/userList.html")
 	public String getUserList(Model model) {
 		
 		model.addAttribute("title", "회원 정보 검색 및 전체 리스트 페이지");
 		
-		return "/login/userList.html";
+		return "/user/userList.html";
 	}
 	/*
 	 * 회원 정보 수정 화면
 	 */
-	@GetMapping("/login/userModify.html")
+	@GetMapping("/user/userModify.html")
 	public String getUserModify(Model model) {
 		
 		model.addAttribute("title", "회원 정보 수정 페이지");
 		
-		return "/login/userModify.html";
+		return "/user/userModify.html";
 	}
 	/*
 	 * 회원 세부 정보 화면
 	 */
-	@GetMapping("/login/userDetail.html")
+	@GetMapping("/user/userDetail.html")
 	public String getUserDetail(Model model) {
 		
 		model.addAttribute("title", "회원 세부 정보 페이지");
 		
-		return "/login/userDetail.html";
+		return "/user/userDetail.html";
 	}
 	/*
 	 * 회원 정보 삭제 화면
 	 */
-	@GetMapping("/login/userDelete.html")
+	@GetMapping("/user/userDelete.html")
 	public String getUserDelete(Model model) {
 		
 		model.addAttribute("title", "회원 정보 삭제 페이지");
 		
-		return "/login/userDelete.html";
+		return "/user/userDelete.html";
 	}
 }
