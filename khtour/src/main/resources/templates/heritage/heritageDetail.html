@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layout/default}">
+	<th:block layout:fragment="customTitle">
+		<title th:text="${title}"></title>
+	</th:block>
+	<th:block layout:fragment="contentsTitle">
+		<h1>Hello, Oxoury</h1>
+		<p>The best to you each morning.</p>
+	</th:block>
+	
+	<th:block layout:fragment="customContents">	
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+				  <div class="card-body">
+					<div class="blog blog-single">
+						<div class="blog-image">
+							 <img class="img-fluid w-100" src="images/blog/blog-single.jpg" alt="">
+						</div>
+						<h2>Explicabo tempora repellat totam eius, <br> praesentium atque suscipit. </h2>
+						<div class="blog-bottom">
+							<ul class="list-inline mb-0">
+								<li class="user"> <a href="#!"> <img class="img-fluid" src="images/team/04.jpg" alt=""> Gavin Joyce</a> </li>
+								<li> <a href="#!"> <i class="feather icon-message-circle"></i> Comments (01) </a> </li>
+								<li> <a href="#!"> <i class="feather icon-heart"></i> 36.6k </a> </li>
+							</ul>	
+						</div>
+						<div class="blog-details">
+							<div class="row">
+								<div class="col-md-6">
+									<p>Optio voluptatibus aliquam voluptas eius ab culpa! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem quas, fuga repellendus quis labore ut laudantium similique, quasi possimus ad a ipsum veritatis </p>
+									<ul class="pl-3">
+										<li> Fuga vel quas delectus Lorem ipsum dolor sit amet, consectetur adipisicing elit.  </li>
+										<li> Consectetur adipisicing elit. Fuga vel quas delectus  Lorem ipsum dolor sit amet,  </li>
+										<li> Dolor sit amet, consectetur adipisicing elit. Fuga vel quas delectus Lorem ipsum  </li>
+										<li> Vel quas delectus lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga  </li>
+										<li> Adipisicing elit. fuga vel quas delectus Lorem ipsum dolor sit amet, consectetur  </li>
+									</ul>
+								</div>
+								<div class="col-md-6">
+									 <p>Necessitatibus alias ipsa ipsum recusandae architecto quisquam! Ab consequatur nihil, doloribus distinctio fuga. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi mollitia magni, eum id voluptate a alias quod reprehenderit officia temporibus, sunt, veniam et? Possimus incidunt in aspernatur ipsam itaque aliquam quam voluptatem quod animi distinctio saepe explicabo, </p>
+									<p>Voluptatem quas, fuga repellendus quis labore ut laudantium similique, quasi possimus ad a ipsum veritatis optio voluptatibus aliquam voluptas eius ab culpa! Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+									<p>Nostrum, veniam velit quo magni reiciendis dolore consequatur ipsam accusamus, quam molestias id assumenda, voluptate vel possimus temporibus. </p>
+								</div>
+							</div>	
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="blog-tag">
+									<h5>Tag: </h5>
+									<ul class="list-inline">
+										<li><a href="#!"> Design </a></li>
+										<li><a href="#!"> HTML </a></li>
+										<li><a href="#!"> CSS3 </a></li>
+									</ul>	
+								</div>
+							</div>
+							<div class="col-md-6 ml-lg-auto text-lg-right">
+								<div class="blog-share">
+									<h5>Share: </h5>
+									<ul class="list-inline">
+									    <li><a href="#!" class="btn btn-sm btn-facebook btn-icon"> <i class="fa fa-facebook"></i> </a></li>
+										<li><a href="#!" class="btn btn-sm btn-twitter btn-icon"> <i class="fa fa-twitter"></i> </a></li>
+										<li><a href="#!" class="btn btn-sm btn-google-plus btn-icon"> <i class="fa fa-google-plus"></i> </a></li>
+										<li><a href="#!" class="btn btn-sm btn-linkedin btn-icon"><i class="fa fa-linkedin"></i> </a></li>
+										<li><a href="#!" class="btn btn-sm btn-instagram btn-icon"> <i class="fa fa-instagram"></i> </a></li>
+										<li><a href="#!" class="btn btn-sm btn-pinterest btn-icon"> <i class="fa fa-pinterest"></i> </a></li>
+									</ul>	
+								</div>
+							</div>
+						</div>
+						<div class="blog-comments">
+							<h5>Leave a reply</h5>
+							<p>Your email address will not be published. Required fields are marked *</p>
+						 <form>
+						  <div class="form-row">
+						    <div class="col-md-12 mb-3">
+						      <label>Comment * </label>
+						      <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="" rows="5"></textarea>
+						    </div>
+						    <div class="col-md-4 mb-3">
+						      <label>Name * </label>
+						      <input type="text" class="form-control" placeholder="">
+						    </div>
+						    <div class="col-md-4 mb-3">
+						      <label>Email * </label>
+						      <input type="text" class="form-control" placeholder="">
+						    </div>
+						    <div class="col-md-4 mb-3">
+						      <label>Website *</label>
+						      <input type="text" class="form-control" placeholder="">
+						    </div>
+						  </div>
+						  <button class="btn btn-primary" type="submit">Post comment</button>
+						</form>
+						<div class="row">
+							<div class="col-xl-8">
+								<div class="comments-list">
+									<ul class="list-inline"> 
+										<li class="comments">
+											<div class="comment-avtar">
+												<div class="avatar avatar-xll">
+							  						<div class="embed-responsive embed-responsive-4by3">
+							<img th:src="@{/images/heritage/서울 숭례문.jpg}"
+								class="card-img-top h-10 img-thumbnail embed-responsive-item"
+								alt="...">
+						</div>
+							  					</div>
+											</div>
+											<div class="comment-info">
+												<h5>Airi Satou</h5>
+												<span class="date">12 jan 2021</span>
+												<p class="mt-2 mb-1">Consectetur adipisicing elit. Lorem ipsum dolor sit amet, Optio fugit accusantium animi nihil dolorem non repellendus vel, facere porro. Quibusdam excepturi magnam inventore.</p>
+												<a href="#!"> Replay <i class="feather icon-arrow-right"></i></a>
+											</div>
+										</li>
+										<li class="comments children">
+											<div class="comment-avtar">
+												<div class="avatar avatar-xll">
+							  						<img class="img-fluid" src="images/team/02.jpg" alt="">
+							  					</div>
+											</div>
+											<div class="comment-info">
+												<h5>Bruno Nash</h5>
+												<span class="date">10 feb 2021</span>
+												<p class="mt-2 mb-1">Quibusdam excepturi magnam inventore. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio fugit accusantium animi nihil dolorem non repellendus vel, facere porro. </p>
+												<a href="#!"> Replay <i class="feather icon-arrow-right"></i></a>
+											</div>
+										</li>
+										<li class="comments children">
+											<div class="comment-avtar">
+												<div class="avatar avatar-xll">
+							  						<img class="img-fluid" src="images/team/03.jpg" alt="">
+							  					</div>
+											</div>
+											<div class="comment-info">
+												<h5>Cedric Kelly</h5>
+												<span class="date">26 aug 2021</span>
+												<p class="mt-2 mb-1">Repellendus vel, facere porro. Quibusdam excepturi magnam inventore. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio fugit accusantium animi nihil dolorem non </p>
+												<a href="#!"> Replay <i class="feather icon-arrow-right"></i></a>
+											</div>
+										</li>
+										<li class="comments">
+											<div class="comment-avtar">
+												<div class="avatar avatar-xll">
+							  						<img class="img-fluid" src="images/team/04.jpg" alt="">
+							  					</div>
+											</div>
+											<div class="comment-info">
+												<h5>Gavin Joyce</h5>
+												<span class="date">02 Dec 2021</span>
+												<p class="mt-2 mb-1">Adipisicing elit. Optio fugit accusantium animi nihil dolorem non repellendus vel, facere porro. Quibusdam excepturi magnam inventore Lorem ipsum dolor sit amet, consectetur mollitia quos autem.</p>
+												<a href="#!"> Replay <i class="feather icon-arrow-right"></i></a>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						</div>
+					 </div>
+					</div>
+				</div>
+			</div>
+		  </div>
+	</th:block>
+	<th:block layout:fragment="customBodyScript">
+		<!-- PRISM -->
+		<script th:src="@{/js/prism/prism.js}"></script>
+		<!-- custom -->
+		<script th:src="@{/js/custom.js}"></script>
+	</th:block>
+</html>
