@@ -51,4 +51,15 @@ public class AccommodationController {
 		
 		return "/accommodation/accommodationDelete";
 	}
+	
+	/*
+	 *숙박업소 정보
+	 * */
+	@GetMapping("/accommodation/acoommodationInfo")
+	public String Infoaccommodation(Model model) {
+		
+		model.addAttribute("title", "숙박업소 정보");
+		
+		return "/accommodation/acoommodationInfo";
+	}
 }
