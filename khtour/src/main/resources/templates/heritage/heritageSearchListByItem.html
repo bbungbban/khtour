@@ -19,10 +19,19 @@
 	</div>
 </th:block>
 <th:block layout:fragment="customContents">
+
+	<!-- cardpart : 1 start -->
 	<div class="card">
 		<div class="card-body">
 			<div class="row align-items-start">
-				<div class="col-4"></div>
+				<div class="col-5"><div class="alert bg-white shadow-sm alert-dismissible fade show mb-0 mt-md-0 mt-3" role="alert">
+					<i class="feather icon-alert-triangle text-primary mr-2"></i> 유형 문화재 등록만 가능합니다.
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">×</span>
+					</button>
+				</div></div>
+
+				<!-- 문화재 이름 검색 시작 -->
 				<div class="search-box col-4">
 					<div class="search">
 						<input class="form-control border-12 border-primary" type="search"
@@ -30,8 +39,10 @@
 							href="#"><i class="la la-search"></i> </a>
 					</div>
 				</div>
+				<!-- 문화재 이름 검색 종료 -->
 
-				<div class="col-4">
+
+				<div class="col-3">
 					<button type="button" class="btn btn-primary" data-toggle="modal"
 						data-target="#exampleModal-03">
 						<i class="feather icon-plus"></i>문화재 등록
@@ -121,10 +132,12 @@
 			</div>
 		</div>
 	</div>
+	<!-- cardpart : 1 end -->
 
-	<!-- 아코디언 시작 -->
+	<!-- cardpart : 2 start -->
 	<div class="card">
 		<div class="card-body">
+			<!-- 아코디언 시작 -->
 			<div class="accordion" id="accordionExample">
 				<div class="card border-primary">
 					<div class="card-header" id="headingOne">
@@ -144,7 +157,6 @@
 									<option value="option2">국보</option>
 									<option value="option3">명승</option>
 									<option value="option4">보물</option>
-									<option value="option5">사적</option>
 									<option value="option6">사적</option>
 									<option value="option7">시도등록문화재</option>
 									<option value="option8">천연기념물</option>
@@ -157,127 +169,128 @@
 					</div>
 				</div>
 			</div>
+			<!-- 아코디언 끝 -->
 		</div>
 	</div>
-	<!-- 아코디언 끝 -->
+	<!-- cardpart : 2 end -->
 
-
-	<!-- 검색 리스트 시작 -->
+	<!-- cardpart : 3 start -->
 	<div class="card">
 		<div class="card-body">
-			<div class="row row-cols-1 row-cols-md-4 g-4">
+			<!-- 검색 리스트 시작 -->
+			<div class="row row-cols-1 row-cols-md-3 g-3">
 				<div class="col">
-					<div class="card h-100">
+					<div class="card h-80">
 						<div class="embed-responsive embed-responsive-4by3">
 							<img th:src="@{/images/heritage/서울 숭례문.jpg}"
 								class="card-img-top h-10 img-thumbnail embed-responsive-item"
 								alt="...">
 						</div>
 						<div class="card-body">
-							<h5 class="card-title"><a th:href="@{/heritage/heritageDetail}">서울 숭례문</a></h5>
+						<p class="card-text">국보</p>
+							<h5 class="card-title">
+								<a th:href="@{/heritage/heritageDetail}">서울 숭례문</a>
+							</h5>
 							<p class="card-text">(서울 崇禮門)</p>
 						</div>
-						<div class="card-footer">
-							<ul class="list-inline mb-0">
-								<li><a href="#!"> <i class="feather icon-heart-on"></i>
-										수정
-								</a></li>
-								<li><a href="#!"> <i class="feather icon-compass"></i>
-										삭제
-								</a></li>
-							</ul>
-						</div>
+
 					</div>
 				</div>
 				<div class="col">
-					<div class="card h-100">
+					<div class="card h-80">
 						<div class="embed-responsive embed-responsive-4by3">
-							<img th:src="@{/images/heritage/서울 원각사지 십층석탑.jpg}"
+							<img th:src="@{/images/heritage/보은 법주사 쌍사자 석등.jpg}"
 								class="card-img-top h-10 img-thumbnail embed-responsive-item"
 								alt="...">
 						</div>
 						<div class="card-body">
-							<h5 class="card-title">서울 원각사지 십층석탑</h5>
-							<p class="card-text">(서울 圓覺寺址 十層石塔))</p>
+						<p class="card-text">국보</p>
+							<h5 class="card-title">
+								<a th:href="@{/heritage/heritageDetail}">서울 숭례문</a>
+							</h5>
+							<p class="card-text">(서울 崇禮門)</p>
 						</div>
-						<div class="card-footer">
-							<small class="text-muted">Last updated 3 mins ago</small>
-						</div>
+
 					</div>
 				</div>
 				<div class="col">
-					<div class="card h-100">
+					<div class="card h-80">
 						<div class="embed-responsive embed-responsive-4by3">
 							<img th:src="@{/images/heritage/서울 북한산 신라 진흥왕 순수비.jpg}"
 								class="card-img-top h-10 img-thumbnail embed-responsive-item"
 								alt="...">
 						</div>
 						<div class="card-body">
-							<h5 class="card-title">서울 북한산 신라 진흥왕 순수비</h5>
-							<p class="card-text">(서울 北漢山 新羅 眞興王 巡狩碑)</p>
+						<p class="card-text">국보</p>
+							<h5 class="card-title">
+								<a th:href="@{/heritage/heritageDetail}">서울 숭례문</a>
+							</h5>
+							<p class="card-text">(서울 崇禮門)</p>
 						</div>
-						<div class="card-footer">
-							<small class="text-muted">Last updated 3 mins ago</small>
-						</div>
+
 					</div>
 				</div>
 				<div class="col">
-					<div class="card h-100">
+					<div class="card h-80">
 						<div class="embed-responsive embed-responsive-4by3">
-							<img th:src="@{/images/heritage/보은 법주사 쌍사자 석등.jpg}"
-								class="card-img-top img-thumbnail embed-responsive-item"
+							<img th:src="@{/images/heritage/서울 숭례문.jpg}"
+								class="card-img-top h-10 img-thumbnail embed-responsive-item"
 								alt="...">
 						</div>
 						<div class="card-body">
-							<h5 class="card-title">여주 고달사지 승탑</h5>
-							<p class="card-text">(驪州 高達寺址 僧塔)</p>
+						<p class="card-text">국보</p>
+							<h5 class="card-title">
+								<a th:href="@{/heritage/heritageDetail}">서울 숭례문</a>
+							</h5>
+							<p class="card-text">(서울 崇禮門)</p>
 						</div>
-						<div class="card-footer">
-							<small class="text-muted">Last updated 3 mins ago</small>
-						</div>
+
 					</div>
 				</div>
 				<div class="col">
-					<div class="card h-100">
+					<div class="card h-80">
 						<div class="embed-responsive embed-responsive-4by3">
-							<img th:src="@{/images/heritage/보은 법주사 쌍사자 석등.jpg}"
-								class="card-img-top img-thumbnail embed-responsive-item"
+							<img th:src="@{/images/heritage/서울 원각사지 십층석탑.jpg}"
+								class="card-img-top h-10 img-thumbnail embed-responsive-item"
 								alt="...">
 						</div>
 						<div class="card-body">
-							<h5 class="card-title">여주 고달사지 승탑</h5>
-							<p class="card-text">(驪州 高達寺址 僧塔)</p>
+						<p class="card-text">국보</p>
+							<h5 class="card-title">
+								<a th:href="@{/heritage/heritageDetail}">서울 숭례문</a>
+							</h5>
+							<p class="card-text">(서울 崇禮門)</p>
 						</div>
-						<div class="card-footer">
-							<small class="text-muted">Last updated 3 mins ago</small>
-						</div>
+
 					</div>
 				</div>
 				<div class="col">
-					<div class="card h-100">
+					<div class="card h-80">
 						<div class="embed-responsive embed-responsive-4by3">
-							<img th:src="@{/images/heritage/보은 법주사 쌍사자 석등.jpg}"
-								class="card-img-top img-thumbnail embed-responsive-item"
+							<img th:src="@{/images/heritage/여주 고달사지 승탑.jpg}"
+								class="card-img-top h-10 img-thumbnail embed-responsive-item"
 								alt="...">
 						</div>
 						<div class="card-body">
-							<h5 class="card-title">보은 법주사 쌍사자 석등</h5>
-							<p class="card-text">(驪州 高達寺址 僧塔)</p>
+						<p class="card-text">국보</p>
+							<h5 class="card-title">
+								<a th:href="@{/heritage/heritageDetail}">서울 숭례문</a>
+							</h5>
+							<p class="card-text">(서울 崇禮門)</p>
 						</div>
-						<div class="card-footer">
-							<small class="text-muted">Last updated 3 mins ago</small>
-						</div>
+
 					</div>
 				</div>
 			</div>
+			<!-- 검색 리스트 끝 -->
 		</div>
 	</div>
-	<!-- 검색 리스트 끝 -->
-
-	<!-- 페이징 시작 -->
+	<!-- cardpart : 3 end -->
+	<!-- cardpart : 4 start -->
 	<div class="card">
 		<div class="card-body">
 			<div class="text-center">
+				<!-- 페이징 시작 -->
 				<div id="paging">
 					<nav aria-label="Page navigation example">
 						<ul class="pagination justify-content-center">
@@ -291,19 +304,18 @@
 						</ul>
 					</nav>
 				</div>
+				<!-- 페이징 끝 -->
 			</div>
 		</div>
 	</div>
-	<!-- 페이징 끝 -->
-
+	<!-- cardpart : 4 end -->
 </th:block>
+<!-- javascript 삽입 시작 -->
 <th:block layout:fragment="customBodyScript">
-	<!-- PRISM -->
-	<script th:src="@{/js/prism/prism.js}"></script>
 	<!-- custom -->
 	<script th:src="@{/js/custom.js}"></script>
-	<script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
-	<script
-		th:src="@{/js/bootstrap-duallistbox/jquery.bootstrap-duallistbox.min.js}"></script>
+	<!-- select List -->
+	<script th:src="@{/js/bootstrap-duallistbox/jquery.bootstrap-duallistbox.min.js}"></script>
 </th:block>
+<!-- javascript 삽입 종료 -->
 </html>
