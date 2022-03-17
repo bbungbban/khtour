@@ -43,6 +43,8 @@
 
   // The actual plugin constructor
   function BootstrapDualListbox(element, options) {
+	alert(element + '<- element BootstrapDualListbox 3');
+	alert(options + '<- options BootstrapDualListbox 3');
     this.element = $(element);
     // jQuery has an extend method which merges the contents of two or
     // more objects, storing the result in the first object. The first object
@@ -318,6 +320,7 @@
     });
 
     dualListbox.element.on('bootstrapDualListbox.refresh', function(e, mustClearSelections){
+    	alert(mustClearSelections + "<- mustClearSelections 4")
       dualListbox.refresh(mustClearSelections);
     });
 
@@ -365,6 +368,7 @@
   BootstrapDualListbox.prototype = {
     init: function () {
       // Add the custom HTML template
+    	alert(" BootstrapDualListbox.prototype 5")
       this.container = $('' +
         '<div class="bootstrap-duallistbox-container">' +
         ' <div class="box1">' +
@@ -824,9 +828,11 @@
 
       this.each(function () {
         var instance = $.data(this, 'plugin_' + pluginName);
+        alert(instance+"<- instance 2 ");
         // Tests that there's already a plugin-instance and checks that the requested public method exists
         if (instance instanceof BootstrapDualListbox && typeof instance[options] === 'function') {
           // Call the method of our plugin instance, and pass it the supplied arguments.
+        	alert(BootstrapDualListbox+"<- BootstrapDualListbox 조건문1 ");
           returns = instance[options].apply(instance, Array.prototype.slice.call(args, 1));
         }
       });
