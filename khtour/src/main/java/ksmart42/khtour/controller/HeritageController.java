@@ -8,17 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HeritageController {
 	
 	/*
-	 * 문화재 정보등록 
-	 */
-	@GetMapping("/heritage/heritageInsert")
-	public String addHeritage(Model model) {
-		
-		model.addAttribute("title", "문화재 등록 페이지");
-		
-		return "/heritage/heritageInsert";
-	}
-	
-	/*
 	 * 문화재 종목별 검색 
 	 */
 	@GetMapping("/heritage/heritageSearchListByItem")

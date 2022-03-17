@@ -7,17 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class TraRecruitment {
 
-	/*
-	 * 동행자 신청 정보등록 
-	 */
-	@GetMapping("/traRecruitment/applicationInsert")
-	public String addRecruitment(Model model) {
-		
-		model.addAttribute("title", "동행자 신청 등록페이지");
-		
-		return "/traRecruitment/applicationInsert";
-	}
-	
+
 	/*
 	 * 동행자 신청자 리스트 조회
 	 */
