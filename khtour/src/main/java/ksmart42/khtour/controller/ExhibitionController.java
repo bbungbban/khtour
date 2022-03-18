@@ -9,8 +9,14 @@ public class ExhibitionController {
 	
 	@GetMapping("/exhibition/exhibInsert")
 	public String getExhibInsert(Model model) {
-		model.addAttribute("title", "문화재 종목별 검색 페이지");
+		model.addAttribute("title", "특별전 등록");
 		
 		return "/exhibition/exhibInsert";
+	}
+	@GetMapping("/exhibition/exhibList")
+	public String getExhibList(Model model) {
+		model.addAttribute("title", "특별전 검색 및 수정");
+		
+		return "/exhibition/exhibList";
 	}
 }
