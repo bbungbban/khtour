@@ -6,7 +6,6 @@
 	<title th:text="${title}"></title>
 </th:block>
 <th:block layout:fragment="contentsTitle">
-	<h4>home/커뮤니티/포스트</h4>
 </th:block>
 <th:block layout:fragment="customContents">
 
@@ -28,14 +27,6 @@
 						<h5 class="card-title">포스트 에대한 제목이랑 설명</h5>
 						<img th:src="@{/images/commPost/img002.jpg}" class="card-img"
 							alt="...">
-							
-						<p class="card-text">
-							<a href="#!" style="z-index: 2; position: relative;" > <i class="feather icon-message-circle"></i> 댓글 (20) </a>
-							<a href="#!" style="z-index: 2; position: relative;"><i class=" la la-share  pl-3" ></i>공유하기</a>
-							<a href="#!" style="z-index: 2; position: relative;"><i class="  la la-flag  pl-3"></i>신고하기</a>		
-						 	<a href="/post" class="stretched-link"></a>	
-						</p>
-					
 					</div>
 
 				</div>
@@ -62,7 +53,7 @@
 			</div>
 		<div class="col-4">
 			<div class="card">
-					<div class="card-title">포스트가 상위 커뮤니티 이름</div>
+					<div class="card-title">포스트 상위 커뮤니티 이름</div>
 					<div class="card-body m-0">
 					<p class="card-text">
 						커뮤니티 설명
@@ -74,12 +65,12 @@
 					<p class="card-text">
 						커뮤니티 생성 날짜 : 2022 3월 31 일
 					</p>
-					<button type="button" class="btn btn-info pr-5 pl-5 mb-2 mt-2">커뮤니티 가입</button>
-					<button type="button" class="btn btn-info pr-5 pl-5">포스트 만들기</button>	
+					<a href="/commDashboard" class="btn btn-info active btn-sm pull-left" role="button" aria-pressed="true">커뮤니티 가입</a>
+					<a href="/createPost" class="btn btn-info active btn-sm pull-right" role="button" aria-pressed="true">포스트 만들기</a>	
 					</div>
 			</div>
 			<div class="card">
-				<div class="card-title">포스트가 상위 커뮤니티 규칙</div>
+				<div class="card-title">포스트 상위 커뮤니티 규칙</div>
 					<div class="card-body m-0">		
 						<div class="accordion accordion-box" id="accordionExample">
 										<div class="card">
@@ -91,8 +82,8 @@
 										</div>
 										<div class="card">
 											<div class="card-header" id="headingTwo-02">
-												<div class="accordion-title collapsed" data-toggle="collapse" data-target="#collapseTwo-02">
-													<h5 class="mb-0"><i class="zmdi zmdi-help-outline text-primary mr-3"></i>2. 규칙 2</h5>
+												<div class="accordion-title collapsed p-1" data-toggle="collapse" data-target="#collapseTwo-02">
+													<p class="mb-0"><i class="zmdi zmdi-help-outline text-primary mr-3"></i>2. 규칙 2</p>
 												</div>
 											</div>
 											<div id="collapseTwo-02" class="collapse" aria-labelledby="headingTwo-02" data-parent="#accordionExample">
@@ -103,8 +94,8 @@
 										</div>
 										<div class="card">
 											<div class="card-header" id="headingThree-03">
-												<div class="accordion-title collapsed" data-toggle="collapse" data-target="#collapseThree-03">
-													<h5 class="mb-0"><i class="zmdi zmdi-help-outline text-primary mr-3"></i> 3. 규칙 3</h5>
+												<div class="accordion-title collapsed p-1" data-toggle="collapse" data-target="#collapseThree-03">
+													<p class="mb-0"><i class="zmdi zmdi-help-outline text-primary mr-3"></i>3. 규칙 3</p>
 												</div>
 											</div>
 											<div id="collapseThree-03" class="collapse" aria-labelledby="headingThree-03" data-parent="#accordionExample">
@@ -115,8 +106,8 @@
 										</div>
 										<div class="card">
 											<div class="card-header" id="headingfour-04">
-												<div class="accordion-title collapsed" data-toggle="collapse" data-target="#collapsefour-04">
-													<h5 class="mb-0"><i class="zmdi zmdi-help-outline text-primary mr-3"></i>4. 규칙 4</h5>
+												<div class="accordion-title collapsed p-1"  data-toggle="collapse" data-target="#collapsefour-04">
+													<p class="mb-0"><i class="zmdi zmdi-help-outline text-primary mr-3"></i>4. 규칙 4</p>
 												</div>
 											</div>
 											<div id="collapsefour-04" class="collapse" aria-labelledby="headingfour-04" data-parent="#accordionExample">
@@ -127,8 +118,8 @@
 										</div>
 										<div class="card">
 											<div class="card-header" id="headingfive-05">
-												<div class="accordion-title collapsed" data-toggle="collapse" data-target="#collapsefive-05">
-													<h5 class="mb-0"><i class="zmdi zmdi-help-outline text-primary mr-3"></i>5. 규칙 5</h5>
+												<div class="accordion-title collapsed p-1" data-toggle="collapse" data-target="#collapsefive-05">
+													<p class="mb-0"><i class="zmdi zmdi-help-outline text-primary mr-3"></i>5. 규칙 5</p>
 												</div>
 											</div>
 											<div id="collapsefive-05" class="collapse" aria-labelledby="headingfive-05" data-parent="#accordionExample">
@@ -139,8 +130,8 @@
 										</div>
 										<div class="card">
 											<div class="card-header" id="headingsix-06">
-												<div class="accordion-title collapsed" data-toggle="collapse" data-target="#collapsesix-06">
-													<h5 class="mb-0"><i class="zmdi zmdi-help-outline text-primary mr-3"></i>6. 규칙 6</h5>
+												<div class="accordion-title collapsed p-1" data-toggle="collapse" data-target="#collapsesix-06">
+													<p class="mb-0"><i class="zmdi zmdi-help-outline text-primary mr-3"></i>6. 규칙 6</p>
 												</div>
 											</div>
 											<div id="collapsesix-06" class="collapse" aria-labelledby="headingsix-06" data-parent="#accordionExample">
@@ -151,8 +142,8 @@
 										</div>
 										<div class="card">
 											<div class="card-header" id="headingseven-07">
-												<div class="accordion-title collapsed" data-toggle="collapse" data-target="#collapseseven-07">
-													<h5 class="mb-0"><i class="zmdi zmdi-help-outline text-primary mr-3"></i>7. 규칙 7</h5>
+												<div class="accordion-title collapsed p-1" data-toggle="collapse" data-target="#collapseseven-07">
+													<p class="mb-0"><i class="zmdi zmdi-help-outline text-primary mr-3"></i>7. 규칙 7</p>
 												</div>
 											</div>
 											<div id="collapseseven-07" class="collapse" aria-labelledby="headingseven-07" data-parent="#accordionExample">
