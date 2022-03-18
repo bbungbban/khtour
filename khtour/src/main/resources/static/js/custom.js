@@ -656,7 +656,7 @@
         }
       });
     }
-      
+      /*****220318 김문영 timepicker2 수정 *****/
     var _timepicker2 = $( '#timepicker2' );
     if ( _timepicker2.exists() ) {
       _timepicker2.timepicker({
