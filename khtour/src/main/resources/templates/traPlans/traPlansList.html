@@ -1,22 +1,71 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{layout/default}">
-	<th:block layout:fragment="customTitle">
-		<title th:text="${title}"></title>
-	</th:block>
-	<th:block layout:fragment="contentsTitle">
-		<h1>Hello, Oxoury</h1>
-		<p>The best to you each morning.</p>
-	</th:block>
-	
-	<th:block layout:fragment="customContents">	
-		
-	</th:block>
-	<th:block layout:fragment="customBodyScript">
-		<!-- PRISM -->
-		<script th:src="@{/js/prism/prism.js}"></script>
-		<!-- custom -->
-		<script th:src="@{/js/custom.js}"></script>
-	</th:block>
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default}">
+<th:block layout:fragment="customTitle">
+	<title th:text="${title}"></title>
+</th:block>
+<th:block layout:fragment="contentsTitle">
+	<h1>Hello, Oxoury</h1>
+	<p>The best to you each morning.</p>
+</th:block>
+
+<th:block layout:fragment="customContents">
+	<div class="card bg-danger bg-gradient">
+		<div class="card-title border-0">
+			<div class="card-title-left">
+				<h4 class="card-title-text text-white">Latest blog</h4>
+			</div>
+		</div>
+		<div class="card-body">
+			<div id="carouselExampleIndicators" class="carousel slide"
+				data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#carouselExampleIndicators" data-slide-to="0"
+						class="active"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="1"
+						class=""></li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="carousel-item carousel-item-next carousel-item-left">
+						<div class="blog blog-bg pb-5">
+							<div class="row">
+								<div class="col mb-2">
+						
+							<div class="embed-responsive embed-responsive-4by3"  style="width: 350px; line-height: 150px;">
+								<img th:src="@{/images/heritage/서울 숭례문.jpg}"
+									class="card-img-top h-10 img-thumbnail embed-responsive-item"
+									alt="...">
+							</div>
+							</div>
+							<div class="col mb-2">
+						
+							<div class="embed-responsive embed-responsive-4by3"  style="width: 350px; line-height: 150px;">
+								<img th:src="@{/images/heritage/서울 숭례문.jpg}"
+									class="card-img-top h-10 img-thumbnail embed-responsive-item"
+									alt="...">
+							</div>
+</div>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+</th:block>
+<th:block layout:fragment="customBodyScript">
+	<!-- PRISM -->
+	<script th:src="@{/js/prism/prism.js}"></script>
+	<!-- custom -->
+	<script th:src="@{/js/custom.js}"></script>
+	<script
+		th:src="@{/js/jquery-jvectormap/jquery-jvectormap-2.0.3.min.js}"></script>
+	<script
+		th:src="@{/js/jquery-jvectormap/jquery-jvectormap-world-mill.js}"></script>
+	<script th:src="@{/js/sparkline/jquery.sparkline.min.js}"></script>
+	<script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
+</th:block>
 </html>

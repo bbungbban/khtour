@@ -656,11 +656,11 @@
         }
       });
     }
-      
+    /*****220318 김문영 timepicker2 수정 *****/
     var _timepicker2 = $( '#timepicker2' );
     if ( _timepicker2.exists() ) {
       _timepicker2.timepicker({
-        showSeconds: true,
+        /*showSeconds: true,*/
         showInputs:true,
         icons: {
           up: 'fa fa-angle-up',
@@ -1210,11 +1210,14 @@
     /* ------------------------------------------------------------------------
      * Rangeslider
      * ------------------------------------------------------------------------ */
+    /*
+     * 2022.03.18 11:41 김민석 RangeSlider 범위 조정
+     */
       var _rangeslider_basic = $( '#rangeslider-basic' );
       if (_rangeslider_basic.exists() ) {  
         _rangeslider_basic.ionRangeSlider({
-            min: 100,
-            max: 1000,
+            min: 0,
+            max: 30,
             from: 550
         });
       }    
