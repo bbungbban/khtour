@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/default}">
+	layout:decorate="~{layout/default2}">
 <th:block layout:fragment="customTitle">
 	<title th:text="${title}"></title>
 </th:block>
@@ -12,92 +12,64 @@
 <th:block layout:fragment="customContents">
 	<div class="row">
 		<div class="col-lg-4 col-md-4 col-sm-12">
-			<div class="card">
-				<div class="card-body">
-					<div class="blog blog-single">
-						<div class="blog-image">
-							<img class="img-fluid w-100" th:src="@{/images/aco/sinla.jpg}"
-								alt="">
-						</div>
-						<div class="blog-info">
-							<div class="blog-title mt-3">
-								<h4 class="mb-3">
-									<a>신라스테이 해운대</a>
-								</h4>
-								<p class="mb-0">Maxime dolorem nihil minus, quasi, dicta
-									cupiditate aut magni ea veniam natus provident.</p>
-							</div>
-						</div>
-						<div class="blog-bottom">
-							<ul class="list-inline mb-0">
-								<li><a href="#!"> <i
-										class="feather icon-message-circle"></i> Comments (20)
-								</a></li>
-								<li><a href="#!"> <i class="feather icon-heart"></i>
-										22.5k
-								</a></li>
-							</ul>
+		<div class="card">
+			<div class="card-body">
+				<div class="blog blog-single">
+					<div class="blog-image">
+						<img class="img-fluid w-100" th:src="@{/images/aco/sinla.jpg}"
+							alt="">
+					</div>
+					<div class="blog-info">
+						<div class="blog-title mt-3">
+							<h4 class="mb-3">
+								<a>신라스테이 해운대</a>
+							</h4>
+							<p class="mb-0">Maxime dolorem nihil minus, quasi, dicta
+								cupiditate aut magni ea veniam natus provident.</p>
 						</div>
 					</div>
+					<div class="blog-bottom">
+						<ul class="list-inline mb-0">
+							<li><a href="#!"> <i class="feather icon-message-circle"></i>
+									Comments (20)
+							</a></li>
+							<li><a href="#!"> <i class="feather icon-heart"></i>
+									22.5k
+							</a></li>
+						</ul>
+					</div>
 				</div>
+			</div>
 			</div>
 		</div>
 		<div class="col-lg-8 col-md-8 col-sm-12">
 			<div class="card">
 				<div class="card-body">
 					<div class="blog blog-single">
-						<div class="card bg-danger bg-gradient">
-							<div class="card-title border-0">
-								<div class="card-title-left">
-									<h4 class="card-title-text text-white">Latest blog</h4>
-								</div>
-							</div>
-							<div class="card-body">
-								<div id="carouselExampleIndicators" class="carousel slide"
-									data-ride="carousel">
-									<ol class="carousel-indicators">
-										<li data-target="#carouselExampleIndicators" data-slide-to="0"
-											class="active"></li>
-										<li data-target="#carouselExampleIndicators" data-slide-to="1"
-											class=""></li>
-										<li data-target="#carouselExampleIndicators" data-slide-to="2"
-											class=""></li>
-									</ol>
-									<div class="carousel-inner">
-										<div
-											class="carousel-item carousel-item-next carousel-item-left">
-											<div class="blog blog-bg pb-5">
-
-												<div class="embed-responsive embed-responsive-16by9">
-													<img th:src="@{/images/aco/sinlastayBusan1.png}"
-														class="card-img-top h-10 img-thumbnail embed-responsive-item"
-														alt="...">
-												</div>
-
-
-											</div>
-										</div>
-										<div class="carousel-item active carousel-item-left">
-											<div class="blog blog-bg pb-5">
-												<div class="embed-responsive embed-responsive-16by9">
-													<img th:src="@{/images/aco/sinlastayBusan2.png}"
-														class="card-img-top h-10 img-thumbnail embed-responsive-item"
-														alt="...">
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+						<div class="embed-responsive embed-responsive-16by9">
+							<img class="embed-responsive-item"
+								th:src="@{/images/aco/sinlastayBusan1.png}" alt="">
 						</div>
 						<h2>
 							Explicabo tempora repellat totam eius, <br /> praesentium atque
 							suscipit.
 						</h2>
-						<div class="blog-bottom"></div>
+						<div class="blog-bottom">
+							<ul class="list-inline mb-0">
+								<li class="user"><a href="#!"> <img class="img-fluid"
+										src="images/team/04.jpg" alt=""> Gavin Joyce
+								</a></li>
+								<li><a href="#!"> <i
+										class="feather icon-message-circle"></i> Comments (01)
+								</a></li>
+								<li><a href="#!"> <i class="feather icon-heart"></i>
+										36.6k
+								</a></li>
+							</ul>
+						</div>
 						<div class="blog-details">
 							<div class="row">
-								<div class="col-md-4 col-sm-12">
+								<div class="col-md-6">
 									<p>Optio voluptatibus aliquam voluptas eius ab culpa! Lorem
 										ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem
 										quas, fuga repellendus quis labore ut laudantium similique,
@@ -115,85 +87,60 @@
 											dolor sit amet, consectetur</li>
 									</ul>
 								</div>
-								<div class="col-md-4 col-sm-12">
-									<p>Optio voluptatibus aliquam voluptas eius ab culpa! Lorem
-										ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem
-										quas, fuga repellendus quis labore ut laudantium similique,
-										quasi possimus ad a ipsum veritatis</p>
-									<ul class="pl-3">
-										<li>Fuga vel quas delectus Lorem ipsum dolor sit amet,
-											consectetur adipisicing elit.</li>
-										<li>Consectetur adipisicing elit. Fuga vel quas delectus
-											Lorem ipsum dolor sit amet,</li>
-										<li>Dolor sit amet, consectetur adipisicing elit. Fuga
-											vel quas delectus Lorem ipsum</li>
-										<li>Vel quas delectus lorem ipsum dolor sit amet,
-											consectetur adipisicing elit. Fuga</li>
-										<li>Adipisicing elit. fuga vel quas delectus Lorem ipsum
-											dolor sit amet, consectetur</li>
+								<div class="col-md-6">
+									<p>Necessitatibus alias ipsa ipsum recusandae architecto
+										quisquam! Ab consequatur nihil, doloribus distinctio fuga.
+										Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+										Sequi mollitia magni, eum id voluptate a alias quod
+										reprehenderit officia temporibus, sunt, veniam et? Possimus
+										incidunt in aspernatur ipsam itaque aliquam quam voluptatem
+										quod animi distinctio saepe explicabo,</p>
+									<p>Voluptatem quas, fuga repellendus quis labore ut
+										laudantium similique, quasi possimus ad a ipsum veritatis
+										optio voluptatibus aliquam voluptas eius ab culpa! Lorem ipsum
+										dolor sit amet, consectetur adipisicing elit.</p>
+									<p>Nostrum, veniam velit quo magni reiciendis dolore
+										consequatur ipsam accusamus, quam molestias id assumenda,
+										voluptate vel possimus temporibus.</p>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="blog-tag">
+									<h5>Tag:</h5>
+									<ul class="list-inline">
+										<li><a href="#!"> Design </a></li>
+										<li><a href="#!"> HTML </a></li>
+										<li><a href="#!"> CSS3 </a></li>
 									</ul>
 								</div>
-								<div class="col-md-4 col-sm-12">
-									<div class="br-wrapper br-theme-fontawesome-stars-o">
-										<ul class="pl-3">
-											<li><span>청결도</span>
-												<div class="br-widget">
-													<a class="br-selected"></a> <a class="br-selected"></a> <a
-														class="br-selected"></a> <a class="br-selected"></a> <a
-														class="br-selected"></a> <span style="font-size: 20px;">5</span>
-												</div></li>
-										</ul>
-									</div>
-									<div class="br-wrapper br-theme-fontawesome-stars-o">
-										<ul class="pl-3">
-											<li><span>친절도</span>
-												<div class="br-widget">
-													<a class="br-selected"></a> <a class="br-selected"></a> <a
-														class="br-selected"></a> <a class="br-selected"></a> <a
-														class="br-selected"></a> <span style="font-size: 20px;">5</span>
-												</div></li>
-										</ul>
-									</div>
-									<div class="br-wrapper br-theme-fontawesome-stars-o">
-										<ul class="pl-3">
-											<li><span>편의성</span>
-												<div class="br-widget">
-													<a class="br-selected"></a> <a class="br-selected"></a> <a
-														class="br-selected"></a> <a class="br-selected"></a> <a
-														class="br-selected"></a> <span style="font-size: 20px;">5</span>
-												</div></li>
-										</ul>
-									</div>
-									<div class="br-wrapper br-theme-fontawesome-stars-o">
-										<ul class="pl-3">
-											<li><span>위치만족도</span>
-												<div class="br-widget">
-													<a class="br-selected"></a> <a class="br-selected"></a> <a
-														class="br-selected"></a> <a class="br-selected"></a> <a
-														class="br-selected"></a> <span style="font-size: 20px;">5</span>
-												</div></li>
-										</ul>
-									</div>
-									<div class="br-wrapper br-theme-fontawesome-stars-o">
-										<ul class="pl-3">
-											<li><span>가격대비만족도</span>
-												<div class="br-widget">
-													<a class="br-selected"></a> <a class="br-selected"></a> <a
-														class="br-selected"></a> <a class="br-selected"></a> <a
-														class="br-selected"></a> <span style="font-size: 20px;">5</span>
-												</div></li>
-										</ul>
-									</div>
-									<div class="br-wrapper br-theme-fontawesome-stars-o">
-										<ul class="pl-3">
-											<li><span>평균 점수</span>
-												<div class="br-widget">
-													<a class="br-selected"></a> <a class="br-selected"></a> <a
-														class="br-selected"></a> <a class="br-selected"></a> <a
-														class="br-selected"></a> <span style="font-size: 20px;">5</span>
-												</div></li>
-										</ul>
-									</div>
+							</div>
+							<div class="col-md-6 ml-lg-auto text-lg-right">
+								<div class="blog-share">
+									<h5>Share:</h5>
+									<ul class="list-inline">
+										<li><a href="#!" class="btn btn-sm btn-facebook btn-icon">
+												<i class="fa fa-facebook"></i>
+										</a></li>
+										<li><a href="#!" class="btn btn-sm btn-twitter btn-icon">
+												<i class="fa fa-twitter"></i>
+										</a></li>
+										<li><a href="#!"
+											class="btn btn-sm btn-google-plus btn-icon"> <i
+												class="fa fa-google-plus"></i>
+										</a></li>
+										<li><a href="#!" class="btn btn-sm btn-linkedin btn-icon"><i
+												class="fa fa-linkedin"></i> </a></li>
+										<li><a href="#!"
+											class="btn btn-sm btn-instagram btn-icon"> <i
+												class="fa fa-instagram"></i>
+										</a></li>
+										<li><a href="#!"
+											class="btn btn-sm btn-pinterest btn-icon"> <i
+												class="fa fa-pinterest"></i>
+										</a></li>
+									</ul>
 								</div>
 							</div>
 						</div>
