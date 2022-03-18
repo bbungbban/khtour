@@ -21,11 +21,21 @@ public class TraShareController {
 	 * 여행기록 공유 게시판 리스트
 	 */
 	@GetMapping("/traShare/traShareList")
-	public String getRecruitmentList(Model model) {
+	public String getTraShareList(Model model) {
 		
 		model.addAttribute("title", "여행 기록 공유 게시판 리스트");
 		
 		return "/traShare/traShareList";
 	}
 
+	/*
+	 * 여행기록 상세  페이지 이동
+	 */
+	@GetMapping("/traShare/traDetail")
+	public String getTraDetail(Model model) {
+		
+		model.addAttribute("title", "여행 기록 공유 게시판 리스트");
+		
+		return "/traShare/traDetail";
+	}
 }
