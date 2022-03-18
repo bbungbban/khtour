@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/default}">
+	layout:decorate="~{layout/default2}">
 <th:block layout:fragment="customTitle">
 	<title th:text="${title}"></title>
 </th:block>
@@ -19,6 +19,21 @@
 					<div class="add-new">
 						<a class="btn btn-primary" href="#!"> <i class="feather icon-plus"></i> Add new</a>
 					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-title">
+						<div class="card-title-left">
+							<h4 class="card-title-text">Simple Date Range Picker With a Callback</h4>
+						</div>
+					</div>
+				  <div class="card-body">
+					    <input type="text" name="daterange" value="01/01/2021 - 01/15/2021" class="form-control" />
+				  </div>
 				</div>
 			</div>
 		</div>
@@ -686,5 +701,8 @@
 	<script th:src="@{/js/prism/prism.js}"></script>
 	<!-- custom -->
 	<script th:src="@{/js/custom.js}"></script>
+	<!-- select -->
+	<script th:src="@{/js/select2/select2.js}"></script>
+	<script th:src="@{/js/datepicker/daterangepicker.js}"></script>
 </th:block>
 </html>
