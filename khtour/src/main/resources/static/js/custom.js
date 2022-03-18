@@ -660,7 +660,7 @@
     var _timepicker2 = $( '#timepicker2' );
     if ( _timepicker2.exists() ) {
       _timepicker2.timepicker({
-        showSeconds: true,
+        /*showSeconds: true,*/
         showInputs:true,
         icons: {
           up: 'fa fa-angle-up',
