@@ -21,8 +21,22 @@
 </th:block>
 
 <th:block layout:fragment="customContents">
+	<div class="row">
+		<div class="col-2">
+			<div class="card ">
+				<div class="card-body">
+							<a th:href="@{/traShare/traShareInsert}" type="button" class="btn btn-primary">
+								<i class="feather icon-plus"></i>포스트 등록</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 	<div class="row justify-content-center mb-4">
+		<!-- cardpart : 1 start -->
+
+
 		<div class="col-9">
 			<!-- cardpart : 2 start -->
 			<div class="card">
@@ -44,7 +58,7 @@
 									</div>
 									<div class="blog-title mt-3">
 										<h4 class="mb-3">
-											 <a th:href="@{/traShare/traDetail}">제주도 여행이 막막하다면!</a>
+											<a th:href="@{/traShare/traDetail}">제주도 여행이 막막하다면!</a>
 										</h4>
 										<p class="mb-0">여행 기간은 한정적인데 가고 싶은 곳은 너무 많아서 뭘 어디서부터 어떻게
 											해야 될지 모르겠다면 집중!</p>
@@ -73,12 +87,11 @@
 								</div>
 								<div class="blog-info">
 									<div class="blog-date">
-										<a href="#!"><i class="feather icon-truck"></i>
-											여행후 </a>
+										<a href="#!"><i class="feather icon-truck"></i> 여행후 </a>
 									</div>
 									<div class="blog-title mt-3">
 										<h4 class="mb-3">
-										 <a th:href="@{/traShare/traDetail}">제주도 여행이 막막하다면!</a>
+											<a th:href="@{/traShare/traDetail}">제주도 여행이 막막하다면!</a>
 										</h4>
 										<p class="mb-0">여행 기간은 한정적인데 가고 싶은 곳은 너무 많아서 뭘 어디서부터 어떻게
 											해야 될지 모르겠다면 집중!</p>
@@ -112,7 +125,7 @@
 									</div>
 									<div class="blog-title mt-3">
 										<h4 class="mb-3">
-											 <a th:href="@{/traShare/traDetail}">제주도 여행이 막막하다면!</a>
+											<a th:href="@{/traShare/traDetail}">제주도 여행이 막막하다면!</a>
 										</h4>
 										<p class="mb-0">여행 기간은 한정적인데 가고 싶은 곳은 너무 많아서 뭘 어디서부터 어떻게
 											해야 될지 모르겠다면 집중!</p>
@@ -148,7 +161,7 @@
 									</div>
 									<div class="blog-title mt-3">
 										<h4 class="mb-3">
-											 <a th:href="@{/traShare/traDetail}">제주도 여행이 막막하다면!</a>
+											<a th:href="@{/traShare/traDetail}">제주도 여행이 막막하다면!</a>
 										</h4>
 										<p class="mb-0">여행 기간은 한정적인데 가고 싶은 곳은 너무 많아서 뭘 어디서부터 어떻게
 											해야 될지 모르겠다면 집중!</p>
@@ -184,7 +197,7 @@
 									</div>
 									<div class="blog-title mt-3">
 										<h4 class="mb-3">
-											 <a th:href="@{/traShare/traDetail}">제주도 여행이 막막하다면!</a>
+											<a th:href="@{/traShare/traDetail}">제주도 여행이 막막하다면!</a>
 										</h4>
 										<p class="mb-0">여행 기간은 한정적인데 가고 싶은 곳은 너무 많아서 뭘 어디서부터 어떻게
 											해야 될지 모르겠다면 집중!</p>
@@ -209,7 +222,7 @@
 										<img th:src="@{/images/traShare/1.jpg}"
 											class="card-img-top h-10 img-thumbnail embed-responsive-item"
 											alt="...">
-											
+
 									</div>
 								</div>
 								<div class="blog-info">
@@ -221,7 +234,7 @@
 									</div>
 									<div class="blog-title mt-3">
 										<h4 class="mb-3">
-											 <a th:href="@{/traShare/traDetail}">제주도 여행이 막막하다면!</a>
+											<a th:href="@{/traShare/traDetail}">제주도 여행이 막막하다면!</a>
 										</h4>
 										<p class="mb-0">여행 기간은 한정적인데 가고 싶은 곳은 너무 많아서 뭘 어디서부터 어떻게
 											해야 될지 모르겠다면 집중!</p>
@@ -241,6 +254,29 @@
 						</div>
 					</div>
 					<!-- 블로그 리스트 끝 -->
+								<!-- cardpart : 4 start -->
+	<div class="card">
+		<div class="card-body">
+			<div class="text-center">
+				<!-- 페이징 시작 -->
+				<div id="paging">
+					<nav aria-label="Page navigation example">
+						<ul class="pagination justify-content-center">
+							<li class="page-item"><a class="page-link" href="#">이전</a></li>
+							<li class="page-item"><a class="page-link" href="#">1</a></li>
+							<li class="page-item"><a class="page-link" href="#">2</a></li>
+							<li class="page-item"><a class="page-link" href="#">3</a></li>
+							<li class="page-item"><a class="page-link" href="#">4</a></li>
+							<li class="page-item"><a class="page-link" href="#">5</a></li>
+							<li class="page-item"><a class="page-link" href="#">다음</a></li>
+						</ul>
+					</nav>
+				</div>
+				<!-- 페이징 끝 -->
+			</div>
+		</div>
+	</div>
+	<!-- cardpart : 4 end -->
 				</div>
 			</div>
 			<!-- cardpart : 2 end -->
@@ -248,7 +284,7 @@
 		<div class="col-3">
 			<!-- cardpart : 2 start -->
 			<div class="card ">
-				 <h5 class="card-title">검색범위 및 정렬방식</h5>
+				<h5 class="card-title">검색범위 및 정렬방식</h5>
 				<div class="card-body text-center border border-secondary">
 					<form>
 						<div class="form-group">
@@ -275,8 +311,7 @@
 						<div class="form-group">
 							<label for="textFormControlInput2"> 여행지 명 </label> <input
 								type="text" class="form-control border border-secondary"
-								id="textFormControlInput2" placeholder="여행지 이름을 적어주세요"
-								>
+								id="textFormControlInput2" placeholder="여행지 이름을 적어주세요">
 						</div>
 						<div class="form-group">
 							<label for="customRange2" class="form-label">여행 기간</label> <span
@@ -303,8 +338,7 @@
 						<div class="form-group">
 							<label for="textFormControlInput3"> 등록자 아이디 </label> <input
 								type="text" class="form-control border border-secondary"
-								id="exampleFormControlInput3" placeholder="등록자 아이디를 입력해주세요"
-								>
+								id="exampleFormControlInput3" placeholder="등록자 아이디를 입력해주세요">
 						</div>
 
 
