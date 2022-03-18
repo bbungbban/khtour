@@ -11,9 +11,10 @@
 <th:block layout:fragment="customContents">
 	<link rel="stylesheet" type="text/css"
 		th:href="@{/css/plugins/datepicker/daterangepicker.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/plugins/KmyCss/addCssKmy.css}">
+	<link rel="stylesheet" type="text/css"
+		th:href="@{/css/plugins/KmyCss/addCssKmy.css}">
 	<div id="exhibInsert">
-		<!--Start 달력 -->
+		<!-- **********************************  Start 달력  ********************************** -->
 		<div class="daterangepicker ltr show-calendar opensright"
 			style="top: 276.484px; left: 304.562px; right: auto; display: block; display: none;">
 			<div class="ranges"></div>
@@ -182,36 +183,11 @@
 				<button class="applyBtn btn btn-sm btn-primary" type="button">Apply</button>
 			</div>
 		</div>
-		<!--End 달력 -->
-		<!--Start 컨텐츠랩 -->
+		<!-- **********************************  End 달력  ************************************ -->
+		<!-- **********************************  Start ContentsWrap  ********************************** -->
 		<div class="row">
-			<!-- Start Left 등록폼 -->
+			<!-- **********************************  Start left 등록 폼  ********************************** -->
 			<div class="col-md-6">
-				<div class="card">
-					<div class="card-title">
-						<div class="card-title-left">
-							<h4 class="card-title-text">
-								전시기간<i class="fa-thin fa-00"></i>
-							</h4>
-						</div>
-					</div>
-					<div class="card-body">
-						<input style="letter-spacing: 1em;" type="text" name="daterange"
-							value="01/01/2021 - 01/15/2021" class="form-control" />
-					</div>
-				</div>
-				<div class="card">
-					<div class="card-title">
-						<div class="card-title-left">
-							<h4 class="card-title-text">포스터</h4>
-						</div>
-					</div>
-					<div class="card-body">
-						<div class="custom-file">
-						<input type="file" id="avatar" class="form-control" name="avatar" required="">
-						</div>
-					</div>
-				</div>
 				<div class="card">
 					<div class="card-title">
 						<div class="card-title-left">
@@ -243,6 +219,32 @@
 								</select>
 							</div>
 						</form>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-title">
+						<div class="card-title-left">
+							<h4 class="card-title-text">
+								전시기간<i class="fa-thin fa-00"></i>
+							</h4>
+						</div>
+					</div>
+					<div class="card-body">
+						<input style="letter-spacing: 1em;" type="text" name="daterange"
+							value="01/01/2021 - 01/15/2021" class="form-control" />
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-title">
+						<div class="card-title-left">
+							<h4 class="card-title-text">포스터</h4>
+						</div>
+					</div>
+					<div class="card-body">
+						<div class="custom-file">
+							<input type="file" id="avatar" class="form-control" name="avatar"
+								required="">
+						</div>
 					</div>
 				</div>
 				<div class="card">
@@ -283,8 +285,8 @@
 					</div>
 				</div>
 			</div>
-			<!-- End Left 등록폼 -->
-			<!--Start Right 등록폼 -->
+			<!-- **********************************  End left 등록 폼  ********************************** -->
+			<!-- **********************************  Start Right 등록 폼  ********************************** -->
 			<div class="col-md-6 margincorrection">
 				<div class="card">
 					<div class="card-title">
@@ -423,13 +425,13 @@
 					</div>
 				</div>
 			</div>
-			<!--End Right 등록폼 -->
-			<!-- Start Editor -->
+			<!-- **********************************  End Right 등록 폼  ********************************** -->
+			<!-- **********************************  Start Editor ********************************** -->
 			<div class="col-12">
 				<div class="card">
 					<div class="card-title">
 						<div class="card-title-left">
-							<h4 class="card-title-text">Markdown Editor</h4>
+							<h4 class="card-title-text">상세정보</h4>
 						</div>
 					</div>
 					<div class="card-body">
@@ -660,7 +662,7 @@
 					</div>
 				</div>
 			</div>
-			<!-- End Editor -->
+			<!-- **********************************  End Editor ********************************** -->
 		</div>
 		<div class="col-12">
 			<div class="add-new text-center mb-5">
@@ -669,7 +671,8 @@
 				</a>
 			</div>
 		</div>
-		<!--End 컨텐츠랩-->
+	</div>
+	<!-- **********************************  End ContentsWrap ********************************** -->
 </th:block>
 <th:block layout:fragment="customBodyScript">
 	<!-- PRISM -->
