@@ -28,4 +28,11 @@ public class CommunityController {
 		
 		return "/community/post";
 	}
+	@GetMapping("/commRanking")
+	public String commRanking(Model model) {
+		
+		model.addAttribute("title", "전체커뮤니티");
+		
+		return "/community/commRanking";
+	}
 }
