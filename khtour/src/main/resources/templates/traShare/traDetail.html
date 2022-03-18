@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default3}">
+<th:block layout:fragment="customTitle">
+	<title th:text="${title}"></title>
+</th:block>
+<th:block layout:fragment="contentsTitle">
+	<div class="row">
+		<div class="col-11">
+			<h2 class="p-2 mb-2 bg-primary text-white">포스트 상세 페이지</h2>
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a
+						th:href="@{/traShare/traShareList}">여행일정 공유 게시판</a></li>
+					<li class="breadcrumb-item active" aria-current="page">포스트 상세</li>
+				</ol>
+			</nav>
+		</div>
+	</div>
+</th:block>
+
+<th:block layout:fragment="customContents">
+
+	<div class="row justify-content-center">
+		<div class="col">
+			<div class="card ">
+				<div class="card-body">
+					<a th:href="@{/traShare/traShareInsert}" type="button"
+						class="btn btn-primary"> <i class="feather icon-plus"></i>포스트
+						수정
+					</a> <a th:href="@{/traShare/traShareInsert}" type="button"
+						class="btn btn-primary"> <i class="feather icon-plus"></i>포스트
+						삭제
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row user-profile justify-content-center mb-4">
+		<div class="col-lg-2 mb-2 mb-lg-0">
+			<div
+				class="user-detail border-radius shadow-sm border border-primary">
+				<div class="avatar avatar-xll d-block mx-auto">
+					<img th:src="@{/images/heritage/서울 숭례문.jpg}" class="img-fluid"
+						alt="">
+
+
+				</div>
+				<div class="user-name mt-3 text-center">
+					<h5>김민석</h5>
+
+					<div class="user-like text-center">
+						<a href="#"> <i class="fa fa-heart-o"></i> 5200명
+						</a>
+					</div>
+
+				</div>
+				<div class="user-info mt-4 text-center">
+					<button type="button" class="btn btn-outline-danger">팔로우</button>
+					<div class="my-3 border border-success">
+						팔로우 : <span>121</span> 팔로워 : <span>234</span>
+					</div>
+					<div class="my-3 border border-success">
+						포스트 : <span>121</span> 여행일정 : <span>234</span>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="col-lg-8">
+
+			<div class="card tab border border-primary">
+				<div class="card-title pt-3">
+					<div class="card-title">
+						<h1
+							class="card-title-text position-absolute top-0 start-50 translate-middle">여행
+							일지</h1>
+					</div>
+					<ul class="nav" role="tablist">
+						<li class="nav-item"><a class="nav-link active" id="home-tab"
+							data-toggle="tab" href="#home" role="tab" aria-controls="home"
+							aria-selected="true">스토리</a></li>
+						<li class="nav-item"><a class="nav-link" id="profile-tab"
+							data-toggle="tab" href="#profile" role="tab"
+							aria-controls="profile" aria-selected="false">지도</a></li>
+					</ul>
+				</div>
+				<div class="card-body tab-content">
+					<div class="tab-pane fade active show" id="home" role="tabpanel"
+						aria-labelledby="home-tab">
+						<div class="user-about border-radius shadow-sm">
+							<div class="border border-dark" style="padding: 10px">
+								<div class="mb-4 ">
+									<h1 class="mb-3">제주도민 아니어도 무료인데 안 갈꺼?</h1>
+									<p>제주도엔 입장료도 없는데 시선 강탈하는 예쁜 곳들이 수두룩 해~ 그 중 정말 가보고 싶은 곳들만
+										추려봤어! 진짜 이건 꿀정보다!!</p>
+
+									<p>여행시작일 : 2016-07-12 1 명 여행 전 나홀로 여행</p>
+									<p>처음 만든 날 : 2016-06-10 마지막 수정한 날 : 2017-10-23 조회수 : 104.9K</p>
+
+
+								</div>
+							</div>
+							<div class="user-activites border-radius shadow-sm">
+
+								<ul class="timeline-left">
+									<li>
+										<div class="time">
+											<span>03:45 AM</span> <span>1Days</span>
+										</div>
+										<div class="icon bg-info">
+											<i class="zmdi zmdi-camera"></i>
+										</div>
+										<div class="info">
+											<h5>해바라기 가득~</h5>
+
+											<div class="embed-responsive embed-responsive-4by3">
+												<img th:src="@{/images/traShare/신세경.gif}"
+													class="card-img-top h-10 img-thumbnail embed-responsive-item"
+													alt="...">
+											</div>
+
+
+
+											<h3>
+												<i class="feather icon-corner-down-right"></i>해바라기 농장을 운영하시는
+												농장주의 넓은 아량 덕분에 이렇게 예쁜 경관을 볼 수 있게 됐어! 예쁘게 사진만 찍고 나오자~ 해바라기의
+												개화 시기는 8~9월이야!
+											</h3>
+										</div>
+									</li>
+									<li>
+										<div class="time">
+											<span>01:22 PM</span> <span>Yesterday</span>
+										</div>
+										<div class="icon bg-success">
+											<i class="zmdi zmdi-camera"></i>
+										</div>
+										<div class="info">
+											<h5>해바라기 가득~</h5>
+
+											<div class="embed-responsive embed-responsive-4by3">
+												<img th:src="@{/images/traShare/여행이미지 1.gif}"
+													class="card-img-top h-10 img-thumbnail embed-responsive-item"
+													alt="...">
+											</div>
+
+
+
+											<h3>
+												<i class="feather icon-corner-down-right"></i>해바라기 농장을 운영하시는
+												농장주의 넓은 아량 덕분에 이렇게 예쁜 경관을 볼 수 있게 됐어! 예쁘게 사진만 찍고 나오자~ 해바라기의
+												개화 시기는 8~9월이야!
+											</h3>
+
+										</div>
+									</li>
+									<li>
+										<div class="time">
+											<span>12:13 PM</span> <span>Two weeks ago</span>
+										</div>
+										<div class="icon bg-secondary">
+											<i class="zmdi zmdi-camera"></i>
+										</div>
+										<div class="info">
+											<h5>해바라기 가득~</h5>
+
+											<div class="embed-responsive embed-responsive-4by3">
+												<img th:src="@{/images/traShare/여행이미지 2.gif}"
+													class="card-img-top h-10 img-thumbnail embed-responsive-item"
+													alt="...">
+											</div>
+
+											<h3>
+												<i class="feather icon-corner-down-right"></i>해바라기 농장을 운영하시는
+												농장주의 넓은 아량 덕분에 이렇게 예쁜 경관을 볼 수 있게 됐어! 예쁘게 사진만 찍고 나오자~ 해바라기의
+												개화 시기는 8~9월이야!
+											</h3>
+
+										</div>
+									</li>
+									<li>
+										<div class="time">
+											<span>12:13 PM</span> <span>Two weeks ago</span>
+										</div>
+										<div class="icon bg-danger">
+											<i class="zmdi zmdi-camera"></i>
+										</div>
+										<div class="info">
+											<h5>해바라기 가득~</h5>
+
+											<div class="embed-responsive embed-responsive-4by3">
+												<img th:src="@{/images/traShare/신세경.gif}"
+													class="card-img-top h-10 img-thumbnail embed-responsive-item"
+													alt="...">
+											</div>
+
+											<h3>
+												<i class="feather icon-corner-down-right"></i>해바라기 농장을 운영하시는
+												농장주의 넓은 아량 덕분에 이렇게 예쁜 경관을 볼 수 있게 됐어! 예쁘게 사진만 찍고 나오자~ 해바라기의
+												개화 시기는 8~9월이야!
+											</h3>
+
+										</div>
+									</li>
+								</ul>
+								<a class="btn btn-primary btn-block mt-5" href="#">맨위로
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="profile" role="tabpanel"
+						aria-labelledby="profile-tab">
+
+						<div class="user-about border-radius shadow-sm">
+							<!-- 지도 -->
+							지도 들어갈 부분
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</th:block>
+<th:block layout:fragment="customBodyScript">
+	<!-- custom -->
+	<script th:src="@{/js/custom.js}"></script>
+</th:block>
+</html>

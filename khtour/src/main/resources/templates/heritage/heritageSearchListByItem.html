@@ -7,8 +7,8 @@
 </th:block>
 <th:block layout:fragment="contentsTitle">
 	<div class="row">
-		<div class="col">
-			<h2>문화재 종목별 검색</h2>
+		<div class="col-10">
+			<h2 class="p-2 mb-2 bg-primary text-white">문화재 종목별 검색</h2>
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -24,12 +24,7 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="row align-items-start">
-				<div class="col-5"><div class="alert bg-white shadow-sm alert-dismissible fade show mb-0 mt-md-0 mt-3" role="alert">
-					<i class="feather icon-alert-triangle text-primary mr-2"></i> 유형 문화재 등록만 가능합니다.
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">×</span>
-					</button>
-				</div></div>
+
 
 				<!-- 문화재 이름 검색 시작 -->
 				<div class="search-box col-4">
@@ -41,7 +36,12 @@
 				</div>
 				<!-- 문화재 이름 검색 종료 -->
 
-
+				<div class="col-5"><div class="alert bg-white shadow-sm alert-dismissible fade show mb-0 mt-md-0 mt-3" role="alert">
+					<i class="feather icon-alert-triangle text-primary mr-2"></i> 유형 문화재 등록만 가능합니다.
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">×</span>
+					</button>
+				</div></div>
 				<div class="col-3">
 					<button type="button" class="btn btn-primary" data-toggle="modal"
 						data-target="#exampleModal-03">
