@@ -39,24 +39,14 @@ public class UserController {
 		return "/user/userList.html";
 	}
 	/*
-	 * 회원 정보 수정 화면
+	 * 회원 정보 화면
 	 */
-	@GetMapping("/user/userModify.html")
-	public String getUserModify(Model model) {
+	@GetMapping("/user/userInfo.html")
+	public String getUserInfo(Model model) {
 		
-		model.addAttribute("title", "회원 정보 수정 페이지");
+		model.addAttribute("title", "회원 정보 페이지");
 		
-		return "/user/userModify.html";
-	}
-	/*
-	 * 회원 세부 정보 화면
-	 */
-	@GetMapping("/user/userDetail.html")
-	public String getUserDetail(Model model) {
-		
-		model.addAttribute("title", "회원 세부 정보 페이지");
-		
-		return "/user/userDetail.html";
+		return "/user/userInfo.html";
 	}
 	/*
 	 * 회원 정보 삭제 화면
@@ -67,5 +57,25 @@ public class UserController {
 		model.addAttribute("title", "회원 정보 삭제 페이지");
 		
 		return "/user/userDelete.html";
+	}
+	/*
+	 * 회원 이메일 찾기 화면
+	 */
+	@GetMapping("/user/userId.html")
+	public String getUserId(Model model) {
+		
+		model.addAttribute("title", "회원 이메일 찾기 페이지");
+		
+		return "/user/userId.html";
+	}
+	/*
+	 * 회원 비밀번호 찾기 화면
+	 */
+	@GetMapping("/user/userPassword.html")
+	public String getUserPassword(Model model) {
+		
+		model.addAttribute("title", "회원 비밀번호 찾기 페이지");
+		
+		return "/user/userPassword.html";
 	}
 }
