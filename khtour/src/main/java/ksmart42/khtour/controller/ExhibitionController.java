@@ -12,7 +12,5 @@ public class ExhibitionController {
 		model.addAttribute("title", "문화재 종목별 검색 페이지");
 		
 		return "/exhibition/exhibInsert";
-		
 	}
-	
 }
