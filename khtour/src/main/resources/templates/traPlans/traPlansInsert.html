@@ -10,13 +10,26 @@
 	</th:block>
 	
 	<th:block layout:fragment="customContents">	
-
+<div class="card">
+					<div class="card-title">
+						<div class="card-title-left">
+							<h4 class="card-title-text">Date Range Picker</h4>
+						</div>
+					</div>
+				  <div class="card-body">
+		 				<input type="text" name="dates" class="form-control">
+ 				  </div>
+				</div>
 	</th:block>
 	<th:block layout:fragment="customBodyScript">
 		<!-- PRISM -->
 		<script th:src="@{/js/prism/prism.js}"></script>
 		<!-- custom -->
-		<script th:src="@{/js/custom.js}"></script>
+<script th:src="@{/js/custom.js}"></script>
+<script th:src="@{/js/jquery-nicescroll/jquery.nicescroll.min.js}"></script>
+<script th:src="@{/js/moment.min.js}"></script>
+<script th:src="@{/js/datepicker/daterangepicker.js}"></script>
+<script th:src="@{/js/datepicker/bootstrap-timepicker.js}"></script>
 
 	</th:block>
 </html>
