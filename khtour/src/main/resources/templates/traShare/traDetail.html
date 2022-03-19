@@ -99,6 +99,21 @@
 									<p>여행시작일 : 2016-07-12 1 명 여행 전 나홀로 여행</p>
 									<p>처음 만든 날 : 2016-06-10 마지막 수정한 날 : 2017-10-23 조회수 : 104.9K</p>
 
+											<!--  댓글  -->
+											<div class="pt-3">
+												<label for="content">댓글 작성</label>
+												<form name="commentInsertForm">
+													<div class="input-group">
+														<input type="hidden" name="bno" value="${detail.bno}" /> <input
+															type="text" class="form-control" id="content"
+															name="content" placeholder="내용을 입력하세요."> <span
+															class="input-group-btn">
+															<button class="btn btn-default" type="button"
+																name="commentInsertBtn">등록</button>
+														</span>
+													</div>
+												</form>
+											</div>
 
 								</div>
 							</div>
@@ -124,23 +139,6 @@
 											KOREA HERITAGETOUR (T)
 											<div class="pt-3">
 												<h5>해바라기 농장을 운영하시는 농장주의 넓은 아량 덕분에 이렇게 예쁜!</h5>
-											</div>
-
-
-											<!--  댓글  -->
-											<div class="pt-3">
-												<label for="content">댓글 작성</label>
-												<form name="commentInsertForm">
-													<div class="input-group">
-														<input type="hidden" name="bno" value="${detail.bno}" /> <input
-															type="text" class="form-control" id="content"
-															name="content" placeholder="내용을 입력하세요."> <span
-															class="input-group-btn">
-															<button class="btn btn-default" type="button"
-																name="commentInsertBtn">등록</button>
-														</span>
-													</div>
-												</form>
 											</div>
 
 
