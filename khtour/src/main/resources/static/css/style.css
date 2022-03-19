@@ -730,7 +730,7 @@ h2{font-family:'title';}
     box-shadow: none; }
 
 .sidebar-panel.sidebar-panel-light {
-  background: transparent;
+  /* background: transparent; css수정*/
   border-right: 1px solid #e5e5e5; }
   .sidebar-panel.sidebar-panel-light .sidebar-menu .sidebar-submenu {
     background: transparent; }
@@ -6755,4 +6755,4 @@ h6,
     .wrapper{padding-top:70px;}
     /***20220319 수정*****/
     body{background:#F3F5F7;}
-    .sidebar-menu{background:#fff;}
+    .nicescrollbar{background:#fff;}
