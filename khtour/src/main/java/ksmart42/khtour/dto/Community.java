@@ -6,7 +6,7 @@ public class Community {
 	private String memberId;
 	private String regDate;
 	private String commName;
-	private String shortName;
+	private String category;
 	private String banner;
 	private String avatar;
 	private String memberCnt;
@@ -16,7 +16,7 @@ public class Community {
 	@Override
 	public String toString() {
 		return "Community [commCode=" + commCode + ", memberId=" + memberId + ", regDate=" + regDate + ", commName="
-				+ commName + ", shortName=" + shortName + ", banner=" + banner + ", avatar=" + avatar + ", memberCnt="
+				+ commName + ", shortName=" + category + ", banner=" + banner + ", avatar=" + avatar + ", memberCnt="
 				+ memberCnt + ", onlineMemberCnt=" + onlineMemberCnt + "]";
 	}
 
@@ -64,13 +64,13 @@ public class Community {
 	}
 
 
-	public String getShortName() {
-		return shortName;
+	public String getCategory() {
+		return category;
 	}
 
 
-	public void setShortName(String shortName) {
-		this.shortName = shortName;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 
