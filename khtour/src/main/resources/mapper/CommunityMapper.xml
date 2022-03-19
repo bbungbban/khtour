@@ -9,7 +9,7 @@
 		<result column="member_id" property="memberId"/>
 		<result column="reg_date" property="regDate"/>
 		<result column="comm_name" property="commName"/>
-		<result column="short_name" property="shortName"/>
+		<result column="category" property="category"/>
 		<result column="banner" property="banner"/>
 		<result column="avatar" property="avatar"/>
 		<result column="member_cnt" property="memberCnt"/>
@@ -18,13 +18,12 @@
 
 	<!-- <select id="getCommunityList" resultMap="communityResultMap"> -->
 	<select id="getCommunityList"  resultMap="communityResultMap">
-		/*회원 목록 조회*/
 			SELECT
 				c.comm_code
 				,c.member_id		 
 				,c.reg_date
 				,c.comm_name
-				,c.short_name
+				,c.category
 				,c.banner	 
 				,c.avatar    
 				,c.member_cnt
