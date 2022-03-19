@@ -15,7 +15,7 @@ public class ExhibitionController {
 	}
 	@GetMapping("/exhibition/exhibList")
 	public String getExhibList(Model model) {
-		model.addAttribute("title", "특별전 검색 및 수정");
+		model.addAttribute("title", "특별전 검색 및 조회");
 		
 		return "/exhibition/exhibList";
 	}
