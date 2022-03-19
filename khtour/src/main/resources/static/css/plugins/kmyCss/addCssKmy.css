@@ -21,4 +21,8 @@
 }
 #cosCate .dd{max-width:100%;}
 #cosCate .ips{border:1px solid #e5e5e5;}
-#cosCate .card-footer .btn{float:right;border-radius:6px;transition:all 0.2s ease-in-out;}
+
+#cosInsert .cosInsf button{border-radius:0 6px 6px 0;}
+
+.ftbtn{border-radius:6px;transition:all 0.2s ease-in-out;}
+
