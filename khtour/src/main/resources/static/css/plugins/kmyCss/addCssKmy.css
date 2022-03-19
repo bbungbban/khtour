@@ -2,3 +2,21 @@
 #exhibInsert .btn{border-radius:3px;}
 #exhibInsert .card-title-text{font-weight:bold;}
 #exhibInsert .margincorrection .card{margin-bottom:1.77em;}
+.main-panel{background:##F3F5F7;}
+#cosCate .btnhover {
+	transition: 0.2s;
+	opacity: 0;
+}
+#cosCate .dd-list .dd-list {
+	padding: 0;
+	margin-left: 2.143rem;
+}
+#cosCate .dd-handle span{line-height:19px;}
+#cosCate .dd-item .add_del button{border:1px solid #C5CDD7;padding:3px;}
+#cosCate .add_del{
+	display:inline-block;
+	float:right;
+}
+#cosCate .dd{max-width:100%;}
+#cosCate .ips{border:1px solid #e5e5e5;}
+#cosCate .card-footer .btn{float:right;border-radius:6px;transition:all 0.2s ease-in-out;}
