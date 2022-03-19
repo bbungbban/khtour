@@ -7,7 +7,7 @@
 	<title th:text="${title}"></title>
 </th:block>
 <th:block layout:fragment="contentsTitle">
-<link rel="stylesheet" th:href="@{/css/plugins/pay/albery.css}">
+	<link rel="stylesheet" th:href="@{/css/plugins/pay/albery.css}">
 	<!-- 이동경로 확인 (Breadcrumb) -->
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
@@ -21,62 +21,74 @@
 	<div class="_2ZMO1PVXbA">
 		<div class="_2-I30XS1lA">
 			<div class="albery-container">
-
-  <div class="albery-wrapper">
-
-    <div class="albery-item">
-      <img th:src="@{/images/heritage/서울 숭례문.jpg}" alt="">
-    </div>
-    <div class="albery-item">
-      <img th:src="@{/images/heritage/서울 숭례문.jpg}" alt="">
-    </div>
-    <div class="albery-item">
-      <img th:src="@{/images/heritage/서울 숭례문.jpg}" alt="">
-    </div>
-    <div class="albery-item">
-      <img th:src="@{/images/heritage/서울 숭례문.jpg}" alt="">
-    </div>
-    <div class="albery-item">
-      <img th:src="@{/images/heritage/서울 숭례문.jpg}" alt="">
-    </div>
-
-  </div>
-
-  <div class="move-right">
-    <a href="#" id="rightArrow">▶</a>
-  </div>
-  <div class="move-left">
-    <a href="#" id="leftArrow">◀</a>
-  </div>
-
-</div>
-<div class="pagination-container">
-  <div class="pagination-wrapper">
-    <div class="pagination-item" data-item="1">
-      <img th:src="@{/images/heritage/서울 숭례문.jpg}" alt="">
-    </div>
-    <div class="pagination-item" data-item="2">
-      <img th:src="@{/images/heritage/서울 숭례문.jpg}" alt="">
-    </div>
-    <div class="pagination-item" data-item="3">
-      <img th:src="@{/images/heritage/서울 숭례문.jpg}" alt="">
-    </div>
-    <div class="pagination-item" data-item="4">
-      <img th:src="@{/images/heritage/서울 숭례문.jpg}" alt="">
-    </div>
-    <div class="pagination-item" data-item="5">
-      <img th:src="@{/images/heritage/서울 숭례문.jpg}" alt="">
-    </div>
-  </div>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" 
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" 
-        crossorigin="anonymous"></script>
-<script th:src="@{/js/pay/albery.js}"></script>
-<script type="text/javascript">
-$(".albery-container").albery();
-</script>
+				<div class="albery-wrapper">
+					<div class="albery-item">
+						<img th:src="@{/images/payImg/img1.png}" alt="">
+					</div>
+					<div class="albery-item">
+						<img th:src="@{/images/payImg/img2.png}" alt="">
+					</div>
+					<div class="albery-item">
+						<img th:src="@{/images/payImg/img3.png}" alt="">
+					</div>
+					<div class="albery-item">
+						<img th:src="@{/images/payImg/img4.png}" alt="">
+					</div>
+					<div class="albery-item">
+						<img th:src="@{/images/payImg/img5.png}" alt="">
+					</div>
+					<div class="albery-item">
+						<img th:src="@{/images/payImg/img6.png}" alt="">
+					</div>
+					<div class="albery-item">
+						<img th:src="@{/images/payImg/img7.png}" alt="">
+					</div>
+					<div class="albery-item">
+						<img th:src="@{/images/payImg/img8.png}" alt="">
+					</div>
+				</div>
+				<div class="move-right">
+					<a href="#" id="rightArrow"></a>
+				</div>
+				<div class="move-left">
+					<a href="#" id="leftArrow"></a>
+				</div>
+			</div>
+			<div class="pagination-container">
+				<div class="pagination-wrapper">
+					<div class="pagination-item" data-item="1">
+						<img th:src="@{/images/payImg/img1.png}" alt="">
+					</div>
+					<div class="pagination-item" data-item="2">
+						<img th:src="@{/images/payImg/img2.png}" alt="">
+					</div>
+					<div class="pagination-item" data-item="3">
+						<img th:src="@{/images/payImg/img3.png}" alt="">
+					</div>
+					<div class="pagination-item" data-item="4">
+						<img th:src="@{/images/payImg/img4.png}" alt="">
+					</div>
+					<div class="pagination-item" data-item="5">
+						<img th:src="@{/images/payImg/img5.png}" alt="">
+					</div>
+					<div class="pagination-item" data-item="6">
+						<img th:src="@{/images/payImg/img6.png}" alt="">
+					</div>
+					<div class="pagination-item" data-item="7">
+						<img th:src="@{/images/payImg/img7.png}" alt="">
+					</div>
+					<div class="pagination-item" data-item="8">
+						<img th:src="@{/images/payImg/img8.png}" alt="">
+					</div>
+				</div>
+			</div>
+			<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+				integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+				crossorigin="anonymous"></script>
+			<script th:src="@{/js/pay/albery.js}"></script>
+			<script type="text/javascript">
+				$(".albery-container").albery();
+			</script>
 			<div class="_2QCa6wHHPy">
 				<fieldset class="_10hph879os">
 					<legend class="blind">상품 상세 구매</legend>
