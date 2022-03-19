@@ -15,14 +15,14 @@ public class PointController {
 
 	@GetMapping("/point/pointList")
 	public String getPointbList(Model model) {
-		model.addAttribute("title", "회원 포인트 검색 및 조회");
+		model.addAttribute("title", "회원 포인트 조회 및 수정");
 
 		return "/point/pointList"; 
 	}
 	
 	@GetMapping("/point/pointAlram")
 	public String getPointAlram(Model model) {
-		model.addAttribute("title", "포인트 알림주기 설정");
+		model.addAttribute("title", "포인트 소멸 알림주기 설정");
 
 		return "/point/pointAlram";
 	}
