@@ -1,4 +1,6 @@
 @charset "UTF-8";
+#exhibList #table-selected{background:#fff;}
+
 #exhibInsert .btn{border-radius:3px;}
 #exhibInsert .card-title-text{font-weight:bold;}
 #exhibInsert .margincorrection .card{margin-bottom:1.77em;}
