@@ -29,6 +29,20 @@
 @import url(plugins/weather-icons-master/weather-icons.min.css);
 @import url(https://fonts.googleapis.com/css?family=Lato:900,300);
 @import url(http://weloveiconfonts.com/api/?family=fontawesome);
+@font-face {
+    font-family: 'title';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/GimpoGothicBold00.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'all';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+*{font-family:'all';}
+h2{font-family:'title';}
 .text-primary {
   color: #335eea !important; }
 
