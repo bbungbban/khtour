@@ -37,7 +37,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="row user-profile justify-content-center mb-4">
+	<div class="row user-profile mb-4">
 		<div class="col-lg-2 mb-2 mb-lg-0">
 			<div
 				class="user-detail border-radius shadow-sm border border-primary">
@@ -68,7 +68,7 @@
 
 			</div>
 		</div>
-		<div class="col-lg-8">
+		<div class="col-lg-10">
 
 			<div class="card tab border border-primary">
 				<div class="card-title pt-3">
@@ -112,8 +112,8 @@
 										<div class="icon bg-info">
 											<i class="zmdi zmdi-camera"></i>
 										</div>
-										<div class="info">
-											<h5>해바라기 가득~</h5>
+										<div class="info w-50">
+											<h3>해바라기 가득~</h3>
 
 											<div class="embed-responsive embed-responsive-4by3">
 												<img th:src="@{/images/traShare/신세경.gif}"
@@ -121,92 +121,37 @@
 													alt="...">
 											</div>
 
+											KOREA HERITAGETOUR (T)
+											<div class="pt-3">
+												<h5>해바라기 농장을 운영하시는 농장주의 넓은 아량 덕분에 이렇게 예쁜!</h5>
+											</div>
 
 
-											<h3>
-												<i class="feather icon-corner-down-right"></i>해바라기 농장을 운영하시는
-												농장주의 넓은 아량 덕분에 이렇게 예쁜 경관을 볼 수 있게 됐어! 예쁘게 사진만 찍고 나오자~ 해바라기의
-												개화 시기는 8~9월이야!
-											</h3>
-										</div>
-									</li>
-									<li>
-										<div class="time">
-											<span>01:22 PM</span> <span>Yesterday</span>
-										</div>
-										<div class="icon bg-success">
-											<i class="zmdi zmdi-camera"></i>
-										</div>
-										<div class="info">
-											<h5>해바라기 가득~</h5>
-
-											<div class="embed-responsive embed-responsive-4by3">
-												<img th:src="@{/images/traShare/여행이미지 1.gif}"
-													class="card-img-top h-10 img-thumbnail embed-responsive-item"
-													alt="...">
+											<!--  댓글  -->
+											<div class="pt-3">
+												<label for="content">댓글 작성</label>
+												<form name="commentInsertForm">
+													<div class="input-group">
+														<input type="hidden" name="bno" value="${detail.bno}" /> <input
+															type="text" class="form-control" id="content"
+															name="content" placeholder="내용을 입력하세요."> <span
+															class="input-group-btn">
+															<button class="btn btn-default" type="button"
+																name="commentInsertBtn">등록</button>
+														</span>
+													</div>
+												</form>
 											</div>
 
 
 
-											<h3>
-												<i class="feather icon-corner-down-right"></i>해바라기 농장을 운영하시는
-												농장주의 넓은 아량 덕분에 이렇게 예쁜 경관을 볼 수 있게 됐어! 예쁘게 사진만 찍고 나오자~ 해바라기의
-												개화 시기는 8~9월이야!
-											</h3>
+
 
 										</div>
 									</li>
-									<li>
-										<div class="time">
-											<span>12:13 PM</span> <span>Two weeks ago</span>
-										</div>
-										<div class="icon bg-secondary">
-											<i class="zmdi zmdi-camera"></i>
-										</div>
-										<div class="info">
-											<h5>해바라기 가득~</h5>
-
-											<div class="embed-responsive embed-responsive-4by3">
-												<img th:src="@{/images/traShare/여행이미지 2.gif}"
-													class="card-img-top h-10 img-thumbnail embed-responsive-item"
-													alt="...">
-											</div>
-
-											<h3>
-												<i class="feather icon-corner-down-right"></i>해바라기 농장을 운영하시는
-												농장주의 넓은 아량 덕분에 이렇게 예쁜 경관을 볼 수 있게 됐어! 예쁘게 사진만 찍고 나오자~ 해바라기의
-												개화 시기는 8~9월이야!
-											</h3>
-
-										</div>
-									</li>
-									<li>
-										<div class="time">
-											<span>12:13 PM</span> <span>Two weeks ago</span>
-										</div>
-										<div class="icon bg-danger">
-											<i class="zmdi zmdi-camera"></i>
-										</div>
-										<div class="info">
-											<h5>해바라기 가득~</h5>
-
-											<div class="embed-responsive embed-responsive-4by3">
-												<img th:src="@{/images/traShare/신세경.gif}"
-													class="card-img-top h-10 img-thumbnail embed-responsive-item"
-													alt="...">
-											</div>
-
-											<h3>
-												<i class="feather icon-corner-down-right"></i>해바라기 농장을 운영하시는
-												농장주의 넓은 아량 덕분에 이렇게 예쁜 경관을 볼 수 있게 됐어! 예쁘게 사진만 찍고 나오자~ 해바라기의
-												개화 시기는 8~9월이야!
-											</h3>
-
-										</div>
-									</li>
+									
 								</ul>
-								<a class="btn btn-primary btn-block mt-5" href="#">맨위로
-								</a>
+								<a class="btn btn-primary btn-block mt-5" href="#">맨위로 </a>
 							</div>
 						</div>
 					</div>
