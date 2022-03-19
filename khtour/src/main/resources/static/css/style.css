@@ -6739,4 +6739,6 @@ h6,
     margin-bottom: 10px; } }
     /***20220301 수정*****/
     .wrapper{padding-top:70px;}
-
+    /***20220319 수정*****/
+    body{background:#F3F5F7;}
+    .sidebar-menu{background:#fff;}

@@ -10,7 +10,7 @@ public class TourCourseController {
 	public String getCosInsert(Model model) {
 		model.addAttribute("title", "코스 등록");
 
-		return "/tourCourse/cosInsert";
+		return "/tourCourse/cosInsert";  
 	}
 
 	@GetMapping("/tourCourse/cosList")
@@ -18,5 +18,12 @@ public class TourCourseController {
 		model.addAttribute("title", "코스검색 및 조회");
 
 		return "/tourCourse/cosList";
+	}
+	
+	@GetMapping("/tourCourse/cosCate")
+	public String getCosCate(Model model) {
+		model.addAttribute("title", "카테고리 관리");
+
+		return "tourCourse/cosCate";
 	}
 }
