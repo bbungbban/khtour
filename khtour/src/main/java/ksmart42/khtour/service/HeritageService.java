@@ -32,10 +32,20 @@ public class HeritageService {
 		heritageMapper.addHeritage(heritage);
 	}
 	
+	/**
+	 * 문화재 목록 조회
+	 */
 	public List<Heritage> getHeritageList(Map<String, Object> paramMap){
 		List<Heritage> heritageList = heritageMapper.getHeritageList(paramMap);
 		
 		return heritageList;
+	}
+
+	/**
+	 * 문화재 정보 수정
+	 */
+	public int modifyHeritage(Heritage heritage) {
+		return heritageMapper.modifyHeritage(heritage);
 	}
 	
 }

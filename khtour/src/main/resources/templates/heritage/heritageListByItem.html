@@ -97,7 +97,7 @@
 												<div class="form-group">
 													<label for="heritageDesignation">문화재 지정일</label> <input type="text"
 														class="date form-control" id="heritageDesignation" name="heritageDesignation" maxlength="10"
-														placeholder="00/00/0000" required="">
+														placeholder="0000/00/00" required="">
 												</div>
 												<div class="form-group">
 													<label for="heritageClassification">분류 </label> <input
@@ -185,11 +185,14 @@
 						<div class="card-body">
 						<p class="card-text" th:text="${l.heritageClassification}"></p>
 							<h5 class="card-title">
-								<a th:text="${l.heritageName}"></a>
+								<a th:href="@{/heritage/heritageDetail(heritageCode=${l.heritageCode})}" th:text="${l.heritageName}"></a>
 							</h5>
 							<p class="card-text" th:text="${l.heritageSubName}"></p>
 						</div>
-
+						<div class="card-footer">
+       								<a type="button" class="btn btn-outline-light" th:href="@{/heritage/modifyHeritage(heritageCode=${l.heritageCode})}">수정</a>
+									<button type="button" class="btn btn-outline-light">삭제</button>
+      					</div>
 					</div>
 				</div>
 
