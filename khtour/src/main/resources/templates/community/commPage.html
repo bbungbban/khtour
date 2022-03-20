@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default}">
+<th:block layout:fragment="customTitle">
+	<title th:text="${title}"></title>
+</th:block>
+<th:block layout:fragment="contentsTitle">
+</th:block>
+<th:block layout:fragment="customContents">
+	<div class="row">
+		<div class="col-8">
+
+			<div class="card">
+				<div class="card-header">
+					<h5>인기포스트</h5>
+				</div>
+				<div class="card-body text-center">
+					<button type="button" class="btn btn-info pull-left">HOT</button>
+					<button type="button" class="btn btn-info ">New</button>
+					<button type="button" class="btn btn-info pull-right">Top</button>
+				</div>
+
+			</div>
+			<div class="card-group">
+				<div class="card col-1 bg-light d-flex ml-0 mr-0 pl-0 pr-0 pt-5">
+					<div class="card-body ml-0 mr-0 pl-0 pr-0 pt-5">
+						<a href="#!"> <i
+							class="la la-caret-up d-flex la-3x justify-content-center"></i></a>
+						<p class="card-text text-center">15k</p>
+						<a href="#!"> <i
+							class="la la-caret-down d-flex la-3x justify-content-center"></i></a>
+					</div>
+				</div>
+				<div class="card col-11">
+					<div class="card-body">
+						<h5 class="card-title">포스트 에대한 제목이랑 설명</h5>
+						<img th:src="@{/images/commPost/img001.jpg}" class="card-img"
+							alt="...">
+
+						<p class="card-text">
+							<a href="#!" style="z-index: 2; position: relative;"> <i
+								class="feather icon-message-circle"></i> 댓글 (20)
+							</a> <a href="#!" style="z-index: 2; position: relative;"><i
+								class=" la la-share  pl-3"></i>공유하기</a> <a href="#!"
+								style="z-index: 2; position: relative;"><i
+								class="  la la-flag  pl-3"></i>신고하기</a> <a href="/post"
+								class="stretched-link"></a>
+						</p>
+
+					</div>
+
+				</div>
+			</div>
+
+			<div class="card-group">
+
+				<div class="card col-1 bg-light d-flex ml-0 mr-0 pl-0 pr-0 pt-5">
+					<div class="card-body ml-0 mr-0 pl-0 pr-0 pt-5	">
+						<a href="#!"> <i
+							class="la la-caret-up d-flex la-3x justify-content-center"></i></a>
+						<p class="card-text text-center">15k</p>
+						<a href="#!"> <i
+							class="la la-caret-down d-flex la-3x justify-content-center"></i></a>
+					</div>
+				</div>
+				<div class="card col-11">
+					<div class="card-body">
+						<h5 class="card-title">포스트 에대한 제목이랑 설명</h5>
+						<img th:src="@{/images/commPost/img002.jpg}" class="card-img"
+							alt="...">
+
+						<p class="card-text">
+							<a href="#!" style="z-index: 2; position: relative;"> <i
+								class="feather icon-message-circle"></i> 댓글 (20)
+							</a> <a href="#!" style="z-index: 2; position: relative;"><i
+								class=" la la-share  pl-3"></i>공유하기</a> <a href="#!"
+								style="z-index: 2; position: relative;"><i
+								class="  la la-flag  pl-3"></i>신고하기</a> <a href="/post"
+								class="stretched-link"></a>
+						</p>
+
+					</div>
+
+				</div>
+			</div>
+			<div class="card-group">
+
+				<div class="card col-1 bg-light d-flex ml-0 mr-0 pl-0 pr-0 pt-5">
+					<div class="card-body ml-0 mr-0 pl-0 pr-0 pt-5	">
+						<a href="#!"> <i
+							class="la la-caret-up d-flex la-3x justify-content-center"></i></a>
+						<p class="card-text text-center">15k</p>
+						<a href="#!"> <i
+							class="la la-caret-down d-flex la-3x justify-content-center"></i></a>
+					</div>
+				</div>
+				<div class="card col-11">
+					<div class="card-body">
+						<h5 class="card-title">포스트 에대한 제목이랑 설명</h5>
+						<img th:src="@{/images/commPost/img003.jpg}" class="card-img"
+							alt="...">
+
+						<p class="card-text">
+							<a href="#!" style="z-index: 2; position: relative;"> <i
+								class="feather icon-message-circle"></i> 댓글 (20)
+							</a> <a href="#!" style="z-index: 2; position: relative;"><i
+								class=" la la-share  pl-3"></i>공유하기</a> <a href="#!"
+								style="z-index: 2; position: relative;"><i
+								class="  la la-flag  pl-3"></i>신고하기</a> <a href="/post"
+								class="stretched-link"></a>
+						</p>
+
+					</div>
+
+				</div>
+			</div>
+			<div class="card-group">
+
+				<div class="card col-1 bg-light d-flex ml-0 mr-0 pl-0 pr-0 pt-5">
+					<div class="card-body ml-0 mr-0 pl-0 pr-0 pt-5	">
+						<a href="#!"> <i
+							class="la la-caret-up d-flex la-3x justify-content-center"></i></a>
+						<p class="card-text text-center">15k</p>
+						<a href="#!"> <i
+							class="la la-caret-down d-flex la-3x justify-content-center"></i></a>
+					</div>
+				</div>
+				<div class="card col-11">
+					<div class="card-body">
+						<h5 class="card-title">포스트 에대한 제목이랑 설명</h5>
+						<img th:src="@{/images/commPost/img004.jpg}" class="card-img"
+							alt="...">
+
+						<p class="card-text">
+							<a href="#!" style="z-index: 2; position: relative;"> <i
+								class="feather icon-message-circle"></i> 댓글 (20)
+							</a> <a href="#!" style="z-index: 2; position: relative;"><i
+								class=" la la-share  pl-3"></i>공유하기</a> <a href="#!"
+								style="z-index: 2; position: relative;"><i
+								class="  la la-flag  pl-3"></i>신고하기</a> <a href="/post"
+								class="stretched-link"></a>
+						</p>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="col-4">
+			<div class="card">
+				<div class="card-header">
+					<h5 class="card-title">About Community</h5>
+				</div>
+				<div class="card-title">커뮤니티 이름</div>
+				<div class="card-body m-0">
+					<p class="card-text">커뮤니티 설명</p>
+					<p class="card-text">회원수 : 18k</p>
+					<p class="card-text">온라인 회원 : 300</p>
+					<p class="card-text">커뮤니티 생성 날짜 : 2022 3월 31 일</p>
+					<a href="/commDashboard"
+						class="btn btn-info active btn-sm pull-left" role="button"
+						aria-pressed="true">커뮤니티 가입</a> <a href="/createPost"
+						class="btn btn-info active btn-sm pull-right" role="button"
+						aria-pressed="true">포스트 만들기</a>
+				</div>
+
+
+
+			</div>
+			<div class="card">
+				<div class="card-header">
+					<h5 class="card-title">커뮤니티 규칙</h5>
+				</div>
+				<div class="card-body m-0">
+					<div class="accordion accordion-box" id="accordionExample">
+						<div class="card">
+							<div id="collapseOne-01" class="collapse"
+								aria-labelledby="headingOne-01" data-parent="#accordionExample">
+								<div class="card-body">
+									<p>규칙 상세 설명</p>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="headingTwo-02">
+								<div class="accordion-title collapsed p-1"
+									data-toggle="collapse" data-target="#collapseTwo-02">
+									<p class="mb-0">
+										<i class="zmdi zmdi-help-outline text-primary mr-3"></i>2. 규칙
+										2
+									</p>
+								</div>
+							</div>
+							<div id="collapseTwo-02" class="collapse"
+								aria-labelledby="headingTwo-02" data-parent="#accordionExample">
+								<div class="card-body">
+									<p>규칙 상세 설명</p>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="headingThree-03">
+								<div class="accordion-title collapsed p-1"
+									data-toggle="collapse" data-target="#collapseThree-03">
+									<p class="mb-0">
+										<i class="zmdi zmdi-help-outline text-primary mr-3"></i>3. 규칙
+										3
+									</p>
+								</div>
+							</div>
+							<div id="collapseThree-03" class="collapse"
+								aria-labelledby="headingThree-03"
+								data-parent="#accordionExample">
+								<div class="card-body">
+									<p>규칙 상세 설명</p>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="headingfour-04">
+								<div class="accordion-title collapsed p-1"
+									data-toggle="collapse" data-target="#collapsefour-04">
+									<p class="mb-0">
+										<i class="zmdi zmdi-help-outline text-primary mr-3"></i>4. 규칙
+										4
+									</p>
+								</div>
+							</div>
+							<div id="collapsefour-04" class="collapse"
+								aria-labelledby="headingfour-04" data-parent="#accordionExample">
+								<div class="card-body">
+									<p>규칙 상세 설명</p>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="headingfive-05">
+								<div class="accordion-title collapsed p-1"
+									data-toggle="collapse" data-target="#collapsefive-05">
+									<p class="mb-0">
+										<i class="zmdi zmdi-help-outline text-primary mr-3"></i>5. 규칙
+										5
+									</p>
+								</div>
+							</div>
+							<div id="collapsefive-05" class="collapse"
+								aria-labelledby="headingfive-05" data-parent="#accordionExample">
+								<div class="card-body">
+									<p>규칙 상세 설명</p>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="headingsix-06">
+								<div class="accordion-title collapsed p-1"
+									data-toggle="collapse" data-target="#collapsesix-06">
+									<p class="mb-0">
+										<i class="zmdi zmdi-help-outline text-primary mr-3"></i>6. 규칙
+										6
+									</p>
+								</div>
+							</div>
+							<div id="collapsesix-06" class="collapse"
+								aria-labelledby="headingsix-06" data-parent="#accordionExample">
+								<div class="card-body">
+									<p>규칙 상세 설명</p>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header" id="headingseven-07">
+								<div class="accordion-title collapsed p-1"
+									data-toggle="collapse" data-target="#collapseseven-07">
+									<p class="mb-0">
+										<i class="zmdi zmdi-help-outline text-primary mr-3"></i>7. 규칙
+										7
+									</p>
+								</div>
+							</div>
+							<div id="collapseseven-07" class="collapse"
+								aria-labelledby="headingseven-07"
+								data-parent="#accordionExample">
+								<div class="card-body">
+									<p>규칙 상세 설명</p>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header">
+					<h5 class="card-title text-center">커뮤니티 테그</h5>
+				</div>
+				<div class="card-body m-0">
+					<button type="button" class="btn btn-primary pull-left m-1">테그1</button>
+					<button type="button" class="btn btn-warning pull-left m-1">긴 테그2</button>
+					<button type="button" class="btn btn-light pull-left m-1">정말 긴테그3</button>
+					<button type="button" class="btn btn-dark pull-left m-1">진짜진짜 긴 테그4</button>
+					<button type="button" class="btn btn-danger pull-left m-1">테그5</button>
+					<button type="button" class="btn btn-info pull-left m-1">테그6</button>
+					<button type="button" class="btn btn-info pull-left m-1">테그7</button>
+					
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+</th:block>
+
+
+
+
+
+
+<th:block layout:fragment="customBodyScript">
+	<!-- PRISM -->
+	<script th:src="@{/js/prism/prism.js}"></script>
+	<!-- custom -->
+	<script th:src="@{/js/custom.js}"></script>
+</th:block>
+</html>
