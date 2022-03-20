@@ -34,6 +34,26 @@
 		  tb_heritage_detail AS h;
 	</select>
 	
+	<!-- 코드에 따른 문화재 조회 SQL -->
+	<select id="getHeritageByCode" parameterType="String" resultMap="heritageResultMap">
+		SELECT
+			h.heritage_code
+		   ,h.member_id
+		   ,h.heritage_name
+		   ,h.heritage_sub_name     
+		   ,h.heritage_location     
+		   ,h.heritage_era
+		   ,h.heritage_designation   
+		   ,h.heritage_classification   
+		   ,h.heritage_image    
+		   ,h.heritage_detail 
+		FROM
+			tb_heritage_detail AS h
+		WHERE
+			heritage_code = #{heritageCode};
+	
+	</select>
+	
 	<!-- 문화재 등록 SQL -->
 	<insert id="addHeritage" parameterType="Heritage">
 		INSERT INTO tb_heritage_detail
@@ -59,6 +79,38 @@
 		   ,#{heritageImage}
 		   ,#{heritageDetail}
 		);
-	</insert>
 	
+	<!-- 문화재 수정 SQL -->
+	</insert>
+		<update id="modifyHeritage" parameterType="Heritage">
+		UPDATE tb_heritage_detail
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="heritageName != null and heritageName != ''">
+				heritage_name = #{heritageName},
+			</if>
+			<if test="heritageSubName != null and heritageSubName != ''">
+				heritage_sub_name = #{heritageSubName},
+			</if>
+			<if test="heritageLocation != null and heritageLocation != ''">
+				heritage_location = #{heritageLocation},
+			</if>
+			<if test="heritageEra != null and heritageEra != ''">
+				heritage_era = #{heritageEra},
+			</if>
+			<if test="heritageDesignation != null and heritageDesignation != ''">
+				heritage_designation = #{heritageDesignation},
+			</if>
+			<if test="heritageClassification != null and heritageClassification != ''">
+				heritage_classification = #{heritageClassification},
+			</if>		
+			<if test="heritageImage != null and heritageImage != ''">
+				heritage_image = #{heritageImage},
+			</if>		
+			<if test="heritageDetail != null and heritageDetail != ''">
+				heritage_detail = #{heritageDetail},
+			</if>		
+		</trim>
+		WHERE
+			heritage_code = #{heritageCode};
+	</update>
 </mapper>

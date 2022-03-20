@@ -19,5 +19,7 @@ public interface HeritageMapper {
 	// 문화재 조회(문화재 코드)
 	public Heritage getHeritageByCode(String heritageCode);
 	
+	// 문화재 수정(문화재코드)
+	public int modifyHeritage(Heritage heritage);
 	
 }

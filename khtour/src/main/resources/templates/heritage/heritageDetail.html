@@ -11,7 +11,7 @@
 			<h2 class="p-2 mb-2 bg-primary text-white">문화재 상세 페이지</h2>
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a th:href="@{/heritage/heritageSearchListByItem}">문화재 종목별 검색 리스트</a></li>
+					<li class="breadcrumb-item"><a th:href="@{/heritage/heritageListByItem}">문화재 종목별 검색 리스트</a></li>
 					<li class="breadcrumb-item active" aria-current="page">문화재 상세 페이지</li>
 				</ol>
 			</nav>
@@ -29,7 +29,8 @@
 						<img th:src="@{/images/heritage/서울 숭례문.jpg}" class="img-thumbnail"
 							style="height: 306px; line-height: 304px;" alt="...">
 					</div>
-					<h1>충청남도 문화재자료 충절사 (忠節祠)</h1>
+					<h1 th:text="${heritage.heritageName}"></h1>
+					<p th:text="${heritage.heritageSubName}"></p>
 				</div>
 			</div>
 		</div>
@@ -45,29 +46,21 @@
 							<tbody>
 								<tr>
 									<th scope="row">분 류</th>
-									<td>유적건조물 / 인물사건 / 인물기념 / 사우</td>
+									<td th:text="${heritage.heritageClassification}"></td>
 								</tr>
 								<tr>
 									<th scope="row">지정(등록)일</th>
-									<td>1984.05.17</td>
+									<td th:text="${heritage.heritageDesignation}"></td>
 								</tr>
 								<tr>
 									<th scope="row">소 재 지</th>
-									<td>충남 공주시 장기면 월성리 239번지</td>
+									<td th:text="${heritage.heritageLocation}"></td>
 								</tr>
 
 								<tr>
 									<th scope="row">시 대</th>
-									<td>2년(1851)</td>
-								</tr>
-								<tr>
-									<th scope="row">관리</th>
-
-									<td>
-									<button type="button" class="btn btn-outline-light">수정</button>
-									<button type="button" class="btn btn-outline-light">삭제</button>
-									</td>
-								</tr>								
+									<td th:text="${heritage.heritageEra}"></td>
+								</tr>							
 							</tbody>
 						</table>
 					</div>
@@ -87,16 +80,7 @@
 				<div class="tab-content" id="myTabContent-02">
 					<div class="tab-pane fade show active" id="home-02" role="tabpanel"
 						aria-labelledby="home-tab-02">
-						<p>이명성과 이명덕(1373∼1444) 형제의 학행을 기념하고 후학을 양성하기 위해 세운 곳이다. 이명성은
-							고려가 망하고 조선이 건국되자 끝까지 벼슬에 나아가지 않고 절개를 지킨 고려 유신인 두문동 72현 중 한 사람이다.
-
-							이명덕은 고려말∼조선초 문신으로 호는 사봉이다. 예문춘추관, 좌부대언 등을 지냈고 세종이 즉위하자 이조참판, 병조참판
-							등 많은 벼슬을 지냈다. 70세에 벼슬에서 물러났으며 후에 우의정으로 추증되었다. 원래는 성종 때 충남 연기군 명탄에
-							세웠던 충절사라는 사당인데, 명탄서원이라고도 불렸다. 선조 18년(1585)에 서원 이름을 하사 받았으며 임진왜란 때
-							불 타 없어진 것을 철종 2년(1851)에 공주의 유생들이 지금 있는 자리에 새로 지은 것이다. 고종
-							5년(1868)에는 잠시 철폐되기도 하였다. 1956년 사우 충절사를 다시 지었는데, 이곳에는 선생 2분의 위패를
-							모시고 있다. 1985년에 묘정비와 강당, 고직사 건물을 지었고 서원 뒤편에는 이명덕의 묘와 묘비가 있으며 봄·가을에
-							제사를 지내고 있다.</p>
+						<p th:text="${heritage.heritageDetail}"></p>
 					</div>
 
 				</div>
