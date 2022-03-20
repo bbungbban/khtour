@@ -79,7 +79,6 @@
       })
     });
 
-
     $("#swal-success").on("click",function(){
       swal({
         title: 'Are you sure?',
@@ -99,6 +98,11 @@
         }
       })
     });
+    
+    /*
+     * 2022-03-20
+     * 김민석 수정
+     * */
     $("#swal-delete").on("click",function(){
       const swalWithBootstrapButtons = swal.mixin({
           confirmButtonClass: 'btn btn-success',
@@ -107,18 +111,18 @@
         })
 
         swalWithBootstrapButtons({
-          title: 'Are you sure?',
-          text: "You won't be able to revert this!",
+          title: '정말 삭제 하시겠습니까?',
+          text: "삭제 클릭시 해당 정보는 복구 할 수 없습니다.",
           type: 'warning',
           showCancelButton: true,
-          confirmButtonText: 'Yes, delete it!',
-          cancelButtonText: 'No, cancel!',
-          reverseButtons: true
+          confirmButtonText: '네',
+          cancelButtonText: '아니오',
+          reverseButtons: false
         }).then((result) => {
           if (result.value) {
             swalWithBootstrapButtons(
-              'Deleted!',
-              'Your file has been deleted.',
+              '삭제완료',
+              '파일이 안전하게 삭제되었습니다.',
               'success'
             )
           } else if (
@@ -126,8 +130,8 @@
             result.dismiss === swal.DismissReason.cancel
           ) {
             swalWithBootstrapButtons(
-              'Cancelled',
-              'Your imaginary file is safe :)',
+              '취소',
+              '사진은 안전하게 보호됩니다.',
               'error'
             )
           }
