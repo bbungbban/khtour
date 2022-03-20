@@ -52,4 +52,11 @@ public class CommunityController {
 		
 		return "/community/commRanking";
 	}
+	@GetMapping("/commPage")
+	public String commPage(Model model) {
+		
+		model.addAttribute("title", "커뮤니티페이지");
+		
+		return "/community/commPage";
+	}
 }
