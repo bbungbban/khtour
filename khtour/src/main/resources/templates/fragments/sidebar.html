@@ -97,7 +97,7 @@
 					<i class="feather icon-dollar-sign"></i> <span>결제관리</span> <span class="sidebar-badge"></span> <i class="la la-angle-right down-arrow"></i>
 				</a>
 				<ul class="sidebar-submenu">
-					<li><a href="/payDetail"><i class="la la-minus"></i> <span> 결제정보 </span> </a></li>
+					<li><a th:href="@{/payment/payDetail.html}"><i class="la la-minus"></i> <span> 결제정보 </span> </a></li>
 				</ul>
 			</li>
 	        <li>
@@ -105,7 +105,7 @@
 					<i class="feather icon-dollar-sign"></i> <span>환불관리</span> <span class="sidebar-badge"></span> <i class="la la-angle-right down-arrow"></i>
 				</a>
 				<ul class="sidebar-submenu">
-					<li><a href="/refundDetail"><i class="la la-minus"></i> <span> 환불정보 </span> </a></li>
+					<li><a th:href="@{/refund/refundDetail.html}"><i class="la la-minus"></i> <span> 환불정보 </span> </a></li>
 				</ul>
 			</li>
 			<li class="sidebar-header"> Extras </li>
