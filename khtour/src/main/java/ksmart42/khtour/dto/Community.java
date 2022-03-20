@@ -11,13 +11,24 @@ public class Community {
 	private String avatar;
 	private String memberCnt;
 	private String onlineMemberCnt;
+	private String commDesc;
 	
 	
+	public String getCommDesc() {
+		return commDesc;
+	}
+
+
+	public void setCommDesc(String commDesc) {
+		this.commDesc = commDesc;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Community [commCode=" + commCode + ", memberId=" + memberId + ", regDate=" + regDate + ", commName="
-				+ commName + ", shortName=" + category + ", banner=" + banner + ", avatar=" + avatar + ", memberCnt="
-				+ memberCnt + ", onlineMemberCnt=" + onlineMemberCnt + "]";
+				+ commName + ", category=" + category + ", banner=" + banner + ", avatar=" + avatar + ", memberCnt="
+				+ memberCnt + ", onlineMemberCnt=" + onlineMemberCnt + ", commDesc=" + commDesc + "]";
 	}
 
 

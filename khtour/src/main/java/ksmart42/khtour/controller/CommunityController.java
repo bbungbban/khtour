@@ -4,8 +4,10 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ksmart42.khtour.dto.Community;
+import ksmart42.khtour.dto.Rule;
 import ksmart42.khtour.service.CommunityService;
 
 
@@ -53,10 +55,14 @@ public class CommunityController {
 		return "/community/commRanking";
 	}
 	@GetMapping("/commPage")
-	public String commPage(Model model) {
+	public String commPage(Model model,@RequestParam(value = "commCode") String commCode) {
 		
+		Community community = communityService.getCommunityByCode(commCode);
+		List<Rule> ruleList = communityService.getRuleListByCommCode(commCode);
+		System.out.println("규칙 리스트 :  " + ruleList);
+		model.addAttribute("community",community);
 		model.addAttribute("title", "커뮤니티페이지");
-		
+		model.addAttribute("ruleList", ruleList);
 		return "/community/commPage";
 	}
 }

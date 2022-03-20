@@ -14,7 +14,15 @@
 		<result column="avatar" property="avatar"/>
 		<result column="member_cnt" property="memberCnt"/>
 		<result column="online_member_cnt" property="onlineMemberCnt"/>
+		<result column="comm_desc" property="commDesc"/>
 	</resultMap> 
+	<resultMap type="Rule" id="ruleResultMap">
+		<id column="rule_code" property="ruleCode"/>
+		<result column="comm_code" property="commCode"/>
+		<result column="title" property="title"/>
+		<result column="detail" property="detail"/>
+		<result column="reg_time" property="reg_time"/>
+	</resultMap>
 
 	<!-- <select id="getCommunityList" resultMap="communityResultMap"> -->
 	<select id="getCommunityList"  resultMap="communityResultMap">
@@ -28,8 +36,42 @@
 				,c.avatar    
 				,c.member_cnt
 				,c.online_member_cnt
+				,c.comm_desc
 			FROM
 				tb_community AS c;	
+	</select>
+	<select id="getCommunityByCode"  resultMap="communityResultMap">
+			SELECT
+				c.comm_code
+				,c.member_id		 
+				,c.reg_date
+				,c.comm_name
+				,c.category
+				,c.banner	 
+				,c.avatar    
+				,c.member_cnt
+				,c.online_member_cnt
+				,c.comm_desc
+			FROM
+				tb_community AS c
+			Where
+				c.comm_code = #{commCode};	
+	</select>
+	<select id="getRuleListByCommCode"  resultMap="ruleResultMap">
+			SELECT
+				r.rule_code
+				,r.comm_code
+				,r.title
+				,r.detail
+				,r.reg_time
+			FROM
+			 tb_rules AS r
+			INNER JOIN
+			 tb_community AS c
+			ON
+				r.comm_code = c.comm_code
+			WHERE 
+				c.comm_code = #{commCode};
 	</select>
 
 
