@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ksmart42.khtour.dto.Community;
+import ksmart42.khtour.dto.Rule;
 import ksmart42.khtour.mapper.CommunityMapper;
 
 
@@ -23,9 +24,19 @@ public class CommunityService {
 	public List<Community> getCommunityList(){
 		System.out.println("02 communityList getCommunityList CommunityService.java");
 		List<Community> communityList = communityMapper.getCommunityList();
-		//System.out.println(communityList.get(0).getCommName() + "<- communityList.get(0).getCommName() CommunityService.java");
 		System.out.println(communityList + "<- communityList getCommunityList CommunityService.java");
 		return communityList;
+	}
+	public Community getCommunityByCode(String commCode) {
+		
+		Community community = communityMapper.getCommunityByCode(commCode);
+		return community;
+	}
+	
+	public List<Rule> getRuleListByCommCode(String commCode){
+		
+		List<Rule> ruleList = communityMapper.getRuleListByCommCode(commCode);
+		return ruleList;
 	}
 	
 	

@@ -9,7 +9,11 @@
 </th:block>
 <th:block layout:fragment="customContents">
 
-	<h3>오늘의 인기포스트</h3>
+	<div class="card">
+	<div class="card-header">
+		<h5>오늘의 인기포스트</h5>
+	</div>
+	<div class="card-body m-0 p-0">
 	<div class="card-group">
 		<div class="card">
 			<img th:src="@{/images/commPost/img001.jpg}" class="card-img-top"
@@ -50,12 +54,16 @@
 
 			</div>
 		</div>
+		</div>
+	</div>
 	</div>
 	
 	<div class="row">
 		<div class="col-8">
-			<h3 class="pt-3">인기포스트</h3>
 			<div class="card">
+			<div class="card-header">
+				<h5>인기포스트</h5>
+			</div>
 				<div class="card-body text-center">
 					<button type="button" class="btn btn-info pull-left">HOT</button>
 					<button type="button" class="btn btn-info ">New</button>
@@ -177,9 +185,8 @@
 						<div class="table-responsive">
 							<table class="table table-centered table-hover mb-0">
 								<tbody>
-								
 								<tr th:if="${not #lists.isEmpty(communityList)}" th:each="l : ${communityList}" style="transform: rotate(0);">
-									<th scope="row"><a href="/commPage" class="stretched-link">1</a></th>
+									<th scope="row"><a th:href="@{/commPage(commCode=${l.commCode})}" class="stretched-link">1</a></th>
 									<td th:text="${l.commName}"></td>
 									<td class="text-right"><button type="button" class="btn btn-info btn-sm" style="z-index: 2; position: relative;">가입</button></td>
 								</tr>
