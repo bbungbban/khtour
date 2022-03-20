@@ -7,7 +7,7 @@
 </th:block>
 <th:block layout:fragment="contentsTitle">
 	<div class="row">
-		<div class="col-10">
+		<div class="col-12">
 			<h2 class="p-2 mb-2 bg-primary text-white">문화재 상세 페이지</h2>
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
@@ -22,15 +22,26 @@
 
 <th:block layout:fragment="customContents">
 	<div class="row justify-content-center">
+		
+		<div class="col-md-10">
+		<div class="card text-center">
+				<div class="card-body">
+				<p class="card-text" th:text="${heritage.heritageClassification}"></p>
+		<h1 th:text="${heritage.heritageName}"></h1>
+					<h3 th:text="${heritage.heritageSubName}"></h3>
+					</div>
+					</div>
+		</div>
+	</div>
+	<div class="row justify-content-center">
 		<div class="col-md-5">
 			<div class="card">
 				<div class="card-body">
 					<div class="blog-image">
 						<img th:src="@{/images/heritage/서울 숭례문.jpg}" class="img-thumbnail"
-							style="height: 306px; line-height: 304px;" alt="...">
+							style="height: 420px; line-height: 280px;" alt="...">
 					</div>
-					<h1 th:text="${heritage.heritageName}"></h1>
-					<p th:text="${heritage.heritageSubName}"></p>
+					
 				</div>
 			</div>
 		</div>
@@ -70,7 +81,8 @@
 	</div>
 	<div class="row justify-content-center">
 		<div class="col-10">
-
+<div class="card">
+				<div class="card-body">
 			<div class="tab tab-outline">
 				<ul class="nav" id="myTab-02" role="tablist">
 					<li class="nav-item"><a class="nav-link active"
@@ -113,6 +125,8 @@
 		
 		
 		
+	</div>
+	</div>
 	</div>
 </th:block>
 <th:block layout:fragment="customBodyScript">
