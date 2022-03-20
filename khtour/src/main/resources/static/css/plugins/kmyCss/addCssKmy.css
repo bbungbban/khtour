@@ -23,6 +23,9 @@
 #cosCate .ips{border:1px solid #e5e5e5;}
 
 #cosInsert .cosInsf button{border-radius:0 6px 6px 0;}
+#cosInsert .switch{top:-8px;}
+#cosInsert .CodeMirror{min-height:auto;height:263px;}
+#cosInsert .nav-link{padding:0.5rem 1%}
 
 .ftbtn{border-radius:6px;transition:all 0.2s ease-in-out;}
 
