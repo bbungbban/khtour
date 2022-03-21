@@ -4,10 +4,13 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ksmart42.khtour.dto.Community;
 import ksmart42.khtour.dto.Rule;
+import ksmart42.khtour.mapper.CommunityMapper;
 import ksmart42.khtour.service.CommunityService;
 
 
@@ -15,11 +18,22 @@ import ksmart42.khtour.service.CommunityService;
 public class CommunityController {
 	
 	private CommunityService communityService;
+	private CommunityMapper communityMapper;
 
-	public CommunityController(CommunityService communityService) {
+	public CommunityController(CommunityService communityService,CommunityMapper communityMapper) {
 		this.communityService = communityService;
-		
+		this.communityMapper = communityMapper;
 	}
+	
+	@PostMapping("/commNameCheck")
+	@ResponseBody
+	public boolean isIdCheck(@RequestParam(value = "commName") String commName)
+	{
+		boolean commNameCheck = false;
+		boolean result = communityMapper.commNameCheack(commName);
+		commNameCheck= result;
+		return commNameCheck;
+	}	
 
 	@GetMapping("/commDashboard")
 	public String commDashboard(Model model) {
@@ -39,7 +53,31 @@ public class CommunityController {
 		model.addAttribute("title", "포스트 생성");
 		
 		return "/community/createPost";
+		
 	}
+	@GetMapping("/addCommunity")
+	public String createCommunity(Model model) {
+		
+		model.addAttribute("title", "커뮤니티 생성");
+		
+		return "/community/addCommunity";
+	}
+	
+	@PostMapping("/addCommunity")
+	public String addCommunity(Model model,Community community) {
+		
+		community.setMemberCnt("1");
+		community.setOnlineMemberCnt("0");
+		community.setMemberId("id001");
+		
+		communityService.addCommunity(community);
+		model.addAttribute("commName",community.getCommName());
+		return "redirect:/communityPage";
+		
+	}
+	
+	
+	
 	@GetMapping("/post")
 	public String post(Model model) {
 		
@@ -57,14 +95,16 @@ public class CommunityController {
 		return "/community/commRanking";
 	}
 	@GetMapping("/commPage")
-	public String commPage(Model model,@RequestParam(value = "commCode") String commCode) {
+	public String commPage(Model model,@RequestParam(value = "commName") String commName) {
 		
-		Community community = communityService.getCommunityByCode(commCode);
-		List<Rule> ruleList = communityService.getRuleListByCommCode(commCode);
+		Community community = communityService.getCommunityByName(commName);
+		List<Rule> ruleList = communityService.getRuleListByCommName(commName);
 		System.out.println("규칙 리스트 :  " + ruleList);
 		model.addAttribute("community",community);
 		model.addAttribute("title", "커뮤니티페이지");
 		model.addAttribute("ruleList", ruleList);
 		return "/community/commPage";
 	}
+	
+	
 }

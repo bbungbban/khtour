@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default}">
+<th:block layout:fragment="customTitle">
+	<title th:text="${title}"></title>
+</th:block>
+<th:block layout:fragment="contentsTitle">
+<link rel="stylesheet" type="text/css" th:href="@{/css/plugins/HksCss/addCssHks.css}">
+	<h4>커뮤니티 생성</h4>
+</th:block>
+<th:block layout:fragment="customScript">
+			<script>
+				$(function(){
+					function validationCheck(data){
+						if(typeof data =='undefined' || data =='' || data==null){
+							return false;
+						}
+						return true;
+					}
+					$('#commNameCheck').click(function(){
+						var memberId = $('input[name="memberId"]').val();				
+						if(validationCheck(memberId))
+						{
+							$.ajax({
+								url: '/community/commNameCheck'
+								,type: 'post'
+								,data:{'commName' : commName}
+								,dataType:'json'
+								,success: function(data){
+									console.log(data);
+									if(data==true)
+									{
+										$( '#addCommunityForm input' ).prop('disabled',false);
+										$( '#addCommunityForm select' ).prop('disabled',false);
+										$( '#addCommunityForm button' ).prop('disabled',false);
+				
+									}
+									else
+									{
+										$( '#addCommunityForm input' ).not('input[name="memberId"]').prop('disabled',true);
+										$( '#addCommunityForm select' ).prop('disabled',true);
+										$( '#addCommunityForm button' ).not('#commNameCheck').prop('disabled',true);
+									}
+								}
+							});
+						}
+						
+					});
+					
+					
+					$('#addCommunityBtn').click(function(){
+						var inputList = $('#addCommunityForm input')
+						var isGood = true
+						for(var i =0;i<inputList.length;i++)
+						{
+							var input = inputList[i].value;
+							isGood = validationCheck(inputList[i].value);	
+							
+						}
+						console.log(isGood);
+						if(isGood)
+						{
+							$('#addCommunityForm').submit();
+						}
+					});
+				});
+			</script>	
+		</th:block>
+	<th:block layout:fragment="customContents">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/plugins/HksCss/addCssHks.css}">
+			<div class="card">
+				<div class="card-body">
+					<form class="cmxform" id="addCommunityForm" method="post">
+								<div class="form-group">
+									<label for="commName">커뮤니티 이름</label>
+									<input id="commName" class="form-control" name="title">
+								</div>
+								<div class="form-group">
+									<label for="commDesc">커뮤니티 설명</label>
+									<textarea id="commDesc" name="mainText" class="form-control" rows="10" required></textarea>
+								</div>
+								<div class="form-group">
+									<input class="submit btn btn-primary pull-right" type="button" value="등록">			
+									<a href="/addCommunity" class="btn btn-info active pull-right" role="button" aria-pressed="true">취소</a>
+											
+								</div>
+							</form>
+					</div>
+				</div>
+	</th:block>
+	
+<th:block layout:fragment="customBodyScript">
+	<!-- jquery mask -->
+	<script src="js/jquery-validation/jquery.validate.min.js"></script>
+	<!-- select2 -->
+	<script src="js/select2/select2.min.js"></script>
+	<script src="js/summernote/summernote.min.js"></script>
+	<!-- summernote -->
+	<script src="js/simplemde/simplemde.min.js"></script>
+	<script src="js/simplemde/simplemde.js"></script>
+	<!-- PRISM -->
+	<script th:src="@{/js/prism/prism.js}"></script>
+	<!-- custom -->
+	<script th:src="@{/js/custom.js}"></script>
+</th:block>
+</html>

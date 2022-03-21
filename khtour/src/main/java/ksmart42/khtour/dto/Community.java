@@ -2,10 +2,9 @@ package ksmart42.khtour.dto;
 
 public class Community {
 
-	private String commCode;
+	private String commName;
 	private String memberId;
 	private String regDate;
-	private String commName;
 	private String category;
 	private String banner;
 	private String avatar;
@@ -26,22 +25,10 @@ public class Community {
 
 	@Override
 	public String toString() {
-		return "Community [commCode=" + commCode + ", memberId=" + memberId + ", regDate=" + regDate + ", commName="
+		return "Community [memberId=" + memberId + ", regDate=" + regDate + ", commName="
 				+ commName + ", category=" + category + ", banner=" + banner + ", avatar=" + avatar + ", memberCnt="
 				+ memberCnt + ", onlineMemberCnt=" + onlineMemberCnt + ", commDesc=" + commDesc + "]";
 	}
-
-
-	public String getCommCode() {
-		return commCode;
-	}
-
-
-	public void setCommCode(String commCode) {
-		System.out.println(commCode + "<- commCode setCommCode Community.java");
-		this.commCode = commCode;
-	}
-
 
 	public String getMemberId() {
 		return memberId;

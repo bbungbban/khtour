@@ -5,10 +5,9 @@
 <mapper namespace="ksmart42.khtour.mapper.CommunityMapper">
 
 	<resultMap type="Community" id="communityResultMap">
-		<id column="comm_code" property="commCode"/>
+		<id column="comm_name" property="commName"/>
 		<result column="member_id" property="memberId"/>
 		<result column="reg_date" property="regDate"/>
-		<result column="comm_name" property="commName"/>
 		<result column="category" property="category"/>
 		<result column="banner" property="banner"/>
 		<result column="avatar" property="avatar"/>
@@ -18,7 +17,7 @@
 	</resultMap> 
 	<resultMap type="Rule" id="ruleResultMap">
 		<id column="rule_code" property="ruleCode"/>
-		<result column="comm_code" property="commCode"/>
+		<result column="comm_name" property="commName"/>
 		<result column="title" property="title"/>
 		<result column="detail" property="detail"/>
 		<result column="reg_time" property="reg_time"/>
@@ -27,10 +26,9 @@
 	<!-- <select id="getCommunityList" resultMap="communityResultMap"> -->
 	<select id="getCommunityList"  resultMap="communityResultMap">
 			SELECT
-				c.comm_code
+				c.comm_name
 				,c.member_id		 
 				,c.reg_date
-				,c.comm_name
 				,c.category
 				,c.banner	 
 				,c.avatar    
@@ -42,12 +40,11 @@
 			Order BY 
 				c.member_cnt DESC;	
 	</select>
-	<select id="getCommunityByCode"  resultMap="communityResultMap">
+	<select id="getCommunityByName"  resultMap="communityResultMap">
 			SELECT
-				c.comm_code
+				c.comm_name
 				,c.member_id		 
 				,c.reg_date
-				,c.comm_name
 				,c.category
 				,c.banner	 
 				,c.avatar    
@@ -57,23 +54,59 @@
 			FROM
 				tb_community AS c
 			Where
-				c.comm_code = #{commCode};	
+				c.comm_name = #{commName};	
 	</select>
-	<select id="getRuleListByCommCode"  resultMap="ruleResultMap">
+	<select id="getRuleListByCommName"  resultMap="ruleResultMap">
 			SELECT
 				r.rule_code
-				,r.comm_code
+				,r.comm_name
 				,r.title
 				,r.detail
 				,r.reg_time
 			FROM
-			 tb_rules AS r
+			 tb_comm_rules AS r
 			INNER JOIN
 			 tb_community AS c
 			ON
-				r.comm_code = c.comm_code
+				r.comm_name = c.comm_name
 			WHERE 
-				c.comm_code = #{commCode};
+				c.comm_name = #{commName};
+	</select>
+	
+	<insert id="addCommunity" parameterType="Community">
+		/*회원가입*/
+		INSERT INTO tb_community
+			(	 comm_code
+				,member_id		 
+				,reg_date
+				,comm_name
+				,category
+				,banner	 
+				,avatar    
+				,member_cnt
+				,online_member_cnt
+				,comm_desc
+		)VALUES (
+			#{commCode}
+			, #{memberId}
+			, CURDATE()
+			, #{commName}
+			, #{category}
+			, #{banner}
+			, #{avatar}
+			, #{memberCnt}
+			, #{onlineMemberCnt}
+			, #{commDesc}
+		);
+	</insert>
+	
+	<select id="isNameCheck" parameterType="String" resultType="boolean">
+		SELECT
+			if(Count(1) = 1,0,1)
+		FROM
+			tb_community AS c
+		where
+			c.comm_name = #{commName};	
 	</select>
 
 
