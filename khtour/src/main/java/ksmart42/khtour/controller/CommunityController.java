@@ -51,6 +51,8 @@ public class CommunityController {
 	public String commRanking(Model model) {
 		
 		model.addAttribute("title", "전체커뮤니티");
+		List<Community> communityList = communityService.getCommunityList();
+		model.addAttribute("communityList", communityList);
 		
 		return "/community/commRanking";
 	}
