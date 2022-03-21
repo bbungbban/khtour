@@ -38,7 +38,9 @@
 				,c.online_member_cnt
 				,c.comm_desc
 			FROM
-				tb_community AS c;	
+				tb_community AS c
+			Order BY 
+				c.member_cnt DESC;	
 	</select>
 	<select id="getCommunityByCode"  resultMap="communityResultMap">
 			SELECT

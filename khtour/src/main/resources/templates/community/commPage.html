@@ -8,9 +8,14 @@
 <th:block layout:fragment="contentsTitle">
 </th:block>
 <th:block layout:fragment="customContents">
+	<div class="card bg-info">
+				<div class="card-body text-center">
+					<h2 class="mb-0 mt-2 " th:text="${community.commName} + ' 커뮤니티'"></h2>
+				</div>
+			</div>
+
 	<div class="row">
 		<div class="col-8">
-
 			<div class="card">
 				<div class="card-header">
 					<h5>인기포스트</h5>
@@ -199,7 +204,7 @@
 				</div>
 				<div class="card-body m-0">
 					<div class="accordion accordion-box" id="accordionExample">
-						<div class="card" th:if="${not #lists.isEmpty(ruleList)}" th:each="r,index: ${ruleList}">
+						<div class="card" th:if="${not #lists.isEmpty(ruleList)}" th:each="r: ${ruleList}">
 							<div class="card-header" id="headingTwo-02">
 								<div class="accordion-title collapsed p-1"
 									data-toggle="collapse" data-target="#collapseTwo-01">
