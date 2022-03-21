@@ -61,75 +61,10 @@
 						<div class="table-responsive">
 							<table class="table table-centered table-hover mb-0">
 								<tbody>
-									<tr>
-										<th scope="row">1</th>
-										<td>커뮤니티이름</td>
-										<td class="text-right"><button type="button" class="btn btn-info btn-sm">가입</button></td>
-									</tr>
-									<tr>
-									<th scope="row">2</th>
-										<td>커뮤니티이름</td>
-										<td class="text-right"><button type="button" class="btn btn-info btn-sm">가입</button></td>
-									</tr>
-									<tr>
-									<th scope="row">3</th>
-										<td>커뮤니티이름</td>
-										<td class="text-right"><button type="button" class="btn btn-info btn-sm">가입</button></td>
-									</tr>
-									<tr>
-										<th scope="row">4</th>
-										<td>커뮤니티이름</td>
-										<td class="text-right"><button type="button" class="btn btn-info btn-sm">가입</button></td>
-									</tr>
-									<tr>
-										<th scope="row">5</th>
-										<td>커뮤니티이름</td>
-										<td class="text-right"><button type="button" class="btn btn-info btn-sm">가입</button></td>
-									</tr>
-									<tr>
-										<th scope="row">6</th>
-										<td>커뮤니티이름</td>
-										<td class="text-right"><button type="button" class="btn btn-info btn-sm">가입</button></td>
-									</tr>
-									<tr>
-										<th scope="row">7</th>
-										<td>커뮤니티이름</td>
-										<td class="text-right"><button type="button" class="btn btn-info btn-sm">가입</button></td>
-									</tr>
-									<tr>
-										<th scope="row">8</th>
-										<td>커뮤니티이름</td>
-										<td class="text-right"><button type="button" class="btn btn-info btn-sm">가입</button></td>
-									</tr>
-									<tr>
-										<th scope="row">9</th>
-										<td>커뮤니티이름</td>
-										<td class="text-right"><button type="button" class="btn btn-info btn-sm">가입</button></td>
-									</tr>
-									<tr>
-										<th scope="row">10</th>
-										<td>커뮤니티이름</td>
-										<td class="text-right"><button type="button" class="btn btn-info btn-sm">가입</button></td>
-									</tr>
-									<tr>
-										<th scope="row">11</th>
-										<td>커뮤니티이름</td>
-										<td class="text-right"><button type="button" class="btn btn-info btn-sm">가입</button></td>
-									</tr>
-									<tr>
-										<th scope="row">12</th>
-										<td>커뮤니티이름</td>
-										<td class="text-right"><button type="button" class="btn btn-info btn-sm">가입</button></td>
-									</tr>
-									<tr>
-										<th scope="row">13</th>
-										<td>커뮤니티이름</td>
-										<td class="text-right"><button type="button" class="btn btn-info btn-sm">가입</button></td>
-									</tr>
-									<tr>
-										<th scope="row">14</th>
-										<td>커뮤니티이름</td>
-										<td class="text-right"><button type="button" class="btn btn-info btn-sm">가입</button></td>
+									<tr th:if="${not #lists.isEmpty(communityList)}" th:each="l,index : ${communityList}" style="transform: rotate(0);">
+										<th scope="row"><a th:href="@{/commPage(commCode=${l.commCode})}" class="stretched-link" th:text="${index.index}+1"></a></th>
+										<td th:text="${l.commName}"></td>
+										<td class="text-right"><button type="button" class="btn btn-info btn-sm" style="z-index: 2; position: relative;">가입</button></td>
 									</tr>
 								</tbody>
 							</table>
