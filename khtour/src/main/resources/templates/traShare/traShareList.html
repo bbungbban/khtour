@@ -22,25 +22,13 @@
 
 <th:block layout:fragment="customContents">
 	<div class="row">
-		<div class="col-2">
-			<div class="card ">
-				<div class="card-body">
-							<a th:href="@{/traShare/traShareInsert}" type="button" class="btn btn-primary">
-								<i class="feather icon-plus"></i>포스트 등록</a>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	<div class="row mb-4">
 		<!-- cardpart : 1 start -->
 
-<div class="col-2.5">
+		<div class="col-2.5">
 			<!-- cardpart : 2 start -->
 			<div class="card ">
 				<h5 class="card-title">검색범위 및 정렬방식</h5>
-				<div class="card-body text-center border border-secondary">
+				<div class="card-body text-center">
 					<form>
 						<div class="form-group">
 							<div class="row">
@@ -95,15 +83,20 @@
 								type="text" class="form-control border border-secondary"
 								id="exampleFormControlInput3" placeholder="등록자 아이디를 입력해주세요">
 						</div>
-
-
-
 						<button type="submit" class="btn btn-outline-danger">적용</button>
 					</form>
 					<!-- 블로그 리스트 끝 -->
 				</div>
 			</div>
 			<!-- cardpart : 2 end -->
+						<div class="card text-center">
+				<div class="card-body">
+					<a th:href="@{/traShare/traShareInsert}" type="button"
+						class="btn btn-primary"> <i class="feather icon-plus"></i>포스트
+						등록
+					</a>
+				</div>
+			</div>
 		</div>
 		<div class="col-9">
 			<!-- cardpart : 2 start -->
@@ -321,35 +314,30 @@
 							</div>
 						</div>
 					</div>
+					<div class="text-center">
+						<!-- 페이징 시작 -->
+						<div id="paging">
+							<nav aria-label="Page navigation example">
+								<ul class="pagination justify-content-center">
+									<li class="page-item"><a class="page-link" href="#">이전</a></li>
+									<li class="page-item"><a class="page-link" href="#">1</a></li>
+									<li class="page-item"><a class="page-link" href="#">2</a></li>
+									<li class="page-item"><a class="page-link" href="#">3</a></li>
+									<li class="page-item"><a class="page-link" href="#">4</a></li>
+									<li class="page-item"><a class="page-link" href="#">5</a></li>
+									<li class="page-item"><a class="page-link" href="#">다음</a></li>
+								</ul>
+							</nav>
+						</div>
+						<!-- 페이징 끝 -->
+					</div>
 					<!-- 블로그 리스트 끝 -->
-								<!-- cardpart : 4 start -->
-	<div class="card">
-		<div class="card-body">
-			<div class="text-center">
-				<!-- 페이징 시작 -->
-				<div id="paging">
-					<nav aria-label="Page navigation example">
-						<ul class="pagination justify-content-center">
-							<li class="page-item"><a class="page-link" href="#">이전</a></li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">4</a></li>
-							<li class="page-item"><a class="page-link" href="#">5</a></li>
-							<li class="page-item"><a class="page-link" href="#">다음</a></li>
-						</ul>
-					</nav>
+					<!-- cardpart : 4 start -->
 				</div>
-				<!-- 페이징 끝 -->
 			</div>
 		</div>
 	</div>
-	<!-- cardpart : 4 end -->
-				</div>
-			</div>
-			<!-- cardpart : 2 end -->
-		</div>
-	</div>
+
 </th:block>
 <!-- javascript 삽입 시작 -->
 <th:block layout:fragment="customBodyScript">

@@ -2,8 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/default}">
-<th:block layout:fragment="customTitle">
-	<title th:text="${title}"></title>
+	
+    
+<th:block layout:fragment="contentsCss">
+    <link rel=" shortcut icon" th:href="@{/images/calendar_minseok/favicon.ico}">
+    <link rel="stylesheet" th:href="@{/vendor/css/bootstrap-datetimepicker.min.css}">
+
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+
 </th:block>
 <th:block layout:fragment="contentsTitle">
 	<h1>Hello, Oxoury</h1>
@@ -11,108 +17,182 @@
 </th:block>
 
 <th:block layout:fragment="customContents">
-	<div class="card">
-					<div class="card-title">
-						<div class="card-title-left">
-							<h4 class="card-title-text">Default</h4>
-						</div>
-					</div>
-				  <div class="card-body">
-					  <div class="table-responsive">
-				  	<div id="table-simple_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="table-simple_length"><label>Show <select name="table-simple_length" aria-controls="table-simple" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="table-simple_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="table-simple"></label></div></div></div><div class="row"><div class="col-sm-12"><table id="table-simple" class="table table-striped table-bordered dataTable" role="grid" aria-describedby="table-simple_info">
-					        <thead>
-					            <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="table-simple" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 170.25px;">Name</th><th class="sorting" tabindex="0" aria-controls="table-simple" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 274.359px;">Position</th><th class="sorting" tabindex="0" aria-controls="table-simple" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 124.688px;">Office</th><th class="sorting" tabindex="0" aria-controls="table-simple" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 63px;">Age</th><th class="sorting" tabindex="0" aria-controls="table-simple" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 119.078px;">Start date</th><th class="sorting" tabindex="0" aria-controls="table-simple" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 95px;">Salary</th></tr>
-					        </thead>
-					        <tbody>			            
-					        <tr role="row" class="odd">
-					                <td class="sorting_1">Airi Satou</td>
-					                <td>Accountant</td>
-					                <td>Tokyo</td>
-					                <td>33</td>
-					                <td>2008/11/28</td>
-					                <td>$162,700</td>
-					            </tr><tr role="row" class="even">
-					                <td class="sorting_1">Angelica Ramos</td>
-					                <td>Chief Executive Officer (CEO)</td>
-					                <td>London</td>
-					                <td>47</td>
-					                <td>2009/10/09</td>
-					                <td>$1,200,000</td>
-					            </tr><tr role="row" class="odd">
-					                <td class="sorting_1">Ashton Cox</td>
-					                <td>Junior Technical Author</td>
-					                <td>San Francisco</td>
-					                <td>66</td>
-					                <td>2009/01/12</td>
-					                <td>$86,000</td>
-					            </tr><tr role="row" class="even">
-					                <td class="sorting_1">Bradley Greer</td>
-					                <td>Software Engineer</td>
-					                <td>London</td>
-					                <td>41</td>
-					                <td>2012/10/13</td>
-					                <td>$132,000</td>
-					            </tr><tr role="row" class="odd">
-					                <td class="sorting_1">Brenden Wagner</td>
-					                <td>Software Engineer</td>
-					                <td>San Francisco</td>
-					                <td>28</td>
-					                <td>2011/06/07</td>
-					                <td>$206,850</td>
-					            </tr><tr role="row" class="even">
-					                <td class="sorting_1">Brielle Williamson</td>
-					                <td>Integration Specialist</td>
-					                <td>New York</td>
-					                <td>61</td>
-					                <td>2012/12/02</td>
-					                <td>$372,000</td>
-					            </tr><tr role="row" class="odd">
-					                <td class="sorting_1">Bruno Nash</td>
-					                <td>Software Engineer</td>
-					                <td>London</td>
-					                <td>38</td>
-					                <td>2011/05/03</td>
-					                <td>$163,500</td>
-					            </tr><tr role="row" class="even">
-					                <td class="sorting_1">Caesar Vance</td>
-					                <td>Pre-Sales Support</td>
-					                <td>New York</td>
-					                <td>21</td>
-					                <td>2011/12/12</td>
-					                <td>$106,450</td>
-					            </tr><tr role="row" class="odd">
-					                <td class="sorting_1">Cara Stevens</td>
-					                <td>Sales Assistant</td>
-					                <td>New York</td>
-					                <td>46</td>
-					                <td>2011/12/06</td>
-					                <td>$145,600</td>
-					            </tr><tr role="row" class="even">
-					                <td class="sorting_1">Cedric Kelly</td>
-					                <td>Senior Javascript Developer</td>
-					                <td>Edinburgh</td>
-					                <td>22</td>
-					                <td>2012/03/29</td>
-					                <td>$433,060</td>
-					            </tr></tbody>
-					        <tfoot>
-					            <tr><th rowspan="1" colspan="1">Name</th><th rowspan="1" colspan="1">Position</th><th rowspan="1" colspan="1">Office</th><th rowspan="1" colspan="1">Age</th><th rowspan="1" colspan="1">Start date</th><th rowspan="1" colspan="1">Salary</th></tr>
-					        </tfoot>
-					    </table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="table-simple_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="table-simple_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="table-simple_previous"><a href="#" aria-controls="table-simple" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="table-simple" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="table-simple" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="table-simple" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="table-simple" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="table-simple" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="table-simple" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="table-simple_next"><a href="#" aria-controls="table-simple" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div>
-					  </div>
-					</div>
-				</div>
+<div class="card">
+	<div class="card-body">
+    <div class="container">
+
+        <!-- 일자 클릭시 메뉴오픈 -->
+        <div id="contextMenu" class="dropdown clearfix">
+            <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
+                style="display:block;position:static;margin-bottom:5px;">
+                <li><a tabindex="-1" href="#">카테고리1</a></li>
+                <li><a tabindex="-1" href="#">카테고리2</a></li>
+                <li><a tabindex="-1" href="#">카테고리3</a></li>
+                <li><a tabindex="-1" href="#">카테고리4</a></li>
+                <li class="divider"></li>
+                <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
+            </ul>
+        </div>
+
+        <div id="wrapper">
+            <div id="loading"></div>
+            <div id="calendar"></div>
+        </div>
+
+
+        <!-- 일정 추가 MODAL -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="edit-allDay">하루종일</label>
+                                <input class='allDayNewEvent' id="edit-allDay" type="checkbox"></label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="edit-title">일정명</label>
+                                <input class="inputModal" type="text" name="edit-title" id="edit-title"
+                                    required="required" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="edit-start">시작</label>
+                                <input class="inputModal" type="text" name="edit-start" id="edit-start" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="edit-end">끝</label>
+                                <input class="inputModal" type="text" name="edit-end" id="edit-end" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="edit-type">구분</label>
+                                <select class="inputModal" type="text" name="edit-type" id="edit-type">
+                                    <option value="카테고리1">카테고리1</option>
+                                    <option value="카테고리2">카테고리2</option>
+                                    <option value="카테고리3">카테고리3</option>
+                                    <option value="카테고리4">카테고리4</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="edit-color">색상</label>
+                                <select class="inputModal" name="color" id="edit-color">
+                                    <option value="#D25565" style="color:#D25565;">빨간색</option>
+                                    <option value="#9775fa" style="color:#9775fa;">보라색</option>
+                                    <option value="#ffa94d" style="color:#ffa94d;">주황색</option>
+                                    <option value="#74c0fc" style="color:#74c0fc;">파란색</option>
+                                    <option value="#f06595" style="color:#f06595;">핑크색</option>
+                                    <option value="#63e6be" style="color:#63e6be;">연두색</option>
+                                    <option value="#a9e34b" style="color:#a9e34b;">초록색</option>
+                                    <option value="#4d638c" style="color:#4d638c;">남색</option>
+                                    <option value="#495057" style="color:#495057;">검정색</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="edit-desc">설명</label>
+                                <textarea rows="4" cols="50" class="inputModal" name="edit-desc"
+                                    id="edit-desc"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer modalBtnContainer-addEvent">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                        <button type="button" class="btn btn-primary" id="save-event">저장</button>
+                    </div>
+                    <div class="modal-footer modalBtnContainer-modifyEvent">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                        <button type="button" class="btn btn-danger" id="deleteEvent">삭제</button>
+                        <button type="button" class="btn btn-primary" id="updateEvent">저장</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <h3 class="panel-title">필터</h3>
+            </div>
+
+            <div class="panel-body">
+
+                <div class="col-lg-6">
+                    <label for="calendar_view">구분별</label>
+                    <div class="input-group">
+                        <select class="filter" id="type_filter" multiple="multiple">
+                            <option value="카테고리1">카테고리1</option>
+                            <option value="카테고리2">카테고리2</option>
+                            <option value="카테고리3">카테고리3</option>
+                            <option value="카테고리4">카테고리4</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <label for="calendar_view">등록자별</label>
+                    <div class="input-group">
+                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="정연"
+                                checked>정연</label>
+                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="다현"
+                                checked>다현</label>
+                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="사나"
+                                checked>사나</label>
+                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="나연"
+                                checked>나연</label>
+                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="지효"
+                                checked>지효</label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- /.filter panel -->
+    </div>
+    <!-- /.container -->
+    </div>
+</div>
 </th:block>
 <th:block layout:fragment="customBodyScript">
+	
+    <!-- <script th:src="@{/vendor/js/jquery.min.js}"></script>
+    <script th:src="@{/vendor/js/bootstrap.min.js}"></script> -->
+    <script th:src="@{/vendor/js/moment.min.js}"></script>
+    <script th:src="@{/vendor/js/fullcalendar.min.js}"></script>
+    <script th:src="@{/vendor/js/ko.js}"></script>
+    <script th:src="@{/vendor/js/select2.min.js}"></script>
+    <script th:src="@{/vendor/js/bootstrap-datetimepicker.min.js}"></script>
+    <script th:src="@{/js/calendar_minseok/main.js}"></script>
+    <script th:src="@{/js/calendar_minseok/addEvent.js}"></script>
+    <script th:src="@{/js/calendar_minseok/editEvent.js}"></script>
+    <script th:src="@{/js/calendar_minseok/etcSetting.js}"></script>
+
+
 	<!-- PRISM -->
 	<script th:src="@{/js/prism/prism.js}"></script>
 	<!-- custom -->
 	<script th:src="@{/js/custom.js}"></script>
-	<script
+	<!-- <script
 		th:src="@{/js/jquery-jvectormap/jquery-jvectormap-2.0.3.min.js}"></script>
 	<script
 		th:src="@{/js/jquery-jvectormap/jquery-jvectormap-world-mill.js}"></script>
 	<script th:src="@{/js/sparkline/jquery.sparkline.min.js}"></script>
-	<script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
+	<script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script> -->
 </th:block>
 </html>
