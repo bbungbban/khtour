@@ -1,464 +1,194 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/default3}">
+	layout:decorate="~{layout/default}">
 <th:block layout:fragment="customTitle">
 	<title th:text="${title}"></title>
 </th:block>
 <th:block layout:fragment="contentsTitle">
-	<div class="row">
-		<div class="col-10">
-			<h2 class="p-2 mb-2 bg-primary text-white">포스트 등록 페이지</h2>
-			<nav aria-label="breadcrumb">
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a
-						th:href="@{/traShare/traShareList}">여행일정 공유 리스트</a></li>
-					<li class="breadcrumb-item active" aria-current="page">포스트 등록
-						페이지</li>
-				</ol>
-			</nav>
-		</div>
-	</div>
+
+	<h2 class="p-2 mb-2 bg-primary text-white">포스트 등록 페이지</h2>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a
+				th:href="@{/traShare/traShareList}">여행일정 공유 리스트</a></li>
+			<li class="breadcrumb-item active" aria-current="page">포스트 등록
+				페이지</li>
+		</ol>
+	</nav>
+
 </th:block>
 
+
 <th:block layout:fragment="customContents">
-	<link rel="stylesheet" type="text/css"
-		th:href="@{/css/plugins/datepicker/daterangepicker.css}">
-	<link rel="stylesheet" type="text/css"
-		th:href="@{/css/plugins/KmyCss/addCssKmy.css}">
-	<div id="cosInsert">
-		<!-- **********************************  Start ContentsWrap  ********************************** -->
-
-		<div class="row">
-
-			<!-- **********************************  Start left 등록 폼  ********************************** -->
-			<div class="col-md-6">
-				<!-- **********************************  Start 코스기본정보 ********************************** -->
-				<div class="card">
-					<div class="card-title">
-						<div class="card-title-left">
-							<h4 class="card-title-text">게시글 기본 정보</h4>
-						</div>
-					</div>
-					<div class="card-body">
-						<form>
-							<div class="form-group">
-								<label for="inputAddress">등록자 아이디</label> <input type="text"
-									class="form-control" id="inputAddress" placeholder="id003" readonly />
-							</div>
-							<div class="form-group">
-								<label for="exampleInputEmail1">게시글 메인제목</label> <input
-									type="text" class="form-control" placeholder="게시글 이름을 입력하세요.">
-							</div>
-														<div class="form-group">
-								<label for="exampleInputEmail1">게시글 부제목</label> <input
-									type="text" class="form-control" placeholder="게시글 이름을 입력하세요.">
-							</div>
-							<div class="form-group">
-								<label for="exampleFormControlSelect1">카테고리</label> <select
-									class="form-control" id="exampleFormControlSelect1">
-									<option>:: 선택 ::</option>
-									<option>여행전</option>
-									<option>여행후</option>
-								</select>
-							</div>
-								<div class="form-group">
-<label for="exampleInputEmail1">여행 일자</label> 
-		 				<input type="text" name="dates" class="form-control">
-
-				</div>
-							
-						</form>
-					</div>
-				</div>
-				<!-- **********************************  End 코스기본정보 ********************************** -->
-				<!-- **********************************  Start 코스설명 ********************************** -->
-				<div class="card">
-					<div class="card-title">
-						<div class="card-title-left">
-							<h4 class="card-title-text">게시글 내용</h4>
-						</div>
-					</div>
-					<div class="card-body">
-					<form>
-												<div class="form-group">
-								<label for="inputAddress">게시글 리뷰 제목</label> <input type="text"
-									class="form-control" id="inputAddress" placeholder="" >
-							</div>
-							<div class="form-group">
-							<label for="inputAddress">게시글 리뷰 내용</label>
-						<textarea id="editor-demo1" style="display: none;"></textarea>
-						</div>
-						</form>
-					</div>
-				</div>
-
-				<!-- **********************************  End 코스설명 ********************************** -->
+	<div class="card">
+		<div class="card-title">
+			<div class="card-title-left">
+				<h4 class="card-title-text">게시글 기본 정보</h4>
 			</div>
-			<!-- **********************************  End left 등록 폼  ********************************** -->
-			<!-- **********************************  Start Right 등록 폼  ********************************** -->
-			<div class="col-md-6 margincorrection">
-				<!-- **********************************  Start cos 등록 폼  ********************************** -->
-				<div class="card cosInsf">
-					<div class="card-title">
-						<div class="card-title-left">
-							<h4 class="card-title-text">리뷰 일자별 이미지 등록</h4>
+		</div>
+		<div class="card-body">
+			<form>
+				<div class="form-group">
+					<label for="exampleInputEmail1">게시글 메인제목</label> <input type="text"
+						class="form-control" placeholder="게시글 이름을 입력하세요.">
+				</div>
+				<div class="form-group">
+					<label for="inputAddress">게시글 리뷰 내용</label>
+					<textarea id="editor-demo1" style="display: none;"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="exampleFormControlSelect1">카테고리</label> <select
+						class="form-control" id="exampleFormControlSelect1">
+						<option>:: 선택 ::</option>
+						<option>여행전</option>
+						<option>여행후</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputEmail1">여행 일자</label> <input type="text"
+						name="dates" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="exampleInputEmail1">이미지 업로드</label>
+					<div id="wizard-04" class="wizard">
+						<div class="wizard-nav">
+							<ul class="nav nav-fill nav-pills">
+								<li class="nav-item"><a class="nav-link" href="#tabadd1"
+									data-toggle="tab"> <span class="number">첫번째</span> 피드
+								</a></li>
+								<li class="nav-item"><a class="nav-link" href="#tabadd2"
+									data-toggle="tab"> <span class="number">두번째</span> 피드
+								</a></li>
+								<li class="nav-item"><a class="nav-link" href="#tabadd3"
+									data-toggle="tab"> <span class="number">세번째</span> 피드
+								</a></li>
+								<li class="nav-item"><a class="nav-link" href="#tabadd4"
+									data-toggle="tab"> <span class="number">네번째</span> 피드
+								</a></li>
+								<li class="nav-item"><a class="nav-link active"
+									href="#tabadd5" data-toggle="tab"> <span class="number">다섯째</span>
+										피드
+								</a></li>
+							</ul>
 						</div>
-					</div>
-					<div class="card-body">
-						<div id="wizard-04" class="wizard">
-							<div class="wizard-nav">
-								<ul class="nav nav-fill nav-pills">
-									<li class="nav-item"><a class="nav-link" href="#tabadd1"
-										data-toggle="tab"> <span class="number">01</span> 1일차
-									</a></li>
-									<li class="nav-item"><a class="nav-link" href="#tabadd2"
-										data-toggle="tab"> <span class="number">02</span> 1일차
-									</a></li>
-									<li class="nav-item"><a class="nav-link" href="#tabadd3"
-										data-toggle="tab"> <span class="number">03</span> 2일차
-									</a></li>
-									<li class="nav-item"><a class="nav-link" href="#tabadd4"
-										data-toggle="tab"> <span class="number">04</span> 3일차
-									</a></li>
-									<li class="nav-item"><a class="nav-link active"
-										href="#tabadd5" data-toggle="tab"> <span class="number">05</span>
-											5일차
-									</a></li>
-								</ul>
-							</div>
-							<div id="bar" class="progress mt-4">
-								<div
-									class="progress-bar progress-bar-striped progress-bar-animated"
-									role="progressbar" aria-valuenow="25" aria-valuemin="0"
-									aria-valuemax="100" style="width: 100%;"></div>
-							</div>
-							<div class="tab-content">
-								<div class="tab-pane" id="tabadd1">
-									<form>
-										<div class="form-group">
-											<label for="exampleFormControlSelect1">이미지선택</label><div class="custom-file">
-						  <input type="file" class="custom-file-input" id="customFile">
-						  <label class="custom-file-label" for="customFile">이미지 파일</label>
+						<div id="bar" class="progress mt-4">
+							<div
+								class="progress-bar progress-bar-striped progress-bar-animated"
+								role="progressbar" aria-valuenow="25" aria-valuemin="0"
+								aria-valuemax="100" style="width: 100%;"></div>
 						</div>
-										</div>
+						<div class="tab-content">
+							<div class="tab-pane" id="tabadd1">
+
 								<div class="form-group">
-								<label for="inputAddress">이미지 제목</label> <input type="text"
-									class="form-control" id="inputAddress" placeholder="" >
-							</div>
-												<div class="form-group">
-													<label for="heritageDetail">이미지 설명</label>
-													<textarea class="form-control" id="heritageDetail"
-														name="heritageDetail" rows="3" required=""></textarea>
-												</div>
-										<div class="form-group">
-											<label for="exampleInputEmail1">우편번호</label>
-											<div class="input-group mb-3">
-												<input name="zip" type="text" class="form-control"
-													aria-label="Recipient's username"
-													aria-describedby="button-addon">
-												<button class="btn btn-primary" onclick="openZipSearch()"
-													type="button">검색</button>
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="">주소</label> <input type="text"
-												class="form-control" name="addr1" readonly>
-										</div>
-										<div class="form-group">
-											<label for="">상세주소</label> <input type="text"
-												class="form-control" name="addr2">
-										</div>
-									</form>
-
-									<p style="margin-top: -12px">
-										<em class="link"> <a href="javascript:void(0);"
-											onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
-												혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요. </a>
-										</em>
-									</p>
-
-									<script
-										src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-									<script type="text/javascript">
-										function openZipSearch() {
-											new daum.Postcode({
-												oncomplete : function(data) {
-													$('[name=zip]').val(
-															data.zonecode); // 우편번호 (5자리)
-													$('[name=addr1]').val(
-															data.address);
-													$('[name=addr2]').val(
-															data.buildingName);
-												}
-											}).open();
-										}
-									</script>
+									<label for="exampleFormControlSelect1">이미지선택</label>
+									<div class="custom-file">
+										<input type="file" class="custom-file-input" id="customFile">
+										<label class="custom-file-label" for="customFile">이미지
+											파일</label>
+									</div>
 								</div>
-								<div class="tab-pane" id="tabadd2">
-									<form>
-										<div class="form-group">
-											<label for="exampleFormControlSelect1">이미지선택</label><div class="custom-file">
-						  <input type="file" class="custom-file-input" id="customFile">
-						  <label class="custom-file-label" for="customFile">이미지 파일</label>
-						</div>
-										</div>
 								<div class="form-group">
-								<label for="inputAddress">이미지 제목</label> <input type="text"
-									class="form-control" id="inputAddress" placeholder="" >
-							</div>
-												<div class="form-group">
-													<label for="heritageDetail">이미지 설명</label>
-													<textarea class="form-control" id="heritageDetail"
-														name="heritageDetail" rows="3" required=""></textarea>
-												</div>
-										<div class="form-group">
-											<label for="exampleInputEmail1">우편번호</label>
-											<div class="input-group mb-3">
-												<input name="zip" type="text" class="form-control"
-													aria-label="Recipient's username"
-													aria-describedby="button-addon">
-												<button class="btn btn-primary" onclick="openZipSearch()"
-													type="button">검색</button>
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="">주소</label> <input type="text"
-												class="form-control" name="addr1" readonly>
-										</div>
-										<div class="form-group">
-											<label for="">상세주소</label> <input type="text"
-												class="form-control" name="addr2">
-										</div>
-									</form>
-
-									<p style="margin-top: -12px">
-										<em class="link"> <a href="javascript:void(0);"
-											onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
-												혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요. </a>
-										</em>
-									</p>
-
-									<script
-										src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-									<script type="text/javascript">
-										function openZipSearch() {
-											new daum.Postcode({
-												oncomplete : function(data) {
-													$('[name=zip]').val(
-															data.zonecode); // 우편번호 (5자리)
-													$('[name=addr1]').val(
-															data.address);
-													$('[name=addr2]').val(
-															data.buildingName);
-												}
-											}).open();
-										}
-									</script>
+									<label for="inputAddress">이미지 제목</label> <input type="text"
+										class="form-control" id="inputAddress" placeholder="">
 								</div>
-								<div class="tab-pane" id="tabadd3">
-									<form>
-										<div class="form-group">
-											<label for="exampleFormControlSelect1">이미지선택</label><div class="custom-file">
-						  <input type="file" class="custom-file-input" id="customFile">
-						  <label class="custom-file-label" for="customFile">이미지 파일</label>
-						</div>
-										</div>
 								<div class="form-group">
-								<label for="inputAddress">이미지 제목</label> <input type="text"
-									class="form-control" id="inputAddress" placeholder="" >
-							</div>
-												<div class="form-group">
-													<label for="heritageDetail">이미지 설명</label>
-													<textarea class="form-control" id="heritageDetail"
-														name="heritageDetail" rows="3" required=""></textarea>
-												</div>
-										<div class="form-group">
-											<label for="exampleInputEmail1">우편번호</label>
-											<div class="input-group mb-3">
-												<input name="zip" type="text" class="form-control"
-													aria-label="Recipient's username"
-													aria-describedby="button-addon">
-												<button class="btn btn-primary" onclick="openZipSearch()"
-													type="button">검색</button>
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="">주소</label> <input type="text"
-												class="form-control" name="addr1" readonly>
-										</div>
-										<div class="form-group">
-											<label for="">상세주소</label> <input type="text"
-												class="form-control" name="addr2">
-										</div>
-									</form>
-
-									<p style="margin-top: -12px">
-										<em class="link"> <a href="javascript:void(0);"
-											onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
-												혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요. </a>
-										</em>
-									</p>
-
-									<script
-										src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-									<script type="text/javascript">
-										function openZipSearch() {
-											new daum.Postcode({
-												oncomplete : function(data) {
-													$('[name=zip]').val(
-															data.zonecode); // 우편번호 (5자리)
-													$('[name=addr1]').val(
-															data.address);
-													$('[name=addr2]').val(
-															data.buildingName);
-												}
-											}).open();
-										}
-									</script>
+									<label for="heritageDetail">이미지 설명</label>
+									<textarea class="form-control" id="heritageDetail"
+										name="heritageDetail" rows="3" required=""></textarea>
 								</div>
-								<div class="tab-pane" id="tabadd4">
-									<form>
-										<div class="form-group">
-											<label for="exampleFormControlSelect1">이미지선택</label><div class="custom-file">
-						  <input type="file" class="custom-file-input" id="customFile">
-						  <label class="custom-file-label" for="customFile">이미지 파일</label>
-						</div>
-										</div>
+							</div>
+							<div class="tab-pane" id="tabadd2">
+
 								<div class="form-group">
-								<label for="inputAddress">이미지 제목</label> <input type="text"
-									class="form-control" id="inputAddress" placeholder="" >
-							</div>
-												<div class="form-group">
-													<label for="heritageDetail">이미지 설명</label>
-													<textarea class="form-control" id="heritageDetail"
-														name="heritageDetail" rows="3" required=""></textarea>
-												</div>
-										<div class="form-group">
-											<label for="exampleInputEmail1">우편번호</label>
-											<div class="input-group mb-3">
-												<input name="zip" type="text" class="form-control"
-													aria-label="Recipient's username"
-													aria-describedby="button-addon">
-												<button class="btn btn-primary" onclick="openZipSearch()"
-													type="button">검색</button>
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="">주소</label> <input type="text"
-												class="form-control" name="addr1" readonly>
-										</div>
-										<div class="form-group">
-											<label for="">상세주소</label> <input type="text"
-												class="form-control" name="addr2">
-										</div>
-									</form>
-
-									<p style="margin-top: -12px">
-										<em class="link"> <a href="javascript:void(0);"
-											onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
-												혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요. </a>
-										</em>
-									</p>
-
-									<script
-										src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-									<script type="text/javascript">
-										function openZipSearch() {
-											new daum.Postcode({
-												oncomplete : function(data) {
-													$('[name=zip]').val(
-															data.zonecode); // 우편번호 (5자리)
-													$('[name=addr1]').val(
-															data.address);
-													$('[name=addr2]').val(
-															data.buildingName);
-												}
-											}).open();
-										}
-									</script>
+									<label for="exampleFormControlSelect1">이미지선택</label>
+									<div class="custom-file">
+										<input type="file" class="custom-file-input" id="customFile">
+										<label class="custom-file-label" for="customFile">이미지
+											파일</label>
+									</div>
 								</div>
-								<div class="tab-pane" id="tabadd5">
-									<form>
-										<div class="form-group">
-											<label for="exampleFormControlSelect1">이미지선택</label><div class="custom-file">
-						  <input type="file" class="custom-file-input" id="customFile">
-						  <label class="custom-file-label" for="customFile">이미지 파일</label>
-						</div>
-										</div>
 								<div class="form-group">
-								<label for="inputAddress">이미지 제목</label> <input type="text"
-									class="form-control" id="inputAddress" placeholder="" >
-							</div>
-												<div class="form-group">
-													<label for="heritageDetail">이미지 설명</label>
-													<textarea class="form-control" id="heritageDetail"
-														name="heritageDetail" rows="3" required=""></textarea>
-												</div>
-										<div class="form-group">
-											<label for="exampleInputEmail1">우편번호</label>
-											<div class="input-group mb-3">
-												<input name="zip" type="text" class="form-control"
-													aria-label="Recipient's username"
-													aria-describedby="button-addon">
-												<button class="btn btn-primary" onclick="openZipSearch()"
-													type="button">검색</button>
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="">주소</label> <input type="text"
-												class="form-control" name="addr1" readonly>
-										</div>
-										<div class="form-group">
-											<label for="">상세주소</label> <input type="text"
-												class="form-control" name="addr2">
-										</div>
-									</form>
-
-									<p style="margin-top: -12px">
-										<em class="link"> <a href="javascript:void(0);"
-											onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
-												혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요. </a>
-										</em>
-									</p>
-
-									<script
-										src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-									<script type="text/javascript">
-										function openZipSearch() {
-											new daum.Postcode({
-												oncomplete : function(data) {
-													$('[name=zip]').val(
-															data.zonecode); // 우편번호 (5자리)
-													$('[name=addr1]').val(
-															data.address);
-													$('[name=addr2]').val(
-															data.buildingName);
-												}
-											}).open();
-										}
-									</script>
+									<label for="inputAddress">이미지 제목</label> <input type="text"
+										class="form-control" id="inputAddress" placeholder="">
 								</div>
-
-								<ul class="pager wizard list-unstyled text-right"
-									style="margin-top: 3.1em;">
-									<li class="previous list-inline-item" style="float: left;"><a
-										class="btn btn-primary">이전</a></li>
-									<li class="next list-inline-item disabled"><a
-										class="btn btn-primary">다음</a></li>
-								</ul>
+								<div class="form-group">
+									<label for="heritageDetail">이미지 설명</label>
+									<textarea class="form-control" id="heritageDetail"
+										name="heritageDetail" rows="3" required=""></textarea>
+								</div>
 							</div>
+							<div class="tab-pane" id="tabadd3">
+
+								<div class="form-group">
+									<label for="exampleFormControlSelect1">이미지선택</label>
+									<div class="custom-file">
+										<input type="file" class="custom-file-input" id="customFile">
+										<label class="custom-file-label" for="customFile">이미지
+											파일</label>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputAddress">이미지 제목</label> <input type="text"
+										class="form-control" id="inputAddress" placeholder="">
+								</div>
+								<div class="form-group">
+									<label for="heritageDetail">이미지 설명</label>
+									<textarea class="form-control" id="heritageDetail"
+										name="heritageDetail" rows="3" required=""></textarea>
+								</div>
+							</div>
+							<div class="tab-pane" id="tabadd4">
+								<div class="form-group">
+									<label for="exampleFormControlSelect1">이미지선택</label>
+									<div class="custom-file">
+										<input type="file" class="custom-file-input" id="customFile">
+										<label class="custom-file-label" for="customFile">이미지
+											파일</label>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputAddress">이미지 제목</label> <input type="text"
+										class="form-control" id="inputAddress" placeholder="">
+								</div>
+								<div class="form-group">
+									<label for="heritageDetail">이미지 설명</label>
+									<textarea class="form-control" id="heritageDetail"
+										name="heritageDetail" rows="3" required=""></textarea>
+								</div>
+							</div>
+							<div class="tab-pane" id="tabadd5">
+								<div class="form-group">
+									<label for="exampleFormControlSelect1">이미지선택</label>
+									<div class="custom-file">
+										<input type="file" class="custom-file-input" id="customFile">
+										<label class="custom-file-label" for="customFile">이미지
+											파일</label>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputAddress">이미지 제목</label> <input type="text"
+										class="form-control" id="inputAddress" placeholder="">
+								</div>
+								<div class="form-group">
+									<label for="heritageDetail">이미지 설명</label>
+									<textarea class="form-control" id="heritageDetail"
+										name="heritageDetail" rows="3" required=""></textarea>
+								</div>
+							</div>
+
+							<ul class="pager wizard list-unstyled text-right"
+								style="margin-top: 3.1em;">
+								<li class="previous list-inline-item" style="float: left;"><a
+									class="btn btn-primary">이전</a></li>
+								<li class="next list-inline-item disabled"><a
+									class="btn btn-primary">다음</a></li>
+							</ul>
 						</div>
 					</div>
 				</div>
-				<!-- **********************************  end cos 등록 폼  ********************************** -->
-				<!-- **********************************  Start 공개 여부 ********************************** -->
-				<div class="card">
-					<div class="card-title">
-						<div class="card-title-left">
-							<h4 class="card-title-text">공개/공유 설정</h4>
-						</div>
-					</div>
+				<div class="form-group">
 					<div class="card-body switcher">
 						<ul class="list-unstyled">
 							<li>공유여부</li>
@@ -476,38 +206,25 @@
 						</ul>
 					</div>
 				</div>
-				<!-- **********************************  End 공개 여부 ********************************** -->
-			</div>
-			<!-- **********************************  End Right 등록 폼  ********************************** -->
-
-		</div>
-		<div class="col-12">
+			</form>
 			<div class="add-new text-center mb-5">
-				<a class="btn btn-primary ftbtn" href="#!"> 변경사항 저장 </a>
+				<a class="btn btn-primary ftbtn" href="#!"> 등록 </a>
 			</div>
 		</div>
 	</div>
-	<!-- **********************************  End ContentsWrap ********************************** -->
+
 </th:block>
 <th:block layout:fragment="customBodyScript">
 	<!-- bootstrap wizard-->
 	<script th:src="@{/js/bootstrap-wizard/jquery.bootstrap.wizard.min.js}"></script>
 	<script th:src="@{/js/jquery-validation/jquery.validate.min.js}"></script>
-	
-	<!-- POPPER -->
-	<script src="js/popper/popper.min.js"></script>
-	
+
 	<script th:src="@{/js/custom.js}"></script>
 	<script th:src="@{/js/moment.min.js}"></script>
 
 	<!--  datepicker  -->
 	<script th:src="@{/js/datepicker/daterangepicker.js}"></script>
 	<script th:src="@{/js/datepicker/bootstrap-timepicker.js}"></script>
-
-	<!-- summernote -->
-	<script th:src="@{/js/simplemde/simplemde.min.js}"></script>
-	<script th:src="@{/js/simplemde/simplemde.js}"></script>
-</th:block>
 
 </th:block>
 </html>

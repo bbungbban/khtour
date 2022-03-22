@@ -38,4 +38,16 @@ public class TraShareController {
 		
 		return "/traShare/traDetail";
 	}
+	
+	/*
+	 * 여행기록 상세  페이지 이동
+	 */
+	@GetMapping("/traShare/traShareListSt")
+	public String getTraShareListSt(Model model) {
+		
+		model.addAttribute("title", "여행 기록 공유 게시판 리스트(관리자)");
+		
+		return "/traShare/traDetail";
+	}
+	
 }
