@@ -29,12 +29,13 @@ public class CommunityController {
 	
 	@PostMapping("/commNameCheck")
 	@ResponseBody
-	public boolean isIdCheck(@RequestParam(value = "commName") String commName)
+	public boolean commNameCheck(@RequestParam(value = "commName") String commName)
 	{
-		boolean commNameCheck = false;
-		boolean result = communityMapper.commNameCheack(commName);
-		commNameCheck= result;
-		return commNameCheck;
+		boolean nameCheck = false;
+		boolean result = communityMapper.commNameCheck(commName);
+		nameCheck= result;
+		log.info("커뮤니티 이름중복체크 여부: {}",result);
+		return nameCheck;
 	}	
 
 	@GetMapping("/commDashboard")
@@ -74,7 +75,7 @@ public class CommunityController {
 		
 		communityService.addCommunity(community);
 		model.addAttribute("commName",community.getCommName());
-		return "redirect:/community/communityPage";
+		return "community/commPage";
 		
 	}
 	
@@ -98,7 +99,7 @@ public class CommunityController {
 	}
 	@GetMapping("/commPage")
 	public String commPage(Model model,@RequestParam(value = "commName") String commName) {
-		
+
 		Community community = communityService.getCommunityByName(commName);
 		List<Rule> ruleList = communityService.getRuleListByCommName(commName);
 		System.out.println("규칙 리스트 :  " + ruleList);
