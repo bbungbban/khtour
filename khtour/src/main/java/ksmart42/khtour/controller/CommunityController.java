@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ksmart42.khtour.dto.Community;
 import ksmart42.khtour.dto.Rule;
@@ -46,7 +47,7 @@ public class CommunityController {
 		model.addAttribute("title","커뮤니티 대시보드");
 		model.addAttribute("communityList", communityList);
 		
-		return "/community/commDashboard";
+		return "community/commDashboard";
 	}
 
 	
@@ -55,7 +56,7 @@ public class CommunityController {
 		
 		model.addAttribute("title", "포스트 생성");
 		
-		return "/community/createPost";
+		return "community/createPost";
 		
 	}
 	@GetMapping("/addCommunity")
@@ -63,19 +64,30 @@ public class CommunityController {
 		
 		model.addAttribute("title", "커뮤니티 생성");
 		
-		return "/community/addCommunity";
+		return "community/addCommunity";
 	}
 	
 	@PostMapping("/addCommunity")
-	public String addCommunity(Model model,Community community) {
+	public String addCommunity(RedirectAttributes reAttr,Community community) {
 		
 		community.setMemberCnt("1");
 		community.setOnlineMemberCnt("0");
 		community.setMemberId("id001");
 		
 		communityService.addCommunity(community);
-		model.addAttribute("commName",community.getCommName());
-		return "community/commPage";
+		reAttr.addAttribute("commName",community.getCommName());
+		return "redirect:/commPage";
+		
+	}
+	
+	@PostMapping("/addRule")
+	public String addRule(RedirectAttributes reAttr,Rule rule) {
+		
+		communityService.addRule(rule);
+		
+		reAttr.addAttribute("commName",rule.getCommName());
+		
+		return "redirect:/commPage";
 		
 	}
 	
@@ -86,7 +98,7 @@ public class CommunityController {
 		
 		model.addAttribute("title", "포스트");
 		
-		return "/community/post";
+		return "community/post";
 	}
 	@GetMapping("/commRanking")
 	public String commRanking(Model model) {
@@ -95,7 +107,7 @@ public class CommunityController {
 		List<Community> communityList = communityService.getCommunityList();
 		model.addAttribute("communityList", communityList);
 		
-		return "/community/commRanking";
+		return "community/commRanking";
 	}
 	@GetMapping("/commPage")
 	public String commPage(Model model,@RequestParam(value = "commName") String commName) {
@@ -106,7 +118,7 @@ public class CommunityController {
 		model.addAttribute("community",community);
 		model.addAttribute("title", "커뮤니티페이지");
 		model.addAttribute("ruleList", ruleList);
-		return "/community/commPage";
+		return "community/commPage";
 	}
 	
 	
