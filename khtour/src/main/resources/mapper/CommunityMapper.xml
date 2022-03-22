@@ -76,10 +76,9 @@
 	<insert id="addCommunity" parameterType="Community">
 		/*회원가입*/
 		INSERT INTO tb_community
-			(	 comm_code
+			(	 comm_name
 				,member_id		 
 				,reg_date
-				,comm_name
 				,category
 				,banner	 
 				,avatar    
@@ -87,10 +86,9 @@
 				,online_member_cnt
 				,comm_desc
 		)VALUES (
-			#{commCode}
+			#{commName}
 			, #{memberId}
 			, CURDATE()
-			, #{commName}
 			, #{category}
 			, #{banner}
 			, #{avatar}
@@ -100,7 +98,7 @@
 		);
 	</insert>
 	
-	<select id="isNameCheck" parameterType="String" resultType="boolean">
+	<select id="commNameCheck" parameterType="String" resultType="boolean">
 		SELECT
 			if(Count(1) = 1,0,1)
 		FROM

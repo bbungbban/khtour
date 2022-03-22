@@ -8,9 +8,9 @@
 <th:block layout:fragment="contentsTitle">
 	<h4>커뮤니티 생성</h4>
 </th:block>
-<th:block layout:fragment="customScript">
+		<th:block layout:fragment="customScript">
 			<script>
-				$(function(){
+				$(function(){					
 					function validationCheck(data){
 						if(typeof data =='undefined' || data =='' || data==null){
 							return false;
@@ -18,11 +18,12 @@
 						return true;
 					}
 					$('#commNameCheck').click(function(){
-						var commName = $('input[name="commName"]').val();				
+						var commName = $('input[name="commName"]').val();			
+						console.log(commName);
 						if(validationCheck(commName))
 						{
 							$.ajax({
-								url: '/community/commNameCheck'
+								url: '/commNameCheck'
 								,type: 'post'
 								,data:{'commName' : commName}
 								,dataType:'json'
@@ -65,36 +66,42 @@
 				});
 			</script>	
 		</th:block>
+		
 	<th:block layout:fragment="customContents">
-			<div class="card">
+			<div class="card bg-light">
 				<div class="card-body">
-					<form class="cmxform" id="addCommunityForm" method="post">
+					<form class="cmxform" id="addCommunityForm" method="post"  th:action="@{/addCommunity}">
 								<div class="form-group">
-									<label for="commName">커뮤니티 이름</label>
+								<label for="commName">커뮤니티 이름</label>
+								<div class="row">
+								<div class="col-9">
 									<input id="commName" class="form-control" name="commName">
 								</div>
+								<div class="col-3">
+									<button type="button" class="btn btn-info active text-center" id="commNameCheck">커뮤니티 중복체크</button>
+								</div>
+								</div>
+								</div>
+								
 								<div class="form-group">
 									<label for="commDesc">커뮤니티 설명</label>
 									<textarea id="commDesc" name="commDesc" class="form-control" rows="10" required></textarea>
 								</div>
 								<div class="form-group">
-									<button id="addMemberBtn" type="button" class="btn btn-info active pull-right">등록</button>	
-									<a href="/commDashboard" class="btn btn-info active pull-right" role="button" aria-pressed="true">취소</a>		
+									<button id="addCommunityBtn" type="button" class="btn btn-info active pull-right" disabled ="disabled">등록</button>	
+									<a href="/commDashboard" class="btn btn-info active pull-right mr-2" role="button" aria-pressed="true">취소</a>		
 								</div>
 							</form>
 					</div>
 				</div>
 	</th:block>
 	
-<th:block layout:fragment="customBodyScript">
+	<th:block layout:fragment="customBodyScript">
 	<!-- jquery mask -->
 	<script src="js/jquery-validation/jquery.validate.min.js"></script>
 	<!-- select2 -->
 	<script src="js/select2/select2.min.js"></script>
 	<script src="js/summernote/summernote.min.js"></script>
-	<!-- summernote -->
-	<script src="js/simplemde/simplemde.min.js"></script>
-	<script src="js/simplemde/simplemde.js"></script>
 	<!-- PRISM -->
 	<script th:src="@{/js/prism/prism.js}"></script>
 	<!-- custom -->
