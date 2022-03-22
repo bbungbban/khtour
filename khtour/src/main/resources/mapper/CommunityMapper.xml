@@ -97,6 +97,22 @@
 			, #{commDesc}
 		);
 	</insert>
+	<insert id="addRule" parameterType="Rule">
+		/*회원가입*/
+		INSERT INTO tb_comm_rules
+			(	 rule_code
+				,comm_name		 
+				,title
+				,detail
+				,reg_time	 
+		)VALUES (
+			  sf_new_rule_code()
+			, #{commName}
+			, #{title}
+			, #{detail}
+			, CURDATE()
+		);
+	</insert>
 	
 	<select id="commNameCheck" parameterType="String" resultType="boolean">
 		SELECT

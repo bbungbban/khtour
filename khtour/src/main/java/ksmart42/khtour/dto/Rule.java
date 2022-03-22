@@ -3,13 +3,13 @@ package ksmart42.khtour.dto;
 public class Rule {
 
 	private String ruleCode;
-	private String commCode;
+	private String commName;
 	private String title;
 	private String detail;
 	private String regTime;
 	@Override
 	public String toString() {
-		return "Rule [ruleCode=" + ruleCode + ", commCode=" + commCode + ", title=" + title + ", detail=" + detail
+		return "Rule [ruleCode=" + ruleCode + ", commName=" + commName + ", title=" + title + ", detail=" + detail
 				+ ", regTime=" + regTime + ", reg_time=" + reg_time + "]";
 	}
 	public String getRuleCode() {
@@ -24,11 +24,11 @@ public class Rule {
 	public void setRuleCode(String ruleCode) {
 		this.ruleCode = ruleCode;
 	}
-	public String getCommCode() {
-		return commCode;
+	public String getCommName() {
+		return commName;
 	}
-	public void setCommCode(String commCode) {
-		this.commCode = commCode;
+	public void setCommName(String commName) {
+		this.commName = commName;
 	}
 	public String getTitle() {
 		return title;

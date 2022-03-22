@@ -42,6 +42,13 @@ public class CommunityService {
 		communityMapper.addCommunity(community);
 		
 	}
+	public void addRule(Rule rule) {
+		
+		communityMapper.addRule(rule);
+		
+	}
+	
+	
 	
 	
 	
