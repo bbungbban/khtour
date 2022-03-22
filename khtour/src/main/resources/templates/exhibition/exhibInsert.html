@@ -185,290 +185,137 @@
 		</div>
 		<!-- **********************************  End 달력  ************************************ -->
 		<!-- **********************************  Start ContentsWrap  ********************************** -->
-		<div class="row">
-			<!-- **********************************  Start left 등록 폼  ********************************** -->
-			<div class="col-md-6">
-				<!-- **********************************  Start 전시개요  ********************************** -->
-				<div class="card">
-					<div class="card-title">
-						<div class="card-title-left">
-							<h4 class="card-title-text">전시개요</h4>
-						</div>
-					</div>
-					<div class="card-body">
-						<form>
-							<div class="form-group">
-								<label for="exampleFormControlSelect1">카테고리</label> <select
-									class="form-control" id="exampleFormControlSelect1">
-									<option>::선택::</option>
-									<option>테마전시</option>
-									<option>특별전시</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label for="formGroupExampleInput">전시명</label> <input
-									type="text" class="form-control" id="formGroupExampleInput"
-									placeholder="전시명을 입력하세요.">
-							</div>
-							<div class="form-group">
-								<label for="exampleFormControlSelect1">전시현황</label> <select
-									class="form-control" id="exampleFormControlSelect1">
-									<option>::선택::</option>
-									<option>전시예정</option>
-									<option>전시중</option>
-									<option>전시완료</option>
-								</select>
-							</div>
-						</form>
-					</div>
+		<!-- **********************************  Start left 등록 폼  ********************************** -->
+		<!-- **********************************  Start 전시개요  ********************************** -->
+		<div class="card">
+			<div class="card-title">
+				<div class="card-title-left">
+					<h4 class="card-title-text">특별전 등록</h4>
 				</div>
-				<!-- **********************************  End 전시개요  ********************************** -->
-				<!-- **********************************  Start 전시기간  ********************************** -->
-				<div class="card">
-					<div class="card-title">
-						<div class="card-title-left">
-							<h4 class="card-title-text">
-								전시기간<i class="fa-thin fa-00"></i>
-							</h4>
-						</div>
-					</div>
-					<div class="card-body">
-						<input style="letter-spacing: 1em;" type="text" name="daterange"
-							value="01/01/2021 - 01/15/2021" class="form-control" />
-					</div>
-				</div>
-				<!-- **********************************  End 전시기간  ********************************** -->
-				<!-- **********************************  Start 포스터  ********************************** -->
-				<div class="card">
-					<div class="card-title">
-						<div class="card-title-left">
-							<h4 class="card-title-text">포스터</h4>
-						</div>
-					</div>
-					<div class="card-body">
-						<div class="custom-file">
-							<input type="file" id="avatar" class="form-control" name="avatar"
-								required="">
-						</div>
-					</div>
-				</div>
-				<!-- **********************************  End 포스터  ********************************** -->
-				<!-- **********************************  Start 주관사  ********************************** -->
-				<div class="card">
-					<div class="card-title">
-						<div class="card-title-left">
-							<h4 class="card-title-text">주관사</h4>
-						</div>
-					</div>
-					<div class="card-body">
-						<form>
-							<div class="form-group">
-								<label for="inputEmail4">주관사명</label> <input type="text"
-									class="form-control" id="inputEmail4">
-							</div>
-							<div class="form-group">
-								<label for="inputAddress">연락처</label> <input type="text"
-									class="form-control" id="inputAddress">
-							</div>
-							<div class="form-group">
-								<label for="exampleInputEmail1">우편번호</label>
-								<div class="input-group mb-3">
-									<input name="zip" type="text" class="form-control"
-										aria-label="Recipient's username"
-										aria-describedby="button-addon">
-									<button class="btn btn-primary" onclick="openZipSearch()"
-										type="button">검색</button>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="">주소</label> <input type="text" class="form-control"
-									name="addr1" readonly>
-							</div>
-							<div class="form-group">
-								<label for="">상세주소</label> <input type="text"
-									class="form-control" name="addr2">
-							</div>
-						</form>
-					</div>
-				</div>
-				<!-- **********************************  End 주관사  ********************************** -->
 			</div>
-			<!-- **********************************  End left 등록 폼  ********************************** -->
-			<!-- **********************************  Start Right 등록 폼  ********************************** -->
-			<div class="col-md-6 margincorrection">
-				<!-- **********************************  Start 세부사항  ********************************** -->
-				<div class="card">
-					<div class="card-title">
-						<div class="card-title-left">
-							<h4 class="card-title-text">세부사항</h4>
+			<div class="card-body">
+				<form>
+					<div class="form-row">
+						<div class="form-group col-4">
+							<label for="exampleFormControlSelect1">카테고리</label> <select
+								class="form-control" id="exampleFormControlSelect1">
+								<option>::선택::</option>
+								<option>테마전시</option>
+								<option>특별전시</option>
+							</select>
+						</div>
+						<div class="form-group col-4">
+							<label for="formGroupExampleInput">전시명</label> <input type="text"
+								class="form-control" id="formGroupExampleInput"
+								placeholder="전시명을 입력하세요.">
+						</div>
+						<div class="form-group col-4">
+							<label for="exampleFormControlSelect1">전시현황</label> <select
+								class="form-control" id="exampleFormControlSelect1">
+								<option>::선택::</option>
+								<option>전시예정</option>
+								<option>전시중</option>
+								<option>전시완료</option>
+							</select>
 						</div>
 					</div>
-					<div class="card-body">
-						<form>
-							<div class="form-group">
-								<label>전시시간</label>
-								<div class="row">
-									<div class="col">
-										<div class="input-group bootstrap-timepicker timepicker">
-											<input id="timepicker1" type="text"
-												class="form-control input-small"> <span
-												class="input-group-prepend"><i class="fa fa-clock-o"></i></span>
-										</div>
+					<div class="form-row">
+						<div class="form-group col-6">
+							<label>전시기간</label> <input style="letter-spacing: 1em;"
+								type="text" name="daterange" value="01/01/2021 - 01/15/2021"
+								class="form-control" />
+						</div>
+						<div class="form-group col-6" style="top:26px;">
+							<div class="row">
+								<div class="col">
+									<div class="input-group bootstrap-timepicker timepicker">
+										<input id="timepicker1" type="text"
+											class="form-control input-small"> <span
+											class="input-group-prepend"><i class="fa fa-clock-o"></i></span>
 									</div>
-									<span style="line-height: 41px;">~</span>
-									<div class="col">
-										<div class="input-group bootstrap-timepicker timepicker">
-											<input id="timepicker2" type="text"
-												class="form-control input-small"> <span
-												class="input-group-prepend"><i class="fa fa-clock-o"></i></span>
-										</div>
+								</div>
+								<span style="line-height: 41px;">~</span>
+								<div class="col">
+									<div class="input-group bootstrap-timepicker timepicker">
+										<input id="timepicker2" type="text"
+											class="form-control input-small"> <span
+											class="input-group-prepend"><i class="fa fa-clock-o"></i></span>
 									</div>
 								</div>
 							</div>
-							<div class="form-group">
-								<label>홈페이지</label>
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text" id="basic-addon3">https://</span>
-									</div>
-									<input type="text" class="form-control" id="basic-url"
-										aria-describedby="basic-addon3">
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-				<!-- **********************************  End 세부사항  ********************************** -->
-				<!-- **********************************  Start 전시장소  ********************************** -->
-				<div class="card">
-					<div class="card-title">
-						<div class="card-title-left">
-							<h4 class="card-title-text">전시장소</h4>
 						</div>
 					</div>
-					<div class="card-body">
-						<form>
-							<div class="form-group">
-								<label for="exampleInputEmail1">우편번호</label>
-								<div class="input-group mb-3">
-									<input name="zip" type="text" class="form-control"
-										aria-label="Recipient's username"
-										aria-describedby="button-addon">
-									<button class="btn btn-primary" onclick="openZipSearch()"
-										type="button">검색</button>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="">주소</label> <input type="text" class="form-control"
-									name="addr1" readonly>
-							</div>
-							<div class="form-group">
-								<label for="">상세주소</label> <input type="text"
-									class="form-control" name="addr2">
-							</div>
-						</form>
 
-						<p style="margin-top: -12px">
-							<em class="link"> <a href="javascript:void(0);"
-								onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
-									혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요. </a>
-							</em>
-						</p>
-
-						<script
-							src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-						<script type="text/javascript">
-							function openZipSearch() {
-								new daum.Postcode({
-									oncomplete : function(data) {
-										$('[name=zip]').val(data.zonecode); // 우편번호 (5자리)
-										$('[name=addr1]').val(data.address);
-										$('[name=addr2]')
-												.val(data.buildingName);
-									}
-								}).open();
-							}
-						</script>
+					<div class="form-group">
+						<label>포스터업로드</label> <input type="file" id="avatar"
+							class="form-control" name="avatar" required="">
 					</div>
-				</div>
-				<!-- **********************************  End 전시장소 ********************************** -->
-				<!-- **********************************  Start 담당자 ********************************** -->
-				<div class="card">
-					<div class="card-title">
-						<div class="card-title-left">
-							<h4 class="card-title-text">담당자</h4>
+					
+					<div class="form-group">
+						<label>홈페이지</label>
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="basic-addon3">https://</span>
+							</div>
+							<input type="text" class="form-control" id="basic-url"
+								aria-describedby="basic-addon3">
 						</div>
 					</div>
-					<div class="card-body">
-						<form>
-							<div class="form-group">
-								<label for="inputEmail4">담당자명</label> <input type="text"
-									class="form-control" id="inputEmail4">
-							</div>
-							<div class="form-group">
-								<label for="inputAddress">연락처</label> <input type="text"
-									class="form-control" id="inputAddress">
-							</div>
-							<div class="form-group">
-								<label for="exampleInputEmail1">이메일</label> <input type="email"
-									class="form-control" id="exampleInputEmail1"
-									aria-describedby="emailHelp" placeholder="Enter email">
-								<small id="emailHelp" class="form-text text-muted">We'll
-									never share your email with anyone else.</small>
-							</div>
-						</form>
-					</div>
-				</div>
-				<!-- **********************************  End 담당자  ********************************** -->
-				<!-- **********************************  Start 예매처  ********************************** -->
-				<div class="card">
-					<div class="card-title">
-						<div class="card-title-left">
-							<h4 class="card-title-text">예매처</h4>
+					<div class="form-group">
+						<label for="exampleInputEmail1">우편번호</label>
+						<div class="input-group mb-3">
+							<input name="zip" type="text" class="form-control"
+								aria-label="Recipient's username"
+								aria-describedby="button-addon">
+							<button class="btn btn-primary" onclick="openZipSearch()"
+								type="button">검색</button>
 						</div>
 					</div>
-					<div class="card-body">
-						<form>
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text" id="basic-addon3">https://</span>
-								</div>
-								<input type="text" class="form-control" id="basic-url"
-									aria-describedby="basic-addon3">
-							</div>
-						</form>
+					<div class="form-group">
+						<label for="">주소</label> <input type="text" class="form-control"
+							name="addr1" readonly>
 					</div>
-				</div>
-				<!-- **********************************  End 예매처  ********************************** -->
-			</div>
-			<!-- **********************************  End Right 등록 폼  ********************************** -->
-			<!-- **********************************  Start Editor ********************************** -->
-			<div class="col-12">
-				<div class="card">
-					<div class="card-title">
-						<div class="card-title-left">
-							<h4 class="card-title-text">상세정보</h4>
-						</div>
+					<div class="form-group">
+						<label for="">상세주소</label> <input type="text" class="form-control"
+							name="addr2">
 					</div>
-					<div class="card-body">
-						<textarea id="editor-demo1" style="display: none;"># Intro
-				Go ahead, play around with the editor! Be sure to check out **bold** and *italic* styling, or even [links](https://google.com). You can type the Markdown syntax, use the toolbar, or use shortcuts like `cmd-b` or `ctrl-b`.
+					<p style="margin-top: -12px">
+						<em class="link"> <a href="javascript:void(0);"
+							onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
+								혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요. </a>
+						</em>
+					</p>
 
-					## Lists
-					Unordered lists can be started using the toolbar or by typing `* `, `- `, or `+ `. Ordered lists can be started by typing `1. `.
-
-					#### Unordered
-					* Lists are a piece of cake
-					* They even auto continue as you type
-					* A double enter will end them
-					* Tabs and shift-tabs work too
-
-					#### Ordered
-					1. Numbered lists...
-					2. ...work too!
-
-					## What about images?
-					![Yes](https://i.imgur.com/sZlktY7.png)</textarea>
+					<script
+						src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+					<script type="text/javascript">
+						function openZipSearch() {
+							new daum.Postcode({
+								oncomplete : function(data) {
+									$('[name=zip]').val(data.zonecode); // 우편번호 (5자리)
+									$('[name=addr1]').val(data.address);
+									$('[name=addr2]').val(data.buildingName);
+								}
+							}).open();
+						}
+					</script>
+					<div class="form-group">
+						<label for="inputEmail4">담당자</label> <input type="text"
+							class="form-control" id="inputEmail4">
+					</div>
+					<div class="form-group">
+						<label for="inputAddress">담당자 연락처</label> <input type="text"
+							class="form-control" id="inputAddress">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">담당자 이메일</label> <input
+							type="email" class="form-control" id="exampleInputEmail1"
+							aria-describedby="emailHelp" placeholder="Enter email"> <small
+							id="emailHelp" class="form-text text-muted">We'll never
+							share your email with anyone else.</small>
+					</div>
+					<div class="form-group">
+						<textarea id="editor-demo1" style="display: none;">상세입력1</textarea>
 						<div class="editor-toolbar">
 							<a title="Bold (Ctrl-B)" tabindex="-1" class="fa fa-bold"></a><a
 								title="Italic (Ctrl-I)" tabindex="-1" class="fa fa-italic"></a><a
@@ -656,7 +503,7 @@
 															class="cm-tab" role="presentation" cm-text="	">  </span><span
 															class="cm-tab" role="presentation" cm-text="	">  </span><span
 															class="cm-tab" role="presentation" cm-text="	">  </span><span
-															class="cm-comment">![Yes](https://i.imgur.com/sZlktY7.png)</span></span>
+															class="cm-comment">![Ye1s](https://i.imgur.com/sZlktY7.png)</span></span>
 													</pre>
 												</div>
 											</div>
@@ -676,15 +523,17 @@
 						</div>
 
 					</div>
-				</div>
-			</div>
-			<!-- **********************************  End Editor ********************************** -->
-		</div>
-		<div class="col-12">
-			<div class="add-new text-center mb-5">
-				<a class="btn btn-primary ftbtn" href="#!"> 변경사항 저장 </a>
+				</form>
 			</div>
 		</div>
+		<!-- **********************************  End Editor ********************************** -->
+	</div>
+	<div class="col-12">
+		<div class="add-new text-center mb-5">
+			<a class="btn btn-primary ftbtn" href="/exhibition/exhibList">
+				변경사항 저장 </a>
+		</div>
+	</div>
 	</div>
 
 	<!-- **********************************  End ContentsWrap ********************************** -->
@@ -692,7 +541,7 @@
 <th:block layout:fragment="customBodyScript">
 	<script th:src="@{/js/custom.js}"></script>
 	<script th:src="@{/js/moment.min.js}"></script>
-	
+
 	<script th:src="@{/js/datepicker/daterangepicker.js}"></script>
 	<script th:src="@{/js/datepicker/bootstrap-timepicker.js}"></script>
 </th:block>
