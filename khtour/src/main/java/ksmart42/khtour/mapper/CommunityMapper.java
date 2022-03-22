@@ -12,9 +12,10 @@ public interface CommunityMapper {
 
 	
 	public List<Community> getCommunityList();
-	public Community getCommunityByCode(String commCode);
-	public List<Rule> getRuleListByCommCode(String commCode);
-	
+	public Community getCommunityByName(String commName);
+	public List<Rule> getRuleListByCommName(String commName);
+	public void addCommunity(Community community);
+	public boolean commNameCheack(String commName);
 	
 	
 	

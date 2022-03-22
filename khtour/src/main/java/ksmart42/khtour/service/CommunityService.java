@@ -22,21 +22,25 @@ public class CommunityService {
 	}
 	
 	public List<Community> getCommunityList(){
-		System.out.println("02 communityList getCommunityList CommunityService.java");
 		List<Community> communityList = communityMapper.getCommunityList();
-		System.out.println(communityList + "<- communityList getCommunityList CommunityService.java");
 		return communityList;
 	}
-	public Community getCommunityByCode(String commCode) {
+	public Community getCommunityByName(String commName) {
 		
-		Community community = communityMapper.getCommunityByCode(commCode);
+		Community community = communityMapper.getCommunityByName(commName);
 		return community;
 	}
 	
-	public List<Rule> getRuleListByCommCode(String commCode){
+	public List<Rule> getRuleListByCommName(String commName){
 		
-		List<Rule> ruleList = communityMapper.getRuleListByCommCode(commCode);
+		List<Rule> ruleList = communityMapper.getRuleListByCommName(commName);
 		return ruleList;
+	}
+	
+	public void addCommunity(Community community) {
+		
+		communityMapper.addCommunity(community);
+		
 	}
 	
 	
