@@ -217,7 +217,8 @@
 	<!-- 카드3 문화재 검색리스트 시작 -->
 	<div class="card">
 		<div class="card-body">
-			
+			<div class="nicescrollbar" data-height="1000" tabindex="2" style="height: 1000px; overflow: hidden; outline: none;">
+				  
 			<div class="row row-cols-1 row-cols-md-3 g-3">
 				<div class="col" th:if="${not #lists.isEmpty(heritageList)}"
 					th:each="l : ${heritageList}">
@@ -235,7 +236,7 @@
 							<p class="card-text" th:text="${l.heritageSubName}"></p>
 						</div>
 						<div class="card-footer">
-							<a type="button" class="btn btn-outline-light" th:href="@{/heritage/modifyHeritage(heritageCode=${l.heritageCode})}">수정</a>
+							<a type="button" class="btn btn-outline-light" th:href="@{/heritage/heritageModify(heritageCode=${l.heritageCode})}">수정</a>
 							<button type="button" id="swal-delete" class="btn btn-outline-light" th:href="@{/heritage/modifyHeritage(heritageCode=${l.heritageCode})}">삭제</button>
 						</div>
 					</div>
@@ -260,6 +261,7 @@
 					<!-- 페이징 끝 -->
 				</div>
 			</div>
+		</div>
 		</div>
 	</div>
 	<!-- 카드3 문화재 검색리스트 종료 -->

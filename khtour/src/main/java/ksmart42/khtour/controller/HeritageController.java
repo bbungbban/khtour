@@ -25,9 +25,8 @@ public class HeritageController {
 
 	}
 	
-
 	/*
-	 * 문화재 종목별 검색(Post 정보 전달)
+	 * 문화재 종목별 정보 등록(Post 정보 전달)
 	 */
 	@PostMapping("/heritageListByItem")
 	public String addHeritage(Heritage heritage) {
@@ -91,7 +90,7 @@ public class HeritageController {
 	/*
 	 * 문화재 정보 수정(Get 정보 전달)
 	 */
-	@GetMapping("/modifyHeritage")
+	@GetMapping("/heritageModify")
 	public String modifyHeritage(
 			@RequestParam(value="heritageCode", required = false) String heritageCode
 			,Model model) {
@@ -101,7 +100,7 @@ public class HeritageController {
 		model.addAttribute("heritage", heritage);
 		System.out.println("정보 수정 겟방식 전달" + heritage);
 		
-		return "heritage/modifyHeritage";
+		return "heritage/heritageModify";
 	}	
 	
 	/*
