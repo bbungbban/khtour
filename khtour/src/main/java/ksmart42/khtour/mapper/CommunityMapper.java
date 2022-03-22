@@ -15,6 +15,7 @@ public interface CommunityMapper {
 	public Community getCommunityByName(String commName);
 	public List<Rule> getRuleListByCommName(String commName);
 	public void addCommunity(Community community);
+	public void addRule(Rule rule);
 	public boolean commNameCheck(String commName);
 	
 	
