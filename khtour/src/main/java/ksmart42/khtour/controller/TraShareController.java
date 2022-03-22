@@ -47,7 +47,7 @@ public class TraShareController {
 		
 		model.addAttribute("title", "여행 기록 공유 게시판 리스트(관리자)");
 		
-		return "/traShare/traDetail";
+		return "/traShare/traShareListSt";
 	}
 	
 }
