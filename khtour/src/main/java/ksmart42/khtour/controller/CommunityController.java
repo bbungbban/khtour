@@ -1,6 +1,8 @@
 package ksmart42.khtour.controller;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +18,7 @@ import ksmart42.khtour.service.CommunityService;
 
 @Controller
 public class CommunityController {
-	
+	private static final Logger log = LoggerFactory.getLogger(CommunityController.class);
 	private CommunityService communityService;
 	private CommunityMapper communityMapper;
 
@@ -72,7 +74,7 @@ public class CommunityController {
 		
 		communityService.addCommunity(community);
 		model.addAttribute("commName",community.getCommName());
-		return "redirect:/communityPage";
+		return "redirect:/community/communityPage";
 		
 	}
 	

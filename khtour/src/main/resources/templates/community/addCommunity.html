@@ -6,7 +6,6 @@
 	<title th:text="${title}"></title>
 </th:block>
 <th:block layout:fragment="contentsTitle">
-<link rel="stylesheet" type="text/css" th:href="@{/css/plugins/HksCss/addCssHks.css}">
 	<h4>커뮤니티 생성</h4>
 </th:block>
 <th:block layout:fragment="customScript">
@@ -19,8 +18,8 @@
 						return true;
 					}
 					$('#commNameCheck').click(function(){
-						var memberId = $('input[name="memberId"]').val();				
-						if(validationCheck(memberId))
+						var commName = $('input[name="commName"]').val();				
+						if(validationCheck(commName))
 						{
 							$.ajax({
 								url: '/community/commNameCheck'
@@ -32,14 +31,12 @@
 									if(data==true)
 									{
 										$( '#addCommunityForm input' ).prop('disabled',false);
-										$( '#addCommunityForm select' ).prop('disabled',false);
 										$( '#addCommunityForm button' ).prop('disabled',false);
 				
 									}
 									else
 									{
-										$( '#addCommunityForm input' ).not('input[name="memberId"]').prop('disabled',true);
-										$( '#addCommunityForm select' ).prop('disabled',true);
+										$( '#addCommunityForm input' ).not('input[name="commName"]').prop('disabled',true);
 										$( '#addCommunityForm button' ).not('#commNameCheck').prop('disabled',true);
 									}
 								}
@@ -51,6 +48,7 @@
 					
 					$('#addCommunityBtn').click(function(){
 						var inputList = $('#addCommunityForm input')
+						console.log(inputList);
 						var isGood = true
 						for(var i =0;i<inputList.length;i++)
 						{
@@ -68,22 +66,20 @@
 			</script>	
 		</th:block>
 	<th:block layout:fragment="customContents">
-		<link rel="stylesheet" type="text/css" th:href="@{/css/plugins/HksCss/addCssHks.css}">
 			<div class="card">
 				<div class="card-body">
 					<form class="cmxform" id="addCommunityForm" method="post">
 								<div class="form-group">
 									<label for="commName">커뮤니티 이름</label>
-									<input id="commName" class="form-control" name="title">
+									<input id="commName" class="form-control" name="commName">
 								</div>
 								<div class="form-group">
 									<label for="commDesc">커뮤니티 설명</label>
-									<textarea id="commDesc" name="mainText" class="form-control" rows="10" required></textarea>
+									<textarea id="commDesc" name="commDesc" class="form-control" rows="10" required></textarea>
 								</div>
 								<div class="form-group">
-									<input class="submit btn btn-primary pull-right" type="button" value="등록">			
-									<a href="/addCommunity" class="btn btn-info active pull-right" role="button" aria-pressed="true">취소</a>
-											
+									<button id="addMemberBtn" type="button" class="btn btn-info active pull-right">등록</button>	
+									<a href="/commDashboard" class="btn btn-info active pull-right" role="button" aria-pressed="true">취소</a>		
 								</div>
 							</form>
 					</div>
