@@ -8,6 +8,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class RoomController {
 	
 	/*
+	 * 객실 결제
+	 * */
+	@GetMapping("room/roomPayment")
+	public String payRoom(Model model) {
+		
+		model.addAttribute("title", "객실결제");
+		
+		return "room/roomPayment";
+	}
+	
+	/*
 	 * 객실 등록 
 	 * */
 	@GetMapping("room/roomInsert")
