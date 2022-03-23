@@ -27,129 +27,39 @@
             </div>
 
          </div>
-         <div class="card-group">
-            <div class="card col-1 bg-info d-flex ml-0 mr-0 pl-0 pr-0 pt-5">
-               <div class="card-body ml-0 mr-0 pl-0 pr-0 pt-5">
-                  <a href="#!"> <i
-                     class="la la-caret-up d-flex la-3x justify-content-center"></i></a>
-                  <p class="card-text text-center">15k</p>
-                  <a href="#!"> <i
-                     class="la la-caret-down d-flex la-3x justify-content-center"></i></a>
-               </div>
-            </div>
-            <div class="card col-11">
-               <div class="card-body">
-                  <h5 class="card-title">포스트 에대한 제목이랑 설명</h5>
-                  <img th:src="@{/images/commPost/img001.jpg}" class="card-img"
-                     alt="...">
+        <div class="card-group" th:if="${not #lists.isEmpty(postList)}" th:each="p: ${postList}">
+			
+				<div class="card col-sm-1 bg-info d-flex ml-0 mr-0 pl-0 pr-0 pt-5">
+					<div class="card-body ml-0 mr-0 pl-0 pr-0 pt-5">
+							<a href="#!" > <i class="la la-caret-up d-flex la-3x justify-content-center text-dark"></i></a>
+							<p class="card-text text-white text-center mb-0 pb-0" th:text="${p.likesCnt}"></p>
+							<p class="card-text text-white text-center mt-0 pt-0">좋아요</p>
+							<a href="#!" > <i class="la la-caret-down d-flex la-3x justify-content-center text-dark"></i></a>
+							
+					</div>
+					
+				</div>
+				<div class="card col-sm-11">
+					<div class="card-body">
+						<h5 class="card-title" th:text="${p.title}"></h5>
+						<p class="card-text" th:text="${p.mainText}"></p>
+						<img th:src="@{'/images/commPost/'+${p.pictureLink}+'.jpg'}" class="card-img"
+							alt="...">
+							
+						
+					
+					</div>
+					<div class="card-foot p-2 text-center border-top">
+						<p class="card-text">
+							<a href="#!" class="text-dark" style="z-index: 2; position: relative;" > <i class="text-dark feather icon-message-circle"></i> 댓글 (20) </a>
+							<a href="#!" class="text-dark" style="z-index: 2; position: relative;"><i class="text-dark la la-share  pl-3" ></i>공유하기</a>
+							<a href="#!" class="text-dark" style="z-index: 2; position: relative;"><i class="text-dark  la la-flag  pl-3"></i>신고하기</a>		
+						 	<a href="/post" class="stretched-link"></a>	
+						</p>
+					</div>
 
-                  <p class="card-text mt-4">
-                     <a href="#!" style="z-index: 2; position: relative;"> <i
-                        class="feather icon-message-circle"></i> 댓글 (20)
-                     </a> <a href="#!" style="z-index: 2; position: relative;"><i
-                        class=" la la-share  pl-3"></i>공유하기</a> <a href="#!"
-                        style="z-index: 2; position: relative;"><i
-                        class="  la la-flag  pl-3"></i>신고하기</a> <a href="/post"
-                        class="stretched-link"></a>
-                  </p>
-
-               </div>
-            </div>
-         </div>
-
-         <div class="card-group">
-
-            <div class="card col-1 bg-info d-flex ml-0 mr-0 pl-0 pr-0 pt-5">
-               <div class="card-body ml-0 mr-0 pl-0 pr-0 pt-5   ">
-                  <a href="#!"> <i
-                     class="la la-caret-up d-flex la-3x justify-content-center"></i></a>
-                  <p class="card-text text-center">15k</p>
-                  <a href="#!"> <i
-                     class="la la-caret-down d-flex la-3x justify-content-center"></i></a>
-               </div>
-            </div>
-            <div class="card col-11">
-               <div class="card-body">
-                  <h5 class="card-title">포스트 에대한 제목이랑 설명</h5>
-                  <img th:src="@{/images/commPost/img002.jpg}" class="card-img"
-                     alt="...">
-
-                 <p class="card-text mt-4">
-                     <a href="#!" style="z-index: 2; position: relative;"> <i
-                        class="feather icon-message-circle"></i> 댓글 (20)
-                     </a> <a href="#!" style="z-index: 2; position: relative;"><i
-                        class=" la la-share  pl-3"></i>공유하기</a> <a href="#!"
-                        style="z-index: 2; position: relative;"><i
-                        class="  la la-flag  pl-3"></i>신고하기</a> <a href="/post"
-                        class="stretched-link"></a>
-                  </p>
-
-               </div>
-
-            </div>
-         </div>
-         <div class="card-group">
-
-            <div class="card col-1 bg-info d-flex ml-0 mr-0 pl-0 pr-0 pt-5">
-               <div class="card-body ml-0 mr-0 pl-0 pr-0 pt-5   ">
-                  <a href="#!"> <i
-                     class="la la-caret-up d-flex la-3x justify-content-center"></i></a>
-                  <p class="card-text text-center">15k</p>
-                  <a href="#!"> <i
-                     class="la la-caret-down d-flex la-3x justify-content-center"></i></a>
-               </div>
-            </div>
-            <div class="card col-11">
-               <div class="card-body">
-                  <h5 class="card-title">포스트 에대한 제목이랑 설명</h5>
-                  <img th:src="@{/images/commPost/img003.jpg}" class="card-img"
-                     alt="...">
-
-                 <p class="card-text mt-4">
-                     <a href="#!" style="z-index: 2; position: relative;"> <i
-                        class="feather icon-message-circle"></i> 댓글 (20)
-                     </a> <a href="#!" style="z-index: 2; position: relative;"><i
-                        class=" la la-share  pl-3"></i>공유하기</a> <a href="#!"
-                        style="z-index: 2; position: relative;"><i
-                        class="  la la-flag  pl-3"></i>신고하기</a> <a href="/post"
-                        class="stretched-link"></a>
-                  </p>
-
-               </div>
-
-            </div>
-         </div>
-         <div class="card-group">
-
-            <div class="card col-1 bg-info d-flex ml-0 mr-0 pl-0 pr-0 pt-5">
-               <div class="card-body ml-0 mr-0 pl-0 pr-0 pt-5   ">
-                  <a href="#!"> <i
-                     class="la la-caret-up d-flex la-3x justify-content-center"></i></a>
-                  <p class="card-text text-center">15k</p>
-                  <a href="#!"> <i
-                     class="la la-caret-down d-flex la-3x justify-content-center"></i></a>
-               </div>
-            </div>
-            <div class="card col-11">
-               <div class="card-body">
-                  <h5 class="card-title">포스트 에대한 제목이랑 설명</h5>
-                  <img th:src="@{/images/commPost/img004.jpg}" class="card-img"
-                     alt="...">
-
-                 <p class="card-text mt-4">
-                     <a href="#!" style="z-index: 2; position: relative;"> <i
-                        class="feather icon-message-circle"></i> 댓글 (20)
-                     </a> <a href="#!" style="z-index: 2; position: relative;"><i
-                        class=" la la-share  pl-3"></i>공유하기</a> <a href="#!"
-                        style="z-index: 2; position: relative;"><i
-                        class="  la la-flag  pl-3"></i>신고하기</a> <a href="/post"
-                        class="stretched-link"></a>
-                  </p>
-
-               </div>
-
-            </div>
-         </div>
+				</div>
+			</div>	
       </div>
 
       <div class="col-4">

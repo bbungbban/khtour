@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import ksmart42.khtour.dto.CommPost;
 import ksmart42.khtour.dto.CommTag;
 import ksmart42.khtour.dto.Community;
 import ksmart42.khtour.dto.Rule;
@@ -13,12 +14,16 @@ public interface CommunityMapper {
 
 	
 	public List<Community> getCommunityList();
+	public List<CommPost> getPostList();
+	public List<CommPost> getDailyPostList();
 	public Community getCommunityByName(String commName);
 	public List<Rule> getRuleListByCommName(String commName);
 	public List<CommTag> getTagListByCommName(String commName);
 	
 	
+	
 	public void addCommunity(Community community);
+	public void addCommPost(CommPost commpost);
 	public void addRule(Rule rule);
 	public void addTag(CommTag commTag);
 	public boolean commNameCheck(String commName);
