@@ -30,9 +30,20 @@
 					<div class="card-body">
 						<form>
 							<div class="form-group">
-								<label for="inputAddress">코스코드</label> <input type="text"
-									class="form-control" id="inputAddress" placeholder="cosCode001"
-									readonly />
+								<label for="exampleFormControlSelect1">카테고리</label> <select
+									class="form-control" id="exampleFormControlSelect1">
+									<option>::선택::</option>
+									<option>테마전시</option>
+									<option>특별전시</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="exampleFormControlSelect1">지역선택</label> <select
+									class="form-control" id="exampleFormControlSelect1">
+									<option>::선택::</option>
+									<option>테마전시</option>
+									<option>특별전시</option>
+								</select>
 							</div>
 							<div class="form-group">
 								<label for="exampleInputEmail1">코스명</label> <input type="text"
@@ -42,27 +53,6 @@
 					</div>
 				</div>
 				<!-- **********************************  End 코스기본정보 ********************************** -->
-				<!-- **********************************  Start 카테고리 선택 ********************************** -->
-				<div class="card">
-					<div class="card-title">
-						<div class="card-title-left">
-							<h4 class="card-title-text">카테고리 선택</h4>
-						</div>
-					</div>
-					<div class="card-body">
-						<form>
-							<div class="form-group">
-								<label for="exampleFormControlSelect1">카테고리</label> <select
-									class="form-control" id="exampleFormControlSelect1">
-									<option>::선택::</option>
-									<option>테마전시</option>
-									<option>특별전시</option>
-								</select>
-							</div>
-						</form>
-					</div>
-				</div>
-				<!-- **********************************  End 카테고리 선택 ********************************** -->
 				<!-- **********************************  Start 코스설명 ********************************** -->
 				<div class="card">
 					<div class="card-title">
@@ -119,14 +109,6 @@
 								<div class="tab-pane" id="tabadd1">
 									<form>
 										<div class="form-group">
-											<label for="exampleFormControlSelect1">지역선택</label> <select
-												class="form-control" id="exampleFormControlSelect1">
-												<option>::선택::</option>
-												<option>테마전시</option>
-												<option>특별전시</option>
-											</select>
-										</div>
-										<div class="form-group">
 											<label for="exampleFormControlSelect1">문화재/박물관 선택</label> <select
 												class="form-control" id="exampleFormControlSelect1">
 												<option>::선택::</option>
@@ -180,14 +162,6 @@
 								</div>
 								<div class="tab-pane" id="tabadd2">
 									<form>
-										<div class="form-group">
-											<label for="exampleFormControlSelect1">지역선택</label> <select
-												class="form-control" id="exampleFormControlSelect1">
-												<option>::선택::</option>
-												<option>테마전시</option>
-												<option>특별전시</option>
-											</select>
-										</div>
 										<div class="form-group">
 											<label for="exampleFormControlSelect1">문화재/박물관 선택</label> <select
 												class="form-control" id="exampleFormControlSelect1">
@@ -243,14 +217,6 @@
 								<div class="tab-pane" id="tabadd3">
 									<form>
 										<div class="form-group">
-											<label for="exampleFormControlSelect1">지역선택</label> <select
-												class="form-control" id="exampleFormControlSelect1">
-												<option>::선택::</option>
-												<option>테마전시</option>
-												<option>특별전시</option>
-											</select>
-										</div>
-										<div class="form-group">
 											<label for="exampleFormControlSelect1">문화재/박물관 선택</label> <select
 												class="form-control" id="exampleFormControlSelect1">
 												<option>::선택::</option>
@@ -305,14 +271,6 @@
 								<div class="tab-pane" id="tabadd4">
 									<form>
 										<div class="form-group">
-											<label for="exampleFormControlSelect1">지역선택</label> <select
-												class="form-control" id="exampleFormControlSelect1">
-												<option>::선택::</option>
-												<option>테마전시</option>
-												<option>특별전시</option>
-											</select>
-										</div>
-										<div class="form-group">
 											<label for="exampleFormControlSelect1">문화재/박물관 선택</label> <select
 												class="form-control" id="exampleFormControlSelect1">
 												<option>::선택::</option>
@@ -366,14 +324,6 @@
 								</div>
 								<div class="tab-pane" id="tabadd5">
 									<form>
-										<div class="form-group">
-											<label for="exampleFormControlSelect1">지역선택</label> <select
-												class="form-control" id="exampleFormControlSelect1">
-												<option>::선택::</option>
-												<option>테마전시</option>
-												<option>특별전시</option>
-											</select>
-										</div>
 										<div class="form-group">
 											<label for="exampleFormControlSelect1">문화재/박물관 선택</label> <select
 												class="form-control" id="exampleFormControlSelect1">
@@ -440,37 +390,50 @@
 				</div>
 				<!-- **********************************  end cos 등록 폼  ********************************** -->
 				<!-- **********************************  Start 공개 여부 ********************************** -->
-				<div class="card">
-					<div class="card-title">
-						<div class="card-title-left">
-							<h4 class="card-title-text">공개/공유 설정</h4>
-						</div>
-					</div>
-					<div class="card-body switcher">
-						<ul class="list-unstyled">
-							<li>공유여부</li>
-							<li><label class="switch">.<input type="checkbox"
-									class="primary" checked=""> <span
-									class="slider round name"></span>
-							</label></li>
-						</ul>
-						<ul class="list-unstyled">
-							<li>공개여부</li>
-							<li><label class="switch">. <input type="checkbox"
-									class="primary" checked=""> <span
-									class="slider round name"></span>
-							</label></li>
-						</ul>
-					</div>
-				</div>
 				<!-- **********************************  End 공개 여부 ********************************** -->
 			</div>
-			<!-- **********************************  End Right 등록 폼  ********************************** -->
 
 		</div>
 		<div class="col-12">
 			<div class="add-new text-center mb-5">
-				<a class="btn btn-primary ftbtn" href="#!"> 변경사항 저장 </a>
+				<button type="button" class="btn btn-primary ftbtn"
+					data-toggle="modal" data-target="#exampleModal-02">등록</button>
+				<!-- Modal -->
+				<div class="modal fade" id="exampleModal-02" tabindex="-1"
+					role="dialog" aria-labelledby="exampleModalLabel"
+					aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title ftbtn" id="exampleModalLabel">공개/공유여부</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div class="card-body switcher">
+									<ul class="list-unstyled">
+										<li>공유여부</li>
+										<li><label class="switch">.<input type="checkbox"
+												class="primary" checked=""> <span
+												class="slider round name"></span>
+										</label></li>
+									</ul>
+									<ul class="list-unstyled">
+										<li>공개여부</li>
+										<li><label class="switch">. <input
+												type="checkbox" class="primary" checked=""> <span
+												class="slider round name"></span>
+										</label></li>
+									</ul>
+								</div>
+								<button type="submit" class="btn btn-primary">등록</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Modal -->
 			</div>
 		</div>
 	</div>
