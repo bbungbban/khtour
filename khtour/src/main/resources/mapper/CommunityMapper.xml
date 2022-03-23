@@ -22,6 +22,14 @@
 		<result column="detail" property="detail"/>
 		<result column="reg_time" property="reg_time"/>
 	</resultMap>
+	<resultMap type="CommTag" id="tagResultMap">
+		<id column="tag_code" property="tagCode"/>
+		<result column="comm_name" property="commName"/>
+		<result column="member_id" property="memberId"/>
+		<result column="tag_name" property="tagName"/>
+		<result column="tag_color" property="tagColor"/>
+		<result column="reg_time" property="regTime"/>
+	</resultMap>
 
 	<!-- <select id="getCommunityList" resultMap="communityResultMap"> -->
 	<select id="getCommunityList"  resultMap="communityResultMap">
@@ -64,14 +72,25 @@
 				,r.detail
 				,r.reg_time
 			FROM
-			 tb_comm_rules AS r
-			INNER JOIN
-			 tb_community AS c
-			ON
-				r.comm_name = c.comm_name
+			 	tb_comm_rules AS r
 			WHERE 
-				c.comm_name = #{commName};
+				r.comm_name = #{commName};
 	</select>
+	
+	<select id="getTagListByCommName"  resultMap="tagResultMap">
+			SELECT
+				t.tag_code
+				,t.comm_name
+				,t.member_id
+				,t.tag_name
+				,t.tag_color
+				,t.reg_time
+			FROM
+			 tb_comm_tag AS t
+			WHERE 
+				t.comm_name = #{commName};
+	</select>
+	
 	
 	<insert id="addCommunity" parameterType="Community">
 		/*회원가입*/
@@ -110,7 +129,25 @@
 			, #{commName}
 			, #{title}
 			, #{detail}
-			, CURDATE()
+			, NOW()
+		);
+	</insert>
+	<insert id="addTag" parameterType="CommTag">
+		/*회원가입*/
+		INSERT INTO tb_comm_tag
+			(	 tag_code
+				,comm_name
+				,member_id
+				,tag_name
+				,tag_color
+				,reg_time
+		)VALUES (
+			  sf_new_tag_code()
+			, #{commName}
+			, #{memberId}
+			, #{tagName}
+			, #{tagColor}
+			, NOW()
 		);
 	</insert>
 	

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ksmart42.khtour.dto.CommTag;
 import ksmart42.khtour.dto.Community;
 import ksmart42.khtour.dto.Rule;
 import ksmart42.khtour.mapper.CommunityMapper;
@@ -36,6 +37,11 @@ public class CommunityService {
 		List<Rule> ruleList = communityMapper.getRuleListByCommName(commName);
 		return ruleList;
 	}
+	public List<CommTag> getTagListByCommName(String commName){
+		
+		List<CommTag> tagList = communityMapper.getTagListByCommName(commName);
+		return tagList;
+	}
 	
 	public void addCommunity(Community community) {
 		
@@ -45,6 +51,12 @@ public class CommunityService {
 	public void addRule(Rule rule) {
 		
 		communityMapper.addRule(rule);
+		
+	}
+	
+	public void addTag(CommTag commTag) {
+		
+		communityMapper.addTag(commTag);
 		
 	}
 	

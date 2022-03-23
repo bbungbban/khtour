@@ -194,10 +194,8 @@
                </tbody>
             </table>
             </div>
-
-
-
          </div>
+
          <div class="card">
             <div class="card-header bg-info">
                <h5 class="card-title">커뮤니티 규칙</h5>
@@ -262,14 +260,50 @@
                <h5 class="card-title text-center ">커뮤니티 테그</h5>
             </div>
             <div class="card-body m-0">
-               <button type="button" class="btn btn-primary pull-left m-1">테그1</button>
-               <button type="button" class="btn btn-warning pull-left m-1">긴 테그2</button>
-               <button type="button" class="btn btn-light pull-left m-1">정말 긴테그3</button>
-               <button type="button" class="btn btn-dark pull-left m-1">진짜진짜 긴 테그4</button>
-               <button type="button" class="btn btn-danger pull-left m-1">테그5</button>
-               <button type="button" class="btn btn-info pull-left m-1">테그6</button>
-               <button type="button" class="btn btn-info pull-left m-1">테그7</button>
-               
+            
+            	<div th:if="${not #lists.isEmpty(tagList)}" th:each="r: ${tagList}">
+               		<button type="button" th:class="'btn '+'pull-left '+'m-1 '+'btn-'+ ${r.tagColor}" th:text="${r.tagName}"></button>
+               	</div>
+               	 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal-03">커뮤니티 테그 추가  </button>
+               	<!-- Modal -->
+					<div class="modal fade" id="exampleModal-03" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLabel">커뮤니티 테그 추가</h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body p-5">
+					      <form  class="cmxform" method="post"  th:action="@{/addTag}">
+							  <div class="form-group">
+							  	<input type="hidden" name="commName" id="commName" class="form-control" th:value="${community.commName}"></input>
+							  </div>
+							  <div class="form-group">
+							    <label for="tagName">테그이름</label>
+							    <input id="tagName" name="tagName" type="text" class="form-control" required></input>
+							  </div>
+						
+							 
+							  <div class="form-group">
+								    <label for="tagColor">테그색상</label>
+								    <select class="form-control" id="tagColor" name="tagColor">
+								      <option class="bg-success text-white">초록색</option>
+								      <option class="bg-warning">노랑색</option>
+								      <option class="bg-info text-white">하늘색</option>
+								      <option class="bg-dark text-white">검은색</option>
+								      <option class="bg-light">회색</option>
+								      <option class="bg-danger text-white">빨강색</option>
+								      <option class="bg-primary text-white">파랑색</option>
+								    </select>
+							</div>
+							  <button type="submit" class="btn btn-info pull-right">규칙 추가</button>
+							</form>
+					      </div>
+					    </div>
+					  </div>
+					</div> 
             </div>
          </div>
       </div>

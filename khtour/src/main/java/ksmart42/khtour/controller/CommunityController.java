@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import ksmart42.khtour.dto.CommTag;
 import ksmart42.khtour.dto.Community;
 import ksmart42.khtour.dto.Rule;
 import ksmart42.khtour.mapper.CommunityMapper;
@@ -75,6 +76,8 @@ public class CommunityController {
 		community.setMemberId("id001");
 		
 		communityService.addCommunity(community);
+
+		
 		reAttr.addAttribute("commName",community.getCommName());
 		return "redirect:/commPage";
 		
@@ -86,6 +89,57 @@ public class CommunityController {
 		communityService.addRule(rule);
 		
 		reAttr.addAttribute("commName",rule.getCommName());
+		
+		return "redirect:/commPage";
+		
+	}
+	
+	@PostMapping("/addTag")
+	public String addTag(RedirectAttributes reAttr,CommTag commTag) {
+		
+		String color = commTag.getTagColor();
+		if(color.equals("파랑색"))
+		{
+			commTag.setTagColor("primary");
+		}
+		else if(color.equals("빨강색"))
+		{
+			commTag.setTagColor("danger");
+		}
+		else if(color.equals("노랑색"))
+		{
+			commTag.setTagColor("warning");
+		}
+		else if(color.equals("하늘색"))
+		{
+			commTag.setTagColor("info");
+		}
+		else if(color.equals("초록색"))
+		{
+			commTag.setTagColor("success");
+		}
+		else if(color.equals("검은색"))
+		{
+			commTag.setTagColor("dark");
+		}
+		else if(color.equals("회색"))
+		{
+			commTag.setTagColor("light");
+		}
+		
+		commTag.setMemberId("id001");
+		
+		communityService.addTag(commTag);
+		
+
+		
+		
+		
+		
+		
+		
+		
+		reAttr.addAttribute("commName",commTag.getCommName());
 		
 		return "redirect:/commPage";
 		
@@ -114,8 +168,9 @@ public class CommunityController {
 
 		Community community = communityService.getCommunityByName(commName);
 		List<Rule> ruleList = communityService.getRuleListByCommName(commName);
-		System.out.println("규칙 리스트 :  " + ruleList);
+		List<CommTag> tagList = communityService.getTagListByCommName(commName);
 		model.addAttribute("community",community);
+		model.addAttribute("tagList", tagList);
 		model.addAttribute("title", "커뮤니티페이지");
 		model.addAttribute("ruleList", ruleList);
 		return "community/commPage";
