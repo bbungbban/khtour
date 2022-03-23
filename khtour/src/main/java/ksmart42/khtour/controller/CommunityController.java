@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import ksmart42.khtour.dto.CommPost;
 import ksmart42.khtour.dto.CommTag;
 import ksmart42.khtour.dto.Community;
 import ksmart42.khtour.dto.Rule;
@@ -44,10 +45,14 @@ public class CommunityController {
 	public String commDashboard(Model model) {
 		System.out.println("01 commDashboard CommunityController.java");
 		List<Community> communityList = communityService.getCommunityList();
-		System.out.println("로그1.." + communityList.toString());
+		List<CommPost> postList = communityService.getPostList();
+		List<CommPost> dailyPostList = communityService.getDailyPostList();
+
 		model.addAttribute("title","커뮤니티 대시보드");
 		model.addAttribute("communityList", communityList);
-		
+		model.addAttribute("postList", postList);
+		model.addAttribute("dailyPostList",dailyPostList);
+	
 		return "community/commDashboard";
 	}
 
@@ -83,6 +88,19 @@ public class CommunityController {
 		
 	}
 	
+	@PostMapping("/addCommPost")
+	public String addCommPost(RedirectAttributes reAttr,CommPost commPost) {
+		
+		commPost.setMemberId("id001");
+
+		communityService.addCommPost(commPost);
+
+		
+		reAttr.addAttribute("commName",commPost.getCommName());
+		return "redirect:/commPage";
+		
+	}
+	
 	@PostMapping("/addRule")
 	public String addRule(RedirectAttributes reAttr,Rule rule) {
 		
@@ -96,51 +114,10 @@ public class CommunityController {
 	
 	@PostMapping("/addTag")
 	public String addTag(RedirectAttributes reAttr,CommTag commTag) {
-		
-		String color = commTag.getTagColor();
-		if(color.equals("파랑색"))
-		{
-			commTag.setTagColor("primary");
-		}
-		else if(color.equals("빨강색"))
-		{
-			commTag.setTagColor("danger");
-		}
-		else if(color.equals("노랑색"))
-		{
-			commTag.setTagColor("warning");
-		}
-		else if(color.equals("하늘색"))
-		{
-			commTag.setTagColor("info");
-		}
-		else if(color.equals("초록색"))
-		{
-			commTag.setTagColor("success");
-		}
-		else if(color.equals("검은색"))
-		{
-			commTag.setTagColor("dark");
-		}
-		else if(color.equals("회색"))
-		{
-			commTag.setTagColor("light");
-		}
-		
-		commTag.setMemberId("id001");
-		
-		communityService.addTag(commTag);
-		
 
-		
-		
-		
-		
-		
-		
-		
+		commTag.setMemberId("id001");	
+		communityService.addTag(commTag);
 		reAttr.addAttribute("commName",commTag.getCommName());
-		
 		return "redirect:/commPage";
 		
 	}
@@ -169,10 +146,14 @@ public class CommunityController {
 		Community community = communityService.getCommunityByName(commName);
 		List<Rule> ruleList = communityService.getRuleListByCommName(commName);
 		List<CommTag> tagList = communityService.getTagListByCommName(commName);
+		List<CommPost> postList = communityService.getPostList();
+		
 		model.addAttribute("community",community);
 		model.addAttribute("tagList", tagList);
 		model.addAttribute("title", "커뮤니티페이지");
 		model.addAttribute("ruleList", ruleList);
+		model.addAttribute("postList", postList);
+		
 		return "community/commPage";
 	}
 	
