@@ -111,7 +111,7 @@
 						<img th:src="@{/images/commPost/img002.jpg}" class="card-img"
 							alt="...">
 							
-						<p class="card-text">
+						<p class="card-text mt-4">
 							<a href="#!" style="z-index: 2; position: relative;" > <i class="feather icon-message-circle"></i> 댓글 (20) </a>
 							<a href="#!" style="z-index: 2; position: relative;"><i class=" la la-share  pl-3" ></i>공유하기</a>
 							<a href="#!" style="z-index: 2; position: relative;"><i class="  la la-flag  pl-3"></i>신고하기</a>		
@@ -137,7 +137,7 @@
 						<img th:src="@{/images/commPost/img003.jpg}" class="card-img"
 							alt="...">
 							
-						<p class="card-text">
+						<p class="card-text mt-4">
 							<a href="#!" style="z-index: 2; position: relative;" > <i class="feather icon-message-circle"></i> 댓글 (20) </a>
 							<a href="#!" style="z-index: 2; position: relative;"><i class=" la la-share  pl-3" ></i>공유하기</a>
 							<a href="#!" style="z-index: 2; position: relative;"><i class="  la la-flag  pl-3"></i>신고하기</a>		
@@ -163,7 +163,7 @@
 						<img th:src="@{/images/commPost/img004.jpg}" class="card-img"
 							alt="...">
 							
-						<p class="card-text">
+						<p class="card-text mt-4">
 							<a href="#!" style="z-index: 2; position: relative;" > <i class="feather icon-message-circle"></i> 댓글 (20) </a>
 							<a href="#!" style="z-index: 2; position: relative;"><i class=" la la-share  pl-3" ></i>공유하기</a>
 							<a href="#!" style="z-index: 2; position: relative;"><i class="  la la-flag  pl-3"></i>신고하기</a>		
@@ -189,14 +189,14 @@
 									<th scope="row"><a th:href="@{/commPage(commName=${l.commName})}" class="stretched-link"  th:text="${index.index}+1"></a></th>
 									<td><div class="d-inline-block text-truncate" style="max-width: 120px;"><a th:text="${l.commName}"></a></div></td>
 									<td class="text-right"><button type="button" class="btn btn-info btn-sm" style="z-index: 2; position: relative;">가입</button></td>
-								</tr>
-									<tr>
-										<th colspan="3" class="text-center"><a href="/commRanking" class="btn btn-info active" role="button" aria-pressed="true">전체보기</a></th>
-									</tr>
+								</tr>		
 								</tbody>
 							</table>
 							
 						</div>
+					</div>
+					<div class="card-foot p-2 text-center border-top bg-info">
+						<a href="/commRanking" class="btn btn-light active" role="button" aria-pressed="true">전체보기</a>
 					</div>
 				
 
@@ -208,9 +208,12 @@
 				
 					<div class="card-body m-0">
 						<h5 class="card-title">HOME</h5>
-						<a href="/createPost" class="btn btn-info active mt-2 mb-0" role="button" aria-pressed="true">포스트 등록</a>
-						<a href="/addCommunity" class="btn btn-info active mt-2 mb-0" role="button" aria-pressed="true">커뮤니티 등록</a>
+						
 							
+					</div>
+					<div class="card-foot p-2 text-center border-top bg-info">
+						<a href="/createPost" class="btn btn-light active mt-2 mb-0" role="button" aria-pressed="true">포스트 등록</a>
+						<a href="/addCommunity" class="btn btn-light active mt-2 mb-0" role="button" aria-pressed="true">커뮤니티 등록</a>
 					</div>
 				
 
