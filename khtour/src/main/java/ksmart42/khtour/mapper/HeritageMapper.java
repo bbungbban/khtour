@@ -22,4 +22,6 @@ public interface HeritageMapper {
 	// 문화재 수정(문화재코드)
 	public int modifyHeritage(Heritage heritage);
 	
+	// 문화재 삭제
+	public int removeHeritage(String heritageCode);
 }

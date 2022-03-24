@@ -48,4 +48,14 @@ public class HeritageService {
 		return heritageMapper.modifyHeritage(heritage);
 	}
 	
+	/**
+	 * 문화재 정보 삭제
+	 */
+	public int removeHeritage(String heritageCode) {
+		int result = heritageMapper.removeHeritage(heritageCode);
+		
+		result += heritageMapper.removeHeritage(heritageCode);
+		
+		return result;
+	}
 }
