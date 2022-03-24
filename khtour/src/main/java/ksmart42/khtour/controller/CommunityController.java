@@ -121,7 +121,7 @@ public class CommunityController {
 	public String addCommPost(RedirectAttributes reAttr,CommPost commPost) {
 
 		commPost.setMemberId("id001");	
-		int number = (int)(Math.random() * 4);
+		int number = (int)(Math.random() * 3)+1;
 		commPost.setPictureLink("img00"+number);
 				
 		commPost.setPostCode(communityMapper.getNexPostCode());

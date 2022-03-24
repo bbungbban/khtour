@@ -64,6 +64,15 @@
 			Order BY 
 				c.member_cnt DESC;	
 	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<select id="getPostList"  resultMap="postResultMap">
 			SELECT
 				p.post_code
