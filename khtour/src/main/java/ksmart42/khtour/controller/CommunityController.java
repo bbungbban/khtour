@@ -58,10 +58,17 @@ public class CommunityController {
 
 	
 	@GetMapping("/createPost")
-	public String createPost(Model model) {
+	public String createPost(Model model,@RequestParam(name="commName",required=false) String commName) {
 		
 		model.addAttribute("title", "포스트 생성");
-		
+		if(commName==null||commName=="")
+		{
+			model.addAttribute("commList",communityService.getCommunityList());
+		}
+		else
+		{
+			model.addAttribute("community", communityService.getCommunityByName(commName));
+		}
 		return "community/createPost";
 		
 	}
@@ -96,6 +103,7 @@ public class CommunityController {
 		
 		reAttr.addAttribute("commName",rule.getCommName());
 		
+		
 		return "redirect:/commPage";
 		
 	}
@@ -115,9 +123,7 @@ public class CommunityController {
 		commPost.setMemberId("id001");	
 		int number = (int)(Math.random() * 4);
 		commPost.setPictureLink("img00"+number);
-		
-		commPost.setCommName("한국음식");
-		
+				
 		commPost.setPostCode(communityMapper.getNexPostCode());
 		
 		communityService.addCommPost(commPost);
@@ -135,9 +141,19 @@ public class CommunityController {
 		
 		
 		CommPost commPost =communityService.getPostByPostCode(postCode);
+		String commName = commPost.getCommName();
 		
+		Community community = communityService.getCommunityByName(commName);
+		List<Rule> ruleList = communityService.getRuleListByCommName(commName);
 		
+		model.addAttribute("ruleList", ruleList);
+		model.addAttribute("community", community);
 		model.addAttribute("commPost", commPost);
+		
+		
+		
+		
+		
 		model.addAttribute("title", "포스트");
 		
 		
@@ -158,7 +174,7 @@ public class CommunityController {
 		Community community = communityService.getCommunityByName(commName);
 		List<Rule> ruleList = communityService.getRuleListByCommName(commName);
 		List<CommTag> tagList = communityService.getTagListByCommName(commName);
-		List<CommPost> postList = communityService.getPostList();
+		List<CommPost> postList = communityService.getPostListByCommunityName(commName);
 		
 		model.addAttribute("community",community);
 		model.addAttribute("tagList", tagList);

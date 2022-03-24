@@ -10,163 +10,174 @@
 <th:block layout:fragment="customContents">
 	<div class="row">
 		<div class="col-8">
-			 <div class="card-group">
-			
+			<div class="card-group">
+
 				<div class="card col-sm-1 bg-info d-flex pl-0 pr-0">
 					<div class="card-body pl-0 pr-0 pt-5">
-							<a href="#!" > <i class="la la-caret-up d-flex la-3x justify-content-center text-dark pb-5"></i></a>
-							<p class="card-text text-white text-center mb-0 pb-0" th:text="${commPost.likesCnt}"></p>
-							<p class="card-text text-white text-center mt-0 pt-0 pb-5">좋아요</p>
-							<a href="#!" > <i class="la la-caret-down d-flex la-3x justify-content-center text-dark"></i></a>
-							
+						<a href="#!"> <i
+							class="la la-caret-up d-flex la-3x justify-content-center text-dark pb-5"></i></a>
+						<p class="card-text text-white text-center mb-0 pb-0"
+							th:text="${commPost.likesCnt}"></p>
+						<p class="card-text text-white text-center mt-0 pt-0 pb-5">좋아요</p>
+						<a href="#!"> <i
+							class="la la-caret-down d-flex la-3x justify-content-center text-dark"></i></a>
+
 					</div>
-					
+
 				</div>
 				<div class="card col-sm-11">
 					<div class="card-body">
 						<h5 class="card-title" th:text="${commPost.title}"></h5>
 						<p class="card-text" th:text="${commPost.mainText}"></p>
-						<img th:src="@{'/images/commPost/'+${commPost.pictureLink}+'.jpg'}" class="card-img"
-							alt="...">
+						<img
+							th:src="@{'/images/commPost/'+${commPost.pictureLink}+'.jpg'}"
+							class="card-img" alt="...">
 					</div>
 					<div class="card-foot p-2 text-center border-top">
 						<p class="card-text">
-							<a href="#!" class="text-dark" style="z-index: 2; position: relative;" > <i class="text-dark feather icon-message-circle"></i> 댓글 (20) </a>
-							<a href="#!" class="text-dark" style="z-index: 2; position: relative;"><i class="text-dark la la-share  pl-3" ></i>공유하기</a>
-							<a href="#!" class="text-dark" style="z-index: 2; position: relative;"><i class="text-dark  la la-flag  pl-3"></i>신고하기</a>		
-						 	<a href="/post" class="stretched-link"></a>	
+							<a href="#!" class="text-dark"
+								style="z-index: 2; position: relative;"> <i
+								class="text-dark feather icon-message-circle"></i> 댓글 (20)
+							</a> <a href="#!" class="text-dark"
+								style="z-index: 2; position: relative;"><i
+								class="text-dark la la-share  pl-3"></i>공유하기</a> <a href="#!"
+								class="text-dark" style="z-index: 2; position: relative;"><i
+								class="text-dark  la la-flag  pl-3"></i>신고하기</a> <a href="/post"
+								class="stretched-link"></a>
 						</p>
 					</div>
 				</div>
-			</div>	
+			</div>
 			<div class="card">
-			<div class="card-body">
-			<form class="cmxform" id="form2" method="get">
+				<div class="card-body">
+					<form class="cmxform" id="form2" method="get">
 						<div class="form-group">
 							<label for="agree">id001 로 댓글 남기기</label>
-							<textarea id="mainText" name="mainText" class="form-control" rows="10" placeholder="댓글내용" required></textarea>
+							<textarea id="mainText" name="mainText" class="form-control"
+								rows="10" placeholder="댓글내용" required></textarea>
 						</div>
 						<div class="form-group">
-							<input class="submit btn btn-primary pull-right" type="submit" value="등록">
+							<input class="submit btn btn-primary pull-right" type="submit"
+								value="등록">
 						</div>
 					</form>
-			</div>
-			</div>
-			<div class="card">
-			<div class="card-body">
-			  <div class="card-title">댓글 공간</div>
-			</div>
-			</div>
-			</div>
-		<div class="col-4">
-			<div class="card">
-					<div class="card-title">포스트 상위 커뮤니티 이름</div>
-					<div class="card-body m-0">
-					<p class="card-text">
-						커뮤니티 설명
-					</p>
-					<p class="card-text">
-						회원수 : 18k
-					</p>
-					<p class="card-text">온라인 회원 : 300</p>
-					<p class="card-text">
-						커뮤니티 생성 날짜 : 2022 3월 31 일
-					</p>
-					<a href="/commDashboard" class="btn btn-info active btn-sm pull-left" role="button" aria-pressed="true">커뮤니티 가입</a>
-					<a href="/createPost" class="btn btn-info active btn-sm pull-right" role="button" aria-pressed="true">포스트 만들기</a>	
-					</div>
-			</div>
-			<div class="card">
-				<div class="card-title">포스트 상위 커뮤니티 규칙</div>
-					<div class="card-body m-0">		
-						<div class="accordion accordion-box" id="accordionExample">
-										<div class="card">
-											<div id="collapseOne-01" class="collapse" aria-labelledby="headingOne-01" data-parent="#accordionExample">
-												<div class="card-body">
-													<p>규칙 상세 설명</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<div class="card-header" id="headingTwo-02">
-												<div class="accordion-title collapsed p-1" data-toggle="collapse" data-target="#collapseTwo-02">
-													<p class="mb-0"><i class="zmdi zmdi-help-outline text-primary mr-3"></i>2. 규칙 2</p>
-												</div>
-											</div>
-											<div id="collapseTwo-02" class="collapse" aria-labelledby="headingTwo-02" data-parent="#accordionExample">
-												<div class="card-body">
-													<p>규칙 상세 설명</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<div class="card-header" id="headingThree-03">
-												<div class="accordion-title collapsed p-1" data-toggle="collapse" data-target="#collapseThree-03">
-													<p class="mb-0"><i class="zmdi zmdi-help-outline text-primary mr-3"></i>3. 규칙 3</p>
-												</div>
-											</div>
-											<div id="collapseThree-03" class="collapse" aria-labelledby="headingThree-03" data-parent="#accordionExample">
-												<div class="card-body">
-													<p>규칙 상세 설명</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<div class="card-header" id="headingfour-04">
-												<div class="accordion-title collapsed p-1"  data-toggle="collapse" data-target="#collapsefour-04">
-													<p class="mb-0"><i class="zmdi zmdi-help-outline text-primary mr-3"></i>4. 규칙 4</p>
-												</div>
-											</div>
-											<div id="collapsefour-04" class="collapse" aria-labelledby="headingfour-04" data-parent="#accordionExample">
-												<div class="card-body">
-													<p>규칙 상세 설명</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<div class="card-header" id="headingfive-05">
-												<div class="accordion-title collapsed p-1" data-toggle="collapse" data-target="#collapsefive-05">
-													<p class="mb-0"><i class="zmdi zmdi-help-outline text-primary mr-3"></i>5. 규칙 5</p>
-												</div>
-											</div>
-											<div id="collapsefive-05" class="collapse" aria-labelledby="headingfive-05" data-parent="#accordionExample">
-												<div class="card-body">
-													<p>규칙 상세 설명</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<div class="card-header" id="headingsix-06">
-												<div class="accordion-title collapsed p-1" data-toggle="collapse" data-target="#collapsesix-06">
-													<p class="mb-0"><i class="zmdi zmdi-help-outline text-primary mr-3"></i>6. 규칙 6</p>
-												</div>
-											</div>
-											<div id="collapsesix-06" class="collapse" aria-labelledby="headingsix-06" data-parent="#accordionExample">
-												<div class="card-body">
-													<p>규칙 상세 설명</p>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<div class="card-header" id="headingseven-07">
-												<div class="accordion-title collapsed p-1" data-toggle="collapse" data-target="#collapseseven-07">
-													<p class="mb-0"><i class="zmdi zmdi-help-outline text-primary mr-3"></i>7. 규칙 7</p>
-												</div>
-											</div>
-											<div id="collapseseven-07" class="collapse" aria-labelledby="headingseven-07" data-parent="#accordionExample">
-												<div class="card-body">
-													<p>규칙 상세 설명</p>
-											
-												</div>
-											</div>
-										</div>
-									</div>
-							
-					</div>
 				</div>
-
+			</div>
+			<div class="card">
+				<div class="card-body">
+					<div class="card-title">댓글 공간</div>
+				</div>
 			</div>
 		</div>
+		<div class="col-4">
+			<div class="card">
+				<div class="card-header bg-info">
+					<h5 class="card-title">About Community</h5>
+				</div>
+
+				<div class="card-body m-0">
+					<table class="table">
+						<thead>
+							<tr>
+								<th colspan="2">
+									<div class="card-title" th:text="${community.commName}"></div>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="2"><p class="card-text"
+										th:text="${community.commDesc}"></p></td>
+							</tr>
+							<tr>
+								<td><p class="card-text">회원수</p></td>
+								<td><p class="card-text" th:text="${community.memberCnt}"></p></td>
+							</tr>
+							<tr>
+								<td><p class="card-text">온라인</p></td>
+								<td><p class="card-text"
+										th:text="${community.onlineMemberCnt}"></p></td>
+							</tr>
+							<tr>
+								<td><p class="card-text">생성날짜</p></td>
+								<td><p class="card-text" th:text="${community.regDate}"></p></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="card-foot p-2 text-center border-top bg-info">
+					<a href="/commDashboard" class="btn btn-light active" role="button"
+						aria-pressed="true">커뮤니티 가입</a> <a
+						th:href="@{/createPost(commName=${community.commName})}"
+						class="btn btn-light active" role="button" aria-pressed="true">포스트
+						만들기</a>
+				</div>
+			</div>
+			<div class="card">
+            <div class="card-header bg-info">
+               <h5 class="card-title">커뮤니티 규칙</h5>
+            </div>
+            <div class="card-body m-0">
+               <div class="accordion accordion-box" id="accordionExample">
+                  <div class="card" th:if="${not #lists.isEmpty(ruleList)}" th:each="r,index: ${ruleList}">
+                     <div class="card-header" id="headingTwo-02">
+                        <div class="accordion-title collapsed p-1 bg-info"
+                           data-toggle="collapse" th:attr="data-target='#collapseTwo-' + ${index.index}">  
+                           <p class="mb-0 text-white" th:text="'규칙'+ ${index.index+1} +': ' + ${r.title}">
+                              <i class="zmdi zmdi-help-outline mr-3"></i>
+                           </p>
+                        </div>
+                     </div>
+                     <div th:id="'collapseTwo-'+${index.index}" class="collapse"
+                        aria-labelledby="headingTwo-01" data-parent="#accordionExample">
+                        <div class="card-body">
+                           <p th:text="${r.detail}"></p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="card-foot p-2 text-center border-top bg-info">
+              		<button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal-02">커뮤니티 규칙 추가  </button>
+				</div> 
+         </div>
+
+		</div>
+	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal-02" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">커뮤니티 규칙 추가</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body p-5">
+					<form class="cmxform" method="post" th:action="@{/addRule}">
+						<div class="form-group">
+							<input type="hidden" name="commName" id="commName"
+								class="form-control" th:value="${community.commName}"></input>
+						</div>
+						<div class="form-group">
+							<label for="title">커뮤니티 제목</label> <input id="title" name="title"
+								type="text" class="form-control" required></input>
+						</div>
+						<div class="form-group">
+							<label for="detail">규칙 상세 설명</label>
+							<textarea id="detail" name="detail" class="form-control"
+								rows="10" required></textarea>
+						</div>
+						<button type="submit" class="btn btn-info pull-right">규칙
+							추가</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 </th:block>
