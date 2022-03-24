@@ -7,8 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PointController {
 
+	@GetMapping("/point/adPointInsert")
+	public String getAdPointInsert(Model model) {
+		model.addAttribute("title", "포인트 규정 등록");
+
+		return "/point/adPointInsert"; 
+	}
+	
 	@GetMapping("/point/pointList")
-	public String getPointbList(Model model) {
+	public String getPointList(Model model) {
 		model.addAttribute("title", "포인트 조회");
 
 		return "/point/pointList"; 
