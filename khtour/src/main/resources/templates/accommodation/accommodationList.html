@@ -10,7 +10,8 @@
 		<div class="col">
 			<h2>숙박업소 상세 관리</h2>
 			<div class="col-2" style="display: inline-block; float: right;">
-				<button type="button" class="btn btn-primary" onclick="location.href='accommodationInsert'">신규등록</button>
+				<button type="button" class="btn btn-primary"
+					onclick="location.href='accommodationInsert'">신규등록</button>
 			</div>
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
@@ -23,12 +24,13 @@
 </th:block>
 
 <th:block layout:fragment="customContents">
-<style>
+	<style>
 .blog-info {
 	height: 200px;
 }
+
 .form-control {
-	margin-top: 1rem!important;
+	margin-top: 1rem !important;
 }
 </style>
 	<div class="row">
@@ -95,86 +97,98 @@
 								</select>
 							</div>
 							<div class="col-md-12">
-								<div class="custom-control custom-checkbox mb-1 col-md-2"
+								<div
+									class="custom-control custom-checkbox mb-1 col-6 col-md-2 col-lg-2"
 									style="float: right;">
 									<input type="checkbox" class="custom-control-input"
 										id="swimmingPool" value="checked"> <label
 										class="custom-control-label" for="swimmingPool">수영장</label>
 								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-2"
+								<div
+									class="custom-control custom-checkbox mb-1 col-6 col-md-2 col-lg-2"
 									style="float: right;">
 									<input type="checkbox" class="custom-control-input"
 										id="smoking" value="checked"> <label
 										class="custom-control-label" for="smoking">흡연가능</label>
 								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-2"
+								<div
+									class="custom-control custom-checkbox mb-1 col-6 col-md-2 col-lg-2"
 									style="float: right;">
 									<input type="checkbox" class="custom-control-input"
 										id="solitary" value="checked"> <label
 										class="custom-control-label" for="solitary">독채</label>
 								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-2"
+								<div
+									class="custom-control custom-checkbox mb-1 col-6 col-md-2 col-lg-2"
 									style="float: right;">
-									<input type="checkbox" class="custom-control-input"
-										id="onDol" value="checked"> <label
-										class="custom-control-label" for="onDol">온돌방</label>
+									<input type="checkbox" class="custom-control-input" id="onDol"
+										value="checked"> <label class="custom-control-label"
+										for="onDol">온돌방</label>
 								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-2"
+								<div
+									class="custom-control custom-checkbox mb-1  col-6 col-md-2 col-lg-2"
 									style="float: right;">
-									<input type="checkbox" class="custom-control-input"
-										id="tub" value="checked"> <label
-										class="custom-control-label" for="tub">개별욕조</label>
+									<input type="checkbox" class="custom-control-input" id="tub"
+										value="checked"> <label class="custom-control-label"
+										for="tub">개별욕조</label>
 								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-2"
+								<div
+									class="custom-control custom-checkbox mb-1  col-6 col-md-2 col-lg-2"
 									style="float: right;">
 									<input type="checkbox" class="custom-control-input"
 										id="amenities" value="checked"> <label
 										class="custom-control-label" for="amenities">어메니티</label>
 								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-2"
+								<div
+									class="custom-control custom-checkbox mb-1  col-6 col-md-2 col-lg-2"
 									style="float: right;">
-									<input type="checkbox" class="custom-control-input"
-										id="pet" value="checked"> <label
-										class="custom-control-label" for="pet">반려동물</label>
+									<input type="checkbox" class="custom-control-input" id="pet"
+										value="checked"> <label class="custom-control-label"
+										for="pet">반려동물</label>
 								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-2"
+								<div
+									class="custom-control custom-checkbox mb-1  col-6 col-md-2 col-lg-2"
 									style="float: right;">
-									<input type="checkbox" class="custom-control-input"
-										id="wifi" value="checked"> <label
-										class="custom-control-label" for="wifi">와이파이</label>
+									<input type="checkbox" class="custom-control-input" id="wifi"
+										value="checked"> <label class="custom-control-label"
+										for="wifi">와이파이</label>
 								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-2"
+								<div
+									class="custom-control custom-checkbox mb-1 col-6 col-md-2 col-lg-2"
 									style="float: right;">
-									<input type="checkbox" class="custom-control-input"
-										id="bbq" value="checked"> <label
-										class="custom-control-label" for="bbq">바베큐</label>
+									<input type="checkbox" class="custom-control-input" id="bbq"
+										value="checked"> <label class="custom-control-label"
+										for="bbq">바베큐</label>
 								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-2"
+								<div
+									class="custom-control custom-checkbox mb-1 col-6 col-md-2 col-lg-2"
 									style="float: right;">
 									<input type="checkbox" class="custom-control-input"
 										id="cooking" value="checked"> <label
 										class="custom-control-label" for="cooking">개별취사</label>
 								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-2"
+								<div
+									class="custom-control custom-checkbox mb-1 col-6 col-md-2 col-lg-2"
 									style="float: right;">
-									<input type="checkbox" class="custom-control-input"
-										id="paking" value="checked"> <label
-										class="custom-control-label" for="paking">주차장</label>
+									<input type="checkbox" class="custom-control-input" id="paking"
+										value="checked"> <label class="custom-control-label"
+										for="paking">주차장</label>
 								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-2"
+								<div
+									class="custom-control custom-checkbox mb-1 col-6 col-md-2 col-lg-2"
 									style="float: right;">
 									<input type="checkbox" class="custom-control-input"
 										id="addpeople" value="checked"> <label
 										class="custom-control-label" for="addpeople">인원추가</label>
 								</div>
 							</div>
-								<div class="col-12">
+							<div class="col-12">
 								<div class="input-group mb-3">
 									<input name="zip" type="text" class="form-control"
 										aria-label="Recipient's username"
 										aria-describedby="button-addon">
-									<button class="btn btn-primary" style="margin-top: 1rem!important;" onclick=""
-										type="button">검색</button>
+									<button class="btn btn-primary"
+										style="margin-top: 1rem !important;" onclick="" type="button">검색</button>
 								</div>
 							</div>
 						</div>
