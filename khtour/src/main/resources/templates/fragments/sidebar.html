@@ -14,6 +14,15 @@
 			</li>
 			<li>
 				<a href="#">
+					<i class="la la-bank"></i> <span>박물관 검색 (김문영)</span> <span class="sidebar-badge"></span> <i class="la la-angle-right down-arrow"></i>
+				</a>
+				<ul class="sidebar-submenu">
+					<li><a th:href="@{/museum/musInsert}"><i class="la la-minus"></i> <span> 박물관 등록</span> </a></li>
+					<li><a th:href="@{/museum/musList}"><i class="la la-minus"></i> <span> 박물관 조회 및 수정</span> </a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">
 					<i class="la la-camera-retro"></i> <span>특별전 관리 (김문영)</span> <span class="sidebar-badge"></span> <i class="la la-angle-right down-arrow"></i>
 				</a>
 				<ul class="sidebar-submenu">
@@ -68,17 +77,6 @@
 	            </ul>
         	 </li>
         	 <li>
-				<a href="#">
-					<i class="la la-money"></i> <span>포인트관리 (김문영)</span> <span class="sidebar-badge"></span> <i class="la la-angle-right down-arrow"></i>
-				</a>
-				<ul class="sidebar-submenu">
-					<li><a th:href="@{/point/adPointInsert}"><i class="la la-minus"></i><span> 포인트 규정 등록adm</span></a></li>
-					<li><a th:href="@{/point/adPointList}"><i class="la la-minus"></i><span> 포인트 적립 및 사용 내역adm</span></a></li>
-					<li><a th:href="@{/point/adPointCList}"><i class="la la-minus"></i> <span> 포인트 현황adm </span> </a></li>
-					<li><a th:href="@{/point/pointList}"><i class="la la-minus"></i><span>포인트 조회</span> </a></li>
-				</ul>
-			</li>
-        	 <li>
 		         <a th:href="@{/commDashboard}">
 		            <i class="la la-wechat"></i><span>커뮤니티 (한경수)</span>
 		            <span class="sidebar-badge"></span>
@@ -110,13 +108,19 @@
 			</li>
 			<li>
 				<a href="#">
-					<i class="feather icon-sun"></i> <span>지역별 날씨 정보 관리(김민석)</span> <span class="sidebar-badge"></span> <i class="la la-angle-right down-arrow"></i>
+					<i class="la la-money"></i> <span>포인트관리 (김문영)</span> <span class="sidebar-badge"></span> <i class="la la-angle-right down-arrow"></i>
 				</a>
 				<ul class="sidebar-submenu">
-					<li><a th:href="@{/traWhether/traWhetherList.html}"><i class="la la-minus"></i> <span> 날씨 정보 </span> </a></li>
-					<li><a th:href="@{/traWhether/traWhetherModify.html}"><i class="la la-minus"></i> <span> 날씨 정보 수정 </span> </a></li>
-					<li><a th:href="@{/traWhether/traWhetherInsert.html}"><i class="la la-minus"></i> <span> 날씨 정보 등록 </span> </a></li>
+					<li><a th:href="@{/point/adPointInsert}"><i class="la la-minus"></i><span> 포인트 규정 등록adm</span></a></li>
+					<li><a th:href="@{/point/adPointList}"><i class="la la-minus"></i><span> 포인트 적립 및 사용 내역adm</span></a></li>
+					<li><a th:href="@{/point/adPointCList}"><i class="la la-minus"></i> <span> 포인트 현황adm </span> </a></li>
+					<li><a th:href="@{/point/pointList}"><i class="la la-minus"></i><span>포인트 조회</span> </a></li>
 				</ul>
+			</li>
+			<li>
+				<a th:href="@{/traWhether/traWhetherList}">
+					<i class="feather icon-sun"></i> <span>지역별 날씨 정보 관리 <br/>(김민석)</span> <span class="sidebar-badge"></span>
+				</a>
 			</li>
 			<li class="sidebar-header"> Extras </li>
 			<li>

@@ -42,12 +42,28 @@ public class CommunityService {
 		{
 			float likes = Float.parseFloat(postList.get(i).getLikesCnt());
 			float dislikes= Float.parseFloat(postList.get(i).getDislikesCnt());
-			float cnt = likes -dislikes;
+			float cnt = likes - dislikes;
 			postList.get(i).setLikesCnt(KhtourLibrary.cntConverter(cnt));		
 		}
 		
 		return postList;
 	}
+	
+	public List<CommPost> getPostListByCommunityName(String commName){
+		List<CommPost> postList = communityMapper.getPostListByCommunityName(commName);
+			
+		for(int i = 0;i<postList.size();i++)
+		{
+			float likes = Float.parseFloat(postList.get(i).getLikesCnt());
+			float dislikes= Float.parseFloat(postList.get(i).getDislikesCnt());
+			float cnt = likes - dislikes;
+			postList.get(i).setLikesCnt(KhtourLibrary.cntConverter(cnt));		
+		}
+		
+		return postList;
+	}
+	
+	
 	// 커뮤니티 서비스 4 : 커뮤니티 이름으로 커뮤니티  찾아서 반환 
 	public Community getCommunityByName(String commName) {
 		

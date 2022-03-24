@@ -18,6 +18,11 @@ public interface CommunityMapper {
 	public List<CommPost> getPostList();
 	// 3 : 커뮤니티 포스트 전체 리스트 반환
 	public List<CommPost> getDailyPostList();
+	
+	public List<CommPost> getPostListByCommunityName(String commName);
+	
+	
+	
 	// 4 : 커뮤니티 이름으로 커뮤니티  찾아서 반환 
 	public Community getCommunityByName(String commName);
 	
@@ -41,6 +46,8 @@ public interface CommunityMapper {
 	
 	// 12 : 커뮤니티 이름 중복 체크
 	public boolean commNameCheck(String commName);
+	
+	public String getNexPostCode();
 	
 	
 	

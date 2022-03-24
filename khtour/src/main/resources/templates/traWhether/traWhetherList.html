@@ -1,22 +1,88 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{layout/default}">
-	<th:block layout:fragment="customTitle">
-		<title th:text="${title}"></title>
-	</th:block>
-	<th:block layout:fragment="contentsTitle">
-		<h1>Hello, Oxoury</h1>
-		<p>The best to you each morning.</p>
-	</th:block>
-	
-	<th:block layout:fragment="customContents">	
-		
-	</th:block>
-	<th:block layout:fragment="customBodyScript">
-		<!-- PRISM -->
-		<script th:src="@{/js/prism/prism.js}"></script>
-		<!-- custom -->
-		<script th:src="@{/js/custom.js}"></script>
-	</th:block>
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default3}">
+<th:block layout:fragment="customTitle">
+	<title th:text="${title}"></title>
+</th:block>
+<th:block layout:fragment="contentsTitle">
+	<h2>날씨 정보 리스트</h2>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="#">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page">지역별 날씨 정보 검색</li>
+		</ol>
+	</nav>
+</th:block>
+
+<th:block layout:fragment="customContents">
+		<button type="button" id="displaywhether" class="btn btn-primary">날씨를 보여주세요</button>
+	<br/><br/> <div id="display"> 날씨 정보 출력
+
+	</div>
+
+</th:block>
+<th:block layout:fragment="customBodyScript">
+
+
+
+	<script type="text/javascript">
+		var imgURL = "http://openweathermap.org/img/w/";
+		$("html컴포넌트").attr("src", imgURL);
+
+		var apiURI = "http://api.openweathermap.org/data/2.5/weather?q=Hong	sung&appid=aff28fafca14a465fb79be67dc3df923";
+
+		$(document).ready(function() {
+			$("#displaywhether").click(function() {
+				$.ajax({
+					url : apiURI,
+					dataType : "json",
+					type : "GET",
+					async : "false",
+					success : function(resp){ resultHtml(resp); }
+				});
+			});
+		});
+
+		function resultHtml(resp) {
+			var html = "<br/>"
+			html += "<div class='input-group mb-3'  style='width: 27%'>";
+			html +=	"<input type='text' class='form-control'>";
+			html += "<button class='btn' type='button' id='button-addon2'>검색</button>"
+			html +=	"</div>";
+			html +=	"<table border = '1'>";
+			html += "<tr>";
+			html += "<th>현재 온도</th>";
+			html += "<th>현재 습도</th>";
+			html += "<th>날씨</th>";
+			html += "<th>상세날씨설명</th>";
+			html += "<th>날씨 이미지</th>";
+			html += "<th>바람</th>";
+			html += "<th>나라</th>";
+			html += "<th>도시이름</th>";
+			html += "<th>구름</th>";
+			html += "</tr>";
+			$.each(resp, function(key, value) {
+				html += "<tr align = 'center'>";
+				html += "<td>" + resp.main.temp + "</td>";
+				html += "<td>" + resp.main.humidity + "</td>";
+				html += "<td>" + resp.weather[0].main + "</td>";
+				html += "<td>" + resp.weather[0].description + "</td>";
+				html += "<td>" + resp.weather[0].icon + "</td>";
+				html += "<td>" + resp.wind.speed + "</td>";
+				html += "<td>" + resp.sys.country + "</td>";
+				html += "<td>" + resp.name + "</td>";
+				html += "<td>" + (resp.clouds.all) + "%" + "</td>";
+				html += "</tr>";
+			});
+			html += "</table>";
+			$("#display").empty();
+			$("#display").append(html);
+		}
+	</script>
+	<!-- PRISM -->
+	<script th:src="@{/js/prism/prism.js}"></script>
+	<!-- custom -->
+	<script th:src="@{/js/custom.js}"></script>
+</th:block>
 </html>

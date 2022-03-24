@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ksmart42.khtour.dto.Heritage;
 import ksmart42.khtour.service.HeritageService;
@@ -25,6 +26,33 @@ public class HeritageController {
 
 	}
 	
+	/*
+	 * 문화재 정보 삭제(post 정보 전달)
+	 */
+	@PostMapping("/removeHeritage")
+	public String removeHeritage(Heritage heritage) {
+		String heritageCode = heritage.getHeritageCode();
+		
+		heritageService.removeHeritage(heritageCode);
+		System.out.println("정보 삭제 포스트 전달" + heritageService.removeHeritage(heritageCode));
+		
+		return "redirect:/heritage/heritageListByItem";
+		
+	}
+	/*
+	 * 문화재 정보 삭제(Get 정보 전달)
+	 */	
+	@GetMapping("/removeHeritage")
+	public String removeHeritage(Model model,
+			@RequestParam(value="heritageCode", required = false) String heritageCode) {
+		
+		model.addAttribute("title", "문화재 삭재");
+		model.addAttribute("heritageCode, heritageCode");
+		System.out.println("정보 삭제 겟 전달" + heritageService.removeHeritage(heritageCode));
+		
+		return "heritage/removeHeritage";
+	}
+			
 	/*
 	 * 문화재 종목별 정보 등록(Post 정보 전달)
 	 */
@@ -50,29 +78,6 @@ public class HeritageController {
 		
 		return "heritage/heritageListByItem";
 	}
-	
-	/*
-	 * 문화재 지도별 검색 
-	 */
-	@GetMapping("/heritageListByRegion")
-	public String getHeritageSearchListByRegion(Model model) {
-		
-		model.addAttribute("title", "문화재 지도별 검색 페이지");
-		
-		return "/heritage/heritageListByRegion";
-	}
-	
-	/*
-	 * 문화재 지역 지도 
-	 */
-	@GetMapping("/heritageMap")
-	public String getHeritageSearchMap(Model model) {
-		
-		model.addAttribute("title", "문화재 지역 지도 페이지");
-		
-		return "/heritage/heritageMap";
-	}
-	
 	
 	
 	/*
