@@ -2,7 +2,7 @@ package ksmart42.khtour.dto;
 
 public class Heritage {
 	//heritage_code, heritage_name, heritage_Sub_name, heritage_location, heritage_era, heritage_designation, 
-	//heritage_classification, heritage_image, heritage_detail, member_id 
+	//heritage_classification, heritage_image, heritage_detail, member_id , heritage_category, heritage_owner, heritage_manager , heritage_area
 	private String  heritageCode;
 	private String  memberId;
 	private String  heritageName;
@@ -13,6 +13,10 @@ public class Heritage {
 	private String  heritageClassification;
 	private String  heritageImage;
 	private String  heritageDetail;
+	private String  heritageOwner;
+	private String  heritageManager;
+	private String  heritageCategory;
+	private String  heritageArea;
 	public String getHeritageCode() {
 		return heritageCode;
 	}
@@ -73,14 +77,38 @@ public class Heritage {
 	public void setHeritageDetail(String heritageDetail) {
 		this.heritageDetail = heritageDetail;
 	}
+	public String getHeritageOwner() {
+		return heritageOwner;
+	}
+	public void setHeritageOwner(String heritageOwner) {
+		this.heritageOwner = heritageOwner;
+	}
+	public String getHeritageManager() {
+		return heritageManager;
+	}
+	public void setHeritageManager(String heritageManager) {
+		this.heritageManager = heritageManager;
+	}
+	public String getHeritageCategory() {
+		return heritageCategory;
+	}
+	public void setHeritageCategory(String heritageCategory) {
+		this.heritageCategory = heritageCategory;
+	}
+	public String getHeritageArea() {
+		return heritageArea;
+	}
+	public void setHeritageArea(String heritageArea) {
+		this.heritageArea = heritageArea;
+	}
 	@Override
 	public String toString() {
 		return "Heritage [heritageCode=" + heritageCode + ", memberId=" + memberId + ", heritageName=" + heritageName
 				+ ", heritageSubName=" + heritageSubName + ", heritageLocation=" + heritageLocation + ", heritageEra="
 				+ heritageEra + ", heritageDesignation=" + heritageDesignation + ", heritageClassification="
 				+ heritageClassification + ", heritageImage=" + heritageImage + ", heritageDetail=" + heritageDetail
-				+ "]";
+				+ ", heritageOwner=" + heritageOwner + ", heritageManager=" + heritageManager + ", heritageCategory="
+				+ heritageCategory + ", heritageArea=" + heritageArea + "]";
 	}
 	
-
 }
