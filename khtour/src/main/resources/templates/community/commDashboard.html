@@ -9,50 +9,48 @@
 </th:block>
 <th:block layout:fragment="customContents">
 	<div class="card">
-	<div class="card-header bg-info">
-		<h5>오늘의 인기포스트</h5>
+	<div class="card-body">
+	<div class="card">
+	<div class="card-header bg-primary pb-1">
+		<h5 class="text-white">오늘의 인기포스트</h5>
 	</div>
 	<div class="card-body m-0 p-0">
 	<div class="card-group">
-		<div class="card" th:if="${not #lists.isEmpty(dailyPostList)}" th:each="dp: ${dailyPostList}">
+		<div class="card pt-2 m-1" th:if="${not #lists.isEmpty(dailyPostList)}" style="border:none;" th:each="dp: ${dailyPostList}">
 			<img th:src="@{'/images/commPost/'+${dp.pictureLink}+'.jpg'}" class="card-img"
 							alt="...">
 			<div class="card-body">
 				<h5 class="card-title" th:text="${dp.title}"></h5>
 				 <a th:href="@{/post(postCode=${dp.postCode})}" class="stretched-link"></a>
 			</div>
-			<div class="card-foot p-2 text-center border-top bg-info">
-				<p class="card-text text-white" th:text="${dp.commName}"></p>
+			<div class="card-foot p-2 text-center border-top">
+				<p class="card-text" th:text="${dp.commName}"></p>
 			</div>
 		</div>
 		</div>
 	</div>
 	</div>
-	
 	<div class="row">
 		<div class="col-sm-8">
 			<div class="card">
-			<div class="card-header bg-info">
-				<h5>인기포스트</h5>
+			<div class="card-header bg-primary pb-1">
+				<h5 class="text-white">인기포스트</h5>
 			</div>
-				<div class="card-body text-center">
-					<button type="button" class="btn btn-info pull-left">HOT</button>
-					<button type="button" class="btn btn-info ">New</button>
-					<button type="button" class="btn btn-info pull-right">Top</button>
+				<div class="card-body text-center pt-3 pb-3">
+					<button type="button" class="btn btn-primary btn-sm mr-5 pl-4 pr-4">HOT</button>
+					<button type="button" class="btn btn-primary btn-sm mr-5 ml-5 pl-4 pr-4">New</button>
+					<button type="button" class="btn btn-primary btn-sm ml-5 pl-4 pr-4">Top</button>
 				</div>
-
 			</div>
-			<div class="card-group" th:if="${not #lists.isEmpty(postList)}" th:each="p: ${postList}">
+			<div class="card-group mb-4" th:if="${not #lists.isEmpty(postList)}" th:each="p: ${postList}">
 			
-				<div class="card col-sm-1 bg-info d-flex pl-0 pr-0">
+				<div class="card col-sm-1 bg-primary d-flex pl-0 pr-0">
 					<div class="card-body pl-0 pr-0 pt-5">
-							<a href="#!" > <i class="la la-caret-up d-flex la-3x justify-content-center text-dark pb-5"></i></a>
+							<a href="#!" > <i class="la la-caret-up d-flex la-3x justify-content-center text-white pb-5"></i></a>
 							<p class="card-text text-white text-center mb-0 pb-0" th:text="${p.likesCnt}"></p>
 							<p class="card-text text-white text-center mt-0 pt-0 pb-5">좋아요</p>
-							<a href="#!" > <i class="la la-caret-down d-flex la-3x justify-content-center text-dark"></i></a>
-							
+							<a href="#!" > <i class="la la-caret-down d-flex la-3x justify-content-center text-white"></i></a>			
 					</div>
-					
 				</div>
 				<div class="card col-sm-11">
 					<div class="card-body">
@@ -60,9 +58,6 @@
 						<p class="card-text" th:text="${p.mainText}"></p>
 						<img th:src="@{'/images/commPost/'+${p.pictureLink}+'.jpg'}" class="card-img"
 							alt="...">
-							
-						
-					
 					</div>
 					<div class="card-foot p-2 text-center border-top">
 						<p class="card-text">
@@ -76,7 +71,6 @@
 				</div>
 			</div>	
 		</div>
-		
 		<div class="col-sm-4">
 			<div class="card">
 				<img th:src="@{/images/commPost/img004.jpg}" class="card-img-top"
@@ -89,19 +83,16 @@
 									
 									<th scope="row"><a th:href="@{/commPage(commName=${l.commName})}" class="stretched-link"  th:text="${index.index}+1"></a></th>
 									<td><div class="d-inline-block text-truncate" style="max-width: 120px;"><a th:text="${l.commName}"></a></div></td>
-									<td class="text-right"><button type="button" class="btn btn-info btn-sm" style="z-index: 2; position: relative;">가입</button></td>
+									<td class="text-right pl-0 pr-0"><button type="button" class="btn btn-primary btn-sm pl-4 pr-4" style="z-index: 2; position: relative;">가입</button></td>
 								</tr>		
 								</tbody>
 							</table>
 							
 						</div>
 					</div>
-					<div class="card-foot p-2 text-center border-top bg-info">
-						<a href="/commRanking" class="btn btn-light active" role="button" aria-pressed="true">전체보기</a>
+					<div class="card-foot p-3 text-center border-top">
+						<a href="/commRanking" class="btn active btn-sm btn-primary" role="button" aria-pressed="true">전체보기</a>
 					</div>
-				
-
-
 			</div>
 			<div class="card">
 				<img th:src="@{/images/commPost/img002.jpg}" class="card-img-top"
@@ -112,19 +103,15 @@
 						
 							
 					</div>
-					<div class="card-foot p-2 text-center border-top bg-info">
-						<a href="/createPost" class="btn btn-light active mt-2 mb-0" role="button" aria-pressed="true">포스트 등록</a>
-						<a href="/addCommunity" class="btn btn-light active mt-2 mb-0" role="button" aria-pressed="true">커뮤니티 등록</a>
+					<div class="card-foot p-3 text-center border-top">
+						<a href="/createPost" class="btn btn-sm btn-primary active mt-0 mb-0 mr-4" role="button" aria-pressed="true">포스트 등록</a>
+						<a href="/addCommunity" class="btn btn-sm btn-primary active mt-0 mb-0" role="button" aria-pressed="true">커뮤니티 등록</a>
 					</div>
-				
-
-
 			</div>
-		</div>
-		
+		</div>	
 	</div>
-
-
+	</div>
+	</div>
 </th:block>
 
 
