@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/default2}">
+	layout:decorate="~{layout/default3}">
 <th:block layout:fragment="customTitle">
 	<title th:text="${title}"></title>
 </th:block>
 <th:block layout:fragment="contentsTitle">
-
+<div class="row justify-content-center">
+					<div class="col-12 col-la-12 col-xl-12">
 	<h2>포스트 등록 페이지</h2>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
@@ -16,11 +17,14 @@
 				페이지</li>
 		</ol>
 	</nav>
-
+</div>
+</div>
 </th:block>
 
 
 <th:block layout:fragment="customContents">
+				<div class="row justify-content-center">
+					<div class="col-12 col-la-10 col-xl-7">
 	<div class="card">
 		<div class="card-title">
 			<div class="card-title-left">
@@ -254,7 +258,8 @@
 			</div>
 		</div>
 	</div>
-
+</div>
+</div>
 </th:block>
 <th:block layout:fragment="customBodyScript">
 	<!-- bootstrap wizard-->
