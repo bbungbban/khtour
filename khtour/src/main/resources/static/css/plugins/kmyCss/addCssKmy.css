@@ -8,18 +8,17 @@
 #exhibInsert .card-title-text{font-weight:bold;}
 #exhibInsert .margincorrection .card{margin-bottom:1.77em;}
 
-#cosCate .btnhover {transition: 0.2s;opacity: 0;}
+#cosCate .btnhover {transition: 0.2s;}
 #cosCate .dd-list .dd-list {padding: 0;margin-left: 2.143rem;}
 #cosCate .dd-handle span{line-height:19px;}
 #cosCate .dd-item .add_del button{border:1px solid #C5CDD7;padding:3px;}
 #cosCate .add_del{display:inline-block;float:right;}
 #cosCate .dd{max-width:100%;}
 #cosCate .ips{border:1px solid #e5e5e5;}
-#cosCate .dd-my{width:80%;height:48px;background:red;display: block;
+#cosCate .dd-my{width:96%;height:48px;background:red;display: block;
   height: 48px;margin: 0.3571rem 0;padding: 1.271rem 1.429rem;color: #161c2d;text-decoration: none;font-weight: bold;background: #f0f1f6;
   -webkit-transition: all 0.2s ease-in-out;-moz-transition: all 0.2s ease-in-out;-ms-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;transition: all 0.2s ease-in-out; }
-#cosCate .dd-handle{width:20%;}
 
 #cosInsert .cosInsf button{border-radius:0 6px 6px 0;}
 #cosInsert .switch{top:-8px;}
@@ -28,3 +27,5 @@
 #cosInsert .modal-dialog{width:200px;}
 #cosInsert .modal-body button{float:right;}
 
+#pointList .btn{border-radius:3px;margin-top:2px;}
+#pointList .form-group{margin-bottom:0;}
