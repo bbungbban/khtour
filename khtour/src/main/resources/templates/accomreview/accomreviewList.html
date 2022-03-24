@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default}">
+<th:block layout:fragment="customTitle">
+	<title th:text="${title}"></title>
+</th:block>
+<th:block layout:fragment="contentsTitle">
+	<div class="row">
+		<div class="col">
+			<h2>후기 상세 관리</h2>
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">Home</a></li>
+					<li class="breadcrumb-item active" aria-current="page">후기 관리</li>
+				</ol>
+			</nav>
+		</div>
+	</div>
+</th:block>
+<th:block layout:fragment="customContents">
+	<style>
+.ReviewContentsBox {
+	display: flex;
+	position: relative;
+	align-items: center;
+	padding: 18.577px;
+}
+
+.ReviewIcon {
+	width: 3.8rem;
+	height: 3.8rem;
+	display: inline-block;
+	margin-right: 1.4rem;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.ReviewRoomName::before {
+	content: "|";
+	border: none;
+	border-right: 1px;
+	height: 1rem;
+	margin: 0 0.6rem;
+	display: inline-block;
+}
+
+.ReviewContentsBox-ReviewContent {
+	font-size: 1.5rem;
+	line-height: 2.2rem;
+	max-height: 8.8rem;
+	overflow: hidden;
+	position: relative;
+	color: #616161;
+	white-space: pre-wrap;
+	word-break: break-all;
+	padding-right: 18.577px;
+	padding-left: 18.577px;
+}
+
+.feather {
+	color: #FFB900;
+	font-size: 20px;
+}
+
+.card .card-footer {
+	padding: 0.5rem 0;
+}
+
+.star {
+	font-size: 1.0rem;
+	line-height: 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.form-review {
+	height: calc(2em + 1px);
+	border-radius: 100px;
+	padding: 0.775rem 3rem 0.775rem 1.2rem;
+	border-color: #e5e5e5;
+	transition: all 0.5s ease-in-out;
+}
+
+.border-secondary {
+	border-color: #6c7d7b00 !important;
+}
+</style>
+	<div class="row">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-body">
+					<!-- 객실정보 상세검색  -->
+					<form>
+						<div class="form-row">
+							<div class="col-md-4 mb-4">
+								<label for="validationDefault01">여행 지역 선택</label> <select
+									class="form-control border border-secondary"
+									id="exampleFormControlSelect1">
+									<option>전체</option>
+									<option>서울특별시</option>
+									<option>인천광역시</option>
+									<option>대전광역시</option>
+									<option>대구광역시</option>
+									<option>울산광역시</option>
+									<option>부산광역시</option>
+									<option>광주광역시</option>
+									<option>강원도</option>
+									<option>경기도</option>
+									<option>충청남도</option>
+									<option>충청북도</option>
+									<option>경상북도</option>
+									<option>경상남도</option>
+									<option>전라북도</option>
+									<option>전라남도</option>
+									<option>제주도</option>
+								</select>
+							</div>
+							<div class="col-md-4 mb-4">
+								<label for="validationDefault01">여행 도시 선택</label> <select
+									class="form-control border border-secondary"
+									id="exampleFormControlSelect1">
+									<option>전체</option>
+									<option>강남구</option>
+									<option>종로구</option>
+									<option>용산구</option>
+									<option>강릉시</option>
+									<option>안동시</option>
+									<option>포항시</option>
+									<option>거제시</option>
+									<option>공주시</option>
+									<option>천안시</option>
+									<option>전주시</option>
+									<option>군산시</option>
+									<option>제주시</option>
+									<option>서귀포시</option>
+								</select>
+							</div>
+							<div class="col-md-4 mb-4">
+								<label for="validationDefault02">숙박시설 종류 선택</label> <select
+									class="form-control border border-secondary"
+									id="exampleFormControlSelect1">
+									<option>전체</option>
+									<option>호텔</option>
+									<option>펜션</option>
+									<option>모텔</option>
+									<option>리조트</option>
+									<option>게스트하우스</option>
+									<option>캥핑장</option>
+								</select>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 호텔에 대한 리뷰 표시 영역 -->
+	<div class="roomInfo col-lg-12 col-md-12 col-sm-12" style="padding: 0;">
+		<div class="card">
+			<div class="card-body" style="padding-bottom: 0;">
+				<div>
+					<h2 style="display: inline; float: left;">후기</h2>
+					<span style="display: inline-block; float: left; font-size: 20px;">(1,600개)</span>
+					<div class="col-12 col-md-12"></div>
+				</div>
+			</div>
+			<div style="display: flex; justify-content: space-between;">
+				<div class="col-6 col-md-4 col-lg-4"
+					style="padding: 18.577px; padding-right: 0; padding-bottom: 0;">
+					<span><i class="feather icon-star-on"
+						style="font-size: 30px;"></i></span> <span style="font-size: 40px;">4.7</span>
+					<span style="opacity: 0.5; font-size: 20px;">/5</span>
+					<p style="opacity: 0.5;">최근 12개월 누적 평점</p>
+				</div>
+				<div class="col-6 col-md-8 col-lg-8"
+					style="float: right; padding-left: 0;">
+					<ul style="list-style: none; padding-left: 0px;">
+						<li class="star"><span style="padding-right: 0.5rem;">청결도</span>
+							<div class="progress progress-h-5" style="width: 5rem;">
+								<div class="progress-bar" role="progressbar"
+									style="width: 75%; background-color: #FFB900;"
+									aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+							</div> <span style="padding-left: 0.5rem;">4.8</span></li>
+						<li class="star"><span style="padding-right: 0.5rem;">친절도</span>
+							<div class="progress progress-h-5" style="width: 5rem;">
+								<div class="progress-bar" role="progressbar"
+									style="width: 75%; background-color: #FFB900;"
+									aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+							</div> <span style="padding-left: 0.5rem;">4.8</span></li>
+						<li class="star"><span style="padding-right: 0.5rem;">편의성</span>
+							<div class="progress progress-h-5" style="width: 5rem;">
+								<div class="progress-bar" role="progressbar"
+									style="width: 75%; background-color: #FFB900;"
+									aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+							</div> <span style="padding-left: 0.5rem;">4.8</span></li>
+						<li class="star"><span style="padding-right: 0.5rem;">위치만족도</span>
+							<div class="progress progress-h-5" style="width: 5rem;">
+								<div class="progress-bar" role="progressbar"
+									style="width: 75%; background-color: #FFB900;"
+									aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+							</div> <span style="padding-left: 0.5rem;">4.8</span></li>
+						<li class="star"><span style="padding-right: 0.5rem;">가격만족도</span>
+							<div class="progress progress-h-5" style="width: 5rem;">
+								<div class="progress-bar" role="progressbar"
+									style="width: 75%; background-color: #FFB900;"
+									aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+							</div> <span style="padding-left: 0.5rem;">4.8</span></li>
+					</ul>
+				</div>
+			</div>
+			<div class="card-footer" style="padding: 0;"></div>
+			<div class="col-12 col-md-12" style="margin: 10px; display: flex; justify-content: space-between;">
+				<select class="form-review border border-secondary"
+					style="padding: 1px;" id="exampleFormControlSelect1">
+					<option>최근 작성순</option>
+					<option>별점 낮은순</option>
+					<option>별점 높은순</option>
+				</select>
+				<div class="custom-control custom-checkbox mb-1"
+					style="padding-right: 20px;">
+					<input type="checkbox" class="custom-control-input"
+						id="photoreview" value="checked"> <label
+						class="custom-control-label" for="photoreview">사진후기만 모아보기</label>
+				</div>
+			</div>
+			<div class="card-footer"></div>
+			<article class="ReviewBox">
+				<div></div>
+				<div class="ReviewContentsBox">
+					<span class="ReviewIcon"><i class="fa fa-smile-o"
+						style="font-size: 50px; color: #FFB900;"></i></span>
+					<div class="ReviewHeader">
+						<div class="" style="position: relative; display: inline-flex;">
+							<i class="feather icon-star-on" style="font-size: 1.2rem;"></i> <i
+								class="feather icon-star-on" style="font-size: 1.2rem;"></i> <i
+								class="feather icon-star-on" style="font-size: 1.2rem;"></i> <i
+								class="feather icon-star-on" style="font-size: 1.2rem;"></i> <i
+								class="feather icon-star-on" style="font-size: 1.2rem;"></i>
+						</div>
+						<div class="ReviewTime"
+							style="display: inline-block; font-size: 1.2rem;">
+							<span style="font-weight: 100; margin-left: 0.8rem;"></span> <span
+								style="position: absolute; right: 0; line-height: 1.8rem; padding-right: 15px; font-size: 13px; opacity: 0.5;">16시간
+								전</span>
+						</div>
+						<div class="ReviewNicknameInfo" style="opacity: 0.5;">
+							닉네임 입니다. <span class="ReviewRoomName">객실 이름입니다.</span>
+						</div>
+					</div>
+				</div>
+				<div class="ReviewContentsBox-ReviewContent">동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산 대한사람 대한으로 길이보전하세</div>
+				<div class="review-bottom"
+					style="display: flex; justify-content: flex-end; padding: 18.577px;">
+					<button type="button" class="btn btn-outline-light">수정</button>
+					<button type="button" class="btn btn-outline-light">삭제</button>
+				</div>
+				<div class="card-footer"></div>
+			</article>
+		</div>
+	</div>
+	<!-- 호텔 리뷰 표시 영역 끝 -->
+</th:block>
+<th:block layout:fragment="customBodyScript">
+	<!-- PRISM -->
+	<script th:src="@{/js/prism/prism.js}"></script>
+	<!-- custom -->
+	<script th:src="@{/js/custom.js}"></script>
+</th:block>
+</html>
+
