@@ -11,7 +11,7 @@
 <th:block layout:fragment="customContents">
 	<div class="card">
 		<div class="card-body">
-			<form class="cmxform" id="form2" method="get">
+			<form class="cmxform" id="form2" method="post" th:action="@{/addCommPost}">
 						<div class="form-group">
 							<label for="title">제목</label>
 							<input id="title" class="form-control" name="title" placeholder="제목">
@@ -27,7 +27,6 @@
 						<div class="form-group">
 							<input class="submit btn btn-primary pull-right" type="submit" value="등록">			
 							<a href="/commDashboard" class="btn btn-info active pull-right" role="button" aria-pressed="true">취소</a>
-									
 						</div>
 					</form>
 			</div>

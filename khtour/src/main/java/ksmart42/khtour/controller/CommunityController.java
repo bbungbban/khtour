@@ -88,18 +88,6 @@ public class CommunityController {
 		
 	}
 	
-	@PostMapping("/addCommPost")
-	public String addCommPost(RedirectAttributes reAttr,CommPost commPost) {
-		
-		commPost.setMemberId("id001");
-
-		communityService.addCommPost(commPost);
-
-		
-		reAttr.addAttribute("commName",commPost.getCommName());
-		return "redirect:/commPage";
-		
-	}
 	
 	@PostMapping("/addRule")
 	public String addRule(RedirectAttributes reAttr,Rule rule) {
@@ -121,11 +109,30 @@ public class CommunityController {
 		return "redirect:/commPage";
 		
 	}
+	@PostMapping("/addCommPost")
+	public String addCommPost(RedirectAttributes reAttr,CommPost commPost) {
+
+		commPost.setMemberId("id001");	
+		int number = (int)(Math.random() * 4);
+		commPost.setPictureLink("img00"+number);
+		
+		commPost.setCommName("한국음식");
+		
+		commPost.setPostCode(communityMapper.getNexPostCode());
+		
+		communityService.addCommPost(commPost);
+		
+		reAttr.addAttribute("postCode",commPost.getPostCode());
+		
+		return "redirect:/post";
+		
+	}
 	
 	
 	
 	@GetMapping("/post")
 	public String post(Model model,@RequestParam(value = "postCode") String postCode) {
+		
 		
 		CommPost commPost =communityService.getPostByPostCode(postCode);
 		

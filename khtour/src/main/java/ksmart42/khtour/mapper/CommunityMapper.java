@@ -42,6 +42,8 @@ public interface CommunityMapper {
 	// 12 : 커뮤니티 이름 중복 체크
 	public boolean commNameCheck(String commName);
 	
+	public String getNexPostCode();
+	
 	
 	
 	
