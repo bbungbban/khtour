@@ -55,19 +55,57 @@
 }
 
 .feather {
-	color: yellow;
+	color: #FFB900;
 	font-size: 20px;
 }
 
 .card .card-footer {
 	padding: 0.5rem 0;
 }
+
 .star {
 	font-size: 1.0rem;
 	line-height: 1.5rem;
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
+}
+
+.ReviewContentsBox {
+	display: flex;
+	position: relative;
+	align-items: center;
+}
+
+.ReviewIcon {
+	width: 3.8rem;
+	height: 3.8rem;
+	display: inline-block;
+	margin-right: 1.4rem;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.ReviewRoomName::before {
+	content: "|";
+	border: none;
+	border-right: 1px;
+	height: 1rem;
+	margin: 0 0.6rem;
+	display: inline-block;
+}
+
+.ReviewContentsBox-ReviewContent {
+	font-size: 1.5rem;
+	line-height: 2.2rem;
+	max-height: 8.8rem;
+	overflow: hidden;
+	position: relative;
+	color: #616161;
+	white-space: pre-wrap;
+	word-break: break-all;
+	padding-left: 18.577px;
+	padding-bottom: 18.577px;
 }
 </style>
 	<div class="row">
@@ -134,73 +172,73 @@
 								</select>
 							</div>
 							<div class="col-md-12">
-								<div class="custom-control custom-checkbox mb-1 col-md-2"
+								<div class="custom-control custom-checkbox mb-1 col-2 col-md-2"
 									style="float: right;">
 									<input type="checkbox" class="custom-control-input"
 										id="swimmingPool" value="checked"> <label
 										class="custom-control-label" for="swimmingPool">수영장</label>
 								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-2"
+								<div class="custom-control custom-checkbox mb-1 col-2 col-md-2"
 									style="float: right;">
 									<input type="checkbox" class="custom-control-input"
 										id="smoking" value="checked"> <label
 										class="custom-control-label" for="smoking">흡연가능</label>
 								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-2"
+								<div class="custom-control custom-checkbox mb-1 col-2 col-md-2"
 									style="float: right;">
 									<input type="checkbox" class="custom-control-input"
 										id="solitary" value="checked"> <label
 										class="custom-control-label" for="solitary">독채</label>
 								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-2"
+								<div class="custom-control custom-checkbox mb-1 col-2 col-md-2"
 									style="float: right;">
 									<input type="checkbox" class="custom-control-input" id="onDol"
 										value="checked"> <label class="custom-control-label"
 										for="onDol">온돌방</label>
 								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-2"
+								<div class="custom-control custom-checkbox mb-1 col-2 col-md-2"
 									style="float: right;">
 									<input type="checkbox" class="custom-control-input" id="tub"
 										value="checked"> <label class="custom-control-label"
 										for="tub">개별욕조</label>
 								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-2"
+								<div class="custom-control custom-checkbox mb-1 col-2 col-md-2"
 									style="float: right;">
 									<input type="checkbox" class="custom-control-input"
 										id="amenities" value="checked"> <label
 										class="custom-control-label" for="amenities">어메니티</label>
 								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-2"
+								<div class="custom-control custom-checkbox mb-1 col-2 col-md-2"
 									style="float: right;">
 									<input type="checkbox" class="custom-control-input" id="pet"
 										value="checked"> <label class="custom-control-label"
 										for="pet">반려동물</label>
 								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-2"
+								<div class="custom-control custom-checkbox mb-1 col-2 col-md-2"
 									style="float: right;">
 									<input type="checkbox" class="custom-control-input" id="wifi"
 										value="checked"> <label class="custom-control-label"
 										for="wifi">와이파이</label>
 								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-2"
+								<div class="custom-control custom-checkbox mb-1 col-2 col-md-2"
 									style="float: right;">
 									<input type="checkbox" class="custom-control-input" id="bbq"
 										value="checked"> <label class="custom-control-label"
 										for="bbq">바베큐</label>
 								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-2"
+								<div class="custom-control custom-checkbox mb-1 col-2 col-md-2"
 									style="float: right;">
 									<input type="checkbox" class="custom-control-input"
 										id="cooking" value="checked"> <label
 										class="custom-control-label" for="cooking">개별취사</label>
 								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-2"
+								<div class="custom-control custom-checkbox mb-1 col-2 col-md-2"
 									style="float: right;">
 									<input type="checkbox" class="custom-control-input" id="paking"
 										value="checked"> <label class="custom-control-label"
 										for="paking">주차장</label>
 								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-2"
+								<div class="custom-control custom-checkbox mb-1 col-2 col-md-2"
 									style="float: right;">
 									<input type="checkbox" class="custom-control-input"
 										id="addpeople" value="checked"> <label
@@ -253,14 +291,14 @@
 						<div class="col-1" style="margin: 100px 0px;">
 							<input type="checkbox">
 						</div>
-						<div class="col-4" style="padding-left: 0px; cursor: pointer;"
+						<div class="col-10 col-md-10 col-lg-4" style="cursor: pointer;"
 							onclick="location.href='roomPayment';">
 							<div class="blog-image">
 								<img class="img-fluid w-100"
 									th:src="@{/images/room/sinlaroom1.jpg}" alt="">
 							</div>
 						</div>
-						<div class="col-7" style="padding-left: 0px; cursor: pointer;"
+						<div class="col-12 col-md-12 col-lg-7" style="cursor: pointer;"
 							onclick="location.href='roomPayment';">
 							<div class="">
 								<h3 class="roomName">스텐다드 체크인시 배정 시티뷰</h3>
@@ -302,9 +340,10 @@
 					<div class="card-footer"></div>
 					<h2>위치 안내</h2>
 					<div>
-						<div id="map" style="width:100%;height:350px;"></div>
+						<div id="map" style="width: 100%; height: 350px;"></div>
 						<p id="addr" style="font-size: 15px; display: inline;">
-							<i class="feather icon-map-pin" style="color: blue;"></i>부산광역시 해운대구 해운대로570번길 46
+							<i class="feather icon-map-pin" style="color: blue;"></i>부산광역시
+							해운대구 해운대로570번길 46
 						</p>
 						<span style="display: inline; float: right; font-size: 15px;"><a
 							type="button" id="copy_btn">주소복사</a></span>
@@ -322,7 +361,7 @@
 		<!-- 호텔에 대한 리뷰 표시 영역 -->
 		<div class="roomInfo col-lg-12 col-md-12 col-sm-12">
 			<div class="card">
-				<div class="card-body">
+				<div class="card-body" style="padding-bottom: 0;">
 					<div>
 						<h2 style="display: inline; float: left;">후기</h2>
 						<span style="display: inline-block; float: left; font-size: 20px;">(1,600개)</span>
@@ -330,58 +369,82 @@
 					</div>
 				</div>
 				<div style="display: flex; justify-content: space-between;">
-					<div style="padding: 18.577px;">
-						<span><i class="feather icon-star-on" style="font-size: 30px;"></i></span>
-						<span style="font-size: 40px;">4.7</span> 
+					<div class="col-6 col-md-4 col-lg-4" style="padding: 18.577px; padding-right: 0; padding-bottom: 0;">
+						<span><i class="feather icon-star-on"
+							style="font-size: 30px;"></i></span> <span style="font-size: 40px;">4.7</span>
 						<span style="opacity: 0.5; font-size: 20px;">/5</span>
-						<p style="text-align: right; opacity: 0.5;">최근 12개월 누적 평점</p>
+						<p style="opacity: 0.5;">최근 12개월 누적 평점</p>
 					</div>
-					<div class="col-8 col-md-8 col-lg-8" style="float: right;">
+					<div class="col-6 col-md-8 col-lg-8" style="float: right; padding-left: 0;">
 						<ul style="list-style: none; padding-left: 0px;">
 							<li class="star"><span style="padding-right: 0.5rem;">청결도</span>
-							<div class="progress progress-h-5" style="width: 5rem;">
-							<div class="progress-bar" role="progressbar" style="width: 75%; background-color: yellow;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-							</div>
-							<span style="padding-left: 0.5rem;">4.8</span>
-							</li>
+								<div class="progress progress-h-5" style="width: 5rem;">
+									<div class="progress-bar" role="progressbar"
+										style="width: 75%; background-color: #FFB900;"
+										aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+								</div> <span style="padding-left: 0.5rem;">4.8</span></li>
 							<li class="star"><span style="padding-right: 0.5rem;">친절도</span>
-							<div class="progress progress-h-5" style="width: 5rem;">
-							<div class="progress-bar" role="progressbar" style="width: 75%; background-color: yellow;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-							</div>
-							<span style="padding-left: 0.5rem;">4.8</span>
-							</li>
+								<div class="progress progress-h-5" style="width: 5rem;">
+									<div class="progress-bar" role="progressbar"
+										style="width: 75%; background-color: #FFB900;"
+										aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+								</div> <span style="padding-left: 0.5rem;">4.8</span></li>
 							<li class="star"><span style="padding-right: 0.5rem;">편의성</span>
-							<div class="progress progress-h-5" style="width: 5rem;">
-							<div class="progress-bar" role="progressbar" style="width: 75%; background-color: yellow;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-							</div>
-							<span style="padding-left: 0.5rem;">4.8</span>
-							</li>
+								<div class="progress progress-h-5" style="width: 5rem;">
+									<div class="progress-bar" role="progressbar"
+										style="width: 75%; background-color: #FFB900;"
+										aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+								</div> <span style="padding-left: 0.5rem;">4.8</span></li>
 							<li class="star"><span style="padding-right: 0.5rem;">위치만족도</span>
-							<div class="progress progress-h-5" style="width: 5rem;">
-							<div class="progress-bar" role="progressbar" style="width: 75%; background-color: yellow;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-							</div>
-							<span style="padding-left: 0.5rem;">4.8</span>
-							</li>
+								<div class="progress progress-h-5" style="width: 5rem;">
+									<div class="progress-bar" role="progressbar"
+										style="width: 75%; background-color: #FFB900;"
+										aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+								</div> <span style="padding-left: 0.5rem;">4.8</span></li>
 							<li class="star"><span style="padding-right: 0.5rem;">가격만족도</span>
-							<div class="progress progress-h-5" style="width: 5rem;">
-							<div class="progress-bar" role="progressbar" style="width: 75%; background-color: yellow;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-							</div>
-							<span style="padding-left: 0.5rem;">4.8</span>
-							</li>
+								<div class="progress progress-h-5" style="width: 5rem;">
+									<div class="progress-bar" role="progressbar"
+										style="width: 75%; background-color: #FFB900;"
+										aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+								</div> <span style="padding-left: 0.5rem;">4.8</span></li>
 						</ul>
 					</div>
 				</div>
 				<div class="card-footer"></div>
 				<article class="ReviewBox">
-					<div class="ReviewContentsBox">
-						<span></span>
+					<div class="ReviewContentsBox" style="padding: 18.577px;">
+						<span class="ReviewIcon"><i class="fa fa-smile-o"
+							style="font-size: 50px; color: #FFB900;"></i></span>
+						<div class="ReviewHeader">
+							<div class="" style="position: relative; display: inline-flex;">
+								<i class="feather icon-star-on" style="font-size: 1.2rem;"></i>
+								<i class="feather icon-star-on" style="font-size: 1.2rem;"></i>
+								<i class="feather icon-star-on" style="font-size: 1.2rem;"></i>
+								<i class="feather icon-star-on" style="font-size: 1.2rem;"></i>
+								<i class="feather icon-star-on" style="font-size: 1.2rem;"></i>
+							</div>
+							<div class="ReviewTime"
+								style="display: inline-block; font-size: 1.2rem;">
+								<span style="font-weight: 100; margin-left: 0.8rem;"></span> <span
+									style="position: absolute; right: 0; line-height: 1.8rem; padding-right: 15px; font-size: 13px;">16시간
+									전</span>
+							</div>
+							<div class="ReviewNicknameInfo">
+								닉네임 입니다. <span class="ReviewRoomName">객실 이름입니다.</span>
+							</div>
+						</div>
 					</div>
-					
+					<div class="ReviewContentsBox-ReviewContent">리뷰작성내용</div>
+					<div class="card-footer"></div>
+					<section style="padding: 20px; text-align: center; font-size: 20px; color: blue;">
+						<a th:href="@{/accomreview/accomreviewList}">전체 후기 보기</a>
+					</section>
 				</article>
 			</div>
 		</div>
+		<!-- 호텔 리뷰 표시 영역 끝 -->
 	</div>
-	
+
 </th:block>
 <th:block layout:fragment="customBodyScript">
 	<!-- PRISM -->
@@ -389,29 +452,33 @@
 	<!-- custom -->
 	<script th:src="@{/js/custom.js}"></script>
 	<!-- 지도API 스크립트  -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7cec08e17fcfb480dd452f2d9dd9df4c"></script>
-		<script>
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7cec08e17fcfb480dd452f2d9dd9df4c"></script>
+	<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-		    mapOption = { 
-		        center: new kakao.maps.LatLng(35.15979674782372, 129.15873069031613), // 지도의 중심좌표
-		        level: 3 // 지도의 확대 레벨
-		    };
-		
+		mapOption = {
+			center : new kakao.maps.LatLng(35.15979674782372,
+					129.15873069031613), // 지도의 중심좌표
+			level : 3
+		// 지도의 확대 레벨
+		};
+
 		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-		
+
 		// 마커가 표시될 위치입니다 
-		var markerPosition  = new kakao.maps.LatLng(35.15979674782372, 129.15873069031613); 
-		
+		var markerPosition = new kakao.maps.LatLng(35.15979674782372,
+				129.15873069031613);
+
 		// 마커를 생성합니다
 		var marker = new kakao.maps.Marker({
-		    position: markerPosition
+			position : markerPosition
 		});
-		
+
 		// 마커가 지도 위에 표시되도록 설정합니다
 		marker.setMap(map);
-		
+
 		// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
-		// marker.setMap(null);    
+		// marker.setMap(null);
 	</script>
 	<!-- 클립보드 복사 script -->
 	<script>
@@ -427,11 +494,11 @@
 				selectP.addRange(range);
 				document.execCommand("copy"); //클립보드 복사 실행
 				selectP.removeRange(range);
-				alert('copy');
+				alert('주소가 복사 됐어요!');
 
 			})
 		})
 	</script>
-	
+
 </th:block>
 </html>
