@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/default2}">
+	layout:decorate="~{layout/default}">
 <th:block layout:fragment="customTitle">
 	<title th:text="${title}"></title>
 </th:block>
@@ -15,69 +15,42 @@
 		th:href="@{/css/plugins/KmyCss/addCssKmy.css}">
 	<div id="cosInsert">
 		<!-- **********************************  Start ContentsWrap  ********************************** -->
-
-		<div class="row">
-
-			<!-- **********************************  Start left 등록 폼  ********************************** -->
-			<div class="col-md-6">
-				<!-- **********************************  Start 코스기본정보 ********************************** -->
-				<div class="card">
-					<div class="card-title">
-						<div class="card-title-left">
-							<h4 class="card-title-text">코스 기본 정보</h4>
-						</div>
-					</div>
-					<div class="card-body">
-						<form>
-							<div class="form-group">
-								<label for="exampleFormControlSelect1">카테고리</label> <select
-									class="form-control" id="exampleFormControlSelect1">
-									<option>::선택::</option>
-									<option>테마전시</option>
-									<option>특별전시</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label for="exampleFormControlSelect1">지역선택</label> <select
-									class="form-control" id="exampleFormControlSelect1">
-									<option>::선택::</option>
-									<option>테마전시</option>
-									<option>특별전시</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label for="exampleInputEmail1">코스명</label> <input type="text"
-									class="form-control" placeholder="코스명을 입력하세요.">
-							</div>
-						</form>
-					</div>
+		<!-- **********************************  Start 코스기본정보 ********************************** -->
+		<div class="card">
+			<div class="card-title">
+				<div class="card-title-left">
+					<h4 class="card-title-text">코스 기본 정보</h4>
 				</div>
-				<!-- **********************************  End 코스기본정보 ********************************** -->
-				<!-- **********************************  Start 코스설명 ********************************** -->
-				<div class="card">
-					<div class="card-title">
-						<div class="card-title-left">
-							<h4 class="card-title-text">코스설명</h4>
-						</div>
-					</div>
-					<div class="card-body">
-						<textarea id="editor-demo1" style="display: none;">밍</textarea>
-					</div>
-				</div>
-
-				<!-- **********************************  End 코스설명 ********************************** -->
 			</div>
-			<!-- **********************************  End left 등록 폼  ********************************** -->
-			<!-- **********************************  Start Right 등록 폼  ********************************** -->
-			<div class="col-md-6 margincorrection">
-				<!-- **********************************  Start cos 등록 폼  ********************************** -->
-				<div class="card cosInsf">
-					<div class="card-title">
-						<div class="card-title-left">
-							<h4 class="card-title-text">코스 등록</h4>
-						</div>
+			<div class="card-body">
+				<form>
+					<div class="form-group">
+						<label for="exampleFormControlSelect1">카테고리</label> <select
+							class="form-control" id="exampleFormControlSelect1">
+							<option>::선택::</option>
+							<option>테마전시</option>
+							<option>특별전시</option>
+						</select>
 					</div>
-					<div class="card-body">
+					<div class="form-group">
+						<label for="exampleFormControlSelect1">지역선택</label> <select
+							class="form-control" id="exampleFormControlSelect1">
+							<option>::선택::</option>
+							<option>테마전시</option>
+							<option>특별전시</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">코스명</label> <input type="text"
+							class="form-control" placeholder="코스명을 입력하세요.">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">코스설명</label>
+						<input type="text"
+							class="form-control" placeholder="코스설명을 입력하세요.">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">코스설정</label>
 						<div id="wizard-04" class="wizard">
 							<div class="wizard-nav">
 								<ul class="nav nav-fill nav-pills">
@@ -116,7 +89,7 @@
 												<option>특별전시</option>
 											</select>
 										</div>
-										<div class="form-group">
+										<div class="form-group cosInsf">
 											<label for="exampleInputEmail1">우편번호</label>
 											<div class="input-group mb-3">
 												<input name="zip" type="text" class="form-control"
@@ -387,55 +360,50 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<!-- **********************************  end cos 등록 폼  ********************************** -->
-				<!-- **********************************  Start 공개 여부 ********************************** -->
-				<!-- **********************************  End 공개 여부 ********************************** -->
+				</form>
 			</div>
-
 		</div>
-		<div class="col-12">
-			<div class="add-new text-center mb-5">
-				<button type="button" class="btn btn-primary ftbtn"
-					data-toggle="modal" data-target="#exampleModal-02">등록</button>
-				<!-- Modal -->
-				<div class="modal fade" id="exampleModal-02" tabindex="-1"
-					role="dialog" aria-labelledby="exampleModalLabel"
-					aria-hidden="true">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title ftbtn" id="exampleModalLabel">공개/공유여부</h5>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								<div class="card-body switcher">
-									<ul class="list-unstyled">
-										<li>공유여부</li>
-										<li><label class="switch">.<input type="checkbox"
-												class="primary" checked=""> <span
-												class="slider round name"></span>
-										</label></li>
-									</ul>
-									<ul class="list-unstyled">
-										<li>공개여부</li>
-										<li><label class="switch">. <input
-												type="checkbox" class="primary" checked=""> <span
-												class="slider round name"></span>
-										</label></li>
-									</ul>
-								</div>
-								<button type="submit" class="btn btn-primary">등록</button>
-							</div>
+	</div>
+	<div class="add-new text-center mb-5">
+		<button type="button" class="btn btn-primary ftbtn"
+			data-toggle="modal" data-target="#exampleModal-02">등록</button>
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal-02" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title ftbtn" id="exampleModalLabel">공개/공유여부</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="card-body switcher">
+							<ul class="list-unstyled">
+								<li>공유여부</li>
+								<li><label class="switch">.<input type="checkbox"
+										class="primary" checked=""> <span
+										class="slider round name"></span>
+								</label></li>
+							</ul>
+							<ul class="list-unstyled">
+								<li>공개여부</li>
+								<li><label class="switch">. <input type="checkbox"
+										class="primary" checked=""> <span
+										class="slider round name"></span>
+								</label></li>
+							</ul>
 						</div>
+						<button type="submit" class="btn btn-primary">등록</button>
 					</div>
 				</div>
-				<!-- Modal -->
 			</div>
 		</div>
+		<!-- Modal -->
+	</div>
+	</div>
 	</div>
 	<!-- **********************************  End ContentsWrap ********************************** -->
 </th:block>
