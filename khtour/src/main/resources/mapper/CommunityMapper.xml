@@ -173,6 +173,10 @@
 	</select>
 	
 	
+	<select id="getNexPostCode"  resultType="String">
+		SELECT `sf_new_post_code`() AS postCode;
+	</select>
+	
 	<insert id="addCommPost" parameterType="CommPost">
 		/*회원가입*/
 		INSERT INTO tb_comm_post
@@ -191,19 +195,20 @@
 				,report_cnt
 				,point_gain
 		)VALUES (
-			#{postCode}
+			 #{postCode}
+			, #{commName}
 			, #{memberId}
-			, #{tag_code}
+			, null
 			, #{title}
 			, NOW()
 			, #{mainText}
 			, 0
 			, #{pictureLink}
-			, #{videoLink}
 			, 0
 			, 0
 			, 0
-			, #{pointGain}
+			, 0
+			, 0
 		);
 	</insert>
 	<insert id="addCommunity" parameterType="Community">
