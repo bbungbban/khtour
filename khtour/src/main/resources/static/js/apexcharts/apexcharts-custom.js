@@ -7,7 +7,7 @@
      var options = {
         series: [{
         name: 'Revenue',
-        data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
+        data: [76, 85, 101, 98, 87, 105, 91, 114, 94, 105, 114, 114]
       }],
         chart: {
         type: 'bar',
@@ -36,7 +36,7 @@
       },
       colors: ["#335eea"],
       xaxis: {
-        categories: ['11', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+        categories: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
           labels: {
           style: {
               colors: "#898b96",
