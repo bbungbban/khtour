@@ -6,24 +6,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class PointController {
-	@GetMapping("/point/pointInsert")
-	public String getInsert(Model model) {
-		model.addAttribute("title","포인트 규정 등록");
-
-		return "/point/pointInsert";
-	}
 
 	@GetMapping("/point/pointList")
 	public String getPointbList(Model model) {
-		model.addAttribute("title", "회원 포인트 조회 및 수정");
+		model.addAttribute("title", "포인트 조회");
 
 		return "/point/pointList"; 
 	}
 	
-	@GetMapping("/point/pointAlram")
-	public String getPointAlram(Model model) {
-		model.addAttribute("title", "포인트 소멸 알림주기 설정");
+	@GetMapping("/point/adPointList")
+	public String getAdPointList(Model model) {
+		model.addAttribute("title", "포인트 현황 조회");
 
-		return "/point/pointAlram";
+		return "/point/adPointList";
+	}
+	
+	@GetMapping("/point/adPointCList")
+	public String getAdPointCList(Model model) {
+		model.addAttribute("title", "포인트 적립 및 사용 내역");
+		
+		return "/point/adPointCList";
 	}
 }
