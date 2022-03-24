@@ -8,7 +8,7 @@
 <th:block layout:fragment="contentsTitle">
 	<div class="row">
 		<div class="col-12">
-			<h2 class="p-2 mb-2 bg-primary text-white">공유 게시판 리스트</h2>
+			<h2>공유 게시판 리스트</h2>
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -22,7 +22,16 @@
 
 <th:block layout:fragment="customContents">
 	<div class="row">
-		<div class="col-2.5">
+	
+		<div class="col-3">
+			<div class="card text-center">
+				<div class="card-body">
+					<a th:href="@{/traShare/traShareInsert}" type="button"
+						class="btn btn-primary"> <i class="feather icon-plus"></i>포스트
+						등록
+					</a>
+			</div>
+			</div>
 			<div class="card ">
 				<h5 class="card-title">검색범위 및 정렬방식</h5>
 				<div class="card-body text-center">
@@ -62,7 +71,7 @@
 								class="irs-bar irs-bar--single" style="left: 0px; width: 50%;"></span>
 							<span class="irs-shadow shadow-single" style="display: none;"></span>
 							<span class="irs-handle single" style="left: 49.0831%;"><i></i><i></i><i></i></span>
-							<input id="rangeslider-basic" type="text" value=""
+							<input id="rangeslider-basic" type="hidden" value=""
 								class="irs-hidden-input" tabindex="-1" readonly="">
 						</div>
 						<div class="form-group">
@@ -85,21 +94,193 @@
 					<!-- 블로그 리스트 끝 -->
 				</div>
 			</div>
-						<div class="card text-center">
-				<div class="card-body">
-					<a th:href="@{/traShare/traShareInsert}" type="button"
-						class="btn btn-primary"> <i class="feather icon-plus"></i>포스트
-						등록
-					</a>
-				</div>
-			</div>
+
 		</div>
-		<div class="col-9">
+		<div class="col-8">
 			<!-- cardpart : 2 start -->
 			<div class="card">
 				<div class="card-body">
 					<!-- 블로그 리스트 시작 -->
 					<div class="row">
+						<div class="col-md-6 col-lg-4">
+							<div class="blog mb-5">
+								<div class="blog-image">
+									<div class="embed-responsive embed-responsive-4by3">
+										<img th:src="@{/images/traShare/여행이미지1.gif}"
+											class="card-img-top h-10 img-thumbnail embed-responsive-item"
+											alt="...">
+									</div>
+								</div>
+								<div class="blog-info">
+									<div class="blog-date">
+										<a href="#!"><i class="feather icon-briefcase"></i> 여행전 </a>
+									</div>
+									<div class="blog-title mt-3">
+										<h4 class="mb-3">
+											<a th:href="@{/traShare/traDetail}">제주도 여행이 막막하다면!</a>
+										</h4>
+										<p class="mb-0">여행 기간은 한정적인데 가고 싶은 곳은 너무 많아서 뭘 어디서부터 어떻게
+											해야 될지 모르겠다면 집중!</p>
+										<p>									<ul class="list-inline mb-0">
+										<li><a href="#!"> <i class="feather icon-heart-on"></i>
+												37 개의 좋아요
+										</a></li>
+										<li><a href="#!"> <i class="feather icon-image"></i>
+												4 개의 이미지 
+										</a></li>
+									</ul></p>	
+									</div>
+								</div>
+								<div class="blog-bottom text-center">
+										<a type="button" class="btn btn-outline-light"
+											>수정</a>
+										<button type="button" id="swal-delete"
+											class="btn btn-outline-light"
+											>삭제</button>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-4">
+							<div class="blog mb-5">
+								<div class="blog-image">
+									<div class="embed-responsive embed-responsive-4by3">
+										<img th:src="@{/images/traShare/여행이미지2.gif}"
+											class="card-img-top h-10 img-thumbnail embed-responsive-item"
+											alt="...">
+									</div>
+								</div>
+								<div class="blog-info">
+									<div class="blog-date">
+										<a href="#!"><i class="feather icon-briefcase"></i> 여행후 </a>
+									</div>
+									<div class="blog-title mt-3">
+										<h4 class="mb-3">
+											<a th:href="@{/traShare/traDetail}">제주도 여행이 막막하다면!</a>
+										</h4>
+										<p class="mb-0">여행 기간은 한정적인데 가고 싶은 곳은 너무 많아서 뭘 어디서부터 어떻게
+											해야 될지 모르겠다면 집중!</p>
+											<p>
+																				<ul class="list-inline mb-0">
+										<li><a href="#!"> <i class="feather icon-heart-on"></i>
+												37 개의 좋아요
+										</a></li>
+										<li><a href="#!"> <i class="feather icon-image"></i>
+												4 개의 이미지 
+										</a></li>
+									</ul>
+											
+											</p>
+									</div>
+								</div>
+								<div class="blog-bottom text-center">
+										<a type="button" class="btn btn-outline-light"
+											>수정</a>
+										<button type="button" id="swal-delete"
+											class="btn btn-outline-light"
+											>삭제</button>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-4">
+							<div class="blog mb-5">
+								<div class="blog-image">
+									<div class="embed-responsive embed-responsive-4by3">
+										<img th:src="@{/images/traShare/1.jpg}"
+											class="card-img-top h-10 img-thumbnail embed-responsive-item"
+											alt="...">
+									</div>
+								</div>
+								<div class="blog-info">
+									<div class="blog-date">
+										<a href="#!"><i class="feather icon-briefcase"></i> 여행후 </a>
+									</div>
+									<div class="blog-title mt-3">
+										<h4 class="mb-3">
+											<a th:href="@{/traShare/traDetail}">제주도 여행이 막막하다면!</a>
+										</h4>
+										<p class="mb-0">여행 기간은 한정적인데 가고 싶은 곳은 너무 많아서 뭘 어디서부터 어떻게
+											해야 될지 모르겠다면 집중!</p>
+											<p>									<ul class="list-inline mb-0">
+										<li><a href="#!"> <i class="feather icon-heart-on"></i>
+												37 개의 좋아요
+										</a></li>
+										<li><a href="#!"> <i class="feather icon-image"></i>
+												4 개의 이미지 
+										</a></li>
+									</ul></p>
+									</div>
+								</div>
+								<div class="blog-bottom">
+
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-4">
+							<div class="blog mb-5">
+								<div class="blog-image">
+									<div class="embed-responsive embed-responsive-4by3">
+										<img th:src="@{/images/traShare/배경사진.jpg}"
+											class="card-img-top h-10 img-thumbnail embed-responsive-item"
+											alt="...">
+									</div>
+								</div>
+								<div class="blog-info">
+									<div class="blog-date">
+										<a href="#!"><i class="feather icon-briefcase"></i> 여행전 </a>
+									</div>
+									<div class="blog-title mt-3">
+										<h4 class="mb-3">
+											<a th:href="@{/traShare/traDetail}">제주도 여행이 막막하다면!</a>
+										</h4>
+										<p class="mb-0">여행 기간은 한정적인데 가고 싶은 곳은 너무 많아서 뭘 어디서부터 어떻게
+											해야 될지 모르겠다면 집중!</p>
+									</div>
+								</div>
+								<div class="blog-bottom">
+									<ul class="list-inline mb-0">
+										<li><a href="#!"> <i class="feather icon-heart-on"></i>
+												37 개의 좋아요
+										</a></li>
+										<li><a href="#!"> <i class="feather icon-image"></i>
+												4 개의 이미지 
+										</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-4">
+							<div class="blog mb-5">
+								<div class="blog-image">
+									<div class="embed-responsive embed-responsive-4by3">
+										<img th:src="@{/images/traShare/여행이미지1.gif}"
+											class="card-img-top h-10 img-thumbnail embed-responsive-item"
+											alt="...">
+									</div>
+								</div>
+								<div class="blog-info">
+									<div class="blog-date">
+										<a href="#!"><i class="feather icon-briefcase"></i> 여행전 </a>
+									</div>
+									<div class="blog-title mt-3">
+										<h4 class="mb-3">
+											<a th:href="@{/traShare/traDetail}">제주도 여행이 막막하다면!</a>
+										</h4>
+										<p class="mb-0">여행 기간은 한정적인데 가고 싶은 곳은 너무 많아서 뭘 어디서부터 어떻게
+											해야 될지 모르겠다면 집중!</p>
+									</div>
+								</div>
+								<div class="blog-bottom">
+									<ul class="list-inline mb-0">
+										<li><a href="#!"> <i class="feather icon-heart-on"></i>
+												37 개의 좋아요
+										</a></li>
+										<li><a href="#!"> <i class="feather icon-image"></i>
+												4 개의 이미지 
+										</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
 						<div class="col-md-6 col-lg-4">
 							<div class="blog mb-5">
 								<div class="blog-image">
@@ -124,186 +305,10 @@
 								<div class="blog-bottom">
 									<ul class="list-inline mb-0">
 										<li><a href="#!"> <i class="feather icon-heart-on"></i>
-												n 개의 포스트
+												37 개의 좋아요
 										</a></li>
-										<li><a href="#!"> <i class="feather icon-compass"></i>
-												n 개의 명소
-										</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 col-lg-4">
-							<div class="blog mb-5">
-								<div class="blog-image">
-									<div class="embed-responsive embed-responsive-4by3">
-										<img th:src="@{/images/traShare/여행이미지 1.gif}"
-											class="card-img-top h-10 img-thumbnail embed-responsive-item"
-											alt="...">
-									</div>
-								</div>
-								<div class="blog-info">
-									<div class="blog-date">
-										<a href="#!"><i class="feather icon-truck"></i> 여행후 </a>
-									</div>
-									<div class="blog-title mt-3">
-										<h4 class="mb-3">
-											<a th:href="@{/traShare/traDetail}">제주도 여행이 막막하다면!</a>
-										</h4>
-										<p class="mb-0">여행 기간은 한정적인데 가고 싶은 곳은 너무 많아서 뭘 어디서부터 어떻게
-											해야 될지 모르겠다면 집중!</p>
-									</div>
-								</div>
-								<div class="blog-bottom">
-									<ul class="list-inline mb-0">
-										<li><a href="#!"> <i
-												class="feather icon-message-circle"></i> n 개의 포스트
-										</a></li>
-										<li><a href="#!"> <i class="feather icon-heart"></i>
-												n 개의 명소
-										</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 col-lg-4">
-							<div class="blog mb-5">
-								<div class="blog-image">
-									<div class="embed-responsive embed-responsive-4by3">
-										<img th:src="@{/images/traShare/여행이미지 2.gif}"
-											class="card-img-top h-10 img-thumbnail embed-responsive-item"
-											alt="...">
-									</div>
-								</div>
-								<div class="blog-info">
-									<div class="blog-date">
-										<a href="#!"><i class="feather icon-message-circle"></i>
-											여행전 </a>
-									</div>
-									<div class="blog-title mt-3">
-										<h4 class="mb-3">
-											<a th:href="@{/traShare/traDetail}">제주도 여행이 막막하다면!</a>
-										</h4>
-										<p class="mb-0">여행 기간은 한정적인데 가고 싶은 곳은 너무 많아서 뭘 어디서부터 어떻게
-											해야 될지 모르겠다면 집중!</p>
-									</div>
-								</div>
-								<div class="blog-bottom">
-									<ul class="list-inline mb-0">
-										<li><a href="#!"> <i
-												class="feather icon-message-circle"></i> n 개의 포스트
-										</a></li>
-										<li><a href="#!"> <i class="feather icon-heart"></i>
-												n 개의 명소
-										</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 col-lg-4">
-							<div class="blog mb-5">
-								<div class="blog-image">
-									<div class="embed-responsive embed-responsive-4by3">
-										<img th:src="@{/images/traShare/1.jpg}"
-											class="card-img-top h-10 img-thumbnail embed-responsive-item"
-											alt="...">
-									</div>
-								</div>
-								<div class="blog-info">
-									<div class="blog-date">
-										<a href="#!"><i class="feather icon-message-circle"></i>
-											여행전 </a> <a href="#!"><i class="feather icon-message-circle"></i>
-											수정 </a> <a href="#!"><i class="feather icon-message-circle"></i>
-											삭제 </a>
-									</div>
-									<div class="blog-title mt-3">
-										<h4 class="mb-3">
-											<a th:href="@{/traShare/traDetail}">제주도 여행이 막막하다면!</a>
-										</h4>
-										<p class="mb-0">여행 기간은 한정적인데 가고 싶은 곳은 너무 많아서 뭘 어디서부터 어떻게
-											해야 될지 모르겠다면 집중!</p>
-									</div>
-								</div>
-								<div class="blog-bottom">
-									<ul class="list-inline mb-0">
-										<li><a href="#!"> <i
-												class="feather icon-message-circle"></i> n 개의 포스트
-										</a></li>
-										<li><a href="#!"> <i class="feather icon-heart"></i>
-												n 개의 명소
-										</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 col-lg-4">
-							<div class="blog mb-5">
-								<div class="blog-image">
-									<div class="embed-responsive embed-responsive-4by3">
-										<img th:src="@{/images/traShare/1.jpg}"
-											class="card-img-top h-10 img-thumbnail embed-responsive-item"
-											alt="...">
-									</div>
-								</div>
-								<div class="blog-info">
-									<div class="blog-date">
-										<a href="#!"><i class="feather icon-message-circle"></i>
-											여행전 </a> <a href="#!"><i class="feather icon-message-circle"></i>
-											수정 </a> <a href="#!"><i class="feather icon-message-circle"></i>
-											삭제 </a>
-									</div>
-									<div class="blog-title mt-3">
-										<h4 class="mb-3">
-											<a th:href="@{/traShare/traDetail}">제주도 여행이 막막하다면!</a>
-										</h4>
-										<p class="mb-0">여행 기간은 한정적인데 가고 싶은 곳은 너무 많아서 뭘 어디서부터 어떻게
-											해야 될지 모르겠다면 집중!</p>
-									</div>
-								</div>
-								<div class="blog-bottom">
-									<ul class="list-inline mb-0">
-										<li><a href="#!"> <i
-												class="feather icon-message-circle"></i> n 개의 포스트
-										</a></li>
-										<li><a href="#!"> <i class="feather icon-heart"></i>
-												n 개의 명소
-										</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 col-lg-4">
-							<div class="blog mb-5">
-								<div class="blog-image">
-									<div class="embed-responsive embed-responsive-4by3">
-										<img th:src="@{/images/traShare/1.jpg}"
-											class="card-img-top h-10 img-thumbnail embed-responsive-item"
-											alt="...">
-
-									</div>
-								</div>
-								<div class="blog-info">
-									<div class="blog-date">
-										<a href="#!"><i class="feather icon-message-circle"></i>
-											여행전 </a> <a href="#!"><i class="feather icon-message-circle"></i>
-											수정 </a> <a href="#!"><i class="feather icon-message-circle"></i>
-											삭제 </a>
-									</div>
-									<div class="blog-title mt-3">
-										<h4 class="mb-3">
-											<a th:href="@{/traShare/traDetail}">제주도 여행이 막막하다면!</a>
-										</h4>
-										<p class="mb-0">여행 기간은 한정적인데 가고 싶은 곳은 너무 많아서 뭘 어디서부터 어떻게
-											해야 될지 모르겠다면 집중!</p>
-									</div>
-								</div>
-								<div class="blog-bottom">
-									<ul class="list-inline mb-0">
-										<li><a href="#!"> <i
-												class="feather icon-message-circle"></i> n 개의 포스트
-										</a></li>
-										<li><a href="#!"> <i class="feather icon-heart"></i>
-												n 개의 명소
+										<li><a href="#!"> <i class="feather icon-image"></i>
+												4 개의 이미지 
 										</a></li>
 									</ul>
 								</div>

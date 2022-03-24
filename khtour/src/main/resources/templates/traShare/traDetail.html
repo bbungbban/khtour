@@ -7,8 +7,8 @@
 </th:block>
 <th:block layout:fragment="contentsTitle">
 	<div class="row">
-		<div class="col-11">
-			<h2 class="p-2 mb-2 bg-primary text-white">포스트 상세 페이지</h2>
+		<div class="col-12">
+			<h2>포스트 상세 페이지</h2>
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a
@@ -41,15 +41,22 @@
 <div class="col-3">
 				<div class="user-detail border-radius shadow-sm">
 					<div class="avatar avatar-xll d-block mx-auto">
-						<img class="img-fluid" src="images/team/04.jpg" alt="">
+						<div class="embed-responsive embed-responsive-1by1">
+										<img th:src="@{/images/traShare/신세경.gif}"
+											class="embed-responsive-item"
+											alt="...">
+									</div>
 					</div>
 					<div class="user-name mt-3 text-center">
-						<h5>김민석</h5>
+						<h5>이름 : 김민석</h5>
 						<div>
 						<span>이메일 :  <strong class="text-primary"> klm7637@naver.com </strong></span>
 						</div>
 						<div>
-						<span>별명 :  <strong class="text-primary"> ㅁㄴㅇ </strong></span>
+						<span>생일 :  <strong class="text-primary"> 97년 05월 01일 </strong></span>
+						</div>
+						<div>
+						<span>국적 :  <strong class="text-primary"> 대한민국 </strong></span>
 						</div>
 					</div>
 					<div class="user-info mt-4">
@@ -57,32 +64,20 @@
 						<div class="my-3 ">
 							<h6>팔로우</h6>
 															<div class="user-like text-left">
-									<a href="#"> <i class="fa fa-heart-o"></i> 2.5k</a>
+									<a href="#"> <i class="fa fa-heart-o"></i> 2,200 명</a>
 								</div>
 						</div>
 						<div class="my-3 ">
 							<h6>좋아요 수</h6>
 															<div class="user-like text-left">
-									<a href="#"> <i class="fa fa-heart-o"></i> 2.5k</a>
+									<a href="#"> <i class="fa fa-heart-o"></i> 100 명</a>
 								</div>
 						</div>
-					</div>
 											<div class="my-3 ">
-							<h6>방문 명소</h6>
+							<h6>피드 갯수</h6>
 															<div class="user-like text-left">
 									<a href="#"> 5 개</a>
 								</div>
-						</div>
-					
-					
-					
-					<div class="user-completion">
-						<div class="progress-top-content">
-							<span>Profile Completion</span>
-							<span>89%</span>
-						</div>
-						<div class="progress progress-h-5">
-							<div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
 					</div>
 				</div>
@@ -121,14 +116,21 @@
 											<div class="pt-3">
 												<label for="content">댓글 작성</label>
 												<form name="commentInsertForm">
-													<div class="input-group">
-														<input type="hidden" name="bno" value="${detail.bno}" /> <input
-															type="text" class="form-control" id="content"
-															name="content" placeholder="내용을 입력하세요."> <span
-															class="input-group-btn">
-															<button class="btn btn-default" type="button"
-																name="commentInsertBtn">등록</button>
-														</span>
+													<div class="form-group">
+														<div class="input-group">
+															<input type="hidden" name="bno" value="${detail.bno}" /> <input
+																type="text" class="form-control" id="content"
+																name="content" placeholder="내용을 입력하세요."> <span
+																class="input-group-btn">
+																<button class="btn btn-default" type="button"
+																	name="commentInsertBtn">등록</button>
+															</span>
+														</div>
+													</div>
+													<div class="form-group">
+															<label>댓글창</label>
+															<textarea class="form-control"  rows="2"
+																></textarea>
 													</div>
 												</form>
 											</div>
@@ -153,16 +155,10 @@
 													class="card-img-top h-10 img-thumbnail embed-responsive-item"
 													alt="...">
 											</div>
-
 											KOREA HERITAGETOUR (T)
 											<div class="pt-3">
 												<h5>해바라기 농장을 운영하시는 농장주의 넓은 아량 덕분에 이렇게 예쁜!</h5>
 											</div>
-
-
-
-
-
 										</div>
 									</li>
 									

@@ -15,6 +15,10 @@
 		<result column="heritage_classification" property="heritageClassification"/>
 		<result column="heritage_image" property="heritageImage"/>
 		<result column="heritage_detail" property="heritageDetail"/>
+		<result column="heritage_owner" property="heritageOwner"/>
+		<result column="heritage_manager" property="heritageManager"/>
+		<result column="heritage_category" property="heritageCategory"/>
+		<result column="heritage_area" property="heritageArea"/>
 	</resultMap> 
 
 	<!-- 문화재 목록 조회 SQL -->
@@ -29,7 +33,11 @@
 		   ,h.heritage_designation   
 		   ,h.heritage_classification   
 		   ,h.heritage_image    
-		   ,h.heritage_detail   
+		   ,h.heritage_detail
+		   ,h.heritage_owner
+		   ,h.heritage_manager
+		   ,h.heritage_category
+		   ,h.heritage_area   
 		FROM
 		  tb_heritage_detail AS h;
 	</select>
@@ -46,7 +54,11 @@
 		   ,h.heritage_designation   
 		   ,h.heritage_classification   
 		   ,h.heritage_image    
-		   ,h.heritage_detail 
+		   ,h.heritage_detail
+		   ,h.heritage_owner
+		   ,h.heritage_manager
+		   ,h.heritage_category
+		   ,h.heritage_area  
 		FROM
 			tb_heritage_detail AS h
 		WHERE
@@ -66,7 +78,11 @@
 		   ,heritage_designation   
 		   ,heritage_classification   
 		   ,heritage_image    
-		   ,heritage_detail   
+		   ,heritage_detail
+		   ,heritage_owner
+		   ,heritage_manager
+		   ,heritage_category
+		   ,heritage_area     
 		) VALUES (
 		   sf_new_heritage_code()
 		   ,#{memberId}
@@ -78,6 +94,10 @@
 		   ,#{heritageClassification}
 		   ,#{heritageImage}
 		   ,#{heritageDetail}
+		   ,#{heritageOwner}
+		   ,#{heritageManager}
+		   ,#{heritageCategory}
+		   ,#{heritageArea}
 		);
 	
 	<!-- 문화재 수정 SQL -->
@@ -108,6 +128,18 @@
 			</if>		
 			<if test="heritageDetail != null and heritageDetail != ''">
 				heritage_detail = #{heritageDetail},
+			</if>		
+			<if test="heritageCategory != null and heritageCategory != ''">
+				heritage_category = #{heritageCategory},
+			</if>		
+			<if test="heritageManager != null and heritageManager != ''">
+				heritage_manager = #{heritageManager},
+			</if>		
+			<if test="heritageOwner != null and heritageOwner != ''">
+				heritage_owner = #{heritageOwner},
+			</if>		
+			<if test="heritageArea != null and heritageArea != ''">
+				heritage_area = #{heritageArea},
 			</if>		
 		</trim>
 		WHERE

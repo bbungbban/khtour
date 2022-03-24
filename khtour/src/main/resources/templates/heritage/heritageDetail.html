@@ -9,7 +9,7 @@
 	<!-- 페이지 타이틀 시작 -->
 	<div class="row">
 		<div class="col-12">
-			<h2 class="p-2 mb-2 bg-primary text-white">문화재 상세 페이지</h2>
+			<h2>문화재 상세 페이지</h2>
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a
@@ -29,7 +29,7 @@
 		<div class="col-md-10">
 			<div class="card text-center">
 				<div class="card-body">
-					<p class="card-text" th:text="${heritage.heritageClassification}"></p>
+					<p class="card-text" th:text="${heritage.heritageCategory}"></p>
 					<h1 th:text="${heritage.heritageName}"></h1>
 					<h3 th:text="${heritage.heritageSubName}"></h3>
 				</div>
@@ -70,6 +70,10 @@
 									<td th:text="${heritage.heritageClassification}"></td>
 								</tr>
 								<tr>
+									<th scope="row">수량 / 면적</th>
+									<td th:text="${heritage.heritageArea}"></td>
+								</tr>
+								<tr>
 									<th scope="row">지정(등록)일</th>
 									<td th:text="${heritage.heritageDesignation}"></td>
 								</tr>
@@ -77,10 +81,17 @@
 									<th scope="row">소 재 지</th>
 									<td th:text="${heritage.heritageLocation}"></td>
 								</tr>
-
 								<tr>
 									<th scope="row">시 대</th>
 									<td th:text="${heritage.heritageEra}"></td>
+								</tr>
+								<tr>
+									<th scope="row">소유자(소유단체)</th>
+									<td th:text="${heritage.heritageOwner}"></td>
+								</tr>
+								<tr>
+									<th scope="row">관리자(관리단체)</th>
+									<td th:text="${heritage.heritageManager}"></td>
 								</tr>
 							</tbody>
 						</table>
