@@ -18,4 +18,14 @@ public class TraWhetherController {
 		return "/traWhether/traWhetherList";
 	}
 	
+	/*
+	 * 지역별 날씨 리스트 
+	 */
+	@GetMapping("/traWhether/test")
+	public String gettestt(Model model) {
+		
+		model.addAttribute("title", "지역별 날씨 정보 페이지");
+		
+		return "/traWhether/test";
+	}
 }
