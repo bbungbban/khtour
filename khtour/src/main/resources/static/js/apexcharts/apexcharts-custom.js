@@ -36,7 +36,7 @@
       },
       colors: ["#335eea"],
       xaxis: {
-        categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+        categories: ['11', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
           labels: {
           style: {
               colors: "#898b96",
