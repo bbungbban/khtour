@@ -85,6 +85,29 @@
 			Order BY 
 				p.likes_cnt DESC;	
 	</select>
+	<select id="getPostListByCommunityName"  resultMap="postResultMap">
+			SELECT
+				p.post_code
+				,p.comm_name		 
+				,p.member_id
+				,p.tag_code
+				,p.title	 
+				,p.reg_time    
+				,p.main_text
+				,p.reader_cnt
+				,p.picture_link
+				,p.video_link
+				,p.likes_cnt
+				,p.dislikes_cnt
+				,p.report_cnt
+				,p.point_gain
+			FROM
+				tb_comm_post AS p
+			WHERE
+				p.comm_name = #{commName}
+			Order BY 
+				p.likes_cnt DESC;	
+	</select>
 	<select id="getDailyPostList"  resultMap="postResultMap">
 			SELECT
 				p.post_code
