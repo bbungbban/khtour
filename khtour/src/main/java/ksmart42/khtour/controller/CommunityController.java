@@ -125,9 +125,14 @@ public class CommunityController {
 	
 	
 	@GetMapping("/post")
-	public String post(Model model) {
+	public String post(Model model,@RequestParam(value = "postCode") String postCode) {
 		
+		CommPost commPost =communityService.getPostByPostCode(postCode);
+		
+		
+		model.addAttribute("commPost", commPost);
 		model.addAttribute("title", "포스트");
+		
 		
 		return "community/post";
 	}
