@@ -13,25 +13,24 @@
 			<!-- start : sidebar -->		
 			<div th:replace="fragments/sidebar :: sidebarFragment"></div>
 			<!-- end : sidebar -->
-			
-			<div class="main-panel">
-				<!-- start : contents-heading  -->
-				<div class="panel-hedding">
-					<div class="row justify-content-center mb-4">
-						<div class="col-12 col-la-12 col-xl-12">
-							<th:block layout:fragment="contentsTitle">
-							</th:block>
+				<div class="main-panel">
+					<!-- start : contents-heading  -->
+					<div class="panel-hedding">
+						<div class="row justify-content-center mb-4">
+							<div class="col-12 col-la-12 col-xl-12">
+								<th:block layout:fragment="contentsTitle">
+								</th:block>
+							</div>
 						</div>
 					</div>
+					<!-- end : contents-heading  -->
+					<!-- start : contents  -->
+	
+							<th:block layout:fragment="customContents">
+							</th:block>
+					<!-- end : contents  -->
 				</div>
-				<!-- end : contents-heading  -->
-				<!-- start : contents  -->
-
-						<th:block layout:fragment="customContents">
-						</th:block>
-					</div>
-				</div>
-				<!-- end : contents  -->
+		</div>
 
 		<!-- end : wrapper -->
 		<!-- **********  Javascript  ********** -->
