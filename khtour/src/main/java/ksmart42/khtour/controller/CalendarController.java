@@ -17,7 +17,7 @@ public class CalendarController {
 	public String getTraShareList(Model model) {
 		
 		model.addAttribute("title", "여행 기록 공유 게시판 리스트");
-		
+		//return "/examples/selectable";
 		return "/traPlans/trafullcalendar";
 	}
 	
@@ -36,4 +36,3 @@ public class CalendarController {
 		return "pageJsonReport";
 		}
 }
-

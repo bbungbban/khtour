@@ -16,6 +16,16 @@ public class TraShareController {
 		
 		return "/traShare/traShareInsert";
 	}
+	/*
+	 * 여행기록 공유 게시판 수정
+	 */
+	@GetMapping("/traShare/traShareModify")
+	public String modifyRecruitment(Model model) {
+		
+		model.addAttribute("title", "여행 기록 공유 게시판 등록 페이지");
+		
+		return "/traShare/traShareModify";
+	}
 	
 	/*
 	 * 여행기록 공유 게시판 리스트
@@ -40,7 +50,7 @@ public class TraShareController {
 	}
 	
 	/*
-	 * 여행기록 상세  페이지 이동
+	 * 여행기록 상세  페이지 이동(관리자)
 	 */
 	@GetMapping("/traShare/traShareListSt")
 	public String getTraShareListSt(Model model) {

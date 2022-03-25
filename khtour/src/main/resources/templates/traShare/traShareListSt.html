@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/default2}">
+	layout:decorate="~{layout/default3}">
 <th:block layout:fragment="customTitle">
 	<title th:text="${title}"></title>
 </th:block>
 <th:block layout:fragment="contentsTitle">
-	<div class="row">
-		<div class="col-12">
+
 			<h2>공유 게시판 리스트(관리자)</h2>
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
@@ -16,8 +15,6 @@
 						공유</li>
 				</ol>
 			</nav>
-		</div>
-	</div>
 </th:block>
 <th:block layout:fragment="customContents">
 	<link rel="stylesheet" type="text/css"
