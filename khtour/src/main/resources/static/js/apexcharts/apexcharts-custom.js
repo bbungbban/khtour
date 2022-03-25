@@ -65,6 +65,72 @@
       var chart = new ApexCharts(document.querySelector("#revenue-chart"), options);
       chart.render();
    }
+      
+      
+// Refund chart
+      var refundchart=$("#refund-chart");
+      if(refundchart.length){
+    	  var options = {
+    			  series: [{
+    				  name: 'Refund',
+    				  data: [25, 32, 18, 37, 23, 27, 34, 17, 23, 38, 36, 27]
+    			  }],
+    			  chart: {
+    				  type: 'bar',
+    				  height: 358,
+    				  toolbar: {
+    					  show : false,
+    				  }
+    			  },
+    			  plotOptions: {
+    				  bar: {
+    					  horizontal: false,
+    					  columnWidth: '20%',
+    					  endingShape: 'rounded'
+    				  },
+    			  },
+    			  dataLabels: {
+    				  enabled: false
+    			  },
+    			  stroke: {
+    				  show: true,
+    				  width: 2,
+    				  colors: ['transparent']
+    			  },
+    			  grid: {
+    				  borderColor: '#e5e5e5',
+    			  },
+    			  colors: ["#335eea"],
+    			  xaxis: {
+    				  categories: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    				  labels: {
+    					  style: {
+    						  colors: "#898b96",
+    					  },
+    				  },
+    			  },
+    			  yaxis: {
+    				  labels: {
+    					  style: {
+    						  colors: "#6c8df7",
+    					  },
+    				  },
+    			  },
+    			  fill: {
+    				  opacity: 1
+    			  },
+    			  tooltip: {
+    				  y: {
+    					  formatter: function (val) {
+    						  return "$ " + val + " thousands"
+    					  }
+    				  }
+    			  },
+    			  
+    	  };
+    	  var chart = new ApexCharts(document.querySelector("#refund-chart"), options);
+    	  chart.render();
+      }
 
 
 // Revenue chart

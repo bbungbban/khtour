@@ -19,6 +19,17 @@ public class RefundController {
 	}
 	
 	/*
+	 * 환불 신청 내역 화면
+	 */
+	@GetMapping("/refund/refundList.html")
+	public String getRefundList(Model model) {
+		
+		model.addAttribute("title", "환불 신청 내역 페이지");
+		
+		return "/refund/refundList.html";
+	}
+	
+	/*
 	 * 환불 세부 정보 화면
 	 */
 	@GetMapping("/refund/refundDetail.html")
