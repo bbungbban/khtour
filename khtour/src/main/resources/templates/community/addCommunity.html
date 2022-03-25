@@ -70,6 +70,26 @@
 </th:block>
 
 <th:block layout:fragment="customContents">
+			<style>
+		.bg-primary {
+			background-color: #AD8B73 !important;
+		}
+		
+		.btn.btn-primary {
+			background-color: #AD8B73;
+			border-color: #AD8B73;
+		}
+		
+		.btn.btn-primary:hover{background:#AD8B73;border-color:#background;}
+		.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle{
+			background: #AD8B73;
+			border-color: #AD8B73;
+		}
+		
+		a {
+			color: #AD8B73;
+		}
+		</style>
 	<div class="card bg-light">
 		<div class="card-body">
 			<form class="cmxform" id="addCommunityForm" method="post"
@@ -86,7 +106,6 @@
 						</div>
 					</div>
 				</div>
-
 				<div class="form-group">
 					<label for="commDesc">커뮤니티 설명</label>
 					<textarea id="commDesc" name="commDesc" class="form-control"

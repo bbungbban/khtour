@@ -8,6 +8,26 @@
 <th:block layout:fragment="contentsTitle">
 </th:block>
 <th:block layout:fragment="customContents">
+	<style>
+.bg-primary {
+	background-color: #AD8B73 !important;
+}
+
+.btn.btn-primary {
+	background-color: #AD8B73;
+	border-color: #AD8B73;
+}
+
+.btn.btn-primary:hover{background:#AD8B73;border-color:#background;}
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle{
+	background: #AD8B73;
+	border-color: #AD8B73;
+}
+
+a {
+	color: #AD8B73;
+}
+</style>
 	<div class="card bg-primary">
 		<div class="card-body text-center pb-2 pt-2">
 			<h2 class="mb-0 mt-2 text-white " th:text="${community.commName} + ' 커뮤니티'"></h2>
