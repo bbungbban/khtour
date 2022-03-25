@@ -10,17 +10,17 @@
 <th:block layout:fragment="customContents">
 	<div class="row">
 		<div class="col-8">
-			<div class="card-group">
+			<div class="card-group mb-3">
 
-				<div class="card col-sm-1 bg-info d-flex pl-0 pr-0">
+				<div class="card col-sm-1 bg-primary d-flex pl-0 pr-0">
 					<div class="card-body pl-0 pr-0 pt-5">
 						<a href="#!"> <i
-							class="la la-caret-up d-flex la-3x justify-content-center text-dark pb-5"></i></a>
+							class="la la-caret-up d-flex la-3x justify-content-center text-white pb-5"></i></a>
 						<p class="card-text text-white text-center mb-0 pb-0"
 							th:text="${commPost.likesCnt}"></p>
 						<p class="card-text text-white text-center mt-0 pt-0 pb-5">좋아요</p>
 						<a href="#!"> <i
-							class="la la-caret-down d-flex la-3x justify-content-center text-dark"></i></a>
+							class="la la-caret-down d-flex la-3x justify-content-center text-white"></i></a>
 
 					</div>
 
@@ -29,9 +29,11 @@
 					<div class="card-body">
 						<h5 class="card-title" th:text="${commPost.title}"></h5>
 						<p class="card-text" th:text="${commPost.mainText}"></p>
-						<img
-							th:src="@{'/images/commPost/'+${commPost.pictureLink}+'.jpg'}"
+						<img th:src="@{'/images/commPost/'+${commPost.pictureLink}+'.jpg'}"
 							class="card-img" alt="...">
+
+
+
 					</div>
 					<div class="card-foot p-2 text-center border-top">
 						<p class="card-text">
@@ -42,10 +44,11 @@
 								style="z-index: 2; position: relative;"><i
 								class="text-dark la la-share  pl-3"></i>공유하기</a> <a href="#!"
 								class="text-dark" style="z-index: 2; position: relative;"><i
-								class="text-dark  la la-flag  pl-3"></i>신고하기</a> <a href="/post"
-								class="stretched-link"></a>
+								class="text-dark  la la-flag  pl-3"></i>신고하기</a> 
+								<a th:href="@{/post(postCode=${commPost.postCode})}" class="stretched-link"></a>
 						</p>
 					</div>
+
 				</div>
 			</div>
 			<div class="card">
@@ -71,8 +74,8 @@
 		</div>
 		<div class="col-4">
 			<div class="card">
-				<div class="card-header bg-info">
-					<h5 class="card-title">About Community</h5>
+				<div class="card-header bg-primary">
+					<h5 class="card-title text-white mb-0">About Community</h5>
 				</div>
 
 				<div class="card-body m-0">
@@ -105,23 +108,23 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="card-foot p-2 text-center border-top bg-info">
-					<a href="/commDashboard" class="btn btn-light active" role="button"
+				<div class="card-foot p-2 text-center border-top ">
+					<a href="/commDashboard" class="btn btn-primary active btn-sm" role="button"
 						aria-pressed="true">커뮤니티 가입</a> <a
 						th:href="@{/createPost(commName=${community.commName})}"
-						class="btn btn-light active" role="button" aria-pressed="true">포스트
+						class="btn btn-primary active btn-sm" role="button" aria-pressed="true">포스트
 						만들기</a>
 				</div>
 			</div>
 			<div class="card">
-            <div class="card-header bg-info">
-               <h5 class="card-title">커뮤니티 규칙</h5>
+            <div class="card-header bg-primary">
+               <h5 class="card-title text-white mb-0">커뮤니티 규칙</h5>
             </div>
             <div class="card-body m-0">
                <div class="accordion accordion-box" id="accordionExample">
                   <div class="card" th:if="${not #lists.isEmpty(ruleList)}" th:each="r,index: ${ruleList}">
                      <div class="card-header" id="headingTwo-02">
-                        <div class="accordion-title collapsed p-1 bg-info"
+                        <div class="accordion-title collapsed p-1 bg-primary"
                            data-toggle="collapse" th:attr="data-target='#collapseTwo-' + ${index.index}">  
                            <p class="mb-0 text-white" th:text="'규칙'+ ${index.index+1} +': ' + ${r.title}">
                               <i class="zmdi zmdi-help-outline mr-3"></i>
@@ -137,8 +140,8 @@
                   </div>
                </div>
             </div>
-            <div class="card-foot p-2 text-center border-top bg-info">
-              		<button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal-02">커뮤니티 규칙 추가  </button>
+            <div class="card-foot p-2 text-center border-top">
+              		<button type="button" class="btn btn-primary text-white btn-sm" data-toggle="modal" data-target="#exampleModal-02">커뮤니티 규칙 추가  </button>
 				</div> 
          </div>
 
@@ -171,7 +174,7 @@
 							<textarea id="detail" name="detail" class="form-control"
 								rows="10" required></textarea>
 						</div>
-						<button type="submit" class="btn btn-info pull-right">규칙
+						<button type="submit" class="btn btn-primary pull-right">규칙
 							추가</button>
 					</form>
 				</div>
