@@ -20,6 +20,94 @@
 	</div>
 </th:block>
 <th:block layout:fragment="customContents">
+	<style>
+.form-group {
+	float: left;
+}
+
+.filebox input[type="file"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
+.filebox label {
+	display: inline-block;
+	padding: 0.7rem 0.75rem;
+	color: #53cad8;
+	font-size: inherit;
+	line-height: normal;
+	vertical-align: middle;
+	background-color: #f8f9fa;
+	cursor: pointer;
+	border: 1px solid #53cad8;
+	border-bottom-color: #53cad8;
+	border-radius: .25em;
+}
+
+/* named upload */
+.filebox .upload-name {
+	display: inline-block;
+	padding: 0.7em 3.75rem; /* label의 패딩값과 일치 */
+	font-size: inherit;
+	font-family: inherit;
+	line-height: normal;
+	vertical-align: middle;
+	background-color: #f5f5f5;
+	border: 1px solid #ebebeb;
+	border-bottom-color: #e2e2e2;
+	border-radius: .25em;
+	-webkit-appearance: none; /* 네이티브 외형 감추기 */
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.filebox input[type="file"] { /* 파일 필드 숨기기 */
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
+.filebox .upload-display { /* 이미지가 표시될 지역 */
+	margin-bottom: 5px;
+}
+
+@media ( min-width : 768px) {
+	.filebox .upload-display {
+		display: inline-block;
+		margin-right: 5px;
+		margin-bottom: 0;
+	}
+}
+
+.filebox .upload-thumb-wrap { /* 추가될 이미지를 감싸는 요소 */
+	display: inline-block;
+	width: 73px;
+	padding: 2px;
+	vertical-align: middle;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	background-color: #fff;
+}
+
+.filebox .upload-display img { /* 추가될 이미지 */
+	display: block;
+	max-width: 100%;
+	width: 100% \9;
+	height: auto;
+}
+</style>
+
 	<link rel="stylesheet" type="text/css"
 		th:href="@{/css/plugins/datepicker/daterangepicker.css}">
 
@@ -27,197 +115,198 @@
 		<div class="col-12">
 			<div class="card">
 				<div class="card-body">
-					<div class="row">
-						<div class="col-12 col-md-6 col-lg-6">
-							<div class="card">
-								<div class="card-title">
-									<div class="card-title-left">
-										<h4 class="card-title-text">등록 정보 입력</h4>
+					<div class="card-title">
+						<form id="addaccommodation"
+							th:action="@{/accommondation/accommodationList}" method="post">
+							<div class="card-title-left">
+								<h4 class="card-title-text">등록 정보 입력</h4>
+								<div class="form-group col-12 col-md-6 col-lg-6">
+									<label for="comName">숙박업소 명</label> <input type="text"
+										class="form-control" id="comName">
+								</div>
+								<div class="form-group col-12 col-md-6 col-lg-6">
+									<label for="businessNumber">사업자번호</label> <input type="text"
+										class="form-control" id="businessNumber">
+								</div>
+								<div class="form-group col-12 col-md-6 col-lg-6">
+									<label for="inputAddress">연락처</label> <input type="text"
+										class="form-control" id="inputAddress">
+								</div>
+								<div class="form-group col-12 col-md-6 col-lg-6">
+									<label for="inputAddress">연락처</label> <input type="text"
+										class="form-control" id="inputAddress">
+								</div>
+								<div class="form-group col-12 col-md-6 col-lg-6" style="margin: 0;">
+									<label for="exampleInputEmail1">우편번호</label>
+									<div class="input-group mb-3">
+										<input name="zip" type="text" class="form-control"
+											aria-label="Recipient's username"
+											aria-describedby="button-addon">
+										<button class="btn btn-primary" onclick="openZipSearch()"
+											type="button">검색</button>
 									</div>
 								</div>
-								<div class="card-body">
-									<form>
-										<div class="form-group">
-											<label for="comName">숙박업소 명</label> <input type="text"
-												class="form-control" id="comName">
-										</div>
-										<div class="form-group">
-											<label for="businessNumber">사업자번호</label> <input type="text"
-												class="form-control" id="businessNumber">
-										</div>
-										<div class="form-group">
-											<label for="inputAddress">연락처</label> <input type="text"
-												class="form-control" id="inputAddress">
-										</div>
-										<div class="form-group">
-											<label for="inputAddress">연락처</label> <input type="text"
-												class="form-control" id="inputAddress">
-										</div>
-										<div class="form-group">
-											<label for="exampleInputEmail1">우편번호</label>
-											<div class="input-group mb-3">
-												<input name="zip" type="text" class="form-control"
-													aria-label="Recipient's username"
-													aria-describedby="button-addon">
-												<button class="btn btn-primary" onclick="openZipSearch()"
-													type="button">검색</button>
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="">주소</label> <input type="text"
-												class="form-control" name="addr1" readonly>
-										</div>
-										<div class="form-grou">
-											<label for="">상세주소</label> <input type="text"
-												class="form-control" name="addr2">
-										</div>
-										<label style="margin-top: 0.5rem">홈페이지</label>
-										<div class="input-group mb-3">
-											<div class="input-group-prepend">
-												<span class="input-group-text" id="basic-addon3">https://</span>
-											</div>
-											<input type="text" class="form-control" id="basic-url"
-												aria-describedby="basic-addon3">
-										</div>
-									</form>
+								<div class="form-group col-12 col-md-12 col-lg-12">
+									<label for="">주소</label> <input type="text"
+										class="form-control" name="addr1" readonly>
 								</div>
-							</div>
-						</div>
-						<div class="col-12 col-md-6 col-lg-6">
-							<div class="card">
-								<div class="card-body">
-									<form action="/file-upload" class="dropzone dz-clickable">
-										<label for="agree" style="margin-top: 0.5rem">업체사진등록</label>
-										<div class="dz-message needsclick">
-											<i class="la la-cloud-upload d-block mb-2"></i> 업체 대표이미지를
-											등록해주세요.
-										</div>
-									</form>
-									<form class="comform" id="form" method="get">
-										<div class="form-group">
-											<label for="agree" style="margin-top: 0.5rem">업체상세정보입력</label>
-											<textarea id="mainText" name="mainText" class="form-control"
-												rows="17" placeholder="업체 상세 내용 입력" required></textarea>
-										</div>
-									</form>
+								<div class="form-group col-12 col-md-12 col-lg-12">
+									<label for="">상세주소</label> <input type="text"
+										class="form-control" name="addr2">
 								</div>
-							</div>
-						</div>
-						<div class="col-12">
-							<div class="card">
-								<div class="card-title">
-									<h4 class="card-title-text">상세 옵션 선택</h4>
+
+								<label class="form-group col-12 col-md-12 col-lg-12"
+									style="margin-bottom: 6.5px;">홈페이지</label>
+								<div class="input-group mb-3 col-12 col-md-12 col-lg-12">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="basic-addon3">https://</span>
+									</div>
+									<input type="text" class="form-control" id="basic-url"
+										aria-describedby="basic-addon3">
 								</div>
-								<div class="card-body">
-									<div class="col-md-12">
-										<div class="custom-control custom-checkbox mb-1 col-6 col-md-2 col-lg-2"
-											style="float: right;">
-											<input type="checkbox" class="custom-control-input"
-												id="swimmingPool" value="checked"> <label
-												class="custom-control-label" for="swimmingPool">수영장</label>
-										</div>
-										<div class="custom-control custom-checkbox mb-1 col-6 col-md-2 col-lg-2"
-											style="float: right;">
-											<input type="checkbox" class="custom-control-input"
-												id="smoking" value="checked"> <label
-												class="custom-control-label" for="smoking">흡연가능</label>
-										</div>
-										<div class="custom-control custom-checkbox mb-1 col-6 col-md-2 col-lg-2"
-											style="float: right;">
-											<input type="checkbox" class="custom-control-input"
-												id="solitary" value="checked"> <label
-												class="custom-control-label" for="solitary">독채</label>
-										</div>
-										<div class="custom-control custom-checkbox mb-1 col-6 col-md-2 col-lg-2"
-											style="float: right;">
-											<input type="checkbox" class="custom-control-input"
-												id="onDol" value="checked"> <label
-												class="custom-control-label" for="onDol">온돌방</label>
-										</div>
-										<div class="custom-control custom-checkbox mb-1  col-6 col-md-2 col-lg-2"
-											style="float: right;">
-											<input type="checkbox" class="custom-control-input" id="tub"
-												value="checked"> <label class="custom-control-label"
-												for="tub">개별욕조</label>
-										</div>
-										<div class="custom-control custom-checkbox mb-1  col-6 col-md-2 col-lg-2"
-											style="float: right;">
-											<input type="checkbox" class="custom-control-input"
-												id="amenities" value="checked"> <label
-												class="custom-control-label" for="amenities">어메니티</label>
-										</div>
-										<div class="custom-control custom-checkbox mb-1  col-6 col-md-2 col-lg-2"
-											style="float: right;">
-											<input type="checkbox" class="custom-control-input" id="pet"
-												value="checked"> <label class="custom-control-label"
-												for="pet">반려동물</label>
-										</div>
-										<div class="custom-control custom-checkbox mb-1  col-6 col-md-2 col-lg-2"
-											style="float: right;">
-											<input type="checkbox" class="custom-control-input" id="wifi"
-												value="checked"> <label class="custom-control-label"
-												for="wifi">와이파이</label>
-										</div>
-										<div class="custom-control custom-checkbox mb-1 col-6 col-md-2 col-lg-2"
-											style="float: right;">
-											<input type="checkbox" class="custom-control-input" id="bbq"
-												value="checked"> <label class="custom-control-label"
-												for="bbq">바베큐</label>
-										</div>
-										<div class="custom-control custom-checkbox mb-1 col-6 col-md-2 col-lg-2"
-											style="float: right;">
-											<input type="checkbox" class="custom-control-input"
-												id="cooking" value="checked"> <label
-												class="custom-control-label" for="cooking">개별취사</label>
-										</div>
-										<div class="custom-control custom-checkbox mb-1 col-6 col-md-2 col-lg-2"
-											style="float: right;">
-											<input type="checkbox" class="custom-control-input"
-												id="paking" value="checked"> <label
-												class="custom-control-label" for="paking">주차장</label>
-										</div>
-										<div class="custom-control custom-checkbox mb-1 col-6 col-md-2 col-lg-2"
-											style="float: right;">
-											<input type="checkbox" class="custom-control-input"
-												id="addpeople" value="checked"> <label
-												class="custom-control-label" for="addpeople">인원추가</label>
-										</div>
+
+								<label class="form-group col-12 col-md-12 col-lg-12"
+									style="margin-top: 0.5rem">숙박업체 대표사진등록</label>
+								<div class="filebox preview-image col-12 col-md-12 col-lg-12" style="margin-bottom: 1rem;">
+									<input class="upload-name" value="파일선택" disabled="disabled">
+									<label for="input-file" style="margin-bottom: 0;">업로드</label> <input
+										type="file" id="input-file" class="upload-hidden">
+								</div>
+
+								<label class="form-group col-12 col-md-12 col-lg-12">상세옵션선택</label>
+								<div class="form-group col-12 col-md-12 col-lg-12">
+									<div
+										class="custom-control custom-checkbox mb-1 col-6 col-md-2 col-lg-2"
+										style="float: right;">
+										<input type="checkbox" class="custom-control-input"
+											id="swimmingPool" value="checked"> <label
+											class="custom-control-label" for="swimmingPool">수영장</label>
+									</div>
+									<div
+										class="custom-control custom-checkbox mb-1 col-6 col-md-2 col-lg-2"
+										style="float: right;">
+										<input type="checkbox" class="custom-control-input"
+											id="smoking" value="checked"> <label
+											class="custom-control-label" for="smoking">흡연가능</label>
+									</div>
+									<div
+										class="custom-control custom-checkbox mb-1 col-6 col-md-2 col-lg-2"
+										style="float: right;">
+										<input type="checkbox" class="custom-control-input"
+											id="solitary" value="checked"> <label
+											class="custom-control-label" for="solitary">독채</label>
+									</div>
+									<div
+										class="custom-control custom-checkbox mb-1 col-6 col-md-2 col-lg-2"
+										style="float: right;">
+										<input type="checkbox" class="custom-control-input" id="onDol"
+											value="checked"> <label class="custom-control-label"
+											for="onDol">온돌방</label>
+									</div>
+									<div
+										class="custom-control custom-checkbox mb-1  col-6 col-md-2 col-lg-2"
+										style="float: right;">
+										<input type="checkbox" class="custom-control-input" id="tub"
+											value="checked"> <label class="custom-control-label"
+											for="tub">개별욕조</label>
+									</div>
+									<div
+										class="custom-control custom-checkbox mb-1  col-6 col-md-2 col-lg-2"
+										style="float: right;">
+										<input type="checkbox" class="custom-control-input"
+											id="amenities" value="checked"> <label
+											class="custom-control-label" for="amenities">어메니티</label>
+									</div>
+									<div
+										class="custom-control custom-checkbox mb-1  col-6 col-md-2 col-lg-2"
+										style="float: right;">
+										<input type="checkbox" class="custom-control-input" id="pet"
+											value="checked"> <label class="custom-control-label"
+											for="pet">반려동물</label>
+									</div>
+									<div
+										class="custom-control custom-checkbox mb-1  col-6 col-md-2 col-lg-2"
+										style="float: right;">
+										<input type="checkbox" class="custom-control-input" id="wifi"
+											value="checked"> <label class="custom-control-label"
+											for="wifi">와이파이</label>
+									</div>
+									<div
+										class="custom-control custom-checkbox mb-1 col-6 col-md-2 col-lg-2"
+										style="float: right;">
+										<input type="checkbox" class="custom-control-input" id="bbq"
+											value="checked"> <label class="custom-control-label"
+											for="bbq">바베큐</label>
+									</div>
+									<div
+										class="custom-control custom-checkbox mb-1 col-6 col-md-2 col-lg-2"
+										style="float: right;">
+										<input type="checkbox" class="custom-control-input"
+											id="cooking" value="checked"> <label
+											class="custom-control-label" for="cooking">개별취사</label>
+									</div>
+									<div
+										class="custom-control custom-checkbox mb-1 col-6 col-md-2 col-lg-2"
+										style="float: right;">
+										<input type="checkbox" class="custom-control-input"
+											id="paking" value="checked"> <label
+											class="custom-control-label" for="paking">주차장</label>
+									</div>
+									<div
+										class="custom-control custom-checkbox mb-1 col-6 col-md-2 col-lg-2"
+										style="float: right;">
+										<input type="checkbox" class="custom-control-input"
+											id="addpeople" value="checked"> <label
+											class="custom-control-label" for="addpeople">인원추가</label>
 									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-					<div style="display: flex; justify-content: center;">
-						<button type="button" class="btn btn-primary" data-toggle="modal"
-							data-target="#exampleModal">신규등록</button>
-					</div>
-					<div class="modal fade" id="exampleModal" tabindex="-1"
-						role="dialog" aria-labelledby="exampleModalLabel"
-						aria-hidden="true">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel">최종확인</h5>
-									<button type="button" class="close" data-dismiss="modal"
-										aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>
-								<div class="modal-body">
-									<p>등록전에 내용에 문제가 없는지 확인하세요!</p>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary"
-										data-dismiss="modal">돌아가기</button>
-									<button type="button" class="btn btn-primary">등록하기</button>
+
+							<div class="form-group col-12 col-md-12 col-lg-12">
+								<label for="agree" style="margin-top: 0.5rem">업체상세정보입력</label>
+								<textarea id="mainText" name="mainText" class="form-control"
+									rows="17" placeholder="업체 상세 내용 입력" required></textarea>
+							</div>
+							<div style="text-align: center;">
+								<button type="button" class="btn btn-primary"
+									data-toggle="modal" data-target="#exampleModal">신규등록</button>
+							</div>
+							<div class="modal fade" id="exampleModal" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalLabel"
+								aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">최종확인</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<p>등록전에 내용에 문제가 없는지 확인하세요!</p>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">돌아가기</button>
+											<button type="button" class="btn btn-primary" 
+												id="addAccommodationBtn">등록하기</button>
+										</div>
+									</div>
 								</div>
 							</div>
-						</div>
+						</form>
 					</div>
 				</div>
 			</div>
+
 		</div>
 	</div>
+
+
+
+
+
 </th:block>
 <th:block layout:fragment="customBodyScript">
 	<!-- summernote -->
@@ -231,6 +320,63 @@
 	<script th:src="@{js/dropzone/dropzone.min.js}"></script>
 	<script th:src="@{/js/bootstrap-wizard/jquery.bootstrap.wizard.min.js}"></script>
 	<script th:src="@{/js/jquery-validation/jquery.validate.min.js}"></script>
+	<script
+		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script type="text/javascript">
+	function openZipSearch() {
+		new daum.Postcode({
+			oncomplete : function(data) {
+				$('[name=zip]').val(data.zonecode); // 우편번호 (5자리)
+				$('[name=addr1]').val(data.address);
+				$('[name=addr2]').val(data.buildingName);
+			}
+		}).open();
+	}
+	</script>
+	<script>
+		$(document).ready(
+			function() {
+				var fileTarget = $('.filebox .upload-hidden');
+
+				fileTarget.on('change', function() { // 값이 변경되면
+					if (window.FileReader) { // modern browser 
+						var filename = $(this)[0].files[0].name;
+					} else { // old IE 
+					var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출 
+				} // 추출한 파일명 삽입 
+				$(this).siblings('.upload-name').val(filename);
+			});
+		});
+		//preview image 
+		var imgTarget = $('.preview-image .upload-hidden');
+
+		imgTarget.on('change',function() {
+			var parent = $(this).parent();
+			parent.children('.upload-display').remove();
+
+			if (window.FileReader) {
+			//image 파일만 
+			if (!$(this)[0].files[0].type.match(/image\//))
+			return;
+
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				var src = e.target.result;
+				parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img src="'+src+'" class="upload-thumb"></div></div>');
+			}
+			reader.readAsDataURL($(this)[0].files[0]);
+			}else {
+				$(this)[0].select();
+				$(this)[0].blur();
+				var imgSrc = document.selection.createRange().text;
+				parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img class="upload-thumb"></div></div>');
+
+				var img = $(this).siblings('.upload-display').find('img');
+				img[0].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(enable='true',sizingMethod='scale',src=\""
+				+ imgSrc + "\")";
+			}
+		});
+	</script>
 
 
 </th:block>

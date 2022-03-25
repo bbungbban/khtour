@@ -4,6 +4,7 @@
 	layout:decorate="~{layout/default}">
 <th:block layout:fragment="customTitle">
 	<title th:text="${title}"></title>
+	ui
 </th:block>
 <th:block layout:fragment="contentsTitle">
 	<div class="row">
@@ -27,10 +28,7 @@
 
 .form-control {
 	margin-top: 1rem !important;
-}
 
-.roomName {
-	font-size: 1.5rem;
 }
 
 .roomSummary {
@@ -335,8 +333,10 @@
 						</div>
 					</div>
 					<!-- 호텔 객실 세부 내역 끝 -->
-					<!-- 객실 정보 및 지도 -->
 					<div class="card-footer"></div>
+						<input type="date">
+					<div class="card-footer"></div>
+					<!-- 객실 정보 및 지도 -->
 					<h2>숙소 소개</h2>
 					<div>
 						<p style="font-size: 15px;">휴양과 레저, 문화 관광이 어우러진 글로벌 관광도시 해운대에
