@@ -40,7 +40,14 @@ public class CommunityController {
 		log.info("커뮤니티 이름중복체크 여부: {}",result);
 		return nameCheck;
 	}	
-
+	
+	@PostMapping("/getTagList")
+	@ResponseBody
+	public List<CommTag> getTagList(@RequestParam(value = "commName") String commName)
+	{
+		return communityService.getTagListByCommName(commName);
+	}
+	
 	@GetMapping("/commDashboard")
 	public String commDashboard(Model model) {
 		System.out.println("01 commDashboard CommunityController.java");
@@ -69,6 +76,10 @@ public class CommunityController {
 		{
 			model.addAttribute("community", communityService.getCommunityByName(commName));
 		}
+		
+			model.addAttribute("tagList", communityService.getTagListByCommName(commName));
+		
+		
 		return "community/createPost";
 		
 	}

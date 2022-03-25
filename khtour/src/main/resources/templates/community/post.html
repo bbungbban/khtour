@@ -124,17 +124,17 @@
                <div class="accordion accordion-box" id="accordionExample">
                   <div class="card" th:if="${not #lists.isEmpty(ruleList)}" th:each="r,index: ${ruleList}">
                      <div class="card-header" id="headingTwo-02">
-                        <div class="accordion-title collapsed p-1 bg-primary"
+                        <div class="accordion-title collapsed p-1 bg-white"
                            data-toggle="collapse" th:attr="data-target='#collapseTwo-' + ${index.index}">  
-                           <p class="mb-0 text-white" th:text="'규칙'+ ${index.index+1} +': ' + ${r.title}">
+                           <p class="mb-0 text-dark" th:text="'규칙'+ ${index.index+1} +': ' + ${r.title}">
                               <i class="zmdi zmdi-help-outline mr-3"></i>
                            </p>
                         </div>
                      </div>
                      <div th:id="'collapseTwo-'+${index.index}" class="collapse"
                         aria-labelledby="headingTwo-01" data-parent="#accordionExample">
-                        <div class="card-body">
-                           <p th:text="${r.detail}"></p>
+                        <div class="card-body bg-primary">
+                           <p class="text-white" th:text="${r.detail}"></p>
                         </div>
                      </div>
                   </div>

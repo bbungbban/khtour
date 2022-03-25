@@ -12,8 +12,8 @@
 		<div class="col-2">
 			 
 			<div class="card">
-				<div class="card-header text-center bg-info">
-				   <h6 class="mb-0 mt-2">랭킹 카테고리</h6>
+				<div class="card-header text-center bg-primary">
+				   <h6 class="mb-0 mt-2 text-white">랭킹 카테고리</h6>
 				 </div>
 					<div class="card-body m-0 p-0">
 						<div class="table-responsive">
@@ -53,17 +53,26 @@
 			</div>
 		<div class="col-6">	
 			<div class="card">	
-				<div class="card-header text-center bg-info">
-				 	<h6 class="mb-0 mt-2"> 커뮤니티 랭킹</h6>
+				<div class="card-header text-center bg-primary">
+				 	<h6 class="mb-0 mt-2 text-white"> 커뮤니티 랭킹</h6>
 				 </div>		
 					<div class="card-body m-0">
 						<div class="table-responsive">
 							<table class="table table-centered table-hover mb-0">
+								<thead>
+									<tr>
+										<th>순위</th>
+										<th>커뮤니티 이름</th>
+										<th>맴버수</th>
+										<th></th>
+									</tr>
+								</thead>
 								<tbody>
 									<tr th:if="${not #lists.isEmpty(communityList)}" th:each="l,index : ${communityList}" style="transform: rotate(0);">
 										<th scope="row"><a th:href="@{/commPage(commName=${l.commName})}" class="stretched-link" th:text="${index.index}+1"></a></th>
 										<td th:text="${l.commName}"></td>
-										<td class="text-right"><button type="button" class="btn btn-info btn-sm" style="z-index: 2; position: relative;">가입</button></td>
+										<td th:text="${l.memberCnt}"></td>
+										<td class="text-right"><button type="button" class="btn btn-primary btn-sm" style="z-index: 2; position: relative;">가입</button></td>
 									</tr>
 								</tbody>
 							</table>
@@ -75,8 +84,8 @@
 		
 		<div class="col-4">
 			<div class="card">
-				<div class="card-header text-center bg-info">
-				 	<h6 class="mb-0 mt-2">랜덤 카테고리 랭킹</h6>
+				<div class="card-header text-center bg-primary">
+				 	<h6 class="mb-0 mt-2 text-white">랜덤 카테고리 랭킹</h6>
 				 </div>	
 					<div class="card-body m-0">
 						<div class="table-responsive">
@@ -102,88 +111,15 @@
 										<th scope="row">5</th>
 										<td>커뮤니티이름</td>
 									</tr>
-									<tr>
-										<th colspan="3" class="text-center"><a href="/commRanking" class="btn btn-info active" role="button" aria-pressed="true">특정 커뮤니티종류보기</a></th>
-									</tr>
 								</tbody>
 							</table>
 							
 						</div>
 					</div>
-			</div>
-			<div class="card">
-				<div class="card-header text-center bg-info">
-				 	<h6 class="mb-0 mt-2">랜덤 카테고리 랭킹</h6>
-				 </div>	
-					<div class="card-body m-0">
-						<div class="table-responsive">
-							<table class="table table-centered table-hover mb-0">
-								<tbody>
-									<tr>
-										<th scope="row">1</th>
-										<td>커뮤니티이름</td>
-									</tr>
-									<tr>
-									<th scope="row">2</th>
-										<td>커뮤니티이름</td>
-									</tr>
-									<tr>
-									<th scope="row">3</th>
-										<td>커뮤니티이름</td>
-									</tr>
-									<tr>
-										<th scope="row">4</th>
-										<td>커뮤니티이름</td>
-									</tr>
-									<tr>
-										<th scope="row">5</th>
-										<td>커뮤니티이름</td>
-									</tr>
-									<tr>
-										<th colspan="3" class="text-center"><a href="/commRanking" class="btn btn-info active" role="button" aria-pressed="true">특정 커뮤니티종류보기</a></th>
-									</tr>
-								</tbody>
-							</table>
-							
-						</div>
+					<div class="card-foot p-2 text-center border-top">
+						<a href="/commRanking" class="btn btn-primary btn-sm" role="button" aria-pressed="true">특정 커뮤니티종류보기</a>
 					</div>
-			</div>
-			<div class="card">
-				<div class="card-header text-center bg-info">
-				 	<h6 class="mb-0 mt-2">랜덤 카테고리 랭킹</h6>
-				 </div>	
-					<div class="card-body m-0">
-						<div class="table-responsive">
-							<table class="table table-centered table-hover mb-0">
-								<tbody>
-									<tr>
-										<th scope="row">1</th>
-										<td>커뮤니티이름</td>
-									</tr>
-									<tr>
-									<th scope="row">2</th>
-										<td>커뮤니티이름</td>
-									</tr>
-									<tr>
-									<th scope="row">3</th>
-										<td>커뮤니티이름</td>
-									</tr>
-									<tr>
-										<th scope="row">4</th>
-										<td>커뮤니티이름</td>
-									</tr>
-									<tr>
-										<th scope="row">5</th>
-										<td>커뮤니티이름</td>
-									</tr>
-									<tr>
-										<th colspan="3" class="text-center"><a href="/commRanking" class="btn btn-info active" role="button" aria-pressed="true">특정 커뮤니티종류보기</a></th>
-									</tr>
-								</tbody>
-							</table>
-							
-						</div>
-					</div>
+					
 			</div>
 		</div>
 		</div>
