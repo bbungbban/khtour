@@ -491,19 +491,19 @@ var amdumbbellplot=$("#am-dumbbell-plot");
 
       // Add data
       chart.data = [{
-        "category": "Research",
+        "category": "기타",
         "value": 80,
         "full": 100
       }, {
-        "category": "Marketing",
+        "category": "여행 취소",
         "value": 35,
         "full": 100
       }, {
-        "category": "Distribution",
+        "category": "객실 변경",
         "value": 92,
         "full": 100
       }, {
-        "category": "Human Resources",
+        "category": "단순 변심",
         "value": 68,
         "full": 100
       }];
