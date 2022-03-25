@@ -70,26 +70,6 @@
 </th:block>
 
 <th:block layout:fragment="customContents">
-			<style>
-		.bg-primary {
-			background-color: #AD8B73 !important;
-		}
-		
-		.btn.btn-primary {
-			background-color: #AD8B73;
-			border-color: #AD8B73;
-		}
-		
-		.btn.btn-primary:hover{background:#AD8B73;border-color:#background;}
-		.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle{
-			background: #AD8B73;
-			border-color: #AD8B73;
-		}
-		
-		a {
-			color: #AD8B73;
-		}
-		</style>
 	<div class="card bg-light">
 		<div class="card-body">
 			<form class="cmxform" id="addCommunityForm" method="post"
@@ -101,7 +81,7 @@
 							<input id="commName" class="form-control" name="commName">
 						</div>
 						<div class="col-3">
-							<button type="button" class="btn btn-info active text-center"
+							<button type="button" class="btn btn-primary active text-center"
 								id="commNameCheck">커뮤니티 중복체크</button>
 						</div>
 					</div>
@@ -113,9 +93,9 @@
 				</div>
 				<div class="form-group">
 					<button id="addCommunityBtn" type="button"
-						class="btn btn-info active pull-right" disabled="disabled">등록</button>
+						class="btn btn-primary active pull-right" disabled="disabled">등록</button>
 					<a href="/commDashboard"
-						class="btn btn-info active pull-right mr-2" role="button"
+						class="btn btn-primary active pull-right mr-2" role="button"
 						aria-pressed="true">취소</a>
 				</div>
 			</form>
