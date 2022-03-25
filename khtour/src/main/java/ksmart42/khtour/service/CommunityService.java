@@ -25,6 +25,11 @@ public class CommunityService {
 	// 커뮤니티 서비스 1  : 커뮤니티 전체리스트 반환
 	public List<Community> getCommunityList(){
 		List<Community> communityList = communityMapper.getCommunityList();
+		for(int i = 0;i<communityList.size();i++)
+		{
+			float memberCnt = Float.parseFloat(communityList.get(i).getMemberCnt());
+			communityList.get(i).setMemberCnt(KhtourLibrary.cntConverter(memberCnt));;
+		}
 		return communityList;
 	}
 	// 커뮤니티 서비스 2  : 커뮤니티 포스트중에 하루동안 가장 인기 있는(미구현) 포스트 4개 리스트 반환
