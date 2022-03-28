@@ -6,10 +6,17 @@
 	<title th:text="${title}"></title>
 </th:block>
 <th:block layout:fragment="contentsTitle">
-	<h2>
-		결제 정보
-		<h2>
-			<h4>결제 관리 > 결제 정보</h4>
+	<div class="row">
+		<div class="col">
+			<h2>결제 정보</h2>
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">Home</a></li>
+					<li class="breadcrumb-item active" aria-current="page">결제 정보</li>
+				</ol>
+			</nav>
+		</div>
+	</div>
 </th:block>
 
 <th:block layout:fragment="customContents">

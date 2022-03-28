@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/default}">
+	layout:decorate="~{layout/default2}">
 <th:block layout:fragment="customTitle">
 	<title th:text="${title}"></title>
 </th:block>
 <th:block layout:fragment="contentsTitle">
-	<h2>박물관 등록</h2>
+   <!-- 페이지 타이틀 시작 -->
+   <h2>박물관 등록</h2>
+   <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="#">Home</a></li>
+         <li class="breadcrumb-item active" aria-current="page">박물관 등록</li>
+      </ol>
+   </nav>
+   <!-- 페이지 타이틀 종료 -->
 </th:block>
 <th:block layout:fragment="customContents">
 	<link rel="stylesheet" type="text/css"

@@ -6,23 +6,18 @@
 	<title th:text="${title}"></title>
 </th:block>
 <th:block layout:fragment="contentsTitle">
-	<div class="row">
-		<div class="col-12">
 			<h2>공유 게시판 리스트</h2>
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="#">Home</a></li>
 					<li class="breadcrumb-item active" aria-current="page">여행 일정
-						공유</li>
+						공유 게시판</li>
 				</ol>
 			</nav>
-		</div>
-	</div>
 </th:block>
 
 <th:block layout:fragment="customContents">
 	<div class="row">
-	
 		<div class="col-3">
 			<div class="card text-center">
 				<div class="card-body">
@@ -133,10 +128,10 @@
 								</div>
 								<div class="blog-bottom text-center">
 										<a type="button" class="btn btn-outline-light"
-											>수정</a>
+											th:href="@{/traShare/traShareModify}">수정</a>
 										<button type="button" id="swal-delete"
 											class="btn btn-outline-light"
-											>삭제</button>
+										>삭제</button>
 								</div>
 							</div>
 						</div>
