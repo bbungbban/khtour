@@ -2,10 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <style>
-	.mainheaderhover{opacity:0;}
-	.mainheaderhover:hover{opacity:1;transition:1s;}
-	.mainsidehover{opacity:0;}
-	.mainsidehover:hover{opacity:1;transition:1s;}
 </style>
 <head th:replace="fragments/head :: headFragment"></head>
 
@@ -14,7 +10,7 @@
 		<div th:replace="fragments/header :: headerFragment"></div>
 		<!--  end : header -->
 		<!-- start : wrapper -->
-		<div class="wrapper">
+		<div class="wrapper sidebar-panel-collapse">
 			<!-- start : sidebar -->		
 			<div th:replace="fragments/sidebar :: sidebarFragment"></div>
 			<!-- end : sidebar -->
