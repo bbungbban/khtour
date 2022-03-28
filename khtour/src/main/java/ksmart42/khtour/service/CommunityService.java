@@ -1,11 +1,14 @@
 package ksmart42.khtour.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ksmart42.khtour.dto.CommCategory;
 import ksmart42.khtour.dto.CommPost;
 import ksmart42.khtour.dto.CommTag;
 import ksmart42.khtour.dto.Community;
@@ -53,6 +56,79 @@ public class CommunityService {
 		
 		return postList;
 	}
+	
+	public List<CommCategory> getCommCategoryList(){
+				
+		List<CommCategory> categoryList = communityMapper.getCommCategoryList();
+		return categoryList(categoryList);
+	}
+	public List<CommCategory> getCommCategoryList(int randomCnt){
+		
+		
+		List<CommCategory> categoryList = communityMapper.getCommCategoryList();
+		
+		int listCnt = categoryList.size();
+		
+		if(listCnt>randomCnt)
+		{
+			for(int i=listCnt ; i>randomCnt;i--)
+			{
+			int number = (int)(Math.random() * listCnt);
+			categoryList.remove(number);
+			}
+		}
+		return categoryList(categoryList);
+		
+	}
+	
+	public List<CommCategory> categoryList(List<CommCategory> categoryList)
+	{
+		for(int i = 0;i<categoryList.size();i++)
+		{
+			String result = "";
+			float memberCnt=0;
+			CommCategory category = categoryList.get(i);
+			List<Community> communityList = communityMapper.getCommunityListByCategory(category.getCategoryName());
+			
+			for (int j = 0;j<communityList.size();j++)
+			{
+				System.out.println(communityList.get(j).getMemberCnt());
+				memberCnt += Float.parseFloat(communityList.get(j).getMemberCnt());
+			}
+			result = KhtourLibrary.cntConverter(memberCnt);
+			category.setTotalMemberCnt(result);
+		}
+		return categoryList;
+	}
+	
+	public Map<String,List<Community>> getRandomCategoryMap(int randomCnt)
+	{
+		List<CommCategory> randomCategoryList = getCommCategoryList(randomCnt);
+		Map<String,List<Community>> randomCategoryMap = new HashMap<>();
+		for(int i =0;i<randomCategoryList.size();i++)
+		{		
+			String rCategoryName = randomCategoryList.get(i).getCategoryName();
+			randomCategoryMap.put(rCategoryName, getCommunityListByCategory(rCategoryName));
+		}
+		return randomCategoryMap;
+	}
+	
+	
+	
+	
+	public List<Community> getCommunityListByCategory(String categoryName){
+		
+		List<Community> communityList = communityMapper.getCommunityListByCategory(categoryName);
+		
+		for(int i = 0; i<communityList.size();i++)
+		{
+		
+		 float memberCnt = 	Float.parseFloat(communityList.get(i).getMemberCnt());
+		 communityList.get(i).setMemberCnt(KhtourLibrary.cntConverter(memberCnt));
+		}
+		return communityList;
+	}
+	
 	
 	public List<CommPost> getPostListByCommunityName(String commName){
 		List<CommPost> postList = communityMapper.getPostListByCommunityName(commName);

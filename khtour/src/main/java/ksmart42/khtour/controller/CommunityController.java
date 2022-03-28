@@ -1,5 +1,7 @@
 package ksmart42.khtour.controller;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import ksmart42.khtour.dto.CommCategory;
 import ksmart42.khtour.dto.CommPost;
 import ksmart42.khtour.dto.CommTag;
 import ksmart42.khtour.dto.Community;
@@ -87,6 +90,9 @@ public class CommunityController {
 	public String createCommunity(Model model) {
 		
 		model.addAttribute("title", "커뮤니티 생성");
+		List<CommCategory> categoryList = communityService.getCommCategoryList();
+		
+		model.addAttribute("categoryList",categoryList);
 		
 		return "community/addCommunity";
 	}
@@ -100,7 +106,7 @@ public class CommunityController {
 		
 		communityService.addCommunity(community);
 
-		
+
 		reAttr.addAttribute("commName",community.getCommName());
 		return "redirect:/commPage";
 		
@@ -171,14 +177,37 @@ public class CommunityController {
 		return "community/post";
 	}
 	@GetMapping("/commRanking")
-	public String commRanking(Model model) {
+	public String commRanking(Model model, @RequestParam(name="categoryName",required=false) String categoryName) {
 		
-		model.addAttribute("title", "전체커뮤니티");
-		List<Community> communityList = communityService.getCommunityList();
+		
+		List<Community> communityList = null;
+		
+		List<CommCategory> categoryList = communityService.getCommCategoryList();
+		
+		Map<String,List<Community>> randomCategoryMap = communityService.getRandomCategoryMap(3);
+		
+		if(categoryName!=null)
+		{
+			model.addAttribute("categoryName",categoryName);
+			communityList = communityService.getCommunityListByCategory(categoryName);
+		}
+		else
+		{
+			communityList = communityService.getCommunityList();
+		}
+		
+		model.addAttribute("title", "전체 커뮤니티");
 		model.addAttribute("communityList", communityList);
+		model.addAttribute("categoryList", categoryList);
+		model.addAttribute("randomCategoryMap", randomCategoryMap);
+		
 		
 		return "community/commRanking";
 	}
+	
+	
+	
+	
 	@GetMapping("/commPage")
 	public String commPage(Model model,@RequestParam(value = "commName") String commName) {
 

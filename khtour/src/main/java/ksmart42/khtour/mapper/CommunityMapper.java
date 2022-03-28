@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import ksmart42.khtour.dto.CommCategory;
 import ksmart42.khtour.dto.CommPost;
 import ksmart42.khtour.dto.CommTag;
 import ksmart42.khtour.dto.Community;
@@ -19,7 +20,11 @@ public interface CommunityMapper {
 	// 3 : 커뮤니티 포스트 전체 리스트 반환
 	public List<CommPost> getDailyPostList();
 	
+	public List<CommCategory> getCommCategoryList();
+	
 	public List<CommPost> getPostListByCommunityName(String commName);
+	
+	public List<Community> getCommunityListByCategory(String categoryName);
 	
 	
 	
