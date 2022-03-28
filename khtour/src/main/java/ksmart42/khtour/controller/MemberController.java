@@ -11,6 +11,7 @@ import ksmart42.khtour.dto.Member;
 import ksmart42.khtour.service.MemberService;
 
 @Controller
+@RequestMapping("/member")
 public class MemberController {
 	
 	private MemberService memberService;
