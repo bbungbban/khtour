@@ -63,7 +63,8 @@
 						</div>
 						<div class="card col-sm-11">
 							<div class="card-body">
-								<h5 class="card-title" th:text="${p.title}"></h5>
+								<button class="btn btn-primary active btn-sm pt-1 pb-1 pull-left mr-2" th:text="${p.tagName}"></button>
+								<h5 class="card-title mt-1" th:text="${p.title}"></h5>
 								<p class="card-text" th:text="${p.mainText}"></p>
 								<img th:src="@{'/images/commPost/'+${p.pictureLink}+'.jpg'}"
 									class="card-img" alt="...">

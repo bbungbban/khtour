@@ -1,5 +1,4 @@
 package ksmart42.khtour.controller;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -209,13 +208,19 @@ public class CommunityController {
 	
 	
 	@GetMapping("/commPage")
-	public String commPage(Model model,@RequestParam(value = "commName") String commName) {
+	public String commPage(Model model,@RequestParam(value = "commName") String commName, @RequestParam(name="tagCode",required=false) String tagCode) {
 
 		Community community = communityService.getCommunityByName(commName);
 		List<Rule> ruleList = communityService.getRuleListByCommName(commName);
 		List<CommTag> tagList = communityService.getTagListByCommName(commName);
 		List<CommPost> postList = communityService.getPostListByCommunityName(commName);
 		
+		
+		if(tagCode!=null && tagCode!= "")
+		{
+			postList = communityService.getPostByTagCode(postList, tagCode);	
+		}
+
 		model.addAttribute("community",community);
 		model.addAttribute("tagList", tagList);
 		model.addAttribute("title", "커뮤니티페이지");

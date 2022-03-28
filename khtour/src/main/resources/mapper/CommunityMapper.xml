@@ -232,6 +232,14 @@
 			WHERE 
 				t.comm_name = #{commName};
 	</select>
+	<select id="getTagNameByTagCode"  parameterType="String" resultType="String">
+			SELECT
+			t.tag_name
+			FROM
+			 tb_comm_tag AS t
+			WHERE 
+				t.tag_code = #{tagCode};
+	</select>
 	
 	
 	<select id="getNexPostCode"  resultType="String">
