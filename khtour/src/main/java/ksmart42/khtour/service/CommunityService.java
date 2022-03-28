@@ -48,6 +48,8 @@ public class CommunityService {
 			
 		for(int i = 0;i<postList.size();i++)
 		{
+			CommPost commPost = postList.get(i);
+			commPost.setTagName(communityMapper.getTagNameByTagCode(commPost.getTagCode()));
 			float likes = Float.parseFloat(postList.get(i).getLikesCnt());
 			float dislikes= Float.parseFloat(postList.get(i).getDislikesCnt());
 			float cnt = likes - dislikes;
@@ -139,8 +141,21 @@ public class CommunityService {
 			float dislikes= Float.parseFloat(postList.get(i).getDislikesCnt());
 			float cnt = likes - dislikes;
 			postList.get(i).setLikesCnt(KhtourLibrary.cntConverter(cnt));		
-		}
+		}	
+		return postList;
+	}
+	
+	public List<CommPost> getPostByTagCode(List<CommPost> postList,String tagCode)
+	{
+		for(int i =0;i<postList.size();i++)
+		{
+			String postTagCode = postList.get(i).getTagCode();
+			if(postTagCode==null||!postTagCode.equals(tagCode))
+			{
 		
+				postList.remove(i);
+			}	
+		}
 		return postList;
 	}
 	

@@ -5,9 +5,10 @@ public class CommPost {
 	@Override
 	public String toString() {
 		return "CommPost [postCode=" + postCode + ", commName=" + commName + ", memberId=" + memberId + ", tagCode="
-				+ tagCode + ", title=" + title + ", regTime=" + regTime + ", mainText=" + mainText + ", readerCnt="
-				+ readerCnt + ", pictureLink=" + pictureLink + ", videoLink=" + videoLink + ", likesCnt=" + likesCnt
-				+ ", dislikesCnt=" + dislikesCnt + ", reportCnt=" + reportCnt + ", pointGain=" + pointGain + "]";
+				+ tagCode + ", tagName=" + tagName + ", title=" + title + ", regTime=" + regTime + ", mainText="
+				+ mainText + ", readerCnt=" + readerCnt + ", pictureLink=" + pictureLink + ", videoLink=" + videoLink
+				+ ", likesCnt=" + likesCnt + ", dislikesCnt=" + dislikesCnt + ", reportCnt=" + reportCnt
+				+ ", pointGain=" + pointGain + "]";
 	}
 	public String getPostCode() {
 		return postCode;
@@ -93,10 +94,18 @@ public class CommPost {
 	public void setPointGain(String pointGain) {
 		this.pointGain = pointGain;
 	}
+	public String getTagName() {
+		return tagName;
+	}
+	public void setTagName(String tagName) {
+		this.tagName = tagName;
+	}
+	
 	private String postCode;
 	private String commName;
 	private String memberId;
 	private String tagCode;
+	private String tagName;
 	private String title;
 	private String regTime;
 	private String mainText;
