@@ -6,7 +6,6 @@
 	<title th:text="${title}"></title>
 </th:block>
 <th:block layout:fragment="contentsTitle">
-	<h4>커뮤니티 생성</h4>
 </th:block>
 <th:block layout:fragment="customScript">
 	<script>
@@ -71,9 +70,20 @@
 
 <th:block layout:fragment="customContents">
 	<div class="card bg-light">
+		<div class="card-header  bg-primary pb-0">
+			<h4 class="text-white">커뮤니티 생성</h4>
+		</div>
 		<div class="card-body">
 			<form class="cmxform" id="addCommunityForm" method="post"
 				th:action="@{/addCommunity}">
+				<div class="form-group" th:if="not ${#lists.isEmpty(categoryList)}">
+						<label for="category">등록할 커뮤니티 카테고리</label> <select class="form-control"
+							id="category" name="category">
+							<option value="none">===커뮤니티 카테고리 선택===</option>
+							<option th:if="${not #lists.isEmpty(categoryList)}" th:text="${cl.categoryName}" th:each="cl: ${categoryList}">
+							</option>
+						</select>
+					</div>
 				<div class="form-group">
 					<label for="commName">커뮤니티 이름</label>
 					<div class="row">

@@ -46,6 +46,13 @@
 		<result column="tag_color" property="tagColor"/>
 		<result column="reg_time" property="regTime"/>
 	</resultMap>
+	
+	<resultMap type="CommCategory" id="categoryResultMap">
+		<id column="category_name" property="categoryName"/>
+		<result column="reg_time" property="regTime"/>
+		<result column="banner_img" property="bannerImg"/>
+		<result column="total_member_cnt" property="totalMemberCnt"/>
+	</resultMap>
 
 	<!-- <select id="getCommunityList" resultMap="communityResultMap"> -->
 	<select id="getCommunityList"  resultMap="communityResultMap">
@@ -65,12 +72,15 @@
 				c.member_cnt DESC;	
 	</select>
 	
-	
-	
-	
-	
-	
-	
+	<select id="getCommCategoryList"  resultMap="categoryResultMap">
+			SELECT
+				c.category_name
+				,c.reg_time		 
+				,c.banner_img
+				,c.total_member_cnt
+			FROM
+				tb_comm_category AS c
+	</select>
 	
 	
 	<select id="getPostList"  resultMap="postResultMap">
@@ -177,6 +187,25 @@
 			Where
 				c.comm_name = #{commName};	
 	</select>
+	
+	<select id="getCommunityListByCategory"  resultMap="communityResultMap">
+			SELECT
+				c.comm_name
+				,c.member_id		 
+				,c.reg_date
+				,c.category
+				,c.banner	 
+				,c.avatar    
+				,c.member_cnt
+				,c.online_member_cnt
+				,c.comm_desc
+			FROM
+				tb_community AS c
+			Where
+				c.category = #{categoryName};	
+	</select>
+	
+	
 	<select id="getRuleListByCommName"  resultMap="ruleResultMap">
 			SELECT
 				r.rule_code
