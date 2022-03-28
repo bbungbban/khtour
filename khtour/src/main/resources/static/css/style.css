@@ -8891,5 +8891,9 @@ body {
 a {
 	color: #AD8B73;
 }
-
-.btn.btn-primary.active{background-color:#AD8B73;border-color:#AD8B73;}
+span:hover,i:hover,a:hover,.sidebar-menu>li.active>a>i, .sidebar-menu>li>a:hover>i,.sidebar-menu>li:hover>a, .sidebar-menu>li.active>a,.sidebar-menu .sidebar-submenu>li.active>a, .sidebar-menu .sidebar-submenu>li>a:hover{color:#AD8B73;}
+.btn.btn-primary:hover{border-color:#AD8B73;}
+.btn.btn-primary.active,.pagination .page-item.active .page-link,.btn.btn-outline-primary:hover,.irs--flat .irs-handle>i:first-child{background-color:#AD8B73;border-color:#AD8B73;}
+.dd-handle:hover,.wizard .nav-pills .nav-link.active .number,.progress-bar,.irs--flat .irs-bar,.irs--flat .irs-single,.tab .nav-pills .nav-link.active{background-color:#AD8B73;}
+.wizard .nav-pills .nav-link.active{border-bottom:3px solid #AD8B73;color:#AD8B73;}
+.btn.btn-outline-primary{border-color:#AD8B73;color:#AD8B73;}
