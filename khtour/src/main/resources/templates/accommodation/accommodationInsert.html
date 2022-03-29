@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/default}">
+	layout:decorate="~{layout/default2}">
 <th:block layout:fragment="customTitle">
 	<title th:text="${title}"></title>
 </th:block>
@@ -170,7 +170,7 @@
 									<div class="input-group-prepend">
 										<span class="input-group-text" id="ldgEmail">https://</span>
 									</div>
-									<input type="text" class="form-control" name="ldgExplain"
+									<input type="text" class="form-control" name="ldgHomepage"
 										aria-describedby="ldgEmail">
 								</div>
 								<label class="form-group col-12 col-md-12 col-lg-12"
@@ -197,11 +197,6 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
-
 </th:block>
 <th:block layout:fragment="customBodyScript">
 	<!-- summernote -->
@@ -271,4 +266,3 @@
 
 
 </th:block>
-</html>

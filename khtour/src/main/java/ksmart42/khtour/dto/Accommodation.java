@@ -13,6 +13,8 @@ public class Accommodation {
    private String ldgTel;
    private String ldgPhone;
    private String ldgEmail;
+   private String ldgHomepage;
+   
 public String getLdgCode() {
    return ldgCode;
 }
@@ -79,14 +81,18 @@ public String getLdgEmail() {
 public void setLdgEmail(String ldgEmail) {
    this.ldgEmail = ldgEmail;
 }
+public String getLdgHomepage() {
+	return ldgHomepage;
+}
+public void setLdgHomepage(String ldgHomepage) {
+	this.ldgHomepage = ldgHomepage;
+}
 @Override
 public String toString() {
-   return "Accommodation [ldgCode=" + ldgCode + ", ldgName=" + ldgName + ", ldgType=" + ldgType + ", ldgImg=" + ldgImg
-         + ", businessNumber=" + businessNumber + ", ldgAddr=" + ldgAddr + ", ldgDetailAddr=" + ldgDetailAddr
-         + ", ldgExplain=" + ldgExplain + ", ldgTel=" + ldgTel + ", ldgPhone=" + ldgPhone + ", ldgEmail=" + ldgEmail
-         + "]";
-}
-   
-  
+	return "Accommodation [ldgCode=" + ldgCode + ", ldgName=" + ldgName + ", ldgType=" + ldgType + ", ldgImg=" + ldgImg
+			+ ", businessNumber=" + businessNumber + ", ldgAddr=" + ldgAddr + ", ldgDetailAddr=" + ldgDetailAddr
+			+ ", ldgExplain=" + ldgExplain + ", ldgTel=" + ldgTel + ", ldgPhone=" + ldgPhone + ", ldgEmail=" + ldgEmail
+			+ ", ldgHomepage=" + ldgHomepage + "]";
+} 
    
 }

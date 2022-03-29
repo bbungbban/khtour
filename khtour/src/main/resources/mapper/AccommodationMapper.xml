@@ -32,6 +32,7 @@
 			,ldg_tel
 			,ldg_phone
 			,ldg_email
+			,ldg_homepage
 		)VALUES (
 			 sf_new_ldg_code()
 			,#{ldgName}
@@ -44,6 +45,7 @@
 			,#{ldgTel}
 			,#{ldgPhone}
 			,#{ldgEmail}
+			,#{ldgHomepage}
 		);   
 	</insert>
 	

@@ -1,5 +1,9 @@
 package ksmart42.khtour.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,9 +50,12 @@ public class AccommodationController {
 	 * */
 	@GetMapping("/accommodationList")
 	public String getaccommodation(Model model) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
 		
+		List<Accommodation> accommodationList = accommodationService.getAccommodationList(paramMap);
 		
 		model.addAttribute("title", "숙박업소검색");
+		model.addAttribute("accommodationList", accommodationList);
 		
 		return "/accommodation/accommodationList";
 	}
