@@ -5,20 +5,20 @@
 <mapper namespace="ksmart42.khtour.mapper.HeritageMapper">
 
 	<resultMap type="Heritage" id="heritageResultMap">
-		<id column="heritage_code" property="heritageCode"/>
-		<result column="member_id" property="memberId"/>
-		<result column="heritage_name" property="heritageName"/>
-		<result column="heritage_sub_name" property="heritageSubName"/>
-		<result column="heritage_location" property="heritageLocation"/>
-		<result column="heritage_era" property="heritageEra"/>
-		<result column="heritage_designation" property="heritageDesignation"/>
-		<result column="heritage_classification" property="heritageClassification"/>
-		<result column="heritage_image" property="heritageImage"/>
-		<result column="heritage_detail" property="heritageDetail"/>
-		<result column="heritage_owner" property="heritageOwner"/>
-		<result column="heritage_manager" property="heritageManager"/>
-		<result column="heritage_category" property="heritageCategory"/>
-		<result column="heritage_area" property="heritageArea"/>
+		<id column="heritage_code" property="heritageCode"/>							<!-- 문화재 코드 -->
+		<result column="member_id" property="memberId"/>								<!-- 멤버 아이디 -->
+		<result column="heritage_name" property="heritageName"/>						<!-- 문화재 명 -->
+		<result column="heritage_sub_name" property="heritageSubName"/>					<!-- 문화재 한문명 -->
+		<result column="heritage_location" property="heritageLocation"/>				<!-- 문화재 소재지 -->
+		<result column="heritage_era" property="heritageEra"/>							<!-- 문화재 시대명 -->
+		<result column="heritage_designation" property="heritageDesignation"/>			<!-- 문화재 지정일 -->
+		<result column="heritage_classification" property="heritageClassification"/>	<!-- 문화재 분류 -->
+		<result column="heritage_image" property="heritageImage"/>						<!-- 문화재 이미지 -->
+		<result column="heritage_detail" property="heritageDetail"/>					<!-- 문화재 부가설명 -->
+		<result column="heritage_owner" property="heritageOwner"/>						<!-- 문화재 소유자 -->
+		<result column="heritage_manager" property="heritageManager"/>					<!-- 문화재 관리자 -->
+		<result column="heritage_category" property="heritageCategory"/>				<!-- 문화재 중분류 -->
+		<result column="heritage_area" property="heritageArea"/>						<!-- 문화재 수량/면적 -->
 	</resultMap> 
 	<!-- 문화재 정보 삭제 SQL -->
 	<delete id="removeHeritage" parameterType="String">

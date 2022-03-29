@@ -220,36 +220,37 @@
 					</div>
 				</div>
 				<div class="card-body" data-select2-id="5">
-					<form class="cmxform" id="form2" method="get">
+					<form id="addPlanForm" th:action="@{/plan/planListSt}" method="post">
 						<div class="form-group">
-							<label for="heritageName">여행 이름</label> <input
-								type="text" class="form-control"
+							<label for="planName">여행 이름</label> <input
+								type="text" class="form-control" id="planName"name="planName"
 							 required="">
 						</div>
-						
+						<div class="form-group">
+							<label for="planLocation">여행 지역</label> <input type="text" 
+								 class="form-control inputwt" id="planLocation"name="planLocation" >
+						</div>
 						<div class="form-group">
 							<label for="email">여행 시작 ~ 여행 종료</label> <input type="text"
 								name="datetimes" class="form-control inputwt">
 						</div>
 						<div class="form-group">
-							<label for="heritageName">여행 준비물</label> <input
-								type="text" class="form-control"
+							<label for="planMaterials">여행 준비물</label> <input
+								type="text" class="form-control" id="planMaterials"name="planMaterials"
 							 required="">
 						</div>
 						<div class="form-group">
-							<label for="heritageName">여행 멤버</label> <input
-								type="text" class="form-control"
+							<label for="soloParty">여행 개인/단체 </label> <input
+								type="text" class="form-control" id="soloParty"name="soloParty"
 							 required="">
 						</div>
 						<div class="form-group">
-							<label for="heritageName">여행 총 경비</label> <input
-								type="text" class="form-control"
+							<label for="planExpenses">여행 총 경비</label> <input
+								type="text" class="form-control" id="planExpenses" name="planExpenses"
 							 required="">
-						</div>
-						
-														<button type="button" id="addHeritageBtn"
-															class="btn btn-primary">등록</button>
-														<button type="button" class="btn btn-danger">취소</button>
+						</div>		
+						<button type="button" id="addPlanBtn" class="btn btn-primary">등록</button>
+						<button type="button" class="btn btn-danger">취소</button>
 					</form>
 				</div>
 			</div>
@@ -944,6 +945,16 @@
 				el.removeChild(el.lastChild);
 			}
 		}
+		$(function(){
+			$(document).on('click','버튼의 선택자',function(){
+				var datetime = $('input[name="datetimes"]').val();
+				//날짜 시간을 subString 문자열 잘라요
+				var  startDate,endDate;
+				$('#startDate').val(startDate);
+				$('#endDate').val(endDate);
+				$('퓨ㅗㅁ선택자').submit();
+			});
+		});
 	</script>
 
 </th:block>
