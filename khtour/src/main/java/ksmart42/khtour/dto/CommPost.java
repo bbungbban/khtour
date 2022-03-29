@@ -5,7 +5,7 @@ public class CommPost {
 	@Override
 	public String toString() {
 		return "CommPost [postCode=" + postCode + ", commName=" + commName + ", memberId=" + memberId + ", tagCode="
-				+ tagCode + ", tagName=" + tagName + ", title=" + title + ", regTime=" + regTime + ", mainText="
+				+ tagCode + ", commTag=" + commTag + ", title=" + title + ", regTime=" + regTime + ", mainText="
 				+ mainText + ", readerCnt=" + readerCnt + ", pictureLink=" + pictureLink + ", videoLink=" + videoLink
 				+ ", likesCnt=" + likesCnt + ", dislikesCnt=" + dislikesCnt + ", reportCnt=" + reportCnt
 				+ ", pointGain=" + pointGain + "]";
@@ -94,18 +94,17 @@ public class CommPost {
 	public void setPointGain(String pointGain) {
 		this.pointGain = pointGain;
 	}
-	public String getTagName() {
-		return tagName;
+	public CommTag getCommTag() {
+		return commTag;
 	}
-	public void setTagName(String tagName) {
-		this.tagName = tagName;
+	public void setCommTag(CommTag commTag) {
+		this.commTag = commTag;
 	}
 	
 	private String postCode;
 	private String commName;
 	private String memberId;
 	private String tagCode;
-	private String tagName;
 	private String title;
 	private String regTime;
 	private String mainText;
@@ -116,5 +115,6 @@ public class CommPost {
 	private String dislikesCnt;
 	private String reportCnt;
 	private String pointGain;
+	private CommTag commTag;
 	
 }

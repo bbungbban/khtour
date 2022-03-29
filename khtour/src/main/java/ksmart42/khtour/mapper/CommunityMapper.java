@@ -39,7 +39,7 @@ public interface CommunityMapper {
 	// 7 : 커뮤니티 이름으로 커뮤니티 테그 찾아서 반환 
 	public List<CommTag> getTagListByCommName(String commName);
 	
-	public String getTagNameByTagCode(String tagCode);
+	public CommTag getCommTagByTagCode(String tagCode);
 	
 	// 8 : 커뮤니티 추가
 	public void addCommunity(Community community);

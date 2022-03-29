@@ -52,7 +52,6 @@ public class CommunityController {
 	
 	@GetMapping("/commDashboard")
 	public String commDashboard(Model model) {
-		System.out.println("01 commDashboard CommunityController.java");
 		List<Community> communityList = communityService.getCommunityList();
 		List<CommPost> postList = communityService.getPostList();
 		List<CommPost> dailyPostList = communityService.getDailyPostList();
@@ -146,16 +145,14 @@ public class CommunityController {
 		
 		reAttr.addAttribute("postCode",commPost.getPostCode());
 		
-		return "redirect:/post";
-		
+		return "redirect:/post";	
 	}
 	
 	
 	
 	@GetMapping("/post")
 	public String post(Model model,@RequestParam(value = "postCode") String postCode) {
-		
-		
+			
 		CommPost commPost =communityService.getPostByPostCode(postCode);
 		String commName = commPost.getCommName();
 		
@@ -165,13 +162,7 @@ public class CommunityController {
 		model.addAttribute("ruleList", ruleList);
 		model.addAttribute("community", community);
 		model.addAttribute("commPost", commPost);
-		
-		
-		
-		
-		
 		model.addAttribute("title", "포스트");
-		
 		
 		return "community/post";
 	}
@@ -203,16 +194,13 @@ public class CommunityController {
 		
 		return "community/commRanking";
 	}
-	
-	
-	
-	
 	@GetMapping("/commPage")
 	public String commPage(Model model,@RequestParam(value = "commName") String commName, @RequestParam(name="tagCode",required=false) String tagCode) {
 
 		Community community = communityService.getCommunityByName(commName);
 		List<Rule> ruleList = communityService.getRuleListByCommName(commName);
 		List<CommTag> tagList = communityService.getTagListByCommName(commName);
+		
 		List<CommPost> postList = communityService.getPostListByCommunityName(commName);
 		
 		

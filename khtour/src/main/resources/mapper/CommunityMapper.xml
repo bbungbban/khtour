@@ -232,9 +232,14 @@
 			WHERE 
 				t.comm_name = #{commName};
 	</select>
-	<select id="getTagNameByTagCode"  parameterType="String" resultType="String">
+	<select id="getCommTagByTagCode"  resultMap="tagResultMap">
 			SELECT
-			t.tag_name
+			t.tag_code
+				,t.comm_name
+				,t.member_id
+				,t.tag_name
+				,t.tag_color
+				,t.reg_time
 			FROM
 			 tb_comm_tag AS t
 			WHERE 

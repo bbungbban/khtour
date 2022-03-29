@@ -27,6 +27,7 @@
 				</div>
 				<div class="card col-sm-11">
 					<div class="card-body">
+						<button th:class="'btn active btn-sm pt-1 pb-1 pull-left mr-2 btn-'+${commPost.CommTag.getTagColor()}" th:text="${commPost.CommTag.getTagName()}"></button>
 						<h5 class="card-title" th:text="${commPost.title}"></h5>
 						<p class="card-text" th:text="${commPost.mainText}"></p>
 						<img th:src="@{'/images/commPost/'+${commPost.pictureLink}+'.jpg'}"
