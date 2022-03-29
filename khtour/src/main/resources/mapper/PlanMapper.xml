@@ -44,7 +44,7 @@
 	<!-- 코드에 따른 문화재 조회 SQL -->
 	<select id="getPlanByCode" parameterType="String" resultMap="planResultMap">
 		SELECT
-		  p.plan_code
+		    p.plan_code
 		   ,p.member_id
 		   ,p.plan_name
 		   ,p.start_date 
@@ -54,7 +54,7 @@
 		   ,p.plan_expenses   
 		   ,p.plan_location    
 		FROM
-		  tb_tra_plan AS p;
+		  tb_tra_plan AS p
 		WHERE
 			plan_code = #{planCode};
 	
@@ -72,8 +72,6 @@
 		   ,plan_materials   
 		   ,plan_expenses   
 		   ,plan_location    
-		FROM
-		  tb_tra_plan AS p;  
 		) VALUES (
 		   sf_new_plan_code()
 		   ,#{memberId}

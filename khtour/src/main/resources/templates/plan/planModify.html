@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default3}">
+<th:block layout:fragment="customTitle">
+	<title th:text="${title}"></title>
+</th:block>
+<th:block layout:fragment="contentsTitle">
+
+			<h2>여행 계획 등록</h2>
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">Home</a></li>
+					<li class="breadcrumb-item active" aria-current="page">여행 일정
+						공유</li>
+				</ol>
+			</nav>
+
+</th:block>
+
+<th:block layout:fragment="customContents">
+<div class="row justify-content-center">
+	<div class="col-12 col-la-10 col-xl-7">
+			<div class="card" data-select2-id="6">
+				<div class="card-title">
+					<div class="card-title-left">
+						<h4 class="card-title-text">여행 계획 설정</h4>
+
+					</div>
+				</div>
+				<div class="card-body" data-select2-id="5">
+					<form th:action="@{/plan/modifyPlan}" method="post">
+						<div class="form-group">
+							<label for="planCode">여행 계획 코드</label> <input
+								type="hidden" class="form-control" id="planCode"name="planCode" th:value="${plan.planCode}" 
+							 required="">
+						</div>
+						<div class="form-group">
+							<label for="planName">여행 이름</label> <input
+								type="text" class="form-control" id="planName"name="planName" th:value="${plan.planName}"
+							 required="">
+						</div>
+						<div class="form-group">
+							<label for="planLocation">여행 지역</label> <input type="text" 
+								 class="form-control inputwt" id="planLocation"name="planLocation" th:value="${plan.planLocation}">
+						</div>
+						<div class="form-group">
+							<label for="startDate">여행 시작</label> <input type="text"
+								name="datetimes" class="form-control inputwt">
+						</div>
+						<div class="form-group">
+							<label for="endDate">여행 종료</label> <input type="text"
+								name="datetimes" class="form-control inputwt">
+						</div>
+						<div class="form-group">
+							<label for="planMaterials">여행 준비물</label> <input
+								type="text" class="form-control" id="planMaterials"name="planMaterials" th:value="${plan.planMaterials}"
+							 required="">
+						</div>
+						<div class="form-group">
+							<label for="soloParty">여행 개인/단체 </label> <input
+								type="text" class="form-control" id="soloParty"name="soloParty" th:value="${plan.soloParty}"
+							 required="">
+						</div>
+						<div class="form-group">
+							<label for="planExpenses">여행 총 경비</label> <input
+								type="text" class="form-control" id="planExpenses" name="planExpenses" th:value="${plan.planExpenses}"
+							 required="">
+						</div>		
+					<button type="submit" class="btn btn-primary">수정완료</button>
+					<a type="button" class="btn btn-danger"
+						th:href="@{/plan/planListSt}">취소</a>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</th:block>
+<th:block layout:fragment="customBodyScript">
+	<!-- PRISM -->
+	<script th:src="@{/js/prism/prism.js}"></script>
+	<!-- custom -->
+	<script th:src="@{/js/custom.js}"></script>
+	<!-- jquery-nicescroll -->
+	<script th:src="@{/js/jquery-nicescroll/jquery.nicescroll.min.js}"></script>
+	<!-- bootstrap-datepicker -->
+	<script th:src="@{/js/moment.min.js}"></script>
+	<script th:src="@{/js/datepicker/daterangepicker.js}"></script>
+	<!-- bootstrap-timepicker -->
+	<script th:src="@{/js/datepicker/bootstrap-timepicker.js}"></script>
+
+	
+
+</th:block>
+</html>

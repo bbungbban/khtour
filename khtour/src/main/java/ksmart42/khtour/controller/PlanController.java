@@ -22,7 +22,6 @@ public class PlanController {
 	
 	public PlanController(PlanService planService) {
 		this.planService = planService;
-		
 	}
 	
 	/*
@@ -55,7 +54,7 @@ public class PlanController {
 	/*
 	 * 여행 계획 정보 수정 (관리자) (Get 정보 전달)
 	 */
-	@GetMapping("/modifyPlan")
+	@GetMapping("/planModify")
 	public String modifyPlan(
 			@RequestParam(value="planCode", required = false) String planCode
 			,Model model) {
@@ -65,7 +64,7 @@ public class PlanController {
 		model.addAttribute("plan", plan);
 		System.out.println("정보 수정 겟방식 전달" + plan);
 		
-		return "plan/modifyPlan";
+		return "plan/planModify";
 	}	
 	
 	/*
@@ -85,9 +84,10 @@ public class PlanController {
 	/*
 	 * 여행 계획 등록(Post 정보 전달)
 	 */
-	@PostMapping("/addPlan")
+	@PostMapping("/planInsert")
 	public String addPlan(Plan plan) {
 		
+		plan.setMemberId("id001");
 		planService.addPlan(plan);
 		
 		return "redirect:/plan/planListSt";
@@ -95,12 +95,12 @@ public class PlanController {
 	/*
 	 * 여행 계획 등록(Get 정보 전달)
 	 */
-	@GetMapping("/addPlan")
+	@GetMapping("/planInsert")
 	public String addPlan(Model model) {
 		
 		model.addAttribute("title", "여행 계획 등록");
 		
-		return "plan/addPlan";
+		return "plan/planInsert";
 	}
 	
 }

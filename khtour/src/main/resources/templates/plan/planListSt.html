@@ -6,7 +6,13 @@
 	<title th:text="${title}"></title>
 </th:block>
 <th:block layout:fragment="contentsTitle">
-	<h2>문화재 정보 조회 (관리자)</h2>
+		<h2>문화재 정보 조회</h2>
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a th:href="@{/heritage/heritageListByItem}">문화재 검색 리스트</a></li>
+					<li class="breadcrumb-item active" aria-current="page">문화재 정보 수정</li>
+				</ol>
+			</nav>
 </th:block>
 <th:block layout:fragment="customContents">
 	<link rel="stylesheet" type="text/css"
@@ -32,11 +38,11 @@
 										<th>여행 계획 코드</th>
 										<th>여행 계획 이름</th>
 										<th>지역</th>
-										<th>출발일</th>
-										<th>종료일</th>
+
 										<th>개인/단체 </th>
 										<th>여행 준비물</th>
 										<th>여행 총 경비</th>
+										<th>수정/삭제</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -44,13 +50,11 @@
 										<td th:text="${l.planCode}"></td>
 										<td th:text="${l.planName}"></td>
 										<td th:text="${l.planLocation}"></td>
-										<td th:text="${l.startTime}"></td>
-										<td th:text="${l.endTime}"></td>
+
 										<td th:text="${l.soloParty}"></td>
 										<td th:text="${l.planMaterials}"></td>
 										<td th:text="${l.planExpenses}"></td>
-										<td>
-											<a
+									<td><a
 											class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1" th:href="@{/plan/planModify(planCode=${l.planCode})}"><i
 												class="la la-edit"></i> </a>
 											<button class="btn btn-danger btn-icon btn-sm mb-1" id="swal-delete-plan" th:data-planCd="${l.planCode}">
@@ -93,9 +97,9 @@
 	<script th:src="@{/js/datatables/dataTables.rowGroup.min.js}"></script>
 	<!-- custom -->
 	<script th:src="@{/js/custom.js}"></script>
-	<script>
+<script>
 		$(function(){
-			$(document).on('click','#swal-delete-heritage',function(){
+			$(document).on('click','#swal-delete-plan',function(){
 				var planCd = $(this).attr('data-planCd');
 			      const swalWithBootstrapButtons = swal.mixin({
 			          confirmButtonClass: 'btn btn-success',
