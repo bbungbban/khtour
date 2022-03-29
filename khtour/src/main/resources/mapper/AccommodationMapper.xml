@@ -19,7 +19,7 @@
 	</resultMap>
 	
 	<!-- 숙박업소 등록 SQL -->
-	<insert id="addAccommodation" parameterType="Accommodation">
+	<insert id="addaccommodation" parameterType="Accommodation">
 		INSERT INTO tb_ldg_information
 		(	 ldg_code
 			,ldg_name
@@ -38,7 +38,7 @@
 			,#{ldgType}
 			,#{ldgImg}
 			,#{businessNumber}
-			,#{lgdAddr}
+			,#{ldgAddr}
 			,#{ldgDetailAddr}
 			,#{ldgExplain}
 			,#{ldgTel}

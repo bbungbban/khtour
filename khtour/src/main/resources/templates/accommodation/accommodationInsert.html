@@ -117,7 +117,7 @@
 				<div class="card-body">
 					<div class="card-title">
 						<form id="addaccommodation"
-							th:action="@{/accommondation/accommodationList}" method="post">
+							th:action="@{/accommodation/accommodationInsert}" method="post">
 							<div class="card-title-left">
 								<h4 class="card-title-text">등록 정보 입력</h4>
 								<div class="form-group col-12 col-md-6 col-lg-6">
@@ -183,8 +183,8 @@
 										class="form-control" rows="17" placeholder="업체 상세 내용 입력"
 										required></textarea>
 								</div>
-								<div class="col-2" style="display: inline-block; float: right;">
-									<button type="button" class="btn btn-primary" id="addAccommodationBtn">신규등록</button>
+								<div class="col-2" style="display: inline-block;">
+									<button type="submit" class="btn btn-primary" id="addaccommodation">신규등록</button>
 								</div>
 							</div>
 						</form>
