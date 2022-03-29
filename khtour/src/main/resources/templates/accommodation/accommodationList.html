@@ -203,132 +203,23 @@
 			<!-- 숙박업소 리스트 영역 -->
 			<div class="row">
 				<div class="col-md-4 col-lg-4">
-					<div class="blog mb-5">
+					<div class="blog mb-5" th:if="${not #list.isEmpty(accommodationList)}"
+										   th:each="l:${accommodationList}">
 						<div class="blog-image">
 							<img class="img-fluid w-100" th:src="@{/images/aco/sinla.jpg}"
 								alt="">
 						</div>
 						<div class="blog-info">
 							<div class="blog-title mt-3">
-								<h4 class="mb-3" id="accommodationName">
+								<h4 class="mb-3" th:text="${l.ldgName}">
 									<a th:href="@{/accommodation/acoommodationInfo}">신라스테이 해운대</a>
 								</h4>
-								<p class="mb-0">Maxime dolorem nihil minus, quasi, dicta
-									cupiditate aut magni ea veniam natus provident.</p>
-							</div>
-						</div>
-						<div class="blog-bottom">
-							<ul class="list-inline mb-0">
-								<li><button type="button" class="btn btn-outline-light">수정</button></li>
-								<li><button type="button" class="btn btn-outline-light">삭제</button></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-lg-4">
-					<div class="blog mb-5">
-						<div class="blog-image">
-							<img class="img-fluid w-100"
-								th:src="@{/images/aco/parkhyatt.jpg}" alt="">
-						</div>
-						<div class="blog-info">
-							<div class="blog-title mt-3">
-								<h4 class="mb-3">
-									<a href="#!">파크하얏트 강남</a>
-								</h4>
-								<p class="mb-0">강남 파크하얏트</p>
-							</div>
-						</div>
-						<div class="blog-bottom">
-							<ul class="list-inline mb-0">
-								<li><button type="button" class="btn btn-outline-light">수정</button></li>
-								<li><button type="button" class="btn btn-outline-light">삭제</button></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-lg-4">
-					<div class="blog mb-5">
-						<div class="blog-image">
-							<img class="img-fluid w-100" th:src="@{/images/aco/gyengju.png}"
-								alt="">
-						</div>
-						<div class="blog-info">
-							<div class="blog-title mt-3">
-								<h4 class="mb-3">
-									<a href="#!">경주 황남관 한옥호텔</a>
-								</h4>
-								<p class="mb-0">Maxime dolorem nihil minus, quasi, dicta
-									cupiditate aut magni ea veniam natus provident.</p>
-							</div>
-						</div>
-						<div class="blog-bottom">
-							<ul class="list-inline mb-0">
-								<li><button type="button" class="btn btn-outline-light">수정</button></li>
-								<li><button type="button" class="btn btn-outline-light">삭제</button></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-lg-4">
-					<div class="blog mb-5">
-						<div class="blog-image">
-							<img class="img-fluid w-100" th:src="@{/images/aco/pohang.png}"
-								alt="">
-						</div>
-						<div class="blog-info">
-							<div class="blog-title mt-3">
-								<h4 class="mb-3">
-									<a href="#!">포항 스타스케이프 풀빌라</a>
-								</h4>
-								<p class="mb-0">Maxime dolorem nihil minus, quasi, dicta
-									cupiditate aut magni ea veniam natus provident.</p>
-							</div>
-						</div>
-						<div class="blog-bottom">
-							<ul class="list-inline mb-0">
-								<li><button type="button" class="btn btn-outline-light">수정</button></li>
-								<li><button type="button" class="btn btn-outline-light">삭제</button></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-lg-4">
-					<div class="blog mb-5">
-						<div class="blog-image">
-							<img class="img-fluid w-100" th:src="@{/images/aco/jejuyega.png}"
-								alt="">
-						</div>
-						<div class="blog-info">
-							<div class="blog-title mt-3">
-								<h4 class="mb-3">
-									<a href="#!">제주 애월여가한옥</a>
-								</h4>
-								<p class="mb-0">Maxime dolorem nihil minus, quasi, dicta
-									cupiditate aut magni ea veniam natus provident.</p>
-							</div>
-						</div>
-						<div class="blog-bottom">
-							<ul class="list-inline mb-0">
-								<li><button type="button" class="btn btn-outline-light">수정</button></li>
-								<li><button type="button" class="btn btn-outline-light">삭제</button></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-lg-4">
-					<div class="blog mb-5">
-						<div class="blog-image">
-							<img class="img-fluid w-100"
-								th:src="@{/images/aco/jeonjuKing.png}" alt="">
-						</div>
-						<div class="blog-info">
-							<div class="blog-title mt-3">
-								<h4 class="mb-3">
-									<a href="#!">전주 왕의지밀</a>
-								</h4>
-								<p class="mb-0">Maxime dolorem nihil minus, quasi, dicta
-									cupiditate aut magni ea veniam natus provident.</p>
+								<p class="mb-0" th:text="${l.ldgType}"></p>
+								<p class="mb-0" th:text="${l.ldgAddr}"></p>
+								<p class="mb-0" th:text="${l.ldgDetailAddr}"></p>
+								<p class="mb-0" th:text="${l.ldgTel}"></p>
+								<p class="mb-0" th:text="${l.ldgHomepage}"></p>
+								
 							</div>
 						</div>
 						<div class="blog-bottom">
