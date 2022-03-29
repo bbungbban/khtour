@@ -6,7 +6,15 @@
 	<title th:text="${title}"></title>
 </th:block>
 <th:block layout:fragment="contentsTitle">
+	<!-- 페이지 타이틀 시작 -->
 	<h2>특별전 조회 및 수정</h2>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="#">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page">특별전 조회 및 수정</li>
+		</ol>
+	</nav>
+	<!-- 페이지 타이틀 종료 -->
 </th:block>
 <th:block layout:fragment="customContents">
 	<link rel="stylesheet" type="text/css"

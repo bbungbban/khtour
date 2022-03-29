@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ksmart42.khtour.mapper.HeritageMapper">
+<resultMap type="Museum" id="MuseumResultMap">
+		<id column="mus_code" property="musCode"/>
+		<result column="ch_mus_code" property="chMusCode"/>
+		<result column="large_chmus_cate_code" property="largeChmusCateCode"/>
+		<result column="large_category" property="largeCategory"/>
+		<result column="ch_mus_name" property="chMusName"/>
+		<result column="ch_mus_addr" property="ch_MusAddr"/>
+		<result column="ch_mus_detail" property="chMusDetail"/>
+		<result column="ch_mus_site" property="chMusSite"/>
+		<result column="ch_mus_num" property="chMusNum"/>
+		<result column="ch_mus_disclose" property="chMusDisclose"/>
+		<result column="ch_mus_start" property="chMusStart"/>
+		<result column="ch_mus_end" property="chMusEnd"/>
+		<result column="ch_mus_close" property="chMusClose"/>
+	</resultMap> 
+	
+	<!-- 문화재 등록 SQL -->
+	<insert id="addMuseum" parameterType="Museum">
+		INSERT INTO tb_ch_mus_info
+		(   ch_mus_code
+		   ,large_chmus_cate_code
+		   ,large_category
+		   ,ch_mus_name   
+		   ,ch_mus_addr     
+		   ,ch_mus_detail
+		   ,ch_mus_site
+		   ,ch_mus_num 
+		   ,ch_mus_disclose
+		   ,ch_mus_start
+		   ,ch_mus_end
+		   ,ch_mus_close
+		) VALUES (
+		   sf_new_heritage_code()
+		   ,#{chMusCode}
+		   ,#{largeChmusCateCode}
+		   ,#{largeCategory}
+		   ,#{chMusName}
+		   ,#{ch_MusAddr}
+		   ,#{chMusDetail}
+		   ,#{chMusSite}
+		   ,#{chMusNum}
+		   ,#{chMusDisclose}
+		   ,#{chMusStart}
+		   ,#{chMusEnd}
+		   ,#{chMusClose}
+		);
+	</insert>
+</mapper>
