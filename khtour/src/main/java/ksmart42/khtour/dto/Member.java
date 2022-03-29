@@ -11,6 +11,7 @@ public class Member {
 	private String memberStatus;
 	private String memberLevel;
 	private String memberName;
+	private String memberUserName;
 	private String memberContact;
 	private String memberBirthday;
 	private String memberEmail;
@@ -73,6 +74,12 @@ public class Member {
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
 	}
+	public String getMemberUserName() {
+		return memberUserName;
+	}
+	public void setMemberUserName(String memberUserName) {
+		this.memberUserName = memberUserName;
+	}
 	public String getMemberContact() {
 		return memberContact;
 	}
@@ -126,10 +133,11 @@ public class Member {
 		return "Member [memberId=" + memberId + ", memberPointLevel=" + memberPointLevel + ", memberTotalPointCode="
 				+ memberTotalPointCode + ", memberTotalPointUsed=" + memberTotalPointUsed + ", memberUsablePoint="
 				+ memberUsablePoint + ", memberPw=" + memberPw + ", memberStatus=" + memberStatus + ", memberLevel="
-				+ memberLevel + ", memberName=" + memberName + ", memberContact=" + memberContact + ", memberBirthday="
-				+ memberBirthday + ", memberEmail=" + memberEmail + ", memberRegTime=" + memberRegTime
-				+ ", memberCountry=" + memberCountry + ", memberAbout=" + memberAbout + ", memberAvatarImage="
-				+ memberAvatarImage + ", memberBannerImage=" + memberBannerImage + "]";
+				+ memberLevel + ", memberName=" + memberName + ", memberUserName=" + memberUserName + ", memberContact="
+				+ memberContact + ", memberBirthday=" + memberBirthday + ", memberEmail=" + memberEmail
+				+ ", memberRegTime=" + memberRegTime + ", memberCountry=" + memberCountry + ", memberAbout="
+				+ memberAbout + ", memberAvatarImage=" + memberAvatarImage + ", memberBannerImage=" + memberBannerImage
+				+ "]";
 	}
 
 }
