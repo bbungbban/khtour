@@ -26,42 +26,63 @@ public class HeritageController {
 	}
 	
 	/*
-	 * 문화재 정보 삭제(post 정보 전달)
+	 * 문화재 조회 (관리자)(Get 정보 전달)
 	 */
-	@PostMapping("/removeHeritage")
-	public String removeHeritage(Heritage heritage) {
-		String heritageCode = heritage.getHeritageCode();
+	@GetMapping("/heritageListSt")
+	public String getHeritageListSt(Model model) {
+		Map<String, Object> paramMap = new HashMap<String , Object>();
 		
-		heritageService.removeHeritage(heritageCode);
-		System.out.println("정보 삭제 포스트 전달" + heritageService.removeHeritage(heritageCode));
+		List<Heritage> heritageList = heritageService.getHeritageList(paramMap);
 		
-		return "redirect:/heritage/heritageListByItem";
+		model.addAttribute("title", "문화재 종목별 검색 페이지");
+		model.addAttribute("heritageList", heritageList);
 		
+		return "heritage/heritageListSt";
 	}
+	
+	
+	
 	/*
-	 * 문화재 정보 삭제(Get 정보 전달)
-	 */	
-	@GetMapping("/removeHeritage")
-	public String removeHeritage(Model model,
-			@RequestParam(value="heritageCode", required = false) String heritageCode) {
-		
-		model.addAttribute("title", "문화재 삭재");
-		model.addAttribute("heritageCode, heritageCode");
-		System.out.println("정보 삭제 겟 전달" + heritageService.removeHeritage(heritageCode));
-		
-		return "heritage/removeHeritage";
-	}
-			
-	/*
-	 * 문화재 종목별 정보 등록(Post 정보 전달)
+	 * 문화재 정보 수정 (관리자) (Post 정보 전달)
 	 */
-	@PostMapping("/heritageListByItem")
-	public String addHeritage(Heritage heritage) {
+	@PostMapping("/modifyHeritage")
+	public String modifyHeritage(Heritage heritage) {
 		
-		heritageService.addHeritage(heritage);
+		heritageService.modifyHeritage(heritage);
+		System.out.println("정보 수정 포스트 전달" + heritageService.modifyHeritage(heritage));
 		
-		return "redirect:/heritage/heritageListByItem";
+		return "redirect:/heritage/heritageListSt";
 	}
+	
+	/*
+	 * 문화재 정보 수정 (관리자) (Get 정보 전달)
+	 */
+	@GetMapping("/heritageModify")
+	public String modifyHeritage(
+			@RequestParam(value="heritageCode", required = false) String heritageCode
+			,Model model) {
+		Heritage heritage = heritageService.getHeritageByCode(heritageCode);
+		
+		model.addAttribute("title", "문화재 수정 페이지");
+		model.addAttribute("heritage", heritage);
+		System.out.println("정보 수정 겟방식 전달" + heritage);
+		
+		return "heritage/heritageModify";
+	}	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+/////////////////////////////////////////////////////	
+	
 	
 	/*
 	 * 문화재 종목별 검색(Get 정보 전달)
@@ -78,34 +99,33 @@ public class HeritageController {
 		return "heritage/heritageListByItem";
 	}
 	
+
 	
 	/*
-	 * 문화재 정보 수정(Post 정보 전달)
+	 * 문화재 정보 삭제(post 정보 전달)
 	 */
-	@PostMapping("/modifyHeritage")
-	public String modifyHeritage(Heritage heritage) {
+	@GetMapping("/heritageRemove")
+	public String removeHeritage(Heritage heritage) {
+		String heritageCode = heritage.getHeritageCode();
 		
-		heritageService.modifyHeritage(heritage);
-		System.out.println("정보 수정 포스트 전달" + heritageService.modifyHeritage(heritage));
+		heritageService.removeHeritage(heritageCode);
+		System.out.println("정보 삭제 포스트 전달" + heritageService.removeHeritage(heritageCode));
+		
+		return "redirect:/heritage/heritageListSt";
+		
+	}
+			
+	/*
+	 * 문화재 종목별 정보 등록(Post 정보 전달)
+	 */
+	@PostMapping("/heritageListByItem")
+	public String addHeritage(Heritage heritage) {
+		
+		heritageService.addHeritage(heritage);
 		
 		return "redirect:/heritage/heritageListByItem";
 	}
 	
-	/*
-	 * 문화재 정보 수정(Get 정보 전달)
-	 */
-	@GetMapping("/heritageModify")
-	public String modifyHeritage(
-			@RequestParam(value="heritageCode", required = false) String heritageCode
-			,Model model) {
-		Heritage heritage = heritageService.getHeritageByCode(heritageCode);
-		
-		model.addAttribute("title", "문화재 수정 페이지");
-		model.addAttribute("heritage", heritage);
-		System.out.println("정보 수정 겟방식 전달" + heritage);
-		
-		return "heritage/heritageModify";
-	}	
 	
 	/*
 	 * 문화재 상세페이지(코드 번호에 따른) 조회

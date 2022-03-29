@@ -15,6 +15,7 @@
 			,m.member_status		AS memberStatus
 			,m.member_level			AS memberLevel
 			,m.member_name			AS memberName
+			,m.member_user_name		AS memberUserName
 			,m.contact				AS memberContact
 			,m.birthday				AS memberBirthday
 			,m.email				AS memberEmail

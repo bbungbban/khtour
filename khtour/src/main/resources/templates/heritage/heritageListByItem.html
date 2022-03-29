@@ -18,7 +18,7 @@
 </th:block>
 <th:block layout:fragment="customContents">
 	<div class="row justify-content-center">
-			<div class="col-12 col-la-10 col-xl-7">
+			<div class="col-10 col-la-10 col-xl-10">
 			<!-- 카드1 문화재 등록 시작 -->
 			<div class="card">
 				<div class="card-body">
@@ -157,7 +157,7 @@
 					<form>
 						<div class="form-group">
 							<label for="formGroupExampleInput">연관검색어</label>
-							<div class="row">
+							<div class="row offset-1">
 								<div class="col-3">
 									<select class="form-control" id="exampleFormControlSelect1">
 										<option class="text-center">::선택::</option>
@@ -240,7 +240,7 @@
 					<div class="nicescrollbar" data-height="1000" tabindex="2"
 						style="height: 1000px; overflow: hidden; outline: none;">
 
-						<div class="row row-cols-1 row-cols-md-3 g-3">
+						<div class="row row-cols-1 row-cols-md-4 g-4">
 							<div class="col" th:if="${not #lists.isEmpty(heritageList)}"
 								th:each="l : ${heritageList}">
 								<div class="card h-80">
@@ -257,13 +257,6 @@
 												th:text="${l.heritageName}"></a>
 										</h5>
 										<p class="card-text" th:text="${l.heritageSubName}"></p>
-									</div>
-									<div class="card-footer">
-										<a type="button" class="btn btn-outline-light"
-											th:href="@{/heritage/heritageModify(heritageCode=${l.heritageCode})}">수정</a>
-										<button type="button" id="swal-delete"
-											class="btn btn-outline-light"
-											th:href="@{/heritage/heritageRemove(heritageCode=${l.heritageCode})}">삭제</button>
 									</div>
 								</div>
 							</div>
