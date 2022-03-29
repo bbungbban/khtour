@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ksmart42.khtour.mapper.AccommodationMapper">
+
+	<resultMap type="Accommodation" id="accommodationResultMap">
+		<id column="accommodation" property="ldgCode" />
+		<result column="ldg_name" property="ldgName"/>
+		<result column="ldg_type" property="ldgType"/>
+		<result column="ldg_img" property="ldgImg"/>
+		<result column="business_number" property="businessNumber"/>
+		<result column="ldg_addr" property="ldgAddr"/>
+		<result column="ldg_detail_addr" property="ldgldgDetailAddr"/>
+		<result column="ldg_explain" property="ldgExplain"/>
+		<result column="ldg_tel" property="ldgTel"/>
+		<result column="ldg_phone" property="ldgPhone"/>
+		<result column="ldg_email" property="ldgEmail"/>
+	</resultMap>
+	
+	<!-- 숙박업소 등록 SQL -->
+	<insert id="addAccommodation" parameterType="Accommodation">
+		INSERT INTO tb_ldg_information
+		(	 ldg_code
+			,ldg_name
+			,ldg_type
+			,ldg_img
+			,business_number
+			,ldg_addr
+			,ldg_detail_addr
+			,ldg_explain
+			,ldg_tel
+			,ldg_phone
+			,ldg_email
+		)VALUES (
+			 sf_new_ldg_code()
+			,#{ldgName}
+			,#{ldgType}
+			,#{ldgImg}
+			,#{businessNumber}
+			,#{lgdAddr}
+			,#{ldgDetailAddr}
+			,#{ldgExplain}
+			,#{ldgTel}
+			,#{ldgPhone}
+			,#{ldgEmail}
+		);   
+	</insert>
+	
+	<!-- 숙박업소 목록 조회 SQL -->
+	<select id="getAccommodationList" resultMap="accommodationResultMap">
+		SELECT
+			 l.ldg_code
+			,l.ldg_name
+			,l.ldg_type
+			,l.ldg_img
+			,l.business_number
+			,l.ldg_addr
+			,l.ldg_detail_addr
+			,l.ldg_explain
+			,l.ldg_tel
+			,l.ldg_phone
+			,l.ldg_email
+		FROM 
+			tb_ldg_information AS l;
+	</select>		
+
+</mapper>
