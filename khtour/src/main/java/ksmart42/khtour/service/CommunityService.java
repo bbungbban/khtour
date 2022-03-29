@@ -44,18 +44,24 @@ public class CommunityService {
 	
 	// 커뮤니티 서비스 3 : 커뮤니티 포스트 전체 리스트 반환
 	public List<CommPost> getPostList(){
-		List<CommPost> postList = communityMapper.getPostList();
-			
+		List<CommPost> postList = communityMapper.getPostList();		
+		return postListMod(postList);
+	}
+	public List<CommPost> getPostListByCommunityName(String commName){
+		List<CommPost> postList = communityMapper.getPostListByCommunityName(commName);
+		return postListMod(postList);
+	}
+	public List<CommPost> postListMod(List<CommPost> postList)
+	{
 		for(int i = 0;i<postList.size();i++)
 		{
 			CommPost commPost = postList.get(i);
-			commPost.setTagName(communityMapper.getTagNameByTagCode(commPost.getTagCode()));
+			commPost.setCommTag(communityMapper.getCommTagByTagCode(commPost.getTagCode()));
 			float likes = Float.parseFloat(postList.get(i).getLikesCnt());
 			float dislikes= Float.parseFloat(postList.get(i).getDislikesCnt());
 			float cnt = likes - dislikes;
 			postList.get(i).setLikesCnt(KhtourLibrary.cntConverter(cnt));		
-		}
-		
+		}	
 		return postList;
 	}
 	
@@ -132,18 +138,8 @@ public class CommunityService {
 	}
 	
 	
-	public List<CommPost> getPostListByCommunityName(String commName){
-		List<CommPost> postList = communityMapper.getPostListByCommunityName(commName);
-			
-		for(int i = 0;i<postList.size();i++)
-		{
-			float likes = Float.parseFloat(postList.get(i).getLikesCnt());
-			float dislikes= Float.parseFloat(postList.get(i).getDislikesCnt());
-			float cnt = likes - dislikes;
-			postList.get(i).setLikesCnt(KhtourLibrary.cntConverter(cnt));		
-		}	
-		return postList;
-	}
+	
+	
 	
 	public List<CommPost> getPostByTagCode(List<CommPost> postList,String tagCode)
 	{
@@ -174,6 +170,10 @@ public class CommunityService {
 	public CommPost getPostByPostCode(String postCode) {
 		
 		CommPost commPost = communityMapper.getPostByPostCode(postCode);
+		commPost.setCommTag(communityMapper.getCommTagByTagCode(commPost.getTagCode()));
+		
+		System.out.println(commPost.getCommTag());
+		
 		float likes = Float.parseFloat(commPost.getLikesCnt());
 		float dislikes= Float.parseFloat(commPost.getDislikesCnt());
 		float cnt = likes -dislikes;
