@@ -3,15 +3,25 @@ package ksmart42.khtour.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import ksmart42.khtour.dto.Accommodation;
+import ksmart42.khtour.service.AccommodationService;
 
 
 @Controller
 @RequestMapping("/accommodation")
 public class AccommodationController {
 	
+	private AccommodationService accommodationService;
+	
+	public AccommodationController(AccommodationService accommodationService) {
+		this.accommodationService = accommodationService;
+	}
+	
 	/*
-	 * 숙박업소 등록	
+	 * 숙박업소 등록 페이지 
 	 * */
 	@GetMapping("/accommodationInsert")
 	public String addaccommodation(Model model) {
@@ -19,6 +29,16 @@ public class AccommodationController {
 		model.addAttribute("title", "숙박업소등록");
 		
 		return "/accommodation/accommodationInsert";
+	}
+	/*
+	 * 숙박업소 등록 
+	 * */
+	@PostMapping("/accommodationInsert")
+	public String addaccommodation(Accommodation accommodation) {
+		accommodationService.addaccommodation(accommodation);
+		
+		return "redirect:/accommodation/accommodationInsert";
+		
 	}
 	
 	/*
