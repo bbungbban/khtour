@@ -12,7 +12,6 @@ import ksmart42.khtour.service.HeritageService;
 import ksmart42.khtour.service.MusService;
 
 @Controller
-@RequestMapping("/museum")
 public class MusController {
 
 	private MusService musService;
