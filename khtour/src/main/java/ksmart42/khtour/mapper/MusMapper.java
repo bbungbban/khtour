@@ -6,6 +6,6 @@ import ksmart42.khtour.dto.Museum;
 
 @Mapper
 public interface MusMapper {
-	// 문화재 등록
+	// 박물관 등록
 	public int addMuseum(Museum museum);
 }
