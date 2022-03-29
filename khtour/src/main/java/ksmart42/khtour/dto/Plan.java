@@ -4,6 +4,7 @@ public class Plan {
 		// plan_code, plan_name, start_time, end_time, solo_party, plan_materials, plan_expenses , plan_location
 	
 	private String planCode;
+	private String memberId;
 	private String planName;
 	private String startDate;
 	private String endDate;
@@ -16,6 +17,12 @@ public class Plan {
 	}
 	public void setPlanCode(String planCode) {
 		this.planCode = planCode;
+	}
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	public String getPlanName() {
 		return planName;
@@ -61,11 +68,9 @@ public class Plan {
 	}
 	@Override
 	public String toString() {
-		return "Plan [planCode=" + planCode + ", planName=" + planName + ", startDate=" + startDate + ", endDate="
-				+ endDate + ", soloParty=" + soloParty + ", planMaterials=" + planMaterials + ", planExpenses="
-				+ planExpenses + ", planLocation=" + planLocation + "]";
+		return "Plan [planCode=" + planCode + ", memberId=" + memberId + ", planName=" + planName + ", startDate="
+				+ startDate + ", endDate=" + endDate + ", soloParty=" + soloParty + ", planMaterials=" + planMaterials
+				+ ", planExpenses=" + planExpenses + ", planLocation=" + planLocation + "]";
 	}
-	
-
 	
 }

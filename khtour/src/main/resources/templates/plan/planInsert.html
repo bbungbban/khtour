@@ -220,7 +220,7 @@
 					</div>
 				</div>
 				<div class="card-body" data-select2-id="5">
-					<form id="addPlanForm" th:action="@{/plan/planListSt}" method="post">
+					<form id="addPlanForm" th:action="@{/plan/planInsert}" method="post">
 						<div class="form-group">
 							<label for="planName">여행 이름</label> <input
 								type="text" class="form-control" id="planName"name="planName"
@@ -230,10 +230,15 @@
 							<label for="planLocation">여행 지역</label> <input type="text" 
 								 class="form-control inputwt" id="planLocation"name="planLocation" >
 						</div>
-						<div class="form-group">
-							<label for="email">여행 시작 ~ 여행 종료</label> <input type="text"
-								name="datetimes" class="form-control inputwt">
+						<!-- <div class="form-group">
+							<label for="startDate"> 여행 시작 </label> <input type="text" id="startDate" name="startDate"
+								class="form-control inputwt">
 						</div>
+
+						<div class="form-group">
+							<label for="endDate"> 여행 종료</label> <input type="text" id="endDate" name="endDate"
+								 class="form-control inputwt" >
+						</div> -->
 						<div class="form-group">
 							<label for="planMaterials">여행 준비물</label> <input
 								type="text" class="form-control" id="planMaterials"name="planMaterials"
@@ -945,7 +950,7 @@
 				el.removeChild(el.lastChild);
 			}
 		}
-		$(function(){
+		/* $(function(){
 			$(document).on('click','버튼의 선택자',function(){
 				var datetime = $('input[name="datetimes"]').val();
 				//날짜 시간을 subString 문자열 잘라요
@@ -954,8 +959,25 @@
 				$('#endDate').val(endDate);
 				$('퓨ㅗㅁ선택자').submit();
 			});
+		}); */
+	</script>
+	<script type="text/javascript" th:inline="javascript">
+		$('#addPlanBtn').click(function() {
+
+			var isSubmit = true;
+			var inputObj = $('#addPlanForm').find('input');
+
+			$.each(inputObj, function() {
+				var inputId = $(this).attr('id');
+				var inputLabel = $('label[for="' + inputId + '"]').text();
+				var inputData = $(this).val();
+
+				// 사용자가 입력하지 않은 경우
+			});
+
+			if (isSubmit)
+				$('#addPlanForm').submit();
 		});
 	</script>
-
 </th:block>
 </html>

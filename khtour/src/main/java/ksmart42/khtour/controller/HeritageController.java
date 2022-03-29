@@ -70,7 +70,19 @@ public class HeritageController {
 		return "heritage/heritageModify";
 	}	
 	
-	
+	/*
+	 * 문화재 정보 삭제(post 정보 전달) (관리자)
+	 */
+	@GetMapping("/heritageRemove")
+	public String removeHeritage(Heritage heritage) {
+		String heritageCode = heritage.getHeritageCode();
+		
+		heritageService.removeHeritage(heritageCode);
+		System.out.println("정보 삭제 포스트 전달" + heritageService.removeHeritage(heritageCode));
+		
+		return "redirect:/heritage/heritageListSt";
+		
+	}
 	
 	
 	
@@ -97,22 +109,6 @@ public class HeritageController {
 		model.addAttribute("heritageList", heritageList);
 		
 		return "heritage/heritageListByItem";
-	}
-	
-
-	
-	/*
-	 * 문화재 정보 삭제(post 정보 전달)
-	 */
-	@GetMapping("/heritageRemove")
-	public String removeHeritage(Heritage heritage) {
-		String heritageCode = heritage.getHeritageCode();
-		
-		heritageService.removeHeritage(heritageCode);
-		System.out.println("정보 삭제 포스트 전달" + heritageService.removeHeritage(heritageCode));
-		
-		return "redirect:/heritage/heritageListSt";
-		
 	}
 			
 	/*
