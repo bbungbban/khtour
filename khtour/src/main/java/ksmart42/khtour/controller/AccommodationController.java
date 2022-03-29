@@ -22,10 +22,11 @@ public class AccommodationController {
 	}
 	
 	/*
-	 * 숙박업소 검색
+	 * 숙박업소 리스트 검색 페이지
 	 * */
 	@GetMapping("/accommodationList")
 	public String getaccommodation(Model model) {
+		
 		
 		model.addAttribute("title", "숙박업소검색");
 		
