@@ -2,14 +2,14 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="ksmart42.khtour.mapper.HeritageMapper">
+<mapper namespace="ksmart42.khtour.mapper.MusMapper">
 <resultMap type="Museum" id="MuseumResultMap">
 		<id column="mus_code" property="musCode"/>
 		<result column="ch_mus_code" property="chMusCode"/>
 		<result column="large_chmus_cate_code" property="largeChmusCateCode"/>
 		<result column="large_category" property="largeCategory"/>
 		<result column="ch_mus_name" property="chMusName"/>
-		<result column="ch_mus_addr" property="ch_MusAddr"/>
+		<result column="ch_mus_addr" property="chMusAddr"/>
 		<result column="ch_mus_detail" property="chMusDetail"/>
 		<result column="ch_mus_site" property="chMusSite"/>
 		<result column="ch_mus_num" property="chMusNum"/>
@@ -35,12 +35,11 @@
 		   ,ch_mus_end
 		   ,ch_mus_close
 		) VALUES (
-		   sf_new_heritage_code()
 		   ,#{chMusCode}
 		   ,#{largeChmusCateCode}
 		   ,#{largeCategory}
 		   ,#{chMusName}
-		   ,#{ch_MusAddr}
+		   ,#{chMusAddr}
 		   ,#{chMusDetail}
 		   ,#{chMusSite}
 		   ,#{chMusNum}
