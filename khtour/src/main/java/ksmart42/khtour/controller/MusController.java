@@ -28,7 +28,7 @@ public class MusController {
 	public String addMuseum(Museum museum) {
 		//musService.addMuseum(museum);
 		System.out.println(museum);
-		return "redirect:/museum/musInsert";
+		return "redirect:/museum/musList";
 	}
 
 	@GetMapping("/museum/musList")

@@ -19,7 +19,7 @@
 		<result column="ch_mus_close" property="chMusClose"/>
 	</resultMap> 
 	
-	<!-- 문화재 등록 SQL -->
+	<!-- 박물관 등록 SQL -->
 	<insert id="addMuseum" parameterType="Museum">
 		INSERT INTO tb_ch_mus_info
 		(   ch_mus_code
