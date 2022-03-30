@@ -7,7 +7,6 @@
 		<id column="mus_code" property="musCode"/>
 		<result column="ch_mus_code" property="chMusCode"/>
 		<result column="large_chmus_cate_code" property="largeChmusCateCode"/>
-		<result column="large_category" property="largeCategory"/>
 		<result column="ch_mus_name" property="chMusName"/>
 		<result column="ch_mus_addr" property="chMusAddr"/>
 		<result column="ch_mus_detail" property="chMusDetail"/>
@@ -24,7 +23,6 @@
 		INSERT INTO tb_ch_mus_info
 		(   ch_mus_code
 		   ,large_chmus_cate_code
-		   ,large_category
 		   ,ch_mus_name   
 		   ,ch_mus_addr     
 		   ,ch_mus_detail
@@ -35,9 +33,8 @@
 		   ,ch_mus_end
 		   ,ch_mus_close
 		) VALUES (
-		   ,#{chMusCode}
+		    sf_new_ch_mus_code()
 		   ,#{largeChmusCateCode}
-		   ,#{largeCategory}
 		   ,#{chMusName}
 		   ,#{chMusAddr}
 		   ,#{chMusDetail}
