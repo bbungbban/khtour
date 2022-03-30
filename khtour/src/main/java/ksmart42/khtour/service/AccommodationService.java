@@ -26,7 +26,6 @@ public class AccommodationService {
 		
 		return accommodationList;
 	}
-
 	
 	/**
 	 * 숙박업소 등록
