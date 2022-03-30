@@ -18,7 +18,7 @@
 						<div class="card pt-2 m-1"
 							th:if="${not #lists.isEmpty(dailyPostList)}"
 							style="border: none;" th:each="dp: ${dailyPostList}">
-							<img th:src="@{'/images/commPost/'+${dp.pictureLink}+'.jpg'}"
+							<img th:src="@{${dp.pictureLink}}"
 								class="card-img" alt="...">
 							<div class="card-body">
 								<h5 class="card-title" th:text="${dp.title}"></h5>
@@ -51,9 +51,9 @@
 				</div>
 				<div class="col-sm-4">
 					<div class="card">
-						<img th:src="@{/images/commPost/img004.jpg}" class="card-img-top"
+						<img th:src="@{images\community\img001.jpg}" class="card-img-top"
 							alt="...">
-						<div class="card-body m-0">
+						<div class="card-body m-0 pt-0 pb-0">
 							<div class="table-responsive">
 								<table class="table table-centered table-hover mb-0">
 									<tbody>
@@ -64,8 +64,7 @@
 											<th scope="row"><a
 												th:href="@{/commPage(commName=${l.commName})}"
 												class="stretched-link" th:text="${index.index}+1"></a></th>
-											<td><div class="d-inline-block text-truncate"
-													style="max-width: 120px;">
+											<td><div class="d-inline-block text-truncate" style="max-width: 120px;">
 													<a th:text="${l.commName}"></a>
 												</div></td>
 											<td class="text-right pl-0 pr-0"><button type="button"
@@ -83,7 +82,7 @@
 						</div>
 					</div>
 					<div class="card">
-						<img th:src="@{/images/commPost/img002.jpg}" class="card-img-top"
+						<img th:src="@{images\community\img001.jpg}" class="card-img-top"
 							alt="...">
 
 						<div class="card-body m-0">
@@ -103,12 +102,6 @@
 				</div>
 			</div>
 </th:block>
-
-
-
-
-
-
 <th:block layout:fragment="customBodyScript">
 	<!-- PRISM -->
 	<script th:src="@{/js/prism/prism.js}"></script>

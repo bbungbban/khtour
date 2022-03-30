@@ -30,8 +30,7 @@
 									<td th:text="${cl.totalMemberCnt}"></td>
 									</tr>
 								</tbody>
-							</table>
-							
+							</table>	
 						</div>
 					</div>
 			</div>
@@ -83,7 +82,7 @@
 								<tbody>
 									<tr th:if="${not #lists.isEmpty(communityList)}" th:each="l,index : ${communityList}" style="transform: rotate(0);">
 										<th scope="row"><a th:href="@{/commPage(commName=${l.commName})}" class="stretched-link" th:text="${index.index}+1"></a></th>
-										<td th:text="${l.commName}"></td>
+										<td><div class="p-0 d-inline-block text-truncate" style="max-width: 150px;"><p th:text="${l.commName}"></p></div></td>
 										<td th:text="${l.memberCnt}"></td>
 										<td class="text-right"><button type="button" class="btn btn-primary btn-sm" style="z-index: 2; position: relative;">가입</button></td>
 									</tr>
@@ -101,19 +100,18 @@
 				<div class="card-header text-center bg-primary">
 				 	<h6 class="mb-0 mt-2 text-white" th:text="${m.key}"></h6>
 				 </div>	
-					<div class="card-body m-0">
+					<div class="card-body m-0 p-0">
 						<div class="table-responsive">
 							<table class="table table-centered table-hover mb-0">
 								<tbody>
 									<tr th:if="${not #lists.isEmpty(m.value)}" th:each="ml,mlIndex : ${m.value}" style="transform: rotate(0);">
 										<th scope="row"><a th:href="@{/commPage(commName=${ml.commName})}" class="stretched-link" th:text="${mlIndex.index}+1"></a></th>
-										<td th:text="${ml.commName}"></td>
-										<td th:text="${ml.memberCnt}"></td>
+										<td><div class="p-0 d-inline-block text-truncate" style="max-width: 90px;"><p class="p-0 m-0" th:text="${ml.commName}"></p></div></td>
+										<td th:text="${ml.memberCnt}"> </td>
 										<td class="text-right"><button type="button" class="btn btn-primary btn-sm" style="z-index: 2; position: relative;">가입</button></td>
 									</tr>
 								</tbody>
-							</table>
-							
+							</table>						
 						</div>
 					</div>
 			</div>
