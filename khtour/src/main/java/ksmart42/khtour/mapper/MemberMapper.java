@@ -15,4 +15,9 @@ public interface MemberMapper {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public static boolean isIdCheck(String memberId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
