@@ -7,7 +7,7 @@
 		<id column="exhib_code" property="exhibCode"/>
 		<result column="special_exhib_code" property="specialExhibCode"/>
 		<result column="ch_mus_code" property="chMusCode"/>
-		<result column="museum_name" property="museumName"/>
+		<result column="special_exhib_cate" property="specialExhibCate"/>
 		<result column="special_exhib_name" property="specialExhibName"/>
 		<result column="special_exhib_start" property="specialExhibStart"/>
 		<result column="special_exhib_end" property="specialExhibEnd"/>
@@ -19,15 +19,15 @@
 		INSERT INTO tb_special_exhib 
 		( 	 special_exhib_code
 			,ch_mus_code
-			,museum_name
+			,special_exhib_cate
 			,special_exhib_name
 			,special_exhib_start
 			,special_exhib_end
 			,special_exhib_con
 		) VALUES (
 			sf_new_special_exhib_code()
-		   ,#{specialExhibCode}
-		   ,#{museumName}
+		   ,#{chMusCode}
+		   ,#{specialExhibCate}
 		   ,#{specialExhibName}
 		   ,#{specialExhibStart}
 		   ,#{specialExhibEnd}
