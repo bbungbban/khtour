@@ -16,36 +16,44 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import ksmart42.khtour.dto.LoginHistory;
 import ksmart42.khtour.dto.Member;
+import ksmart42.khtour.dto.MemberLevel;
 import ksmart42.khtour.mapper.MemberMapper;
 import ksmart42.khtour.service.MemberService;
 import ksmart42.khtour.controller.MemberController;
 
 @Controller
+
 public class MemberController {
 	
-	private MemberService memberService;
+	
 	private static final Logger log = LoggerFactory.getLogger(MemberController.class);
 	
-	public MemberController(MemberService memberService) {
+	//DI 의존성 주입 생성자 메소드 주입방식
+	private MemberService memberService;
+	private MemberMapper memberMapper;
+		
+	public MemberController(MemberService memberService, MemberMapper memberMapper) {
 		this.memberService = memberService;
+		this.memberMapper = memberMapper;
 	}
 	/*
 	 * 로그인 화면
 	 */
 	@GetMapping("/loginMain")
 	public String loginMain(Model model, @RequestParam(value="result", required = false) String result) {
-		
+		System.out.println("회원 로그인 화면 GetMapping");
 		model.addAttribute("title", "회원 로그인");
 		
 		if(result != null) model.addAttribute("result", result);
 		
-		return "member/loginMain";
+		 return "member/loginMain"; 
 	}
 	
-	@PostMapping("/loginMain")
+	@PostMapping("/member/loginMain")
 	public String loginMain(Member member, HttpSession session, RedirectAttributes reAttr) {
-		
+		System.out.println("회원 로그인 처 PostMapping");
 		String memberId = member.getMemberId();
 		String memberPw = member.getMemberPw();
 		
@@ -66,7 +74,18 @@ public class MemberController {
 		
 		reAttr.addAttribute("result", "등록된 회원이 없습니다.");
 		
-		return "redirect:/member/loginMain";
+		return "redirect:/";
+	}
+	
+	/*
+	 * 로그인 정보 화면
+	 */
+	@GetMapping("/loginHistory")
+	public String getLoginHistory(Model model) {
+		
+		model.addAttribute("title", "로그인 정보 페이지");
+		
+		return "/member/loginHistory";
 	}
 	
 	/*
@@ -82,7 +101,6 @@ public class MemberController {
 	
 	/*
 	 * 아이디 중복 체크
-	 * 수정 중
 	 */
 	
 	  @PostMapping("/idCheck")
@@ -101,13 +119,15 @@ public class MemberController {
 	
 	/*
 	 * 회원 정보 검색 및 전체 리스트 화면
+	 * 회원정보 삭제 기능
 	 */
 	@GetMapping("/memberList")
-	public String getMemberList(Model model) {
+	public String getMemberList(Model model, @RequestParam(name="memberId", required = false) String memberId) {
 		
 		model.addAttribute("title", "회원 정보 검색 및 전체 리스트 페이지");
-		List<Member> memberList = memberService.getMemberList();
+		List<Member> memberList = memberService.getMemberList(null, null);
 		model.addAttribute("memberList", memberList);
+		model.addAttribute("memberId", memberId);
 		
 		return "/member/memberList";
 	}
@@ -121,16 +141,7 @@ public class MemberController {
 		
 		return "/member/memberInfo";
 	}
-	/*
-	 * 회원 정보 삭제 화면
-	 */
-	@GetMapping("/memberDelete")
-	public String getMemberDelete(Model model) {
-		
-		model.addAttribute("title", "회원 정보 삭제 페이지");
-		
-		return "/member/memberDelete";
-	}
+	
 	/*
 	 * 회원 이메일 찾기 화면
 	 */

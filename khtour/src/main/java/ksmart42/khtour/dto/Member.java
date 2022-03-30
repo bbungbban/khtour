@@ -130,14 +130,46 @@ public class Member {
 	}
 	@Override
 	public String toString() {
-		return "Member [memberId=" + memberId + ", memberPointLevel=" + memberPointLevel + ", memberTotalPointCode="
-				+ memberTotalPointCode + ", memberTotalPointUsed=" + memberTotalPointUsed + ", memberUsablePoint="
-				+ memberUsablePoint + ", memberPw=" + memberPw + ", memberStatus=" + memberStatus + ", memberLevel="
-				+ memberLevel + ", memberName=" + memberName + ", memberUserName=" + memberUserName + ", memberContact="
-				+ memberContact + ", memberBirthday=" + memberBirthday + ", memberEmail=" + memberEmail
-				+ ", memberRegTime=" + memberRegTime + ", memberCountry=" + memberCountry + ", memberAbout="
-				+ memberAbout + ", memberAvatarImage=" + memberAvatarImage + ", memberBannerImage=" + memberBannerImage
-				+ "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Member [memberId=");
+		builder.append(memberId);
+		builder.append(", memberPointLevel=");
+		builder.append(memberPointLevel);
+		builder.append(", memberTotalPointCode=");
+		builder.append(memberTotalPointCode);
+		builder.append(", memberTotalPointUsed=");
+		builder.append(memberTotalPointUsed);
+		builder.append(", memberUsablePoint=");
+		builder.append(memberUsablePoint);
+		builder.append(", memberPw=");
+		builder.append(memberPw);
+		builder.append(", memberStatus=");
+		builder.append(memberStatus);
+		builder.append(", memberLevel=");
+		builder.append(memberLevel);
+		builder.append(", memberName=");
+		builder.append(memberName);
+		builder.append(", memberUserName=");
+		builder.append(memberUserName);
+		builder.append(", memberContact=");
+		builder.append(memberContact);
+		builder.append(", memberBirthday=");
+		builder.append(memberBirthday);
+		builder.append(", memberEmail=");
+		builder.append(memberEmail);
+		builder.append(", memberRegTime=");
+		builder.append(memberRegTime);
+		builder.append(", memberCountry=");
+		builder.append(memberCountry);
+		builder.append(", memberAbout=");
+		builder.append(memberAbout);
+		builder.append(", memberAvatarImage=");
+		builder.append(memberAvatarImage);
+		builder.append(", memberBannerImage=");
+		builder.append(memberBannerImage);
+		builder.append("]");
+		return builder.toString();
+		
 	}
 
 }
