@@ -11,7 +11,7 @@
 		<result column="ldg_img" property="ldgImg"/>
 		<result column="business_number" property="businessNumber"/>
 		<result column="ldg_addr" property="ldgAddr"/>
-		<result column="ldg_detail_addr" property="ldgldgDetailAddr"/>
+		<result column="ldg_detail_addr" property="ldgDetailAddr"/>
 		<result column="ldg_explain" property="ldgExplain"/>
 		<result column="ldg_tel" property="ldgTel"/>
 		<result column="ldg_phone" property="ldgPhone"/>
