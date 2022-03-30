@@ -11,19 +11,15 @@
 	<div class="row">
 		<div class="col-8">
 			<div class="card-group mb-3">
-
 				<div class="card col-sm-1 bg-primary d-flex pl-0 pr-0">
 					<div class="card-body pl-0 pr-0 pt-5">
 						<a href="#!"> <i
 							class="la la-caret-up d-flex la-3x justify-content-center text-white pb-5"></i></a>
-						<p class="card-text text-white text-center mb-0 pb-0"
-							th:text="${commPost.likesCnt}"></p>
+						<p class="card-text text-white text-center mb-0 pb-0" th:text="${commPost.likesCnt}"></p>
 						<p class="card-text text-white text-center mt-0 pt-0 pb-5">좋아요</p>
 						<a href="#!"> <i
 							class="la la-caret-down d-flex la-3x justify-content-center text-white"></i></a>
-
 					</div>
-
 				</div>
 				<div class="card col-sm-11">
 					<div class="card-body">
@@ -35,9 +31,6 @@
 						<div  th:if="${not #strings.isEmpty(commPost.pictureLink)}">
 							<img th:src="@{${commPost.pictureLink}}" class="card-img" alt="...">
 						</div>
-
-
-
 					</div>
 					<div class="card-foot p-2 text-center border-top">
 						<p class="card-text">
@@ -52,7 +45,6 @@
 								<a th:href="@{/post(postCode=${commPost.postCode})}" class="stretched-link"></a>
 						</p>
 					</div>
-
 				</div>
 			</div>
 			<div class="card">

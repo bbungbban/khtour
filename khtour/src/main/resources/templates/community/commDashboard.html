@@ -16,10 +16,10 @@
 				<div class="card-body m-0 p-0">
 					<div class="card-group">
 						<div class="card pt-2 m-1" th:if="${not #lists.isEmpty(dailyPostList)}" style="border: none;" th:each="dp: ${dailyPostList}">
-							<img th:src="@{${dp.pictureLink}}"
-								class="card-img" alt="...">
-							<div class="card-body">
+							<img th:src="@{${dp.pictureLink}}" class="card-img-top" alt="...">
+							<div class="card-body pt-0 pb-0">
 								<h5 class="card-title" th:text="${dp.title}"></h5>
+								<p style="display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;" class="card-text" th:text="${dp.mainText}"></p>
 								<a th:href="@{/post(postCode=${dp.postCode})}"
 									class="stretched-link"></a>
 							</div>
@@ -66,7 +66,6 @@
 										</tr>
 									</tbody>
 								</table>
-
 							</div>
 						</div>
 						<div class="card-foot p-3 text-center border-top">

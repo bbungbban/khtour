@@ -47,8 +47,7 @@
 									<tr>
 										<th>순위</th>
 										<th>커뮤니티 이름</th>
-										<th>맴버수</th>
-										<th></th>
+										<th colspan="2">맴버수</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -82,7 +81,7 @@
 								<tbody>
 									<tr th:if="${not #lists.isEmpty(communityList)}" th:each="l,index : ${communityList}" style="transform: rotate(0);">
 										<th scope="row"><a th:href="@{/commPage(commName=${l.commName})}" class="stretched-link" th:text="${index.index}+1"></a></th>
-										<td><div class="p-0 d-inline-block text-truncate" style="max-width: 150px;"><p th:text="${l.commName}"></p></div></td>
+										<td th:text="${l.commName}"></td>
 										<td th:text="${l.memberCnt}"></td>
 										<td class="text-right"><button type="button" class="btn btn-primary btn-sm" style="z-index: 2; position: relative;">가입</button></td>
 									</tr>
@@ -106,7 +105,7 @@
 								<tbody>
 									<tr th:if="${not #lists.isEmpty(m.value)}" th:each="ml,mlIndex : ${m.value}" style="transform: rotate(0);">
 										<th scope="row"><a th:href="@{/commPage(commName=${ml.commName})}" class="stretched-link" th:text="${mlIndex.index}+1"></a></th>
-										<td><div class="p-0 d-inline-block text-truncate" style="max-width: 90px;"><p class="p-0 m-0" th:text="${ml.commName}"></p></div></td>
+										<td><div class="p-0 d-inline-block text-truncate" style="max-width: 90px;"><p class="pt-2 m-0" th:text="${ml.commName}"></p></div></td>
 										<td th:text="${ml.memberCnt}"> </td>
 										<td class="text-right"><button type="button" class="btn btn-primary btn-sm" style="z-index: 2; position: relative;">가입</button></td>
 									</tr>

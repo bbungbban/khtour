@@ -242,6 +242,8 @@ public class CommunityController {
 		
 		//포스트 코드로 커뮤니티 포스트를 찾아서 저장
 		CommPost commPost =communityService.getPostByPostCode(postCode);
+		
+		log.info("그림파일 경로: " + commPost.getPictureLink());
 		//커뮤니티포스트에 들어있는 커뮤니티 이름 저장
 		String commName = commPost.getCommName();
 		
