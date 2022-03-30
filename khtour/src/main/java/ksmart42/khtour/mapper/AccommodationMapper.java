@@ -14,5 +14,8 @@ public interface AccommodationMapper {
 	
 	//숙박업소 리스트
 	public List<Accommodation> getAccommodationList(Map<String, Object> paramMap);
+	
+	//숙박업소 리스트(숙박업소 코드)
+	public Accommodation getAccommodationByCode(String ldgCode);
 
 }

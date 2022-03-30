@@ -5,7 +5,7 @@
 <mapper namespace="ksmart42.khtour.mapper.AccommodationMapper">
 
 	<resultMap type="Accommodation" id="accommodationResultMap">
-		<id column="accommodation" property="ldgCode" />
+		<id column="ldg_code" property="ldgCode" />
 		<result column="ldg_name" property="ldgName"/>
 		<result column="ldg_type" property="ldgType"/>
 		<result column="ldg_img" property="ldgImg"/>
@@ -65,6 +65,50 @@
 			,l.ldg_email
 		FROM 
 			tb_ldg_information AS l;
-	</select>		
+	</select>
+	
+	<!-- 숙박업소 정보 수정 SQL -->
+	<update id="modifyaccommodation" parameterType="Accommodation">
+		UPDATE tb_ldg_information
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="ldgName != null and ldgName != ''">
+				ldg_name = #{ldgName},
+			</if>
+			<if test="ldgType != null and ldgType != ''">
+				ldg_type = #{ldgType},
+			</if>
+			<if test="ldgImg != null and ldgImg != ''">
+				ldg_img = #{ldgImg},
+			</if>		
+			<if test="businessNumber != null and businessNumber != ''">
+				business_number = #{businessNumber},
+			</if>
+			<if test="ldgAddr != null and ldgAddr != ''">
+				ldg_addr = #{ldgAddr},
+			</if>
+			<if test="ldgDetailAddr != null and ldgDetailAddr != ''">
+				ldg_detail_addr = #{ldgDetailAddr},
+			</if>
+			<if test="ldgExplain != null and ldgExplain != ''">
+				ldg_explain = #{ldgExplain},
+			</if>		
+			<if test="ldgTel != null and ldgTel != ''">
+				ldg_tel = #{ldgTel},
+			</if>		
+			<if test="ldgPhone != null and ldgPhone != ''">
+				ldg_phone = #{ldgPhone},
+			</if>		
+			<if test="ldgEmail != null and ldgEmail != ''">
+				ldg_email = #{ldgEmail},
+			</if>		
+			<if test="ldgHomepage != null and ldgHomepage != ''">
+				ldg_homepage = #{ldgHomepage},
+			</if>		
+		</trim>
+		WHERE
+			ldg_code = #{ldgCode};
+	</update>
+	
+			
 
 </mapper>

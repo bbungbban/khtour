@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ksmart42.khtour.dto.Accommodation;
 import ksmart42.khtour.service.AccommodationService;
@@ -23,7 +24,37 @@ public class AccommodationController {
 	public AccommodationController(AccommodationService accommodationService) {
 		this.accommodationService = accommodationService;
 	}
+	/*
+	 * 숙박업소 정보 수정
+	 * */
+	@GetMapping("/accommodationModify")
+	public String modifyaccommodation(
+			@RequestParam(value="ldgCode", required = false) String ldgCode
+			,Model model) {
+		Accommodation accommodation = accommodationService.getAccommodationByCode(ldgCode);
+		
+		model.addAttribute("title", "문화재 수정 페이지");
+		model.addAttribute("accommodation", accommodation);
+		System.out.println("정보 수정 겟방식 전달" + accommodation);
+		
+		return "/accommodation/accommodationModify";
+	}	
 	
+	/*
+	 * 숙박업소 관리자 페이지 
+	 * */
+	@GetMapping("/adminAccommodationList")
+	public String getAdminAccommodation(Model model) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		
+		List<Accommodation> accommodationList = accommodationService.getAccommodationList(paramMap);
+		
+		model.addAttribute("title", "숙박업소검색");
+		model.addAttribute("accommodationList", accommodationList);
+		
+		return "/accommodation/adminAccommodationList";
+		
+	}
 	/*
 	 * 숙박업소 등록 페이지 
 	 * */
@@ -44,7 +75,6 @@ public class AccommodationController {
 		return "redirect:/accommodation/accommodationInsert";
 		
 	}
-	
 	/*
 	 * 숙박업소 리스트 검색 페이지
 	 * */
@@ -59,18 +89,6 @@ public class AccommodationController {
 		
 		return "/accommodation/accommodationList";
 	}
-	
-	/*
-	 * 숙박업소정보 수정
-	 * */
-	@GetMapping("/accommodationModify")
-	public String modifyaccommodation(Model model) {
-		
-		model.addAttribute("title", "숙박업소정보 수정");
-		
-		return "/accommodation/accommodationModify";
-	}
-	
 	/*
 	 * 숙박업소 삭제
 	 * */

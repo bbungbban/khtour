@@ -211,19 +211,13 @@
 					</div>
 					<div class="blog-info">
 						<div class="blog-title mt-3">
-							<h4 class="mb-3" th:text="${l.ldgName}" style="font-size: 20px;" th:href="@{/accommodation/acoommodationInfo}">
-								<!-- <a th:href="@{/accommodation/acoommodationInfo}"></a> -->
-							</h4>
+							<h4 class="mb-3" th:text="${l.ldgName}" style="font-size: 20px; cursor: pointer;"
+							th:onclick="'location.href=\''+ @{${acoommodationInfo}} + '\''"></h4>
 							<p class="mb-0" th:text="${l.ldgType}"></p>
 							<p class="mb-0" th:text="${l.ldgAddr}"></p>
 							<p class="mb-0" th:text="${l.ldgDetailAddr}"></p>
 							<p class="mb-0" th:text="${l.ldgTel}"></p>
 						</div>
-					</div>
-					<div class="blog-bottom"
-						style="display: flex; justify-content:center; padding: 18.577px;">
-						<button type="button" class="btn btn-outline-light" style="color: #AD8B73; border-color: #AD8B73; padding:8px;">수정</button>
-						<button type="button" class="btn btn-outline-light" style="color: #dc3545; border-color: #dc3545; padding:8px;">삭제</button>
 					</div>
 				</div>
 			</div>

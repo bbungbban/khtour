@@ -35,5 +35,12 @@ public class AccommodationService {
 		accommodationMapper.addaccommodation(accommodation);
 		
 	}
+	
+	/**
+	 * 숙박업소 수정
+	 * */
+	public Accommodation getAccommodationByCode(String ldgCode) {
+		return accommodationMapper.getAccommodationByCode(ldgCode);
+	}
 
 }
