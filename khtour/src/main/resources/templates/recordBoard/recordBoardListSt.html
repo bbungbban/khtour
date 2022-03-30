@@ -1780,138 +1780,36 @@
 							class="table table-striped table-bordered">
 							<thead>
 								<tr>
-									<th>포스트 코드</th>
-									<th>포스트 이름</th>
-									<th>등록자 ID</th>
+									<th>게시판 코드</th>
+									<th>등록자 아이디</th>
+									<th>게시판 제목</th>
 									<th>여행 상태</th>
 									<th>여행 시작</th>
 									<th>여행 종료</th>
-									<th>이미지 개수</th>
+									<th>게시판 등록 날짜</th>
 									<th>좋아요 개수</th>
 									<th>조회수</th>
+									<th>수정/삭제</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>traShare001</td>
-									<td>선사시대 여행</td>
-									<td>id001</td>
-									<td>여행 후</td>
-									<td>2022-03-02</td>
-									<td>2022-03-11</td>
-									<td>15개</td>
-									<td>30개</td>
-									<td>20,800</td>
-								</tr>
-								<tr>
-									<td>traShare001</td>
-									<td>선사시대 여행</td>
-									<td>id003</td>
-									<td>여행 후</td>
-									<td>2022-03-02</td>
-									<td>2022-03-11</td>
-									<td>15개</td>
-									<td>30개</td>
-									<td>20,800</td>
-								</tr>
-								<tr>
-									<td>traShare001</td>
-									<td>선사시대 여행</td>
-									<td>id011</td>
-									<td>여행 후</td>
-									<td>2022-03-02</td>
-									<td>2022-03-11</td>
-									<td>15개</td>
-									<td>30개</td>
-									<td>20,800</td>
-								</tr>
-								<tr>
-									<td>traShare001</td>
-									<td>선사시대 여행</td>
-									<td>id023</td>
-									<td>여행 후</td>
-									<td>2022-03-02</td>
-									<td>2022-03-11</td>
-									<td>15개</td>
-									<td>30개</td>
-									<td>20,800</td>
-								</tr>
-								<tr>
-									<td>traShare022</td>
-									<td>선사시대 여행</td>
-									<td>id015</td>
-									<td>여행 후</td>
-									<td>2022-03-02</td>
-									<td>2022-03-11</td>
-									<td>15개</td>
-									<td>30개</td>
-									<td>20,800</td>
-								</tr>
-								<tr>
-									<td>traShare023</td>
-									<td>선사시대 여행</td>
-									<td>id023</td>
-									<td>여행 후</td>
-									<td>2022-03-02</td>
-									<td>2022-03-11</td>
-									<td>15개</td>
-									<td>30개</td>
-									<td>20,800</td>
-								</tr>
-								<tr>
-									<td>traShare042</td>
-									<td>선사시대 여행</td>
-									<td>id005</td>
-									<td>여행 후</td>
-									<td>2022-03-02</td>
-									<td>2022-03-11</td>
-									<td>15개</td>
-									<td>30개</td>
-									<td>20,800</td>
-								</tr>
-								<tr>
-									<td>traShare023</td>
-									<td>선사시대 여행</td>
-									<td>id008</td>
-									<td>여행 후</td>
-									<td>2022-03-02</td>
-									<td>2022-03-11</td>
-									<td>15개</td>
-									<td>30개</td>
-									<td>20,800</td>
-								</tr>
-								<tr>
-									<td>traShare002</td>
-									<td>삼국시대 여행</td>
-									<td>id027</td>
-									<td>여행 후</td>
-									<td>2022-03-02</td>
-									<td>2022-03-11</td>
-									<td>15개</td>
-									<td>30개</td>
-									<td>20,800</td>
-								</tr>
-								<tr>
-									<td>traShare023</td>
-									<td>선사시대</td>
-									<td>id001</td>
-									<td>여행 후</td>
-									<td>2022-03-02</td>
-									<td>2022-03-11</td>
-									<td>15개</td>
-									<td>30개</td>
-									<td>20,800</td>
-								</tr>
-								<tr>
-									<td>traShare001</td>
-									<td>선사시대 여행</td>
-									<td>id001</td>
-									<td>여행 후</td>
-									<td>2022-03-02</td>
-									<td>2022-03-11</td>
-									<td>14개</td>
-									<td>325개</td>
-									<td>20,800</td>
+								<tr th:if="${not #lists.isEmpty(recordBoardList)}" th:each="l : ${recordBoardList}">
+									<td th:text="${l.recordBoardCode}"></td>
+									<td th:text="${l.memberId}"></td>
+									<td th:text="${l.recordBoardName}"></td>
+									<td th:text="${l.status}"></td>
+									<td th:text="${l.startDate}"></td>
+									<td th:text="${l.endDate}">개</td>
+									<td th:text="${l.regDate}"></td>
+									<td th:text="${l.likeCount}"></td>
+									<td th:text="${l.views}"></td>				
+				<td class="text-center"><a
+					class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1" th:href="@{/recordBoard/recordBoardModify(recordBoardCode=${l.recordBoardCode})}"><i
+						class="la la-edit"></i> </a>
+					<button class="btn btn-danger btn-icon btn-sm mb-1" id="swal-delete-recordBoard" th:data-recordBoardCd="${l.recordBoardCode}">
+						<i class="fa fa-trash-o"></i>
+					</button>
+				</td>
 								</tr>
 							</tbody>
 						</table>
@@ -1950,6 +1848,52 @@
 	<script th:src="@{/js/amcharts/charts.js}"></script>
 	<script th:src="@{/js/amcharts/animated.js}"></script>
 	<script th:src="@{/js/amcharts/amchart.js}"></script>
+	
+		<script>
+		$(function(){
+			$(document).on('click','#swal-delete-recordBoard',function(){
+				var recordBoardCd = $(this).attr('data-recordBoardCd');
+			      const swalWithBootstrapButtons = swal.mixin({
+			          confirmButtonClass: 'btn btn-success',
+			          cancelButtonClass: 'btn btn-danger',
+			          buttonsStyling: false,
+			        });
+
+			        swalWithBootstrapButtons({
+			          title: '정말 삭제 하시겠습니까?',
+			          text: "삭제 클릭시 해당 정보는 복구 할 수 없습니다.",
+			          type: 'warning',
+			          showCancelButton: true,
+			          confirmButtonText: '네',
+			          cancelButtonText: '아니오',
+			          reverseButtons: false
+			        }).then((result) => {
+			          if (result.value) {
+			            swalWithBootstrapButtons(
+			              '삭제완료',
+			              '파일이 안전하게 삭제되었습니다.',
+			              'success'
+			            )
+			            location.href = '/recordBoard/recordBoardRemove?recordBoardCode=' + recordBoardCd;
+			          } else if (
+			            // Read more about handling dismissals
+			            result.dismiss === swal.DismissReason.cancel
+			          ) {
+			            swalWithBootstrapButtons(
+			              '취소',
+			              '사진은 안전하게 보호됩니다.',
+			              'error'
+			            )
+			          }
+			        });
+
+				    			
+			});
+			
+		});
+	</script>
+	
+	
 	<div hidden="" style="position: relative;">
 		<div dir="ltr" class="resize-sensor"
 			style="pointer-events: none; position: absolute; inset: 0px; overflow: hidden; z-index: -1; visibility: hidden; max-width: 100%;">

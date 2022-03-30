@@ -15,15 +15,9 @@
 			</nav>
 </th:block>
 <th:block layout:fragment="customContents">
-	<link rel="stylesheet" type="text/css"
-		th:href="@{/js/datatables/buttons.dataTables.min.css}">
-	<link rel="stylesheet" type="text/css"
-		th:href="@{/js/datatables/select.bootstrap4.min.css}">
-	<link rel="stylesheet" type="text/css"
-		th:href="@{/js/datatables/fixedColumns.bootstrap4.min.css}">
-	<link rel="stylesheet" type="text/css"
-		th:href="@{/css/plugins/KmyCss/addCssKmy.css}">
-	<div id="List">
+	<link rel="stylesheet" type="text/css" th:href="@{/js/datatables/buttons.dataTables.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/js/datatables/select.bootstrap4.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/js/datatables/fixedColumns.bootstrap4.min.css}">
 		<!-- **********************************  Start ContentsWrap  ********************************** -->
 
 		<div class="row">
@@ -36,9 +30,9 @@
 								<thead>
 									<tr>
 										<th>여행 계획 코드</th>
+										<th>등록자 아이디</th>
 										<th>여행 계획 이름</th>
 										<th>지역</th>
-
 										<th>개인/단체 </th>
 										<th>여행 준비물</th>
 										<th>여행 총 경비</th>
@@ -48,13 +42,13 @@
 								<tbody>
 									<tr th:if="${not #lists.isEmpty(planList)}" th:each="l : ${planList}">
 										<td th:text="${l.planCode}"></td>
+										<td th:text="${l.memberId}"></td>
 										<td th:text="${l.planName}"></td>
 										<td th:text="${l.planLocation}"></td>
-
 										<td th:text="${l.soloParty}"></td>
 										<td th:text="${l.planMaterials}"></td>
 										<td th:text="${l.planExpenses}"></td>
-									<td><a
+									<td class="text-center"><a
 											class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1" th:href="@{/plan/planModify(planCode=${l.planCode})}"><i
 												class="la la-edit"></i> </a>
 											<button class="btn btn-danger btn-icon btn-sm mb-1" id="swal-delete-plan" th:data-planCd="${l.planCode}">
@@ -71,7 +65,6 @@
 		</div>
 
 		<!-- **********************************  End ContentsWrap  ********************************** -->
-	</div>
 </th:block>
 <th:block layout:fragment="customBodyScript">
 	<!-- delbtn -->
@@ -79,7 +72,6 @@
 	<script th:src="@{/js/sweetalert2/sweetalert2-custom.js}" aria-hidden="true"></script>
 	<!-- datatables -->
 	<script th:src="@{/js/datatables/datatables.js}"></script>
-	<!-- <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js}"></script> -->
 	<script th:src="@{/js/datatables/dataTables.buttons.min.js}"></script>
 	<script th:src="@{/js/datatables/buttons.flash.min.js}"></script>
 	<script th:src="@{/js/datatables/jszip.min.js}"></script>
