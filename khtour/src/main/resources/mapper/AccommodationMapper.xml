@@ -68,7 +68,7 @@
 	</select>
 	
 	<!-- 숙박업소 정보 수정 SQL -->
-	<update id="modifyaccommodation" parameterType="Accommodation">
+	<update id="getAccommodationByCode" parameterType="Accommodation">
 		UPDATE tb_ldg_information
 		<trim prefix="SET" suffixOverrides=",">
 			<if test="ldgName != null and ldgName != ''">
