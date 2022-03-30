@@ -30,9 +30,9 @@
 								<thead>
 									<tr>
 										<th>여행 계획 코드</th>
+										<th>등록자 아이디</th>
 										<th>여행 계획 이름</th>
 										<th>지역</th>
-
 										<th>개인/단체 </th>
 										<th>여행 준비물</th>
 										<th>여행 총 경비</th>
@@ -42,9 +42,9 @@
 								<tbody>
 									<tr th:if="${not #lists.isEmpty(planList)}" th:each="l : ${planList}">
 										<td th:text="${l.planCode}"></td>
+										<td th:text="${l.memberId}"></td>
 										<td th:text="${l.planName}"></td>
 										<td th:text="${l.planLocation}"></td>
-
 										<td th:text="${l.soloParty}"></td>
 										<td th:text="${l.planMaterials}"></td>
 										<td th:text="${l.planExpenses}"></td>
