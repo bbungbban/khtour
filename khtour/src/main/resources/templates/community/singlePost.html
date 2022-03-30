@@ -19,11 +19,15 @@
 						</div>
 						<div class="card col-sm-11">
 							<div class="card-body">
-								<button  th:class="'btn active btn-sm pt-1 pb-1 pull-left mr-2 btn-'+${p.CommTag.getTagColor()}" th:text="${p.CommTag.getTagName()}"></button>
+								<div  th:if="${not #strings.isEmpty(p.CommTag)}">
+									<button th:class="'btn active btn-sm pt-1 pb-1 pull-left mr-2 btn-'+${p.CommTag.getTagColor()}" th:text="${p.CommTag.getTagName()}"></button>
+								</div>
 								<h5 class="card-title mt-1" th:text="${p.title}"></h5>
 								<p class="card-text" th:text="${p.mainText}"></p>
-								<img th:src="@{${p.pictureLink}}"
-									class="card-img" alt="...">
+								
+								<div  th:if="${not #strings.isEmpty(p.pictureLink)}">
+									<img  th:src="@{${p.pictureLink}}" class="card-img" alt="...">
+								</div>
 							</div>
 							<div class="card-foot p-2 text-center border-top">
 								<p class="card-text">

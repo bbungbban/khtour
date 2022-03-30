@@ -313,38 +313,9 @@ public class CommunityService {
 	/* 작성자 : 한경수
 	*  입  력 : CommTag(커뮤니티 테그)
 	*  출  력 : 
-	*  설  명  : 커뮤니티 테그 의 색을 변경후  커뮤니티 테그 등록
+	*  설  명  :
 	*/
 	public void addTag(CommTag commTag) {		
-		String color = commTag.getTagColor();
-		if(color.equals("파랑색"))
-		{
-			commTag.setTagColor("primary");
-		}
-		else if(color.equals("빨강색"))
-		{
-			commTag.setTagColor("danger");
-		}
-		else if(color.equals("노랑색"))
-		{
-			commTag.setTagColor("warning");
-		}
-		else if(color.equals("하늘색"))
-		{
-			commTag.setTagColor("info");
-		}
-		else if(color.equals("초록색"))
-		{
-			commTag.setTagColor("success");
-		}
-		else if(color.equals("검은색"))
-		{
-			commTag.setTagColor("dark");
-		}
-		else if(color.equals("회색"))
-		{
-			commTag.setTagColor("light");
-		}	
 		communityMapper.addTag(commTag);		
 	}
 	

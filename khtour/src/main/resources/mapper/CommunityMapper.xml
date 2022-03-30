@@ -272,7 +272,7 @@
 			 #{postCode}
 			, #{commName}
 			, #{memberId}
-			, null
+			, #{tagCode}
 			, #{title}
 			, NOW()
 			, #{mainText}
