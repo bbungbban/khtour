@@ -22,50 +22,53 @@
 
 <th:block layout:fragment="customContents">
 	<div class="row user-profile mb-4">
-<div class="col-3">
-				<div class="user-detail border-radius shadow-sm">
-					<div class="avatar avatar-xll d-block mx-auto">
-						<div class="embed-responsive embed-responsive-1by1">
-										<img th:src="@{/images/traShare/신세경.gif}"
-											class="embed-responsive-item"
-											alt="...">
-									</div>
+		<div class="col-3">
+			<div class="user-detail border-radius shadow-sm">
+				<div class="avatar avatar-xll d-block mx-auto">
+					<div class="embed-responsive embed-responsive-1by1">
+						<img th:src="@{/images/traShare/신세경.gif}"
+							class="embed-responsive-item" alt="...">
 					</div>
-					<div class="user-name mt-3 text-center">
-						<h5>이름 : 김민석</h5>
-						<div>
-						<span>이메일 :  <strong class="text-primary"> klm7637@naver.com </strong></span>
-						</div>
-						<div>
-						<span>생일 :  <strong class="text-primary"> 97년 05월 01일 </strong></span>
-						</div>
-						<div>
-						<span>국적 :  <strong class="text-primary"> 대한민국 </strong></span>
+				</div>
+				<div class="user-name mt-3 text-center">
+					<h5>이름 : 김민석</h5>
+					<div>
+						<span>이메일 : <strong class="text-primary">
+								klm7637@naver.com </strong></span>
+					</div>
+					<div>
+						<span>생일 : <strong class="text-primary"> 97년 05월
+								01일 </strong></span>
+					</div>
+					<div>
+						<span>국적 : <strong class="text-primary"> 대한민국 </strong></span>
+					</div>
+				</div>
+				<div class="user-info mt-4">
+					<h5>사용자 정보</h5>
+					<div class="my-3 ">
+						<h6>팔로우</h6>
+						<div class="user-like text-left">
+							<a href="#"> <i class="fa fa-heart-o"></i> 2,200 명
+							</a>
 						</div>
 					</div>
-					<div class="user-info mt-4">
-						<h5>사용자 정보</h5>
-						<div class="my-3 ">
-							<h6>팔로우</h6>
-															<div class="user-like text-left">
-									<a href="#"> <i class="fa fa-heart-o"></i> 2,200 명</a>
-								</div>
+					<div class="my-3 ">
+						<h6>좋아요 수</h6>
+						<div class="user-like text-left">
+							<a href="#"> <i class="fa fa-heart-o"></i> 100 명
+							</a>
 						</div>
-						<div class="my-3 ">
-							<h6>좋아요 수</h6>
-															<div class="user-like text-left">
-									<a href="#"> <i class="fa fa-heart-o"></i> 100 명</a>
-								</div>
-						</div>
-											<div class="my-3 ">
-							<h6>피드 갯수</h6>
-															<div class="user-like text-left">
-									<a href="#"> 5 개</a>
-								</div>
+					</div>
+					<div class="my-3 ">
+						<h6>피드 갯수</h6>
+						<div class="user-like text-left">
+							<a href="#"> 5 개</a>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
 		<div class="col-9">
 
 			<div class="card tab">
@@ -96,28 +99,27 @@
 									<p>여행시작일 : 2016-07-12 1 명 여행 전 나홀로 여행</p>
 									<p>처음 만든 날 : 2016-06-10 마지막 수정한 날 : 2017-10-23 조회수 : 104.9K</p>
 
-											<!--  댓글  -->
-											<div class="pt-3">
-												<label for="content">댓글 작성</label>
-												<form name="commentInsertForm">
-													<div class="form-group">
-														<div class="input-group">
-															<input type="hidden" name="bno" value="${detail.bno}" /> <input
-																type="text" class="form-control" id="content"
-																name="content" placeholder="내용을 입력하세요."> <span
-																class="input-group-btn">
-																<button class="btn btn-default" type="button"
-																	name="commentInsertBtn">등록</button>
-															</span>
-														</div>
-													</div>
-													<div class="form-group">
-															<label>댓글창</label>
-															<textarea class="form-control"  rows="2"
-																></textarea>
-													</div>
-												</form>
+									<!--  댓글  -->
+									<div class="pt-3">
+										<label for="content">댓글 작성</label>
+										<form name="commentInsertForm">
+											<div class="form-group">
+												<div class="input-group">
+													<input type="hidden" name="bno" value="${detail.bno}" /> <input
+														type="text" class="form-control" id="content"
+														name="content" placeholder="내용을 입력하세요."> <span
+														class="input-group-btn">
+														<button class="btn btn-default" type="button"
+															name="commentInsertBtn">등록</button>
+													</span>
+												</div>
 											</div>
+											<div class="form-group">
+												<label>댓글창</label>
+												<textarea class="form-control" rows="2"></textarea>
+											</div>
+										</form>
+									</div>
 
 								</div>
 							</div>
@@ -145,7 +147,7 @@
 											</div>
 										</div>
 									</li>
-									
+
 								</ul>
 								<a class="btn btn-primary btn-block mt-5" href="#">맨위로 </a>
 							</div>
