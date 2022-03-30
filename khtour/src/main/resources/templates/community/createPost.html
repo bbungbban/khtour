@@ -29,8 +29,8 @@
 											txt1 +='<option value="'+data[i].tagCode+'" '	+'">' + data[i].tagName  +"</option>"	
 										}
 										console.log(txt1);
-										$('#tagOptionUpdate').empty()
-										$('#tagOptionUpdate').append(txt1);							
+										$('#tagCodeSpecial select').empty()
+										$('#tagCodeSpecial select').append(txt1);							
 									}	
 							});
 			});
@@ -46,8 +46,7 @@
 			<h4 class="card-title text-white">포스트 생성</h4>
 		</div>
 		<div class="card-body">
-			<form class="cmxform" id="form2" method="post"
-				th:action="@{/addCommPost}">
+			<form class="cmxform" id="form2" method="post" th:action="@{/addCommPost}" enctype="multipart/form-data">	
 				<div class="form-group">
 					<label for="commName">등록할 커뮤니티</label> 
 					<select class="form-control" id="commName" name="commName" th:if="${not #lists.isEmpty(commList)}">
@@ -58,44 +57,36 @@
 						<input id="commName" class="form-control bg-primary text-white" name="commName" readonly="readonly" th:value="${community.commName}">
 					</div>
 					<div class="form-group" th:if="${#lists.isEmpty(commList)}">
-						<label for="tagCode">등록할 테그</label> <select class="form-control"
-							id="tagCode" name="tagCode">
+						<label for="tagCode">등록할 테그</label> 
+						<select class="form-control" id="tagCode" name="tagCode">
 							<option th:if="${not #lists.isEmpty(tagList)}" th:text="${t.tagName}" th:each="t: ${tagList}">
 							</option>
 						</select>
 					</div>
-					<div class="form-group" th:if="${not #lists.isEmpty(commList)}">
-						<label for="tagCode">등록할 테그</label> 
-						<select class="form-control" id="tagOptionUpdate" name="tagCode" >
+					<div id="tagCodeSpecial" class="form-group" th:if="${not #lists.isEmpty(commList)}">
+						<label for="tagOptionUpdate">등록할 테그</label> 
+						<select class="form-control" id="tagCode" name="tagCode" >
 							
 						</select>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="title">제목</label> <input id="title"
-						class="form-control" name="title" placeholder="제목">
+					<label for="title">제목</label> 
+					<input id="title" class="form-control" name="title" placeholder="제목">
 				</div>
 				<div class="form-group">
 					<label for="mainText">본문</label>
-					<textarea id="mainText" name="mainText" class="form-control"
-						rows="10" placeholder="본문내용" required></textarea>
+					<textarea id="mainText" name="mainText" class="form-control" rows="10" placeholder="본문내용" required></textarea>
 				</div>
 				<div class="form-group">
-					<label for="picture">사진 업로드</label> <input type="file" id="picture"
-						class="form-control" name="picture">
+					<input type="file" name="uploadfile" multiple="multiple"/>
 				</div>
-				<div class="form-group">
-					<input class="submit btn btn-primary pull-right" type="submit"
-						value="등록"> <a href="/commDashboard"
-						class="btn btn-primary active pull-right" role="button"
-						aria-pressed="true">취소</a>
-				</div>
+					<input class="submit btn btn-primary pull-right" type="submit" value="등록"> 
+					<a href="/commDashboard" class="btn btn-primary active pull-right" role="button" aria-pressed="true">취소</a>
+				
 			</form>
 		</div>
 	</div>
-
-
-
 
 </th:block>
 <!-- summernote -->

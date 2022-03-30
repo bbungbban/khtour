@@ -19,10 +19,10 @@
 						</div>
 						<div class="card col-sm-11">
 							<div class="card-body">
-								<button th:class="'btn active btn-sm pt-1 pb-1 pull-left mr-2 btn-'+${p.CommTag.getTagColor()}" th:text="${p.CommTag.getTagName()}"></button>
+								<button  th:class="'btn active btn-sm pt-1 pb-1 pull-left mr-2 btn-'+${p.CommTag.getTagColor()}" th:text="${p.CommTag.getTagName()}"></button>
 								<h5 class="card-title mt-1" th:text="${p.title}"></h5>
 								<p class="card-text" th:text="${p.mainText}"></p>
-								<img th:src="@{'/images/commPost/'+${p.pictureLink}+'.jpg'}"
+								<img th:src="@{${p.pictureLink}}"
 									class="card-img" alt="...">
 							</div>
 							<div class="card-foot p-2 text-center border-top">

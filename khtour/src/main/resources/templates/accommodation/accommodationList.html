@@ -9,10 +9,6 @@
 	<div class="row">
 		<div class="col">
 			<h2>숙박업소 상세 관리</h2>
-			<div class="col-2" style="display: inline-block; float: right;">
-				<button type="button" class="btn btn-primary"
-					onclick="location.href='accommodationInsert'">신규등록</button>
-			</div>
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -31,6 +27,10 @@
 
 .form-control {
 	margin-top: 1rem !important;
+}
+
+.mb-0 {
+	font-size: 15px;
 }
 </style>
 	<div class="row">
@@ -201,37 +201,37 @@
 	<div class="card">
 		<div class="card-body">
 			<!-- 숙박업소 리스트 영역 -->
-			<div class="row">
-				<div class="col-md-4 col-lg-4">
-					<div class="blog mb-5" th:if="${not #list.isEmpty(accommodationList)}"
-										   th:each="l:${accommodationList}">
-						<div class="blog-image">
-							<img class="img-fluid w-100" th:src="@{/images/aco/sinla.jpg}"
-								alt="">
+			<div class="row row-cols-1 row-cols-md-3">
+				<div class="blog mb-5" style="padding: 3px;"
+					th:if="${not #lists.isEmpty(accommodationList)}"
+					th:each="l : ${accommodationList}">
+					<div class="blog-image">
+						<img class="img-fluid w-100" th:src="@{/images/aco/sinla.jpg}"
+							alt="">
+					</div>
+					<div class="blog-info">
+						<div class="blog-title mt-3">
+							<h4 class="mb-3" th:text="${l.ldgName}" style="font-size: 20px;" th:href="@{/accommodation/acoommodationInfo}">
+								<!-- <a th:href="@{/accommodation/acoommodationInfo}"></a> -->
+							</h4>
+							<p class="mb-0" th:text="${l.ldgType}"></p>
+							<p class="mb-0" th:text="${l.ldgAddr}"></p>
+							<p class="mb-0" th:text="${l.ldgDetailAddr}"></p>
+							<p class="mb-0" th:text="${l.ldgTel}"></p>
 						</div>
-						<div class="blog-info">
-							<div class="blog-title mt-3">
-								<h4 class="mb-3" th:text="${l.ldgName}">
-									<a th:href="@{/accommodation/acoommodationInfo}">신라스테이 해운대</a>
-								</h4>
-								<p class="mb-0" th:text="${l.ldgType}"></p>
-								<p class="mb-0" th:text="${l.ldgAddr}"></p>
-								<p class="mb-0" th:text="${l.ldgDetailAddr}"></p>
-								<p class="mb-0" th:text="${l.ldgTel}"></p>
-								<p class="mb-0" th:text="${l.ldgHomepage}"></p>
-								
-							</div>
-						</div>
-						<div class="blog-bottom">
-							<ul class="list-inline mb-0">
-								<li><button type="button" class="btn btn-outline-light">수정</button></li>
-								<li><button type="button" class="btn btn-outline-light">삭제</button></li>
-							</ul>
-						</div>
+					</div>
+					<div class="blog-bottom"
+						style="display: flex; justify-content:center; padding: 18.577px;">
+						<button type="button" class="btn btn-outline-light" style="color: #AD8B73; border-color: #AD8B73; padding:8px;">수정</button>
+						<button type="button" class="btn btn-outline-light" style="color: #dc3545; border-color: #dc3545; padding:8px;">삭제</button>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="col-2" style="display: inline-block; float: right;">
+		<button type="button" class="btn btn-primary"
+			onclick="location.href='accommodationInsert'">신규등록</button>
 	</div>
 	<!-- 숙박업소 리스트 페이징 -->
 	<nav aria-label="Page navigation example">
