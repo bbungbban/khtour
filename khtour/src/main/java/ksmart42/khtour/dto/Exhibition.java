@@ -1,6 +1,6 @@
 package ksmart42.khtour.dto;
 
-public class Exhib {
+public class Exhibition {
 	private String ch_mus_code;
 	private String large_cate;
 	private String ch_mus_name;

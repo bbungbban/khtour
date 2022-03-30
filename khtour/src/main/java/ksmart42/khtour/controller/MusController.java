@@ -1,5 +1,7 @@
 package ksmart42.khtour.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +12,6 @@ import ksmart42.khtour.service.MusService;
 
 @Controller
 public class MusController {
-
 	private MusService musService;
 
 	public MusController(MusService musService) {
@@ -26,7 +27,8 @@ public class MusController {
 	
 	@PostMapping("/museum/musInsert")
 	public String addMuseum(Museum museum) {
-		//musService.addMuseum(museum);
+		
+		musService.addMuseum(museum);
 		System.out.println(museum);
 		return "redirect:/museum/musList";
 	}
