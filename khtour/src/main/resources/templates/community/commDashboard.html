@@ -15,9 +15,7 @@
 				</div>
 				<div class="card-body m-0 p-0">
 					<div class="card-group">
-						<div class="card pt-2 m-1"
-							th:if="${not #lists.isEmpty(dailyPostList)}"
-							style="border: none;" th:each="dp: ${dailyPostList}">
+						<div class="card pt-2 m-1" th:if="${not #lists.isEmpty(dailyPostList)}" style="border: none;" th:each="dp: ${dailyPostList}">
 							<img th:src="@{${dp.pictureLink}}"
 								class="card-img" alt="...">
 							<div class="card-body">
@@ -51,25 +49,20 @@
 				</div>
 				<div class="col-sm-4">
 					<div class="card">
-						<img th:src="@{images\community\img001.jpg}" class="card-img-top"
-							alt="...">
+						<img th:src="@{images\community\img001.jpg}" class="card-img-top" alt="...">
 						<div class="card-body m-0 pt-0 pb-0">
 							<div class="table-responsive">
 								<table class="table table-centered table-hover mb-0">
 									<tbody>
-										<tr th:if="${not #lists.isEmpty(communityList)}"
-											th:each="l,index : ${communityList}"
-											style="transform: rotate(0);">
+										<tr th:if="${not #lists.isEmpty(communityList)}" th:each="l,index : ${communityList}" style="transform: rotate(0);">
 
-											<th scope="row"><a
-												th:href="@{/commPage(commName=${l.commName})}"
-												class="stretched-link" th:text="${index.index}+1"></a></th>
+											<th scope="row"><a th:href="@{/commPage(commName=${l.commName})}" class="stretched-link" th:text="${index.index}+1"></a></th>
 											<td><div class="d-inline-block text-truncate" style="max-width: 120px;">
 													<a th:text="${l.commName}"></a>
-												</div></td>
-											<td class="text-right pl-0 pr-0"><button type="button"
-													class="btn btn-primary btn-sm pl-4 pr-4"
-													style="z-index: 2; position: relative;">가입</button></td>
+												</div>
+											</td>
+											<td class="text-right pl-0 pr-0">
+											<button type="button" class="btn btn-primary btn-sm pl-4 pr-4" style="z-index: 2; position: relative;">가입</button></td>
 										</tr>
 									</tbody>
 								</table>

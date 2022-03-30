@@ -38,9 +38,6 @@ public class CommunityController {
 		this.communityMapper = communityMapper;
 		this.fileService = fileService;
 	}
-	
-	
-	
 	/* 작성자 : 한경수
 	*  입  력 : String 커뮤니티 이름
 	*  출  력 : boolean
@@ -56,8 +53,6 @@ public class CommunityController {
 		log.info("커뮤니티 이름중복체크 여부: {}",result);
 		return nameCheck;
 	}	
-	
-	
 	/* 작성자 : 한경수
 	*  입  력 : String 커뮤니티 이름
 	*  출  력 : List<CommTag>
@@ -83,7 +78,7 @@ public class CommunityController {
 		List<CommPost> postList = communityService.getPostList();
 		//오늘뜨고있는 상위 포스트 4개 리스트
 		List<CommPost> dailyPostList = communityService.getDailyPostList();
-		
+		log.info("커뮤니티 포스트 리스트: {}",postList);
 		model.addAttribute("title","커뮤니티 대시보드");
 		model.addAttribute("communityList", communityList);
 		model.addAttribute("postList", postList);
@@ -114,9 +109,7 @@ public class CommunityController {
 			//특정 커뮤니티에 따른 테그리스트 모델에 저장
 			model.addAttribute("tagList", communityService.getTagListByCommName(commName));
 		}
-		
 		return "community/createPost";
-		
 	}
 	
 	/* 작성자 : 한경수
@@ -205,20 +198,29 @@ public class CommunityController {
 	*/
 	@PostMapping("/addCommPost")
 	public String addCommPost(HttpServletRequest request,@RequestParam MultipartFile[] uploadfile,RedirectAttributes reAttr,CommPost commPost) {
-
+		System.out.println(commPost.getTagCode()+"<- commPost.getTagCode()  addCommPost /addCommPost");
 		//임시 더미데이터 저장
-		commPost.setMemberId("id001");	
-				
+		commPost.setMemberId("id001");		
 		String serverName = request.getServerName();
-		String fileRealPath = "";
-		if("localhost".equals(serverName)) {				
-			fileRealPath = System.getProperty("user.dir") + "/src/main/resources/static/";
-			//fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
-		}else {
-			fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+		String fileRealPath = "";	
+		log.info("업로드 파일 : " + uploadfile[0]);
+		
+		if(!uploadfile[0].isEmpty())
+		{
+			if("localhost".equals(serverName)) 
+			{				
+				fileRealPath = System.getProperty("user.dir") + "/src/main/resources/static/";
+				//fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+			}
+			else 
+			{
+				fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+			}
+			
+			List<String> indexList = fileService.fileUpload(uploadfile, fileRealPath);
+			commPost.setPictureLink("\\" + indexList.get(0));
 		}
-		List<String> indexList = fileService.fileUpload(uploadfile, fileRealPath);
-		commPost.setPictureLink(indexList.get(0));
+		
 		
 		//포스트 코드 생성후 저장
 		commPost.setPostCode(communityMapper.getNexPostCode());
@@ -264,14 +266,11 @@ public class CommunityController {
 	*/
 	@GetMapping("/commRanking")
 	public String commRanking(Model model, @RequestParam(name="categoryName",required=false) String categoryName) {
-		
 		List<Community> communityList = null;
 		//커뮤니티 전체 카테고리 리스트 저장
 		List<CommCategory> categoryList = communityService.getCommCategoryList();
-		
 		//전체 카테고리 리스트중 3 개를 랜덤으로 뽑아서 맵에 저장후에 반환. String 키값에는 카테고리 이름이 들어가고, Value값에는 카테고리 에 따른 커뮤니티 리스트가 들어간다. 
 		Map<String,List<Community>> randomCategoryMap = communityService.getRandomCategoryMap(3);
-		
 		if(categoryName!=null)
 		{
 			//카테고리 이름을 받았을때는 카테고리 이름에 따른 커뮤니티 리스트만 저장
@@ -283,13 +282,10 @@ public class CommunityController {
 			//전체 카테고리 리스트 저장
 			communityList = communityService.getCommunityList();
 		}
-		
 		model.addAttribute("title", "전체 커뮤니티");
 		model.addAttribute("communityList", communityList);
 		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("randomCategoryMap", randomCategoryMap);
-		
-		
 		return "community/commRanking";
 	}
 	
