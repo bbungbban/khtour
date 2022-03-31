@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ksmart42.khtour.dto.PlanStatus;
 import ksmart42.khtour.dto.RecordBoard;
 import ksmart42.khtour.mapper.RecordBoardMapper;
 
@@ -38,6 +39,14 @@ public class RecordBoardService {
 	public List<RecordBoard> getRecordBoardList(Map<String, Object> paramMap){
 		List<RecordBoard> recordBoardList = recordBoardMapper.getRecordBoardList(paramMap);
 		
+		for(int i=0; i<recordBoardList.size(); i++) {
+				
+			PlanStatus planStatus = recordBoardMapper.getPlanStatusByCode(recordBoardList.get(i).getPlanStatusCode());
+			recordBoardList.get(i).setPlanStatus(planStatus);
+		};
+		
+		
+		
 		return recordBoardList;
 	}
 
@@ -57,5 +66,10 @@ public class RecordBoardService {
 		result += recordBoardMapper.removeRecordBoard(recordBoardCode);
 		
 		return result;
+	}
+	
+	public List<PlanStatus> getPlanStatusList(){
+		return recordBoardMapper.getPlanStatusList();
+		
 	}
 }
