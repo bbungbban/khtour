@@ -22,22 +22,22 @@ public interface CommunityMapper {
 	
 	public List<CommCategory> getCommCategoryList();
 	
-	public List<CommPost> getPostListByCommunityName(String commName);
+	public List<CommPost> getPostListByCommCode(String commCode);
 	
-	public List<Community> getCommunityListByCategory(String categoryName);
+	public List<Community> getCommunityListByCategoryCode(String categoryCode);
 	
 	
 	
 	// 4 : 커뮤니티 이름으로 커뮤니티  찾아서 반환 
-	public Community getCommunityByName(String commName);
+	public Community getCommunityByCommCode(String commCode);
 	
 	// 5 : 포스트코드로 포스트 찾아서 반환 
 	public CommPost getPostByPostCode(String postCode);
 	
 	// 6 : 커뮤니티 이름으로 규칙 리스트 찾아서 반환 
-	public List<Rule> getRuleListByCommName(String commName);
+	public List<Rule> getRuleListByCommCode(String commCode);
 	// 7 : 커뮤니티 이름으로 커뮤니티 테그 찾아서 반환 
-	public List<CommTag> getTagListByCommName(String commName);
+	public List<CommTag> getTagListByCommCode(String commCode);
 	
 	public CommTag getCommTagByTagCode(String tagCode);
 	
@@ -53,7 +53,8 @@ public interface CommunityMapper {
 	// 12 : 커뮤니티 이름 중복 체크
 	public boolean commNameCheck(String commName);
 	
-	public String getNexPostCode();
+	public String getNextPostCode();
+	public String getNextCommCode();
 	
 	
 	

@@ -11,13 +11,14 @@
 <th:block layout:fragment="customScript">
 	<script>
 		$(function() {
-			$("#commName").on('change', function(e) {
-						var commName = $('select[name="commName"]').val();
+			$("#commCode").on('change', function(e) {
+						var commCode = $('select[name="commCode"]').val();
+						console.log(commCode);
 							$.ajax({
 								url : '/getTagList',
 								type : 'post',
 								data : {
-									'commName' : commName
+									'commCode' : commCode
 								},
 								dataType : 'json',
 								success : function(data) {	
@@ -48,13 +49,15 @@
 		<div class="card-body">
 			<form class="cmxform" id="form2" method="post" th:action="@{/addCommPost}" enctype="multipart/form-data">	
 				<div class="form-group">
-					<label for="commName">등록할 커뮤니티</label> 
-					<select class="form-control" id="commName" name="commName" th:if="${not #lists.isEmpty(commList)}">
+					<label for="commCode">등록할 커뮤니티</label> 
+					<select class="form-control" id="commCode" name="commCode" th:if="${not #lists.isEmpty(commList)}">
 						<option value="none">===커뮤니티 선택===</option>
-						<option th:text="${c.commName}" th:each="c: ${commList}"></option>
+						<option th:value="${c.commCode}" th:text="${c.commName}" th:each="c: ${commList}"></option>
 					</select>
 					<div class="form-group" th:if="${#lists.isEmpty(commList)}">
-						<input id="commName" class="form-control bg-primary text-white" name="commName" readonly="readonly" th:value="${community.commName}">
+						<select class="form-control" id="commCode" name="commCode" th:if="${#lists.isEmpty(commList)}">
+							<option id="commCode" th:value="${community.commCode}" th:text="${community.commName}" class="form-control bg-primary text-white" />
+						</select>
 					</div>
 					<div class="form-group" th:if="${#lists.isEmpty(commList)}">
 						<label for="tagCode">등록할 테그</label> 

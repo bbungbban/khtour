@@ -1,11 +1,11 @@
 package ksmart42.khtour.dto;
 
 public class Community {
-
+	private String commCode;
 	private String commName;
 	private String memberId;
 	private String regDate;
-	private String category;
+	private String categoryCode;
 	private String banner;
 	private String avatar;
 	private String memberCnt;
@@ -13,6 +13,16 @@ public class Community {
 	private String commDesc;
 	
 	
+	public String getCommCode() {
+		return commCode;
+	}
+
+
+	public void setCommCode(String commCode) {
+		this.commCode = commCode;
+	}
+
+
 	public String getCommDesc() {
 		return commDesc;
 	}
@@ -25,8 +35,8 @@ public class Community {
 
 	@Override
 	public String toString() {
-		return "Community [memberId=" + memberId + ", regDate=" + regDate + ", commName="
-				+ commName + ", category=" + category + ", banner=" + banner + ", avatar=" + avatar + ", memberCnt="
+		return "Community [commCode=" + commCode + ", commName=" + commName + ", memberId=" + memberId + ", regDate="
+				+ regDate + ", categoryCode=" + categoryCode + ", banner=" + banner + ", avatar=" + avatar + ", memberCnt="
 				+ memberCnt + ", onlineMemberCnt=" + onlineMemberCnt + ", commDesc=" + commDesc + "]";
 	}
 
@@ -62,13 +72,13 @@ public class Community {
 	}
 
 
-	public String getCategory() {
-		return category;
+	public String getCategoryCode() {
+		return categoryCode;
 	}
 
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setCategoryCode(String categoryCode) {
+		this.categoryCode = categoryCode;
 	}
 
 
