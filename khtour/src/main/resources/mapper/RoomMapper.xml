@@ -45,6 +45,26 @@
 		  tb_room_info AS r;
 	</select>
 	
+	<!-- ldgCode에 맞는 객실 조회 SQL -->
+	<select id="getRoomListByldgCode"  resultMap="roomResultMap">
+		SELECT
+		  	r.room_code
+		   ,r.ldg_code
+		   ,r.room_img
+		   ,r.room_name  
+		   ,r.room_explain    
+		   ,r.room_personnel
+		   ,r.room_type   
+		   ,r.room_checkin   
+		   ,r.room_price    
+		   ,r.room_discount    
+		   ,r.room_final_price    
+		FROM
+		  tb_room_info AS r
+		WHERE
+		   r.ldg_code = #{ldgCode};
+	</select>
+	
 	<!-- 객실 등록 SQL -->
 	<insert id="addRoom" parameterType="Room">
 		INSERT INTO tb_room_info
