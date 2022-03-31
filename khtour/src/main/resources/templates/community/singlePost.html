@@ -3,8 +3,7 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <th:block th:fragment="singlePost">
-			<div class="card-group mb-4"
-						th:if="${not #lists.isEmpty(postList)}" th:each="p: ${postList}">
+			<div class="card-group mb-4" th:if="${not #lists.isEmpty(postList)}" th:each="p: ${postList}">
 
 						<div class="card col-sm-1 bg-primary d-flex pl-0 pr-0">
 							<div class="card-body pl-0 pr-0 pt-5">

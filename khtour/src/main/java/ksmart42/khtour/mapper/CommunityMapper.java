@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import ksmart42.khtour.dto.CommCategory;
 import ksmart42.khtour.dto.CommPost;
+import ksmart42.khtour.dto.CommReply;
 import ksmart42.khtour.dto.CommTag;
 import ksmart42.khtour.dto.Community;
 import ksmart42.khtour.dto.Rule;
@@ -26,7 +27,7 @@ public interface CommunityMapper {
 	
 	public List<Community> getCommunityListByCategoryCode(String categoryCode);
 	
-	
+	public List<CommReply> getCommReplyListByPostCode(String postCode);
 	
 	// 4 : 커뮤니티 이름으로 커뮤니티  찾아서 반환 
 	public Community getCommunityByCommCode(String commCode);
@@ -49,6 +50,10 @@ public interface CommunityMapper {
 	public void addRule(Rule rule);
 	// 11 : 커뮤니티 테그 추가
 	public void addTag(CommTag commTag);
+	
+	public void addCommReply(CommReply commReply);
+	
+
 	
 	// 12 : 커뮤니티 이름 중복 체크
 	public boolean commNameCheck(String commName);

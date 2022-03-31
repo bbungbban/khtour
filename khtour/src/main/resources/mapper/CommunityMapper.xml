@@ -55,6 +55,17 @@
 		<result column="banner_img" property="bannerImg"/>
 		<result column="total_member_cnt" property="totalMemberCnt"/>
 	</resultMap>
+	
+	<resultMap type="CommReply" id="replyResultMap">
+		<id column="reply_code" property="replyCode"/>
+		<result column="member_id" property="memberId"/>
+		<result column="post_code" property="postCode"/>
+		<result column="parent_reply_code" property="parentReplyCode"/>
+		<result column="likes_cnt" property="likesCnt"/>
+		<result column="dislikes_cnt" property="dislikesCnt"/>
+		<result column="main_text" property="mainText"/>
+		<result column="reg_time" property="regTime"/>
+	</resultMap>
 
 	<!-- <select id="getCommunityList" resultMap="communityResultMap"> -->
 	<select id="getCommunityList"  resultMap="communityResultMap">
@@ -73,6 +84,26 @@
 				tb_community AS c
 			Order BY 
 				c.member_cnt DESC;	
+	</select>
+	
+	<select id="getCommReplyListByPostCode"  resultMap="replyResultMap">
+			SELECT
+				r.reply_code
+				,r.member_id
+				,r.post_code		 
+				,r.parent_reply_code
+				,r.likes_cnt
+				,r.dislikes_cnt	 
+				,r.main_text    
+				,r.reg_time
+			FROM
+				tb_community_reply AS r
+			WHERE
+				r.post_code = #{postCode}
+				AND
+				r.parent_reply_code IS NULL
+			Order BY 
+				r.reg_time DESC;	
 	</select>
 	
 	<select id="getCommCategoryList"  resultMap="categoryResultMap">
@@ -355,6 +386,30 @@
 		);
 	</insert>
 	
+	<insert id="addCommReply"  parameterType="CommReply">
+			INSERT INTO tb_community_reply
+			(
+				reply_code
+				,member_id
+				,post_code		 
+				,parent_reply_code
+				,likes_cnt
+				,dislikes_cnt	 
+				,main_text    
+				,reg_time
+			)
+			VALUES(
+				sf_new_reply_code()
+				,#{memberId}
+				,#{postCode}
+				,#{parentReplyCode}
+				,0
+				,0
+				,#{mainText}
+				,NOW()			
+			);
+	</insert>
+	
 	<select id="commNameCheck" parameterType="String" resultType="boolean">
 		SELECT
 			if(Count(1) = 1,0,1)
@@ -363,8 +418,5 @@
 		where
 			c.comm_Name = #{commName};	
 	</select>
-
-
-
 	
 </mapper>
