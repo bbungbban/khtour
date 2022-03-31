@@ -84,8 +84,9 @@
 		   ,#{planLocation}
 		);
 	
-	<!-- 문화재 수정 SQL -->
 	</insert>
+	
+	<!-- 문화재 수정 SQL -->
 		<update id="modifyPlan" parameterType="Plan">
 		UPDATE tb_tra_plan
 		<trim prefix="SET" suffixOverrides=",">
