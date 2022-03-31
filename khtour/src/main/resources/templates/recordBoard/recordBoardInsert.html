@@ -44,14 +44,14 @@
 							<textarea class="form-control" rows="3" required="" id="content"
 								name="content"></textarea>
 						</div>
-						<div class="form-group">
-							<label for="exampleFormControlSelect1">#여행 상태</label> <select
-								class="form-control" id="exampleFormControlSelect1">
-								<option>:: 선택 ::</option>
-								<option>여행전</option>
-								<option>여행후</option>
-							</select>
-						</div>
+						<div class="form-group" th:if="not ${#lists.isEmpty(planStatusList)}">
+						<label for="PlanStatus">등록할 커뮤니티 카테고리</label> <select class="form-control"
+							id="planStatusCode" name="planStatusCode">
+							<option value="none">===커뮤니티 카테고리 선택===</option>
+							<option th:if="${not #lists.isEmpty(planStatusList)}" th:value="${s.planStatusCode}" th:text="${s.planStatusName}" th:each="s: ${planStatusList}">
+							</option>
+						</select>
+					</div>
 						<div class="form-group">
 							<label for="exampleFormControlSelect1">#여행 멤버</label> <select
 								class="form-control" id="exampleFormControlSelect1">
