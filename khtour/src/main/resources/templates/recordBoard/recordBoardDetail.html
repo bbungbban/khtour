@@ -30,8 +30,8 @@
 							class="embed-responsive-item" alt="...">
 					</div>
 				</div>
-				<div class="user-name mt-3 text-center">
-					<h5>이름 : 김민석</h5>
+				<div class="user-name mt-3">
+					<h5 class="text-center">이름 : 김민석</h5>
 					<div>
 						<span>이메일 : <strong class="text-primary">
 								klm7637@naver.com </strong></span>
@@ -48,22 +48,22 @@
 					<h5>사용자 정보</h5>
 					<div class="my-3 ">
 						<h6>팔로우</h6>
-						<div class="user-like text-left">
+						<div class="user-like text-left card-footer">
 							<a href="#"> <i class="fa fa-heart-o"></i> 2,200 명
 							</a>
 						</div>
 					</div>
 					<div class="my-3 ">
 						<h6>좋아요 수</h6>
-						<div class="user-like text-left">
-							<a href="#"> <i class="fa fa-heart-o"></i> 100 명
+						<div class="user-like text-left card-footer">
+							<a href="#"> <i class="feather icon-thumbs-up"></i> 100 명
 							</a>
 						</div>
 					</div>
 					<div class="my-3 ">
 						<h6>피드 갯수</h6>
-						<div class="user-like text-left">
-							<a href="#"> 5 개</a>
+						<div class="user-like text-left card-footer">
+							<a href="#"> <i class="feather icon-image"></i> 5 개</a>
 						</div>
 					</div>
 				</div>
@@ -100,29 +100,88 @@
 									<p>처음 만든 날 : 2016-06-10 마지막 수정한 날 : 2017-10-23 조회수 : 104.9K</p>
 
 									<!--  댓글  -->
-									<div class="pt-3">
-										<label for="content">댓글 작성</label>
-										<form name="commentInsertForm">
-											<div class="form-group">
-												<div class="input-group">
-													<input type="hidden" name="bno" value="${detail.bno}" /> <input
-														type="text" class="form-control" id="content"
-														name="content" placeholder="내용을 입력하세요."> <span
-														class="input-group-btn">
-														<button class="btn btn-default" type="button"
-															name="commentInsertBtn">등록</button>
-													</span>
+									<div class="blog-comments">
+									댓글
+										<form>
+											<div class="row">
+												<div class="col-7">
+													 <input type="text"
+														class="form-control" id="exampleFormControlTextarea1">
+												</div>
+
+												<div class="col-2">
+													<button class="btn btn-primary" type="submit">댓글작성
+														</button>
 												</div>
 											</div>
-											<div class="form-group">
-												<label>댓글창</label>
-												<textarea class="form-control" rows="2"></textarea>
-											</div>
 										</form>
+										댓글 공간
+										<div class="row">
+											<div class="col-xl-8">
+												<div class="comments-list">
+													<ul class="list-inline">
+														<li class="comments">
+															<div class="comment-avtar">
+																<div class="avatar avatar-xll">
+																	<img class="img-fluid" src="images/team/01.jpg" alt="">
+																</div>
+															</div>
+															<div class="comment-info">
+																<h5>이름: 김민석</h5>
+																<span class="date">등록 날짜: 2022-03-31 </span>
+																<p class="mt-2 mb-1">댓글 내용</p>
+
+															</div>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
 									</div>
 
 								</div>
 							</div>
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal-03"> Modal Register  </button> 
+<!-- Modal -->
+	<div class="modal fade" id="exampleModal-03" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Register</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body p-5">
+	      <form>
+			  <div class="form-group">
+			    <label for="username">Username</label>
+			    <input type="name" class="form-control" aria-describedby="emailHelp" placeholder="Username">
+			  </div>
+			  <div class="form-group">
+			    <label for="email">Email</label>
+			    <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Email">
+			  </div>
+			  <div class="form-group">
+			    <label for="password">Password</label>
+			    <input type="password" class="form-control" placeholder="Password">
+			  </div>
+			  <div class="form-group">
+			    <label for="Confirmpassword">Confirm Password</label>
+			    <input type="Confirmpassword" class="form-control" placeholder="Confirm Password">
+			  </div>
+			  <div class="form-group">
+			     <div class="custom-control custom-checkbox">
+				  <input type="checkbox" class="custom-control-input" id="customCheck2">
+				  <label class="custom-control-label" for="customCheck2"> Remember Me</label>
+				</div>
+			  </div>
+			  <button type="submit" class="btn btn-primary">Register now</button>
+			</form>
+	      </div>
+	    </div>
+	  </div>
+	</div> 
 							<div class="user-activites border-radius shadow-sm">
 
 								<ul class="timeline-left">
@@ -149,7 +208,7 @@
 									</li>
 
 								</ul>
-								<a class="btn btn-primary btn-block mt-5" href="#">맨위로 </a>
+								
 							</div>
 						</div>
 					</div>
@@ -170,5 +229,7 @@
 <th:block layout:fragment="customBodyScript">
 	<!-- custom -->
 	<script th:src="@{/js/custom.js}"></script>
+	<!-- PRISM -->
+	<script th:src="@{/js/prism/prism.js}"></script>
 </th:block>
 </html>

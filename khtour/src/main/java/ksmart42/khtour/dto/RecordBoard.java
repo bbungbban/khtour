@@ -13,8 +13,6 @@ public class RecordBoard {
 	private String regDate;
 	private String likeCount;
 	private String views;
-	
-	
 	public String getRecordBoardCode() {
 		return recordBoardCode;
 	}
@@ -27,7 +25,6 @@ public class RecordBoard {
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-	
 	public String getRecordBoardName() {
 		return recordBoardName;
 	}
@@ -46,7 +43,6 @@ public class RecordBoard {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
 	public String getImage() {
 		return image;
 	}
@@ -90,6 +86,6 @@ public class RecordBoard {
 				+ startDate + ", endDate=" + endDate + ", regDate=" + regDate + ", likeCount=" + likeCount + ", views="
 				+ views + "]";
 	}
-
 	
+
 }
