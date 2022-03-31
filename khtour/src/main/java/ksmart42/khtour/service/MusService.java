@@ -1,9 +1,12 @@
 package ksmart42.khtour.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ksmart42.khtour.dto.Museum;
+import ksmart42.khtour.dto.Mus;
 import ksmart42.khtour.mapper.MusMapper;
 
 @Service
@@ -15,9 +18,44 @@ public class MusService {
 	public MusService(MusMapper musMapper) {
 		this.musMapper = musMapper;
 	}
-	//박물관 등록
-	public void addMuseum(Museum museum) {
-		musMapper.addMuseum(museum);
+	
+	/**
+	 * 코드에 따른 전시회 조회
+	 */
+	public Mus getMusByCode(String musCode) {
+		return musMapper.getMusByCode(musCode);
+	}
+	/**
+	 * 전시회등록
+	 */
+	public void addMus(Mus mus) {
+		musMapper.addMus(mus);
+	}
+	
+	/**
+	 * 전시회 목록 조회
+	 */
+	public List<Mus> getMusList(Map<String, Object> paramMap){
+		List<Mus> musList = musMapper.getMusList(paramMap);
 		
+		return musList;
+	}
+
+	/**
+	 * 전시회 정보 수정
+	 */
+	public int modifyMus(Mus mus) {
+		return musMapper.modifyMus(mus);
+	}
+	
+	/**
+	 * 전시회 정보 삭제
+	 */
+	public int removeMus(String musCode) {
+		int result = musMapper.removeMus(musCode);
+		
+		result += musMapper.removeMus(musCode);
+		
+		return result;
 	}
 }

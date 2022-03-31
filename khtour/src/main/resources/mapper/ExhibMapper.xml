@@ -41,7 +41,7 @@
 	<!-- 코드에 따른 전시회 조회 SQL -->
 	<select id="getExhibByCode" parameterType="String" resultMap="exhibResultMap">
 		SELECT
-		s.exhib_code
+		 s.exhib_code
 		,s.ch_mus_code
 		,s.exhib_cate
 		,s.exhib_name
