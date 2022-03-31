@@ -43,7 +43,8 @@
 									<th>개인/단체</th>
 									<th>여행 준비물</th>
 									<th>여행 총 경비</th>
-									<th>수정/삭제</th>
+									<th>수정</th>
+									<th>삭제</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -59,7 +60,8 @@
 									<td class="text-center"><a
 										class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1"
 										th:href="@{/plan/planModify(planCode=${l.planCode})}"><i
-											class="la la-edit"></i> </a>
+											class="la la-edit"></i> </a></td>
+									<td class="text-center"> 	
 										<button class="btn btn-danger btn-icon btn-sm mb-1"
 											id="swal-delete-plan" th:data-planCd="${l.planCode}">
 											<i class="fa fa-trash-o"></i>
