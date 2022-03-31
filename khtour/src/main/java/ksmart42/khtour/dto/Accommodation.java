@@ -9,77 +9,98 @@ public class Accommodation {
    private String businessNumber;
    private String ldgAddr;
    private String ldgDetailAddr;
-   private String ldgExplain;
+   private String ldgExplain1;
+   private String ldgExplain2;
+   private String ldgExplain3;
+   private String ldgExplain4;
    private String ldgTel;
    private String ldgPhone;
    private String ldgEmail;
    private String ldgHomepage;
    
 public String getLdgCode() {
-   return ldgCode;
+	return ldgCode;
 }
 public void setLdgCode(String ldgCode) {
-   this.ldgCode = ldgCode;
+	this.ldgCode = ldgCode;
 }
 public String getLdgName() {
-   return ldgName;
+	return ldgName;
 }
 public void setLdgName(String ldgName) {
-   this.ldgName = ldgName;
+	this.ldgName = ldgName;
 }
 public String getLdgType() {
-   return ldgType;
+	return ldgType;
 }
 public void setLdgType(String ldgType) {
-   this.ldgType = ldgType;
+	this.ldgType = ldgType;
 }
 public String getLdgImg() {
-   return ldgImg;
+	return ldgImg;
 }
 public void setLdgImg(String ldgImg) {
-   this.ldgImg = ldgImg;
+	this.ldgImg = ldgImg;
 }
 public String getBusinessNumber() {
-   return businessNumber;
+	return businessNumber;
 }
 public void setBusinessNumber(String businessNumber) {
-   this.businessNumber = businessNumber;
+	this.businessNumber = businessNumber;
 }
 public String getLdgAddr() {
-   return ldgAddr;
+	return ldgAddr;
 }
 public void setLdgAddr(String ldgAddr) {
-   this.ldgAddr = ldgAddr;
+	this.ldgAddr = ldgAddr;
 }
 public String getLdgDetailAddr() {
-   return ldgDetailAddr;
+	return ldgDetailAddr;
 }
 public void setLdgDetailAddr(String ldgDetailAddr) {
-   this.ldgDetailAddr = ldgDetailAddr;
+	this.ldgDetailAddr = ldgDetailAddr;
 }
-public String getLdgExplain() {
-   return ldgExplain;
+public String getLdgExplain1() {
+	return ldgExplain1;
 }
-public void setLdgExplain(String ldgExplain) {
-   this.ldgExplain = ldgExplain;
+public void setLdgExplain1(String ldgExplain1) {
+	this.ldgExplain1 = ldgExplain1;
+}
+public String getLdgExplain2() {
+	return ldgExplain2;
+}
+public void setLdgExplain2(String ldgExplain2) {
+	this.ldgExplain2 = ldgExplain2;
+}
+public String getLdgExplain3() {
+	return ldgExplain3;
+}
+public void setLdgExplain3(String ldgExplain3) {
+	this.ldgExplain3 = ldgExplain3;
+}
+public String getLdgExplain4() {
+	return ldgExplain4;
+}
+public void setLdgExplain4(String ldgExplain4) {
+	this.ldgExplain4 = ldgExplain4;
 }
 public String getLdgTel() {
-   return ldgTel;
+	return ldgTel;
 }
 public void setLdgTel(String ldgTel) {
-   this.ldgTel = ldgTel;
+	this.ldgTel = ldgTel;
 }
 public String getLdgPhone() {
-   return ldgPhone;
+	return ldgPhone;
 }
 public void setLdgPhone(String ldgPhone) {
-   this.ldgPhone = ldgPhone;
+	this.ldgPhone = ldgPhone;
 }
 public String getLdgEmail() {
-   return ldgEmail;
+	return ldgEmail;
 }
 public void setLdgEmail(String ldgEmail) {
-   this.ldgEmail = ldgEmail;
+	this.ldgEmail = ldgEmail;
 }
 public String getLdgHomepage() {
 	return ldgHomepage;
@@ -91,8 +112,10 @@ public void setLdgHomepage(String ldgHomepage) {
 public String toString() {
 	return "Accommodation [ldgCode=" + ldgCode + ", ldgName=" + ldgName + ", ldgType=" + ldgType + ", ldgImg=" + ldgImg
 			+ ", businessNumber=" + businessNumber + ", ldgAddr=" + ldgAddr + ", ldgDetailAddr=" + ldgDetailAddr
-			+ ", ldgExplain=" + ldgExplain + ", ldgTel=" + ldgTel + ", ldgPhone=" + ldgPhone + ", ldgEmail=" + ldgEmail
-			+ ", ldgHomepage=" + ldgHomepage + "]";
-} 
+			+ ", ldgExplain1=" + ldgExplain1 + ", ldgExplain2=" + ldgExplain2 + ", ldgExplain3=" + ldgExplain3
+			+ ", ldgExplain4=" + ldgExplain4 + ", ldgTel=" + ldgTel + ", ldgPhone=" + ldgPhone + ", ldgEmail="
+			+ ldgEmail + ", ldgHomepage=" + ldgHomepage + "]";
+}
    
+
 }

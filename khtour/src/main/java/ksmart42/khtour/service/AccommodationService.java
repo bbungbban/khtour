@@ -18,28 +18,44 @@ public class AccommodationService {
 	public AccommodationService(AccommodationMapper accommodationMapper) {
 		this.accommodationMapper = accommodationMapper;
 	}
+	
 	/**
-	 * 숙박업소 리스트 
-	 * */
-	public List<Accommodation> getAccommodationList(Map<String, Object> paramMap) {
+	 * 코드에 따른 여행 계획 조회
+	 */
+	public Accommodation getLdgByCode(String ldgCode) {
+		return accommodationMapper.getLdgByCode(ldgCode);
+	}
+	/**
+	 * 여행 계획 등록
+	 */
+	public void addAccommodation(Accommodation accommodation) {
+		accommodationMapper.addAccommodation(accommodation);
+	}
+	
+	/**
+	 * 여행 계획 목록 조회
+	 */
+	public List<Accommodation> getAccommodationList(Map<String, Object> paramMap){
 		List<Accommodation> accommodationList = accommodationMapper.getAccommodationList(paramMap);
 		
 		return accommodationList;
 	}
-	
-	/**
-	 * 숙박업소 등록
-	 * */
-	public void addaccommodation(Accommodation accommodation) {
-		accommodationMapper.addaccommodation(accommodation);
-		
-	}
-	
-	/**
-	 * 숙박업소 수정
-	 * */
-	public Accommodation getAccommodationByCode(String ldgCode) {
-		return accommodationMapper.getAccommodationByCode(ldgCode);
-	}
 
+	/**
+	 * 여행 계획 정보 수정
+	 */
+	public int modifyAccommodation(Accommodation accommodation) {
+		return accommodationMapper.modifyAccommodation(accommodation);
+	}
+	
+	/**
+	 * 여행 계획 정보 삭제
+	 */
+	public int removeAccommodation(String ldgCode) {
+		int result = accommodationMapper.removeAccommodation(ldgCode);
+		
+		result += accommodationMapper.removeAccommodation(ldgCode);
+		
+		return result;
+	}
 }
