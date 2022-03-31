@@ -7,11 +7,11 @@
 </th:block>
 <th:block layout:fragment="contentsTitle">
 	<!-- 페이지 타이틀 시작 -->
-	<h2>특별전 등록</h2>
+	<h2>전시회 등록</h2>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="#">Home</a></li>
-			<li class="breadcrumb-item active" aria-current="page">특별전 등록</li>
+			<li class="breadcrumb-item active" aria-current="page">전시회 등록</li>
 		</ol>
 	</nav>
 	<!-- 페이지 타이틀 종료 -->
@@ -27,23 +27,23 @@
 				<div class="card">
 					<div class="card-title">
 						<div class="card-title-left">
-							<h4 class="card-title-text">특별전 등록</h4>
+							<h4 class="card-title-text">전시회 등록</h4>
 						</div>
 					</div>
 					<div class="card-body">
-						<form id="addExhibition" th:action="@{/exhibition/exhibInsert}" method="post">
+						<form id="addExhib" th:action="@{/exhib/exhibInsert}" method="post">
 							<div class="form-row">
 								<div class="form-group col-6">
-									<label for="specialExhibCate">카테고리</label> <select
-										class="form-control" name="specialExhibCate">
+									<label for="exhibCate">카테고리</label> <select
+										class="form-control" name="exhibCate">
 										<option>::선택::</option>
 										<option value="exhib_theme">테마전시</option>
 										<option value="exhib_special">특별전시</option>
 									</select>
 								</div>
 								<div class="form-group col-6">
-									<label for="specialExhibCurrent">전시현황</label> <select
-										class="form-control" name="specialExhibCurrent">
+									<label for="exhibCurrent">전시현황</label> <select
+										class="form-control" name="exhibCurrent">
 										<option>::선택::</option>
 										<option value="expected">전시예정</option>
 										<option value="ing">전시중</option>
@@ -52,8 +52,8 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="specialExhibName">전시명</label> <input type="text"
-									class="form-control" name="specialExhibName"
+								<label for="exhibName">전시명</label> <input type="text"
+									class="form-control" name="exhibName"
 									placeholder="전시명을 입력하세요.">
 							</div>
 							<div class="form-row">
@@ -74,12 +74,12 @@
 							</div>
 
 							<div class="form-group">
-								<label>홈페이지</label>
+								<label for="exhibPage">홈페이지</label>
 								<div class="input-group mb-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text" id="basic-addon3">https://</span>
 									</div>
-									<input type="text" class="form-control" id="basic-url"
+									<input type="text" class="form-control" name="exhibPage"
 										aria-describedby="basic-addon3">
 								</div>
 							</div>
@@ -91,21 +91,13 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="inputEmail4">담당자</label> <input type="text"
-									class="form-control" id="inputEmail4">
-							</div>
-							<div class="form-group">
-								<label for="inputAddress">담당자 연락처</label> <input type="text"
-									class="form-control" id="inputAddress">
-							</div>
-							<div class="form-group">
-								<label for="specialExhibCon">상세입력</label>
-								<input type="text" class="form-control" name="specialExhibCon">
+								<label for="exhibCon">상세입력</label>
+								<input type="text" class="form-control" name="exhibCon">
 							</div>
 							<div class="col-12">
 								<div class="add-new text-center mb-5">
 									<button class="btn btn-primary ftbtn" type="submit"
-										id="addExhibition">등록</button>
+										id="addExhib">등록</button>
 								</div>
 							</div>
 						</form>

@@ -10,6 +10,8 @@ public class Exhib {
 	private String exhibEnd;
 	private String exhibCon;
 	private String exhibCurrent;
+	private String exhibPage;
+	
 	public String getExhibCode() {
 		return exhibCode;
 	}
@@ -58,11 +60,17 @@ public class Exhib {
 	public void setExhibCurrent(String exhibCurrent) {
 		this.exhibCurrent = exhibCurrent;
 	}
+	public String getExhibPage() {
+		return exhibPage;
+	}
+	public void setExhibPage(String exhibPage) {
+		this.exhibPage = exhibPage;
+	}
 	@Override
 	public String toString() {
 		return "Exhib [exhibCode=" + exhibCode + ", chMusCode=" + chMusCode + ", exhibCate=" + exhibCate
 				+ ", exhibName=" + exhibName + ", exhibStart=" + exhibStart + ", exhibEnd=" + exhibEnd + ", exhibCon="
-				+ exhibCon + ", exhibCurrent=" + exhibCurrent + "]";
+				+ exhibCon + ", exhibCurrent=" + exhibCurrent +", exhibPage=" + exhibPage+ "]";
 	}
 	
 	
