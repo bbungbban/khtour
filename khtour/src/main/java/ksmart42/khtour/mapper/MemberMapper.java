@@ -1,23 +1,60 @@
 package ksmart42.khtour.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
 import ksmart42.khtour.dto.Member;
+import ksmart42.khtour.dto.LoginHistory;
+import ksmart42.khtour.dto.MemberLevel;
 
 @Mapper
 public interface MemberMapper {
 
-	public List<Member> getMemberList();
+	// 로그인 이력조회1
+		public List<LoginHistory> getLoginHistory1();
 
-	public static Member getMemberInfoById(String memberId) {
-		// TODO Auto-generated method stub
-		return null;
+		// 로그인 이력조회2
+		public List<Map<String, Object>> getLoginHistory2();
+		
+		// 상품코드에 따른 구매이력 삭제
+		public int removeOrderBySellerId(String memberId);
+		
+		// 판매자가 등록한 상품을 삭제
+		public int removeGoodsBySellerId(String memberId);
+		
+		// 구매자가 구매한 이력을 삭제
+		public int removeOrder(String memberId);
+		
+		// 회원의 로그인 이력을 삭제
+		public int removeLoginHistory(String memberId);
+		
+		// 회원 삭제
+		public int removeMember(String memberId);
+		
+		// 회원수정
+		public int modifyMember(Member member);
+		
+		// 아이디별 회원정보 조회
+		public static Member getMemberInfoById(String memberId) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
+		// 회원 아이디 중복체크
+		public static boolean isIdCheck(String memberId) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+		
+		// 회원 등급 목록 조회
+		public List<MemberLevel> getMemberLevelList();
+		
+		// 회원 전체 목록 조회
+		public List<Member> getMemberList(String searchKey, String searchValue);
+		
+		// 회원 가입
+		public int addMember(Member member);
 	}
 
-	public static boolean isIdCheck(String memberId) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-}

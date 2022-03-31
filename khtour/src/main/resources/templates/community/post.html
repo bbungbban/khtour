@@ -11,19 +11,13 @@
 	<div class="row">
 		<div class="col-8">
 			<div class="card-group mb-3">
-
 				<div class="card col-sm-1 bg-primary d-flex pl-0 pr-0">
 					<div class="card-body pl-0 pr-0 pt-5">
-						<a href="#!"> <i
-							class="la la-caret-up d-flex la-3x justify-content-center text-white pb-5"></i></a>
-						<p class="card-text text-white text-center mb-0 pb-0"
-							th:text="${commPost.likesCnt}"></p>
+						<a href="#!"> <i class="la la-caret-up d-flex la-3x justify-content-center text-white pb-5"></i></a>
+						<p class="card-text text-white text-center mb-0 pb-0" th:text="${commPost.likesCnt}"></p>
 						<p class="card-text text-white text-center mt-0 pt-0 pb-5">좋아요</p>
-						<a href="#!"> <i
-							class="la la-caret-down d-flex la-3x justify-content-center text-white"></i></a>
-
+						<a href="#!"> <i class="la la-caret-down d-flex la-3x justify-content-center text-white"></i></a>
 					</div>
-
 				</div>
 				<div class="card col-sm-11">
 					<div class="card-body">
@@ -35,46 +29,53 @@
 						<div  th:if="${not #strings.isEmpty(commPost.pictureLink)}">
 							<img th:src="@{${commPost.pictureLink}}" class="card-img" alt="...">
 						</div>
-
-
-
 					</div>
 					<div class="card-foot p-2 text-center border-top">
 						<p class="card-text">
-							<a href="#!" class="text-dark"
-								style="z-index: 2; position: relative;"> <i
-								class="text-dark feather icon-message-circle"></i> 댓글 (20)
-							</a> <a href="#!" class="text-dark"
-								style="z-index: 2; position: relative;"><i
-								class="text-dark la la-share  pl-3"></i>공유하기</a> <a href="#!"
-								class="text-dark" style="z-index: 2; position: relative;"><i
-								class="text-dark  la la-flag  pl-3"></i>신고하기</a> 
-								<a th:href="@{/post(postCode=${commPost.postCode})}" class="stretched-link"></a>
+							<a href="#!" class="text-dark" style="z-index: 2; position: relative;"> 
+							<i class="text-dark feather icon-message-circle"></i> 댓글 (20)</a> 
+							<a href="#!" class="text-dark" style="z-index: 2; position: relative;">
+							<i class="text-dark la la-share  pl-3"></i>공유하기</a> 
+							<a href="#!" class="text-dark" style="z-index: 2; position: relative;">
+							<i class="text-dark  la la-flag  pl-3"></i>신고하기</a> 
+							<a th:href="@{/post(postCode=${commPost.postCode})}" class="stretched-link"></a>
 						</p>
 					</div>
-
 				</div>
 			</div>
 			<div class="card">
 				<div class="card-body">
-					<form class="cmxform" id="form2" method="get">
+					<form class="cmxform" id="form2"  method="post" th:action="@{/addCommReply}">
 						<div class="form-group">
 							<label for="agree">id001 로 댓글 남기기</label>
-							<textarea id="mainText" name="mainText" class="form-control"
-								rows="10" placeholder="댓글내용" required></textarea>
+							<textarea id="mainText" name="mainText" class="form-control" rows="5" placeholder="댓글내용" required></textarea>
+							<input type="hidden"  th:value="${commPost.postCode}"  name="postCode" />
 						</div>
 						<div class="form-group">
-							<input class="submit btn btn-primary pull-right" type="submit"
-								value="등록">
+							
+							<input class="submit btn btn-primary btn-sm" type="submit" value="등록">
 						</div>
 					</form>
+						<div class="card card ml-4 mr-0 mb-1 mt-0" th:if="${not #lists.isEmpty(replyList)}" th:each="r: ${replyList}">
+							<div class="card-body">
+								<span class="card-text">      
+									<a th:text = "${r.memberId}"></a>
+									<a th:text ="${r.regTime}"></a>
+								</span>
+								<div class="card-text border-top border-bottom pt-3 pb-3 mt-2 mb-2" th:text= "${r.mainText}" > </div>
+								<p class="card-text">
+									<a href="#!" class="text-dark" style="z-index: 2; position: relative;"> 
+									<i class="text-dark feather icon-message-circle"></i> 댓글 (20)</a> 
+									<a href="#!" class="text-dark" style="z-index: 2; position: relative;">
+									<i class="text-dark la la-share  pl-3"></i>공유하기</a> 
+									<a href="#!" class="text-dark" style="z-index: 2; position: relative;">
+									<i class="text-dark  la la-flag  pl-3"></i>신고하기</a> 
+								</p>
+							</div>
+						</div>
 				</div>
 			</div>
-			<div class="card">
-				<div class="card-body">
-					<div class="card-title">댓글 공간</div>
-				</div>
-			</div>
+
 		</div>
 		<div class="col-4">
 			<div class="card">
@@ -116,8 +117,7 @@
 					<a href="/commDashboard" class="btn btn-primary active btn-sm" role="button"
 						aria-pressed="true">커뮤니티 가입</a> <a
 						th:href="@{/createPost(commName=${community.commName})}"
-						class="btn btn-primary active btn-sm" role="button" aria-pressed="true">포스트
-						만들기</a>
+						class="btn btn-primary active btn-sm" role="button" aria-pressed="true">포스트 만들기</a>
 				</div>
 			</div>
 			<div class="card">
@@ -151,6 +151,22 @@
 
 		</div>
 	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	<!-- Modal -->
 	<div class="modal fade" id="exampleModal-02" tabindex="-1"

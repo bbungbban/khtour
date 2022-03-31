@@ -6,26 +6,26 @@
 	<title th:text="${title}"></title>
 </th:block>
 <th:block layout:fragment="contentsTitle">
-			<h2>공유 게시판 리스트</h2>
-			<nav aria-label="breadcrumb">
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="#">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page">여행 일정
-						공유 게시판</li>
-				</ol>
-			</nav>
+	<h2>여행 게시판 리스트</h2>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="#">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page">여행 일정 공유
+				게시판</li>
+		</ol>
+	</nav>
 </th:block>
 
 <th:block layout:fragment="customContents">
 	<div class="row">
-		<div class="col-3">
+		<div class="col-2.5">
 			<div class="card text-center">
 				<div class="card-body">
 					<a th:href="@{/recordBoard/recordBoardInsert}" type="button"
 						class="btn btn-primary"> <i class="feather icon-plus"></i>포스트
 						등록
 					</a>
-			</div>
+				</div>
 			</div>
 			<div class="card ">
 				<h5 class="card-title">검색범위 및 정렬방식</h5>
@@ -73,9 +73,11 @@
 							<label for="customRange2" class="form-label">여행 유형</label>
 							<div>
 								<button type="button" class="btn btn-outline-primary">여행전
-									계획</button>
+									</button>
+								<button type="button" class="btn btn-outline-primary">여행중
+									</button>
 								<button type="button" class="btn btn-outline-primary">여행후
-									일기</button>
+									</button>
 
 							</div>
 						</div>
@@ -91,13 +93,15 @@
 			</div>
 
 		</div>
-		<div class="col-7">
+		<div class="col-8">
 			<!-- cardpart : 2 start -->
 			<div class="card">
 				<div class="card-body">
 					<!-- 블로그 리스트 시작 -->
 					<div class="row">
-						<div class="col-md-6 col-lg-4">
+						<div class="col-md-6 col-lg-4"
+							th:if="${not #lists.isEmpty(recordBoardList)}"
+							th:each="l : ${recordBoardList}">
 							<div class="blog mb-5">
 								<div class="blog-image">
 									<div class="embed-responsive embed-responsive-4by3">
@@ -108,77 +112,62 @@
 								</div>
 								<div class="blog-info">
 									<div class="blog-date">
-										<a href="#!"><i class="feather icon-briefcase"></i> 여행전 </a>
+										<a href="#!" th:text="${l.planStatus.getPlanStatusName()}"> </a>
 									</div>
 									<div class="blog-title mt-3">
 										<h4 class="mb-3">
-											<a th:href="@{/recordBoard/recordBoardDetail}">제주도 여행이 막막하다면!</a>
+											<strong><a
+												th:href="@{/recordBoard/recordBoardDetail}"
+												th:text="${l.recordBoardName}"></a></strong>
 										</h4>
-										<p class="mb-0">여행 기간은 한정적인데 가고 싶은 곳은 너무 많아서 뭘 어디서부터 어떻게
-											해야 될지 모르겠다면 집중!</p>
-								
-										<a href="#!"> <i class="feather icon-heart-on"></i>
-												37 개의 좋아요
-										</a>
-										<a href="#!"> <i class="feather icon-image"></i>
-												4 개의 이미지 
-										</a>
-					
+										<p class="mb-0" th:text="${l.content}"></p>
 									</div>
 								</div>
-							</div>
-						</div>
-						<div class="col-md-6 col-lg-4">
-							<div class="blog mb-5">
-								<div class="blog-image">
-									<div class="embed-responsive embed-responsive-4by3">
-										<img th:src="@{/images/traShare/여행이미지1.gif}"
-											class="card-img-top h-10 img-thumbnail embed-responsive-item"
-											alt="...">
+								<div class="blog-bottom text-center">
+									<div class="row">
+										<div class="col-4">
+											<div class="feather icon-heart-on">
+												<span th:text="${l.likeCount}+' 개의 좋아요'"></span>
+											</div>
+										</div>
+										<div class="col-4">
+											<div class="feather icon-image">
+												<span>123 개의 이미지</span>
+											</div>
+										</div>
+										<div class="col-4">
+											<div class="feather icon-tv">
+												<span th:text="${l.views}+' 개의  조회수'"></span>
+											</div>
+										</div>
+
 									</div>
-								</div>
-								<div class="blog-info">
-									<div class="blog-date">
-										<a href="#!"><i class="feather icon-briefcase"></i> 여행전 </a>
-									</div>
-									<div class="blog-title mt-3">
-										<h4 class="mb-3">
-											<a th:href="@{/recordBoard/recordBoardDetail}">제주도 여행이 막막하다면!</a>
-										</h4>
-										<p class="mb-0">여행 기간은 한정적인데 가고 싶은 곳은 너무 많아서 뭘 어디서부터 어떻게
-											해야 될지 모르겠다면 집중!</p>
-								
-										<a href="#!"> <i class="feather icon-heart-on"></i>
-												37 개의 좋아요
-										</a>
-										<a href="#!"> <i class="feather icon-image"></i>
-												4 개의 이미지 
-										</a>
-					
-									</div>
+
+
+
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="text-center">
-						<!-- 페이징 시작 -->
-						<div id="paging">
-							<nav aria-label="Page navigation example">
-								<ul class="pagination justify-content-center">
-									<li class="page-item"><a class="page-link" href="#">이전</a></li>
-									<li class="page-item"><a class="page-link" href="#">1</a></li>
-									<li class="page-item"><a class="page-link" href="#">2</a></li>
-									<li class="page-item"><a class="page-link" href="#">3</a></li>
-									<li class="page-item"><a class="page-link" href="#">4</a></li>
-									<li class="page-item"><a class="page-link" href="#">5</a></li>
-									<li class="page-item"><a class="page-link" href="#">다음</a></li>
-								</ul>
-							</nav>
-						</div>
-						<!-- 페이징 끝 -->
-					</div>
-					<!-- 블로그 리스트 끝 -->
 				</div>
+				<div class="text-center">
+					<!-- 페이징 시작 -->
+					<div id="paging">
+						<nav aria-label="Page navigation example">
+							<ul class="pagination justify-content-center">
+								<li class="page-item"><a class="page-link" href="#">이전</a></li>
+								<li class="page-item"><a class="page-link" href="#">1</a></li>
+								<li class="page-item"><a class="page-link" href="#">2</a></li>
+								<li class="page-item"><a class="page-link" href="#">3</a></li>
+								<li class="page-item"><a class="page-link" href="#">4</a></li>
+								<li class="page-item"><a class="page-link" href="#">5</a></li>
+								<li class="page-item"><a class="page-link" href="#">다음</a></li>
+							</ul>
+						</nav>
+					</div>
+					<!-- 페이징 끝 -->
+				</div>
+				<!-- 블로그 리스트 끝 -->
 			</div>
 		</div>
 	</div>

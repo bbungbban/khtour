@@ -30,7 +30,7 @@
 					<a th:href="@{/member/memberPw.html}"> 암호를 잊어버렸습니다. </a>
 				</div>
 			</div>
-			<button type="button" id="loginBtn" onclick="('포인트가 적립되었습니다.')" th:href="@{/member/loginMain.html}" class="btn btn-primary">로그인</button>
+			<button type="submit" id="loginBtn" onclick="('포인트가 적립되었습니다.')" class="btn btn-primary">로그인</button>
 			<div th:if="${not #strings.isEmpty(result)}">
 				<p th:text="${result}"></p>
 			</div>
@@ -54,10 +54,6 @@
 				return true;
 			}
 			
-			function vaildationObj(inputObj){
-				
-			}
-			
 			$('#loginBtn').click(function(){
 				var isSubmit = true;
 				var inputObj = $('#loginForm').find('input');
@@ -75,7 +71,7 @@
 					}
 				});
 				
-				if(isSubmit) $("/member/memberList.html").submit();
+				if(isSubmit) $('#loginForm').submit();
 				
 			});
 			

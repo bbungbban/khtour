@@ -15,16 +15,15 @@
 				</div>
 				<div class="card-body m-0 p-0">
 					<div class="card-group">
-						<div class="card pt-2 m-1" th:if="${not #lists.isEmpty(dailyPostList)}" style="border: none;" th:each="dp: ${dailyPostList}">
-							<img th:src="@{${dp.pictureLink}}"
-								class="card-img" alt="...">
-							<div class="card-body">
+						<div class="card pt-2 m-1 img-fluid" th:if="${not #lists.isEmpty(dailyPostList)}" style="border: none;" th:each="dp: ${dailyPostList}">
+							<div  th:if="${not #strings.isEmpty(dp.pictureLink)}" style = "opacity:.3;">
+								<img th:src="@{${dp.pictureLink}}" class="card-img-top" alt="...">
+							</div>
+							<div class="card-img-overlay" >
 								<h5 class="card-title" th:text="${dp.title}"></h5>
+								<p style="display: -webkit-box; -webkit-line-clamp: 8; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;" class="card-text" th:text="${dp.mainText}"></p>
 								<a th:href="@{/post(postCode=${dp.postCode})}"
 									class="stretched-link"></a>
-							</div>
-							<div class="card-foot p-2 text-center border-top">
-								<p class="card-text" th:text="${dp.commName}"></p>
 							</div>
 						</div>
 					</div>
@@ -48,15 +47,17 @@
 					<div th:replace="community/singlePost :: singlePost"></div>
 				</div>
 				<div class="col-sm-4">
+					<div class="card-header bg-primary pb-1">
+							<h5 class="text-white">인기커뮤니티</h5>
+						</div>
 					<div class="card">
-						<img th:src="@{images\community\img001.jpg}" class="card-img-top" alt="...">
 						<div class="card-body m-0 pt-0 pb-0">
 							<div class="table-responsive">
 								<table class="table table-centered table-hover mb-0">
 									<tbody>
 										<tr th:if="${not #lists.isEmpty(communityList)}" th:each="l,index : ${communityList}" style="transform: rotate(0);">
 
-											<th scope="row"><a th:href="@{/commPage(commName=${l.commName})}" class="stretched-link" th:text="${index.index}+1"></a></th>
+											<th scope="row"><a th:href="@{/commPage(commCode=${l.commCode})}" class="stretched-link" th:text="${index.index}+1"></a></th>
 											<td><div class="d-inline-block text-truncate" style="max-width: 120px;">
 													<a th:text="${l.commName}"></a>
 												</div>
@@ -66,7 +67,6 @@
 										</tr>
 									</tbody>
 								</table>
-
 							</div>
 						</div>
 						<div class="card-foot p-3 text-center border-top">
@@ -75,22 +75,14 @@
 						</div>
 					</div>
 					<div class="card">
-						<img th:src="@{images\community\img001.jpg}" class="card-img-top"
-							alt="...">
-
-						<div class="card-body m-0">
-							<h5 class="card-title">HOME</h5>
-
-
+						<div class="card-header bg-primary pb-1">
+							<h5 class="text-white">커뮤니티 참여</h5>
 						</div>
-						<div class="card-foot p-3 text-center border-top">
-							<a href="/createPost"
-								class="btn btn-sm btn-primary active mt-0 mb-0 mr-4"
-								role="button" aria-pressed="true">포스트 등록</a> <a
-								href="/addCommunity"
-								class="btn btn-sm btn-primary active mt-0 mb-0" role="button"
-								aria-pressed="true">커뮤니티 등록</a>
+						<div class="card-body m-0">				
+							<a href="/createPost" class="btn btn-sm btn-primary active mt-0 mb-0 mr-4"
+							role="button" aria-pressed="true">포스트 등록</a> <a href="/addCommunity" class="btn btn-sm btn-primary active mt-0 mb-0" role="button" aria-pressed="true">커뮤니티 등록</a>
 						</div>
+						
 					</div>
 				</div>
 			</div>

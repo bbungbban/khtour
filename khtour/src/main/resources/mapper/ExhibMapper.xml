@@ -3,35 +3,110 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ksmart42.khtour.mapper.ExhibMapper">
-<resultMap type="Exhibition" id="ExhibResultMap">
-		<id column="exhib_code" property="exhibCode"/>
-		<result column="special_exhib_code" property="specialExhibCode"/>
-		<result column="ch_mus_code" property="chMusCode"/>
-		<result column="museum_name" property="museumName"/>
-		<result column="special_exhib_name" property="specialExhibName"/>
-		<result column="special_exhib_start" property="specialExhibStart"/>
-		<result column="special_exhib_end" property="specialExhibEnd"/>
-		<result column="special_exhib_con" property="specialExhibCon"/>
-	</resultMap> 
-	
+	<resultMap type="Exhib" id="exhibResultMap">
+		<id column="exhib_code" property="exhibCode" />
+		<result column="ch_mus_code" property="chMusCode" />
+		<result column="exhib_cate" property="exhibCate" />
+		<result column="exhib_name" property="exhibName" />
+		<result column="exhib_start" property="exhibStart" />
+		<result column="exhib_end" property="exhibEnd" />
+		<result column="exhib_con" property="exhibCon" />
+		<result column="exhib_current" property="exhibCurrent" />
+	</resultMap>
+
 	<!-- 전시회 등록 SQL -->
-	<insert id="addExhibition" parameterType="Exhibition">
-		INSERT INTO tb_special_exhib 
-		( 	 special_exhib_code
-			,ch_mus_code
-			,museum_name
-			,special_exhib_name
-			,special_exhib_start
-			,special_exhib_end
-			,special_exhib_con
+	<insert id="addExhib" parameterType="Exhib">
+		INSERT INTO
+		tb_exhib
+		( exhib_code
+		,ch_mus_code
+		,exhib_cate
+		,exhib_name
+		,exhib_start
+		,exhib_end
+		,exhib_con
+		,exhib_current
 		) VALUES (
-			sf_new_special_exhib_code()
-		   ,#{specialExhibCode}
-		   ,#{museumName}
-		   ,#{specialExhibName}
-		   ,#{specialExhibStart}
-		   ,#{specialExhibEnd}
-		   ,#{specialExhibCon}
+		sf_new_exhib_code()
+		,#{chMusCode}
+		,#{exhibCate}
+		,#{exhibName}
+		,#{exhibStart}
+		,#{exhibEnd}
+		,#{exhibCon}
+		,#{exhibCurrent}
 		);
 	</insert>
+
+	<!-- 코드에 따른 전시회 조회 SQL -->
+	<select id="getExhibByCode" parameterType="String" resultMap="exhibResultMap">
+		SELECT
+		 s.exhib_code
+		,s.ch_mus_code
+		,s.exhib_cate
+		,s.exhib_name
+		,s.exhib_start
+		,s.exhib_end
+		,s.exhib_con
+		,s.exhib_current
+		FROM
+			tb_exhib AS s
+		WHERE
+			exhib_code = #{exhibCode};
+	
+	</select>
+	
+	<!-- 전시회 목록 조회 SQL -->
+	<select id="getExhibList" resultMap="exhibResultMap">
+		SELECT
+		 s.exhib_code
+		,s.ch_mus_code
+		,s.exhib_cate
+		,s.exhib_name
+		,s.exhib_start
+		,s.exhib_end
+		,s.exhib_con
+		,s.exhib_current
+		FROM
+		tb_exhib AS s;
+	</select>
+	
+	<!-- 전시회 수정 SQL -->
+	<update id="modifyExhib" parameterType="Exhib">
+		UPDATE tb_exhib
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="chMusCode != null and chMusCode != ''">
+				ch_mus_code = #{chMusCode},
+			</if>		
+			<if test="exhibCate != null and exhibCate != ''">
+				exhib_cate = #{exhibCate},
+			</if>		
+			<if test="exhibName != null and exhibName != ''">
+				exhib_name = #{exhibName},
+			</if>		
+			<if test="exhibStart != null and exhibStart != ''">
+				exhib_start = #{exhibStart},
+			</if>		
+			<if test="exhibEnd != null and exhibEnd != ''">
+				exhib_end = #{exhibEnd},
+			</if>		
+			<if test="exhibCon != null and exhibCon != ''">
+				exhib_con = #{exhibCon},
+			</if>		
+			<if test="exhibCurrent != null and exhibCurrent != ''">
+				exhib_current = #{exhibCurrent},
+			</if>		
+		</trim>
+		WHERE
+			exhib_code = #{exhibCode};
+	</update>
+	
+	<!-- 전시회 정보 삭제 SQL -->
+	<delete id="removeExhib" parameterType="String">
+		DELETE
+		FROM
+			tb_exhib
+		WHERE
+			exhib_code = #{exhibCode};
+	</delete>
 </mapper>

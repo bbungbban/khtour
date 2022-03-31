@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ksmart42.khtour.dto.PlanStatus;
 import ksmart42.khtour.dto.RecordBoard;
 import ksmart42.khtour.service.RecordBoardService;
 
@@ -128,7 +129,10 @@ public class RecordBoardController {
 	@GetMapping("/recordBoardInsert")
 	public String addRecordBoard(Model model) {
 		
+		List<PlanStatus> planStatusList = recordBoardService.getPlanStatusList();
+		
 		model.addAttribute("title", "여행 계획 등록");
+		model.addAttribute("planStatusList", planStatusList);
 		
 		return "recordBoard/recordBoardInsert";
 	}
@@ -141,13 +145,15 @@ public class RecordBoardController {
 			@RequestParam(value="recordBoardCode", required = false) String recordBoardCode,
 			Model model) {
 		
-		
+		List<PlanStatus> planStatusList = recordBoardService.getPlanStatusList();
 		RecordBoard recordBoard = recordBoardService.getRecordBoardByCode(recordBoardCode);
 		
 		model.addAttribute("title", "문화재 상세 페이지");
 		model.addAttribute("recordBoard", recordBoard);
+		model.addAttribute("planStatusList", planStatusList);
 		System.out.println("정보 수정 겟방식 전달" + recordBoard);
 		return "/recordBoard/recordBoardDetail";
 	}
+	
 	
 }

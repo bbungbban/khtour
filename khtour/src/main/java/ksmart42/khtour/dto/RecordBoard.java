@@ -1,12 +1,12 @@
 package ksmart42.khtour.dto;
 
 public class RecordBoard {
-			//record_board_code, member_id, record_board_name, content, status, image, start_date, end_date, reg_date, like_count, views
+			//record_board_code, member_id, record_board_name, content, plan_status_code, image, start_date, end_date, reg_date, like_count, views
 	private String recordBoardCode;
 	private String memberId;
 	private String recordBoardName;
 	private String content;
-	private String status;
+	private String planStatusCode;
 	private String image;
 	private String startDate;
 	private String endDate;
@@ -14,7 +14,15 @@ public class RecordBoard {
 	private String likeCount;
 	private String views;
 	
+	private PlanStatus planStatus;
+
 	
+	public PlanStatus getPlanStatus() {
+		return planStatus;
+	}
+	public void setPlanStatus(PlanStatus planStatus) {
+		this.planStatus = planStatus;
+	}
 	public String getRecordBoardCode() {
 		return recordBoardCode;
 	}
@@ -27,7 +35,6 @@ public class RecordBoard {
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-	
 	public String getRecordBoardName() {
 		return recordBoardName;
 	}
@@ -40,13 +47,12 @@ public class RecordBoard {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getStatus() {
-		return status;
+	public String getPlanStatusCode() {
+		return planStatusCode;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setPlanStatusCode(String planStatusCode) {
+		this.planStatusCode = planStatusCode;
 	}
-	
 	public String getImage() {
 		return image;
 	}
@@ -86,10 +92,9 @@ public class RecordBoard {
 	@Override
 	public String toString() {
 		return "RecordBoard [recordBoardCode=" + recordBoardCode + ", memberId=" + memberId + ", recordBoardName="
-				+ recordBoardName + ", content=" + content + ", status=" + status + ", image=" + image + ", startDate="
-				+ startDate + ", endDate=" + endDate + ", regDate=" + regDate + ", likeCount=" + likeCount + ", views="
-				+ views + "]";
+				+ recordBoardName + ", content=" + content + ", planStatusCode=" + planStatusCode + ", image=" + image
+				+ ", startDate=" + startDate + ", endDate=" + endDate + ", regDate=" + regDate + ", likeCount="
+				+ likeCount + ", views=" + views + ", planStatus=" + planStatus + "]";
 	}
 
-	
 }
