@@ -68,7 +68,7 @@
 				</div>
 				<div class="card-foot p-2 text-center border-top ">
 					<a href="/commDashboard" class="btn btn-primary active btn-sm" role="button"
-						aria-pressed="true">커뮤니티 가입</a> <a th:href="@{/createPost(commName=${community.commName})}"
+						aria-pressed="true">커뮤니티 가입</a> <a th:href="@{/createPost(commCode=${community.commCode})}"
 						class="btn btn-primary active btn-sm" role="button" aria-pressed="true">포스트 만들기</a>
 				</div>
 			</div>
@@ -107,7 +107,7 @@
 				<div class="card-body m-0">
 
 					<th:block th:if="${not #lists.isEmpty(tagList)}" th:each="r: ${tagList}">
-						<a th:href="@{/commPage(tagCode=${r.tagCode},commName=${community.commName})}" role="button" th:class="'btn '+'btn-sm pull-left '+'m-1 '+'btn-'+ ${r.tagColor}" th:text="${r.tagName}"></a>
+						<a th:href="@{/commPage(tagCode=${r.tagCode},commCode=${r.commCode})}" role="button" th:class="'btn '+'btn-sm pull-left '+'m-1 '+'btn-'+ ${r.tagColor}" th:text="${r.tagName}"></a>
 					</th:block>
 
 				</div>
@@ -135,12 +135,10 @@
 				<div class="modal-body p-5">
 					<form class="cmxform" method="post" th:action="@{/addTag}">
 						<div class="form-group">
-							<input type="hidden" name="commName" id="commName"
-								class="form-control" th:value="${community.commName}"></input>
+							<input type="hidden" name="commCode" id="commCode" class="form-control" th:value="${community.commCode}"></input>
 						</div>
 						<div class="form-group">
-							<label for="tagName">테그이름</label> <input id="tagName"
-								name="tagName" type="text" class="form-control" required></input>
+							<label for="tagName">테그이름</label> <input id="tagName" name="tagName" type="text" class="form-control" required></input>
 						</div>
 
 
@@ -177,11 +175,10 @@
 				<div class="modal-body p-5">
 					<form class="cmxform" method="post" th:action="@{/addRule}">
 						<div class="form-group">
-							<input type="hidden" name="commName" id="commName"
-								class="form-control" th:value="${community.commName}"></input>
+							<input type="hidden" name="commCode" id="commCode" class="form-control" th:value="${community.commCode}"></input>
 						</div>
 						<div class="form-group">
-							<label for="title">커뮤니티 제목</label> <input id="title" name="title"
+							<label for="title">규칙 제목</label> <input id="title" name="title"
 								type="text" class="form-control" required></input>
 						</div>
 

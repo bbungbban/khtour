@@ -15,16 +15,15 @@
 				</div>
 				<div class="card-body m-0 p-0">
 					<div class="card-group">
-						<div class="card pt-2 m-1" th:if="${not #lists.isEmpty(dailyPostList)}" style="border: none;" th:each="dp: ${dailyPostList}">
-							<img th:src="@{${dp.pictureLink}}" class="card-img-top" alt="...">
-							<div class="card-body pt-0 pb-0">
+						<div class="card pt-2 m-1 img-fluid" th:if="${not #lists.isEmpty(dailyPostList)}" style="border: none;" th:each="dp: ${dailyPostList}">
+							<div  th:if="${not #strings.isEmpty(dp.pictureLink)}">
+								<img th:src="@{${dp.pictureLink}}" class="card-img-top" alt="...">
+							</div>
+							<div class="card-img-overlay">
 								<h5 class="card-title" th:text="${dp.title}"></h5>
-								<p style="display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;" class="card-text" th:text="${dp.mainText}"></p>
+								<p style="display: -webkit-box; -webkit-line-clamp: 8; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;" class="card-text" th:text="${dp.mainText}"></p>
 								<a th:href="@{/post(postCode=${dp.postCode})}"
 									class="stretched-link"></a>
-							</div>
-							<div class="card-foot p-2 text-center border-top">
-								<p class="card-text" th:text="${dp.commName}"></p>
 							</div>
 						</div>
 					</div>
@@ -56,7 +55,7 @@
 									<tbody>
 										<tr th:if="${not #lists.isEmpty(communityList)}" th:each="l,index : ${communityList}" style="transform: rotate(0);">
 
-											<th scope="row"><a th:href="@{/commPage(commName=${l.commName})}" class="stretched-link" th:text="${index.index}+1"></a></th>
+											<th scope="row"><a th:href="@{/commPage(commCode=${l.commCode})}" class="stretched-link" th:text="${index.index}+1"></a></th>
 											<td><div class="d-inline-block text-truncate" style="max-width: 120px;">
 													<a th:text="${l.commName}"></a>
 												</div>
@@ -85,10 +84,7 @@
 						<div class="card-foot p-3 text-center border-top">
 							<a href="/createPost"
 								class="btn btn-sm btn-primary active mt-0 mb-0 mr-4"
-								role="button" aria-pressed="true">포스트 등록</a> <a
-								href="/addCommunity"
-								class="btn btn-sm btn-primary active mt-0 mb-0" role="button"
-								aria-pressed="true">커뮤니티 등록</a>
+								role="button" aria-pressed="true">포스트 등록</a> <a href="/addCommunity" class="btn btn-sm btn-primary active mt-0 mb-0" role="button" aria-pressed="true">커뮤니티 등록</a>
 						</div>
 					</div>
 				</div>
