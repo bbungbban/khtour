@@ -7,6 +7,17 @@
 #exhibInsert .btn{border-radius:3px;}
 #exhibInsert .card-title-text{font-weight:bold;}
 #exhibInsert .margincorrection .card{margin-bottom:1.77em;}
+#exhibInsert .popover-header{display:none;}
+
+#start_date-popover-body .datepicker-btns .btn:hover{background:none;}
+#start_date-popover-body .btn.btn-outline-dark{color:#212529;}
+#start_date-popover-body .datepicker-table td button.today{background-color:#335eea;color:#fff;}
+#start_date-popover-body .datepicker-table td button:not(:disabled):hover{background-color:#eee !important;border-color:#eee !important;color:#212529;}
+#start_date-popover-body .table .thead-light th{background:none;}
+#start_date-popover-body .btn.btn-outline-secondary{color:#999;}
+#start_date-popover-body .btn{border-radius:4px;transition:none;}
+#start_date-popover-body .btn-info:not(:disabled):not(.disabled).active, .btn-info:not(:disabled):not(.disabled):active, .show>.btn-info.dropdown-toggle{background:#335eea;border-color:#335eea;}
+#start_date-popover-body #start_date-popover-body .btn.btn-outline-dark{color:#fff;}
 
 #cosCate .btnhover {transition: 0.2s;}
 #cosCate .dd-list .dd-list {padding: 0;margin-left: 2.143rem;}
