@@ -39,7 +39,20 @@
 		   ,h.heritage_category
 		   ,h.heritage_area   
 		FROM
-		  tb_heritage_detail AS h;
+		   tb_heritage_detail AS h
+		   INNER JOIN 
+		   tb_member AS m
+		   ON 
+		   h.member_id = m.member_id
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="memberId != null and memberId != ''">
+				h.member_id = #{memberId}
+			</if>
+			<if test="searchKey != null and searchKey != '' and searchValue != ''">
+		 		AND ${searchKey} LIKE CONCAT('%', #{searchValue}, '%')
+		 	</if>
+		</trim>
+		ORDER BY h.heritage_code;	
 	</select>
 	
 	<!-- 코드에 따른 문화재 조회 SQL -->

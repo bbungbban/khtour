@@ -26,18 +26,18 @@
 						<div class="row align-items-start">
 							<div class="col-3">
 								<button type="button" class="btn btn-primary" data-toggle="modal"
-									data-target="#exampleModal-03">
+									data-target=".bd-example-modal-lg">
 									<i class="feather icon-plus"></i>문화재 등록
 								</button>
 								<!-- 모달 시작 -->
-								<div class="modal fade" id="exampleModal-03" tabindex="-1"
+								<div class="modal fade bd-example-modal-lg"  tabindex="-1"
 									role="dialog" aria-labelledby="exampleModalLabel"
 									aria-hidden="true">
 									<div class="modal-dialog" role="document">
 										<div class="modal-content">
 											<div class="modal-header">
 												<h5 class="modal-title" id="exampleModalLabel">
-													<i class="feather icon-plus"></i>문화재 등록
+													<i class="feather icon-plus"></i> 상세정보 등록
 												</h5>
 												<button type="button" class="close" data-dismiss="modal"
 													aria-label="Close">
@@ -45,13 +45,6 @@
 												</button>
 											</div>
 											<div class="modal-body p-5">
-												<div class="card">
-													<div class="card-title">
-														<div class="card-title-left">
-															<h4 class="card-title-text">상세정보 등록</h4>
-														</div>
-													</div>
-													<div class="card-body">
 														<form id="addHeritageForm"
 															th:action="@{/heritage/heritageListByItem}" method="post">
 															<div class="form-group">
@@ -123,8 +116,6 @@
 															<button type="button" class="btn btn-danger"
 																data-dismiss="modal">취소</button>
 														</form>
-													</div>
-												</div>
 											</div>
 										</div>
 									</div>
@@ -158,23 +149,8 @@
 						</div>
 					</div>
 					<div class="card-body">
+						<div th:include="searchMinSeok/search.html :: searchHeritageFragment"></div><br>
 						<form>
-							<div class="form-group">
-								<label for="formGroupExampleInput">연관검색어</label>
-								<div class="row offset-1">
-									<div class="col-3">
-										<select class="form-control" id="exampleFormControlSelect1">
-											<option class="text-center">::선택::</option>
-											<option>이름</option>
-											<option>소재지</option>
-										</select>
-									</div>
-									<div class="col-4">
-										<input type="text" class="form-control"
-											id="formGroupExampleInput" placeholder="검색어를 입력">
-									</div>
-								</div>
-							</div>
 							<div class="form-group">
 								<label for="formGroupExampleInput">분류 종목</label>
 								<div class="row text-center">
