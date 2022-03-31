@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ksmart42.khtour.controller.CommunityController;
 import ksmart42.khtour.dto.CommCategory;
 import ksmart42.khtour.dto.CommPost;
+import ksmart42.khtour.dto.CommReply;
 import ksmart42.khtour.dto.CommTag;
 import ksmart42.khtour.dto.Community;
 import ksmart42.khtour.dto.Rule;
@@ -223,6 +224,11 @@ public class CommunityService {
 		return postList;
 	}
 	
+	public List<CommReply> getCommReplyListByPostCode(String postCode)
+	{
+		return communityMapper.getCommReplyListByPostCode(postCode);
+	}
+	
 	
 	/* 작성자 : 한경수
 	*  입  력 : String (커뮤니티 이름)
@@ -251,8 +257,6 @@ public class CommunityService {
 		
 		//커뮤니티 포스트 안에든 포스트 코드를 사용하여 포스트 를 찾아서 커뮤니티 포스트에 저장
 		commPost.setCommTag(communityMapper.getCommTagByTagCode(commPost.getTagCode()));
-	
-		
 		//좋아요 - 싫어요 구해줌 
 		float likes = Float.parseFloat(commPost.getLikesCnt());
 		float dislikes= Float.parseFloat(commPost.getDislikesCnt());
@@ -315,6 +319,15 @@ public class CommunityService {
 		communityMapper.addRule(rule);
 		
 	}
+	
+	public void addCommReply(CommReply commReply) {	
+		
+		log.info("답글" + commReply);
+		communityMapper.addCommReply(commReply);
+		
+	}
+	
+	
 
 	/* 작성자 : 한경수
 	*  입  력 : CommTag(커뮤니티 테그)

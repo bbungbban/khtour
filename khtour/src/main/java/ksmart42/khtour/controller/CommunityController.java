@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ksmart42.khtour.dto.CommCategory;
 import ksmart42.khtour.dto.CommPost;
+import ksmart42.khtour.dto.CommReply;
 import ksmart42.khtour.dto.CommTag;
 import ksmart42.khtour.dto.Community;
 import ksmart42.khtour.dto.Rule;
@@ -229,6 +230,17 @@ public class CommunityController {
 		reAttr.addAttribute("postCode",commPost.getPostCode());
 		return "redirect:/post";	
 	}
+	@PostMapping("/addCommReply")
+	public String addCommReply(RedirectAttributes reAttr,CommReply commReply) {
+		
+		commReply.setMemberId("id001");	
+		reAttr.addAttribute("postCode",commReply.getPostCode());
+		
+		
+		
+		communityService.addCommReply(commReply);
+		return "redirect:/post";	
+	}
 	
 	
 	/* 작성자 : 한경수
@@ -241,7 +253,8 @@ public class CommunityController {
 		
 		//포스트 코드로 커뮤니티 포스트를 찾아서 저장
 		CommPost commPost =communityService.getPostByPostCode(postCode);
-		
+		List<CommReply> replyList = communityService.getCommReplyListByPostCode(postCode);
+		log.info("답글리스트 : " + replyList);
 		//커뮤니티포스트에 들어있는 커뮤니티 이름 저장
 		String commCode = commPost.getCommCode();
 		
@@ -251,6 +264,7 @@ public class CommunityController {
 		List<Rule> ruleList = communityService.getRuleListByCommCode(commCode);
 		
 		//모델에 정보들 저장
+		model.addAttribute("replyList",replyList);
 		model.addAttribute("ruleList", ruleList);
 		model.addAttribute("community", community);
 		model.addAttribute("commPost", commPost);

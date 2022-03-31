@@ -16,10 +16,10 @@
 				<div class="card-body m-0 p-0">
 					<div class="card-group">
 						<div class="card pt-2 m-1 img-fluid" th:if="${not #lists.isEmpty(dailyPostList)}" style="border: none;" th:each="dp: ${dailyPostList}">
-							<div  th:if="${not #strings.isEmpty(dp.pictureLink)}">
+							<div  th:if="${not #strings.isEmpty(dp.pictureLink)}" style = "opacity:.3;">
 								<img th:src="@{${dp.pictureLink}}" class="card-img-top" alt="...">
 							</div>
-							<div class="card-img-overlay">
+							<div class="card-img-overlay" >
 								<h5 class="card-title" th:text="${dp.title}"></h5>
 								<p style="display: -webkit-box; -webkit-line-clamp: 8; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;" class="card-text" th:text="${dp.mainText}"></p>
 								<a th:href="@{/post(postCode=${dp.postCode})}"
@@ -47,8 +47,10 @@
 					<div th:replace="community/singlePost :: singlePost"></div>
 				</div>
 				<div class="col-sm-4">
+					<div class="card-header bg-primary pb-1">
+							<h5 class="text-white">인기커뮤니티</h5>
+						</div>
 					<div class="card">
-						<img th:src="@{images\community\img001.jpg}" class="card-img-top" alt="...">
 						<div class="card-body m-0 pt-0 pb-0">
 							<div class="table-responsive">
 								<table class="table table-centered table-hover mb-0">
@@ -73,19 +75,14 @@
 						</div>
 					</div>
 					<div class="card">
-						<img th:src="@{images\community\img001.jpg}" class="card-img-top"
-							alt="...">
-
-						<div class="card-body m-0">
-							<h5 class="card-title">HOME</h5>
-
-
+						<div class="card-header bg-primary pb-1">
+							<h5 class="text-white">커뮤니티 참여</h5>
 						</div>
-						<div class="card-foot p-3 text-center border-top">
-							<a href="/createPost"
-								class="btn btn-sm btn-primary active mt-0 mb-0 mr-4"
-								role="button" aria-pressed="true">포스트 등록</a> <a href="/addCommunity" class="btn btn-sm btn-primary active mt-0 mb-0" role="button" aria-pressed="true">커뮤니티 등록</a>
+						<div class="card-body m-0">				
+							<a href="/createPost" class="btn btn-sm btn-primary active mt-0 mb-0 mr-4"
+							role="button" aria-pressed="true">포스트 등록</a> <a href="/addCommunity" class="btn btn-sm btn-primary active mt-0 mb-0" role="button" aria-pressed="true">커뮤니티 등록</a>
 						</div>
+						
 					</div>
 				</div>
 			</div>
