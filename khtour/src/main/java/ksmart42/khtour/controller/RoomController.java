@@ -1,8 +1,8 @@
 package ksmart42.khtour.controller;
 
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,11 +29,10 @@ public class RoomController {
 	 */
 	@GetMapping("/roomListSt")
 	public String getRoomListSt(Model model) {
-		Map<String, Object> paramMap = new HashMap<String , Object>();
 		
-		List<Room> roomList = roomService.getRoomList(paramMap);
+		List<Room> roomList = roomService.getRoomList();
 		
-		model.addAttribute("title", "여행 계획 관리페이지");
+		model.addAttribute("title", "객실 계획 관리페이지");
 		model.addAttribute("roomList", roomList);
 		
 		return "room/roomListSt";

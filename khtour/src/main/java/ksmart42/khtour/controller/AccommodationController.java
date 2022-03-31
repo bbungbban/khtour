@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,16 +14,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ksmart42.khtour.dto.Accommodation;
+import ksmart42.khtour.dto.Room;
 import ksmart42.khtour.service.AccommodationService;
+import ksmart42.khtour.service.RoomService;
 
 @Controller
 @RequestMapping("/accommodation")
 public class AccommodationController {
 
+	
+	private static final Logger log = LoggerFactory.getLogger(AccommodationController.class);
+
 	private AccommodationService accommodationService; 
 	
-	public AccommodationController(AccommodationService accommodationService) {
+	private RoomService roomService;
+	
+	public AccommodationController(AccommodationService accommodationService, RoomService roomService) {
 		this.accommodationService = accommodationService;
+		this.roomService = roomService;
+	
+	
 	}
 	/*
 	 * 숙박업소 조회 (관리자)(Get 정보 전달)
@@ -90,7 +102,11 @@ public class AccommodationController {
 			Model model) {
 		Accommodation accommodation = accommodationService.getLdgByCode(ldgCode);
 		
-		model.addAttribute("title", "문화재 상세 페이지");
+		log.info("roomList");
+		List<Room> roomList = roomService.getRoomListByldgCode(ldgCode);
+		
+		model.addAttribute("roomList", roomList);
+		model.addAttribute("title", "숙박업소 상세 페이지");
 		model.addAttribute("accommodation", accommodation);
 		System.out.println("숙박업소 정보 get 전달" + accommodation);
 		return "/accommodation/acoommodationInfo";

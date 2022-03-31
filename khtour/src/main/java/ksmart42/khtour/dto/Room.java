@@ -10,9 +10,9 @@ public class Room {
 	private String roomPersonnel;
 	private String roomType;
 	private String roomCheckin;
-	private int roomPrice;
-	private int roomDiscount;
-	private int roomFinalPrice;
+	private String roomPrice;
+	private String roomDiscount;
+	private String roomFinalPrice;
 	
 	public String getRoomCode() {
 		return roomCode;
@@ -62,22 +62,22 @@ public class Room {
 	public void setRoomCheckin(String roomCheckin) {
 		this.roomCheckin = roomCheckin;
 	}
-	public int getRoomPrice() {
+	public String getRoomPrice() {
 		return roomPrice;
 	}
-	public void setRoomPrice(int roomPrice) {
+	public void setRoomPrice(String roomPrice) {
 		this.roomPrice = roomPrice;
 	}
-	public int getRoomDiscount() {
+	public String getRoomDiscount() {
 		return roomDiscount;
 	}
-	public void setRoomDiscount(int roomDiscount) {
+	public void setRoomDiscount(String roomDiscount) {
 		this.roomDiscount = roomDiscount;
 	}
-	public int getRoomFinalPrice() {
+	public String getRoomFinalPrice() {
 		return roomFinalPrice;
 	}
-	public void setRoomFinalPrice(int roomFinalPrice) {
+	public void setRoomFinalPrice(String roomFinalPrice) {
 		this.roomFinalPrice = roomFinalPrice;
 	}
 	@Override

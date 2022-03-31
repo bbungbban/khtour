@@ -128,7 +128,7 @@
 					</span>
 					<!-- 호텔 기본 정보 및 리뷰 끝 -->
 					<div class="card-footer"></div>
-					<div class="row">
+					<div class="row" th:if="${not #lists.isEmpty(roomList)}" th:each="r,index: ${roomList}">
 						<!-- 호텔 객실 세부 내역 -->
 						<div class="col-1" style="margin: 100px 0px;">
 							<input type="checkbox">
@@ -143,23 +143,24 @@
 						<div class="col-12 col-md-12 col-lg-7" style="cursor: pointer;"
 							onclick="location.href='accommodationInfo';">
 							<div class="">
-								<h3 class="roomName">스텐다드 체크인시 배정 시티뷰</h3>
+								<h3 class="roomName" th:text="${r.roomName}"></h3>
 							</div>
-							<h4 class="roomSummary">숙박 불가 4시간 STAY</h4>
-							<h5 class="roomPersonnel">기준 2명 / 최대 2명</h5>
+							<h4 class="roomSummary" th:text="${r.roomExplain}"></h4>
+							<h5 class="roomPersonnel" th:text="${r.roomPersonnel}"></h5>
 							<div class="" style="margin-top: 1.5rem;">
-								<h4 style="display: inline;">숙박</h4>
+								<h4 style="display: inline;" th:text="${r.roomType}"></h4>
 								<span id="checkInTime"
-									style="margin-top: 0.3rem; opacity: 0.5; display: inline;">15:00부터</span>
+									style="margin-top: 0.3rem; opacity: 0.5; display: inline;" th:text="${r.roomCheckin}"></span>
 								<span id="roomPrice"
-									style="float: right; margin-top: 0.3rem; opacity: 0.5; padding-right: 30px;">400,000</span>
+									style="float: right; margin-top: 0.3rem; opacity: 0.5; padding-right: 30px;" th:text="${r.roomPrice}"></span>
 							</div>
 							<div class="" style="float: right; padding-right: 30px;">
 								판매가</div>
 							<div class="col-12"
 								style="text-align: right; float: right; padding-right: 30px;">
-								<span class="price"> <span class="discount">87 <small>%</small>
-								</span> 58,060 <small>원</small>
+								<span class="discount" th:text="${r.roomDiscount}">
+								</span>
+								<span class="finalprice" th:text="${r.roomFinalPrice}">
 								</span>
 							</div>
 						</div>
