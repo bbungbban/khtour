@@ -29,10 +29,26 @@ public class HeritageController {
 	 * 문화재 조회 (관리자)(Get 정보 전달)
 	 */
 	@GetMapping("/heritageListSt")
-	public String getHeritageListSt(Model model) {
+	public String getHeritageListSt(Model model
+			,@RequestParam(name="searchKey", required=false) String searchKey
+			,@RequestParam(name="searchValue", required=false) String searchValue) {
 		Map<String, Object> paramMap = new HashMap<String , Object>();
 		
+		if(searchKey != null) {
+				if("memberId".equals(searchKey)) {
+					searchKey = "member_id";
+				}else if("heritageName".equals(searchKey)) {
+					searchKey = "heritage_name";
+			}
+		}
+		paramMap.put("searchKey", searchKey);
+		paramMap.put("searchValue", searchValue);
+	
+		
+		
 		List<Heritage> heritageList = heritageService.getHeritageList(paramMap);
+		
+		paramMap = null;
 		
 		model.addAttribute("title", "문화재 종목별 검색 페이지");
 		model.addAttribute("heritageList", heritageList);
