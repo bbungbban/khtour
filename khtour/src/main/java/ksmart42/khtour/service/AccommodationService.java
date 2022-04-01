@@ -20,20 +20,20 @@ public class AccommodationService {
 	}
 	
 	/**
-	 * 코드에 따른 여행 계획 조회
+	 * 코드에 따른 숙박업소 조회
 	 */
 	public Accommodation getLdgByCode(String ldgCode) {
 		return accommodationMapper.getLdgByCode(ldgCode);
 	}
 	/**
-	 * 여행 계획 등록
+	 * 숙박업소 등록
 	 */
 	public void addAccommodation(Accommodation accommodation) {
 		accommodationMapper.addAccommodation(accommodation);
 	}
 	
 	/**
-	 * 여행 계획 목록 조회
+	 * 숙박업소  목록 조회
 	 */
 	public List<Accommodation> getAccommodationList(Map<String, Object> paramMap){
 		List<Accommodation> accommodationList = accommodationMapper.getAccommodationList(paramMap);
@@ -42,14 +42,14 @@ public class AccommodationService {
 	}
 
 	/**
-	 * 여행 계획 정보 수정
+	 * 숙박업소 정보 수정
 	 */
 	public int modifyAccommodation(Accommodation accommodation) {
 		return accommodationMapper.modifyAccommodation(accommodation);
 	}
 	
 	/**
-	 * 여행 계획 정보 삭제
+	 * 숙박업소  정보 삭제
 	 */
 	public int removeAccommodation(String ldgCode) {
 		int result = accommodationMapper.removeAccommodation(ldgCode);
