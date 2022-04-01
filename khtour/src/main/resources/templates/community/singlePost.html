@@ -30,16 +30,8 @@
 							</div>
 							<div class="card-foot p-2 text-center border-top">
 								<p class="card-text">
-									<a href="#!" class="text-dark"
-										style="z-index: 2; position: relative;"> <i
-										class="text-dark feather icon-message-circle"></i> 댓글 (20)
-									</a> <a href="#!" class="text-dark"
-										style="z-index: 2; position: relative;"><i
-										class="text-dark la la-share  pl-3"></i>공유하기</a> <a href="#!"
-										class="text-dark" style="z-index: 2; position: relative;"><i
-										class="text-dark  la la-flag  pl-3"></i>신고하기</a> <a
-										th:href="@{/post(postCode=${p.postCode})}"
-										class="stretched-link"></a>
+									<a><i class="text-dark feather icon-message-circle"></i> 댓글([[${p.commentsCnt}]])</a> 
+									<a th:href="@{/post(postCode=${p.postCode})}" class="stretched-link"></a>
 								</p>
 							</div>
 

@@ -344,12 +344,28 @@ public class CommunityService {
 	
 	public void addCommReply(CommReply commReply) {	
 		
-		log.info("답글" + commReply);
+		communityMapper.addCommentCnt(commReply.getPostCode());
+		
+		if(commReply.getParentReplyCode()!=null)
+		{
+			addCommReplyMod(commReply.getParentReplyCode());
+		}
 		communityMapper.addCommReply(commReply);
 		
+	} 
+	
+	public void addCommReplyMod(String parentReplyCode)
+	{
+			log.info("체크: "+ parentReplyCode);		
+			communityMapper.addCommentCntOfComments(parentReplyCode);	
+			
+			CommReply commReply = communityMapper.getCommReplyByParentReplyCode(parentReplyCode);
+			log.info("체크2: "+ commReply.getParentReplyCode());		
+		if(commReply.getParentReplyCode()!=null)
+		{
+			addCommReplyMod(commReply.getParentReplyCode());	
+		}
 	}
-	
-	
 
 	/* 작성자 : 한경수
 	*  입  력 : CommTag(커뮤니티 테그)
