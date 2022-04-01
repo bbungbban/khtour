@@ -52,11 +52,14 @@
 																	type="text" class="form-control" id="heritageName"
 																	name="heritageName" placeholder="문화재 명" required="">
 															</div>
-															<div class="form-group">
-																<label for="heritageCategory"> 문화재 대분류 </label> <input
-																	type="text" class="form-control" id="heritageCategory"
-																	name="heritageCategory" placeholder="문화재 카테고리"
-																	required="">
+															<div class="form-group" th:if="${not #lists.isEmpty(heritageCategory)}">
+																<label for="heritageCategory"> 문화재 대분류 </label> 
+															<select class="form-control" id="heritageCategory" name="heritageCategory">
+																	<option value="none">:: 문화재 분류 ::</option>
+																	<option th:if="${not #lists.isEmpty(heritageCategory)}"
+																			th:each="l: ${heritageCategory}"
+																			th:value="${l.heritageCategoryNum}">[[${l.heritageCategoryName}]]</option>
+															</select>
 															</div>
 															<div class="form-group">
 																<label for="heritageSubName"> 문화재 한문명 </label> <input

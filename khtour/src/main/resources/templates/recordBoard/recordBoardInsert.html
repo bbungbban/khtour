@@ -45,9 +45,12 @@
 								name="content"></textarea>
 						</div>
 						<div class="form-group" th:if="not ${#lists.isEmpty(planStatusList)}">
-						<label for="PlanStatus">등록할 커뮤니티 카테고리</label> <select class="form-control"
+						
+						<label for="PlanStatus"> 여행 상태 </label>
+						
+						 <select class="form-control"
 							id="planStatusCode" name="planStatusCode">
-							<option value="none">===커뮤니티 카테고리 선택===</option>
+							<option value="none">:: 여행 상태 ::</option>
 							<option th:if="${not #lists.isEmpty(planStatusList)}" th:value="${s.planStatusCode}" th:text="${s.planStatusName}" th:each="s: ${planStatusList}">
 							</option>
 						</select>

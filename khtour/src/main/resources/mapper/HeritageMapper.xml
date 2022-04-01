@@ -21,6 +21,16 @@
 		<result column="heritage_area" property="heritageArea"/>						<!-- 문화재 수량/면적 -->
 	</resultMap> 
 	
+	<!-- 문화재 분류 목록 조회 SQL -->
+	<select id="getHeritageCategoryList" resultType="HeritageCategory">
+		SELECT
+		    h.heritage_category_num      AS HeritageCategoryNum
+		   ,h.heritage_category_name     AS HeritageCategoryName
+		FROM 
+		   tb_heritage_category AS h;
+	</select>
+	
+	
 	<!-- 문화재 목록 조회 SQL -->
 	<select id="getHeritageList"  resultMap="heritageResultMap">
 		SELECT

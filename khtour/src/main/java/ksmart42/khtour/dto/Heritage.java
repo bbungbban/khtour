@@ -1,10 +1,24 @@
 package ksmart42.khtour.dto;
 
 public class Heritage {
-	//heritage_code, heritage_name, heritage_Sub_name, heritage_location, heritage_era, heritage_designation, 
-	//heritage_classification, heritage_image, heritage_detail, member_id , heritage_category, heritage_owner, heritage_manager , heritage_area
+	//heritage_code 
+	//member_id 
+	//heritage_category
+	//heritage_name 
+	//heritage_Sub_name 
+	//heritage_location 
+	//heritage_era
+	//heritage_designation 
+	//heritage_classification 
+	//heritage_image 
+	//heritage_detail 
+	//heritage_owner
+	//heritage_manager
+	//heritage_area
+	
 	private String  heritageCode;
 	private String  memberId;
+	private String  heritageCategory;
 	private String  heritageName;
 	private String  heritageSubName;
 	private String  heritageLocation;
@@ -15,8 +29,11 @@ public class Heritage {
 	private String  heritageDetail;
 	private String  heritageOwner;
 	private String  heritageManager;
-	private String  heritageCategory;
 	private String  heritageArea;
+	
+	
+	
+	
 	public String getHeritageCode() {
 		return heritageCode;
 	}
@@ -101,6 +118,7 @@ public class Heritage {
 	public void setHeritageArea(String heritageArea) {
 		this.heritageArea = heritageArea;
 	}
+	
 	@Override
 	public String toString() {
 		return "Heritage [heritageCode=" + heritageCode + ", memberId=" + memberId + ", heritageName=" + heritageName
@@ -110,5 +128,5 @@ public class Heritage {
 				+ ", heritageOwner=" + heritageOwner + ", heritageManager=" + heritageManager + ", heritageCategory="
 				+ heritageCategory + ", heritageArea=" + heritageArea + "]";
 	}
-	
+
 }

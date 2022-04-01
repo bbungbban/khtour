@@ -11,17 +11,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ksmart42.khtour.dto.Accommodation;
 import ksmart42.khtour.dto.Plan;
+import ksmart42.khtour.service.AccommodationService;
 import ksmart42.khtour.service.PlanService;
+
 
 @Controller
 @RequestMapping("/plan")
 public class PlanController {
 
-	private PlanService planService; 
+	private PlanService planService;
+	private AccommodationService accommodationService; 
 	
-	public PlanController(PlanService planService) {
+	public PlanController(PlanService planService, AccommodationService accommodationService) {
 		this.planService = planService;
+		this.accommodationService = accommodationService;
 	}
 	
 	/*
@@ -97,8 +102,12 @@ public class PlanController {
 	 */
 	@GetMapping("/planInsert")
 	public String addPlan(Model model) {
+		Map<String, Object> paramMap = new HashMap<String , Object>();
+		
+		List<Accommodation> accommodationList = accommodationService.getAccommodationList(paramMap);
 		
 		model.addAttribute("title", "여행 계획 등록");
+		model.addAttribute("accommodationList", accommodationList);
 		
 		return "plan/planInsert";
 	}

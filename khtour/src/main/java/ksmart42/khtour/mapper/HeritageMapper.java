@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import ksmart42.khtour.dto.Heritage;
+import ksmart42.khtour.dto.HeritageCategory;
 
 @Mapper
 public interface HeritageMapper {
@@ -24,4 +25,7 @@ public interface HeritageMapper {
 	
 	// 문화재 삭제
 	public int removeHeritage(String heritageCode);
+	
+	// 문화재 분류 목록 조회
+	public List<HeritageCategory> getHeritageCategoryList();
 }
