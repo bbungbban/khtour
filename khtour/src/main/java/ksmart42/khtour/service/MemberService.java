@@ -41,8 +41,8 @@ public class MemberService {
 		return resultMap;
 	}
 	
-	public int modifyMember(Member member) {
-		return memberMapper.modifyMember(member);
+	public int memberModify(Member member) {
+		return memberMapper.memberModify(member);
 	}
 	
 	public Member getMemberInfoById(String memberId) {
@@ -56,9 +56,9 @@ public class MemberService {
 		return memberList;
 	}
 	
-	public int addMember(Member member) {
+	public int memberInsert(Member member) {
 		
-		int result = memberMapper.addMember(member);
+		int result = memberMapper.memberInsert(member);
 		
 		return result; 
 	}
@@ -70,17 +70,29 @@ public class MemberService {
 		return memberLevelList;
 	}
 	//회원탈퇴
-	public void removeMember(Member member) {
+	public void memberList(Member member) {
 		//회원아이디
 		String memberId = member.getMemberId();
-		
+		//권한
+		String memberLevel = member.getMemberLevel();
+				
+		//권한별로 삭제 프로세스
+		//판매자
+		if("2".equals(memberLevel)) {
+					
+				
+		//구매자
+		}else if("3".equals(memberLevel)) {
+			
+		}
 		//공통사항 삭제 프로세스
 		memberMapper.removeLoginHistory(memberId);
-		
-		memberMapper.removeMember(memberId);
+				
+		memberMapper.memberList(memberId);
 		
 	}
 
+	
 	
 	
 	

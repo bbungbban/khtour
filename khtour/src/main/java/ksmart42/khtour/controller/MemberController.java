@@ -1,10 +1,10 @@
 package ksmart42.khtour.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.logging.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -21,10 +21,9 @@ import ksmart42.khtour.dto.Member;
 import ksmart42.khtour.dto.MemberLevel;
 import ksmart42.khtour.mapper.MemberMapper;
 import ksmart42.khtour.service.MemberService;
-import ksmart42.khtour.controller.MemberController;
 
 @Controller
-
+@RequestMapping("/member")
 public class MemberController {
 	
 	
@@ -51,9 +50,9 @@ public class MemberController {
 		 return "member/loginMain"; 
 	}
 	
-	@PostMapping("/member/loginMain")
+	@PostMapping("/loginMain")
 	public String loginMain(Member member, HttpSession session, RedirectAttributes reAttr) {
-		System.out.println("회원 로그인 처 PostMapping");
+		System.out.println("회원 로그인 처리 PostMapping");
 		String memberId = member.getMemberId();
 		String memberPw = member.getMemberPw();
 		
@@ -74,30 +73,103 @@ public class MemberController {
 		
 		reAttr.addAttribute("result", "등록된 회원이 없습니다.");
 		
-		return "redirect:/";
+		return "redirect:/member/loginMain";
 	}
 	
 	/*
 	 * 로그인 정보 화면
 	 */
+	@SuppressWarnings("unchecked")
 	@GetMapping("/loginHistory")
 	public String getLoginHistory(Model model) {
 		
-		model.addAttribute("title", "로그인 정보 페이지");
+		Map<String, Object> resultMap = memberService.getLoginHistory();
 		
-		return "/member/loginHistory";
+		List<LoginHistory> loginList  = (List<LoginHistory>) resultMap.get("loginList");
+		List<Map<String, Object>> loginMapList = (List<Map<String, Object>>) resultMap.get("loginMapList");
+		
+		model.addAttribute("title", "로그인 이력");
+		model.addAttribute("loginList",		loginList);
+		model.addAttribute("loginMapList",	loginMapList);
+		
+		return "member/loginHistory";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+	
+		session.invalidate();
+		
+		return "redirect:/member/login";
 	}
 	
 	/*
 	 * 회원가입 화면
 	 */
 	@GetMapping("/memberInsert")
-	public String getMemberInsert(Model model) {
+	public String memberInsert(Model model) {
 		
-		model.addAttribute("title", "회원가입 페이지");
+		//회원등급 목록 데이터
+		List<MemberLevel> memberLevelList = memberService.getMemberLevelList();
 		
-		return "/member/memberInsert";
+		model.addAttribute("title", "회원가입");
+		model.addAttribute("memberLevelList", memberLevelList);
+		
+		return "member/memberInsert";
 	}
+	
+	/**
+	 * /addMember method 방식이 다르기 때문에 주소를 중복해서 사용가능
+	 * @param member(회원가입 폼 전송시 요소의 name 속성의 값과  dto의 멤머변수의 이름과 같으면 자동으로 바인딩하는 객체)
+	 *        커맨드객체
+	 * @return redirect: -> request.sendRedirect("")
+	 */
+	@PostMapping("/memberInsert")
+	public String memberInsert(Member member) {
+		log.info("회원가입폼에서 입력받은 데이터: {}", member);
+		
+		memberService.memberInsert(member);
+		
+		return "redirect:/member/memberList";
+	}
+	
+	/*
+	 * 회원 정보 검색 및 전체 리스트 화면
+	 * 회원정보 삭제 기능
+	 */
+	@GetMapping("/memberList")
+	public String getMemberList(Model model
+							   ,@RequestParam(value="searchKey", required = false) String searchKey
+							   ,@RequestParam(value="searchValue", required = false) String searchValue
+							   ,@RequestParam(name="memberId", required = false) String memberId 
+							   ,@RequestParam(name="result", required = false) String result) {
+		
+		
+		log.info("회원목록 요청");
+		log.info("searchValue:{}", searchValue);
+		//searchKey = memberId memberId -> m_id     => searchKey = m_id
+		//searchKey = memberName memberName -> m_name  => searchKey = m_name
+		//searchKey = memberAddr memberAddr -> m_addr  => searchKey = m_addr
+		if(searchKey != null) {
+			if("memberId".equals(searchKey)) {
+				searchKey = "m_id";
+			}else if("memberName".equals(searchKey)) {
+				searchKey = "m_name";
+			}else if("memberAddr".equals(searchKey)) {
+				searchKey = "m_addr";
+			}
+		}
+		
+		List<Member> memberList = memberService.getMemberList(searchKey, searchValue);
+
+		model.addAttribute("title", "회원목록조회");
+		model.addAttribute("memberList", memberList);
+		model.addAttribute("memberId", memberId);
+		if(result != null) model.addAttribute("result", result);
+		
+		return "member/memberList";
+	}
+	
 	
 	/*
 	 * 아이디 중복 체크
@@ -117,49 +189,93 @@ public class MemberController {
 	  }
 	 
 	
-	/*
-	 * 회원 정보 검색 및 전체 리스트 화면
-	 * 회원정보 삭제 기능
+	/**
+	 *  회원 탈퇴 처리
 	 */
-	@GetMapping("/memberList")
-	public String getMemberList(Model model, @RequestParam(name="memberId", required = false) String memberId) {
+	@PostMapping("/memberList")
+	public String memberList(@RequestParam(name="memberId", required = false) String memberId
+							  ,@RequestParam(name="memberPw", required = false, defaultValue = "") String memberPw
+							  ,RedirectAttributes reAttr) {
 		
-		model.addAttribute("title", "회원 정보 검색 및 전체 리스트 페이지");
-		List<Member> memberList = memberService.getMemberList(null, null);
-		model.addAttribute("memberList", memberList);
-		model.addAttribute("memberId", memberId);
+		log.info("회원 탈퇴 처리 memberId: {}", memberId);
+		log.info("회원 탈퇴 처리 memberPw: {}", memberPw);
+		Member member = MemberMapper.getMemberInfoById(memberId);
 		
-		return "/member/memberList";
+		if(member != null && member.getMemberPw() != null && memberPw.equals(member.getMemberPw())) {
+			memberService.memberList(member);
+			log.info("회원삭제성공");
+			
+			return "redirect:/member/memberList";
+		}
+		
+		reAttr.addAttribute("memberId", memberId);
+		reAttr.addAttribute("result", "회원의 정보가 일치하지 않습니다.");
+		log.info("회원삭제실패");
+		
+		
+		return "redirect:/member/memberList";
+	
 	}
-	/*
-	 * 회원 정보 화면
+	
+	/**
+	 * 회원수정처리
 	 */
-	@GetMapping("/memberInfo")
-	public String getMemberInfo(Model model) {
+	@PostMapping("/memberModify")
+	public String memberModify(Member member) {
+		log.info("회원 수정화면에서 입력받은 값: {}", member);
+		memberService.memberModify(member);
+		return "redirect:/member/memberList";
+	}
+	
+	/**
+	 * 회원 수정화면
+	 */
+	@GetMapping("/memberModify")
+	public String memberModify(Model model
+							  ,@RequestParam(name="memberId", required = false) String memberId
+							  ,@RequestParam(name="memberName", required = false) String memberName) {
+		log.info("회원 수정화면 폼 쿼리스트링 memberId : {}", memberId);
+		log.info("회원 수정화면 폼 쿼리스트링 memberName : {}", memberName);
 		
-		model.addAttribute("title", "회원 정보 페이지");
+		Member member = memberService.getMemberInfoById(memberId);
+		List<MemberLevel> memberLevelList = memberService.getMemberLevelList();
 		
-		return "/member/memberInfo";
+		model.addAttribute("title", "회원수정화면");
+		model.addAttribute("member", member);
+		model.addAttribute("levelList", memberLevelList);
+		
+		return "member/memberModify";
 	}
 	
 	/*
 	 * 회원 이메일 찾기 화면
 	 */
-	@GetMapping("/memberId")
-	public String getMemberId(Model model) {
+	@GetMapping("/memberIdV")
+	public String getMemberIdV(Model model) {
 		
 		model.addAttribute("title", "회원 이메일 찾기 페이지");
 		
-		return "/member/memberId";
+		return "/member/memberIdV";
 	}
 	/*
 	 * 회원 비밀번호 찾기 화면
 	 */
-	@GetMapping("/memberPw")
-	public String getMemberPw(Model model) {
+	@GetMapping("/memberPwV")
+	public String getMemberPwV(Model model) {
 		
 		model.addAttribute("title", "회원 비밀번호 찾기 페이지");
 		
-		return "/member/memberPw";
+		return "/member/memberPwV";
+	}
+	
+	/*
+	 * 회원 탈퇴 화면
+	 */
+	@GetMapping("/memberDelete")
+	public String getMemberDelete(Model model) {
+		
+		model.addAttribute("title", "회원 탈퇴");
+		
+		return "member/memberDelete"; 
 	}
 }

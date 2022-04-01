@@ -18,23 +18,14 @@ public interface MemberMapper {
 		// 로그인 이력조회2
 		public List<Map<String, Object>> getLoginHistory2();
 		
-		// 상품코드에 따른 구매이력 삭제
-		public int removeOrderBySellerId(String memberId);
-		
-		// 판매자가 등록한 상품을 삭제
-		public int removeGoodsBySellerId(String memberId);
-		
-		// 구매자가 구매한 이력을 삭제
-		public int removeOrder(String memberId);
-		
 		// 회원의 로그인 이력을 삭제
 		public int removeLoginHistory(String memberId);
 		
 		// 회원 삭제
-		public int removeMember(String memberId);
+		public int memberList(String memberId);
 		
 		// 회원수정
-		public int modifyMember(Member member);
+		public int memberModify(Member member);
 		
 		// 아이디별 회원정보 조회
 		public static Member getMemberInfoById(String memberId) {
@@ -55,6 +46,9 @@ public interface MemberMapper {
 		public List<Member> getMemberList(String searchKey, String searchValue);
 		
 		// 회원 가입
-		public int addMember(Member member);
-	}
+		public int memberInsert(Member member);
+		
+}
+
+		
 
