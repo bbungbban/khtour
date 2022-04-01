@@ -35,8 +35,8 @@
 					</div>
 			</div>
 			</div>
-		<div class="col-md-6">	
-			<div class="card" th:if="${#strings.isEmpty(categoryCode)}">	
+		<div class="col">	
+			<div class="card" th:if="${#strings.isEmpty(categoryCode)}" style="width:300px">	
 				<div class="card-header text-center bg-primary">
 				 	<h6 class="mb-0 mt-2 text-white"> 전체 커뮤니티 랭킹</h6>
 				 </div>		
@@ -63,7 +63,7 @@
 						</div>
 					</div>
 			</div>
-			<div class="card" th:if="${not #strings.isEmpty(categoryCode)}">	
+			<div class="card" th:if="${not #strings.isEmpty(categoryCode)}" style="width:300px">	
 				<div class="card-header text-center bg-primary">
 				 	<h6 class="mb-0 mt-2 text-white" th:text="${categoryName}"></h6>
 				 </div>		
@@ -94,8 +94,8 @@
 			
 			</div>
 		
-		<div class="col-md-4">
-			<div class="card"   th:if="${not #maps.isEmpty(randomCategoryMap)}" th:each="m : ${randomCategoryMap}">
+		<div class="col">
+			<div class="card" style="width:300px"  th:if="${not #maps.isEmpty(randomCategoryMap)}" th:each="m : ${randomCategoryMap}">
 				<div class="card-header text-center bg-primary">
 				 	<h6 class="mb-0 mt-2 text-white" th:text="${m.key}"></h6>
 				 </div>	
