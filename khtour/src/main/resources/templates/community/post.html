@@ -7,10 +7,45 @@
 </th:block>
 <th:block layout:fragment="contentsTitle">
 </th:block>
+
+<th:block layout:fragment="customScript">
+	<script>
+		$(function() {
+			$("#commCode").on('click', function(e) {
+						var commCode = $('select[name="commCode"]').val();
+						console.log(commCode);
+							$.ajax({
+								url : '/getTagList',
+								type : 'post',
+								data : {
+									'commCode' : commCode
+								},
+								dataType : 'json',
+								success : function(data) {	
+									console.log(data);						  
+									console.log(data.length);
+									var txt1='<option value="none">테그 미선택</option>'
+										for(var i =0;i<data.length;i++)
+										{
+											txt1 +='<option value="'+data[i].tagCode+'" '	+'>' + data[i].tagName  +"</option>"	
+										}
+										console.log(txt1);
+										$('#tagCodeSpecial select').empty()
+										$('#tagCodeSpecial select').append(txt1);							
+									}	
+							});
+			});
+
+		});
+	</script>
+</th:block>
+
+
+
 <th:block layout:fragment="customContents">
 
 	<div class="row justify-content-center">
-	<div class="card text-center" style="width:1000px">
+	<div class="card" style="width:1000px">
 
 	<div class="row">
 		<div class="col-md-8">
@@ -51,86 +86,167 @@
 				<div class="card-body">
 					<form class="cmxform" id="form2"  method="post" th:action="@{/addCommReply}">
 						<div class="form-group">
-							<label for="agree">id001 로 댓글 남기기</label>
+							<div class="avatar avatar-sm bg-danger mr-1">
+								<span class="avatar-name">id001</span>
+							</div>
+							<label for="agree">로 댓글 남기기</label>
 							<textarea id="mainText" name="mainText" class="form-control" rows="5" placeholder="댓글내용" required></textarea>
 							<input type="hidden"  th:value="${commPost.postCode}"  name="postCode" />
 						</div>
 						<div class="form-group">
-							
 							<input class="submit btn btn-primary btn-sm" type="submit" value="등록">
 						</div>
 					</form>
+						<!-- 뎃글창 레젤1 시작 -->
 						<div th:if="${not #lists.isEmpty(replyList)}">
-							<div class="card card ml-4 mr-0 mb-1 mt-0"  th:if="${#strings.isEmpty(r.parentReplyCode)}" th:each="r: ${replyList}">
-								<div class="card-body">
-									<span class="card-text">      
-										<a th:text = "${r.memberId}"></a>
-										<a th:text ="${r.regTime}"></a>
-									</span>
-									<div class="card-text border-top border-bottom pt-3 pb-3 mt-2 mb-2" th:text= "${r.mainText}" > </div>
-									<p class="card-text">
-										<a href="#!" class="text-dark" style="z-index: 2; position: relative;"> 
-										<i class="text-dark feather icon-message-circle"></i> 댓글 (20)</a> 
-										<a href="#!" class="text-dark" style="z-index: 2; position: relative;">
-										<i class="text-dark la la-share  pl-3"></i>공유하기</a> 
-										<a href="#!" class="text-dark" style="z-index: 2; position: relative;">
-										<i class="text-dark  la la-flag  pl-3"></i>신고하기</a> 
-									</p>
-								</div>
-								<div class="card card ml-4 mr-0 mb-1 mt-0"  th:if="${not #lists.isEmpty(r1)}" th:each="r1: ${r.childrenReply}">
-									<div class="card-body">
-										<span class="card-text">      
-											<a th:text = "${r1.memberId}"></a>
-											<a th:text ="${r1.regTime}"></a>
-										</span>
-										<div class="card-text border-top border-bottom pt-3 pb-3 mt-2 mb-2" th:text= "${r.mainText}" > </div>
-											<p class="card-text">
-												<a href="#!" class="text-dark" style="z-index: 2; position: relative;"> 
-												<i class="text-dark feather icon-message-circle"></i> 댓글 (20)</a> 
-												<a href="#!" class="text-dark" style="z-index: 2; position: relative;">
-												<i class="text-dark la la-share  pl-3"></i>공유하기</a> 
-												<a href="#!" class="text-dark" style="z-index: 2; position: relative;">
-												<i class="text-dark  la la-flag  pl-3"></i>신고하기</a> 
-											</p>
-									</div>	
-									<div class="card card ml-4 mr-0 mb-1 mt-0"  th:if="${not #lists.isEmpty(r2)}" th:each="r2: ${r1.childrenReply}">
-										<div class="card-body">
-											<span class="card-text">      
-												<a th:text = "${r2.memberId}"></a>
-												<a th:text ="${r2.regTime}"></a>
-											</span>
-											<div class="card-text border-top border-bottom pt-3 pb-3 mt-2 mb-2" th:text= "${r2.mainText}" > </div>
-												<p class="card-text">
-													<a href="#!" class="text-dark" style="z-index: 2; position: relative;"> 
-													<i class="text-dark feather icon-message-circle"></i> 댓글 (20)</a> 
-													<a href="#!" class="text-dark" style="z-index: 2; position: relative;">
-													<i class="text-dark la la-share  pl-3"></i>공유하기</a> 
-													<a href="#!" class="text-dark" style="z-index: 2; position: relative;">
-													<i class="text-dark  la la-flag  pl-3"></i>신고하기</a> 
-												</p>
-										</div>	
-										<div class="card card ml-4 mr-0 mb-1 mt-0"  th:if="${not #lists.isEmpty(r3)}" th:each="r3: ${r2.childrenReply}">
-											<div class="card-body">
-												<span class="card-text">      
-													<a th:text = "${r3.memberId}"></a>
-													<a th:text ="${r3.regTime}"></a>
-												</span>
-												<div class="card-text border-top border-bottom pt-3 pb-3 mt-2 mb-2" th:text= "${r3.mainText}" > </div>
-													<p class="card-text">
-														<a href="#!" class="text-dark" style="z-index: 2; position: relative;"> 
-														<i class="text-dark feather icon-message-circle"></i> 댓글 (20)</a> 
-														<a href="#!" class="text-dark" style="z-index: 2; position: relative;">
-														<i class="text-dark la la-share  pl-3"></i>공유하기</a> 
-														<a href="#!" class="text-dark" style="z-index: 2; position: relative;">
-														<i class="text-dark  la la-flag  pl-3"></i>신고하기</a> 
-													</p>
-											</div>	
-										</div>	
-									</div>	
+							<div class="card card ml-4 mr-0 mb-1 mt-0"  th:if="${#strings.isEmpty(r1.parentReplyCode)}" th:each="r1,index1: ${replyList}">
+								<div class="card-header ">
+									<div class="avatar avatar-sm bg-secondary mr-1">
+										<span class="avatar-name">id001</span> 
+									</div>    
+										<a th:text = "${r1.memberId}"></a>
+										<a th:text ="${r1.regTime}"></a>
 									
 								</div>	
-							</div>
+								<div class="card-body">
+									<div class="card-text pt-3 pb-3 mt-2 mb-2" th:text= "${r1.mainText}" > </div>
+								</div>
+								<div class="card-footer pt-1 pb-0">	
+									<div class="accordion accordion-box" id="accordionExample-03">
+									  <div class="card">
+									    <div class="card-header" id="headingOne-03">
+									        <div class="accordion-title bg-white pb-1 pt-1" data-toggle="collapse" th:attr="data-target='#collapseOne-' + ${index1.index}" aria-expanded="true" aria-controls="collapseOne-03">	
+									         	<a class="text-dark"><i class="text-dark feather icon-message-circle"></i> 댓글 (20)</a> 
+									        </div>
+									    </div>
+									    <div th:id="'collapseOne-'+${index1.index}" class="collapse" aria-labelledby="headingOne-03" data-parent="#accordionExample-03">
+									      <div class="card-body bg-white">
+											<form class="cmxform" id="form3"  method="post" th:action="@{/addCommReply}">
+												<div class="form-group">
+													<div class="avatar avatar-sm bg-secondary mr-1">
+														<span class="avatar-name">id001</span>
+													</div>
+													<label for="agree">로 댓글 남기기</label>
+													<textarea id="mainText" name="mainText" class="form-control" rows="5" placeholder="댓글내용" required></textarea>
+													<input type="hidden"  th:value="${commPost.postCode}"  name="postCode" />
+													<input type="hidden"  th:value="${r1.replyCode}"  name="parentReplyCode" />
+												</div>
+												<div class="form-group">
+													
+													<input class="submit btn btn-primary btn-sm" type="submit" value="등록">
+												</div>
+											</form>
+									      </div>
+									    </div>
+									  </div>
+									</div>
+									<div class="card card ml-4 mr-0 mb-1 mt-0" th:if="${not #lists.isEmpty(r1.childrenReply)}" th:each="r2,index2: ${r1.childrenReply}">
+										<div class="card-header ">
+											<div class="avatar avatar-sm bg-success mr-1">
+												<span class="avatar-name">id001</span> 
+											</div>    
+												<a th:text = "${r2.memberId}"></a>
+												<a th:text ="${r2.regTime}"></a>
+											
+										</div>	
+										<div class="card-body">
+											<div class="card-text pt-3 pb-3 mt-2 mb-2" th:text= "${r2.mainText}" > </div>
+										</div>
+										<div class="card-footer pt-1 pb-0">
+											<div class="accordion accordion-box" id="accordionExample-03">
+											  <div class="card">
+											    <div class="card-header" id="headingOne-03">
+											        <div class="accordion-title bg-white pb-1 pt-1" data-toggle="collapse" th:attr="data-target='#collapseOne-' + ${index2.index} + ${index1.index}" aria-expanded="true" aria-controls="collapseOne-03">	
+											         	<a class="text-dark"><i class="text-dark feather icon-message-circle"></i> 댓글 (20)</a> 
+											        </div>
+											    </div>
+											    <div th:id="'collapseOne-'+${index2.index} +${index1.index}" class="collapse" aria-labelledby="headingOne-03" data-parent="#accordionExample-03">
+											      <div class="card-body bg-white">
+													<form class="cmxform" id="form3"  method="post" th:action="@{/addCommReply}">
+														<div class="form-group">
+															<div class="avatar avatar-sm bg-success mr-1">
+																<span class="avatar-name">id002</span>
+															</div>
+															<label for="agree">로 댓글 남기기</label>
+															<textarea id="mainText" name="mainText" class="form-control" rows="5" placeholder="댓글내용" required></textarea>
+															<input type="hidden"  th:value="${commPost.postCode}"  name="postCode" />
+															<input type="hidden"  th:value="${r2.replyCode}"  name="parentReplyCode" />
+														</div>
+														<div class="form-group">
+															
+															<input class="submit btn btn-primary btn-sm" type="submit" value="등록">
+														</div>
+													</form>
+											      </div>
+											    </div>
+											  </div>
+											</div>
+											<div class="card card ml-4 mr-0 mb-1 mt-0" th:if="${not #lists.isEmpty(r1.childrenReply)}" th:each="r3,index3: ${r2.childrenReply}">
+												<div class="card-header ">
+													<div class="avatar avatar-sm bg-primary mr-1">
+														<span class="avatar-name">id001</span> 
+													</div>    
+														<a th:text = "${r3.memberId}"></a>
+														<a th:text ="${r3.regTime}"></a>
+													
+												</div>	
+												<div class="card-body">
+													<div class="card-text pt-3 pb-3 mt-2 mb-2" th:text= "${r3.mainText}" > </div>
+												</div>
+												<div class="card-footer pt-1 pb-0">
+													<div class="accordion accordion-box" id="accordionExample-03">
+													  <div class="card">
+													    <div class="card-header" id="headingOne-03">
+													        <div class="accordion-title bg-white pb-1 pt-1" data-toggle="collapse" th:attr="data-target='#collapseOne-' + ${index2.index} + ${index1.index}+${index3.index}" aria-expanded="true" aria-controls="collapseOne-03">	
+													         	<a class="text-dark"><i class="text-dark feather icon-message-circle"></i> 댓글 (20)</a> 
+													        </div>
+													    </div>
+													    <div th:id="'collapseOne-'+${index2.index} +${index1.index}+${index3.index}" class="collapse" aria-labelledby="headingOne-03" data-parent="#accordionExample-03">
+													      <div class="card-body bg-white">
+															<form class="cmxform" id="form3"  method="post" th:action="@{/addCommReply}">
+																<div class="form-group">
+																	<div class="avatar avatar-sm bg-info mr-1">
+																		<span class="avatar-name">id001</span>
+																	</div>
+																	<label for="agree">로 댓글 남기기</label>
+																	<textarea id="mainText" name="mainText" class="form-control" rows="5" placeholder="댓글내용" required></textarea>
+																	<input type="hidden"  th:value="${commPost.postCode}"  name="postCode" />
+																	<input type="hidden"  th:value="${r3.replyCode}"  name="parentReplyCode" />
+																</div>
+																<div class="form-group">
+																	
+																	<input class="submit btn btn-primary btn-sm" type="submit" value="등록">
+																</div>
+															</form>
+													      </div>
+													    </div>
+													  </div>
+													</div>
+													<div class="card card ml-4 mr-0 mb-1 mt-0" th:if="${not #lists.isEmpty(r1.childrenReply)}" th:each="r4,index4: ${r3.childrenReply}">
+												<div class="card-header ">
+													<div class="avatar avatar-sm bg-warning mr-1">
+														<span class="avatar-name">id001</span> 
+													</div>    
+														<a th:text = "${r4.memberId}"></a>
+														<a th:text ="${r4.regTime}"></a>
+													
+												</div>	
+												<div class="card-body">
+													<div class="card-text pt-3 pb-3 mt-2 mb-2" th:text= "${r4.mainText}" > </div>
+												</div>
+													<div class="card-footer pt-1 pb-0">
+													</div>
+							   						</div>
+												</div>
+							   				</div>	
+										</div>
+							   		</div>
+									
+									
+								</div>
+							   </div>
 						</div>
+					
 				</div>
 			</div>
 
