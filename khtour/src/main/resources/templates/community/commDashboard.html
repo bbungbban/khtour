@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/default}">
+	layout:decorate="~{layout/default2}">
 <th:block layout:fragment="customTitle">
 	<title th:text="${title}"></title>
 </th:block>
@@ -9,14 +9,14 @@
 </th:block>
 <th:block layout:fragment="customContents">
 
-
-				<div class="card">
+			<div class="row justify-content-center">
+				<div class="card text-center" style="width:1000px">
 					<div class="card-header bg-primary pb-1">
 						<h5 class="text-white">오늘의 인기포스트</h5>
 					</div>
 					<div class="card-body m-0 p-0">
 						<div class="card-group">
-							<div class="card pt-2 m-1 img-fluid" th:if="${not #lists.isEmpty(dailyPostList)}" style="border: none;" th:each="dp: ${dailyPostList}">
+							<div class="card pt-2 m-1 img-fluid" th:if="${not #lists.isEmpty(dailyPostList)}" style="border: none; height:250px" th:each="dp: ${dailyPostList}">
 								<div  th:if="${not #strings.isEmpty(dp.pictureLink)}" style = "opacity:.3;">
 									<img th:src="@{${dp.pictureLink}}" class="card-img-top" alt="...">
 								</div>
@@ -29,10 +29,10 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-8">
-						<div class="card">
+				<div class="card-footer ml-0 pb-0">
+					<div class=row>
+					<div class="col-md-8" >
+						<div class="card" >
 							<div class="card-header bg-primary pb-1">
 								<h5 class="text-white">인기포스트</h5>
 							</div>
@@ -47,7 +47,7 @@
 						</div>
 					<div th:replace="community/singlePost :: singlePost"></div>
 				</div>
-				<div class="col-4" >
+				<div class="col-md-4 pr-0">
 					<div class="card-header bg-primary pb-1">
 							<h5 class="text-white">인기커뮤니티</h5>
 						</div>
@@ -80,13 +80,16 @@
 							<h5 class="text-white">커뮤니티 참여</h5>
 						</div>
 						<div class="card-body m-0">				
-							<a href="/createPost" class="btn btn-sm btn-primary active mt-0 mb-0 mr-4"
-							role="button" aria-pressed="true">포스트 등록</a> <a href="/addCommunity" class="btn btn-sm btn-primary active mt-0 mb-0" role="button" aria-pressed="true">커뮤니티 등록</a>
+							<a href="/createPost" class="btn btn-sm btn-primary active mt-0 mb-0 mr-4" role="button" aria-pressed="true">포스트 등록</a> 
+							<a href="/addCommunity" class="btn btn-sm btn-primary active mt-0 mb-0" role="button" aria-pressed="true">커뮤니티 등록</a>
 						</div>
 						
 					</div>
 				</div>
 			</div>
+			</div>
+			</div>
+		</div>
 </th:block>
 <th:block layout:fragment="customBodyScript">
 	<!-- PRISM -->

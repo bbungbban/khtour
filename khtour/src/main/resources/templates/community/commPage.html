@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/default}">
+	layout:decorate="~{layout/default2}">
 <th:block layout:fragment="customTitle">
 	<title th:text="${title}"></title>
 </th:block>
 <th:block layout:fragment="contentsTitle">
 </th:block>
 <th:block layout:fragment="customContents">
+	<div class="row justify-content-center">
+	<div class="card text-center" style="width:1000px">
 	<div class="card bg-primary">
 		<div class="card-body text-center pb-2 pt-2">
 			<h2 class="mb-0 mt-2 text-white " th:text="${community.commName} + ' 커뮤니티'"></h2>
@@ -117,6 +119,8 @@
 			</div>
 		</div>
 
+	</div>
+	</div>
 	</div>
 
 	<!-- Modal -->
