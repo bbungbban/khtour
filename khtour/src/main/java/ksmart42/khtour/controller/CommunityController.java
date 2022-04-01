@@ -236,6 +236,7 @@ public class CommunityController {
 		commReply.setMemberId("id001");	
 		reAttr.addAttribute("postCode",commReply.getPostCode());
 		
+		log.info("답글 메인 글 : " + commReply.getMainText());
 		
 		
 		communityService.addCommReply(commReply);

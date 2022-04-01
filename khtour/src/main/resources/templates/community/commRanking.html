@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/default}">
+	layout:decorate="~{layout/default2}">
 <th:block layout:fragment="customTitle">
 	<title th:text="${title}"></title>
 </th:block>
@@ -9,10 +9,10 @@
 </th:block>
 
 <th:block layout:fragment="customContents">
-
+	<div class="row justify-content-center">
+				<div class="card pb-0 mb-0" style="width:1000px">
 	<div class="row">
-		<div class="col-md-2">
-			 
+		<div class="col-md-3"> 
 			<div class="card">
 				<div class="card-header text-center bg-primary">
 				   <h6 class="mb-0 mt-2 text-white">랭킹 카테고리</h6>
@@ -20,10 +20,18 @@
 					<div class="card-body m-0 p-0">
 						<div class="table-responsive">
 							<table class="table table-centered table-hover mb-0 text-center">
-								<tbody>
+								<thead>
 									<tr>
 										<td scope="row" colspan="3"><a th:href="@{/commRanking}">전체 카테고리</a></td>
 									</tr>
+									<tr>
+										<th>순위</th>
+										<th>커뮤니티 이름</th>
+										<th>맴버수</th>
+									</tr>
+								</thead>
+								<tbody>
+									
 									<tr  th:if="${not #lists.isEmpty(categoryList)}" th:each="cl,clIndex : ${categoryList}" style="transform: rotate(0);">
 									<th scope="row"><a th:href="@{/commRanking(categoryCode=${cl.categoryCode},categoryName=${cl.categoryName})}" class="stretched-link" th:text="${clIndex.index}+1"></a></th>
 									<td th:text="${cl.categoryName}"></td>
@@ -35,8 +43,8 @@
 					</div>
 			</div>
 			</div>
-		<div class="col">	
-			<div class="card" th:if="${#strings.isEmpty(categoryCode)}" style="width:300px">	
+		<div class="col-md-5">	
+			<div class="card" th:if="${#strings.isEmpty(categoryCode)}">	
 				<div class="card-header text-center bg-primary">
 				 	<h6 class="mb-0 mt-2 text-white"> 전체 커뮤니티 랭킹</h6>
 				 </div>		
@@ -63,7 +71,7 @@
 						</div>
 					</div>
 			</div>
-			<div class="card" th:if="${not #strings.isEmpty(categoryCode)}" style="width:300px">	
+			<div class="card" th:if="${not #strings.isEmpty(categoryCode)}">	
 				<div class="card-header text-center bg-primary">
 				 	<h6 class="mb-0 mt-2 text-white" th:text="${categoryName}"></h6>
 				 </div>		
@@ -94,14 +102,23 @@
 			
 			</div>
 		
-		<div class="col">
-			<div class="card" style="width:300px"  th:if="${not #maps.isEmpty(randomCategoryMap)}" th:each="m : ${randomCategoryMap}">
+		<div class="col-md-4">
+			<div class="card" th:if="${not #maps.isEmpty(randomCategoryMap)}" th:each="m : ${randomCategoryMap}">
 				<div class="card-header text-center bg-primary">
 				 	<h6 class="mb-0 mt-2 text-white" th:text="${m.key}"></h6>
 				 </div>	
 					<div class="card-body m-0 p-0">
 						<div class="table-responsive">
 							<table class="table table-centered table-hover mb-0">
+								<thead>
+									<tr>
+										<th>순위</th>
+										<th>커뮤니티 이름</th>
+										<th colspan="2">맴버수</th>
+									</tr>
+								</thead>
+								
+								
 								<tbody>
 									<tr th:if="${not #lists.isEmpty(m.value)}" th:each="ml,mlIndex : ${m.value}" style="transform: rotate(0);">
 										<th scope="row"><a th:href="@{/commPage(commCode=${ml.commCode})}" class="stretched-link" th:text="${mlIndex.index}+1"></a></th>
@@ -116,7 +133,8 @@
 			</div>
 		</div>
 		</div>
-
+	</div>
+	</div>
 
 
 </th:block>
