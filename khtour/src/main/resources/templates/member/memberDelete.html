@@ -16,7 +16,7 @@
 				<div class="card">
 					<div class="card-title">
 						<div class="card-title-left">
-							<h4 class="card-title-text" _msthash="1928901" _msttexthash="28309424">사용자 관리</h4>
+							<h4 class="card-title-text">사용자 관리</h4>
 						</div>
 					</div>
 					<div class="card-body">
@@ -24,47 +24,77 @@
 							<table class="table table-centered table-hover mb-0">
 								<thead>
 									<tr>
-										<th scope="col"># </th>
-										<th scope="col" _msthash="3578315" _msttexthash="9585628">아이디 </th>
-										<th scope="col" _msthash="3578445" _msttexthash="28298855">생성된 날짜</th>
-										<th scope="col" _msthash="3578575" _msttexthash="10051067">상태</th>
-										<th scope="col" _msthash="3578705" _msttexthash="10291775">등급</th>
-										<th scope="col" _msthash="3578835" _msttexthash="9914515">작업</th>
+										<th scope="col">아이디 </th>
+										<th scope="col">이름</th>
+										<th scope="col">생성된 날짜</th>
+										<th scope="col">상태</th>
+										<th scope="col">등급</th>
+										<th scope="col">삭제</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-										<td _msthash="3585649" _msttexthash="9464"> 01 </td>
-										<td> <img class="rounded-circle mr-2" src="images/team/01.jpg" width="40" height="40" alt=""><font _mstmutation="1" _msthash="3585778" _msttexthash="29573076"> id001 </font></td>
-										<td _msthash="3585908" _msttexthash="73190">04/10/2013</td>
-										<td><i class="fa fa-circle text-success mr-2"></i><font _mstmutation="1" _msthash="3586038" _msttexthash="22410817"> 정상 </font></td>
-										<td _msthash="3586167" _msttexthash="14950832">관리자</td>
-										<td></a><a class="btn btn-danger btn-icon btn-sm mb-1" href="#"><i class="fa fa-trash-o"></i> </a></td>
+										<td th:text="${l.memberId}"><img class="rounded-circle mr-2" src="images/team/01.jpg" width="40" height="40" alt=""></td>
+										<td th:text="${l.memberName}"></td>
+										<td th:text="${l.memberRegTime}"></td>
+										<td th:text="${l.memberStatus}"><i class="fa fa-circle text-success mr-2"></i></td>
+										<td th:text="${l.memberLevel}"></td>
+										<td>
+											<button type="button" class="btn btn-danger btn-icon btn-sm mb-1"
+												data-toggle="modal" data-target="#exampleModal-11" id="removeBtn">
+												<i class="fa fa-trash-o"></i>
+											</button> 
+											<!-- Modal -->
+											<div class="modal fade" id="exampleModal-11" tabindex="-1"
+												role="dialog" aria-labelledby="exampleModalLabel"
+												aria-hidden="true">
+												<div class="modal-dialog" role="document">
+													<div class="modal-content">
+														<div class="modal-header bg-danger">
+															<h5 class="modal-title text-white" id="exampleModalLabel">정말 삭제하시겠습니까?</h5>
+															<button type="button" class="close" data-dismiss="modal"
+																aria-label="Close">
+																<span class="text-white" aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<div class="modal-body">
+															<p>삭제 후 복구할 수 없습니다. 정말로 삭제하시겠습니까?
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-light"
+																data-dismiss="modal">예</button>
+															<button type="button" class="btn btn-light"
+																data-dismiss="modal">아니오</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</td>
 									</tr>
-									<tr>
-										<td _msthash="3585843" _msttexthash="9568"> 02</td>
-										<td> <img class="rounded-circle mr-2" src="images/team/01.jpg" width="40" height="40" alt=""><font _mstmutation="1" _msthash="3585972" _msttexthash="34442772"> id002 </font></td>
+									<!-- <tr>
+										<td> 02</td>
+										<td> <img class="rounded-circle mr-2" src="images/team/01.jpg" width="40" height="40" alt=""><font> id002 </font></td>
 										<td _msthash="3586102" _msttexthash="74516">05/08/2014</td>
-										<td><i class="fa fa-circle text-success mr-2"></i><font _mstmutation="1" _msthash="3586232" _msttexthash="22410817"> 정상 </font></td>
-										<td _msthash="3586362" _msttexthash="15184884">일반회원</td>
+										<td><i class="fa fa-circle text-success mr-2"></i><font> 정상 </font></td>
+										<td>일반회원</td>
 										<td></a><a class="btn btn-danger btn-icon btn-sm mb-1" href="#"><i class="fa fa-trash-o"></i> </a></td>
 									</tr>
 									<tr>
-										<td _msthash="3586039" _msttexthash="9672"> 03 </td>
-										<td> <img class="rounded-circle mr-2" src="images/team/01.jpg" width="40" height="40" alt=""><font _mstmutation="1" _msthash="3586168" _msttexthash="21978944"> id003 </font></td>
+										<td> 03 </td>
+										<td> <img class="rounded-circle mr-2" src="images/team/01.jpg" width="40" height="40" alt=""><font> id003 </font></td>
 										<td _msthash="3586297" _msttexthash="73970">11/05/2015</td>
-										<td><i class="fa fa-circle text-danger mr-2"></i><font _mstmutation="1" _msthash="3586427" _msttexthash="21811465"> 정지 </font></td>
-										<td _msthash="3586557" _msttexthash="15184884">일반회원</td>
+										<td><i class="fa fa-circle text-danger mr-2"></i><font> 정지 </font></td>
+										<td>일반회원</td>
 										<td></a><a class="btn btn-danger btn-icon btn-sm mb-1" href="#"><i class="fa fa-trash-o"></i> </a></td>
 									</tr>
 									<tr>
-										<td _msthash="3586233" _msttexthash="9776"> 04</td>
-										<td> <img class="rounded-circle mr-2" src="images/team/01.jpg" width="40" height="40" alt=""><font _mstmutation="1" _msthash="3586363" _msttexthash="29244904"> id004 </font></td>
-										<td _msthash="3586492" _msttexthash="75179">06/09/2016</td>
-										<td><i class="fa fa-circle text-warning mr-2"></i><font _mstmutation="1" _msthash="3586622" _msttexthash="14879228"> 휴먼 </font></td>
-										<td _msthash="3586752" _msttexthash="15222740">일반회원</td>
+										<td> 04</td>
+										<td> <img class="rounded-circle mr-2" src="images/team/01.jpg" width="40" height="40" alt=""><font> id004 </font></td>
+										<td>06/09/2016</td>
+										<td><i class="fa fa-circle text-warning mr-2"></i><font> 휴먼 </font></td>
+										<td>일반회원</td>
 										<td></a><a class="btn btn-danger btn-icon btn-sm mb-1" href="#"><i class="fa fa-trash-o"></i> </a></td>
-									</tr>
+									</tr> -->
 								</tbody>
 							</table>
 						</div>
