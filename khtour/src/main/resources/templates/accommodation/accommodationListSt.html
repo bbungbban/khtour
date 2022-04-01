@@ -41,7 +41,8 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr th:if="${not #lists.isEmpty(accommodationList)}" th:each="l : ${accommodationList}">
+									<tr th:if="${not #lists.isEmpty(accommodationList)}"
+										th:each="l : ${accommodationList}">
 										<td th:text="${l.ldgCode}"></td>
 										<td th:text="${l.ldgName}"></td>
 										<td th:text="${l.ldgType}"></td>
@@ -51,12 +52,14 @@
 										<td th:text="${l.ldgTel}"></td>
 										<td th:text="${l.ldgPhone}"></td>
 										<td><a
-											class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1" th:href="@{/accommodation/accommodationModify(ldgCode=${l.ldgCode})}"><i
+											class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1"
+											th:href="@{/accommodation/accommodationModify(ldgCode=${l.ldgCode})}"><i
 												class="la la-edit"></i> </a>
-											<button class="btn btn-danger btn-icon btn-sm mb-1" id="swal-delete-accommodation" th:data-accommodationCd="${l.ldgCode}">
+											<button class="btn btn-danger btn-icon btn-sm mb-1"
+												id="swal-delete-accommodation"
+												th:data-accommodationCd="${l.ldgCode}">
 												<i class="fa fa-trash-o"></i>
-											</button>
-										</td>
+											</button></td>
 									</tr>
 								</tbody>
 							</table>
@@ -65,18 +68,20 @@
 				</div>
 			</div>
 		</div>
-		
+
 
 		<!-- **********************************  End ContentsWrap  ********************************** -->
 	</div>
 </th:block>
 <th:block layout:fragment="customBodyScript">
 	<!-- delbtn -->
-	<script th:src="@{/js/sweetalert2/sweetalert2.min.js}" aria-hidden="true"></script>
-	<script th:src="@{/js/sweetalert2/sweetalert2-custom.js}" aria-hidden="true"></script>
+	<script th:src="@{/js/sweetalert2/sweetalert2.min.js}"
+		aria-hidden="true"></script>
+	<script th:src="@{/js/sweetalert2/sweetalert2-custom.js}"
+		aria-hidden="true"></script>
 	<!-- datatables -->
 	<script th:src="@{/js/datatables/datatables.js}"></script>
-	<!-- <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js}"></script> -->
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js}"></script>
 	<script th:src="@{/js/datatables/dataTables.buttons.min.js}"></script>
 	<script th:src="@{/js/datatables/buttons.flash.min.js}"></script>
 	<script th:src="@{/js/datatables/jszip.min.js}"></script>
@@ -130,9 +135,7 @@
 			              'error'
 			            )
 			          }
-			        });
-
-				    			
+			        });	
 			});
 			
 		});

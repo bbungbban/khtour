@@ -2,7 +2,7 @@ package ksmart42.khtour.service;
 
 import java.text.NumberFormat;
 import java.util.List;
-
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,22 +40,30 @@ public class RoomService {
 			}
 			return roomList;
 		}
+		/**
+		 * 객실 목록 조회
+		 */
+		public List<Room> getRoomList(Map<String, Object> paramMap){
+			List<Room> roomList = roomMapper.getRoomList(paramMap);
+			
+			return roomList;
+		}
 	
 		/**
-		 * 코드에 따른 객실 계획 조회
+		 * 코드에 따른 객실 조회
 		 */
 		public Room getRoomByCode(String roomCode) {
 			return roomMapper.getRoomByCode(roomCode);
 		}
 		/**
-		 * 객실 계획 등록
+		 * 객실 등록
 		 */
 		public void addRoom(Room room) {
 			roomMapper.addRoom(room);
 		}
 		
 		/**
-		 * 객실 계획 목록 조회
+		 * 객실 목록 조회
 		 */
 		public List<Room> getRoomList(){
 			List<Room> roomList = roomMapper.getRoomList();
@@ -64,14 +72,14 @@ public class RoomService {
 		}
 
 		/**
-		 * 객실 계획 정보 수정
+		 * 객실 정보 수정
 		 */
 		public int modifyRoom(Room room) {
 			return roomMapper.modifyRoom(room);
 		}
 		
 		/**
-		 * 객실 계획 정보 삭제
+		 * 객실 정보 삭제
 		 */
 		public int removeRoom(String roomCode) {
 			int result = roomMapper.removeRoom(roomCode);
@@ -80,5 +88,6 @@ public class RoomService {
 			
 			return result;
 		}
+
 	}
 

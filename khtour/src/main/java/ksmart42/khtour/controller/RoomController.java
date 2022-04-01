@@ -1,9 +1,12 @@
 package ksmart42.khtour.controller;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,28 +21,33 @@ import ksmart42.khtour.service.RoomService;
 @RequestMapping("/room")
 public class RoomController {
 
-	private RoomService roomService; 
+	private RoomService roomService;
+	
+	
+	private static final Logger log = LoggerFactory.getLogger(RoomController.class);
 	
 	public RoomController(RoomService roomService) {
 		this.roomService = roomService;
 	}
 	
 	/*
-	 * 여행 계획 조회 (관리자)(Get 정보 전달)
+	 * 객실 계획 조회 (관리자)(Get 정보 전달)
 	 */
 	@GetMapping("/roomListSt")
-	public String getRoomListSt(Model model) {
+	public String getRoomList(Model model) {
+		Map<String, Object> paramMap = new HashMap<String , Object>();
 		
-		List<Room> roomList = roomService.getRoomList();
+		List<Room> roomList = roomService.getRoomList(paramMap);
 		
-		model.addAttribute("title", "객실 계획 관리페이지");
+		log.info("객실관리자페이지" + roomList);
+		model.addAttribute("title", "객실 관리자페이지");
 		model.addAttribute("roomList", roomList);
 		
 		return "room/roomListSt";
 	}
 	
 	/*
-	 * 여행 계획 정보 수정 (관리자) (Post 정보 전달)
+	 * 객실 계획 정보 수정 (관리자) (Post 정보 전달)
 	 */
 	@PostMapping("/modifyRoom")
 	public String modifyRoom(Room room) {
@@ -51,7 +59,7 @@ public class RoomController {
 	}
 	
 	/*
-	 * 여행 계획 정보 수정 (관리자) (Get 정보 전달)
+	 * 객실 계획 정보 수정 (관리자) (Get 정보 전달)
 	 */
 	@GetMapping("/roomModify")
 	public String modifyRoom(
@@ -59,7 +67,7 @@ public class RoomController {
 			,Model model) {
 		Room room = roomService.getRoomByCode(roomCode);
 		
-		model.addAttribute("title", "여행 계획 수정 페이지");
+		model.addAttribute("title", "객실 계획 수정 페이지");
 		model.addAttribute("room", room);
 		System.out.println("정보 수정 겟방식 전달" + room);
 		
@@ -67,7 +75,7 @@ public class RoomController {
 	}	
 	
 	/*
-	 * 여행 계획 정보 삭제(post 정보 전달)
+	 * 객실 계획 정보 삭제(post 정보 전달)
 	 */
 	@GetMapping("/roomRemove")
 	public String removeRoom(Room room) {
@@ -81,7 +89,7 @@ public class RoomController {
 	}
 			
 	/*
-	 * 여행 계획 등록(Post 정보 전달)
+	 * 객실 계획 등록(Post 정보 전달)
 	 */
 	@PostMapping("/roomInsert")
 	public String addRoom(Room room) {
@@ -91,7 +99,7 @@ public class RoomController {
 		return "redirect:/room/roomListSt";
 	}
 	/*
-	 * 여행 계획 등록(Get 정보 전달)
+	 * ldgCode에 맞는 객실 정보 조회(Get 정보 전달)
 	 */
 	@GetMapping("/roomInsert")
 	public String addRoom(Model model, 
@@ -100,7 +108,7 @@ public class RoomController {
 		
 		model.addAttribute("ldgCode", ldgCode);
 		model.addAttribute("ldgName", ldgName);
-		model.addAttribute("title", "여행 계획 등록");
+		model.addAttribute("title", "객실 계획 등록");
 		
 		
 		return "room/roomInsert";
