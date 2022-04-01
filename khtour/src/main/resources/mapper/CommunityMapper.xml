@@ -29,6 +29,7 @@
 		<result column="video_link" property="videoLink"/>
 		<result column="likes_cnt" property="likesCnt"/>
 		<result column="dislikes_cnt" property="dislikesCnt"/>
+		<result column="comments_cnt" property="commentsCnt"/>
 		<result column="report_cnt" property="reportCnt"/>
 		<result column="point_gain" property="pointGain"/>
 	</resultMap> 
@@ -65,6 +66,7 @@
 		<result column="dislikes_cnt" property="dislikesCnt"/>
 		<result column="main_text" property="mainText"/>
 		<result column="reg_time" property="regTime"/>
+		<result column="comments_cnt" property="commentsCnt"/>
 	</resultMap>
 
 	<!-- <select id="getCommunityList" resultMap="communityResultMap"> -->
@@ -86,6 +88,33 @@
 				c.member_cnt DESC;	
 	</select>
 	
+	<update id="addCommentCnt" parameterType="String">
+		UPDATE tb_comm_post
+			SET
+			comments_cnt = comments_cnt + 1		 
+		WHERE
+			post_code=#{postCode};	
+	</update>
+	<update id="addCommentCntOfComments" parameterType="String">
+		UPDATE tb_community_reply
+			SET
+			comments_cnt = comments_cnt + 1		 
+		WHERE
+			reply_code=#{replyCode};	
+	</update>
+	
+	<select id="getCommReplyByParentReplyCode"  resultMap="replyResultMap">
+			SELECT
+				r.reply_code
+				,r.comments_cnt
+				,r.parent_reply_code
+			FROM
+				tb_community_reply AS r
+			WHERE
+				r.reply_code = #{parentReplyCode}
+	</select>
+	
+	
 	<select id="getCommReplyListByPostCode"  resultMap="replyResultMap">
 			SELECT
 				r.reply_code
@@ -96,6 +125,7 @@
 				,r.dislikes_cnt	 
 				,r.main_text    
 				,r.reg_time
+				,r.comments_cnt
 			FROM
 				tb_community_reply AS r
 			WHERE
@@ -113,6 +143,7 @@
 				,r.dislikes_cnt	 
 				,r.main_text    
 				,r.reg_time
+				,r.comments_cnt
 			FROM
 				tb_community_reply AS r
 			WHERE
@@ -147,6 +178,7 @@
 				,p.likes_cnt
 				,p.dislikes_cnt
 				,p.report_cnt
+				,p.comments_cnt
 				,p.point_gain
 			FROM
 				tb_comm_post AS p
@@ -167,6 +199,7 @@
 				,p.video_link
 				,p.likes_cnt
 				,p.dislikes_cnt
+				,p.comments_cnt
 				,p.report_cnt
 				,p.point_gain
 			FROM
@@ -190,6 +223,7 @@
 				,p.video_link
 				,p.likes_cnt
 				,p.dislikes_cnt
+				,p.comments_cnt
 				,p.report_cnt
 				,p.point_gain
 			FROM
@@ -212,6 +246,7 @@
 				,p.video_link
 				,p.likes_cnt
 				,p.dislikes_cnt
+				,p.comments_cnt
 				,p.report_cnt
 				,p.point_gain
 			FROM
@@ -321,6 +356,7 @@
 				,video_link
 				,likes_cnt
 				,dislikes_cnt
+				,comments_cnt
 				,report_cnt
 				,point_gain
 		)VALUES (
@@ -333,6 +369,7 @@
 			, #{mainText}
 			, 0
 			, #{pictureLink}
+			, 0
 			, 0
 			, 0
 			, 0
@@ -412,6 +449,7 @@
 				,dislikes_cnt	 
 				,main_text    
 				,reg_time
+				,comments_cnt
 			)
 			VALUES(
 				sf_new_reply_code()
@@ -421,7 +459,8 @@
 				,0
 				,0
 				,#{mainText}
-				,NOW()			
+				,NOW()	
+				,0		
 			);
 	</insert>
 	

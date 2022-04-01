@@ -71,13 +71,7 @@
 					</div>
 					<div class="card-foot p-2 text-center border-top">
 						<p class="card-text">
-							<a href="#!" class="text-dark" style="z-index: 2; position: relative;"> 
-							<i class="text-dark feather icon-message-circle"></i> 댓글 (20)</a> 
-							<a href="#!" class="text-dark" style="z-index: 2; position: relative;">
-							<i class="text-dark la la-share  pl-3"></i>공유하기</a> 
-							<a href="#!" class="text-dark" style="z-index: 2; position: relative;">
-							<i class="text-dark  la la-flag  pl-3"></i>신고하기</a> 
-							<a th:href="@{/post(postCode=${commPost.postCode})}" class="stretched-link"></a>
+							<a><i class="text-dark feather icon-message-circle"></i> 댓글([[${commPost.commentsCnt}]])</a> 
 						</p>
 					</div>
 				</div>
@@ -116,7 +110,7 @@
 									  <div class="card">
 									    <div class="card-header" id="headingOne-03">
 									        <div class="accordion-title bg-white pb-1 pt-1" data-toggle="collapse" th:attr="data-target='#collapseOne-' + ${index1.index}" aria-expanded="true" aria-controls="collapseOne-03">	
-									         	<a class="text-dark"><i class="text-dark feather icon-message-circle"></i> 댓글 (20)</a> 
+									         	<a><i class="text-dark feather icon-message-circle"></i> 댓글([[${r1.commentsCnt}]])</a> 
 									        </div>
 									    </div>
 									    <div th:id="'collapseOne-'+${index1.index}" class="collapse" aria-labelledby="headingOne-03" data-parent="#accordionExample-03">
@@ -157,7 +151,7 @@
 											  <div class="card">
 											    <div class="card-header" id="headingOne-03">
 											        <div class="accordion-title bg-white pb-1 pt-1" data-toggle="collapse" th:attr="data-target='#collapseOne-' + ${index2.index} + ${index1.index}" aria-expanded="true" aria-controls="collapseOne-03">	
-											         	<a class="text-dark"><i class="text-dark feather icon-message-circle"></i> 댓글 (20)</a> 
+											         	<a><i class="text-dark feather icon-message-circle"></i> 댓글([[${r2.commentsCnt}]])</a> 
 											        </div>
 											    </div>
 											    <div th:id="'collapseOne-'+${index2.index} +${index1.index}" class="collapse" aria-labelledby="headingOne-03" data-parent="#accordionExample-03">
@@ -198,7 +192,7 @@
 													  <div class="card">
 													    <div class="card-header" id="headingOne-03">
 													        <div class="accordion-title bg-white pb-1 pt-1" data-toggle="collapse" th:attr="data-target='#collapseOne-' + ${index2.index} + ${index1.index}+${index3.index}" aria-expanded="true" aria-controls="collapseOne-03">	
-													         	<a class="text-dark"><i class="text-dark feather icon-message-circle"></i> 댓글 (20)</a> 
+													         	<a><i class="text-dark feather icon-message-circle"></i> 댓글([[${r3.commentsCnt}]])</a>  
 													        </div>
 													    </div>
 													    <div th:id="'collapseOne-'+${index2.index} +${index1.index}+${index3.index}" class="collapse" aria-labelledby="headingOne-03" data-parent="#accordionExample-03">

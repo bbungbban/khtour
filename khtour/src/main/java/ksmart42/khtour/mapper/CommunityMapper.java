@@ -37,6 +37,10 @@ public interface CommunityMapper {
 	// 5 : 포스트코드로 포스트 찾아서 반환 
 	public CommPost getPostByPostCode(String postCode);
 	
+	public void addCommentCnt(String postCode);
+	public void addCommentCntOfComments(String replyCode);
+	public CommReply getCommReplyByParentReplyCode(String parentReplyCode);
+	
 	// 6 : 커뮤니티 이름으로 규칙 리스트 찾아서 반환 
 	public List<Rule> getRuleListByCommCode(String commCode);
 	// 7 : 커뮤니티 이름으로 커뮤니티 테그 찾아서 반환 
