@@ -100,8 +100,23 @@
 				tb_community_reply AS r
 			WHERE
 				r.post_code = #{postCode}
-				AND
-				r.parent_reply_code IS NULL
+			Order BY 
+				r.reg_time DESC;	
+	</select>
+	<select id="getChildrenReplyListByReplyCode"  resultMap="replyResultMap">
+			SELECT
+				r.reply_code
+				,r.member_id
+				,r.post_code		 
+				,r.parent_reply_code
+				,r.likes_cnt
+				,r.dislikes_cnt	 
+				,r.main_text    
+				,r.reg_time
+			FROM
+				tb_community_reply AS r
+			WHERE
+				r.parent_reply_code = #{replyCode}
 			Order BY 
 				r.reg_time DESC;	
 	</select>
@@ -418,5 +433,18 @@
 		where
 			c.comm_Name = #{commName};	
 	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 </mapper>

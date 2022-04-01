@@ -50,8 +50,8 @@
 			<form class="cmxform" id="form2" method="post" th:action="@{/addCommPost}" enctype="multipart/form-data">	
 				<div class="form-group">
 					<label for="commCode">등록할 커뮤니티</label> 
-					<select class="form-control" id="commCode" name="commCode" th:if="${not #lists.isEmpty(commList)}">
-						<option value="none">===커뮤니티 선택===</option>
+					<select class="form-control" id="commCode" name="commCode" th:if="${not #lists.isEmpty(commList)}" required>
+						<option>===커뮤니티 선택===</option>
 						<option th:value="${c.commCode}" th:text="${c.commName}" th:each="c: ${commList}"></option>
 					</select>
 					<div class="form-group" th:if="${#lists.isEmpty(commList)}">
@@ -80,14 +80,13 @@
 				</div>
 				<div class="form-group">
 					<label for="mainText">본문</label>
-					<textarea id="mainText" name="mainText" class="form-control" rows="10" placeholder="본문내용" required></textarea>
+					<textarea id="mainText" name="mainText" class="form-control" rows="10" placeholder="본문내용"></textarea>
 				</div>
 				 <div class="form-group">
 					<input type="file" name="uploadfile" multiple="multiple"/>
 				</div> 
 					<input class="submit btn btn-primary pull-right" type="submit" value="등록"> 
-					<a href="/commDashboard" class="btn btn-primary active pull-right" role="button" aria-pressed="true">취소</a>
-				
+					<a href="/commDashboard" class="btn btn-primary active pull-right" role="button" aria-pressed="true">취소</a>	
 			</form>
 		</div>
 	</div>

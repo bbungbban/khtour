@@ -1,5 +1,7 @@
 package ksmart42.khtour.dto;
 
+import java.util.List;
+
 public class CommReply {
 
 	private String replyCode;
@@ -11,6 +13,18 @@ public class CommReply {
 	private String reportCnt;
 	private String mainText;
 	private String regTime;
+	
+	private List<CommReply> childrenReply;
+	
+	public List<CommReply> getChildrenReply() {
+		return childrenReply;
+	}
+	public void setChildrenReply(List<CommReply> childrenReply) {
+		this.childrenReply = childrenReply;
+	}
+	public void setRegTime(String regTime) {
+		this.regTime = regTime;
+	}
 	public String getReplyCode() {
 		return replyCode;
 	}
@@ -69,7 +83,8 @@ public class CommReply {
 	public String toString() {
 		return "CommReply [replyCode=" + replyCode + ", memberId=" + memberId + ", postCode=" + postCode
 				+ ", parentReplyCode=" + parentReplyCode + ", likesCnt=" + likesCnt + ", dislikesCnt=" + dislikesCnt
-				+ ", reportCnt=" + reportCnt + ", mainText=" + mainText + ", regTime=" + regTime + "]";
+				+ ", reportCnt=" + reportCnt + ", mainText=" + mainText + ", regTime=" + regTime + ", childrenReply="
+				+ childrenReply + "]";
 	}
 	
 	

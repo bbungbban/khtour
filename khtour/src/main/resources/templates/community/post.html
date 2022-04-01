@@ -56,21 +56,75 @@
 							<input class="submit btn btn-primary btn-sm" type="submit" value="등록">
 						</div>
 					</form>
-						<div class="card card ml-4 mr-0 mb-1 mt-0" th:if="${not #lists.isEmpty(replyList)}" th:each="r: ${replyList}">
-							<div class="card-body">
-								<span class="card-text">      
-									<a th:text = "${r.memberId}"></a>
-									<a th:text ="${r.regTime}"></a>
-								</span>
-								<div class="card-text border-top border-bottom pt-3 pb-3 mt-2 mb-2" th:text= "${r.mainText}" > </div>
-								<p class="card-text">
-									<a href="#!" class="text-dark" style="z-index: 2; position: relative;"> 
-									<i class="text-dark feather icon-message-circle"></i> 댓글 (20)</a> 
-									<a href="#!" class="text-dark" style="z-index: 2; position: relative;">
-									<i class="text-dark la la-share  pl-3"></i>공유하기</a> 
-									<a href="#!" class="text-dark" style="z-index: 2; position: relative;">
-									<i class="text-dark  la la-flag  pl-3"></i>신고하기</a> 
-								</p>
+						<div th:if="${not #lists.isEmpty(replyList)}">
+							<div class="card card ml-4 mr-0 mb-1 mt-0"  th:if="${#strings.isEmpty(r.parentReplyCode)}" th:each="r: ${replyList}">
+								<div class="card-body">
+									<span class="card-text">      
+										<a th:text = "${r.memberId}"></a>
+										<a th:text ="${r.regTime}"></a>
+									</span>
+									<div class="card-text border-top border-bottom pt-3 pb-3 mt-2 mb-2" th:text= "${r.mainText}" > </div>
+									<p class="card-text">
+										<a href="#!" class="text-dark" style="z-index: 2; position: relative;"> 
+										<i class="text-dark feather icon-message-circle"></i> 댓글 (20)</a> 
+										<a href="#!" class="text-dark" style="z-index: 2; position: relative;">
+										<i class="text-dark la la-share  pl-3"></i>공유하기</a> 
+										<a href="#!" class="text-dark" style="z-index: 2; position: relative;">
+										<i class="text-dark  la la-flag  pl-3"></i>신고하기</a> 
+									</p>
+								</div>
+								<div class="card card ml-4 mr-0 mb-1 mt-0"  th:if="${not #lists.isEmpty(r1)}" th:each="r1: ${r.childrenReply}">
+									<div class="card-body">
+										<span class="card-text">      
+											<a th:text = "${r1.memberId}"></a>
+											<a th:text ="${r1.regTime}"></a>
+										</span>
+										<div class="card-text border-top border-bottom pt-3 pb-3 mt-2 mb-2" th:text= "${r.mainText}" > </div>
+											<p class="card-text">
+												<a href="#!" class="text-dark" style="z-index: 2; position: relative;"> 
+												<i class="text-dark feather icon-message-circle"></i> 댓글 (20)</a> 
+												<a href="#!" class="text-dark" style="z-index: 2; position: relative;">
+												<i class="text-dark la la-share  pl-3"></i>공유하기</a> 
+												<a href="#!" class="text-dark" style="z-index: 2; position: relative;">
+												<i class="text-dark  la la-flag  pl-3"></i>신고하기</a> 
+											</p>
+									</div>	
+									<div class="card card ml-4 mr-0 mb-1 mt-0"  th:if="${not #lists.isEmpty(r2)}" th:each="r2: ${r1.childrenReply}">
+										<div class="card-body">
+											<span class="card-text">      
+												<a th:text = "${r2.memberId}"></a>
+												<a th:text ="${r2.regTime}"></a>
+											</span>
+											<div class="card-text border-top border-bottom pt-3 pb-3 mt-2 mb-2" th:text= "${r2.mainText}" > </div>
+												<p class="card-text">
+													<a href="#!" class="text-dark" style="z-index: 2; position: relative;"> 
+													<i class="text-dark feather icon-message-circle"></i> 댓글 (20)</a> 
+													<a href="#!" class="text-dark" style="z-index: 2; position: relative;">
+													<i class="text-dark la la-share  pl-3"></i>공유하기</a> 
+													<a href="#!" class="text-dark" style="z-index: 2; position: relative;">
+													<i class="text-dark  la la-flag  pl-3"></i>신고하기</a> 
+												</p>
+										</div>	
+										<div class="card card ml-4 mr-0 mb-1 mt-0"  th:if="${not #lists.isEmpty(r3)}" th:each="r3: ${r2.childrenReply}">
+											<div class="card-body">
+												<span class="card-text">      
+													<a th:text = "${r3.memberId}"></a>
+													<a th:text ="${r3.regTime}"></a>
+												</span>
+												<div class="card-text border-top border-bottom pt-3 pb-3 mt-2 mb-2" th:text= "${r3.mainText}" > </div>
+													<p class="card-text">
+														<a href="#!" class="text-dark" style="z-index: 2; position: relative;"> 
+														<i class="text-dark feather icon-message-circle"></i> 댓글 (20)</a> 
+														<a href="#!" class="text-dark" style="z-index: 2; position: relative;">
+														<i class="text-dark la la-share  pl-3"></i>공유하기</a> 
+														<a href="#!" class="text-dark" style="z-index: 2; position: relative;">
+														<i class="text-dark  la la-flag  pl-3"></i>신고하기</a> 
+													</p>
+											</div>	
+										</div>	
+									</div>	
+									
+								</div>	
 							</div>
 						</div>
 				</div>
@@ -82,7 +136,6 @@
 				<div class="card-header bg-primary">
 					<h5 class="card-title text-white mb-0">About Community</h5>
 				</div>
-
 				<div class="card-body m-0">
 					<table class="table">
 						<thead>
@@ -114,12 +167,10 @@
 					</table>
 				</div>
 				<div class="card-foot p-2 text-center border-top ">
-					<a href="/commDashboard" class="btn btn-primary active btn-sm" role="button"
-						aria-pressed="true">커뮤니티 가입</a> <a
-						th:href="@{/createPost(commName=${community.commName})}"
-						class="btn btn-primary active btn-sm" role="button" aria-pressed="true">포스트 만들기</a>
+					<a href="/commDashboard" class="btn btn-primary active btn-sm" role="button" aria-pressed="true">커뮤니티 가입</a> 
+					<a th:href="@{/createPost(commName=${community.commName})}" class="btn btn-primary active btn-sm" role="button" aria-pressed="true">포스트 만들기</a>
+					</div>
 				</div>
-			</div>
 			<div class="card">
             <div class="card-header bg-primary">
                <h5 class="card-title text-white mb-0">커뮤니티 규칙</h5>

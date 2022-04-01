@@ -218,15 +218,37 @@ public class CommunityService {
 			{
 				postList.remove(i);
 				i--;
-			}	
-			
+			}		
 		}
 		return postList;
 	}
 	
 	public List<CommReply> getCommReplyListByPostCode(String postCode)
 	{
-		return communityMapper.getCommReplyListByPostCode(postCode);
+		
+		List<CommReply> replyList = communityMapper.getCommReplyListByPostCode(postCode);	
+		replyList = replyChildrenSetter(replyList);
+		for(int i=0; i<replyList.size();i++)
+		{
+			log.info(replyList.get(i).getReplyCode()+": 스탑 TYPE 3 :" + replyList.get(i).getChildrenReply());
+		}
+		return replyList;
+	}
+	public List<CommReply> replyChildrenSetter(List<CommReply> replyList)
+	{
+		for(int i=0;i<replyList.size();i++)
+		{
+			CommReply reply = replyList.get(i);
+			List<CommReply> childrenList = communityMapper.getChildrenReplyListByReplyCode(reply.getReplyCode());
+			
+			if(childrenList==null)
+			{
+				return childrenList;
+			}
+			childrenList = replyChildrenSetter(childrenList);
+			reply.setChildrenReply(childrenList);
+		}
+		return replyList;
 	}
 	
 	
