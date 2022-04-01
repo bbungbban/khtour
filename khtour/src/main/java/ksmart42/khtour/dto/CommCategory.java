@@ -1,15 +1,15 @@
 package ksmart42.khtour.dto;
 
 public class CommCategory {
-
+	private String categoryCode;
 	private String categoryName;
 	private String regTime;
 	private String bannerImg;
 	private String totalMemberCnt;
 	@Override
 	public String toString() {
-		return "CommCategory [categoryName=" + categoryName + ", regTime=" + regTime + ", bannerImg=" + bannerImg
-				+ ", totalMemberCnt=" + totalMemberCnt + "]";
+		return "CommCategory [categoryCode=" + categoryCode + ", categoryName=" + categoryName + ", regTime=" + regTime
+				+ ", bannerImg=" + bannerImg + ", totalMemberCnt=" + totalMemberCnt + "]";
 	}
 	public String getCategoryName() {
 		return categoryName;
@@ -34,6 +34,13 @@ public class CommCategory {
 	}
 	public void setTotalMemberCnt(String totalMemberCnt) {
 		this.totalMemberCnt = totalMemberCnt;
+	}
+	public String getCategoryCode() {
+		return categoryCode;
+	}
+	
+	public void setCategoryCode(String categoryCode) {
+		this.categoryCode = categoryCode;
 	}
 	
 }

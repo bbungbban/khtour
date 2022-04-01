@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ksmart42.khtour.dto.CommCategory;
 import ksmart42.khtour.dto.CommPost;
+import ksmart42.khtour.dto.CommReply;
 import ksmart42.khtour.dto.CommTag;
 import ksmart42.khtour.dto.Community;
 import ksmart42.khtour.dto.Rule;
@@ -60,9 +61,9 @@ public class CommunityController {
 	*/
 	@PostMapping("/getTagList")
 	@ResponseBody
-	public List<CommTag> getTagList(@RequestParam(value = "commName") String commName)
+	public List<CommTag> getTagList(@RequestParam(value = "commCode") String commCode)
 	{
-		return communityService.getTagListByCommName(commName);
+		return communityService.getTagListByCommCode(commCode);
 	}
 	
 	/* 작성자 : 한경수
@@ -93,11 +94,11 @@ public class CommunityController {
 	*  설  명  : 포스트 생성 페이지 GET 메서드로 접속
 	*/
 	@GetMapping("/createPost")
-	public String createPost(Model model,@RequestParam(name="commName",required=false) String commName) {
+	public String createPost(Model model,@RequestParam(name="commCode",required=false) String commCode) {
 		
 		model.addAttribute("title", "포스트 생성");
 		
-		if(commName==null||commName=="")
+		if(commCode==null||commCode=="")
 		{
 			//전체 커뮤니티 리스트  모델에 저장
 			model.addAttribute("commList",communityService.getCommunityList());
@@ -105,9 +106,9 @@ public class CommunityController {
 		else
 		{
 			//특정 커뮤니티 하나만 모델에 저장
-			model.addAttribute("community", communityService.getCommunityByName(commName));	
+			model.addAttribute("community", communityService.getCommunityByCommCode(commCode));	
 			//특정 커뮤니티에 따른 테그리스트 모델에 저장
-			model.addAttribute("tagList", communityService.getTagListByCommName(commName));
+			model.addAttribute("tagList", communityService.getTagListByCommCode(commCode));
 		}
 		return "community/createPost";
 	}
@@ -142,12 +143,12 @@ public class CommunityController {
 		community.setOnlineMemberCnt("0");
 		community.setMemberId("id001");
 		
-		
+		community.setCommCode(communityMapper.getNextCommCode());
 		//커뮤니티 데이터 베이스에 저장
 		communityService.addCommunity(community);
 
 		//커뮤니티 이름 리다이렉트 정보에 저장
-		reAttr.addAttribute("commName",community.getCommName());
+		reAttr.addAttribute("commCode",community.getCommCode());
 		
 		return "redirect:/commPage";
 		
@@ -165,7 +166,7 @@ public class CommunityController {
 		communityService.addRule(rule);
 		
 		//커뮤니티 이름 리다이렉트 정보에 저장
-		reAttr.addAttribute("commName",rule.getCommName());
+		reAttr.addAttribute("commCode",rule.getCommCode());
 		
 		return "redirect:/commPage";
 		
@@ -186,7 +187,7 @@ public class CommunityController {
 		communityService.addTag(commTag);
 		
 		//커뮤니티 이름 리다이렉트 정보에 저장
-		reAttr.addAttribute("commName",commTag.getCommName());
+		reAttr.addAttribute("commCode",commTag.getCommCode());
 		return "redirect:/commPage";
 		
 	}
@@ -200,10 +201,9 @@ public class CommunityController {
 	public String addCommPost(HttpServletRequest request,@RequestParam MultipartFile[] uploadfile,RedirectAttributes reAttr,CommPost commPost) {
 		System.out.println(commPost.getTagCode()+"<- commPost.getTagCode()  addCommPost /addCommPost");
 		//임시 더미데이터 저장
-		commPost.setMemberId("id001");		
+		commPost.setMemberId("id001");	
 		String serverName = request.getServerName();
 		String fileRealPath = "";	
-		log.info("업로드 파일 : " + uploadfile[0]);
 		
 		if(!uploadfile[0].isEmpty())
 		{
@@ -223,11 +223,23 @@ public class CommunityController {
 		
 		
 		//포스트 코드 생성후 저장
-		commPost.setPostCode(communityMapper.getNexPostCode());
+		commPost.setPostCode(communityMapper.getNextPostCode());
 		//포스트 데이타 베이스에 저장
 		communityService.addCommPost(commPost);
 		//포스트코드 리다이렉트 정보에 저장
 		reAttr.addAttribute("postCode",commPost.getPostCode());
+		return "redirect:/post";	
+	}
+	@PostMapping("/addCommReply")
+	public String addCommReply(RedirectAttributes reAttr,CommReply commReply) {
+		
+		commReply.setMemberId("id001");	
+		reAttr.addAttribute("postCode",commReply.getPostCode());
+		
+		log.info("답글 메인 글 : " + commReply.getMainText());
+		
+		
+		communityService.addCommReply(commReply);
 		return "redirect:/post";	
 	}
 	
@@ -242,15 +254,18 @@ public class CommunityController {
 		
 		//포스트 코드로 커뮤니티 포스트를 찾아서 저장
 		CommPost commPost =communityService.getPostByPostCode(postCode);
+		List<CommReply> replyList = communityService.getCommReplyListByPostCode(postCode);
+		log.info("답글리스트 : " + replyList);
 		//커뮤니티포스트에 들어있는 커뮤니티 이름 저장
-		String commName = commPost.getCommName();
+		String commCode = commPost.getCommCode();
 		
 		// 커뮤니티 이름으로 특정 커뮤니티 찾아서 저장
-		Community community = communityService.getCommunityByName(commName);
+		Community community = communityService.getCommunityByCommCode(commCode);
 		// 커뮤니티 이름으로 특정 커뮤니티의 규칙 리스트 찾아서 저장
-		List<Rule> ruleList = communityService.getRuleListByCommName(commName);
+		List<Rule> ruleList = communityService.getRuleListByCommCode(commCode);
 		
 		//모델에 정보들 저장
+		model.addAttribute("replyList",replyList);
 		model.addAttribute("ruleList", ruleList);
 		model.addAttribute("community", community);
 		model.addAttribute("commPost", commPost);
@@ -265,17 +280,18 @@ public class CommunityController {
 	*  설  명  : 커뮤니티 랭킹으로 접속 하는데.. 카테고리 이름을 받을때랑, 않받을때랑 구별해서 맞는 커뮤니티 리스트를 보내줌
 	*/
 	@GetMapping("/commRanking")
-	public String commRanking(Model model, @RequestParam(name="categoryName",required=false) String categoryName) {
+	public String commRanking(Model model, @RequestParam(name="categoryCode",required=false) String categoryCode, @RequestParam(name="categoryName",required=false) String categoryName) {
 		List<Community> communityList = null;
 		//커뮤니티 전체 카테고리 리스트 저장
 		List<CommCategory> categoryList = communityService.getCommCategoryList();
 		//전체 카테고리 리스트중 3 개를 랜덤으로 뽑아서 맵에 저장후에 반환. String 키값에는 카테고리 이름이 들어가고, Value값에는 카테고리 에 따른 커뮤니티 리스트가 들어간다. 
 		Map<String,List<Community>> randomCategoryMap = communityService.getRandomCategoryMap(3);
-		if(categoryName!=null)
+		if(categoryCode!=null)
 		{
 			//카테고리 이름을 받았을때는 카테고리 이름에 따른 커뮤니티 리스트만 저장
+			model.addAttribute("categoryCode",categoryCode);
 			model.addAttribute("categoryName",categoryName);
-			communityList = communityService.getCommunityListByCategory(categoryName);
+			communityList = communityService.getCommunityListByCategoryCode(categoryCode);
 		}
 		else
 		{
@@ -295,13 +311,13 @@ public class CommunityController {
 	*  설  명  : 특정 커뮤니티 페이지로 커뮤니티 이름을 사용해서 접속,        * 테그 이름을 받았을 경우 테그에 맞는 포스트만 띄워준다.
 	*/
 	@GetMapping("/commPage")
-	public String commPage(Model model,@RequestParam(value = "commName") String commName, @RequestParam(name="tagCode",required=false) String tagCode) {
+	public String commPage(Model model,@RequestParam(value = "commCode") String commCode, @RequestParam(name="tagCode",required=false) String tagCode) {
 
 		//커뮤니티 이름에 맞는 커뮤니티 리스트,규칙 리스트,테그 리스트, 포스트 리스트 를 저장
-		Community community = communityService.getCommunityByName(commName);
-		List<Rule> ruleList = communityService.getRuleListByCommName(commName);
-		List<CommTag> tagList = communityService.getTagListByCommName(commName);
-		List<CommPost> postList = communityService.getPostListByCommunityName(commName);
+		Community community = communityService.getCommunityByCommCode(commCode);
+		List<Rule> ruleList = communityService.getRuleListByCommCode(commCode);
+		List<CommTag> tagList = communityService.getTagListByCommCode(commCode);
+		List<CommPost> postList = communityService.getPostListByCommCode(commCode);
 		
 		//테그코드를 받았을경우 포스트 리스트를 수정하여, 테그코드가 동일한 포스트만 추려서 다시 저장.
 		if(tagCode!=null && tagCode!= "")

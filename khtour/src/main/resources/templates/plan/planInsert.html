@@ -6,266 +6,268 @@
 	<title th:text="${title}"></title>
 </th:block>
 <th:block layout:fragment="contentsTitle">
-
-			<h2>여행 계획 등록</h2>
-			<nav aria-label="breadcrumb">
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="#">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page">여행 일정
-						공유</li>
-				</ol>
-			</nav>
-
+	<!-- 페이지 타이틀 시작 -->
+	<h2>여행 계획 등록</h2>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a th:href="@{/plan/planListSt}">여행 계획 리스트(관리자)</a></li>
+			<li class="breadcrumb-item active" aria-current="page">여행 계획 등록</li>
+		</ol>
+	</nav>
+	<!-- 페이지 타이틀 종료 -->
 </th:block>
-
 <th:block layout:fragment="customContents">
+	<!-- 카카오맵 css 추가 시작 -->
 	<style>
-.map_wrap, .map_wrap * {
-	margin: 0;
-	padding: 0;
-	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
-	font-size: 12px;
-}
+		.map_wrap, .map_wrap * {
+			margin: 0;
+			padding: 0;
+			font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+			font-size: 12px;
+		}
+		
+		.map_wrap a, .map_wrap a:hover, .map_wrap a:active {
+			color: #000;
+			text-decoration: none;
+		}
+		
+		.map_wrap {
+			position: relative;
+			width: 100%;
+			height: 500px;
+		}
+		
+		#menu_wrap {
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			width: 280px;
+			margin: 10px 0 30px 10px;
+			padding: 5px;
+			overflow-y: auto;
+			background: rgba(255, 255, 255, 0.7);
+			z-index: 1;
+			font-size: 12px;
+			border-radius: 10px;
+		}
+		
+		.bg_white {
+			background: #fff;
+		}
+		
+		#menu_wrap hr {
+			display: block;
+			height: 1px;
+			border: 0;
+			border-top: 2px solid #5F5F5F;
+			margin: 3px 0;
+		}
+		
+		#menu_wrap .option {
+			text-align: center;
+		}
+		
+		#menu_wrap .option p {
+			margin: 10px 0;
+		}
+		
+		#menu_wrap .option button {
+			margin-left: 5px;
+		}
+		
+		#placesList li {
+			list-style: none;
+		}
+		
+		#placesList .item {
+			position: relative;
+			border-bottom: 1px solid #888;
+			overflow: hidden;
+			cursor: pointer;
+			min-height: 65px;
+		}
+		
+		#placesList .item span {
+			display: block;
+			margin-top: 4px;
+		}
+		
+		#placesList .item h5, #placesList .item .info {
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+		}
+		
+		#placesList .item .info {
+			padding: 10px 0 10px 55px;
+		}
+		
+		#placesList .info .gray {
+			color: #8a8a8a;
+		}
+		
+		#placesList .info .jibun {
+			padding-left: 26px;
+			background:
+				url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png)
+				no-repeat;
+		}
+		
+		#placesList .info .tel {
+			color: #009900;
+		}
+		
+		#placesList .item .markerbg {
+			float: left;
+			position: absolute;
+			width: 36px;
+			height: 37px;
+			margin: 10px 0 0 10px;
+			background:
+				url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png)
+				no-repeat;
+		}
+		
+		#placesList .item .marker_1 {
+			background-position: 0 -10px;
+		}
+		
+		#placesList .item .marker_2 {
+			background-position: 0 -56px;
+		}
+		
+		#placesList .item .marker_3 {
+			background-position: 0 -102px
+		}
+		
+		#placesList .item .marker_4 {
+			background-position: 0 -148px;
+		}
+		
+		#placesList .item .marker_5 {
+			background-position: 0 -194px;
+		}
+		
+		#placesList .item .marker_6 {
+			background-position: 0 -240px;
+		}
+		
+		#placesList .item .marker_7 {
+			background-position: 0 -286px;
+		}
+		
+		#placesList .item .marker_8 {
+			background-position: 0 -332px;
+		}
+		
+		#placesList .item .marker_9 {
+			background-position: 0 -378px;
+		}
+		
+		#placesList .item .marker_10 {
+			background-position: 0 -423px;
+		}
+		
+		#placesList .item .marker_11 {
+			background-position: 0 -470px;
+		}
+		
+		#placesList .item .marker_12 {
+			background-position: 0 -516px;
+		}
+		
+		#placesList .item .marker_13 {
+			background-position: 0 -562px;
+		}
+		
+		#placesList .item .marker_14 {
+			background-position: 0 -608px;
+		}
+		
+		#placesList .item .marker_15 {
+			background-position: 0 -654px;
+		}
+		
+		#pagination {
+			margin: 10px auto;
+			text-align: center;
+		}
+		
+		#pagination a {
+			display: inline-block;
+			margin-right: 10px;
+		}
+		
+		#pagination .on {
+			font-weight: bold;
+			cursor: default;
+			color: #777;
+		}
+		
+		.colnp {
+			padding-right: 0;
+		}
+	</style>
+	<!-- 카카오맵 css 추가 종료 -->
 
-.map_wrap a, .map_wrap a:hover, .map_wrap a:active {
-	color: #000;
-	text-decoration: none;
-}
-
-.map_wrap {
-	position: relative;
-	width: 100%;
-	height: 500px;
-}
-
-#menu_wrap {
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	width: 280px;
-	margin: 10px 0 30px 10px;
-	padding: 5px;
-	overflow-y: auto;
-	background: rgba(255, 255, 255, 0.7);
-	z-index: 1;
-	font-size: 12px;
-	border-radius: 10px;
-}
-
-.bg_white {
-	background: #fff;
-}
-
-#menu_wrap hr {
-	display: block;
-	height: 1px;
-	border: 0;
-	border-top: 2px solid #5F5F5F;
-	margin: 3px 0;
-}
-
-#menu_wrap .option {
-	text-align: center;
-}
-
-#menu_wrap .option p {
-	margin: 10px 0;
-}
-
-#menu_wrap .option button {
-	margin-left: 5px;
-}
-
-#placesList li {
-	list-style: none;
-}
-
-#placesList .item {
-	position: relative;
-	border-bottom: 1px solid #888;
-	overflow: hidden;
-	cursor: pointer;
-	min-height: 65px;
-}
-
-#placesList .item span {
-	display: block;
-	margin-top: 4px;
-}
-
-#placesList .item h5, #placesList .item .info {
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
-}
-
-#placesList .item .info {
-	padding: 10px 0 10px 55px;
-}
-
-#placesList .info .gray {
-	color: #8a8a8a;
-}
-
-#placesList .info .jibun {
-	padding-left: 26px;
-	background:
-		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png)
-		no-repeat;
-}
-
-#placesList .info .tel {
-	color: #009900;
-}
-
-#placesList .item .markerbg {
-	float: left;
-	position: absolute;
-	width: 36px;
-	height: 37px;
-	margin: 10px 0 0 10px;
-	background:
-		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png)
-		no-repeat;
-}
-
-#placesList .item .marker_1 {
-	background-position: 0 -10px;
-}
-
-#placesList .item .marker_2 {
-	background-position: 0 -56px;
-}
-
-#placesList .item .marker_3 {
-	background-position: 0 -102px
-}
-
-#placesList .item .marker_4 {
-	background-position: 0 -148px;
-}
-
-#placesList .item .marker_5 {
-	background-position: 0 -194px;
-}
-
-#placesList .item .marker_6 {
-	background-position: 0 -240px;
-}
-
-#placesList .item .marker_7 {
-	background-position: 0 -286px;
-}
-
-#placesList .item .marker_8 {
-	background-position: 0 -332px;
-}
-
-#placesList .item .marker_9 {
-	background-position: 0 -378px;
-}
-
-#placesList .item .marker_10 {
-	background-position: 0 -423px;
-}
-
-#placesList .item .marker_11 {
-	background-position: 0 -470px;
-}
-
-#placesList .item .marker_12 {
-	background-position: 0 -516px;
-}
-
-#placesList .item .marker_13 {
-	background-position: 0 -562px;
-}
-
-#placesList .item .marker_14 {
-	background-position: 0 -608px;
-}
-
-#placesList .item .marker_15 {
-	background-position: 0 -654px;
-}
-
-#pagination {
-	margin: 10px auto;
-	text-align: center;
-}
-
-#pagination a {
-	display: inline-block;
-	margin-right: 10px;
-}
-
-#pagination .on {
-	font-weight: bold;
-	cursor: default;
-	color: #777;
-}
-
-.colnp {
-	padding-right: 0;
-}
-</style>
 	<div class="row">
+		<!-- 첫번쨰 col -->
 		<div class="col-2">
 			<div class="card text-center" data-select2-id="6">
 				<div class="card-title">
 					<div class="card-title-left">
 						<h4 class="card-title-text">여행 계획 설정</h4>
-
 					</div>
 				</div>
 				<div class="card-body" data-select2-id="5">
-					<form id="addPlanForm" th:action="@{/plan/planInsert}" method="post">
+					<form id="addPlanForm" th:action="@{/plan/planInsert}"
+						method="post">
 						<div class="form-group">
-							<label for="planName">여행 이름</label> <input
-								type="text" class="form-control" id="planName"name="planName"
-							 required="">
+							<label for="planName">여행 이름</label> <input type="text"
+								class="form-control" id="planName" name="planName" required="">
 						</div>
 						<div class="form-group">
-							<label for="planLocation">여행 지역</label> <input type="text" 
-								 class="form-control inputwt" id="planLocation"name="planLocation" >
+							<label for="planLocation">여행 지역</label> <input type="text"
+								class="form-control inputwt" id="planLocation"
+								name="planLocation">
 						</div>
 						<div class="form-group">
-							<label for="startDate"> 여행 시작 </label> <input type="text" id="startDate" name="birthday"
-								class="form-control inputwt" value="10/24/1984">
+							<label for="startDate"> 여행 시작 </label> <input type="text"
+								id="startDate" name="birthday" class="form-control inputwt"
+								value="10/24/1984">
 						</div>
 
 						<div class="form-group">
-							<label for="endDate"> 여행 종료</label> <input type="text" id="endDate" name="endDate"
-								 class="form-control inputwt" >
+							<label for="endDate"> 여행 종료</label> <input type="text"
+								id="endDate" name="endDate" class="form-control inputwt">
 						</div>
 						<div class="form-group">
-							<label for="planMaterials">여행 준비물</label> <input
-								type="text" class="form-control" id="planMaterials"name="planMaterials"
-							 required="">
+							<label for="planMaterials">여행 준비물</label> <input type="text"
+								class="form-control" id="planMaterials" name="planMaterials"
+								required="">
 						</div>
 						<div class="form-group">
-							<label for="soloParty">여행 개인/단체 </label> <input
-								type="text" class="form-control" id="soloParty"name="soloParty"
-							 required="">
+							<label for="soloParty">여행 개인/단체 </label> <input type="text"
+								class="form-control" id="soloParty" name="soloParty" required="">
 						</div>
 						<div class="form-group">
-							<label for="planExpenses">여행 총 경비</label> <input
-								type="text" class="form-control" id="planExpenses" name="planExpenses"
-							 required="">
-						</div>		
+							<label for="planExpenses">여행 총 경비</label> <input type="text"
+								class="form-control" id="planExpenses" name="planExpenses"
+								required="">
+						</div>
 						<button type="button" id="addPlanBtn" class="btn btn-primary">등록</button>
 						<button type="button" class="btn btn-danger">취소</button>
 					</form>
 				</div>
 			</div>
 		</div>
+		
+		<!-- 두번째 col -->
+		<!-- 카카오맵 시작 -->
 		<div class="col-8">
-
 			<div class="map_wrap">
-				<div id="map"
-					style="width: 100%; height: 800px; position: relative; overflow: hidden;"></div>
-
+				<div id="map" style="width: 100%; height: 800px; position: relative; overflow: hidden;"></div>
 				<div id="menu_wrap" class="bg_white">
 					<div class="option">
 						<div>
@@ -280,37 +282,47 @@
 					<div id="pagination"></div>
 				</div>
 			</div>
-
-
-
 		</div>
+		<!-- 카카오맵 종료 -->
+		
+		
+		<!-- 세번째 col -->
 		<div class="col-2">
 			<div class="card">
-
 				<div class="card-body">
 					<div class="tab">
+						<!-- 내비 이름 시작 -->
 						<ul class="nav nav-pills" id="myTab-02" role="tablist">
+							<!--  내비 이름 추천 숙박 시작-->
 							<li class="nav-item"><a class="nav-link active"
 								id="home-tab-01" data-toggle="tab" href="#home-01" role="tab"
 								aria-controls="home" aria-selected="true"> <i
 									class="fa fa-home"></i>숙박
 							</a></li>
+							<!--  내비 이름 추천 숙박 종료-->
+							
+							<!-- 내비 이름 추천 코스 시작-->
 							<li class="nav-item"><a class="nav-link" id="profile-tab-01"
 								data-toggle="tab" href="#profile-01" role="tab"
 								aria-controls="profile" aria-selected="false"><i
 									class="fa fa-user-o"></i>코스</a></li>
-
+							<!-- 내비 이름 추천 코스 종료-->
 						</ul>
+						<!-- 내비 이름 종료 -->
+						
 						<div class="tab-content" id="myTabContent-02">
+							<!-- 추천 숙박 -->
 							<div class="tab-pane fade active show" id="home-01"
 								role="tabpanel" aria-labelledby="home-tab-01">
+								<!-- 추천 숙박 검색 시작 -->
 								<h4 class="text-center">추천숙박</h4>
 								<div class="input-group mb-3">
 									<input type="text" class="form-control"
 										aria-describedby="button-addon2">
-									<button class="btn" type="button"
-										id="button-addon2">검색</button>
+									<button class="btn" type="button" id="button-addon2">검색</button>
 								</div>
+								<!-- 추천 숙박 검색 종료 -->
+								<!-- 추천 숙박 리스트 시작-->
 								<ul style="list-style: none; padding-left: 0px; overflow: hidden;">
 									<li>
 										<div class="row " style="height: 70px;">
@@ -321,7 +333,6 @@
 												<p><strong>파자마 호텔</strong></p>
 												<p>pajama hotel</p>
 											</div>
-
 										</div>
 									</li>
 									<li>
@@ -333,7 +344,6 @@
 												<p><strong>파자마 호텔</strong></p>
 												<p>pajama hotel</p>
 											</div>
-
 										</div>
 									</li>
 									<li>
@@ -342,57 +352,50 @@
 												<img class="img-fluid " th:src="@{/images/aco/신라스테이해운대2.png}" alt="...">
 											</div>
 											<div class="col-7">
-											 <p><strong>파자마 호텔</strong></p>
+												<p><strong>파자마 호텔</strong></p>
 												<p>pajama hotel</p>
 											</div>
-
 										</div>
 									</li>
+								</ul>
+								<!-- 추천 숙박 리스트 종료 -->
+							</div>
+							<!-- 추천 숙박 종료 -->
+							<!-- 추천 코스 -->
+							<div class="tab-pane fade" id="profile-01" role="tabpanel"
+								aria-labelledby="profile-tab-01">
+								<!-- 추천 코스 검색 시작 -->
+								<h4 class="text-center">추천코스</h4>
+								<div class="input-group mb-3">
+									<input type="text" class="form-control"
+										aria-describedby="button-addon2">
+									<button class="btn" type="button" id="button-addon2">검색</button>
+								</div>
+								<!-- 추천 코스 검색 종료 -->
+								<!-- 추천 코스 리스트 시작-->
+								<ul style="list-style: none; padding-left: 0px; overflow: hidden;">
 									<li>
-										<div class="row" style="height: 70px;">
+										<div class="row " style="height: 70px;">
 											<div class="col-5 colnp">
-												<img class="img-fluid " th:src="@{/images/aco/gyengju.png}" alt="...">
+												<img class="img-fluid " th:src="@{/images/aco/신라스테이해운대.jpg}" alt="...">
 											</div>
 											<div class="col-7">
 												<p><strong>파자마 호텔</strong></p>
 												<p>pajama hotel</p>
 											</div>
-
 										</div>
 									</li>
-
-									
 								</ul>
+								<!-- 추천 코스 리스트 종료 -->
 							</div>
-							<div class="tab-pane fade" id="profile-01" role="tabpanel"
-								aria-labelledby="profile-tab-01">
-								<h4 class="text-center">추천코스</h4>
-								<div class="input-group mb-3">
-									<input type="text" class="form-control"
-										aria-describedby="button-addon2">
-									<button class="btn" type="button"
-										id="button-addon2">검색</button>
-								</div>
-								<p>12323</p>
-							</div>
-
+							<!-- 추천 코스 종료 -->
 						</div>
 					</div>
-
 				</div>
 			</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+
+
+			<!-- datepicker html 시작 -->
 			<div class="daterangepicker ltr show-calendar opensright"
 				style="top: 434.562px; left: 34.5625px; right: auto; display: none;">
 				<div class="ranges"></div>
@@ -710,6 +713,7 @@
 					<button class="applyBtn btn btn-sm btn-primary" type="button">적용</button>
 				</div>
 			</div>
+			<!-- datepicker html 종료 -->
 		</div>
 	</div>
 </th:block>
@@ -728,6 +732,7 @@
 
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7cec08e17fcfb480dd452f2d9dd9df4c&libraries=services"></script>
+	<!-- 카카오맵 자바스크립트 시작 -->
 	<script>
 		// 마커를 담을 배열입니다
 		var markers = [];
@@ -961,6 +966,9 @@
 			});
 		}); */
 	</script>
+	<!-- 카카오맵 자바스크립트 종료 -->
+	
+	<!-- 등록 버튼 자바스크립트 시작 -->
 	<script type="text/javascript" th:inline="javascript">
 		$('#addPlanBtn').click(function() {
 
@@ -979,5 +987,6 @@
 				$('#addPlanForm').submit();
 		});
 	</script>
+	<!-- 등록 버튼 자바스크립트 종료 -->
 </th:block>
 </html>

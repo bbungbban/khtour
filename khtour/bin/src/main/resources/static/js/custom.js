@@ -603,7 +603,7 @@
         alert( 'You are ' + years + ' years old!' );
       } );
     }
-
+    
     var _reportrange = $( '#reportrange' );
     function cb(start, end) {
         $( '#reportrange span' ).html(start.format( 'MMMM D, YYYY' ) + ' - ' + end.format( 'MMMM D, YYYY' ) );

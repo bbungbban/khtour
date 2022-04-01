@@ -7,290 +7,264 @@
 </th:block>
 <th:block layout:fragment="contentsTitle">
 	<!-- 페이지 타이틀 시작 -->
-	<h2>문화재 종목별 검색</h2>
+	<h2>문화재 검색(관리자)</h2>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="#">Home</a></li>
-			<li class="breadcrumb-item active" aria-current="page">문화재 검색</li>
+			<li class="breadcrumb-item"><a th:href="@{/main}">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page">문화재 검색(관리자)</li>
 		</ol>
 	</nav>
 	<!-- 페이지 타이틀 종료 -->
 </th:block>
 <th:block layout:fragment="customContents">
-	<div class="row justify-content-center">
+	<!-- 첫번째 Row 시작 -->
+		<div class="row justify-content-center">
 			<div class="col-10 col-la-10 col-xl-10">
-			<!-- 카드1 문화재 등록 시작 -->
-			<div class="card">
-				<div class="card-body">
-					<div class="row align-items-start">
-						<div class="col-3">
-							<button type="button" class="btn btn-primary" data-toggle="modal"
-								data-target="#exampleModal-03">
-								<i class="feather icon-plus"></i>문화재 등록
-							</button>
-							<!-- 모달 시작 -->
-							<div class="modal fade" id="exampleModal-03" tabindex="-1"
-								role="dialog" aria-labelledby="exampleModalLabel"
-								aria-hidden="true">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLabel">
-												<i class="feather icon-plus"></i>문화재 등록
-											</h5>
-											<button type="button" class="close" data-dismiss="modal"
-												aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body p-5">
-											<div class="card">
-												<div class="card-title">
-													<div class="card-title-left">
-														<h4 class="card-title-text">상세정보 등록</h4>
-													</div>
-												</div>
-												<div class="card-body">
-													<form id="addHeritageForm"
-														th:action="@{/heritage/heritageListByItem}" method="post">
-														<div class="form-group">
-															<label for="heritageName"> 문화재 명 </label> <input
-																type="text" class="form-control" id="heritageName"
-																name="heritageName" placeholder="문화재 명" required="">
-														</div>
-														<div class="form-group">
-															<label for="heritageCategory"> 문화재 대분류 </label> <input
-																type="text" class="form-control" id="heritageCategory"
-																name="heritageCategory" placeholder="문화재 카테고리"
-																required="">
-														</div>
-														<div class="form-group">
-															<label for="heritageSubName"> 문화재 한문명 </label> <input
-																type="text" class="form-control" id="heritageSubName"
-																name="heritageSubName" placeholder="문화재 한문명" required="">
-														</div>
-														<div class="form-group">
-															<label for="heritageLocation"> 문화재 소재지 </label> <input
-																type="text" class="form-control" id="heritageLocation"
-																name="heritageLocation" placeholder="소재지" required="">
-														</div>
-														<div class="form-group">
-															<label for="heritageManager"> 문화재 관리자 </label> <input
-																type="text" class="form-control" id="heritageManager"
-																name="heritageManager" placeholder="관리자명" required="">
-														</div>
-														<div class="form-group">
-															<label for="heritageOwner"> 문화재 소유자 </label> <input
-																type="text" class="form-control" id="heritageOwner"
-																name="heritageOwner" placeholder="소유자" required="">
-														</div>
-														<div class="form-group">
-															<label for="heritageEra"> 문화재 시대명 </label> <input
-																type="text" class="form-control" id="heritageEra"
-																name="heritageEra" placeholder="시대명" required="">
-														</div>
-														<div class="form-group">
-															<label for="heritageArea"> 문화재 수량/면적 </label> <input
-																type="text" class="form-control" id="heritageArea"
-																name="heritageArea" placeholder="수량/면적" required="">
-														</div>
-														<div class="form-group">
-															<label for="heritageDesignation">문화재 지정일</label> <input
-																type="text" class="date form-control"
-																id="heritageDesignation" name="heritageDesignation"
-																maxlength="10" placeholder="0000/00/00" required="">
-														</div>
-														<div class="form-group">
-															<label for="heritageClassification"> 중분류 </label> <input
-																type="text" class="form-control"
-																id="heritageClassification"
-																name="heritageClassification" required="">
-														</div>
-														<div class="form-group">
-															<label for="heritageImage">이미지 선택</label> <input
-																type="file" id="heritageImage" class="form-control"
-																name="heritageImage" required="">
-														</div>
-														<div class="form-group">
-															<label for="heritageDetail">문화재 상세 설명 문화재 설명</label>
-															<textarea class="form-control" id="heritageDetail"
-																name="heritageDetail" rows="3" required=""></textarea>
-														</div>
-
-														<button type="button" id="addHeritageBtn"
-															class="btn btn-primary">등록</button>
-														<button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
-													</form>
-												</div>
+				<!-- 문화재 등록 시작 -->
+				<div class="card">
+					<div class="card-body">
+						<div class="row align-items-start">
+							<div class="col-3">
+								<button type="button" class="btn btn-primary" data-toggle="modal"
+									data-target=".bd-example-modal-lg">
+									<i class="feather icon-plus"></i>문화재 등록
+								</button>
+								<!-- 모달 시작 -->
+								<div class="modal fade bd-example-modal-lg"  tabindex="-1"
+									role="dialog" aria-labelledby="exampleModalLabel"
+									aria-hidden="true">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel">
+													<i class="feather icon-plus"></i> 상세정보 등록
+												</h5>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body p-5">
+														<form id="addHeritageForm"
+															th:action="@{/heritage/heritageListByItem}" method="post">
+															<div class="form-group">
+																<label for="heritageName"> 문화재 명 </label> <input
+																	type="text" class="form-control" id="heritageName"
+																	name="heritageName" placeholder="문화재 명" required="">
+															</div>
+															<div class="form-group">
+																<label for="heritageCategory"> 문화재 대분류 </label> <input
+																	type="text" class="form-control" id="heritageCategory"
+																	name="heritageCategory" placeholder="문화재 카테고리"
+																	required="">
+															</div>
+															<div class="form-group">
+																<label for="heritageSubName"> 문화재 한문명 </label> <input
+																	type="text" class="form-control" id="heritageSubName"
+																	name="heritageSubName" placeholder="문화재 한문명" required="">
+															</div>
+															<div class="form-group">
+																<label for="heritageLocation"> 문화재 소재지 </label> <input
+																	type="text" class="form-control" id="heritageLocation"
+																	name="heritageLocation" placeholder="소재지" required="">
+															</div>
+															<div class="form-group">
+																<label for="heritageManager"> 문화재 관리자 </label> <input
+																	type="text" class="form-control" id="heritageManager"
+																	name="heritageManager" placeholder="관리자명" required="">
+															</div>
+															<div class="form-group">
+																<label for="heritageOwner"> 문화재 소유자 </label> <input
+																	type="text" class="form-control" id="heritageOwner"
+																	name="heritageOwner" placeholder="소유자" required="">
+															</div>
+															<div class="form-group">
+																<label for="heritageEra"> 문화재 시대명 </label> <input
+																	type="text" class="form-control" id="heritageEra"
+																	name="heritageEra" placeholder="시대명" required="">
+															</div>
+															<div class="form-group">
+																<label for="heritageArea"> 문화재 수량/면적 </label> <input
+																	type="text" class="form-control" id="heritageArea"
+																	name="heritageArea" placeholder="수량/면적" required="">
+															</div>
+															<div class="form-group">
+																<label for="heritageDesignation">문화재 지정일</label> <input
+																	type="text" class="date form-control"
+																	id="heritageDesignation" name="heritageDesignation"
+																	maxlength="10" placeholder="0000/00/00" required="">
+															</div>
+															<div class="form-group">
+																<label for="heritageClassification"> 중분류 </label> <input
+																	type="text" class="form-control"
+																	id="heritageClassification"
+																	name="heritageClassification" required="">
+															</div>
+															<div class="form-group">
+																<label for="heritageImage">이미지 선택</label> <input
+																	type="file" id="heritageImage" class="form-control"
+																	name="heritageImage" required="">
+															</div>
+															<div class="form-group">
+																<label for="heritageDetail">문화재 상세 설명 문화재 설명</label>
+																<textarea class="form-control" id="heritageDetail"
+																	name="heritageDetail" rows="3" required=""></textarea>
+															</div>
+	
+															<button type="button" id="addHeritageBtn"
+																class="btn btn-primary">등록</button>
+															<button type="button" class="btn btn-danger"
+																data-dismiss="modal">취소</button>
+														</form>
 											</div>
 										</div>
 									</div>
 								</div>
+								<!-- 모달 끝 -->
 							</div>
-							<!-- 모달 끝 -->
-						</div>
-						<div class="col-5">
-							<div
-								class="alert bg-white shadow-sm alert-dismissible fade show mb-0 mt-md-0 mt-3"
-								role="alert">
-								<i class="feather icon-alert-triangle text-primary mr-2"></i> 유형
-								문화재 등록만 가능합니다.
-								<button type="button" class="close" data-dismiss="alert"
-									aria-label="Close">
-									<span aria-hidden="true">×</span>
-								</button>
+							<!-- 주의사항 표시 시작 -->
+							<div class="col-5">
+								<div
+									class="alert bg-white shadow-sm alert-dismissible fade show mb-0 mt-md-0 mt-3"
+									role="alert">
+									<i class="feather icon-alert-triangle text-primary mr-2"></i> 유형
+									문화재 등록만 가능합니다.
+									<button type="button" class="close" data-dismiss="alert"
+										aria-label="Close">
+										<span aria-hidden="true">×</span>
+									</button>
+								</div>
 							</div>
+							<!-- 주의사항 표시 종료 -->
 						</div>
 					</div>
 				</div>
-			</div>
-			<!-- 카드1 문화재 등록 종료 -->
-
-			<!-- 카드2 문화재 검색조건 설정 시작 -->
-			<div class="card">
-				<div class="card-title">
-					<div class="card-title-left">
-						<h4 class="card-title-text">문화재 종목별 검색조건</h4>
+				<!-- 문화재 등록 종료 -->
+	
+				<!-- 문화재 검색조건 설정 시작 -->
+				<div class="card">
+					<div class="card-title">
+							<h4>문화재 종목별 검색조건</h4>
 					</div>
-				</div>
-				<div class="card-body">
-					<form>
-						<div class="form-group">
-							<label for="formGroupExampleInput">연관검색어</label>
-							<div class="row offset-1">
-								<div class="col-3">
-									<select class="form-control" id="exampleFormControlSelect1">
-										<option class="text-center">::선택::</option>
-										<option>이름</option>
-										<option>소재지</option>
-									</select>
-								</div>
-								<div class="col-4">
-									<input type="text" class="form-control"
-										id="formGroupExampleInput" placeholder="검색어를 입력">
-								</div>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="formGroupExampleInput">분류 종목</label>
-							<div class="row text-center">
-								<div class="custom-control custom-checkbox mb-1 col-md-3"
-									style="float: right;">
-									<input type="checkbox" class="custom-control-input"
-										id="swimmingPool" value="checked"> <label
-										class="custom-control-label" for="swimmingPool">국보</label>
-								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-3"
-									style="float: right;">
-									<input type="checkbox" class="custom-control-input"
-										id="smoking" value="checked"> <label
-										class="custom-control-label" for="smoking">보물</label>
-								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-3"
-									style="float: right;">
-									<input type="checkbox" class="custom-control-input"
-										id="solitary" value="checked"> <label
-										class="custom-control-label" for="solitary">종이</label>
-								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-3"
-									style="float: right;">
-									<input type="checkbox" class="custom-control-input" id="onDol"
-										value="checked"> <label class="custom-control-label"
-										for="onDol">신문</label>
-								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-3"
-									style="float: right;">
-									<input type="checkbox" class="custom-control-input" id="tub"
-										value="checked"> <label class="custom-control-label"
-										for="tub">보물</label>
-								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-3"
-									style="float: right;">
-									<input type="checkbox" class="custom-control-input"
-										id="amenities" value="checked"> <label
-										class="custom-control-label" for="amenities">국보</label>
-								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-3"
-									style="float: right;">
-									<input type="checkbox" class="custom-control-input" id="pet"
-										value="checked"> <label class="custom-control-label"
-										for="pet">서적</label>
-								</div>
-								<div class="custom-control custom-checkbox mb-1 col-md-3"
-									style="float: right;">
-									<input type="checkbox" class="custom-control-input" id="wifi"
-										value="checked"> <label class="custom-control-label"
-										for="wifi">책자</label>
-								</div>
-							</div>
-						</div>
-						<div class="col text-center">
-							<button class="btn btn-primary"
-								style="margin-top: 1rem !important;" onclick="" type="button">검색</button>
-
-						</div>
-					</form>
-				</div>
-			</div>
-			<!-- 카드2 문화재 검색조건 설정 종료 -->
-
-			<!-- 카드3 문화재 검색리스트 시작 -->
-			<div class="card">
-				<div class="card-body">
-					<div class="nicescrollbar" data-height="1000" tabindex="2"
-						style="height: 1000px; overflow: hidden; outline: none;">
-
-						<div class="row row-cols-1 row-cols-md-4 g-3">
-							<div class="col" th:if="${not #lists.isEmpty(heritageList)}"
-								th:each="l : ${heritageList}">
-								<div class="card h-80">
-									<div class="embed-responsive embed-responsive-4by3">
-										<img th:src="@{/images/heritage/서울 숭례문.jpg}"
-											class="card-img-top h-10 img-thumbnail embed-responsive-item"
-											alt="...">
+					<div class="card-body">
+						<div th:include="searchMinSeok/search.html :: searchHeritageListFragment"></div><br>
+						<form>
+							<div class="form-group">
+								<h5 class="offset-1">분류 종목</h5>
+								<div class="row text-center">
+									<div class="custom-control custom-checkbox mb-1 col-md-3"
+										style="float: right;">
+										<input type="checkbox" class="custom-control-input"
+											id="swimmingPool" value="checked"> <label
+											class="custom-control-label" for="swimmingPool">국보</label>
 									</div>
-									<div class="card-body">
-										<p class="card-text" th:text="${l.heritageCategory}"></p>
-										<h5 class="card-title">
-											<a
-												th:href="@{/heritage/heritageDetail(heritageCode=${l.heritageCode})}"
-												th:text="${l.heritageName}"></a>
-										</h5>
-										<p class="card-text" th:text="${l.heritageSubName}"></p>
+									<div class="custom-control custom-checkbox mb-1 col-md-3"
+										style="float: right;">
+										<input type="checkbox" class="custom-control-input"
+											id="smoking" value="checked"> <label
+											class="custom-control-label" for="smoking">보물</label>
+									</div>
+									<div class="custom-control custom-checkbox mb-1 col-md-3"
+										style="float: right;">
+										<input type="checkbox" class="custom-control-input"
+											id="solitary" value="checked"> <label
+											class="custom-control-label" for="solitary">종이</label>
+									</div>
+									<div class="custom-control custom-checkbox mb-1 col-md-3"
+										style="float: right;">
+										<input type="checkbox" class="custom-control-input" id="onDol"
+											value="checked"> <label class="custom-control-label"
+											for="onDol">신문</label>
+									</div>
+									<div class="custom-control custom-checkbox mb-1 col-md-3"
+										style="float: right;">
+										<input type="checkbox" class="custom-control-input" id="tub"
+											value="checked"> <label class="custom-control-label"
+											for="tub">보물</label>
+									</div>
+									<div class="custom-control custom-checkbox mb-1 col-md-3"
+										style="float: right;">
+										<input type="checkbox" class="custom-control-input"
+											id="amenities" value="checked"> <label
+											class="custom-control-label" for="amenities">국보</label>
+									</div>
+									<div class="custom-control custom-checkbox mb-1 col-md-3"
+										style="float: right;">
+										<input type="checkbox" class="custom-control-input" id="pet"
+											value="checked"> <label class="custom-control-label"
+											for="pet">서적</label>
+									</div>
+									<div class="custom-control custom-checkbox mb-1 col-md-3"
+										style="float: right;">
+										<input type="checkbox" class="custom-control-input" id="wifi"
+											value="checked"> <label class="custom-control-label"
+											for="wifi">책자</label>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="card-footer">
-							<div class="text-center">
-								<!-- 페이징 시작 -->
-								<div id="paging">
-									<nav aria-label="Page navigation example">
-										<ul class="pagination justify-content-center">
-											<li class="page-item"><a class="page-link" href="#">이전</a></li>
-											<li class="page-item"><a class="page-link" href="#">1</a></li>
-											<li class="page-item"><a class="page-link" href="#">2</a></li>
-											<li class="page-item"><a class="page-link" href="#">3</a></li>
-											<li class="page-item"><a class="page-link" href="#">4</a></li>
-											<li class="page-item"><a class="page-link" href="#">5</a></li>
-											<li class="page-item"><a class="page-link" href="#">다음</a></li>
-										</ul>
-									</nav>
-								</div>
-								<!-- 페이징 끝 -->
+							<div class="col text-center">
+								<button class="btn btn-danger"
+									style="margin-top: 1rem !important;" onclick="" type="button">포함 항목 검색</button>
+	
 							</div>
-						</div>
+						</form>
 					</div>
 				</div>
+				<!-- 문화재 검색조건 설정 종료 -->
+	
+				<!-- 문화재 검색리스트 시작 -->
+				<div class="card">
+					<div class="card-body">
+							<div class="row row-cols-1 row-cols-md-4 g-3">
+								<div class="col" th:if="${not #lists.isEmpty(heritageList)}"
+									th:each="l : ${heritageList}">
+									<div class="card h-80">
+										<div class="embed-responsive embed-responsive-4by3">
+											<img th:src="@{/images/heritage/서울 숭례문.jpg}"
+												class="card-img-top h-10 embed-responsive-item"
+												alt="...">
+										</div>
+										<div class="card-body">
+											<p class="card-text" th:text="${l.heritageCategory}"></p>
+											<h5 class="card-title">
+												<a
+													th:href="@{/heritage/heritageDetail(heritageCode=${l.heritageCode})}"
+													th:text="${l.heritageName}"></a>
+											</h5>
+											<p class="card-text" th:text="${l.heritageSubName}"></p>
+										</div>
+									</div>
+								</div>
+							</div>
+								<div class="text-center">
+									<!-- 페이징 시작 -->
+									<div id="paging">
+										<nav aria-label="Page navigation example">
+											<ul class="pagination justify-content-center">
+												<li class="page-item"><a class="page-link" href="#">이전</a></li>
+												<li class="page-item"><a class="page-link" href="#">1</a></li>
+												<li class="page-item"><a class="page-link" href="#">2</a></li>
+												<li class="page-item"><a class="page-link" href="#">3</a></li>
+												<li class="page-item"><a class="page-link" href="#">4</a></li>
+												<li class="page-item"><a class="page-link" href="#">5</a></li>
+												<li class="page-item"><a class="page-link" href="#">다음</a></li>
+											</ul>
+										</nav>
+									</div>
+									<!-- 페이징 끝 -->
+								</div>
+							
+					</div>
+				</div>
+				<!-- 문화재 검색리스트 종료 -->
 			</div>
-			<!-- 카드3 문화재 검색리스트 종료 -->
 		</div>
-	</div>
 </th:block>
 
 
 <!-- javascript 삽입 시작 -->
 <th:block layout:fragment="customBodyScript">
+	<!-- 등록 버튼 자바스크립트 -->
 	<script type="text/javascript" th:inline="javascript">
 		$('#addHeritageBtn').click(function() {
 

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ksmart42.khtour.mapper.RoomMapper">
+
+	<resultMap type="Room" id="roomResultMap">
+	<id column="room_code" 				property="roomCode"/>
+	<result column="ldg_code" 			property="ldgCode"/>
+	<result column="room_img"	 		property="roomImg"/>
+	<result column="room_name" 			property="roomName"/>
+	<result column="room_explain" 		property="roomExplain"/>
+	<result column="room_personnel" 	property="roomPersonnel"/>
+	<result column="room_type" 			property="roomType"/>
+	<result column="room_checkin" 		property="roomCheckin"/>
+	<result column="room_price" 		property="roomPrice"/>
+	<result column="room_discount" 		property="roomDiscount"/>
+	<result column="room_final_price" 	property="roomFinalPrice"/>
+	</resultMap>
+	
+	<!-- 객실 정보 삭제 SQL -->
+	<delete id="removeRoom" parameterType="String">
+		DELETE
+		FROM
+			tb_room_info
+		WHERE
+			room_code = #{roomCode};
+	</delete>
+	
+	<!-- 객실 조회 SQL -->
+	<select id="getRoomList"  resultMap="roomResultMap">
+		SELECT
+		  	r.room_code
+		   ,r.ldg_code
+		   ,r.room_img
+		   ,r.room_name  
+		   ,r.room_explain    
+		   ,r.room_personnel
+		   ,r.room_type   
+		   ,r.room_checkin   
+		   ,r.room_price    
+		   ,r.room_discount    
+		   ,r.room_final_price    
+		FROM
+		  tb_room_info AS r;
+	</select>
+	
+	<!-- 객실 조회 SQL -->
+	<select id="getRoomByCode" parameterType="String" resultMap="roomResultMap">
+		SELECT
+		  	r.room_code
+		   ,r.ldg_code
+		   ,r.room_img
+		   ,r.room_name  
+		   ,r.room_explain    
+		   ,r.room_personnel
+		   ,r.room_type   
+		   ,r.room_checkin   
+		   ,r.room_price    
+		   ,r.room_discount    
+		   ,r.room_final_price    
+		FROM
+		  	tb_room_info AS r
+		WHERE
+			room_code = #{roomCode};
+	</select>
+	
+	<!-- ldgCode에 맞는 객실 조회 SQL -->
+	<select id="getRoomListByldgCode"  resultMap="roomResultMap">
+		SELECT
+		  	r.room_code
+		   ,r.ldg_code
+		   ,r.room_img
+		   ,r.room_name  
+		   ,r.room_explain    
+		   ,r.room_personnel
+		   ,r.room_type   
+		   ,r.room_checkin   
+		   ,r.room_price    
+		   ,r.room_discount    
+		   ,r.room_final_price    
+		FROM
+		  tb_room_info AS r
+		WHERE
+		   r.ldg_code = #{ldgCode};
+	</select>
+	
+	<!-- 객실 등록 SQL -->
+	<insert id="addRoom" parameterType="Room">
+		INSERT INTO tb_room_info
+		(   room_code
+		   ,ldg_code
+		   ,room_img
+		   ,room_name  
+		   ,room_explain    
+		   ,room_personnel
+		   ,room_type   
+		   ,room_checkin   
+		   ,room_price    
+		   ,room_discount    
+		   ,room_final_price   
+		) VALUES (
+		   sf_new_room_code()
+		   ,#{ldgCode}
+		   ,#{roomImg}
+		   ,#{roomName}
+		   ,#{roomExplain}
+		   ,#{roomPersonnel}
+		   ,#{roomType}
+		   ,#{roomCheckin}
+		   ,#{roomPrice}
+		   ,#{roomDiscount}
+		   ,#{roomFinalPrice}
+		);
+	</insert>
+	
+	<!-- 객실 수정 SQL -->
+		<update id="modifyRoom" parameterType="Room">
+		UPDATE tb_room_info
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="roomImg != null and roomImg != ''">
+				room_img = #{roomImg},
+			</if>
+			<if test="roomName != null and roomName != ''">
+				room_name = #{roomName},
+			</if>
+			<if test="roomExplain != null and roomExplain != ''">
+				room_explain = #{roomExplain},
+			</if>
+			<if test="roomPersonnel != null and roomPersonnel != ''">
+				room_personnel = #{roomPersonnel},
+			</if>
+			<if test="roomType != null and roomType != ''">
+				room_type = #{roomType},
+			</if>
+			<if test="roomCheckin != null and roomCheckin != ''">
+				room_checkin = #{roomCheckin},
+			</if>		
+			<if test="roomPrice != null and roomPrice != ''">
+				room_price = #{roomPrice},
+			</if>				
+			<if test="roomDiscount != null and roomDiscount != ''">
+				room_discount = #{roomDiscount},
+			</if>				
+			<if test="roomFinalPrice != null and roomFinalPrice != ''">
+				room_final_price = #{roomFinalPrice},
+			</if>				
+		</trim>
+		WHERE
+			room_code = #{roomCode};
+	</update>
+</mapper>

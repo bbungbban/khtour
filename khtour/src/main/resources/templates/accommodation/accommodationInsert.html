@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/default2}">
+	layout:decorate="~{layout/default}">
 <th:block layout:fragment="customTitle">
 	<title th:text="${title}"></title>
 </th:block>
@@ -183,12 +183,30 @@
 								</div>
 								<div class="form-group col-12 col-md-12 col-lg-12">
 									<label for="agree" style="margin-top: 0.5rem">업체상세정보입력</label>
-									<textarea id="ldgExplain" name="ldgExplain"
-										class="form-control" rows="17" placeholder="업체 상세 내용 입력"
+									<textarea id="ldgExplain1" name="ldgExplain1"
+										class="form-control" rows="1" placeholder="업체 상세 내용 입력"
+										required></textarea>
+								</div>
+								<div class="form-group col-12 col-md-12 col-lg-12">
+									<label for="agree" style="margin-top: 0.5rem">업체상세정보입력</label>
+									<textarea id="ldgExplain2" name="ldgExplain2"
+										class="form-control" rows="1" placeholder="업체 상세 내용 입력"
+										required></textarea>
+								</div>
+								<div class="form-group col-12 col-md-12 col-lg-12">
+									<label for="agree" style="margin-top: 0.5rem">업체상세정보입력</label>
+									<textarea id="ldgExplain3" name="ldgExplain3"
+										class="form-control" rows="1" placeholder="업체 상세 내용 입력"
+										required></textarea>
+								</div>
+								<div class="form-group col-12 col-md-12 col-lg-12">
+									<label for="agree" style="margin-top: 0.5rem">업체상세정보입력</label>
+									<textarea id="ldgExplain4" name="ldgExplain4"
+										class="form-control" rows="1" placeholder="업체 상세 내용 입력"
 										required></textarea>
 								</div>
 								<div class="col-2" style="display: inline-block;">
-									<button type="submit" class="btn btn-primary" id="addaccommodation">신규등록</button>
+									<button type="submit" class="btn btn-primary" id="addAccommodation">신규등록</button>
 								</div>
 							</div>
 						</form>

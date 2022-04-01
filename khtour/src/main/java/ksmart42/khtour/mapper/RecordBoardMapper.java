@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import ksmart42.khtour.dto.PlanStatus;
 import ksmart42.khtour.dto.RecordBoard;
 
 @Mapper
@@ -24,4 +25,11 @@ public interface RecordBoardMapper {
 	
 	// 여행계획 삭제
 	public int removeRecordBoard(String recordBoardCode);
+	
+	// 여행상태 목록조회
+	public List<PlanStatus> getPlanStatusList();
+	
+	// 여행상태 목록조회(여행계획 코드)
+	public PlanStatus getPlanStatusByCode(String planStatusCode);
+	
 }

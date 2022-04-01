@@ -5,10 +5,11 @@
 <mapper namespace="ksmart42.khtour.mapper.CommunityMapper">
 
 	<resultMap type="Community" id="communityResultMap">
-		<id column="comm_name" property="commName"/>
+		<id column="comm_code" property="commCode"/>
+		<result column="comm_name" property="commName"/>
 		<result column="member_id" property="memberId"/>
 		<result column="reg_date" property="regDate"/>
-		<result column="category" property="category"/>
+		<result column="category_code" property="categoryCode"/>
 		<result column="banner" property="banner"/>
 		<result column="avatar" property="avatar"/>
 		<result column="member_cnt" property="memberCnt"/>
@@ -17,7 +18,7 @@
 	</resultMap> 
 	<resultMap type="CommPost" id="postResultMap">
 		<id column="post_code" property="postCode"/>
-		<result column="comm_name" property="commName"/>
+		<result column="comm_code" property="commCode"/>
 		<result column="member_id" property="memberId"/>
 		<result column="tag_code" property="tagCode"/>
 		<result column="title" property="title"/>
@@ -33,14 +34,14 @@
 	</resultMap> 
 	<resultMap type="Rule" id="ruleResultMap">
 		<id column="rule_code" property="ruleCode"/>
-		<result column="comm_name" property="commName"/>
+		<result column="comm_code" property="commCode"/>
 		<result column="title" property="title"/>
 		<result column="detail" property="detail"/>
 		<result column="reg_time" property="reg_time"/>
 	</resultMap>
 	<resultMap type="CommTag" id="tagResultMap">
 		<id column="tag_code" property="tagCode"/>
-		<result column="comm_name" property="commName"/>
+		<result column="comm_code" property="commCode"/>
 		<result column="member_id" property="memberId"/>
 		<result column="tag_name" property="tagName"/>
 		<result column="tag_color" property="tagColor"/>
@@ -48,19 +49,32 @@
 	</resultMap>
 	
 	<resultMap type="CommCategory" id="categoryResultMap">
-		<id column="category_name" property="categoryName"/>
+		<id column="category_code" property="categoryCode"/>
+		<result column="category_name" property="categoryName"/>
 		<result column="reg_time" property="regTime"/>
 		<result column="banner_img" property="bannerImg"/>
 		<result column="total_member_cnt" property="totalMemberCnt"/>
+	</resultMap>
+	
+	<resultMap type="CommReply" id="replyResultMap">
+		<id column="reply_code" property="replyCode"/>
+		<result column="member_id" property="memberId"/>
+		<result column="post_code" property="postCode"/>
+		<result column="parent_reply_code" property="parentReplyCode"/>
+		<result column="likes_cnt" property="likesCnt"/>
+		<result column="dislikes_cnt" property="dislikesCnt"/>
+		<result column="main_text" property="mainText"/>
+		<result column="reg_time" property="regTime"/>
 	</resultMap>
 
 	<!-- <select id="getCommunityList" resultMap="communityResultMap"> -->
 	<select id="getCommunityList"  resultMap="communityResultMap">
 			SELECT
-				c.comm_name
+				c.comm_code
+				,c.comm_name
 				,c.member_id		 
 				,c.reg_date
-				,c.category
+				,c.category_code
 				,c.banner	 
 				,c.avatar    
 				,c.member_cnt
@@ -72,21 +86,56 @@
 				c.member_cnt DESC;	
 	</select>
 	
+	<select id="getCommReplyListByPostCode"  resultMap="replyResultMap">
+			SELECT
+				r.reply_code
+				,r.member_id
+				,r.post_code		 
+				,r.parent_reply_code
+				,r.likes_cnt
+				,r.dislikes_cnt	 
+				,r.main_text    
+				,r.reg_time
+			FROM
+				tb_community_reply AS r
+			WHERE
+				r.post_code = #{postCode}
+			Order BY 
+				r.reg_time DESC;	
+	</select>
+	<select id="getChildrenReplyListByReplyCode"  resultMap="replyResultMap">
+			SELECT
+				r.reply_code
+				,r.member_id
+				,r.post_code		 
+				,r.parent_reply_code
+				,r.likes_cnt
+				,r.dislikes_cnt	 
+				,r.main_text    
+				,r.reg_time
+			FROM
+				tb_community_reply AS r
+			WHERE
+				r.parent_reply_code = #{replyCode}
+			Order BY 
+				r.reg_time DESC;	
+	</select>
+	
 	<select id="getCommCategoryList"  resultMap="categoryResultMap">
 			SELECT
-				c.category_name
+				c.category_code
+				,c.category_name
 				,c.reg_time		 
 				,c.banner_img
 				,c.total_member_cnt
 			FROM
 				tb_comm_category AS c
 	</select>
-	
-	
+
 	<select id="getPostList"  resultMap="postResultMap">
 			SELECT
 				p.post_code
-				,p.comm_name		 
+				,p.comm_code		 
 				,p.member_id
 				,p.tag_code
 				,p.title	 
@@ -104,10 +153,10 @@
 			Order BY 
 				p.likes_cnt DESC;	
 	</select>
-	<select id="getPostListByCommunityName"  resultMap="postResultMap">
+	<select id="getPostListByCommCode"  resultMap="postResultMap">
 			SELECT
 				p.post_code
-				,p.comm_name		 
+				,p.comm_code		 
 				,p.member_id
 				,p.tag_code
 				,p.title	 
@@ -123,14 +172,14 @@
 			FROM
 				tb_comm_post AS p
 			WHERE
-				p.comm_name = #{commName}
+				p.comm_code = #{commCode}
 			Order BY 
 				p.likes_cnt DESC;	
 	</select>
 	<select id="getDailyPostList"  resultMap="postResultMap">
 			SELECT
 				p.post_code
-				,p.comm_name		 
+				,p.comm_code		 
 				,p.member_id
 				,p.tag_code
 				,p.title	 
@@ -152,7 +201,7 @@
 	<select id="getPostByPostCode"  resultMap="postResultMap">
 			SELECT
 				p.post_code
-				,p.comm_name		 
+				,p.comm_code		 
 				,p.member_id
 				,p.tag_code
 				,p.title	 
@@ -171,12 +220,13 @@
 				p.post_code = #{postCode};
 			
 	</select>
-	<select id="getCommunityByName"  resultMap="communityResultMap">
+	<select id="getCommunityByCommCode"  resultMap="communityResultMap">
 			SELECT
-				c.comm_name
+				c.comm_code
+				,c.comm_name
 				,c.member_id		 
 				,c.reg_date
-				,c.category
+				,c.category_code
 				,c.banner	 
 				,c.avatar    
 				,c.member_cnt
@@ -185,15 +235,16 @@
 			FROM
 				tb_community AS c
 			Where
-				c.comm_name = #{commName};	
+				c.comm_code = #{commCode};	
 	</select>
 	
-	<select id="getCommunityListByCategory"  resultMap="communityResultMap">
+	<select id="getCommunityListByCategoryCode"  resultMap="communityResultMap">
 			SELECT
-				c.comm_name
+				c.comm_code
+				,c.comm_name
 				,c.member_id		 
 				,c.reg_date
-				,c.category
+				,c.category_code
 				,c.banner	 
 				,c.avatar    
 				,c.member_cnt
@@ -202,27 +253,27 @@
 			FROM
 				tb_community AS c
 			Where
-				c.category = #{categoryName};	
+				c.category_code = #{categoryCode}
+			Order BY 
+				c.member_cnt DESC;	
 	</select>
-	
-	
-	<select id="getRuleListByCommName"  resultMap="ruleResultMap">
+	<select id="getRuleListByCommCode"  resultMap="ruleResultMap">
 			SELECT
 				r.rule_code
-				,r.comm_name
+				,r.comm_code
 				,r.title
 				,r.detail
 				,r.reg_time
 			FROM
 			 	tb_comm_rules AS r
 			WHERE 
-				r.comm_name = #{commName};
+				r.comm_code = #{commCode};
 	</select>
 	
-	<select id="getTagListByCommName"  resultMap="tagResultMap">
+	<select id="getTagListByCommCode"  resultMap="tagResultMap">
 			SELECT
 				t.tag_code
-				,t.comm_name
+				,t.comm_code
 				,t.member_id
 				,t.tag_name
 				,t.tag_color
@@ -230,12 +281,12 @@
 			FROM
 			 tb_comm_tag AS t
 			WHERE 
-				t.comm_name = #{commName};
+				t.comm_code = #{commCode};
 	</select>
 	<select id="getCommTagByTagCode"  resultMap="tagResultMap">
 			SELECT
-			t.tag_code
-				,t.comm_name
+				t.tag_code
+				,t.comm_code
 				,t.member_id
 				,t.tag_name
 				,t.tag_color
@@ -247,15 +298,19 @@
 	</select>
 	
 	
-	<select id="getNexPostCode"  resultType="String">
+	<select id="getNextPostCode"  resultType="String">
 		SELECT `sf_new_post_code`() AS postCode;
+	</select>
+	
+	<select id="getNextCommCode"  resultType="String">
+		SELECT `sf_new_community_code`() AS commCode;
 	</select>
 	
 	<insert id="addCommPost" parameterType="CommPost">
 		/*회원가입*/
 		INSERT INTO tb_comm_post
 			(	post_code
-				,comm_name		 
+				,comm_code		 
 				,member_id
 				,tag_code
 				,title	 
@@ -270,7 +325,7 @@
 				,point_gain
 		)VALUES (
 			 #{postCode}
-			, #{commName}
+			, #{commCode}
 			, #{memberId}
 			, #{tagCode}
 			, #{title}
@@ -288,20 +343,22 @@
 	<insert id="addCommunity" parameterType="Community">
 		/*회원가입*/
 		INSERT INTO tb_community
-			(	 comm_name
+			(	comm_code
+				,comm_name
 				,member_id		 
 				,reg_date
-				,category
+				,category_code
 				,banner	 
 				,avatar    
 				,member_cnt
 				,online_member_cnt
 				,comm_desc
 		)VALUES (
-			#{commName}
+			sf_new_community_code()
+			,#{commName}
 			, #{memberId}
 			, CURDATE()
-			, #{category}
+			, #{categoryCode}
 			, #{banner}
 			, #{avatar}
 			, #{memberCnt}
@@ -313,13 +370,13 @@
 		/*회원가입*/
 		INSERT INTO tb_comm_rules
 			(	 rule_code
-				,comm_name		 
+				,comm_code		 
 				,title
 				,detail
 				,reg_time	 
 		)VALUES (
 			  sf_new_rule_code()
-			, #{commName}
+			, #{commCode}
 			, #{title}
 			, #{detail}
 			, NOW()
@@ -329,19 +386,43 @@
 		/*회원가입*/
 		INSERT INTO tb_comm_tag
 			(	 tag_code
-				,comm_name
+				,comm_code
 				,member_id
 				,tag_name
 				,tag_color
 				,reg_time
 		)VALUES (
 			  sf_new_tag_code()
-			, #{commName}
+			, #{commCode}
 			, #{memberId}
 			, #{tagName}
 			, #{tagColor}
 			, NOW()
 		);
+	</insert>
+	
+	<insert id="addCommReply"  parameterType="CommReply">
+			INSERT INTO tb_community_reply
+			(
+				reply_code
+				,member_id
+				,post_code		 
+				,parent_reply_code
+				,likes_cnt
+				,dislikes_cnt	 
+				,main_text    
+				,reg_time
+			)
+			VALUES(
+				sf_new_reply_code()
+				,#{memberId}
+				,#{postCode}
+				,#{parentReplyCode}
+				,0
+				,0
+				,#{mainText}
+				,NOW()			
+			);
 	</insert>
 	
 	<select id="commNameCheck" parameterType="String" resultType="boolean">
@@ -350,10 +431,20 @@
 		FROM
 			tb_community AS c
 		where
-			c.comm_name = #{commName};	
+			c.comm_Name = #{commName};	
 	</select>
-
-
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 </mapper>

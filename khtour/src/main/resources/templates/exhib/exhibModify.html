@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default2}">
+<th:block layout:fragment="customTitle">
+	<title th:text="${title}"></title>
+</th:block>
+<th:block layout:fragment="contentsTitle">
+	<!-- 페이지 타이틀 시작 -->
+	<h2>전시회 수정</h2>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="#">Home</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/exhib/exhibList}">전시회 조회 및 수정</a></li>
+			<li class="breadcrumb-item active" aria-current="page">전시회 수정</li>
+		</ol>
+	</nav>
+	<!-- 페이지 타이틀 종료 -->
+</th:block>
+<th:block layout:fragment="customContents">
+<link rel="stylesheet" type="text/css" th:href="@{/css/plugins/kmyCss/addCssKmy.css}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" defer="defer"></script>
+<script th:src="@{/js/KmyJs/dayjs.min.js}"></script>
+	<div id="exhibInsert">
+		<div class="row justify-content-center">
+			<div class="col-12 col-la-10 col-xl-7">
+				<!-- **********************************  Start ContentsWrap  ********************************** -->
+				<div class="card">
+					<div class="card-title">
+						<div class="card-title-left">
+							<h4 class="card-title-text">전시회 수정</h4>
+						</div>
+					</div>
+					<div class="card-body">
+						<form id="addExhib" th:action="@{/exhib/exhibInsert}" method="post">
+							<div class="form-row">
+								<div class="form-group col-6">
+									<label for="exhibCate">카테고리</label>
+									<select class="form-control" name="exhibCate" th:value="${exhib.exhibCate}">
+										<option>::선택::</option>
+										<option value="exhib_theme">테마전시</option>
+										<option value="exhib_special">특별전시</option>
+									</select>
+								</div>
+								<div class="form-group col-6">
+									<label for="exhibCurrent">전시현황</label> <select
+										class="form-control" name="exhibCurrent">
+										<option>::선택::</option>
+										<option value="expected">전시예정</option>
+										<option value="ing">전시중</option>
+										<option value="end">전시완료</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="exhibName">전시명</label> <input type="text"
+									class="form-control" name="exhibName"
+									placeholder="전시명을 입력하세요.">
+							</div>
+							<div class="form-row">
+								<div class="form-group col-6">
+										<label for="start_date">시작일</label> <input type="text"
+											id="start_date" class="form-control datepicker"
+											name="start_date" data-original-title="" title="">
+								</div>
+								<div class="form-group col-6">
+										<label for="start_date">종료일</label> <input type="text"
+											id="start_date" class="form-control datepicker"
+											name="start_date" data-original-title="" title="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label>포스터업로드</label> <input type="file" id="avatar"
+									class="form-control" name="avatar" required="">
+							</div>
+
+							<div class="form-group">
+								<label for="exhibPage">홈페이지</label>
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="basic-addon3">https://</span>
+									</div>
+									<input type="text" class="form-control" name="exhibPage"
+										aria-describedby="basic-addon3">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="chMusCode">전시관</label>
+								<div class="input-group mb-3">
+									<input type="text" class="form-control" name="chMusCode" value="ch_mus_code001">
+									<button class="btn btn-primary" type="button">검색</button>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="exhibCon">상세입력</label>
+								<input type="text" class="form-control" name="exhibCon">
+							</div>
+							<div class="col-12">
+								<div class="add-new text-center mb-5">
+									<button class="btn btn-primary ftbtn" type="submit"
+										id="addExhib">등록</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<!-- **********************************  End Editor ********************************** -->
+			</div>
+		</div>
+	</div>
+	<!-- **********************************  End ContentsWrap ********************************** -->
+</th:block>
+<th:block layout:fragment="customBodyScript">
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+	jQuery('#start_date, #end_date, #birth_date').datepicker({
+
+	});
+});
+</script>
+
+	<script th:src="@{/js/custom.js}"></script>
+	<script th:src="@{/js/moment.min.js}"></script>
+	<script th:src="@{/js/KmyJs/datepicker-bs4.js}" defer="defer"></script>
+</th:block>
+</html>

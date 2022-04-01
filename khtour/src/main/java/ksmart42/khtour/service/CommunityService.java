@@ -4,12 +4,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ksmart42.khtour.controller.CommunityController;
 import ksmart42.khtour.dto.CommCategory;
 import ksmart42.khtour.dto.CommPost;
+import ksmart42.khtour.dto.CommReply;
 import ksmart42.khtour.dto.CommTag;
 import ksmart42.khtour.dto.Community;
 import ksmart42.khtour.dto.Rule;
@@ -20,6 +24,7 @@ import ksmart42.khtour.mapper.CommunityMapper;
 @Transactional
 public class CommunityService {
 	private CommunityMapper communityMapper;
+	private static final Logger log = LoggerFactory.getLogger(CommunityController.class);
 	@Autowired
 	public CommunityService(CommunityMapper communityMapper) {
 		this.communityMapper = communityMapper;
@@ -69,8 +74,8 @@ public class CommunityService {
 	*  출  력 : List<CommPost> (특정 커뮤니티의 포스트 리스트)
 	*  설  명  : 특정 커뮤니티 에 맞는 포스트 리스트 반환
 	*/
-	public List<CommPost> getPostListByCommunityName(String commName){
-		List<CommPost> postList = communityMapper.getPostListByCommunityName(commName);
+	public List<CommPost> getPostListByCommCode(String CommCode){
+		List<CommPost> postList = communityMapper.getPostListByCommCode(CommCode);
 		return postListMod(postList);
 	}
 	
@@ -141,7 +146,7 @@ public class CommunityService {
 			CommCategory category = categoryList.get(i);
 			
 			//커뮤니티 카테고리에 맞는 모든 커뮤니티 리스트 저장
-			List<Community> communityList = communityMapper.getCommunityListByCategory(category.getCategoryName());
+			List<Community> communityList = communityMapper.getCommunityListByCategoryCode(category.getCategoryCode());
 			
 			//카테고리에 속한 모든 커뮤니티 좋아요 합쳐줌
 			for (int j = 0;j<communityList.size();j++)
@@ -172,7 +177,8 @@ public class CommunityService {
 		for(int i =0;i<randomCategoryList.size();i++)
 		{		
 			String rCategoryName = randomCategoryList.get(i).getCategoryName();
-			randomCategoryMap.put(rCategoryName, getCommunityListByCategory(rCategoryName));
+			String rCategoryCode = randomCategoryList.get(i).getCategoryCode();
+			randomCategoryMap.put(rCategoryName, getCommunityListByCategoryCode(rCategoryCode));
 		}
 		return randomCategoryMap;
 	}
@@ -184,9 +190,9 @@ public class CommunityService {
 	*  출  력 : List<Community> 커뮤니티 리스트 
 	*  설  명  : 카테고리에 따른 커뮤니티 리스트를 찾아서  각각에 맴버를 K/M 형식으로 고친후에  반환
 	*/
-	public List<Community> getCommunityListByCategory(String categoryName){
+	public List<Community> getCommunityListByCategoryCode(String categoryCode){
 		
-		List<Community> communityList = communityMapper.getCommunityListByCategory(categoryName);		
+		List<Community> communityList = communityMapper.getCommunityListByCategoryCode(categoryCode);		
 		for(int i = 0; i<communityList.size();i++)
 		{
 		 float memberCnt = 	Float.parseFloat(communityList.get(i).getMemberCnt());
@@ -210,11 +216,39 @@ public class CommunityService {
 			String postTagCode = postList.get(i).getTagCode();
 			if(postTagCode==null||!postTagCode.equals(tagCode))
 			{
-		
 				postList.remove(i);
-			}	
+				i--;
+			}		
 		}
 		return postList;
+	}
+	
+	public List<CommReply> getCommReplyListByPostCode(String postCode)
+	{
+		
+		List<CommReply> replyList = communityMapper.getCommReplyListByPostCode(postCode);	
+		replyList = replyChildrenSetter(replyList);
+		for(int i=0; i<replyList.size();i++)
+		{
+			log.info(replyList.get(i).getReplyCode()+": 스탑 TYPE 3 :" + replyList.get(i).getChildrenReply());
+		}
+		return replyList;
+	}
+	public List<CommReply> replyChildrenSetter(List<CommReply> replyList)
+	{
+		for(int i=0;i<replyList.size();i++)
+		{
+			CommReply reply = replyList.get(i);
+			List<CommReply> childrenList = communityMapper.getChildrenReplyListByReplyCode(reply.getReplyCode());
+			
+			if(childrenList==null)
+			{
+				return childrenList;
+			}
+			childrenList = replyChildrenSetter(childrenList);
+			reply.setChildrenReply(childrenList);
+		}
+		return replyList;
 	}
 	
 	
@@ -223,9 +257,9 @@ public class CommunityService {
 	*  출  력 : Community (특정 커뮤니티)
 	*  설  명  :입력받은 커뮤니티 이름으로 커뮤니티를 찾아서 좋아요 숫자를 K/M식으로 변환후 반환
 	*/
-	public Community getCommunityByName(String commName) {
+	public Community getCommunityByCommCode(String commCode) {
 		
-		Community community = communityMapper.getCommunityByName(commName);
+		Community community = communityMapper.getCommunityByCommCode(commCode);
 		
 		
 		float cnt = Float.parseFloat(community.getMemberCnt());
@@ -245,8 +279,6 @@ public class CommunityService {
 		
 		//커뮤니티 포스트 안에든 포스트 코드를 사용하여 포스트 를 찾아서 커뮤니티 포스트에 저장
 		commPost.setCommTag(communityMapper.getCommTagByTagCode(commPost.getTagCode()));
-	
-		
 		//좋아요 - 싫어요 구해줌 
 		float likes = Float.parseFloat(commPost.getLikesCnt());
 		float dislikes= Float.parseFloat(commPost.getDislikesCnt());
@@ -262,20 +294,20 @@ public class CommunityService {
 	*  출  력 : List<Rule> (규칙 리스트)
 	*  설  명  : 커뮤니티 이름을 받아서 맞는 규칙 리스트를 찾아서 반환
 	*/
-	public List<Rule> getRuleListByCommName(String commName){
+	public List<Rule> getRuleListByCommCode(String commCode){
 		
-		List<Rule> ruleList = communityMapper.getRuleListByCommName(commName);
+		List<Rule> ruleList = communityMapper.getRuleListByCommCode(commCode);
 		return ruleList;
 	}
 	
 	/* 작성자 : 한경수
 	*  입  력 : String(커뮤니티 이름)
 	*  출  력 : List<CommTag> (태그 리스트)
-	*  설  명  : 커뮤니티 이름을 받아서 맞는 테그리스트를 찾아서 반환
+	*  설  명  : 커뮤니티 이름을 받아서 맞는 테그리스트를 찾아서 반환S
 	*/
-	public List<CommTag> getTagListByCommName(String commName){
+	public List<CommTag> getTagListByCommCode(String commCode){
 		
-		List<CommTag> tagList = communityMapper.getTagListByCommName(commName);
+		List<CommTag> tagList = communityMapper.getTagListByCommCode(commCode);
 		return tagList;
 	}
 	
@@ -309,6 +341,15 @@ public class CommunityService {
 		communityMapper.addRule(rule);
 		
 	}
+	
+	public void addCommReply(CommReply commReply) {	
+		
+		log.info("답글" + commReply);
+		communityMapper.addCommReply(commReply);
+		
+	}
+	
+	
 
 	/* 작성자 : 한경수
 	*  입  력 : CommTag(커뮤니티 테그)

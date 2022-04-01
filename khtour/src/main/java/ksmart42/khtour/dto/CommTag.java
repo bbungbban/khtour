@@ -8,18 +8,18 @@ public class CommTag {
 	public void setTagCode(String tagCode) {
 		this.tagCode = tagCode;
 	}
-	public String getCommName() {
-		return commName;
+	public String getCommCode() {
+		return commCode;
 	}
-	public void setCommName(String commName) {
-		this.commName = commName;
+	public void setCommCode(String commCode) {
+		this.commCode = commCode;
 	}
 	public String getMemberId() {
 		return memberId;
 	}
 	@Override
 	public String toString() {
-		return "CommTag [tagCode=" + tagCode + ", commName=" + commName + ", memberId=" + memberId + ", tagName="
+		return "CommTag [tagCode=" + tagCode + ", commCode" + commCode + ", memberId=" + memberId + ", tagName="
 				+ tagName + ", tagColor=" + tagColor + ", regTime=" + regTime + "]";
 	}
 	public void setMemberId(String memberId) {
@@ -45,7 +45,7 @@ public class CommTag {
 	}
 
 	private String tagCode;
-	private String commName;
+	private String commCode;
 	private String memberId;
 	private String tagName;
 	private String tagColor;

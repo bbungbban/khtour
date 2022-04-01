@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/default}">
+	layout:decorate="~{layout/default2}">
 <th:block layout:fragment="customTitle">
 	<title th:text="${title}"></title>
 </th:block>
 <th:block layout:fragment="contentsTitle">
 </th:block>
 <th:block layout:fragment="customContents">
+	<div class="row justify-content-center">
+	<div class="card" style="width:1000px">
 	<div class="card bg-primary">
 		<div class="card-body text-center pb-2 pt-2">
 			<h2 class="mb-0 mt-2 text-white " th:text="${community.commName} + ' 커뮤니티'"></h2>
@@ -15,7 +17,7 @@
 	</div>
 
 	<div class="row">
-		<div class="col-8">
+		<div class="col-md-8">
 			<div class="card">
 			<div class="card-header bg-primary pb-1">
 				<h5 class="text-white">인기포스트</h5>
@@ -30,7 +32,7 @@
 
 		</div>
 
-		<div class="col-4">
+		<div class="col-md-4">
 			<div class="card">
 				<div class="card-header bg-primary">
 					<h5 class="card-title text-white mb-0">About Community</h5>
@@ -67,10 +69,8 @@
 					</table>
 				</div>
 				<div class="card-foot p-2 text-center border-top ">
-					<a href="/commDashboard" class="btn btn-primary active btn-sm" role="button"
-						aria-pressed="true">커뮤니티 가입</a> <a th:href="@{/createPost(commName=${community.commName})}"
-						class="btn btn-primary active btn-sm" role="button" aria-pressed="true">포스트
-						만들기</a>
+					<a href="/commDashboard" class="btn btn-primary active btn-sm" role="button" aria-pressed="true">커뮤니티 가입</a> 
+					<a th:href="@{/createPost(commCode=${community.commCode})}" class="btn btn-primary active btn-sm" role="button" aria-pressed="true">포스트 만들기</a>
 				</div>
 			</div>
 			<div class="card">
@@ -81,8 +81,7 @@
                <div class="accordion accordion-box" id="accordionExample">
                   <div class="card" th:if="${not #lists.isEmpty(ruleList)}" th:each="r,index: ${ruleList}">
                      <div class="card-header" id="headingTwo-02">
-                        <div class="accordion-title collapsed p-1 bg-white"
-                           data-toggle="collapse" th:attr="data-target='#collapseTwo-' + ${index.index}">  
+                        <div class="accordion-title collapsed p-1 bg-white" data-toggle="collapse" th:attr="data-target='#collapseTwo-' + ${index.index}">  
                            <p class="mb-0 text-dark" th:text="'규칙'+ ${index.index+1} +': ' + ${r.title}">
                               <i class="zmdi zmdi-help-outline mr-3"></i>
                            </p>
@@ -108,7 +107,7 @@
 				<div class="card-body m-0">
 
 					<th:block th:if="${not #lists.isEmpty(tagList)}" th:each="r: ${tagList}">
-						<a th:href="@{/commPage(tagCode=${r.tagCode},commName=${community.commName})}" role="button" th:class="'btn '+'btn-sm pull-left '+'m-1 '+'btn-'+ ${r.tagColor}" th:text="${r.tagName}"></a>
+						<a th:href="@{/commPage(tagCode=${r.tagCode},commCode=${r.commCode})}" role="button" th:class="'btn '+'btn-sm pull-left '+'m-1 '+'btn-'+ ${r.tagColor}" th:text="${r.tagName}"></a>
 					</th:block>
 
 				</div>
@@ -119,6 +118,8 @@
 			</div>
 		</div>
 
+	</div>
+	</div>
 	</div>
 
 	<!-- Modal -->
@@ -136,15 +137,13 @@
 				<div class="modal-body p-5">
 					<form class="cmxform" method="post" th:action="@{/addTag}">
 						<div class="form-group">
-							<input type="hidden" name="commName" id="commName"
-								class="form-control" th:value="${community.commName}"></input>
+							<input type="hidden" name="commCode" id="commCode" class="form-control" th:value="${community.commCode}"></input>
 						</div>
 						<div class="form-group">
-							<label for="tagName">테그이름</label> <input id="tagName"
-								name="tagName" type="text" class="form-control" required></input>
+							<label for="tagName">테그이름</label> <input id="tagName" name="tagName" type="text" class="form-control" required></input>
 						</div>
-
-
+						
+	
 						<div class="form-group">
 							<label for="tagColor">테그색상</label> <select class="form-control"
 								id="tagColor" name="tagColor">
@@ -178,22 +177,19 @@
 				<div class="modal-body p-5">
 					<form class="cmxform" method="post" th:action="@{/addRule}">
 						<div class="form-group">
-							<input type="hidden" name="commName" id="commName"
-								class="form-control" th:value="${community.commName}"></input>
+							<input type="hidden" name="commCode" id="commCode" class="form-control" th:value="${community.commCode}"></input>
 						</div>
 						<div class="form-group">
-							<label for="title">커뮤니티 제목</label> <input id="title" name="title"
-								type="text" class="form-control" required></input>
+							<label for="title">규칙 제목</label> 
+							<input id="title" name="title" type="text" class="form-control" required></input>
 						</div>
-
+						
 
 						<div class="form-group">
 							<label for="detail">규칙 상세 설명</label>
-							<textarea id="detail" name="detail" class="form-control"
-								rows="10" required></textarea>
+							<textarea id="detail" name="detail" class="form-control" rows="10" required></textarea>
 						</div>
-						<button type="submit" class="btn btn-primary pull-right">규칙
-							추가</button>
+						<button type="submit" class="btn btn-primary pull-right">규칙 추가</button>
 					</form>
 				</div>
 			</div>
