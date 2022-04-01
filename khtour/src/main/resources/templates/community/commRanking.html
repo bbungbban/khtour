@@ -11,7 +11,7 @@
 <th:block layout:fragment="customContents">
 
 	<div class="row">
-		<div class="col-2">
+		<div class="col-md-2">
 			 
 			<div class="card">
 				<div class="card-header text-center bg-primary">
@@ -35,7 +35,7 @@
 					</div>
 			</div>
 			</div>
-		<div class="col-6">	
+		<div class="col-md-6">	
 			<div class="card" th:if="${#strings.isEmpty(categoryCode)}">	
 				<div class="card-header text-center bg-primary">
 				 	<h6 class="mb-0 mt-2 text-white"> 전체 커뮤니티 랭킹</h6>
@@ -94,7 +94,7 @@
 			
 			</div>
 		
-		<div class="col-4">
+		<div class="col-md-4">
 			<div class="card"   th:if="${not #maps.isEmpty(randomCategoryMap)}" th:each="m : ${randomCategoryMap}">
 				<div class="card-header text-center bg-primary">
 				 	<h6 class="mb-0 mt-2 text-white" th:text="${m.key}"></h6>

@@ -29,6 +29,8 @@ public interface CommunityMapper {
 	
 	public List<CommReply> getCommReplyListByPostCode(String postCode);
 	
+	public List<CommReply> getChildrenReplyListByReplyCode(String replyCode);
+	
 	// 4 : 커뮤니티 이름으로 커뮤니티  찾아서 반환 
 	public Community getCommunityByCommCode(String commCode);
 	
