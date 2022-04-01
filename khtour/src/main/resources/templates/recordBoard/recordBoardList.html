@@ -21,33 +21,100 @@
     border-radius: 5px;
     margin: 5px;
   }
-.btn.btn-primary {
-    background-color: #53cad8;
-    border-color: #53cad8;
-}
-.dd-handle:hover, .wizard .nav-pills .nav-link.active .number, .progress-bar, .irs--flat .irs-bar, .irs--flat .irs-single, .tab .nav-pills .nav-link.active {
-    background-color: #53cad8;
-}
-.btn.btn-outline-primary {
-    border-color: #53cad8;
-    color: #53cad8;
-}
+
 .blog-info {
 	height: 200px;
 }
 
+.set-p {
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+.fa-angle-left,
+.fa-angle-right {
+    position: absolute;
+    color: #757575;
+    font-size: 80px;
+    top: 50%;
+    cursor: pointer
+}
+
+#left {
+    left: 2%
+}
+
+#left:hover {
+    color: #E0E0E0
+}
+
+#right {
+    right: 2%
+}
+
+#right:hover {
+    color: #E0E0E0
+}
+
+.image {
+    object-fit: cover;
+    width: 100%;
+    height: 280px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: none
+}
+
+.image.active {
+    display: block
+}
+
+.rating {
+    background-color: #3D5AFE;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px
+}
+
+.grade {
+    font-size: 18px
+}
+
+.line {
+    height: 1px;
+    background-color: #E0E0E0
+}
+
+.text-sm {
+    font-size: 14px
+}
 </style>
 	<div class="row">
 		<div class="col-12 col-md-4 col-lg-3">
-			<div class="card text-center">
-				<div class="card-body">
-					<a th:href="@{/recordBoard/recordBoardInsert}" type="button"
-						class="btn btn-primary"> <i class="feather icon-plus"></i>포스트
-						등록
-					</a>
+			<div class="card">
+				<div class="card-title">
+					<h3>Best Photo</h3>
+				</div>
+				<div style="padding: 5px;">
+					<div>
+						<img id="first" class="image"
+							th:src="@{https://i.imgur.com/3pcJdqF.jpg}"> <img
+							class="image" th:src="@{https://i.imgur.com/zFRM6Ww.jpg}">
+						<img class="image active"
+							th:src="@{https://i.imgur.com/oDSYIAB.jpg}"> <img
+							class="image" th:src="@{https://i.imgur.com/lfEnSRg.jpg}">
+						<img id="last" class="image"
+							th:src="@{https://i.imgur.com/gl9AZz0.jpg}">
+					</div>
+					<span class="fa fa-angle-left" id="left"></span> <span
+						class="fa fa-angle-right" id="right"></span>
 				</div>
 			</div>
 			<div class="card">
+				<div class="card-title">
+				<h3>여행 게시글 검색</h3>
+				</div>
 				<div class="card-body text-center">
 					<form>
 						<div class="form-group">
@@ -126,22 +193,30 @@
 					<!-- 블로그 리스트 끝 -->
 				</div>
 			</div>
-
+			<div class="card text-center">
+				<div class="card-body">
+					<a th:href="@{/recordBoard/recordBoardInsert}" type="button"
+						class="btn btn-primary"> <i class="feather icon-plus"></i>포스트
+						등록
+					</a>
+				</div>
+			</div>
 		</div>
+
 		<div class="col-12 col-md-8 col-lg-9">
 			<!-- cardpart : 2 start -->
 			<div class="card">
 				<div class="card-body">
 					<!-- 블로그 리스트 시작 -->
 					<div class="row">
-						<div class="col-md-6 col-lg-6"
+						<div class="col-md-3 col-lg-3"
 							th:if="${not #lists.isEmpty(recordBoardList)}"
 							th:each="l : ${recordBoardList}">
 							<div class="blog mb-5">
 								<div class="blog-image">
-									<div class="embed-responsive embed-responsive-16by9">
+									<div class="embed-responsive embed-responsive-4by3">
 										<img th:src="@{/images/traShare/여행이미지1.gif}"
-											class="card-img-top h-10 img-thumbnail embed-responsive-item"
+											class="card-img-top h-10 embed-responsive-item"
 											alt="...">
 									</div>
 								</div>
@@ -216,6 +291,34 @@
 
 	<script th:src="@{/js/rangelider/ion.rangeSlider.min.js}"></script>
 	<script th:src="@{/js/prism/prism.js}"></script>
+	
+	<script>
+	$(document).ready(function(){
+
+		$('#left').click(function(){
+		var tmp = $(".active");
+		$(tmp).removeClass("active");
+		if($(tmp).is(':first-child')) {
+		$("#last").addClass("active");
+		}
+		else {
+		$(tmp).prev().addClass("active");
+		}
+		});
+
+		$('#right').click(function(){
+		var tmp = $(".active");
+		$(tmp).removeClass("active");
+		if($(tmp).is(':last-child')) {
+		$("#first").addClass("active");
+		}
+		else {
+		$(tmp).next().addClass("active");
+		}
+		});
+
+		});
+	</script>
 </th:block>
 <!-- javascript 삽입 종료 -->
 </html>

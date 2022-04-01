@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ksmart42.khtour.dto.Heritage;
+import ksmart42.khtour.dto.HeritageCategory;
 import ksmart42.khtour.mapper.HeritageMapper;
 
 @Service
@@ -41,6 +42,16 @@ public class HeritageService {
 		return heritageList;
 	}
 
+	/**
+	 * 문화재 분류 목록 조회
+	 */
+	public List<HeritageCategory> getHeritageCategoryList(){
+		
+		List<HeritageCategory> heritageCategoryList = heritageMapper.getHeritageCategoryList();
+		
+		return heritageCategoryList;
+	}
+	
 	/**
 	 * 문화재 정보 수정
 	 */

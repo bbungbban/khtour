@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,12 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ksmart42.khtour.dto.Heritage;
+import ksmart42.khtour.dto.HeritageCategory;
 import ksmart42.khtour.service.HeritageService;
 
 @Controller
 @RequestMapping("/heritage")
 public class HeritageController {
-
+	private static final Logger log = LoggerFactory.getLogger(CommunityController.class);
 	private HeritageService heritageService;
 	
 	public HeritageController(HeritageService heritageService) {
@@ -25,25 +28,37 @@ public class HeritageController {
 
 	}
 	
-	/*
-	 * 문화재 조회 (관리자)(Get 정보 전달)
-	 */
+	/* 작성자 : 김민석
+	*  입  력 : Model, searchKey 검색키워드 종류, searchValue 검색키워드 값
+	*  출  력 : String(주소)
+	*  설  명  : 문화재 조회 (관리자페이지) - get방식 전달
+	*/
 	@GetMapping("/heritageListSt")
 	public String getHeritageListSt(Model model
 			,@RequestParam(name="searchKey", required=false) String searchKey
 			,@RequestParam(name="searchValue", required=false) String searchValue) {
+		
 		Map<String, Object> paramMap = new HashMap<String , Object>();
 		
 		if(searchKey != null) {
-				if("memberId".equals(searchKey)) {
-					searchKey = "member_id";
-				}else if("heritageName".equals(searchKey)) {
-					searchKey = "heritage_name";
+			if("memberId".equals(searchKey)) {
+				searchKey = "member_id";
+			}else if("heritageName".equals(searchKey)) {
+				searchKey = "heritage_name";
+			}else if("heritageLocation".equals(searchKey)) {
+				searchKey = "heritage_location";
+			}else if("heritagEra".equals(searchKey)) {
+			searchKey = "heritage_era";
+			}else if("heritageOwner".equals(searchKey)) {
+				searchKey = "heritage_owner";
+			}else if("heritageManager".equals(searchKey)) {
+				searchKey = "heritage_manager";
 			}
 		}
+		
 		paramMap.put("searchKey", searchKey);
 		paramMap.put("searchValue", searchValue);
-	
+		log.info("입력 데이터 값 : {}",paramMap);
 		
 		
 		List<Heritage> heritageList = heritageService.getHeritageList(paramMap);
@@ -57,10 +72,11 @@ public class HeritageController {
 	}
 	
 	
-	
-	/*
-	 * 문화재 정보 수정 (관리자) (Post 정보 전달)
-	 */
+	/* 작성자 : 김민석
+	*  입  력 : Heritage(문화재 리스트)
+	*  출  력 : String (주소)
+	*  설  명  : 문화재 정보 수정(관리자페이지) - post방식 전달
+	*/
 	@PostMapping("/modifyHeritage")
 	public String modifyHeritage(Heritage heritage) {
 		
@@ -70,25 +86,33 @@ public class HeritageController {
 		return "redirect:/heritage/heritageListSt";
 	}
 	
-	/*
-	 * 문화재 정보 수정 (관리자) (Get 정보 전달)
-	 */
+	/* 작성자 : 김민석
+	*  입  력 : @RequestParam, Model
+	*  출  력 : String (주소)
+	*  설  명  : 문화재 정보 수정(관리자페이지) - Get방식 전달
+	*/
 	@GetMapping("/heritageModify")
 	public String modifyHeritage(
 			@RequestParam(value="heritageCode", required = false) String heritageCode
 			,Model model) {
+		
 		Heritage heritage = heritageService.getHeritageByCode(heritageCode);
+		List<HeritageCategory> heritageCategory = heritageService.getHeritageCategoryList();
 		
 		model.addAttribute("title", "문화재 수정 페이지");
 		model.addAttribute("heritage", heritage);
+		model.addAttribute("heritageCategory", heritageCategory);		
+		
 		System.out.println("정보 수정 겟방식 전달" + heritage);
 		
 		return "heritage/heritageModify";
 	}	
 	
-	/*
-	 * 문화재 정보 삭제(post 정보 전달) (관리자)
-	 */
+	/* 작성자 : 김민석
+	*  입  력 : Heritage(문화재 리스트)
+	*  출  력 : String (주소)
+	*  설  명  : 문화재 정보 삭제(관리자페이지) - Get방식 전달
+	*/
 	@GetMapping("/heritageRemove")
 	public String removeHeritage(Heritage heritage) {
 		String heritageCode = heritage.getHeritageCode();
@@ -100,36 +124,56 @@ public class HeritageController {
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-/////////////////////////////////////////////////////	
-	
-	
-	/*
-	 * 문화재 종목별 검색(Get 정보 전달)
-	 */
+	/* 작성자 : 김민석
+	*  입  력 : Model, searchKey 검색키워드 종류, searchValue 검색키워드 값
+	*  출  력 : String(주소)
+	*  설  명  : 문화재 조회 - get방식 전달
+	*/
 	@GetMapping("/heritageListByItem")
-	public String getHeritageListByItem(Model model) {
+	public String getHeritageListByItem(Model model
+			,@RequestParam(name="searchKey", required=false) String searchKey
+			,@RequestParam(name="searchValue", required=false) String searchValue) {
+		
 		Map<String, Object> paramMap = new HashMap<String , Object>();
+		
+		if(searchKey != null) {
+			if("memberId".equals(searchKey)) {
+				searchKey = "member_id";
+			}else if("heritageName".equals(searchKey)) {
+				searchKey = "heritage_name";
+			}else if("heritageLocation".equals(searchKey)) {
+				searchKey = "heritage_location";
+			}else if("heritagEra".equals(searchKey)) {
+			searchKey = "heritage_era";
+			}else if("heritageOwner".equals(searchKey)) {
+				searchKey = "heritage_owner";
+			}else if("heritageManager".equals(searchKey)) {
+				searchKey = "heritage_manager";
+			}
+		}
+		
+		paramMap.put("searchKey", searchKey);
+		paramMap.put("searchValue", searchValue);
+		log.info("입력 데이터 값 : {}",paramMap);
 
 		List<Heritage> heritageList = heritageService.getHeritageList(paramMap);
+		List<HeritageCategory> heritageCategory = heritageService.getHeritageCategoryList();
 		
+		paramMap = null;
+		
+		System.out.println(heritageCategory + "<- heritageCategory getHeritageListByItem HeritageController.java");
 		model.addAttribute("title", "문화재 종목별 검색 페이지");
 		model.addAttribute("heritageList", heritageList);
+		model.addAttribute("heritageCategory", heritageCategory);
 		
 		return "heritage/heritageListByItem";
 	}
 			
-	/*
-	 * 문화재 종목별 정보 등록(Post 정보 전달)
-	 */
+	/* 작성자 : 김민석
+	*  입  력 : Heritage(문화재 리스트)
+	*  출  력 : String (주소)
+	*  설  명  : 문화재 정보 등록(관리자페이지) - post방식 전달
+	*/
 	@PostMapping("/heritageListByItem")
 	public String addHeritage(Heritage heritage) {
 		
@@ -139,14 +183,15 @@ public class HeritageController {
 	}
 	
 	
-	/*
-	 * 문화재 상세페이지(코드 번호에 따른) 조회
-	 */
+	/* 작성자 : 김민석
+	*  입  력 : @RequestParam, Model
+	*  출  력 : String(주소)
+	*  설  명  : 문화재 상세페이지(코드번호에따른) - get방식 전달
+	*/
 	@GetMapping("/heritageDetail")
 	public String getHeritaDetail(
 			@RequestParam(value="heritageCode", required = false) String heritageCode,
 			Model model) {
-		
 		
 		Heritage heritage = heritageService.getHeritageByCode(heritageCode);
 		
