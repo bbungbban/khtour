@@ -19,6 +19,7 @@
 
 <!-- 날씨 정보 card 스타일 시트 시작 -->
 <style>
+	
 	.card0 {
 		width: 94%
 	}
@@ -43,17 +44,15 @@
 	}
 	
 	.card2 {
-		background-color: #607D8B;
 		padding: 0px 0px 40px 40px
 	}
 	
 	.card input{
-		background-color: #607D8B;
 		padding: 24px 0px 12px 0px !important;
 		width: 80%;
 		box-sizing: border-box;
+		border-bottom: 1px solid #fff !important;
 		border: none !important;
-		border-bottom: 1px solid #CFD8DC !important;
 		font-size: 16px !important;
 		color: #fff !important
 	}
@@ -62,7 +61,8 @@
 		-moz-box-shadow: none !important;
 		-webkit-box-shadow: none !important;
 		box-shadow: none !important;
-		border-bottom: 1px solid #fff !important;
+		border-bottom: 1px solid #CFD8DC !important;
+		transition:0.2s;
 		outline-width: 0;
 		font-weight: 400
 	}
@@ -81,8 +81,6 @@
 	}
 	
 	.fa-search {
-		color: #607D8B;
-		background-color: #E1F5FE;
 		font-size: 20px;
 		padding: 20px;
 		width: 20%;
@@ -102,7 +100,8 @@
 		height: 1px;
 		background-color: #B0BEC5
 	}
-	
+	.light-text{font-family:'all';font-size:18px;color:#2a2a2a;font-weight:bold;}
+	.ml-auto{font-family:'all';font-size:18px;color:#5d5d5d;font-weight:bold;}
 	@media screen and (max-width: 500px) {
 		.card1 {
 			padding-left: 26px
@@ -126,8 +125,7 @@
 							<div class="row px-3">
 								<input type="text" name="location" id="cityName"
 									placeholder="도시 이름을 적어주세요.(영어)" class="mb-5">
-								<button type="button" class="fa fa-search mb-5 mr-0 text-center"
-									id="searchCT"></button>
+								<button type="button" class="fa fa-search mb-5 mr-0 text-center" id="searchCT"></button>
 							</div>
 							<div class="mr-5" id="whetherData2"></div>
 						</div>
