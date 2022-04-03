@@ -4,25 +4,32 @@
 
 <!-- 문화재 리스트 검색 바 -->
 <div th:fragment="searchHeritageListFragment">
-	<form th:action="@{/heritage/heritageListByItem}" method="get" class="offset-1">
-		<h5>검색 창</h5>
-		<div class="form-row">
-			<div class="form-group col-2">
-				<select class="form-control" id="exampleFormControlSelect1"
-					name="searchKey">
-					<option value="heritageName">이름</option>
-					<option value="heritageLocation">지역</option>
-					<option value="heritagEra">시대</option>
-					<option value="heritageOwner">소유자</option>
-					<option value="heritageManager">관리자</option>
-				</select> 
+<style>
+.btn-outline-danger:hover{background-color:#cb4946 !important;}
+</style>
+	<form th:action="@{/heritage/heritageListByItem}" method="get">
+		<div class="form row">
+			<div class="form-group col-3 text-right">
+				<h5 style="line-height:2.5;">분류별 검색</h5>
 			</div>
-			<div class="form-group col-2">
-				<input type="text" name="searchValue" class="form-control"
-					id="formGroupExampleInput" placeholder="검색 키워드를 입력하세요.">
-			</div>
-			<div class="form-group col-1">
-				<button type="submit" class="btn btn-outline-danger">검색</button>
+			<div class="form-group col-8">
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<select class="form-control" id="exampleFormControlSelect1"
+							name="searchKey" style="font-size:14px;">
+							<option value="heritageName">이름</option>
+							<option value="heritageLocation">지역</option>
+							<option value="heritagEra">시대</option>
+							<option value="heritageOwner">소유자</option>
+							<option value="heritageManager">관리자</option>
+						</select>
+					</div>
+					<input type="text" name="searchValue" class="form-control"
+						id="formGroupExampleInput" placeholder="검색 키워드를 입력하세요." style="font-size:14px;">
+					<div class="input-group-prepend">
+						<button type="submit" class="btn btn-outline-danger" style="font-size:14px;background:#ec5552;color:#fff;">검색</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</form>
@@ -33,15 +40,14 @@
 		<h5>키워드별 검색</h5>
 		<div class="form-row">
 			<div class="form-group col-2">
-				<select class="form-control"
-					name="searchKey">
+				<select class="form-control" name="searchKey">
 					<option value="none">:: 검색 분야 ::</option>
 					<option value="heritageName">이름</option>
 					<option value="heritageLocation">지역</option>
 					<option value="heritagEra">시대</option>
 					<option value="heritageOwner">소유자</option>
 					<option value="heritageManager">관리자</option>
-				</select> 
+				</select>
 			</div>
 			<div class="form-group col-2">
 				<input type="text" name="searchValue" class="form-control"
