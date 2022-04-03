@@ -6,6 +6,44 @@
 	<title th:text="${title}"></title>
 </th:block>
 <th:block layout:fragment="contentsTitle">
+	<style>
+.user-like {
+	display: flex;
+	justify-content: center;
+}
+
+.card-footer {
+	padding: 0px;
+	background-color: rgb(0 0 0/ 0%);
+	border-top: 1px solid rgb(0 0 0/ 0%);
+}
+
+.division::before {
+	content: "|";
+	border: none;
+	border-right: 1px;
+	height: 1rem;
+	margin: 0 0.6rem;
+	display: inline-block;
+	opacity: 0.5;
+}
+
+.timeline-left>li .time {
+	padding-right: 45px;
+}
+
+.card>.card-title {
+	justify-content: flex-start;
+}
+
+.timeline-left>li .info {
+	margin: 0 0 1.071rem 27%;
+}
+
+.w-50 {
+	width: 120% !important;
+}
+</style>
 	<div class="row">
 		<div class="col-12">
 			<h2>포스트 상세 페이지</h2>
@@ -22,7 +60,7 @@
 
 <th:block layout:fragment="customContents">
 	<div class="row user-profile mb-4">
-		<div class="col-3">
+		<div class="col-12 col-md-4 col-lg-3">
 			<div class="user-detail border-radius shadow-sm">
 				<div class="avatar avatar-xll d-block mx-auto">
 					<div class="embed-responsive embed-responsive-1by1">
@@ -31,46 +69,33 @@
 					</div>
 				</div>
 				<div class="user-name mt-3">
-					<h5 class="text-center">이름 : 김민석</h5>
-					<div>
-						<span>이메일 : <strong class="text-primary">
-								klm7637@naver.com </strong></span>
-					</div>
-					<div>
-						<span>생일 : <strong class="text-primary"> 97년 05월
-								01일 </strong></span>
-					</div>
-					<div>
-						<span>국적 : <strong class="text-primary"> 대한민국 </strong></span>
-					</div>
+					<h5 class="text-center">닉네임자리</h5>
+				</div>
+				<div style="text-align: center;">
+					<button type="button" class="btn btn-outline-primary">팔로우</button>
 				</div>
 				<div class="user-info mt-4">
-					<h5>사용자 정보</h5>
 					<div class="my-3 ">
-						<h6>팔로우</h6>
 						<div class="user-like text-left card-footer">
-							<a href="#"> <i class="fa fa-heart-o"></i> 2,200 명
+							<span>팔로우</span> <a href="#"> <i class="fa fa-heart-o"></i><span>200명</span>
+							</a> <span class="division">팔로잉</span> <a href="#"> <i
+								class="fa fa-heart-o"></i><span>100명</span>
 							</a>
 						</div>
 					</div>
 					<div class="my-3 ">
-						<h6>좋아요 수</h6>
 						<div class="user-like text-left card-footer">
-							<a href="#"> <i class="feather icon-thumbs-up"></i> 100 명
+							<span>좋아요</span> <a href="#"> <i
+								class="feather icon-thumbs-up"></i>100명
+							</a> <span class="division">피드수</span> <a href="#"> <i
+								class="feather icon-image"></i>100개
 							</a>
-						</div>
-					</div>
-					<div class="my-3 ">
-						<h6>피드 갯수</h6>
-						<div class="user-like text-left card-footer">
-							<a href="#"> <i class="feather icon-image"></i> 5 개</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-9">
-
+		<div class="col-12 col-md-8 col-lg-9">
 			<div class="card tab">
 				<div class="card-title pt-3">
 					<div class="card-title">
@@ -98,117 +123,59 @@
 										추려봤어! 진짜 이건 꿀정보다!!</p>
 									<p>여행시작일 : 2016-07-12 1 명 여행 전 나홀로 여행</p>
 									<p>처음 만든 날 : 2016-06-10 마지막 수정한 날 : 2017-10-23 조회수 : 104.9K</p>
-
-									<!--  댓글  -->
-									<div class="blog-comments">
-									댓글
-										<form>
-											<div class="row">
-												<div class="col-7">
-													 <input type="text"
-														class="form-control" id="exampleFormControlTextarea1">
-												</div>
-
-												<div class="col-2">
-													<button class="btn btn-primary" type="submit">댓글작성
-														</button>
-												</div>
-											</div>
-										</form>
-										댓글 공간
-										<div class="row">
-											<div class="col-xl-8">
-												<div class="comments-list">
-													<ul class="list-inline">
-														<li class="comments">
-															<div class="comment-avtar">
-																<div class="avatar avatar-xll">
-																	<img class="img-fluid" src="images/team/01.jpg" alt="">
-																</div>
-															</div>
-															<div class="comment-info">
-																<h5>이름: 김민석</h5>
-																<span class="date">등록 날짜: 2022-03-31 </span>
-																<p class="mt-2 mb-1">댓글 내용</p>
-
-															</div>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
-
 								</div>
 							</div>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal-03"> Modal Register  </button> 
-<!-- Modal -->
-	<div class="modal fade" id="exampleModal-03" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">Register</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body p-5">
-	      <form>
-			  <div class="form-group">
-			    <label for="username">Username</label>
-			    <input type="name" class="form-control" aria-describedby="emailHelp" placeholder="Username">
-			  </div>
-			  <div class="form-group">
-			    <label for="email">Email</label>
-			    <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Email">
-			  </div>
-			  <div class="form-group">
-			    <label for="password">Password</label>
-			    <input type="password" class="form-control" placeholder="Password">
-			  </div>
-			  <div class="form-group">
-			    <label for="Confirmpassword">Confirm Password</label>
-			    <input type="Confirmpassword" class="form-control" placeholder="Confirm Password">
-			  </div>
-			  <div class="form-group">
-			     <div class="custom-control custom-checkbox">
-				  <input type="checkbox" class="custom-control-input" id="customCheck2">
-				  <label class="custom-control-label" for="customCheck2"> Remember Me</label>
-				</div>
-			  </div>
-			  <button type="submit" class="btn btn-primary">Register now</button>
-			</form>
-	      </div>
-	    </div>
-	  </div>
-	</div> 
-							<div class="user-activites border-radius shadow-sm">
-
-								<ul class="timeline-left">
-									<li>
-										<div class="time">
-											<span>03:45 AM</span> <span>1Days</span>
+							<button type="button" class="btn btn-primary" data-toggle="modal"
+								data-target="#exampleModal-03">Modal Register</button>
+							<!-- Modal -->
+							<div class="modal fade" id="exampleModal-03" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalLabel"
+								aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">Register</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
 										</div>
-										<div class="icon bg-info">
-											<i class="zmdi zmdi-camera"></i>
+										<div class="modal-body p-5">
+											<form>
+												<div class="form-group">
+													<label for="username">Username</label> <input type="name"
+														class="form-control" aria-describedby="emailHelp"
+														placeholder="Username">
+												</div>
+												<div class="form-group">
+													<label for="email">Email</label> <input type="email"
+														class="form-control" aria-describedby="emailHelp"
+														placeholder="Email">
+												</div>
+												<div class="form-group">
+													<label for="password">Password</label> <input
+														type="password" class="form-control"
+														placeholder="Password">
+												</div>
+												<div class="form-group">
+													<label for="Confirmpassword">Confirm Password</label> <input
+														type="Confirmpassword" class="form-control"
+														placeholder="Confirm Password">
+												</div>
+												<div class="form-group">
+													<div class="custom-control custom-checkbox">
+														<input type="checkbox" class="custom-control-input"
+															id="customCheck2"> <label
+															class="custom-control-label" for="customCheck2">
+															Remember Me</label>
+													</div>
+												</div>
+												<button type="submit" class="btn btn-primary">Register
+													now</button>
+											</form>
 										</div>
-										<div class="info w-50">
-											<h3>해바라기 가득~</h3>
-
-											<div class="embed-responsive embed-responsive-4by3">
-												<img th:src="@{/images/traShare/신세경.gif}"
-													class="card-img-top h-10 img-thumbnail embed-responsive-item"
-													alt="...">
-											</div>
-											KOREA HERITAGETOUR (T)
-											<div class="pt-3">
-												<h5>해바라기 농장을 운영하시는 농장주의 넓은 아량 덕분에 이렇게 예쁜!</h5>
-											</div>
-										</div>
-									</li>
-
-								</ul>
-								
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -225,11 +192,76 @@
 
 		</div>
 	</div>
+	<div class="col-12 offset-md-4 col-md-8 offset-lg-3 col-lg-9"
+		style="padding: 0px;">
+		<div class="card tab">
+			<div class="card-title pt-3">
+				<div class="card-title"></div>
+				<div class="user-activites border-radius shadow-sm">
+
+					<ul class="timeline-left">
+						<li>
+							<div class="time">
+								<span>03:45 AM</span> <span>1Days</span>
+							</div>
+							<div class="icon bg-info">
+								<i class="zmdi zmdi-camera"></i>
+							</div>
+							<div class="info w-50">
+								<h3>해바라기 가득~</h3>
+
+								<div class="embed-responsive embed-responsive-4by3">
+									<img th:src="@{/images/traShare/신세경.gif}"
+										class="card-img-top h-10 img-thumbnail embed-responsive-item"
+										alt="...">
+								</div>
+								KOREA HERITAGETOUR (T)
+								<div class="pt-3">
+									<h5>해바라기 농장을 운영하시는 농장주의 넓은 아량 덕분에 이렇게 예쁜!</h5>
+								</div>
+								<a href="javascript:doDisplay();"><i
+									class="text-dark feather icon-message-circle"></i>댓글</a><br /> <br />
+								<div id="myDIV" style="display: none;">
+									<div class="form-group">
+										<textarea id="ldgExplain4" name="ldgExplain4"
+											class="form-control" rows="1" placeholder="댓글내용입력" required></textarea>
+										<a type="button" style="float: right;">등록</a>
+
+									</div>
+									<div class="ReviewNicknameInfo" style="opacity: 0.5;">
+										<span class="ReviewRoomName">닉네임자리</span><span
+											style="position: absolute; right: 0; line-height: 1.8rem; padding-right: 15px; font-size: 13px;">16시간
+											전</span>
+									</div>
+									<div class="ReviewContentsBox-ReviewContent">리뷰작성내용</div>
+								</div>
+							</div>
+				</div>
+			</div>
+			</li>
+			</ul>
+		</div>
+	</div>
+	</div>
+	</div>
+
+
+
 </th:block>
 <th:block layout:fragment="customBodyScript">
 	<!-- custom -->
 	<script th:src="@{/js/custom.js}"></script>
 	<!-- PRISM -->
 	<script th:src="@{/js/prism/prism.js}"></script>
+	<script type="text/javascript">
+		function doDisplay() {
+			var con = document.getElementById("myDIV");
+			if (con.style.display == 'block') {
+				con.style.display = 'none';
+			} else {
+				con.style.display = 'block';
+			}
+		}
+	</script>
 </th:block>
 </html>
