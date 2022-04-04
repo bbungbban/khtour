@@ -47,17 +47,21 @@
 										<th>수정/삭제</th>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody th:if="${not #lists.isEmpty(musList)}" th:each="l:${musList}">
 									<tr>
-										<td>Airi Satou</td>
-										<td>AccountantAccountantAccountant</td>
-										<td>Tokyo</td>
-										<td>33</td>
-										<td>2008/11/28</td>
-										<td>2008/11/28</td>
-										<td>2008/11/28</td>
+										<td th:text="${l.musCode}"></td>
+										<td th:text="${l.musLargeCateCode}"></td>
+										<td th:text="${l.musName}"></td>
+										<td th:text="${l.musAddr}" ></td>
+										<td th:text="${l.musDetail}" ></td>
+										<td th:text="${l.musSite}" ></td>
+										<td th:text="${l.musNum}" ></td>
+										<td th:text="${l.musDisclose}" ></td>
+										<td th:text="${l.musStart}" ></td>
+										<td th:text="${l.musEnd}" ></td>
+										<td th:text="${l.musClose}" ></td>
 										<td><a
-											class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1" th:href="@{/exhibition/exhibModify}"><i
+											class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1" th:href="@{/mus/musModify}"><i
 												class="la la-edit"></i> </a><a
 											class="btn btn-danger btn-icon btn-sm mb-1" id="swal-delete" href="#"><i
 												class="fa fa-trash-o"></i> </a></td>

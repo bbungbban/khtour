@@ -24,35 +24,34 @@
 	<div id="exhibInsert">
 		<div class="row justify-content-center">
 			<div class="col-12 col-la-10 col-xl-7">
-
 				<!-- **********************************  Start ContentsWrap  ********************************** -->
 				<div class="card">
 					<div class="card-body">
-						<form id="addMuseum" th:action="@{/museum/musInsert}"
+						<form id="addMuseum" th:action="@{/mus/musInsert}"
 							method="post">
 							<div class="form-row">
 								<div class="form-group col-4">
-									<label for="largeChmusCateCode">카테고리</label> 
-									<select class="form-control" name="largeChmusCateCode">
+									<label for="musLargeCateCode">카테고리</label> 
+									<select class="form-control" name="musLargeCateCode">
 										<option>::선택::</option>
 										<option value="large_category001">문화재</option>
 										<option value="large_category002">박물관</option>
 									</select>
 								</div>
 								<div class="form-group col-8">
-									<label for="chMusName">박물관 명</label> <input
-										type="text" class="form-control" name="chMusName">
+									<label for="musName">박물관 명</label> <input
+										type="text" class="form-control" name="musName">
 								</div>
 							</div>
 							<div class="form">
 								<div class="form-group">
-									<label for="chMusStart">운영시간</label>
+									<label for="">운영시간</label>
 									<div class="form-group" style="top: 26px;">
 										<div class="row">
 											<div class="col">
 												<div class="input-group bootstrap-timepicker timepicker">
 													<input id="timepicker1" type="text"
-														class="form-control input-small" name="chMusStart"> <span
+														class="form-control input-small" name=""> <span
 														class="input-group-prepend"><i
 														class="fa fa-clock-o"></i></span>
 												</div>
@@ -70,8 +69,8 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="chMusClose">휴관일</label> <select
-										class="form-control" name="chMusClose">
+									<label for="musClose">휴관일</label> <select
+										class="form-control" name="musClose">
 										<option>::선택::</option>
 										<option value="월">월</option>
 										<option value="화">화</option>
@@ -83,8 +82,8 @@
 									</select>
 								</div>
 								<div class="form-group">
-									<label for="chMusDisclose">체험활동 유/무</label> <select
-										class="form-control" name="chMusDisclose">
+									<label for="musDisclose">체험활동 유/무</label> <select
+										class="form-control" name="musDisclose">
 										<option>::선택::</option>
 										<option value="유">유</option>
 										<option value="무">무</option>
@@ -93,12 +92,12 @@
 
 							</div>
 							<div class="form-group">
-								<label for="chMusSite">홈페이지</label>
+								<label for="musSite">홈페이지</label>
 								<div class="input-group mb-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text" id="basic-addon3">https://</span>
 									</div>
-									<input type="text" class="form-control" name="chMusSite"
+									<input type="text" class="form-control" name="musSite"
 										aria-describedby="basic-addon3">
 								</div>
 							</div>

@@ -25,7 +25,7 @@ public class MusController {
 	}
 	
 	/*
-	 * 박물관 계획 조회 (관리자)(Get 정보 전달)
+	 * 박물관 조회 및 수정
 	 */
 	@GetMapping("/musList")
 	public String getMusList(Model model) {

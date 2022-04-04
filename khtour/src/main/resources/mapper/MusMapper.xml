@@ -5,8 +5,7 @@
 <mapper namespace="ksmart42.khtour.mapper.MusMapper">
 	<resultMap type="Mus" id="musResultMap">
 		<id column="mus_code" property="musCode" />
-		<result column="mus_large_cate_code"
-			property="musLargeCateCode" />
+		<result column="mus_large_cate_code" property="musLargeCateCode" />
 		<result column="mus_name" property="musName" />
 		<result column="mus_addr" property="musAddr" />
 		<result column="mus_detail" property="musDetail" />
@@ -60,7 +59,6 @@
 		,m.mus_disclose
 		,m.mus_start
 		,m.mus_end
-		,m.mus_con
 		,m.mus_close
 		FROM
 		tb_mus_info AS m
@@ -81,7 +79,6 @@
 		,m.mus_disclose
 		,m.mus_start
 		,m.mus_end
-		,m.mus_con
 		,m.mus_close
 		FROM
 		tb_mus_info AS m
