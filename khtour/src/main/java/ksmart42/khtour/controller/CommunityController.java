@@ -54,6 +54,19 @@ public class CommunityController {
 		log.info("커뮤니티 이름중복체크 여부: {}",result);
 		return nameCheck;
 	}	
+	
+	@PostMapping("/addLikesDislikes")
+	@ResponseBody
+	public String addLikesDislikes(@RequestParam(value = "commName",required=false) String commName)
+	{
+		String nameCheck = "";
+		boolean result = communityMapper.commNameCheck(commName);
+		log.info("커뮤니티 이름중복체크 여부: {}",result);
+		return nameCheck;
+	}	
+	
+	
+	
 	/* 작성자 : 한경수
 	*  입  력 : String 커뮤니티 이름
 	*  출  력 : List<CommTag>
@@ -168,8 +181,7 @@ public class CommunityController {
 		//커뮤니티 이름 리다이렉트 정보에 저장
 		reAttr.addAttribute("commCode",rule.getCommCode());
 		
-		return "redirect:/commPage";
-		
+		return "redirect:/commPage";	
 	}
 	
 	/* 작성자 : 한경수

@@ -14,8 +14,10 @@ public class CommReply {
 	private String mainText;
 	private String regTime;
 	private String commentsCnt;
+	private List<CommReply> childrenReply;
 	
 	
+
 	
 	
 	public String getCommentsCnt() {
@@ -26,7 +28,7 @@ public class CommReply {
 	}
 	
 	
-	private List<CommReply> childrenReply;
+	
 	
 	public List<CommReply> getChildrenReply() {
 		return childrenReply;

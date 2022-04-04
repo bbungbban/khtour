@@ -17,6 +17,7 @@ import ksmart42.khtour.dto.CommReply;
 import ksmart42.khtour.dto.CommTag;
 import ksmart42.khtour.dto.Community;
 import ksmart42.khtour.dto.Rule;
+import ksmart42.khtour.dto.LikesDislikes;
 import ksmart42.khtour.mapper.CommunityMapper;
 
 
@@ -339,6 +340,14 @@ public class CommunityService {
 	public void addRule(Rule rule) {
 		
 		communityMapper.addRule(rule);
+		
+	}
+	
+	public void addlikesDislikes(LikesDislikes likesDislikes) {
+		
+		communityMapper.addlikesDislikes(likesDislikes);
+		
+		
 		
 	}
 	
