@@ -89,7 +89,7 @@
 					<i class="feather icon-users"></i> <span>회원 관리 (이민영)</span> <span class="sidebar-badge"></span> <i class="la la-angle-right down-arrow"></i>
 				</a>
 				<ul class="sidebar-submenu">
-					<li><a th:href="@{/member/loginMain}"><i class="la la-minus"></i> <span> 회원 로그인 </span> </a></li>
+					<li><a th:if="${session.SID == null}" th:href="@{/member/loginMain}"><i class="la la-minus"></i> <span> 회원 로그인 </span> </a></li>
 					<li><a th:href="@{/member/memberInsert}"><i class="la la-minus"></i> <span> 회원 가입 </span> </a></li>
 					<li><a th:href="@{/member/modifyMember}"><i class="la la-minus"></i> <span> 회원 정보 수정 </span> </a></li>
 					<li><a th:href="@{/member/memberList}"><i class="la la-minus"></i> <span> 회원 정보 조회 및 삭제 </span> </a></li>

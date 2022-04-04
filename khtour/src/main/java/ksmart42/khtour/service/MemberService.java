@@ -46,7 +46,7 @@ public class MemberService {
 	}
 	
 	public Member getMemberInfoById(String memberId) {
-		return MemberMapper.getMemberInfoById(memberId);
+		return memberMapper.getMemberInfoById(memberId);
 	}
 	
 	public List<Member> getMemberList(String searchKey, String searchValue){

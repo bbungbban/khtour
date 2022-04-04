@@ -56,8 +56,13 @@ public class MemberController {
 		String memberId = member.getMemberId();
 		String memberPw = member.getMemberPw();
 		
-		Member checkMember = MemberMapper.getMemberInfoById(memberId);
+		Member checkMember = memberMapper.getMemberInfoById(memberId);
 		
+		
+		
+		log.info("비밀번호" + memberPw);
+		log.info("아이디" + memberId);
+		log.info("비밀번호2" + checkMember);
 		if(checkMember != null && checkMember.getMemberPw() != null && memberPw.equals(checkMember.getMemberPw())) {
 			String sessionName = checkMember.getMemberName();
 			String sessionLevel = checkMember.getMemberLevel();
@@ -100,9 +105,9 @@ public class MemberController {
 	
 		session.invalidate();
 		
-		return "redirect:/member/login";
+		return "redirect:/member/loginMain";
 	}
-	
+		
 	/*
 	 * 회원가입 화면
 	 */
@@ -181,7 +186,7 @@ public class MemberController {
 		  boolean idCheck = false;
 		  log.info("아이디 중복 체크 클릭시 요청 받는 memberId 값 : {}", memberId);
 	  
-		  boolean result = MemberMapper.isIdCheck(memberId);
+		  boolean result = memberMapper.isIdCheck(memberId);
 		  if(result) idCheck = true;
 		  
 		  log.info("아이디 중복 체크 여부 : {}", result);
@@ -199,7 +204,7 @@ public class MemberController {
 		
 		log.info("회원 탈퇴 처리 memberId: {}", memberId);
 		log.info("회원 탈퇴 처리 memberPw: {}", memberPw);
-		Member member = MemberMapper.getMemberInfoById(memberId);
+		Member member = memberMapper.getMemberInfoById(memberId);
 		
 		if(member != null && member.getMemberPw() != null && memberPw.equals(member.getMemberPw())) {
 			memberService.memberList(member);
@@ -276,6 +281,6 @@ public class MemberController {
 		
 		model.addAttribute("title", "회원 탈퇴");
 		
-		return "member/memberDelete"; 
+		return "/member/memberDelete"; 
 	}
 }
