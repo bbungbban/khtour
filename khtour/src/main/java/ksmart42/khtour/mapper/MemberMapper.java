@@ -28,16 +28,11 @@ public interface MemberMapper {
 		public int memberModify(Member member);
 		
 		// 아이디별 회원정보 조회
-		public static Member getMemberInfoById(String memberId) {
-			// TODO Auto-generated method stub
-			return null;
-		}
+		public Member getMemberInfoById(String memberId); 
+		
 		
 		// 회원 아이디 중복체크
-		public static boolean isIdCheck(String memberId) {
-			// TODO Auto-generated method stub
-			return false;
-		}
+		public boolean isIdCheck(String memberId); 
 		
 		// 회원 등급 목록 조회
 		public List<MemberLevel> getMemberLevelList();
