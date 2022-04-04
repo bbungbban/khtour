@@ -13,6 +13,7 @@ public class Member {
 	private String memberName;
 	private String memberUserName;
 	private String memberContact;
+	private String memberGender;
 	private String memberBirthday;
 	private String memberEmail;
 	private String memberRegTime;
@@ -86,6 +87,12 @@ public class Member {
 	public void setMemberContact(String memberContact) {
 		this.memberContact = memberContact;
 	}
+	public String getMemberGender() {
+		return memberGender;
+	}
+	public void setMemberGender(String memberGender) {
+		this.memberGender = memberGender;
+	}
 	public String getMemberBirthday() {
 		return memberBirthday;
 	}
@@ -153,6 +160,8 @@ public class Member {
 		builder.append(memberUserName);
 		builder.append(", memberContact=");
 		builder.append(memberContact);
+		builder.append(", memberGender=");
+		builder.append(memberGender);
 		builder.append(", memberBirthday=");
 		builder.append(memberBirthday);
 		builder.append(", memberEmail=");

@@ -22,7 +22,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 		String requestURI = request.getRequestURI();
 		
 		if(sessionId == null) {
-			response.sendRedirect("/member/login");
+			response.sendRedirect("/member/loginMain");
 			return false;
 		}else {
 			if("2".equals(sessionLevel)) {
@@ -30,8 +30,8 @@ public class LoginInterceptor implements HandlerInterceptor{
 				// 판매자인경우 회원관리 관련 주소요청 제어
 				if( requestURI.indexOf("member/memberList") > -1 	||
 				    requestURI.indexOf("member/memberInsert") > -1 	||
-				    requestURI.indexOf("member/modifyMember") > -1 	||
-				    requestURI.indexOf("member/removeMember") > -1 		) {
+				    requestURI.indexOf("member/memberModify") > -1 	||
+				    requestURI.indexOf("member/memberDelete") > -1 		) {
 					
 					response.sendRedirect("/");
 					
@@ -39,9 +39,9 @@ public class LoginInterceptor implements HandlerInterceptor{
 				}
 			}else if ("3".equals(sessionLevel)) {
 				if( requestURI.indexOf("member/memberList") > -1 	||
-					requestURI.indexOf("member/addMember") > -1 	||
-					requestURI.indexOf("member/modifyMember") > -1 	||
-					requestURI.indexOf("member/removeMember") > -1 		) {
+					requestURI.indexOf("member/memberInsert") > -1 	||
+					requestURI.indexOf("member/memberModify") > -1 	||
+					requestURI.indexOf("member/memberDelete") > -1 		) {
 						
 					response.sendRedirect("/");
 						
