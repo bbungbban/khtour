@@ -537,7 +537,24 @@
     var _table_selected = $( '#table-selected' );
     if ( _table_selected.exists() ) {
       _table_selected.DataTable( {
-          select: true
+          select: true,
+          searching:false,
+          "language": {
+              "emptyTable": "데이터가 없습니다.",
+              "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+              "info": "현재 _START_쪽 - _END_쪽 / _TOTAL_개",
+              "infoEmpty": "데이터 없음",
+              "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
+              "search": "에서 검색: ",
+              "zeroRecords": "일치하는 데이터가 없습니다..",
+              "loadingRecords": "로딩중...",
+              "processing":     "잠시만 기다려 주세요...",
+              "paginate": {
+                  "next": "다음",
+                  "previous": "이전"
+              }
+          }
+
       } );
     }
 
