@@ -2,76 +2,96 @@
 <html xmlns:th="http://www.thymeleaf.org"
      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
      layout:decorate="~{layout/default}">
-   <th:block layout:fragment="customTitle">
+   	<th:block layout:fragment="customTitle">
       <title th:text="${title}"></title>
-   </th:block>
-   <th:block layout:fragment="contentsTitle">
-      <div class="row">
-		<div class="col">
-			<h2>회원 가입</h2>
-			<nav aria-label="breadcrumb">
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="#">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page">회원 가입</li>
-				</ol>
-			</nav>
+   	</th:block>
+   	<th:block layout:fragment="contentsTitle">
+		<div class="row">
+			<div class="col">
+				<h2>회원 가입</h2>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="#">Home</a></li>
+						<li class="breadcrumb-item active" aria-current="page">회원 가입</li>
+					</ol>
+				</nav>
+			</div>
 		</div>
-	</div>
-   </th:block>
+   	</th:block>
 
-   <th:block layout:fragment="customContents">
-   <!-- FAVICON -->
-   <link rel="shortcut icon" th:href="@{/images/favicon.ico}">
-   <!-- STYLE -->
-   <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	<th:block layout:fragment="customContents">
+	<!-- FAVICON -->
+	<link rel="shortcut icon" th:href="@{/images/favicon.ico}">
+	<!-- STYLE -->
+	<link rel="stylesheet" type="text/css" th:href="@{/css/plugins/lmyCss/addCssLmy.css}">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" defer="defer"></script>
+	<script th:src="@{/js/lmyJs/dayjs.min.js}"></script>
    
-	<div class="login bg-white py-5 px-5">
+	<div class="login bg-white py-5 px-5" id="memberInsert">
 		<div class="title">
 			<h3>회원가입</h3>
 			<p>계정 만들기</p>
 		</div>
-		<form action="">
-			<div class="row">
-				<div class="form-group col">
-					<label for="name">성함</label>
-					<input type="text" class="form-control" placeholder="이름" required="" name="memberName">
-				</div>
+		<form th:action="@{/member/memberInsert}" method="post">
+			<div class="form-group">
+				<label for="memberId">아이디</label>
+				<input id="memberId" type="text" class="form-control" placeholder="아이디" required="" name="memberId">
+				<button type="button" id="idCheck">아이디중복체크</button>
 			</div>
 			<div class="form-group">
-				<label for="gender">성별</label>
-				<select class="custom-select">
-					<option selected="">::성별
-						선택::</option>
+				<label for="memberPw">비밀번호</label>
+				<input id="memberPw" type="password" class="form-control" placeholder="비밀번호" required="" name="memberPw">
+			</div>
+			<div class="form-group">
+				<input id="memberPw" type="password" class="form-control" placeholder="비밀번호 확인" required="" name="memberPw">
+			</div>
+			<div class="form-group">
+				<label for="memberName">성함</label>
+				<input id="memberName" type="text" class="form-control" placeholder="이름" required="" name="memberName">
+			</div>
+			<div class="form-group">
+				<label for="memberGender">성별</label>
+				<select class="custom-select" id="memberGender" name="memberGender">
+					<option selected="">::성별선택::</option>
 					<option value="남">남</option>
 					<option value="여">여</option>
 				</select>
 			</div>
 			<div class="form-group">
-				<label for="username">닉네임</label>
-				<input id="username" class="form-control" name="username" type="text">
+					<label for="memberBirthday">생년월일</label> 
+						<input type="text" id="memberBirthday" class="form-control datepicker"
+								name="memberBirthday" data-original-title="" title="">
 			</div>
 			<div class="form-group">
-				<label for="userid">아이디</label>
-				<input type="text" class="form-control" placeholder="아이디" required="" name="memberId">
-				<button type="button" id="idCheck">아이디중복체크</button>
+				<label for="memberContact">연락처</label>
+				<input id="memberContact" class="form-control" name="memberContact" type="text">
 			</div>
 			<div class="form-group">
-				<label for="userpw">비밀번호</label>
-				<input type="password" class="form-control" placeholder="비밀번호" required="" _mstplaceholder="10300316">
+				<label for="memberCountry">국적</label>
+				<select class="custom-select" id="memberCountry" name="memberCountry">
+					<option selected="">::나라선택::</option>
+					<option value="대한민국">대한민국</option>
+					<option value="미국">미국</option>
+					<option value="일본">일본</option>
+					<option value="중국">중국</option>
+					<option value="러시아">러시아</option>
+					<option value="호주">호주</option>
+				</select>
 			</div>
 			<div class="form-group">
-				<input class="form-control" placeholder="비밀번호 확인" required="" _mstplaceholder="23358309">
+				<label for="memberUserName">닉네임</label>
+				<input id="memberUserName" class="form-control" name="memberUserName" type="text">
 			</div>
 			<div class="form-group">
-					<label for="email">이메일</label>
-					<input id="email1" class="form-control" name="email" type="email">
+					<label for="memberEmail">이메일</label>
+					<input id="memberEmail" class="form-control" name="memberEmail" type="email">
 			</div>
-			<button type="button" id="addMemberBtn"  class="btn btn-primary">가입하기</button>
+			<button type="submit" id="addMemberBtn"  class="btn btn-primary" th:href="@{/member/loginMain}">가입하기</button>
 			<button type="button" class="btn btn-outline-primary btn-block"><i class="fa fa-facebook"></i>페이스북으로 가입하기</button>
 			<button type="button" class="btn btn-outline-secondary btn-block"><i class="fa fa-instagram"></i>인스타로 가입하기</button>
 			<button type="button" class="btn btn-outline-warning btn-block"><i class="feather icon-message-circle"></i>카카오톡으로 가입하기</button>
 		</form>
-		<p class="mb-0" _msthash="1166672" _msttexthash="273189748">귀하는 당사의 
+		<p class="mb-0" >귀하는 당사의 
 			<a href="#" _istranslated="1"> 약관에 동의합니다.</a>
 		</p>
 	</div>
@@ -85,6 +105,14 @@
       <script th:src="@{/js/prism/prism.js}"></script>
       <!-- custom -->
       <script th:src="@{/js/custom.js}"></script>
+      <script th:src="@{/js/lmyJs/datepicker-bs4.js}" defer="defer"></script>
+      <script>
+		document.addEventListener('DOMContentLoaded', function () {
+			jQuery('#start_date, #end_date, #memberBirthday').datepicker({
+
+			});
+		});
+	  </script>
       <script>
 			//$(document).ready(function())
 			$(function(){
@@ -111,14 +139,14 @@
 								// 화면에서 맨처음 아이디를 제외한 모든 입력하는 요소는 비활성화 (HTML 속성 추가 disabled="disabled") 
 								// 아이디 중복이 발생 않은 경우(회원가입 O) 입력하는 요소는 활성화
 								if(data){
-									$('#addMemberForm input').prop('disabled', false);
-									$('#addMemberForm select').prop('disabled', false);
-									$('#addMemberForm button').prop('disabled', false);
+									$('#memberInsertForm input').prop('disabled', false);
+									$('#memberInsertForm select').prop('disabled', false);
+									$('#memberInsertForm button').prop('disabled', false);
 								}else{									
 									// 아이디 중복이 발생하는 경우(회원가입 X) 입력하는 요소는 비활성화
-									$('#addMemberForm input').not('input[name="memberId"]').prop('disabled', true);
-									$('#addMemberForm button').not('#idCheck').prop('disabled', true);
-									$('#addMemberForm select').prop('disabled', true);
+									$('#memberInsertForm input').not('input[name="memberId"]').prop('disabled', true);
+									$('#memberInsertForm button').not('#idCheck').prop('disabled', true);
+									$('#memberInsertForm select').prop('disabled', true);
 								}
 							}
 						});
@@ -126,9 +154,9 @@
 					
 				});
 				
-				$('#addMemberBtn').click(function(){
+				$('#memberInsertBtn').click(function(){
 					var isSubmit = true;
-					var inputObj = $('#addMemberForm').find('input');
+					var inputObj = $('#memberInsertForm').find('input');
 					
 					$.each(inputObj, function(){
 						var inputData = $(this).val();
@@ -143,9 +171,9 @@
 						}
 					});
 					
-					console.log('유효여부 폼전송할건지?' + isSubmit )
+					console.log('유효여부 폼전송할건지?' + isSubmit );
 					
-					if(isSubmit) $('#addMemberForm').submit();
+					if(isSubmit) $('#memberInsertForm').submit();
 				});
 			});
 		</script>
