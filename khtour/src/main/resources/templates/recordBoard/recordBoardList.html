@@ -229,7 +229,7 @@
 									<div class="blog-title mt-3">
 										<h4 class="mb-3">
 											<strong><a
-												th:href="@{/recordBoard/recordBoardDetail}"
+											th:href="@{/recordBoard/feedList(recordBoardCode=${l.recordBoardCode})}"
 												th:text="${l.recordBoardName}"></a></strong>
 										</h4>
 										<p class="mb-0" th:text="${l.content}"></p>

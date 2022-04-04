@@ -123,7 +123,7 @@
 		<div class="col-12 col-md-4 col-lg-3">
 			<!-- Component -->
 			<div class="card">
-				<div class="card-title">사용자 아이디 : id001</div>
+				<div class="card-title" th:text="'작성자 아이디 : ' + ${recordBoard.memberId}"></div>
 				<hr class="my-2">
 				<div class="card-body">
 					<div class="d-flex justify-content-center">
@@ -134,7 +134,7 @@
 					</div>
 					<div class="text-center my-6">
 						<!-- Title -->
-						<a href="#" class="d-block h5 mb-0">닉네임</a>
+						<a href="#" class="d-block h5 mb-0">닉네임</a> <!-- th:text="${recordBoardList.memberId.getMemberUserName()}" -->
 						<!-- Subtitle -->
 						<span class="d-block text-sm text-muted">이메일@company.com</span>
 						<div style="text-align: center; padding: 10px">
@@ -202,14 +202,13 @@
 				</div>
 					<hr class="my-2">
 					<div class="card-body">	
-							<h1 class="mb-8">제주도민 아니어도 무료인데 안 갈꺼?</h1>
-							<p>제주도엔 입장료도 없는데 시선 강탈하는 예쁜 곳들이 수두룩 해~ 그 중 정말 가보고 싶은 곳들만 추려봤어!
-								진짜 이건 꿀정보다!!</p>
+							<h1 class="mb-8" th:text="${recordBoard.recordBoardName}"></h1>
+							<p th:text="${recordBoard.content}"></p>
 					</div>
 					<div class="card-footer mb-4 pt-8">
 						<hr class="my-2">
-						<p class="pt-4">여행시작일 : 2016-07-12 | 1 명 | 여행 전 | 나홀로 여행</p>
-						<p>처음 만든 날 : 2016-06-10 | 마지막 수정한 날 : 2017-10-23 | 조회수 : 104.9K</p>
+						<p class="pt-4" th:text="'여행 시작일 : ' + ${recordBoard.startDate} + ' | ' + '여행 종료일 : ' + ${recordBoard.endDate} + ' | ' + '여행 유형 : 나홀로 여행'" ></p>
+						<p th:text="'게시글 등록 날짜 : ' + ${recordBoard.regDate} + ' | ' + '조회수 : 104'"></p>
 					</div>
 			</div>
 
@@ -217,7 +216,7 @@
 			<div class="card">
 				<div class="card-title">
 					<div class="card-title-left">
-						<h4 class="card-title-text">id001 님의 피드</h4>
+						<h4 class="card-title-text" th:text="${recordBoard.memberId} + ' 님의 피드'"></h4>
 					</div>
 				</div>
 				<hr class="my-2">

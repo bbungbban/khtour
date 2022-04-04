@@ -140,7 +140,7 @@ public class RecordBoardController {
 	/*
 	 * 문화재 상세페이지(코드 번호에 따른) 조회
 	 */
-	@GetMapping("/recordBoardDetail")
+	@GetMapping("/feedList")
 	public String getHeritaDetail(
 			@RequestParam(value="recordBoardCode", required = false) String recordBoardCode,
 			Model model) {
@@ -152,7 +152,7 @@ public class RecordBoardController {
 		model.addAttribute("recordBoard", recordBoard);
 		model.addAttribute("planStatusList", planStatusList);
 		System.out.println("정보 수정 겟방식 전달" + recordBoard);
-		return "/recordBoard/recordBoardDetail";
+		return "/recordBoard/feedList";
 	}
 	
 	
