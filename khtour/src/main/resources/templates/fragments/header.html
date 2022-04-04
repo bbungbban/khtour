@@ -582,6 +582,17 @@
 							</ul>
 						</div>
 					</li>
+					<li class="dropdown show user-profile" th:if="${session.SID == null}">
+						<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" 
+						aria-haspopup="true" aria-expanded="false">
+							<div class="profile-info">
+								<a class="btn btn-outline-primary outline-gray"
+									th:href="@{/member/loginMain}"> <i class="la la-power-off"></i>
+									Login
+								</a>
+							</div>
+						</a>
+					</li>
 					<li class="dropdown show user-profile" th:unless="${session.SID == null}"><a
 						class="dropdown-toggle" href="#" role="button"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

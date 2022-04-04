@@ -76,15 +76,7 @@ public class MemberService {
 		//권한
 		String memberLevel = member.getMemberLevel();
 				
-		//권한별로 삭제 프로세스
-		//판매자
-		if("2".equals(memberLevel)) {
-					
-				
-		//구매자
-		}else if("3".equals(memberLevel)) {
-			
-		}
+		
 		//공통사항 삭제 프로세스
 		memberMapper.removeLoginHistory(memberId);
 				
