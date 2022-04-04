@@ -8,7 +8,7 @@
 <th:block layout:fragment="contentsTitle">
 	<style>
 @import url(https://unpkg.com/@webpixels/css@1.1/dist/index.css);
-
+/* 댓글 창 */
 .postbgimg img {
 	width: 100%;
 	height: 274px;
@@ -24,6 +24,78 @@
 
 .btn-outline-danger:hover {
 	background-color: #cb4946 !important;
+}
+
+/* 이미지 앨범 이동 */
+.btn {
+    border-radius: 5px;
+    margin: 5px;
+  }
+
+.blog-info {
+	height: 200px;
+}
+
+.set-p {
+    padding-left: 15px;
+    padding-right: 15px
+}
+
+.fa-angle-left,
+.fa-angle-right {
+    position: absolute;
+    color: #757575;
+    font-size: 80px;
+    top: 50%;
+    cursor: pointer
+}
+
+#left {
+    left: 2%
+}
+
+#left:hover {
+    color: #E0E0E0
+}
+
+#right {
+    right: 2%
+}
+
+#right:hover {
+    color: #E0E0E0
+}
+
+.image {
+    object-fit: cover;
+    width: 100%;
+    height: 280px;
+    display: none
+}
+
+.image.active {
+    display: block
+}
+
+.rating {
+    background-color: #3D5AFE;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px
+}
+
+.grade {
+    font-size: 18px
+}
+
+.line {
+    height: 1px;
+    background-color: #E0E0E0
+}
+
+.text-sm {
+    font-size: 14px
 }
 </style>
 	<div class="row">
@@ -49,10 +121,10 @@
 
 	<div class="row user-profile mb-4">
 		<div class="col-12 col-md-4 col-lg-3">
-
 			<!-- Component -->
 			<div class="card">
 				<div class="card-title">사용자 아이디 : id001</div>
+				<hr class="my-2">
 				<div class="card-body">
 					<div class="d-flex justify-content-center">
 						<a href="#" class="avatar avatar-xl rounded-circle"> <img
@@ -91,24 +163,54 @@
 				</div>
 
 			</div>
+			<div class="card">
+				<div class="card-title">
+					<h3>Photo</h3>
+				</div>
+				<hr class="my-2">
+				<div style="padding: 5px;">
+					<div>
+						<img id="first" class="image"
+							th:src="@{https://i.imgur.com/3pcJdqF.jpg}"> <img
+							class="image" th:src="@{https://i.imgur.com/zFRM6Ww.jpg}">
+						<img class="image active"
+							th:src="@{https://i.imgur.com/oDSYIAB.jpg}"> <img
+							class="image" th:src="@{https://i.imgur.com/lfEnSRg.jpg}">
+						<img id="last" class="image"
+							th:src="@{https://i.imgur.com/gl9AZz0.jpg}">
+					</div>
+					<span class="fa fa-angle-left" id="left"></span> <span
+						class="fa fa-angle-right" id="right"></span>
+				</div>
+			</div>
+			<div class="card text-center">
+				<div class="card-title">
+					<h4>피드 등록</h4>
+				</div>
+				<hr class="my-2">
+				<div class="card-body">
+					<a th:href="@{/recordBoard/recordBoardImageInsert}" type="button"
+						class="btn btn-primary"> 피드 이미지 등록
+					</a>
+				</div>
+			</div>
 		</div>
 		<div class="col-12 col-md-8 col-lg-9">
 			<div class="card">
-				<div class="card-body">
-
-
-					<div class="mb-4 pt-8">
-						<h1 class="mb-3">제주도민 아니어도 무료인데 안 갈꺼?</h1>
-						<p>제주도엔 입장료도 없는데 시선 강탈하는 예쁜 곳들이 수두룩 해~ 그 중 정말 가보고 싶은 곳들만 추려봤어!
-							진짜 이건 꿀정보다!!</p>
+				<div class="card-title">
+					<h3>게시글</h3>
+				</div>
+					<hr class="my-2">
+					<div class="card-body">	
+							<h1 class="mb-8">제주도민 아니어도 무료인데 안 갈꺼?</h1>
+							<p>제주도엔 입장료도 없는데 시선 강탈하는 예쁜 곳들이 수두룩 해~ 그 중 정말 가보고 싶은 곳들만 추려봤어!
+								진짜 이건 꿀정보다!!</p>
 					</div>
-
-
-				</div>
-				<div class="card-footer mb-4 pt-8">
-					<p>여행시작일 : 2016-07-12 1 명 여행 전 나홀로 여행</p>
-					<p>처음 만든 날 : 2016-06-10 마지막 수정한 날 : 2017-10-23 조회수 : 104.9K</p>
-				</div>
+					<div class="card-footer mb-4 pt-8">
+						<hr class="my-2">
+						<p class="pt-4">여행시작일 : 2016-07-12 | 1 명 | 여행 전 | 나홀로 여행</p>
+						<p>처음 만든 날 : 2016-06-10 | 마지막 수정한 날 : 2017-10-23 | 조회수 : 104.9K</p>
+					</div>
 			</div>
 
 
@@ -118,6 +220,7 @@
 						<h4 class="card-title-text">id001 님의 피드</h4>
 					</div>
 				</div>
+				<hr class="my-2">
 				<div class="card-body">
 					<ul class="timeline-left">
 						<li>
@@ -197,7 +300,6 @@
 						</li>
 					</ul>
 				</div>
-				<div class="card-footer"></div>
 			</div>
 		</div>
 	</div>
@@ -219,6 +321,35 @@
 				con.style.display = 'block';
 			}
 		}
+	</script>
+	
+	<!-- 이미지 왼쪽, 오른쪽 넘기는 버튼 생성 -->
+	<script>
+	$(document).ready(function(){
+
+		$('#left').click(function(){
+		var tmp = $(".active");
+		$(tmp).removeClass("active");
+		if($(tmp).is(':first-child')) {
+		$("#last").addClass("active");
+		}
+		else {
+		$(tmp).prev().addClass("active");
+		}
+		});
+
+		$('#right').click(function(){
+		var tmp = $(".active");
+		$(tmp).removeClass("active");
+		if($(tmp).is(':last-child')) {
+		$("#first").addClass("active");
+		}
+		else {
+		$(tmp).next().addClass("active");
+		}
+		});
+
+		});
 	</script>
 </th:block>
 </html>

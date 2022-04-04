@@ -8,12 +8,12 @@
 <th:block layout:fragment="contentsTitle">
 	<div class="row justify-content-center">
 		<div class="col-12 col-la-12 col-xl-12">
-			<h2>포스트 등록 페이지</h2>
+			<h2>여행 게시글 등록 페이지</h2>
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a
-						th:href="@{/recordBoard/recordBoardList}">여행일정 공유 리스트</a></li>
-					<li class="breadcrumb-item active" aria-current="page">포스트 등록
+						th:href="@{/recordBoard/recordBoardList}">여행 게시글 공유 리스트</a></li>
+					<li class="breadcrumb-item active" aria-current="page">여행 게시글 등록
 						페이지</li>
 				</ol>
 			</nav>
@@ -23,6 +23,15 @@
 
 
 <th:block layout:fragment="customContents">
+<link th:href="@{https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/datedropper.css}" rel="stylesheet">
+<style>
+		/* datedrapper 버튼 색 */
+		.btn-outline-warning {
+		    color: #F44336 !important;
+		    background-color: #fff;
+		    background-image: none;
+		    border-color: #ed433e !important
+</style>
 	<div class="row justify-content-center">
 		<div class="col-12 col-la-10 col-xl-7">
 			<div class="card">
@@ -55,6 +64,29 @@
 							</option>
 						</select>
 					</div>
+											<div class="form-group">
+							<label for="startDate"> 여행 시작 </label>
+							<div class="input-group mb-3">
+								<input id="startDate" type="text" class="form-control input-text">
+								<div class="input-group-append">
+									<button class="btn btn-outline-warning btn-lg" type="button">
+										<i class="fa fa-calendar"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="endDate"> 여행 종료</label>
+							<div class="input-group mb-3">
+								<input id="endDate" type="text" class="form-control input-text">
+								<div class="input-group-append">
+									<button class="btn btn-outline-warning btn-lg" type="button">
+										<i class="fa fa-calendar"></i>
+									</button>
+								</div>
+							</div>
+						</div>
 						<div class="form-group">
 							<label for="exampleFormControlSelect1">#여행 멤버</label> <select
 								class="form-control" id="exampleFormControlSelect1">
@@ -64,11 +96,6 @@
 								<option>가족여행</option>
 								<option>패키지여행</option>
 							</select>
-						</div>
-						<div class="form-group">
-							<label for="">#여행 출발일</label> <input type="text" name="dates"
-								class="form-control"> <label for="">#여행 종료일</label> <input
-								type="text" name="dates" class="form-control">
 						</div>
 						<div class="form-group">
 							<label for="image">#이미지 선택</label> <input type="file" id="image"
@@ -114,5 +141,78 @@
 				$('#addRecordBoardForm').submit();
 		});
 	</script>
+		<!-- 등록 버튼 자바스크립트 시작 -->
+	<script type="text/javascript" th:inline="javascript">
+		$('#addPlanBtn').click(function() {
+
+			var isSubmit = true;
+			var inputObj = $('#addPlanForm').find('input');
+
+			$.each(inputObj, function() {
+				var inputId = $(this).attr('id');
+				var inputLabel = $('label[for="' + inputId + '"]').text();
+				var inputData = $(this).val();
+
+				// 사용자가 입력하지 않은 경우
+			});
+
+			if (isSubmit)
+				$('#addPlanForm').submit();
+		});
+	</script>
+		<!-- 등록 버튼 자바스크립트 종료 -->
+	<script th:src="@{https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/datedropper.js}"></script>
+	<!-- 출발 날짜 datepciker 자바스크립트 시작 -->
+	<script>
+		$(document).ready(function() {
+
+			$("#startDate").dateDropper({
+				animate : true,
+				init_animation : "fadein",
+				format : "m/d/Y",
+				lang : "en",
+				lock : false,
+				minYear : 1970,
+				yearsRange : 10,
+
+				//CSS PRIOPRIETIES
+				dropPrimaryColor : "#01CEFF",
+				dropTextColor : "#333333",
+				dropBackgroundColor : "#FFFFFF",
+				dropBorder : "1px solid #08C",
+				dropBorderRadius : 8,
+				dropShadow : "0 0 10px 0 rgba(0, 136, 204, 0.45)",
+				dropWidth : 124,
+				dropTextWeight : 'bold'
+			});
+		});
+	</script>
+	<!-- 출발 날짜 datepciker 자바스크립트 종료 -->
+	<!-- 도착 날짜 datepciker 자바스크립트 시작 -->
+	<script>
+		$(document).ready(function() {
+
+			$("#endDate").dateDropper({
+				animate : true,
+				init_animation : "fadein",
+				format : "m/d/Y",
+				lang : "en",
+				lock : false,
+				minYear : 1970,
+				yearsRange : 10,
+
+				//CSS PRIOPRIETIES
+				dropPrimaryColor : "#01CEFF",
+				dropTextColor : "#333333",
+				dropBackgroundColor : "#FFFFFF",
+				dropBorder : "1px solid #08C",
+				dropBorderRadius : 8,
+				dropShadow : "0 0 10px 0 rgba(0, 136, 204, 0.45)",
+				dropWidth : 124,
+				dropTextWeight : 'bold'
+			});
+		});
+	</script>
+	<!-- 도착 날짜 datepciker 자바스크립트 종료 -->
 </th:block>
 </html>
