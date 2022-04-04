@@ -57,9 +57,10 @@
 											<a class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1" th:href="@{/exhib/exhibModify(exhibCode=${l.exhibCode})}">
 												<i class="la la-edit"></i>
 											</a>
-											<a class="btn btn-danger btn-icon btn-sm mb-1" id="swal-delete" href="#">
-												<i class="fa fa-trash-o"></i> 
-											</a>
+											<button class="btn btn-danger btn-icon btn-sm mb-1"
+												id="swal-delete-exhib" th:data-exhibCd="${l.exhibCode}">
+												<i class="fa fa-trash-o"></i>
+											</button>
 										</td>
 									</tr>
 								</tbody>
@@ -107,5 +108,46 @@
 	<script th:src="@{/js/datatables/dataTables.rowGroup.min.js}"></script>
 	<!-- custom -->
 	<script th:src="@{/js/custom.js}"></script>
+	<script>
+		$(function(){
+			$(document).on('click','#swal-delete-exhib',function(){
+				var exhibCd = $(this).attr('data-exhibCd');
+			      const swalWithBootstrapButtons = swal.mixin({
+			          confirmButtonClass: 'btn btn-success',
+			          cancelButtonClass: 'btn btn-danger',
+			          buttonsStyling: false,
+			        });
+
+			        swalWithBootstrapButtons({
+			          title: '정말 삭제 하시겠습니까?',
+			          text: "삭제 클릭시 해당 정보는 복구 할 수 없습니다.",
+			          type: 'warning',
+			          showCancelButton: true,
+			          confirmButtonText: '네',
+			          cancelButtonText: '아니오',
+			          reverseButtons: false
+			        }).then((result) => {
+			          if (result.value) {
+			            swalWithBootstrapButtons(
+			              '삭제완료',
+			              '파일이 안전하게 삭제되었습니다.',
+			              'success'
+			            )
+			            location.href = '/exhib/exhibRemove?exhibCode=' + exhibCd;
+			          } else if (
+			            // Read more about handling dismissals
+			            result.dismiss === swal.DismissReason.cancel
+			          ) {
+			            swalWithBootstrapButtons(
+			              '취소',
+			              '사진은 안전하게 보호됩니다.',
+			              'error'
+			            )
+			          }
+			        });	
+			});
+			
+		});
+	</script>
 </th:block>
 </html>
