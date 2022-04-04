@@ -82,8 +82,6 @@
 		,m.mus_close
 		FROM
 		tb_mus_info AS m
-		WHERE
-		mus_code = #{musCode};
 	</select>
 
 	<!-- 전시회 수정 SQL -->
