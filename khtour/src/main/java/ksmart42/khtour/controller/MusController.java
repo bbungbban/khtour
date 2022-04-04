@@ -33,7 +33,7 @@ public class MusController {
 		
 		List<Mus> musList = musService.getMusList(paramMap);
 		
-		model.addAttribute("title", "박물관 계획 관리페이지");
+		model.addAttribute("title", "박물관 조회 및 수정");
 		model.addAttribute("musList", musList);
 		
 		return "mus/musList";
