@@ -68,8 +68,16 @@
 		<result column="reg_time" property="regTime"/>
 		<result column="comments_cnt" property="commentsCnt"/>
 	</resultMap>
+	
+	<resultMap type="LikesDislikes" id="likesDislikesResultMap">
+		<id column="likes_dislikes_code" property="likesDislikesCode"/>
+		<result column="member_id" property="memberId"/>
+		<result column="post_code" property="postCode"/>
+		<result column="reply_code" property="parentReplyCode"/>
+		<result column="reg_time" property="regTime"/>
+		<result column="likes_dislikes_cate" property="likesDislikesCate"/>
+	</resultMap>
 
-	<!-- <select id="getCommunityList" resultMap="communityResultMap"> -->
 	<select id="getCommunityList"  resultMap="communityResultMap">
 			SELECT
 				c.comm_code
@@ -95,6 +103,7 @@
 		WHERE
 			post_code=#{postCode};	
 	</update>
+	
 	<update id="addCommentCntOfComments" parameterType="String">
 		UPDATE tb_community_reply
 			SET
@@ -342,7 +351,6 @@
 	</select>
 	
 	<insert id="addCommPost" parameterType="CommPost">
-		/*회원가입*/
 		INSERT INTO tb_comm_post
 			(	post_code
 				,comm_code		 
@@ -378,7 +386,6 @@
 		);
 	</insert>
 	<insert id="addCommunity" parameterType="Community">
-		/*회원가입*/
 		INSERT INTO tb_community
 			(	comm_code
 				,comm_name
@@ -404,7 +411,6 @@
 		);
 	</insert>
 	<insert id="addRule" parameterType="Rule">
-		/*회원가입*/
 		INSERT INTO tb_comm_rules
 			(	 rule_code
 				,comm_code		 
@@ -419,8 +425,26 @@
 			, NOW()
 		);
 	</insert>
+	
+	<insert id="addlikesDislikes" parameterType="LikesDislikes">
+		INSERT INTO tb_likes_dislikes
+			(	 likes_dislikes_code
+				,member_id		 
+				,post_code
+				,reply_code
+				,reg_time	 
+				,likes_dislikes_cate	 
+		)VALUES (
+			  	sf_new_likes_dislikes_code()
+			, #{memberId}
+			, #{postCode}
+			, #{replyCode}
+			, NOW()
+			, #{likesDislikesCate}
+		);
+	</insert>
+	
 	<insert id="addTag" parameterType="CommTag">
-		/*회원가입*/
 		INSERT INTO tb_comm_tag
 			(	 tag_code
 				,comm_code
@@ -472,6 +496,8 @@
 		where
 			c.comm_Name = #{commName};	
 	</select>
+	
+	
 	
 	
 	

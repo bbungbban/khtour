@@ -50,15 +50,19 @@
 			<form class="cmxform" id="form2" method="post" th:action="@{/addCommPost}" enctype="multipart/form-data">	
 				<div class="form-group">
 					<label for="commCode">등록할 커뮤니티</label> 
+					<!-- 필요한거 1 th:if 도 필요없음 -->
 					<select class="form-control" id="commCode" name="commCode" th:if="${not #lists.isEmpty(commList)}" required>
 						<option>===커뮤니티 선택===</option>
 						<option th:value="${c.commCode}" th:text="${c.commName}" th:each="c: ${commList}"></option>
 					</select>
+					<!-- 필요없는거 1 -->
 					<div class="form-group" th:if="${#lists.isEmpty(commList)}">
 						<select class="form-control" id="commCode" name="commCode" th:if="${#lists.isEmpty(commList)}">
 							<option id="commCode" th:value="${community.commCode}" th:text="${community.commName}" class="form-control bg-primary text-white" />
 						</select>
 					</div>
+					
+					<!-- 필요없는거 2 -->
 					<div class="form-group" th:if="${#lists.isEmpty(commList)}">
 						<label for="tagCode">등록할 테그</label> 
 						<select class="form-control" id="tagCode" name="tagCode" th:if="${not #lists.isEmpty(tagList)}">
@@ -67,10 +71,12 @@
 							</option>
 						</select>
 					</div> 
+					
+					<!-- 필요한거 2 th:if 도 필요없음 -->
 					<div id="tagCodeSpecial" class="form-group" th:if="${not #lists.isEmpty(commList)}">
 						<label for="tagOptionUpdate">등록할 테그</label> 
-						<select class="form-control" id="tagCode" name="tagCode" >
-							
+						<select class="form-control" id="tagCode" name="tagCode" >	
+										
 						</select>
 					</div>
 				</div>

@@ -10,6 +10,7 @@ import ksmart42.khtour.dto.CommReply;
 import ksmart42.khtour.dto.CommTag;
 import ksmart42.khtour.dto.Community;
 import ksmart42.khtour.dto.Rule;
+import ksmart42.khtour.dto.LikesDislikes;
 
 @Mapper
 public interface CommunityMapper {
@@ -59,7 +60,7 @@ public interface CommunityMapper {
 	
 	public void addCommReply(CommReply commReply);
 	
-
+	public void addlikesDislikes(LikesDislikes likesDislikes);
 	
 	// 12 : 커뮤니티 이름 중복 체크
 	public boolean commNameCheck(String commName);
