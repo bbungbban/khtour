@@ -10,6 +10,8 @@ public class CommReply {
 	private String parentReplyCode;
 	private String likesCnt;
 	private String dislikesCnt;
+
+	private String resultCnt;
 	private String reportCnt;
 	private String mainText;
 	private String regTime;
@@ -18,7 +20,12 @@ public class CommReply {
 	
 	
 
-	
+	public String getResultCnt() {
+		return resultCnt;
+	}
+	public void setResultCnt(String resultCnt) {
+		this.resultCnt = resultCnt;
+	}
 	
 	public String getCommentsCnt() {
 		return commentsCnt;
@@ -97,8 +104,8 @@ public class CommReply {
 	public String toString() {
 		return "CommReply [replyCode=" + replyCode + ", memberId=" + memberId + ", postCode=" + postCode
 				+ ", parentReplyCode=" + parentReplyCode + ", likesCnt=" + likesCnt + ", dislikesCnt=" + dislikesCnt
-				+ ", reportCnt=" + reportCnt + ", mainText=" + mainText + ", regTime=" + regTime + ", commentsCnt="
-				+ commentsCnt + ", childrenReply=" + childrenReply + "]";
+				+ ", resultCnt=" + resultCnt + ", reportCnt=" + reportCnt + ", mainText=" + mainText + ", regTime="
+				+ regTime + ", commentsCnt=" + commentsCnt + ", childrenReply=" + childrenReply + "]";
 	}
 	
 	

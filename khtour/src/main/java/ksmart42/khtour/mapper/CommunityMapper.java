@@ -40,6 +40,17 @@ public interface CommunityMapper {
 	
 	public void addCommentCnt(String postCode);
 	public void addCommentCntOfComments(String replyCode);
+	
+	public void addPostLikesCnt(String postCode);
+	public void addPostDislikesCnt(String postCode);
+	
+	public void addReplyLikesCnt(String replyCode);
+	public void addReplyDislikesCnt(String replyCode);
+	
+	public int getPostResultCnt(String postCode);
+	public int getReplyResultCnt(String replyCode);
+	
+	
 	public CommReply getCommReplyByParentReplyCode(String parentReplyCode);
 	
 	// 6 : 커뮤니티 이름으로 규칙 리스트 찾아서 반환 

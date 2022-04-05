@@ -7,6 +7,57 @@
 </th:block>
 <th:block layout:fragment="contentsTitle">
 </th:block>
+
+<th:block layout:fragment="customScript">
+	<script>
+
+	$(function() {
+		$(".upVote").on("click",function(){
+			var postCode = $(this).attr('data-postCode');
+			var likesCnt = $(this).parent().find('#likesCnt')
+	       	console.log(postCode);
+			console.log(likesCnt);
+					 $.ajax({
+						url : '/addLikes',
+						type : 'post',
+						data : {
+							'postCode' : postCode
+						},
+						dataType : 'text',
+						success : function(data) {
+							likesCnt.text(data);	
+						}
+					}); 
+	        
+		})
+	});
+	$(function() {
+		$(".downVote").on("click",function(){
+			var postCode = $(this).attr('data-postCode');
+			var likesCnt = $(this).parent().find('#likesCnt')
+	       	console.log(postCode);
+			console.log(likesCnt);
+					 $.ajax({
+						url : '/addDislikes',
+						type : 'post',
+						data : {
+							'postCode' : postCode
+						},
+						dataType : 'text',
+						success : function(data) {
+							likesCnt.text(data);	
+						}
+					}); 
+	        
+		})
+	});
+ 
+	</script>
+</th:block>
+
+
+
+
 <th:block layout:fragment="customContents">
 	<div class="row justify-content-center">
 	<div class="card" style="width:1000px">
@@ -20,7 +71,7 @@
 		<div class="col-md-8">
 			<div class="card">
 			<div class="card-header bg-primary pb-1">
-				<h5 class="text-white">인기포스트</h5>
+				<h5 class="text-white">인기 포스트</h5>
 			</div>
 				<div class="card-body text-center pt-3 pb-3">
 					<button type="button" class="btn btn-primary btn-sm mr-5 pl-4 pr-4">HOT</button>
@@ -49,8 +100,7 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td colspan="2"><p class="card-text"
-										th:text="${community.commDesc}"></p></td>
+								<td colspan="2"><p class="card-text" th:text="${community.commDesc}"></p></td>
 							</tr>
 							<tr>
 								<td><p class="card-text">회원수</p></td>
@@ -58,8 +108,7 @@
 							</tr>
 							<tr>
 								<td><p class="card-text">온라인</p></td>
-								<td><p class="card-text"
-										th:text="${community.onlineMemberCnt}"></p></td>
+								<td><p class="card-text" th:text="${community.onlineMemberCnt}"></p></td>
 							</tr>
 							<tr>
 								<td><p class="card-text">생성날짜</p></td>
@@ -97,7 +146,7 @@
                </div>
             </div>
             <div class="card-foot p-2 text-center border-top">
-              		<button type="button" class="btn btn-primary text-white btn-sm" data-toggle="modal" data-target="#exampleModal-02">커뮤니티 규칙 추가  </button>
+              		<button type="button" class="btn btn-primary text-white btn-sm" data-toggle="modal" data-target="#exampleModal-02">규칙 추가  </button>
 				</div> 
          </div>
 			<div class="card">
@@ -113,7 +162,7 @@
 				</div>
 				<div class="card-foot p-2 text-center border-top">
 					<button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-						data-target="#exampleModal-03">커뮤니티 테그 추가</button>
+						data-target="#exampleModal-03">테그 추가</button>
 				</div>
 			</div>
 		</div>
@@ -127,10 +176,9 @@
 		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
-				<div class="modal-footer">
-					<h5 class="modal-title" id="exampleModalLabel">커뮤니티 테그 추가</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">태그추가</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
@@ -140,12 +188,12 @@
 							<input type="hidden" name="commCode" id="commCode" class="form-control" th:value="${community.commCode}"></input>
 						</div>
 						<div class="form-group">
-							<label for="tagName">테그이름</label> <input id="tagName" name="tagName" type="text" class="form-control" required></input>
+							<label for="tagName">태그이름</label> <input id="tagName" name="tagName" type="text" class="form-control" required></input>
 						</div>
 						
 	
 						<div class="form-group">
-							<label for="tagColor">테그색상</label> <select class="form-control"
+							<label for="tagColor">태그 색상</label> <select class="form-control"
 								id="tagColor" name="tagColor">
 								<option  th:value="success">초록색</option>
 								<option  th:value="warning">노랑색</option>
@@ -155,8 +203,7 @@
 								<option  th:value="primary">갈색</option>
 							</select>
 						</div>
-						<button type="submit" class="btn btn-primary pull-right">테그
-							추가</button>
+						<button type="submit" class="btn btn-primary pull-right">태그등록</button>
 					</form>
 				</div>
 			</div>
@@ -168,7 +215,7 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">커뮤니티 규칙 추가</h5>
+					<h5 class="modal-title" id="exampleModalLabel">규칙등록</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -180,16 +227,16 @@
 							<input type="hidden" name="commCode" id="commCode" class="form-control" th:value="${community.commCode}"></input>
 						</div>
 						<div class="form-group">
-							<label for="title">규칙 제목</label> 
+							<label for="title">규칙 재목</label> 
 							<input id="title" name="title" type="text" class="form-control" required></input>
 						</div>
 						
 
 						<div class="form-group">
-							<label for="detail">규칙 상세 설명</label>
+							<label for="detail">추가설명</label>
 							<textarea id="detail" name="detail" class="form-control" rows="10" required></textarea>
 						</div>
-						<button type="submit" class="btn btn-primary pull-right">규칙 추가</button>
+						<button type="submit" class="btn btn-primary pull-right">등록</button>
 					</form>
 				</div>
 			</div>

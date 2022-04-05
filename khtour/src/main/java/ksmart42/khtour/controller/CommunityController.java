@@ -55,14 +55,31 @@ public class CommunityController {
 		return nameCheck;
 	}	
 	
-	@PostMapping("/addLikesDislikes")
+	@PostMapping("/addLikes")
 	@ResponseBody
-	public String addLikesDislikes(@RequestParam(value = "commName",required=false) String commName)
+	public String addLikes(@RequestParam(value = "postCode",required=false) String postCode,@RequestParam(value = "replyCode",required=false) String replyCode)
 	{
-		String nameCheck = "";
-		boolean result = communityMapper.commNameCheck(commName);
-		log.info("커뮤니티 이름중복체크 여부: {}",result);
-		return nameCheck;
+		if(replyCode==null)
+		{
+			return communityService.addLikesDislikes(postCode,"like",null);
+		}
+		else
+		{
+			return communityService.addLikesDislikes(null,"like",replyCode);
+		}
+	}	
+	@PostMapping("/addDislikes")
+	@ResponseBody
+	public String addDislikes(@RequestParam(value = "postCode",required=false) String postCode, @RequestParam(value = "replyCode",required=false) String replyCode)
+	{
+		if(replyCode==null)
+		{
+		return communityService.addLikesDislikes(postCode,"dislike",null);
+		}
+		else
+		{
+			return communityService.addLikesDislikes(null,"dislike",replyCode);
+		}
 	}	
 	
 	
@@ -87,10 +104,13 @@ public class CommunityController {
 	@GetMapping("/commDashboard")
 	public String commDashboard(Model model,HttpServletRequest request) {
 		//전체 커뮤니티 리스트
+		log.info("체크1");
 		List<Community> communityList = communityService.getCommunityList();
 		//전체 포스트 리스트
+		log.info("체크2");
 		List<CommPost> postList = communityService.getPostList();
 		//오늘뜨고있는 상위 포스트 4개 리스트
+		log.info("체크3");
 		List<CommPost> dailyPostList = communityService.getDailyPostList();
 		log.info("커뮤니티 포스트 리스트: {}",postList);
 		model.addAttribute("title","커뮤니티 대시보드");
@@ -231,6 +251,7 @@ public class CommunityController {
 			
 			List<String> indexList = fileService.fileUpload(uploadfile, fileRealPath);
 			commPost.setPictureLink("\\" + indexList.get(0));
+			
 		}
 		
 		

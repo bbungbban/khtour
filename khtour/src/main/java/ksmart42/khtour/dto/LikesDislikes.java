@@ -8,6 +8,14 @@ private String memberId;
 private String replyCode;
 private String regTime;
 private String likesDislikesCate;
+private String postCode;
+
+public String getPostCode() {
+	return postCode;
+}
+public void setPostCode(String postCode) {
+	this.postCode = postCode;
+}
 public String getLikesDislikesCode() {
 	return likesDislikesCode;
 }
@@ -40,8 +48,9 @@ public void setLikesDislikesCate(String likesDislikesCate) {
 }
 @Override
 public String toString() {
-	return "likesDislikes [likesDislikesCode=" + likesDislikesCode + ", memberId=" + memberId + ", replyCode="
-			+ replyCode + ", regTime=" + regTime + ", likesDislikesCate=" + likesDislikesCate + "]";
+	return "LikesDislikes [likesDislikesCode=" + likesDislikesCode + ", memberId=" + memberId + ", replyCode="
+			+ replyCode + ", regTime=" + regTime + ", likesDislikesCate=" + likesDislikesCate + ", postCode=" + postCode
+			+ "]";
 }
 
 
