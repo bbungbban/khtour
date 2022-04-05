@@ -31,9 +31,14 @@ public class Heritage {
 	private String  heritageManager;
 	private String  heritageArea;
 	
+	private String  heritageImagePath;
 	
-	
-	
+	public String getHeritageImagePath() {
+		return heritageImagePath;
+	}
+	public void setHeritageImagePath(String heritageImagePath) {
+		this.heritageImagePath = heritageImagePath;
+	}
 	public String getHeritageCode() {
 		return heritageCode;
 	}
@@ -121,12 +126,13 @@ public class Heritage {
 	
 	@Override
 	public String toString() {
-		return "Heritage [heritageCode=" + heritageCode + ", memberId=" + memberId + ", heritageName=" + heritageName
-				+ ", heritageSubName=" + heritageSubName + ", heritageLocation=" + heritageLocation + ", heritageEra="
-				+ heritageEra + ", heritageDesignation=" + heritageDesignation + ", heritageClassification="
-				+ heritageClassification + ", heritageImage=" + heritageImage + ", heritageDetail=" + heritageDetail
-				+ ", heritageOwner=" + heritageOwner + ", heritageManager=" + heritageManager + ", heritageCategory="
-				+ heritageCategory + ", heritageArea=" + heritageArea + "]";
+		return "Heritage [heritageCode=" + heritageCode + ", memberId=" + memberId + ", heritageCategory="
+				+ heritageCategory + ", heritageName=" + heritageName + ", heritageSubName=" + heritageSubName
+				+ ", heritageLocation=" + heritageLocation + ", heritageEra=" + heritageEra + ", heritageDesignation="
+				+ heritageDesignation + ", heritageClassification=" + heritageClassification + ", heritageImage="
+				+ heritageImage + ", heritageDetail=" + heritageDetail + ", heritageOwner=" + heritageOwner
+				+ ", heritageManager=" + heritageManager + ", heritageArea=" + heritageArea + ", heritageImagePath="
+				+ heritageImagePath + "]";
 	}
 
 }

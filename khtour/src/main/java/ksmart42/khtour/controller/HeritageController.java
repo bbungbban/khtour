@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import ksmart42.khtour.dto.Heritage;
 import ksmart42.khtour.dto.HeritageCategory;
@@ -175,9 +178,21 @@ public class HeritageController {
 	*  설  명  : 문화재 정보 등록(관리자페이지) - post방식 전달
 	*/
 	@PostMapping("/heritageListByItem")
-	public String addHeritage(Heritage heritage) {
+	public String addHeritage(Heritage heritage
+							, @RequestParam MultipartFile[] heritageImageFiles
+							, HttpServletRequest request) {
 		
-		heritageService.addHeritage(heritage);
+		log.info("{}",heritage);
+		String serverName = request.getServerName();
+		String fileRealPath = "";
+		if("localhost".equals(serverName)) {				
+			fileRealPath = System.getProperty("user.dir") + "/src/main/resources/static/";
+			//fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+		}else {
+			fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+		}
+		
+		heritageService.addHeritage(heritage, heritageImageFiles, fileRealPath);
 		
 		return "redirect:/heritage/heritageListByItem";
 	}

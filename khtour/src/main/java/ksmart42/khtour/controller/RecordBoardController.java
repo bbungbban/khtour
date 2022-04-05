@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ksmart42.khtour.dto.Feed;
 import ksmart42.khtour.dto.PlanStatus;
 import ksmart42.khtour.dto.RecordBoard;
 import ksmart42.khtour.service.RecordBoardService;
@@ -142,18 +143,24 @@ public class RecordBoardController {
 	 */
 	@GetMapping("/feedList")
 	public String getHeritaDetail(
-			@RequestParam(value="recordBoardCode", required = false) String recordBoardCode,
-			Model model) {
+			@RequestParam(value="recordBoardCode") String recordBoardCode, Model model) {
 		
+		System.out.println(recordBoardCode + "recoardBoardCode 연결 확인 콘솔");
+		
+		recordBoardService.updateViewsByCode(recordBoardCode);
+		List<Feed> feedList = recordBoardService.getFeedListByRecordBoardCode(recordBoardCode);
 		List<PlanStatus> planStatusList = recordBoardService.getPlanStatusList();
 		RecordBoard recordBoard = recordBoardService.getRecordBoardByCode(recordBoardCode);
 		
 		model.addAttribute("title", "문화재 상세 페이지");
 		model.addAttribute("recordBoard", recordBoard);
 		model.addAttribute("planStatusList", planStatusList);
+		model.addAttribute("feedList", feedList);
+		
 		System.out.println("정보 수정 겟방식 전달" + recordBoard);
+		
+		
 		return "/recordBoard/feedList";
 	}
-	
 	
 }
