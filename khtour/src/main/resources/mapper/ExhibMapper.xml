@@ -3,15 +3,15 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ksmart42.khtour.mapper.ExhibMapper">
-	<resultMap type="Exhib" id="exhibResultMap">
-		<id column="exhib_code" property="exhibCode" />
-		<result column="ch_mus_code" property="chMusCode" />
-		<result column="exhib_cate" property="exhibCate" />
-		<result column="exhib_name" property="exhibName" />
-		<result column="exhib_start" property="exhibStart" />
-		<result column="exhib_end" property="exhibEnd" />
-		<result column="exhib_con" property="exhibCon" />
-		<result column="exhib_current" property="exhibCurrent" />
+	<resultMap type="Exhib" 			id="exhibResultMap">
+		<id column="exhib_code" 		property="exhibCode" />
+		<result column="ch_mus_code" 	property="chMusCode" />
+		<result column="exhib_cate" 	property="exhibCate" />
+		<result column="exhib_name" 	property="exhibName" />
+		<result column="exhib_start" 	property="exhibStart" />
+		<result column="exhib_end"	 	property="exhibEnd" />
+		<result column="exhib_con"		property="exhibCon" />
+		<result column="exhib_current" 	property="exhibCurrent" />
 	</resultMap>
 
 	<!-- 전시회 등록 SQL -->
