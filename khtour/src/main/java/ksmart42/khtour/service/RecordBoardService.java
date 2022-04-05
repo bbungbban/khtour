@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ksmart42.khtour.dto.Feed;
 import ksmart42.khtour.dto.PlanStatus;
 import ksmart42.khtour.dto.RecordBoard;
 import ksmart42.khtour.mapper.RecordBoardMapper;
@@ -18,6 +19,13 @@ public class RecordBoardService {
 	
 	public RecordBoardService(RecordBoardMapper recordBoardMapper) {
 		this.recordBoardMapper = recordBoardMapper;
+	}
+	
+	/**
+	 * 코드에 따른 게시글 조회수 조회
+	 */
+	public int updateViewsByCode(String recordBoardCode) {
+		return recordBoardMapper.updateViewsByCode(recordBoardCode);
 	}
 	
 	/**
@@ -71,5 +79,13 @@ public class RecordBoardService {
 	public List<PlanStatus> getPlanStatusList(){
 		return recordBoardMapper.getPlanStatusList();
 		
+	}
+	
+	
+	/**
+	 * 게시글코드에 따른 피드 조회
+	 */
+	public List<Feed> getFeedListByRecordBoardCode(String recordBoardCode) {
+		return recordBoardMapper.getFeedListByRecordBoardCode(recordBoardCode);
 	}
 }
