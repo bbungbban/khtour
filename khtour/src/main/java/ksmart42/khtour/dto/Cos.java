@@ -10,11 +10,6 @@ public class Cos {
 	private String cosRegist;
 	private String cosOpen;
 	private String cosShare;
-	private String cosDestination01;
-	private String cosDestination02;
-	private String cosDestination03;
-	private String cosDestination04;
-	private String cosDestination05;
 	
 	public String getCosCode() {
 		return cosCode;
@@ -72,44 +67,11 @@ public class Cos {
 		this.cosShare = cosShare;
 	}
 	
-	public String getCosDestination01() {
-		return cosDestination01;
-	}
-	public void setCosDestination01(String cosDestination01) {
-		this.cosDestination01 = cosDestination01;
-	}
-	public String getCosDestination02() {
-		return cosDestination02;
-	}
-	public void setCosDestination02(String cosDestination02) {
-		this.cosDestination02 = cosDestination02;
-	}
-	public String getCosDestination03() {
-		return cosDestination03;
-	}
-	public void setCosDestination03(String cosDestination03) {
-		this.cosDestination03 = cosDestination03;
-	}
-	public String getCosDestination04() {
-		return cosDestination04;
-	}
-	public void setCosDestination04(String cosDestination04) {
-		this.cosDestination04 = cosDestination04;
-	}
-	public String getCosDestination05() {
-		return cosDestination05;
-	}
-	public void setCosDestination05(String cosDestination05) {
-		this.cosDestination05 = cosDestination05;
-	}
-	
 	@Override
 	public String toString() {
 		return "Cos [cosCode=" + cosCode + ", memberId=" + memberId + ", themeCategoryCode=" + themeCategoryCode
 				+ ", musCode=" + musCode + ", tripName=" + tripName + ", cosRegist=" + cosRegist + ", cosOpen="
-				+ cosOpen + ", cosShare=" + cosShare + ", cosDestination01=" + cosDestination01 + ", cosDestination02="
-				+ cosDestination02 + ", cosDestination03=" + cosDestination03 + ", cosDestination04=" + cosDestination04
-				+ ", cosDestination05=" + cosDestination05 + ", cosArea=" + cosArea +"]";
+				+ cosOpen + ", cosShare=" + cosShare + ", cosArea=" + cosArea +"]";
 	}
 	
 	

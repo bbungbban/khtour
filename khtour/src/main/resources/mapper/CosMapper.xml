@@ -13,11 +13,6 @@
 		<result column="cos_regist" 			property="cosRegist" />
 		<result column="cos_open" 				property="cosOpen" />
 		<result column="cos_share" 				property="cosShare" />
-		<result column="cos_destination01" 		property="cosDestination01" />
-		<result column="cos_destination02" 		property="cosDestination02" />
-		<result column="cos_destination03" 		property="cosDestination03" />
-		<result column="cos_destination04" 		property="cosDestination04" />
-		<result column="cos_destination05" 		property="cosDestination05" />
 	</resultMap>
 
 	<!-- 박물관 등록 SQL -->
@@ -33,11 +28,6 @@
 		,cos_regist
 		,cos_open
 		,cos_share
-		,cos_destination01
-		,cos_destination02
-		,cos_destination03
-		,cos_destination04
-		,cos_destination05
 		) VALUES (
 		sf_new_cos_code()
 		,#{memberId}
@@ -48,11 +38,6 @@
 		,#{cosRegist}
 		,#{cosOpen}
 		,#{cosShare}
-		,#{cosDestination01}
-		,#{cosDestination02}
-		,#{cosDestination03}
-		,#{cosDestination04}
-		,#{cosDestination05}
 		);
 	</insert>
 	<!-- 코드에 따른 전시회 조회 SQL -->
@@ -67,11 +52,6 @@
 			,c.cos_regist
 			,c.cos_open
 			,c.cos_share
-			,cos_destination01
-			,cos_destination02
-			,cos_destination03
-			,cos_destination04
-			,cos_destination05
 		FROM
 			tb_suggest_cos_regist AS c
 		INNER JOIN
@@ -94,11 +74,6 @@
 			,c.cos_regist
 			,c.cos_open
 			,c.cos_share
-			,cos_destination01
-			,cos_destination02
-			,cos_destination03
-			,cos_destination04
-			,cos_destination05
 		FROM
 			tb_suggest_cos_regist AS c
 		INNER JOIN
@@ -139,21 +114,6 @@
 			</if>
 			<if test="cosShare != null and cosShare != ''">
 				cos_share = #{cosShare},
-			</if>
-			<if test="cosDestination01 != null and cosDestination01 != ''">
-				cos_destination01 = #{cosDestination01},
-			</if>
-			<if test="cosDestination02 != null and cosDestination02 != ''">
-				cos_destination02 = #{cosDestination02},
-			</if>
-			<if test="cosDestination03 != null and cosDestination03 != ''">
-				cos_destination03 = #{cosDestination03},
-			</if>
-			<if test="cosDestination04 != null and cosDestination04 != ''">
-				cos_destination04 = #{cosDestination04},
-			</if>
-			<if test="cosDestination05 != null and cosDestination05 != ''">
-				cos_destination05 = #{cosDestination05},
 			</if>
 		</trim>
 		WHERE

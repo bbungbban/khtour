@@ -39,6 +39,12 @@ public class CosController {
 		return "cos/cosList";
 	}
 	
+	@GetMapping("/cosCate")
+	public String getCosCate(Model model) {
+		model.addAttribute("title", "코스 계획 관리페이지");
+		return "cos/cosCate";
+	}
+	
 	/*
 	 * 코스 계획 정보 수정 (관리자) (Post 정보 전달)
 	 */
