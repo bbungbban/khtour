@@ -4,17 +4,17 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ksmart42.khtour.mapper.MusMapper">
 	<resultMap type="Mus" id="musResultMap">
-		<id column="mus_code" property="musCode" />
-		<result column="mus_large_cate_code" property="musLargeCateCode" />
-		<result column="mus_name" property="musName" />
-		<result column="mus_addr" property="musAddr" />
-		<result column="mus_detail" property="musDetail" />
-		<result column="mus_site" property="musSite" />
-		<result column="mus_num" property="musNum" />
-		<result column="mus_disclose" property="musDisclose" />
-		<result column="mus_start" property="musStart" />
-		<result column="mus_end" property="musEnd" />
-		<result column="mus_close" property="musClose" />
+		<id column="mus_code" 					property="musCode" />
+		<result column="mus_large_cate_code" 	property="musLargeCateCode" />
+		<result column="mus_name" 				property="musName" />
+		<result column="mus_addr" 				property="musAddr" />
+		<result column="mus_detail" 			property="musDetail" />
+		<result column="mus_site" 				property="musSite" />
+		<result column="mus_num" 				property="musNum" />
+		<result column="mus_disclose" 			property="musDisclose" />
+		<result column="mus_start" 				property="musStart" />
+		<result column="mus_end" 				property="musEnd" />
+		<result column="mus_close" 				property="musClose" />
 	</resultMap>
 
 	<!-- 박물관 등록 SQL -->
