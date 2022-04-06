@@ -79,6 +79,8 @@ public interface CommunityMapper {
 	public String getNextPostCode();
 	public String getNextCommCode();
 	
+	public List<String> getFileControllerByPostCode(String postCode);
+	
 	
 	
 	

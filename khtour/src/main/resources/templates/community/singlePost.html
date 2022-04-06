@@ -22,7 +22,16 @@
 								<p class="card-text" th:text="${p.mainText}"></p>
 								
 								<div  th:if="${not #strings.isEmpty(p.pictureLink)}">
-									<img  th:src="@{${p.pictureLink}}" class="card-img" alt="...">
+									<div th:id="carouselExampleControls" class="carousel slide" data-ride="carousel"  >
+									  <div class="carousel-inner">
+									    <div class="carousel-item active">
+									      <img class="d-block w-100" th:src="@{${p.pictureLink}}">
+									    </div>
+									    <div class="carousel-item" th:each="fc: ${p.filePath}">
+									      <img class="d-block w-100" th:src="@{${fc}}">
+									    </div>
+									  </div>
+									</div>
 								</div>
 							</div>
 							<div class="card-foot p-2 text-center border-top">

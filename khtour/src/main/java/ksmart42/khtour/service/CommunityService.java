@@ -66,7 +66,13 @@ public class CommunityService {
 	*  설  명  : 전체 포스트 리스트 찾아서 반환
 	*/
 	public List<CommPost> getPostList(){
-		List<CommPost> postList = communityMapper.getPostList();		
+		List<CommPost> postList = communityMapper.getPostList();	
+		
+		for (int i=0;i<postList.size();i++)
+		{
+			String postCode = postList.get(i).getPostCode();
+			postList.get(i).setFilePath(communityMapper.getFileControllerByPostCode(postCode));
+		}
 		return postListMod(postList);
 	}
 	

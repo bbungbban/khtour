@@ -98,6 +98,15 @@
 				c.member_cnt DESC;	
 	</select>
 	
+	<select id="getFileControllerByPostCode" parameterType="String" resultType="String">
+			SELECT
+				f.file_path AS filePath
+			FROM
+				tb_file_control AS f
+			WHERE
+				f.reference_code = #{postCode};			
+	</select>
+	
 	<update id="addCommentCnt" parameterType="String">
 		UPDATE tb_comm_post
 			SET

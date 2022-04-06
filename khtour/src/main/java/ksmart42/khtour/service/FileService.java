@@ -2,6 +2,7 @@ package ksmart42.khtour.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,6 +44,12 @@ public class FileService {
 	public FileDto getFileInfoByIdx(String fileIdx) {
 		return fileMapper.getFileInfoByIdx(fileIdx);
 	}
+	
+	public int addFileControl(List<Map<String,String>> addFileControlList) {
+		fileMapper.addFileControl(addFileControlList);
+		return 0;
+	};
+	
 }
 
 

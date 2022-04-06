@@ -1,5 +1,7 @@
 package ksmart42.khtour.dto;
 
+import java.util.List;
+
 public class CommPost {
 
 	@Override
@@ -8,7 +10,8 @@ public class CommPost {
 				+ tagCode + ", title=" + title + ", regTime=" + regTime + ", mainText=" + mainText + ", readerCnt="
 				+ readerCnt + ", pictureLink=" + pictureLink + ", videoLink=" + videoLink + ", likesCnt=" + likesCnt
 				+ ", dislikesCnt=" + dislikesCnt + ", resultCnt=" + resultCnt + ", reportCnt=" + reportCnt
-				+ ", pointGain=" + pointGain + ", commTag=" + commTag + ", commentsCnt=" + commentsCnt + "]";
+				+ ", pointGain=" + pointGain + ", commTag=" + commTag + ", commentsCnt=" + commentsCnt + ", filePath="
+				+ filePath + "]";
 	}
 	public String getPostCode() {
 		return postCode;
@@ -124,10 +127,17 @@ public class CommPost {
 	private String videoLink;
 	private String likesCnt;
 	private String dislikesCnt;
+	public List<String> getFilePath() {
+		return filePath;
+	}
+	public void setFilePath(List<String> filePath) {
+		this.filePath = filePath;
+	}
 	private String resultCnt;
 	private String reportCnt;
 	private String pointGain;
 	private CommTag commTag;
 	private String commentsCnt;
+	private List<String> filePath;
 	
 }

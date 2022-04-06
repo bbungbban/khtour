@@ -1,4 +1,6 @@
 package ksmart42.khtour.controller;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +25,7 @@ import ksmart42.khtour.dto.CommTag;
 import ksmart42.khtour.dto.Community;
 import ksmart42.khtour.dto.Rule;
 import ksmart42.khtour.mapper.CommunityMapper;
+import ksmart42.khtour.mapper.FileMapper;
 import ksmart42.khtour.service.CommunityService;
 import ksmart42.khtour.service.FileService;
 
@@ -33,11 +36,14 @@ public class CommunityController {
 	private CommunityService communityService;
 	private CommunityMapper communityMapper;
 	private FileService fileService;
+	private FileMapper fileMapper;
 
-	public CommunityController(FileService fileService,CommunityService communityService,CommunityMapper communityMapper) {
+	public CommunityController(FileService fileService,CommunityService communityService,CommunityMapper communityMapper,FileMapper fileMapper) 
+	{
 		this.communityService = communityService;
 		this.communityMapper = communityMapper;
 		this.fileService = fileService;
+		this.fileMapper = fileMapper;
 	}
 	/* 작성자 : 한경수
 	*  입  력 : String 커뮤니티 이름
@@ -109,11 +115,16 @@ public class CommunityController {
 		List<CommPost> postList = communityService.getPostList();
 		//오늘뜨고있는 상위 포스트 4개 리스트
 		List<CommPost> dailyPostList = communityService.getDailyPostList();
+		
+		
+		
+		
+		
 		model.addAttribute("title","커뮤니티 대시보드");
 		model.addAttribute("communityList", communityList);
 		model.addAttribute("postList", postList);
 		model.addAttribute("dailyPostList",dailyPostList);
-	
+		
 		return "community/commDashboard";
 	}
 
@@ -227,12 +238,12 @@ public class CommunityController {
 	*/
 	@PostMapping("/addCommPost")
 	public String addCommPost(HttpServletRequest request,@RequestParam MultipartFile[] uploadfile,RedirectAttributes reAttr,CommPost commPost) {
-		System.out.println(commPost.getTagCode()+"<- commPost.getTagCode()  addCommPost /addCommPost");
+		
 		//임시 더미데이터 저장
 		commPost.setMemberId("id001");	
 		String serverName = request.getServerName();
 		String fileRealPath = "";	
-		
+		List<String> indexList =null;
 		if(!uploadfile[0].isEmpty())
 		{
 			if("localhost".equals(serverName)) 
@@ -244,17 +255,27 @@ public class CommunityController {
 			{
 				fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
 			}
-			
-			List<String> indexList = fileService.fileUpload(uploadfile, fileRealPath);
-			commPost.setPictureLink("\\" + indexList.get(0));
-			
+		
+			indexList = fileService.fileUpload(uploadfile, fileRealPath);
+			commPost.setPictureLink("\\" + indexList.get(0));	
 		}
-		
-		
-		//포스트 코드 생성후 저장
-		commPost.setPostCode(communityMapper.getNextPostCode());
 		//포스트 데이타 베이스에 저장
-		communityService.addCommPost(commPost);
+		//포스트 코드 생성후 저장
+			commPost.setPostCode(communityMapper.getNextPostCode());	
+			communityService.addCommPost(commPost);
+			List<Map<String,String>> addFileControlList = new ArrayList<Map<String,String>>();	
+			Map<String , String> addMap = null;	
+			if(uploadfile != null&&uploadfile.length>1) {
+				for(int i=1;i<uploadfile.length;i++) {
+					addMap = new HashMap<String , String>();
+					addMap.put("referenceCode", commPost.getPostCode());
+					addMap.put("filePath", "\\" + indexList.get(i));
+					addFileControlList.add(addMap);
+				}
+			}		
+			fileMapper.addFileControl(addFileControlList);	
+		
+		
 		//포스트코드 리다이렉트 정보에 저장
 		reAttr.addAttribute("postCode",commPost.getPostCode());
 		return "redirect:/post";	
@@ -293,7 +314,12 @@ public class CommunityController {
 		// 커뮤니티 이름으로 특정 커뮤니티의 규칙 리스트 찾아서 저장
 		List<Rule> ruleList = communityService.getRuleListByCommCode(commCode);
 		
+		List<String> filePathList= communityMapper.getFileControllerByPostCode(postCode);
+		
+		log.info("파일 주소 리스트: "+ filePathList);
+		
 		//모델에 정보들 저장
+		model.addAttribute("filePathList",filePathList);
 		model.addAttribute("replyList",replyList);
 		model.addAttribute("ruleList", ruleList);
 		model.addAttribute("community", community);
