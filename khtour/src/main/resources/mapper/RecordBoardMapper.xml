@@ -17,14 +17,6 @@
 		<result column="like_count" property="likeCount"/>									<!-- 좋아요 개수 -->
 		<result column="views" property="views"/>											<!-- 조회수 -->					
 	</resultMap> 
-
-	<!-- 여행 상태 resultMap -->
-	<resultMap type="PlanStatus" id="PlanStatusResultMap">
-		<id column="plan_status_code" property="planStatusCode"/>				
-		<result column="plan_status_name" property="planStatusName"/>																	
-		<result column="reg_date" property="regDate"/>					
-		<result column="plan_status_cnt" property="planStatusCnt"/>																		
-	</resultMap>
 	
 	<!-- 피드 resultMap -->
 	<resultMap type="Feed" id="feedResultMap">
@@ -37,6 +29,14 @@
 		<result column="feed_reg_date" property="regDate"/>							<!-- 문화재 분류 -->
 		<result column="feed_plan_days" property="feedPlanDays"/>					<!-- 문화재 이미지 -->
 	</resultMap> 	
+
+	<!-- 여행 상태 resultMap -->
+	<resultMap type="PlanStatus" id="PlanStatusResultMap">
+		<id column="plan_status_code" property="planStatusCode"/>				
+		<result column="plan_status_name" property="planStatusName"/>																	
+		<result column="reg_date" property="regDate"/>					
+		<result column="plan_status_cnt" property="planStatusCnt"/>																		
+	</resultMap>
 
 	<!-- 여행상태 목록 조회 SQL -->
 	<select id="getPlanStatusList"  resultMap="PlanStatusResultMap">
@@ -202,6 +202,56 @@
       	f.record_board_code = #{recordBoardCode};
    </select>
    
+ <!-- 여행계획 등록 SQL -->
+   <insert id="addFeed" parameterType="Feed">
+      INSERT INTO tb_record_board_feed
+      (   feed_code
+         ,record_board_code
+         ,feed_title
+         ,feed_idx 
+         ,feed_content 
+         ,feed_time
+         ,feed_reg_date   
+         ,feed_plan_days   
+      ) VALUES (
+         sf_new_record_board_feed_code()
+         ,#{recordBoardCode}
+         ,#{feedTitle}
+         ,#{feedIdx}
+         ,#{feedContent}
+         ,#{feedTime}
+         ,#{regDate}
+         ,#{feedPlanDays}
+      );
+   </insert>
+   
+   <!-- 문화재 수정 SQL -->
+		<update id="modifyFeed" parameterType="Feed">
+		UPDATE tb_record_board_feed
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="feedTitle != null and feedTitle != ''">
+				feed_title = #{feedTitle},
+			</if>
+			<if test="feedContent != null and feedContent != ''">
+				feed_content = #{feedContent},
+			</if>
+			<if test="feedTime != null and feedTime != ''">
+				feed_time = #{feedTime},
+			</if>
+			<if test="feedPlanDays != null and feedPlanDays != ''">
+				feed_plan_days = #{feedPlanDays},
+			</if>
+		</trim>
+		WHERE
+			feed_code = #{feedCode};
+	</update>
 	
-	
+	<!-- 문화재 정보 삭제 SQL -->
+	<delete id="removeFeed" parameterType="Feed">
+		DELETE
+		FROM
+			tb_record_board_feed
+		WHERE
+			feed_code = #{feedCode};
+	</delete>
 </mapper>
