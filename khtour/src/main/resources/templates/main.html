@@ -1,13 +1,439 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/default}">
+	layout:decorate="~{layout/default3}">
 <th:block layout:fragment="customTitle">
 	<title th:text="${title}"></title>
 </th:block>
+<th:block layout:fragment="contentsTitle">
+	<h2>main</h2>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="#">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page">추천 카테고리</li>
+		</ol>
+	</nav>
+</th:block>
 <th:block layout:fragment="customContents">
+	<link
+		th:href="@{https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/datedropper.css}"
+		rel="stylesheet">
+	<link rel="stylesheet" type="text/css"
+		th:href="@{/css/plugins/kmsCss/main.css}">
+
+	<div class="row justify-content-center mb-4">
+		<div class="col-9">
+			<div class="card">
+				<br>
+				<br>
+				<div class="container">
+					<div id="mycarousel" class="carousel slide" data-ride="carousel"
+						data-interval="2000">
+						<ol class="carousel-indicators">
+							<li data-target="#mycarousel" data-slide-to="0" class="active"></li>
+							<li data-target="#mycarousel" data-slide-to="1"></li>
+							<li data-target="#mycarousel" data-slide-to="2"></li>
+						</ol>
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+								<img
+									src="https://images.pexels.com/photos/462024/pexels-photo-462024.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+									class="d-block w-100" alt="...">
+							</div>
+							<div class="carousel-item">
+								<img
+									src="https://images.pexels.com/photos/258109/pexels-photo-258109.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+									class="d-block w-100" alt="...">
+							</div>
+							<div class="carousel-item">
+								<img
+									src="https://images.pexels.com/photos/432013/pexels-photo-432013.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+									class="d-block w-100" alt="...">
+							</div>
+						</div>
+						<a class="carousel-control-prev" href="#mycarousel" role="button"
+							data-slide="prev">
+							<div class="banner-icons">
+								<span class="fas fa-angle-left"></span>
+							</div> <span class="sr-only">Previous</span>
+						</a> <a class="carousel-control-next" href="#mycarousel" role="button"
+							data-slide="next">
+							<div class="banner-icons">
+								<span class="fas fa-angle-right"></span>
+							</div> <span class="sr-only">Next</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-3">
+			<div class="card">
+				<div class="card-title">
+					<div class="card-title-left">
+						<h4 class="card-title-text">여행 일정 만들기</h4>
+					</div>
+				</div>
+				<div class="card-body">
+					<form>
+
+						<div class="form-group">
+							<label for="startDate"> 여행 시작 </label>
+							<div class="input-group mb-3">
+								<input id="startDate" type="text"
+									class="form-control input-text">
+								<div class="input-group-append">
+									<button class="btn btn-outline-warning btn-lg" type="button">
+										<i class="fa fa-calendar"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="endDate"> 여행 종료</label>
+							<div class="input-group mb-3">
+								<input id="endDate" type="text" class="form-control input-text">
+								<div class="input-group-append">
+									<button class="btn btn-outline-warning btn-lg" type="button">
+										<i class="fa fa-calendar"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="exampleFormControlSelect1">여행 멤버</label> <select
+								class="form-control" id="exampleFormControlSelect1">
+								<option>:: 선택 ::</option>
+								<option>나홀로 여행</option>
+								<option>79친구</option>
+								<option>가족여행</option>
+								<option>패키지여행</option>
+							</select>
+						</div>
+						<div class="form-group text-center">
+							<a class="btn btn-light btn-block" href="#">여행계획 설정 페이지 바로가기</a>
+						</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-9">
+			<div class="card">
+				<div class="card-title">
+					<h2>추천 여행일정 공유기록 게시판 TOP 4</h2>
+				</div>
+				<div
+					class="container d-flex align-items-center justify-content-center flex-wrap">
+					<div class="box">
+						<div class="body">
+							<div class="imgContainer">
+								<img
+									src="https://images.pexels.com/photos/1532771/pexels-photo-1532771.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+									alt="">
+							</div>
+							<div
+								class="content d-flex flex-column align-items-center justify-content-center">
+								<div>
+									<h3 class="text-white fs-5">Post Title</h3>
+									<p class="fs-6 text-white">Lorem ipsum dolor sit amet
+										consectetur adipisicing elit. Explicabo sed cum neque, rem
+										provident ex. Laboriosam perspiciatis modi eveniet in?</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="box">
+						<div class="body">
+							<div class="imgContainer">
+								<img
+									src="https://images.pexels.com/photos/1532771/pexels-photo-1532771.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+									alt="">
+							</div>
+							<div
+								class="content d-flex flex-column align-items-center justify-content-center">
+								<div>
+									<h3 class="text-white fs-5">Post Title</h3>
+									<p class="fs-6 text-white">Lorem ipsum dolor sit amet
+										consectetur adipisicing elit. Explicabo sed cum neque, rem
+										provident ex. Laboriosam perspiciatis modi eveniet in?</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="box">
+						<div class="body">
+							<div class="imgContainer">
+								<img
+									src="https://images.pexels.com/photos/1532771/pexels-photo-1532771.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+									alt="">
+							</div>
+							<div
+								class="content d-flex flex-column align-items-center justify-content-center">
+								<div>
+									<h3 class="text-white fs-5">Post Title</h3>
+									<p class="fs-6 text-white">Lorem ipsum dolor sit amet
+										consectetur adipisicing elit. Explicabo sed cum neque, rem
+										provident ex. Laboriosam perspiciatis modi eveniet in?</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="box">
+						<div class="body">
+							<div class="imgContainer">
+								<img
+									src="https://images.pexels.com/photos/573238/pexels-photo-573238.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+									alt="">
+							</div>
+							<div
+								class="content d-flex flex-column align-items-center justify-content-center">
+								<div>
+									<h3 class="text-white fs-5">Post Title</h3>
+									<p class="fs-6 text-white">Lorem ipsum dolor sit amet
+										consectetur adipisicing elit. Explicabo sed cum neque, rem
+										provident ex. Laboriosam perspiciatis modi eveniet in?</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<a class="btn btn-light btn-block" href="#">여행일정 게시판 바로가기</a>
+			</div>
+			<div class="card">
+				<div class="card-title">
+					<h2>추천 커뮤니티 인기 포스트 TOP 4</h2>
+				</div>
+				<div
+					class="container d-flex align-items-center justify-content-center flex-wrap">
+					<div class="box">
+						<div class="body">
+							<div class="imgContainer">
+								<img
+									src="https://images.pexels.com/photos/1532771/pexels-photo-1532771.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+									alt="">
+							</div>
+							<div
+								class="content d-flex flex-column align-items-center justify-content-center">
+								<div>
+									<h3 class="text-white fs-5">Post Title</h3>
+									<p class="fs-6 text-white">Lorem ipsum dolor sit amet
+										consectetur adipisicing elit. Explicabo sed cum neque, rem
+										provident ex. Laboriosam perspiciatis modi eveniet in?</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="box">
+						<div class="body">
+							<div class="imgContainer">
+								<img
+									src="https://images.pexels.com/photos/573238/pexels-photo-573238.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+									alt="">
+							</div>
+							<div
+								class="content d-flex flex-column align-items-center justify-content-center">
+								<div>
+									<h3 class="text-white fs-5">Post Title</h3>
+									<p class="fs-6 text-white">Lorem ipsum dolor sit amet
+										consectetur adipisicing elit. Explicabo sed cum neque, rem
+										provident ex. Laboriosam perspiciatis modi eveniet in?</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="box">
+						<div class="body">
+							<div class="imgContainer">
+								<img
+									src="https://images.pexels.com/photos/573238/pexels-photo-573238.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+									alt="">
+							</div>
+							<div
+								class="content d-flex flex-column align-items-center justify-content-center">
+								<div>
+									<h3 class="text-white fs-5">Post Title</h3>
+									<p class="fs-6 text-white">Lorem ipsum dolor sit amet
+										consectetur adipisicing elit. Explicabo sed cum neque, rem
+										provident ex. Laboriosam perspiciatis modi eveniet in?</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="box">
+						<div class="body">
+							<div class="imgContainer">
+								<img
+									src="https://images.pexels.com/photos/573238/pexels-photo-573238.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+									alt="">
+							</div>
+							<div
+								class="content d-flex flex-column align-items-center justify-content-center">
+								<div>
+									<h3 class="text-white fs-5">Post Title</h3>
+									<p class="fs-6 text-white">Lorem ipsum dolor sit amet
+										consectetur adipisicing elit. Explicabo sed cum neque, rem
+										provident ex. Laboriosam perspiciatis modi eveniet in?</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<a class="btn btn-light btn-block" href="#">커뮤니티 페이지 바로가기</a>
+			</div>
+		</div>
+		<div class="col-3">
+			<div class="card">
+				<div class="card-title">
+					<div class="card-title-left">
+						<h4 class="card-title-text">Weather today</h4>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="d-flex mb-4">
+						<i class="wi wi-day-showers display-3 text-warning"></i>
+						<div class="ml-auto ">
+							<h2 class="display-4">30°</h2>
+							<span>San francisco, USA </span>
+						</div>
+					</div>
+					<p class="mb-5">Officia nam sed possimus repellat et, assumenda
+						corporis velit The secret of getting ahead is getting started.</p>
+					<div class="row mb-4">
+						<div class="col text-center mb-2">
+							<h3 class="mb-1">31°</h3>
+							<span>London UK</span>
+						</div>
+						<div class="col text-center mb-2">
+							<h3 class="mb-1">02°</h3>
+							<span>USA</span>
+						</div>
+						<div class="col text-center mb-2">
+							<h3 class="mb-1">01°</h3>
+							<span>Canada</span>
+						</div>
+					</div>
+					<a class="btn btn-light btn-block mt-4" href="#">다른 도시 날씨 보기</a>
+				</div>
+			</div>
+
+			<div class="card">
+				<div class="card-title">
+					<div class="card-title-left">
+						<h4 class="card-title-text">4월 추천 코스 ( 지역: 경주여행 )</h4>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="activity">
+						<div class="activity-item">
+							<div class="date">Sep 25</div>
+							<div class="text">
+								Responded to need <a href="single-need.php">“Volunteer
+									opportunity”</a>
+							</div>
+						</div>
+						<div class="activity-item">
+							<div class="date">Sep 24</div>
+							<div class="text">Added an interest “Volunteer Activities”</div>
+						</div>
+						<div class="activity-item">
+							<div class="date">Sep 23</div>
+							<div class="text">
+								Joined the group <a href="single-group.php">“Boardsmanship
+									Forum”</a>
+							</div>
+						</div>
+						<div class="activity-item">
+							<div class="date">Sep 21</div>
+							<div class="text">
+								Responded to need <a href="single-need.php">“In-Kind
+									Opportunity”</a>
+							</div>
+						</div>
+						<div class="activity-item">
+							<div class="date">Sep 18</div>
+							<div class="text">
+								Created need <a href="single-need.php">“Volunteer
+									Opportunity”</a>
+							</div>
+						</div>
+						<div class="activity-item">
+							<div class="date">Sep 24</div>
+							<div class="text">Added an interest “Volunteer Activities”</div>
+						</div>
+						<div class="activity-item">
+							<div class="date">Sep 17</div>
+							<div class="text">
+								Attending the event <a href="single-event.php">“Some New
+									Event”</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row"></div>
+
 </th:block>
 <th:block layout:fragment="customBodyScript">
+	<script
+		th:src="@{https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/datedropper.js}"></script>
+	<!-- 출발 날짜 datepciker 자바스크립트 시작 -->
+	<script>
+		$(document).ready(function() {
+
+			$("#startDate").dateDropper({
+				animate : true,
+				init_animation : "fadein",
+				format : "m/d/Y",
+				lang : "en",
+				lock : false,
+				minYear : 1970,
+				yearsRange : 10,
+
+				//CSS PRIOPRIETIES
+				dropPrimaryColor : "#01CEFF",
+				dropTextColor : "#333333",
+				dropBackgroundColor : "#FFFFFF",
+				dropBorder : "1px solid #08C",
+				dropBorderRadius : 8,
+				dropShadow : "0 0 10px 0 rgba(0, 136, 204, 0.45)",
+				dropWidth : 124,
+				dropTextWeight : 'bold'
+			});
+		});
+	</script>
+	<!-- 출발 날짜 datepciker 자바스크립트 종료 -->
+	<!-- 도착 날짜 datepciker 자바스크립트 시작 -->
+	<script>
+		$(document).ready(function() {
+
+			$("#endDate").dateDropper({
+				animate : true,
+				init_animation : "fadein",
+				format : "m/d/Y",
+				lang : "en",
+				lock : false,
+				minYear : 1970,
+				yearsRange : 10,
+
+				//CSS PRIOPRIETIES
+				dropPrimaryColor : "#01CEFF",
+				dropTextColor : "#333333",
+				dropBackgroundColor : "#FFFFFF",
+				dropBorder : "1px solid #08C",
+				dropBorderRadius : 8,
+				dropShadow : "0 0 10px 0 rgba(0, 136, 204, 0.45)",
+				dropWidth : 124,
+				dropTextWeight : 'bold'
+			});
+		});
+	</script>
+	<!-- 도착 날짜 datepciker 자바스크립트 종료 -->
+
 	<!-- PRISM -->
 	<script th:src="@{/js/prism/prism.js}"></script>
 	<!-- custom -->
