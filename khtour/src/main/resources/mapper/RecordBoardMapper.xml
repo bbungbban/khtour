@@ -25,6 +25,18 @@
 		<result column="reg_date" property="regDate"/>					
 		<result column="plan_status_cnt" property="planStatusCnt"/>																		
 	</resultMap>
+	
+	<!-- 피드 resultMap -->
+	<resultMap type="Feed" id="feedResultMap">
+		<id column="feed_code" property="feedCode"/>								<!-- 문화재 코드 -->
+		<result column="record_board_code" property="recordBoardCode"/>				<!-- 문화재 명 -->
+		<result column="feed_title" property="feedTitle"/>							<!-- 문화재 한문명 -->
+		<result column="feed_idx" property="feedIdx"/>								<!-- 문화재 소재지 -->
+		<result column="feed_content" property="feedContent"/>						<!-- 문화재 시대명 -->
+		<result column="feed_time" property="feedTime"/>							<!-- 문화재 지정일 -->
+		<result column="feed_reg_date" property="regDate"/>							<!-- 문화재 분류 -->
+		<result column="feed_plan_days" property="feedPlanDays"/>					<!-- 문화재 이미지 -->
+	</resultMap> 	
 
 	<!-- 여행상태 목록 조회 SQL -->
 	<select id="getPlanStatusList"  resultMap="PlanStatusResultMap">
@@ -119,6 +131,15 @@
 	
 	<!-- 여행게시글 정보 수정 SQL -->
 	</insert>
+	
+	<update id="updateViewsByCode" parameterType="String">
+	UPDATE tb_record_board
+	SET
+		views = views+1
+	WHERE
+		record_board_code = #{recordBoardCode};
+	</update>
+	
 		<update id="modifyRecordBoard" parameterType="RecordBoard">
 		UPDATE tb_record_board
 		<trim prefix="SET" suffixOverrides=",">
@@ -162,5 +183,25 @@
 		WHERE
 			record_board_code = #{recordBoardCode};
 	</delete>
+	
+	
+   <!-- 피드 목록 조회 SQL -->
+   <select id="getFeedListByRecordBoardCode" parameterType="String" resultMap="feedResultMap">
+      SELECT
+        f.feed_code
+         ,f.record_board_code
+         ,f.feed_title
+         ,f.feed_idx
+         ,f.feed_content  
+         ,f.feed_time    
+         ,f.feed_reg_date
+         ,f.feed_plan_days     
+      FROM
+        tb_record_board_feed AS f
+      where
+      	f.record_board_code = #{recordBoardCode};
+   </select>
+   
+	
 	
 </mapper>

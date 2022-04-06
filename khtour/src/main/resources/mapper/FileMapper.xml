@@ -31,6 +31,20 @@
 		</foreach>
 	</insert>
 	
+	<insert id="addFileControl" parameterType="list">
+		INSERT INTO tb_file_control
+		(
+			 reference_code
+			,file_idx
+		)VALUES
+		<foreach collection="list" item="data" separator=",">
+		( 
+			 #{data.referenceCode}
+			,#{data.fileIdx}
+		)
+		</foreach>
+	</insert>
+	
 	<select id="getFileList" resultMap="fileResultMap">
 		SELECT
 			 file_idx

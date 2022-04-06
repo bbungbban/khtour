@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import ksmart42.khtour.dto.Feed;
 import ksmart42.khtour.dto.PlanStatus;
 import ksmart42.khtour.dto.RecordBoard;
 
@@ -31,5 +32,11 @@ public interface RecordBoardMapper {
 	
 	// 여행상태 목록조회(여행계획 코드)
 	public PlanStatus getPlanStatusByCode(String planStatusCode);
+	
+	// 피드 목록조회(게시글 코드)
+	public List<Feed> getFeedListByRecordBoardCode(String recordBoardCode);
+
+	//조회수 업데이트
+	public int updateViewsByCode(String recordBoardCode);
 	
 }

@@ -55,7 +55,7 @@
 											</div>
 											<div class="modal-body p-5">
 												<form id="addHeritageForm"
-													th:action="@{/heritage/heritageListByItem}" method="post">
+													th:action="@{/heritage/heritageListByItem}" method="post" enctype="multipart/form-data">
 													<div class="form-group">
 														<label for="heritageName"> 문화재 명 </label> <input
 															type="text" class="form-control" id="heritageName"
@@ -117,7 +117,7 @@
 													<div class="form-group">
 														<label for="heritageImage">이미지 선택</label> <input
 															type="file" id="heritageImage" class="form-control"
-															name="heritageImage" required="">
+															name="heritageImageFiles" required="">
 													</div>
 													<div class="form-group">
 														<label for="heritageDetail">문화재 상세 설명 문화재 설명</label>
@@ -237,7 +237,7 @@
 							th:each="l : ${heritageList}">
 							<div class="card h-80">
 								<div class="embed-responsive embed-responsive-4by3">
-									<img th:src="@{/images/heritage/서울 숭례문.jpg}"
+									<img th:src="@{${#strings.isEmpty(l.heritageImagePath) ? '/images/heritage/서울 숭례문.jpg': '/' + #strings.replace(l.heritageImagePath,'\','/')}}"
 										class="card-img-top h-10 embed-responsive-item" alt="...">
 								</div>
 								<div class="card-body">
