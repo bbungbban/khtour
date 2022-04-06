@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ksmart42.khtour.mapper.PointMapper">
+	<resultMap type="Point" 			id="pointResultMap">
+		<id column="point_code" 		property="pointCode" />
+		<result column="ch_mus_code" 	property="chMusCode" />
+		<result column="point_cate" 	property="pointCate" />
+		<result column="point_name" 	property="pointName" />
+		<result column="point_start" 	property="pointStart" />
+		<result column="point_end"	 	property="pointEnd" />
+		<result column="point_con"		property="pointCon" />
+		<result column="point_current" 	property="pointCurrent" />
+	</resultMap>
+
+	<!-- 전시회 등록 SQL -->
+	<insert id="addPoint" parameterType="Point">
+		INSERT INTO
+		tb_point
+		( point_code
+		,ch_mus_code
+		,point_cate
+		,point_name
+		,point_start
+		,point_end
+		,point_con
+		,point_current
+		) VALUES (
+		sf_new_point_code()
+		,#{chMusCode}
+		,#{pointCate}
+		,#{pointName}
+		,#{pointStart}
+		,#{pointEnd}
+		,#{pointCon}
+		,#{pointCurrent}
+		);
+	</insert>
+
+	<!-- 코드에 따른 전시회 조회 SQL -->
+	<select id="getPointByCode" parameterType="String" resultMap="pointResultMap">
+		SELECT
+		 s.point_code
+		,s.ch_mus_code
+		,s.point_cate
+		,s.point_name
+		,s.point_start
+		,s.point_end
+		,s.point_con
+		,s.point_current
+		FROM
+			tb_point AS s
+		WHERE
+			point_code = #{pointCode};
+	
+	</select>
+	
+	<!-- 전시회 목록 조회 SQL -->
+	<select id="getPointList" resultMap="pointResultMap">
+		SELECT
+		 s.point_code
+		,s.ch_mus_code
+		,s.point_cate
+		,s.point_name
+		,s.point_start
+		,s.point_end
+		,s.point_con
+		,s.point_current
+		FROM
+		tb_point AS s;
+	</select>
+	
+	<!-- 전시회 수정 SQL -->
+	<update id="modifyPoint" parameterType="Point">
+		UPDATE tb_point
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="chMusCode != null and chMusCode != ''">
+				ch_mus_code = #{chMusCode},
+			</if>		
+			<if test="pointCate != null and pointCate != ''">
+				point_cate = #{pointCate},
+			</if>		
+			<if test="pointName != null and pointName != ''">
+				point_name = #{pointName},
+			</if>		
+			<if test="pointStart != null and pointStart != ''">
+				point_start = #{pointStart},
+			</if>		
+			<if test="pointEnd != null and pointEnd != ''">
+				point_end = #{pointEnd},
+			</if>		
+			<if test="pointCon != null and pointCon != ''">
+				point_con = #{pointCon},
+			</if>		
+			<if test="pointCurrent != null and pointCurrent != ''">
+				point_current = #{pointCurrent},
+			</if>		
+		</trim>
+		WHERE
+			point_code = #{pointCode};
+	</update>
+	
+	<!-- 전시회 정보 삭제 SQL -->
+	<delete id="removePoint" parameterType="String">
+		DELETE
+		FROM
+			tb_point
+		WHERE
+			point_code = #{pointCode};
+	</delete>
+</mapper>
