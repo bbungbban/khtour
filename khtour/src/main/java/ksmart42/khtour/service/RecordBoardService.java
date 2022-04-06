@@ -88,4 +88,29 @@ public class RecordBoardService {
 	public List<Feed> getFeedListByRecordBoardCode(String recordBoardCode) {
 		return recordBoardMapper.getFeedListByRecordBoardCode(recordBoardCode);
 	}
+	
+	/**
+	 * 피드 등록
+	 */
+	public void addFeed(Feed feed) {
+		recordBoardMapper.addFeed(feed);
+	}
+
+	/**
+	 * 피드 수정
+	 */
+	public int modifyFeed(Feed feed) {
+		return recordBoardMapper.modifyFeed(feed);
+	}
+	
+	/**
+	 * 피드 삭제
+	 */
+	public int removeFeed(String feedCode) {
+		int result = recordBoardMapper.removeRecordBoard(feedCode);
+		
+		result += recordBoardMapper.removeRecordBoard(feedCode);
+		
+		return result;
+	}
 }
