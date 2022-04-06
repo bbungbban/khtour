@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,8 @@ public class MemberController {
 	
 	
 	private static final Logger log = LoggerFactory.getLogger(MemberController.class);
+	@Autowired
+	
 	
 	//DI 의존성 주입 생성자 메소드 주입방식
 	private MemberService memberService;
