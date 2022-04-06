@@ -1,5 +1,8 @@
 package ksmart42.khtour.dto;
 
+import java.util.Objects;
+import java.util.StringJoiner;
+
 public class Plan {
 		// plan_code, plan_name, start_time, end_time, solo_party, plan_materials, plan_expenses , plan_location
 	
@@ -12,6 +15,42 @@ public class Plan {
 	private String planMaterials;
 	private String planExpenses;
 	private String planLocation;
+	/*
+	 * startDate dd/mm/y -> ymmdd로 형식 변환 코드
+	 */
+	private String newStartDateFormat(String startDate) {
+		if(Objects.nonNull(startDate) && !startDate.isEmpty() && startDate.indexOf("/") > -1) {
+			String[] dateArray = startDate.split("/");
+			if(dateArray.length == 3) {				
+				StringJoiner ji = new StringJoiner("");
+				for(int i=dateArray.length - 1; i >= 0; i--) {
+					ji.add(dateArray[i]);
+				}
+				startDate = ji.toString();
+			}
+		}
+		return startDate;	
+	}
+	/*
+	 * endDate: dd/mm/y -> ymmdd로 형식 변환 코드
+	 */
+	private String newEndDateFormat(String endDate) {
+		if(Objects.nonNull(endDate) && !endDate.isEmpty() && endDate.indexOf("/") > -1) {
+			String[] dateArray = endDate.split("/");
+			if(dateArray.length == 3) {				
+				StringJoiner ji = new StringJoiner("");
+				for(int i=dateArray.length - 1; i >= 0; i--) {
+					ji.add(dateArray[i]);
+				}
+				endDate = ji.toString();
+			}
+		}
+		return endDate;	
+	}
+	
+	
+	
+	
 	public String getPlanCode() {
 		return planCode;
 	}
@@ -31,13 +70,13 @@ public class Plan {
 		this.planName = planName;
 	}
 	public String getStartDate() {
-		return startDate;
+		return newStartDateFormat(startDate);
 	}
 	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 	public String getEndDate() {
-		return endDate;
+		return newEndDateFormat(endDate);
 	}
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;

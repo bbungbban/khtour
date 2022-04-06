@@ -39,4 +39,16 @@ public interface RecordBoardMapper {
 	//조회수 업데이트
 	public int updateViewsByCode(String recordBoardCode);
 	
+	
+	// 피드 등록
+	public int addFeed(Feed feed);
+	
+	// 피드 수정
+	public int modifyFeed(Feed feed);
+	
+	// 피드 삭제
+	public int removeFeed(String feedCode);
+	
+	
+	
 }

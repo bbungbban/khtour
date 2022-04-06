@@ -10,7 +10,7 @@
 	<h2>문화재 검색(관리자)</h2>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a th:href="@{/main}">Home</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
 			<li class="breadcrumb-item active" aria-current="page">문화재
 				검색(관리자)</li>
 		</ol>
@@ -18,9 +18,18 @@
 	<!-- 페이지 타이틀 종료 -->
 </th:block>
 <th:block layout:fragment="customContents">
+<link th:href="@{https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/datedropper.css}" rel="stylesheet">
 <style>
 .custom-control-inline{width:10%;font-size:14px;}
 .btn-outline-danger:hover{background-color:#cb4946 !important;}
+
+/* datepicker 버튼 색 */
+.btn-outline-warning {
+    color: #F44336 !important;
+    background-color: #fff;
+    background-image: none;
+    border-color: #ed433e !important
+	}
 </style>
 	<!-- 첫번째 Row 시작 -->
 	<div class="row justify-content-center">
@@ -95,7 +104,7 @@
 													<div class="form-group">
 														<label for="heritageEra"> 문화재 시대명 </label> <input
 															type="text" class="form-control" id="heritageEra"
-															name="heritageEra" placeholder="시대명" required="">
+															name="heritageEra" placeholder="예) 조선 태조 7년(1398)" required="">
 													</div>
 													<div class="form-group">
 														<label for="heritageArea"> 문화재 수량/면적 </label> <input
@@ -103,15 +112,20 @@
 															name="heritageArea" placeholder="수량/면적" required="">
 													</div>
 													<div class="form-group">
-														<label for="heritageDesignation">문화재 지정일</label> <input
-															type="text" class="date form-control"
-															id="heritageDesignation" name="heritageDesignation"
-															maxlength="10" placeholder="0000/00/00" required="">
+														<label for="heritageDesignation"> 등록일자</label>
+														<div class="input-group mb-3">
+															<input id="heritageDesignation" type="text" class="form-control input-text" name="heritageDesignation">
+															<div class="input-group-append">
+																<button class="btn btn-outline-warning btn-lg" type="button">
+																	<i class="fa fa-calendar"></i>
+																</button>
+															</div>
+														</div>
 													</div>
 													<div class="form-group">
 														<label for="heritageClassification"> 중분류 </label> <input
 															type="text" class="form-control"
-															id="heritageClassification" name="heritageClassification"
+															id="heritageClassification" name="heritageClassification" placeholder="예) 유적건조물 / 정치국방 / 성 / 성곽시설"
 															required="">
 													</div>
 													<div class="form-group">
@@ -310,6 +324,31 @@
 	<!-- sweetalert2 custom -->
 	<script th:src="@{/js/sweetalert2/sweetalert2-custom.js}"
 		aria-hidden="true"></script>
+		<script th:src="@{https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/datedropper.js}"></script>
+	<!-- 등록일 datepciker-->
+	<script>
+		$(document).ready(function() {
+			$("#heritageDesignation").dateDropper({
+				animate : true,
+				init_animation : "fadein",
+				format : "y-mm-dd",
+				lang : "ko",
+				lock : false,
+				minYear : 1970,
+				yearsRange : 10,
+
+				//CSS PRIOPRIETIES
+				dropPrimaryColor : "#01CEFF",
+				dropTextColor : "#333333",
+				dropBackgroundColor : "#FFFFFF",
+				dropBorder : "1px solid #08C",
+				dropBorderRadius : 8,
+				dropShadow : "0 0 10px 0 rgba(0, 136, 204, 0.45)",
+				dropWidth : 124,
+				dropTextWeight : 'bold'
+			});
+		});
+	</script>
 </th:block>
 <!-- javascript 삽입 종료 -->
 </html>

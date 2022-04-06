@@ -37,21 +37,22 @@
 					</div>
 				</div>
 				<div class="card-body" data-select2-id="5">
-					<form id="addPlanForm" th:action="@{/plan/planInsert}"
+					<form id="modifyPlanForm" th:action="@{/plan/planModify}"
 						method="post">
+
 						<div class="form-group">
 							<label for="planName">여행 이름</label> <input type="text"
-								class="form-control" id="planName" name="planName" placeholder="예)신라시대 2박3일 여행" required="">
+								class="form-control" id="planName" name="planName" th:value="${plan.planName}">
 						</div>
 						<div class="form-group">
 							<label for="planLocation">여행 지역</label> <input type="text"
-								class="form-control inputwt" id="planLocation" placeholder="예)경주"
-								name="planLocation">
+								class="form-control inputwt" id="planLocation" 
+								name="planLocation" th:value="${plan.planLocation}">
 						</div>
 						<div class="form-group">
 							<label for="startDate"> 여행 시작 </label>
 							<div class="input-group mb-3">
-								<input id="startDate" type="text" class="form-control input-text">
+								<input id="startDate" type="text" class="form-control input-text" th:value="${plan.startDate}">
 								<div class="input-group-append">
 									<button class="btn btn-outline-warning btn-lg" type="button">
 										<i class="fa fa-calendar"></i>
@@ -63,7 +64,7 @@
 						<div class="form-group">
 							<label for="endDate"> 여행 종료</label>
 							<div class="input-group mb-3">
-								<input id="endDate" type="text" class="form-control input-text">
+								<input id="endDate" type="text" class="form-control input-text" th:value="${plan.endDate}">
 								<div class="input-group-append">
 									<button class="btn btn-outline-warning btn-lg" type="button">
 										<i class="fa fa-calendar"></i>
@@ -73,10 +74,10 @@
 						</div>
 						<div class="form-group">
 							<label for="planMaterials">여행 준비물</label> <input type="text"
-								class="form-control" id="planMaterials" name="planMaterials" placeholder="예)현금, 운동화, 카메라"
+								class="form-control" id="planMaterials" name="planMaterials" th:value="${plan.planMaterials}"
 								required="">
 						</div>
-						<div class="form-group">
+<!-- 						<div class="form-group">
 							<label for="">여행</label> <select
 								class="form-control" name="">
 								<option>:: 여행 일행 유형::</option>
@@ -85,18 +86,19 @@
 								<option value="">애인</option>
 								<option value="">가족</option>
 							</select>
-						</div>
+						</div> -->
 						<div class="form-group">
 							<label for="soloParty">여행 인원수 </label> <input type="text"
-								class="form-control" id="soloParty" name="soloParty" required="" placeholder="예) 5인">
+								class="form-control" id="soloParty" name="soloParty" required="" th:value="${plan.soloParty}">
 						</div>
 						<div class="form-group">
 							<label for="planExpenses">여행 총 경비</label> <input type="text"
-								class="form-control" id="planExpenses" name="planExpenses" placeholder="예) 300,000"
+								class="form-control" id="planExpenses" name="planExpenses" th:value="${plan.planExpenses}"
 								required="">
 						</div>
-						<button type="button" id="addPlanBtn" class="btn btn-primary">정보수정 완료	</button>
-						<button type="button" class="btn btn-danger">취소</button>
+						<button type="submit" id="addPlanBtn" class="btn btn-primary">정보수정 완료	</button>
+						<a type="button" class="btn btn-danger"
+							th:href="@{/plan/planListSt}">취소</a>
 					</form>
 				</div>
 			</div>

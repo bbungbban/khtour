@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ksmart42.khtour.dto.Feed;
 import ksmart42.khtour.dto.PlanStatus;
@@ -87,14 +88,6 @@ public class RecordBoardController {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
 /////////////////////////////////////////////////////	
 	
 	
@@ -137,7 +130,9 @@ public class RecordBoardController {
 		
 		return "recordBoard/recordBoardInsert";
 	}
+
 	
+///////////////////////////////////////////////////////////// feed ////////////////////////
 	/*
 	 * 문화재 상세페이지(코드 번호에 따른) 조회
 	 */
@@ -162,5 +157,18 @@ public class RecordBoardController {
 		
 		return "/recordBoard/feedList";
 	}
+	
+	/*
+	 * 여행 계획 등록(Post 정보 전달)
+	 */
+	@PostMapping("/feedList")
+	public String addFeed(Feed feed, RedirectAttributes attr) {
+		
+		recordBoardService.addFeed(feed);
+		System.out.println( "-----------------------" + feed.getRecordBoardCode() );
+		attr.addAttribute("recordBoardCode", feed.getRecordBoardCode());
+		return "redirect:/recordBoard/feedList";
+	}
+
 	
 }

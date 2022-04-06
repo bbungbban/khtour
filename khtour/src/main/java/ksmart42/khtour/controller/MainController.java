@@ -41,10 +41,12 @@ public class MainController {
 	@GetMapping("/")
 	public String main(Model model) {
 		
-		model.addAttribute("title", "한국 문화재투어");
+		model.addAttribute("title", "메인 화면 이동");
 		
 		return "main";
 	}
+	
+	
 	@GetMapping("/file/upload")
 	public String archiveUpload(Model model) {
 		

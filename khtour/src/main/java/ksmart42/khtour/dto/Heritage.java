@@ -1,5 +1,8 @@
 package ksmart42.khtour.dto;
 
+import java.util.Objects;
+import java.util.StringJoiner;
+
 public class Heritage {
 	//heritage_code 
 	//member_id 
@@ -32,6 +35,24 @@ public class Heritage {
 	private String  heritageArea;
 	
 	private String  heritageImagePath;
+	
+	/*
+	 * heritageDesignation dd/mm/y -> ymmdd로 형식 변환 코드
+	 */
+	private String newHeritageDesignationFormat(String heritageDesignation) {
+		if(Objects.nonNull(heritageDesignation) && !heritageDesignation.isEmpty() && heritageDesignation.indexOf("/") > -1) {
+			String[] dateArray = heritageDesignation.split("/");
+			if(dateArray.length == 3) {				
+				StringJoiner ji = new StringJoiner("");
+				for(int i=dateArray.length - 1; i >= 0; i--) {
+					ji.add(dateArray[i]);
+				}
+				heritageDesignation = ji.toString();
+			}
+		}
+		return heritageDesignation;	
+	}
+	
 	
 	public String getHeritageImagePath() {
 		return heritageImagePath;
@@ -76,7 +97,7 @@ public class Heritage {
 		this.heritageEra = heritageEra;
 	}
 	public String getHeritageDesignation() {
-		return heritageDesignation;
+		return newHeritageDesignationFormat(heritageDesignation);
 	}
 	public void setHeritageDesignation(String heritageDesignation) {
 		this.heritageDesignation = heritageDesignation;

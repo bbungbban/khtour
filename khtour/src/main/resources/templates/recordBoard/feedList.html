@@ -28,74 +28,73 @@
 
 /* 이미지 앨범 이동 */
 .btn {
-    border-radius: 5px;
-    margin: 5px;
-  }
+	border-radius: 5px;
+	margin: 5px;
+}
 
 .blog-info {
 	height: 200px;
 }
 
 .set-p {
-    padding-left: 15px;
-    padding-right: 15px
+	padding-left: 15px;
+	padding-right: 15px
 }
 
-.fa-angle-left,
-.fa-angle-right {
-    position: absolute;
-    color: #757575;
-    font-size: 80px;
-    top: 50%;
-    cursor: pointer
+.fa-angle-left, .fa-angle-right {
+	position: absolute;
+	color: #757575;
+	font-size: 80px;
+	top: 50%;
+	cursor: pointer
 }
 
 #left {
-    left: 2%
+	left: 2%
 }
 
 #left:hover {
-    color: #E0E0E0
+	color: #E0E0E0
 }
 
 #right {
-    right: 2%
+	right: 2%
 }
 
 #right:hover {
-    color: #E0E0E0
+	color: #E0E0E0
 }
 
 .image {
-    object-fit: cover;
-    width: 100%;
-    height: 280px;
-    display: none
+	object-fit: cover;
+	width: 100%;
+	height: 280px;
+	display: none
 }
 
 .image.active {
-    display: block
+	display: block
 }
 
 .rating {
-    background-color: #3D5AFE;
-    color: #fff;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px
+	background-color: #3D5AFE;
+	color: #fff;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px
 }
 
 .grade {
-    font-size: 18px
+	font-size: 18px
 }
 
 .line {
-    height: 1px;
-    background-color: #E0E0E0
+	height: 1px;
+	background-color: #E0E0E0
 }
 
 .text-sm {
-    font-size: 14px
+	font-size: 14px
 }
 </style>
 	<div class="row">
@@ -123,7 +122,8 @@
 		<div class="col-12 col-md-4 col-lg-3">
 			<!-- Component -->
 			<div class="card">
-				<div class="card-title" th:text="'작성자 아이디 : ' + ${recordBoard.memberId}"></div>
+				<div class="card-title"
+					th:text="'작성자 아이디 : ' + ${recordBoard.memberId}"></div>
 				<hr class="my-2">
 				<div class="card-body">
 					<div class="d-flex justify-content-center">
@@ -134,7 +134,8 @@
 					</div>
 					<div class="text-center my-6">
 						<!-- Title -->
-						<a href="#" class="d-block h5 mb-0">닉네임</a> <!-- th:text="${recordBoardList.memberId.getMemberUserName()}" -->
+						<a href="#" class="d-block h5 mb-0">닉네임</a>
+						<!-- th:text="${recordBoardList.memberId.getMemberUserName()}" -->
 						<!-- Subtitle -->
 						<span class="d-block text-sm text-muted">이메일@company.com</span>
 						<div style="text-align: center; padding: 10px">
@@ -183,16 +184,75 @@
 						class="fa fa-angle-right" id="right"></span>
 				</div>
 			</div>
-			<div class="card text-center">
-				<div class="card-title">
-					<h4>피드 등록</h4>
+			<div class="card">
+				<button type="button" class="btn btn-primary" data-toggle="modal"
+					data-target=".bd-example-modal-lg">
+					<i class="feather icon-plus"></i>피드 등록
+				</button>
+				<!-- 모달 시작 -->
+				<div class="modal fade bd-example-modal-lg" tabindex="-1"
+					role="dialog" aria-labelledby="exampleModalLabel"
+					aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">
+									<i class="feather icon-plus"></i> 상세정보 등록
+								</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body p-5">
+								<form id="addFeedForm"
+									th:action="@{/recordBoard/feedList}" method="post"
+									enctype="multipart/form-data">
+									
+									<input type="hidden" name="recordBoardCode" th:value="${param.recordBoardCode}" >
+									
+									<div class="form-group">
+										<label for="feedTitle">피드 제목</label> <input
+											type="text" class="form-control" name="feedTitle" placeholder="피드 제목을 입력해주세요.">
+									</div>
+
+									<div class="form-group">
+										<label for="feedPlanDays">피드 일자</label> <input
+											type="text" placeholder="피드 시간을 입력해주세요."
+											class="form-control">
+									</div>
+									<div class="form-group">
+										<label for="feedTime">피드 시간</label>
+										<div class="input-group bootstrap-timepicker timepicker">
+											<input id="timepicker1" type="text"
+												class="form-control input-small" ><span
+												class="input-group-prepend"><i class="fa fa-clock-o"></i></span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="exampleFormControlSelect1">이미지선택</label>
+										<div class="custom-file">
+											<input type="file" class="custom-file-input" id="customFile">
+											<label class="custom-file-label" for="customFile">이미지
+												파일</label>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="feedContent">피드 내용</label>
+										<textarea class="form-control" id="heritageDetail"
+											name="feedContent" rows="3" required=""></textarea>
+									</div>
+
+									<button type="button" id="addFeedBtn"
+										class="btn btn-primary">등록</button>
+									<button type="button" class="btn btn-danger"
+										data-dismiss="modal">취소</button>
+								</form>
+							</div>
+						</div>
+					</div>
 				</div>
-				<hr class="my-2">
-				<div class="card-body">
-					<a th:href="@{/recordBoard/recordBoardImageInsert}" type="button"
-						class="btn btn-primary"> 피드 이미지 등록
-					</a>
-				</div>
+				<!-- 모달 끝 -->
 			</div>
 		</div>
 		<div class="col-12 col-md-8 col-lg-9">
@@ -200,33 +260,38 @@
 				<div class="card-title">
 					<h3>게시글</h3>
 				</div>
+				<hr class="my-2">
+				<div class="card-body">
+					<h1 class="mb-8" th:text="${recordBoard.recordBoardName}"></h1>
+					<p th:text="${recordBoard.content}"></p>
+				</div>
+				<div class="card-footer mb-4 pt-8">
 					<hr class="my-2">
-					<div class="card-body">	
-							<h1 class="mb-8" th:text="${recordBoard.recordBoardName}"></h1>
-							<p th:text="${recordBoard.content}"></p>
-					</div>
-					<div class="card-footer mb-4 pt-8">
-						<hr class="my-2">
-						<p class="pt-4" th:text="'여행 시작일 : ' + ${recordBoard.startDate} + ' | ' + '여행 종료일 : ' + ${recordBoard.endDate} + ' | ' + '여행 유형 : 나홀로 여행'" ></p>
-						<p th:text="'게시글 등록 날짜 : ' + ${recordBoard.regDate} + ' | ' + '조회수 : ' + ${recordBoard.views}"></p>
-					</div>
+					<p class="pt-4"
+						th:text="'여행 시작일 : ' + ${recordBoard.startDate} + ' | ' + '여행 종료일 : ' + ${recordBoard.endDate} + ' | ' + '여행 유형 : 나홀로 여행'"></p>
+					<p
+						th:text="'게시글 등록 날짜 : ' + ${recordBoard.regDate} + ' | ' + '조회수 : ' + ${recordBoard.views}"></p>
+				</div>
 			</div>
 
 
 			<div class="card">
 				<div class="card-title">
 					<div class="card-title-left">
-						<h4 class="card-title-text" th:text="${recordBoard.memberId} + ' 님의 피드'"></h4>
+						<h4 class="card-title-text"
+							th:text="${recordBoard.memberId} + ' 님의 피드'"></h4>
 					</div>
 				</div>
 				<hr class="my-2">
 				<div class="card-body">
 					<ul class="timeline-left">
-						<li th:if="${not #lists.isEmpty(feedList)}" th:each="f: ${feedList}">
+						<li th:if="${not #lists.isEmpty(feedList)}"
+							th:each="f: ${feedList}">
 							<div class="time">
-								<span th:text="${f.feedTime}"></span> <span>등록날짜: 2021-21-32</span>
+								<span th:text="${f.feedTime}"></span> <span>등록날짜:
+									2021-21-32</span>
 							</div>
-							<div class="icon bg-danger">
+							<div class="icon bg-primary">
 								<i class="zmdi zmdi-camera"></i>
 							</div>
 							<div class="info">
@@ -243,19 +308,17 @@
 								</div>
 								<div class="pt-3 row">
 									<div class="col-2">
-									<a href="javascript:doDisplay();"><i
-										class="text-dark feather icon-message-circle"></i>댓글</a>
+										<a href="javascript:doDisplay();"><i
+											class="text-dark feather icon-message-circle"></i>댓글</a>
 									</div>
 									<div class="col-4">
-									<a >수정</a>
-									<a >삭제</a>
+										<a>수정</a> <a>삭제</a>
 									</div>
 									<div id="myDIV" style="display: none;">
 										<div>
 											<span>댓글을 남겨주세요.</span>
 										</div>
-										<textarea class="form-control"
-											placeholder="댓글을 작성해 주세요."></textarea>
+										<textarea class="form-control" placeholder="댓글을 작성해 주세요."></textarea>
 										<div class="pt-2 float-end">
 											<button type="submit" class="btn btn-outline-danger"
 												style="background: #ec5552; color: #fff;">등록</button>
@@ -321,7 +384,7 @@
 			}
 		}
 	</script>
-	
+
 	<!-- 이미지 왼쪽, 오른쪽 넘기는 버튼 생성 -->
 	<script>
 	$(document).ready(function(){
@@ -348,6 +411,25 @@
 		}
 		});
 
+		});
+	</script>
+		<!-- 등록 버튼 자바스크립트 -->
+	<script type="text/javascript" th:inline="javascript">
+		$('#addFeedBtn').click(function() {
+
+			var isSubmit = true;
+			var inputObj = $('#addFeedForm').find('input');
+
+			$.each(inputObj, function() {
+				var inputId = $(this).attr('id');
+				var inputLabel = $('label[for="' + inputId + '"]').text();
+				var inputData = $(this).val();
+
+				// 사용자가 입력하지 않은 경우
+			});
+
+			if (isSubmit)
+				$('#addFeedForm').submit();
 		});
 	</script>
 </th:block>
