@@ -14,7 +14,7 @@
 		$(".upVote").on("click",function(){
 			var postCode = $(this).attr('data-postCode');
 			var replyCode =$(this).attr('data-replyCode');
-			var likesCnt = $(this).parent().find('#likesCnt')
+			var resultCnt = $(this).parent().find('#resultCnt')
 			if(typeof replyCode == 'undefined')
 				{
 					  $.ajax({
@@ -25,7 +25,7 @@
 						},
 						dataType : 'text',
 						success : function(data) {
-							likesCnt.text(data);	
+							resultCnt.text(data);	
 						}
 					});  
 				}
@@ -39,7 +39,7 @@
 						},
 						dataType : 'text',
 						success : function(data) {
-							likesCnt.text(data);	
+							resultCnt.text(data);	
 						}
 					});  
 				}
@@ -50,7 +50,7 @@
 		$(".downVote").on("click",function(){
 			var postCode = $(this).attr('data-postCode');
 			var replyCode =$(this).attr('data-replyCode');
-			var likesCnt = $(this).parent().find('#likesCnt')
+			var resultCnt = $(this).parent().find('#resultCnt')
 			if(typeof replyCode == 'undefined')
 				{		
 					$.ajax({
@@ -61,7 +61,7 @@
 						},
 						dataType : 'text',
 						success : function(data) {
-							likesCnt.text(data);	
+							resultCnt.text(data);	
 						}
 					}); 
 				}
@@ -75,7 +75,7 @@
 					},
 					dataType : 'text',
 					success : function(data) {
-						likesCnt.text(data);	
+						resultCnt.text(data);	
 					}
 				});  
 			}
@@ -95,7 +95,7 @@
 				<div class="card col-sm-1 bg-primary d-flex pl-0 pr-0">
 					<div class="card-body pl-0 pr-0 pt-5">
 						<a href="#"  onclick="return false;" class="upVote" th:data-postCode="${commPost.postCode}"> <i class="la la-caret-up d-flex la-3x justify-content-center text-white pb-5"></i></a>
-						<p id="likesCnt" class="card-text text-white text-center mb-0 pb-0">[[${commPost.likesCnt}]]</p>
+						<p id="resultCnt" class="card-text text-white text-center mb-0 pb-0">[[${commPost.resultCnt}]]</p>
 						<p class="card-text text-white text-center mt-0 pt-0 pb-5">좋아요</p>
 						<a href="#!" onclick="return false;" class="downVote" th:data-postCode="${commPost.postCode}"> <i class="la la-caret-down d-flex la-3x justify-content-center text-white"></i></a>
 					</div>
@@ -147,7 +147,7 @@
 									<div class="row">
 										<div class="col-sm-2 border-right">	
 											<a href="#"  onclick="return false;" class="upVote" th:data-replyCode="${r1.replyCode}"> <i class="la la-caret-up d-flex la-3x justify-content-center  pb-2"></i></a>
-											<p id="likesCnt" class="card-text  text-center mb-0 pb-0">[[${r1.likesCnt}]]</p>
+											<p id="resultCnt" class="card-text  text-center mb-0 pb-0">[[${r1.resultCnt}]]</p>
 											<p class="card-text  text-center mt-0 pt-0 pb-2">좋아요</p>
 											<a href="#!" onclick="return false;" class="downVote" th:data-replyCode="${r1.replyCode}"> <i class="la la-caret-down d-flex la-3x justify-content-center "></i></a>
 										</div>
@@ -198,7 +198,7 @@
 												<div class="row">
 													<div class="col-sm-2 border-right">	
 														<a href="#"  onclick="return false;" class="upVote" th:data-replyCode="${r2.replyCode}"> <i class="la la-caret-up d-flex la-3x justify-content-center  pb-2"></i></a>
-														<p id="likesCnt" class="card-text  text-center mb-0 pb-0">[[${r2.likesCnt}]]</p>
+														<p id="resultCnt" class="card-text  text-center mb-0 pb-0">[[${r2.resultCnt}]]</p>
 														<p class="card-text  text-center mt-0 pt-0 pb-2">좋아요</p>
 														<a href="#!" onclick="return false;" class="downVote" th:data-replyCode="${r2.replyCode}"> <i class="la la-caret-down d-flex la-3x justify-content-center "></i></a>
 													</div>
@@ -248,7 +248,7 @@
 														<div class="row">
 															<div class="col-sm-2 border-right">	
 																<a href="#"  onclick="return false;" class="upVote" th:data-replyCode="${r3.replyCode}"> <i class="la la-caret-up d-flex la-3x justify-content-center  pb-2"></i></a>
-																<p id="likesCnt" class="card-text  text-center mb-0 pb-0">[[${r3.likesCnt}]]</p>
+																<p id="resultCnt" class="card-text  text-center mb-0 pb-0">[[${r3.resultCnt}]]</p>
 																<p class="card-text  text-center mt-0 pt-0 pb-2">좋아요</p>
 																<a href="#!" onclick="return false;" class="downVote" th:data-replyCode="${r3.replyCode}"> <i class="la la-caret-down d-flex la-3x justify-content-center "></i></a>
 															</div>
@@ -298,7 +298,7 @@
 														<div class="row">
 															<div class="col-sm-2 border-right">	
 																<a href="#"  onclick="return false;" class="upVote" th:data-replyCode="${r4.replyCode}"> <i class="la la-caret-up d-flex la-3x justify-content-center  pb-2"></i></a>
-																<p id="likesCnt" class="card-text  text-center mb-0 pb-0">[[${r4.likesCnt}]]</p>
+																<p id="resultCnt" class="card-text  text-center mb-0 pb-0">[[${r4.resultCnt}]]</p>
 																<p class="card-text  text-center mt-0 pt-0 pb-2">좋아요</p>
 																<a href="#!" onclick="return false;" class="downVote" th:data-replyCode="${r4.replyCode}"> <i class="la la-caret-down d-flex la-3x justify-content-center "></i></a>
 															</div>
@@ -398,29 +398,13 @@
 	</div>
 	</div>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	<!-- Modal -->
 	<div class="modal fade" id="exampleModal-02" tabindex="-1"
 		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">而ㅻ�ㅻ땲�떚 洹쒖튃 異붽�</h5>
+					<h5 class="modal-title" id="exampleModalLabel">규칙추가</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -432,16 +416,15 @@
 								class="form-control" th:value="${community.commName}"></input>
 						</div>
 						<div class="form-group">
-							<label for="title">而ㅻ�ㅻ땲�떚 �젣紐�</label> <input id="title" name="title"
+							<label for="title">규칙 제목</label> <input id="title" name="title"
 								type="text" class="form-control" required></input>
 						</div>
 						<div class="form-group">
-							<label for="detail">洹쒖튃 �긽�꽭 �꽕紐�</label>
+							<label for="detail">추가 설명</label>
 							<textarea id="detail" name="detail" class="form-control"
 								rows="10" required></textarea>
 						</div>
-						<button type="submit" class="btn btn-primary pull-right">洹쒖튃
-							異붽�</button>
+						<button type="submit" class="btn btn-primary pull-right">등록</button>
 					</form>
 				</div>
 			</div>

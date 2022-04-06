@@ -91,7 +91,7 @@ public class CommunityService {
 		{
 			CommPost commPost = postList.get(i);
 			commPost.setCommTag(communityMapper.getCommTagByTagCode(commPost.getTagCode()));
-			postList.get(i).setResultCnt(KhtourLibrary.cntConverter(Float.valueOf(postList.get(i).getResultCnt())));		
+			postList.get(i).setResultCnt(KhtourLibrary.cntConverter(Float.parseFloat(postList.get(i).getResultCnt())));		
 		}	
 		return postList;
 	}
@@ -352,12 +352,9 @@ public class CommunityService {
 	} 
 	
 	public void addCommReplyMod(String parentReplyCode)
-	{
-			log.info("체크: "+ parentReplyCode);		
+	{	
 			communityMapper.addCommentCntOfComments(parentReplyCode);	
-			
 			CommReply commReply = communityMapper.getCommReplyByParentReplyCode(parentReplyCode);
-			log.info("체크2: "+ commReply.getParentReplyCode());		
 		if(commReply.getParentReplyCode()!=null)
 		{
 			addCommReplyMod(commReply.getParentReplyCode());	
@@ -378,6 +375,7 @@ public class CommunityService {
 		LikesDislikes likesDislikes = new LikesDislikes();
 		likesDislikes.setMemberId("id001");
 		likesDislikes.setPostCode(postCode);
+		likesDislikes.setReplyCode(replyCode);
 		String result = "";
 		if (likeDislike.equals("like"))
 		{
@@ -415,7 +413,7 @@ public class CommunityService {
 			result = KhtourLibrary.cntConverter((float)communityMapper.getReplyResultCnt(replyCode));
 		}
 		
-		
+		log.info("결과 : " + result);
 		return result;
 	}
 	

@@ -139,7 +139,7 @@
 			reply_code=#{replyCode};	
 	</update>
 	
-	<select id="getPostLikesCnt" resultType="int">
+	<select id="getPostResultCnt" resultType="int">
 		Select 
 			c.result_cnt  AS resultCnt
 		FROM
@@ -147,7 +147,7 @@
 		WHERE
 			c.post_code=#{postCode};	
 	</select>
-	<select id="getReplyLikesCnt" resultType="int">
+	<select id="getReplyResultCnt" resultType="int">
 		Select 
 			r.result_cnt AS resultCnt
 		FROM
@@ -250,7 +250,7 @@
 			FROM
 				tb_comm_post AS p
 			Order BY 
-				p.likes_cnt DESC;	
+				p.result_cnt DESC;	
 	</select>
 	<select id="getPostListByCommCode"  resultMap="postResultMap">
 			SELECT

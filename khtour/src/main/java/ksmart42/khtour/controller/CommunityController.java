@@ -104,15 +104,11 @@ public class CommunityController {
 	@GetMapping("/commDashboard")
 	public String commDashboard(Model model,HttpServletRequest request) {
 		//전체 커뮤니티 리스트
-		log.info("체크1");
 		List<Community> communityList = communityService.getCommunityList();
 		//전체 포스트 리스트
-		log.info("체크2");
 		List<CommPost> postList = communityService.getPostList();
 		//오늘뜨고있는 상위 포스트 4개 리스트
-		log.info("체크3");
 		List<CommPost> dailyPostList = communityService.getDailyPostList();
-		log.info("커뮤니티 포스트 리스트: {}",postList);
 		model.addAttribute("title","커뮤니티 대시보드");
 		model.addAttribute("communityList", communityList);
 		model.addAttribute("postList", postList);
