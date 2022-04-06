@@ -115,11 +115,6 @@ public class CommunityController {
 		List<CommPost> postList = communityService.getPostList();
 		//오늘뜨고있는 상위 포스트 4개 리스트
 		List<CommPost> dailyPostList = communityService.getDailyPostList();
-		
-		
-		
-		
-		
 		model.addAttribute("title","커뮤니티 대시보드");
 		model.addAttribute("communityList", communityList);
 		model.addAttribute("postList", postList);
