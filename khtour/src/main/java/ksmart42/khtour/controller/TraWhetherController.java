@@ -7,9 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class TraWhetherController {
 	
-	/*
-	 * 지역별 날씨 리스트 
-	 */
+	/* 1. 리스트 조회 (유저 권한)
+	*  작성자 : 김민석
+	*  입  력 : Model
+	*  출  력 : String(주소)
+	*  설  명 : 문화재 조회 (유저페이지) - get방식 전달
+	*/
 	@GetMapping("/traWhether/traWhetherList")
 	public String getWhetherList(Model model) {
 		
@@ -18,9 +21,7 @@ public class TraWhetherController {
 		return "/traWhether/traWhetherList";
 	}
 	
-	/*
-	 * 지역별 날씨 리스트 
-	 */
+	// 테스트 페이지
 	@GetMapping("/traWhether/test")
 	public String gettestt(Model model) {
 		

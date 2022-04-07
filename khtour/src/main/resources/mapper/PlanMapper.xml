@@ -5,15 +5,15 @@
 <mapper namespace="ksmart42.khtour.mapper.PlanMapper">
 
    <resultMap type="Plan" id="planResultMap">
-      <id column="plan_code" property="planCode"/>                           <!-- 여행계획 코드 -->
-      <result column="member_id" property="memberId"/>                        <!-- 등록자 아이디 -->
-      <result column="plan_name" property="planName"/>                        <!-- 여행 명 -->
-      <result column="start_date" property="startDate"/>                        <!-- 여행 시작일 -->
-      <result column="end_date" property="endDate"/>                           <!-- 여행 종료일 -->
-      <result column="solo_party" property="soloParty"/>                        <!-- 개인/단체 구분 -->
-      <result column="plan_materials" property="planMaterials"/>                  <!-- 여행 준비물 -->
-      <result column="plan_expenses" property="planExpenses"/>                  <!-- 여행 총 경비 -->
-      <result column="plan_location" property="planLocation"/>                  <!-- 여행 지역 -->
+      <id column="plan_code" 				property="planCode"/>                 <!-- 여행계획 코드 -->
+      <result column="member_id" 			property="memberId"/>                 <!-- 등록자 아이디 -->
+      <result column="plan_name"		 	property="planName"/>                 <!-- 여행 명 -->
+      <result column="start_date" 			property="startDate"/>                <!-- 여행 시작일 -->
+      <result column="end_date"				property="endDate"/>                  <!-- 여행 종료일 -->
+      <result column="solo_party" 			property="soloParty"/>                <!-- 개인/단체 구분 -->
+      <result column="plan_materials" 		property="planMaterials"/>            <!-- 여행 준비물 -->
+      <result column="plan_expenses" 		property="planExpenses"/>             <!-- 여행 총 경비 -->
+      <result column="plan_location"		property="planLocation"/>             <!-- 여행 지역 -->
    </resultMap> 
    
    <!-- 여행계획 목록 조회 SQL -->

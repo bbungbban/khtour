@@ -41,16 +41,20 @@
 					</div>
 				</div>
 				<div class="card-body">
-					<form id="addRecordBoardForm"
-						th:action="@{/recordBoard/recordBoardInsert}" method="post">
+					<form id="modifyRecordBoardForm"
+						th:action="@{/recordBoard/recordBoardModify}" method="post">
+						<input type="hidden" class="form-control" id="planCode"
+							name="recordBoardCode" th:value="${recordBoard.recordBoardCode}">
+						
+						
 						<div class="form-group">
 							<label for="recordBoardName">게시글 제목</label> <input type="text"
 								class="form-control" placeholder="게시글 이름을 입력하세요."
-								id="recordBoardName" name="recordBoardName">
+								id="recordBoardName" name="recordBoardName" th:value="${recordBoard.recordBoardName}">
 						</div>
 						<div class="form-group">
 							<label for="content">게시글 내용</label>
-							<textarea class="form-control" rows="3" required="" id="content"
+							<textarea class="form-control" rows="3" id="content" th:text="${recordBoard.content}"
 								name="content"></textarea>
 						</div>
 						<div class="form-group" th:if="not ${#lists.isEmpty(planStatusList)}">
@@ -97,13 +101,14 @@
 								<option>패키지여행</option>
 							</select>
 						</div>
-						<div class="form-group">
+<!--  						<div class="form-group">
 							<label for="image">#이미지 선택</label> <input type="file" id="image"
 								class="form-control" name="image" required="">
-						</div>
+						</div> -->
 						<div class="form-group text-center">
-						<button type="button" id="addRecordBoardBtn"
-							class="btn btn-primary">등록</button>
+						<button type="submit" class="btn btn-primary">정보수정 완료	</button>
+						<a type="button" class="btn btn-danger"
+							th:href="@{/recordBoard/recordBoardListSt}">취소</a>
 						</div>	
 					</form>
 
@@ -124,10 +129,10 @@
 	<script th:src="@{/js/datepicker/daterangepicker.js}"></script>
 	<script th:src="@{/js/datepicker/bootstrap-timepicker.js}"></script>
 	<script type="text/javascript" th:inline="javascript">
-		$('#addRecordBoardBtn').click(function() {
+		$('#modifyRecordBoardBtn').click(function() {
 
 			var isSubmit = true;
-			var inputObj = $('#addRecordBoardForm').find('input');
+			var inputObj = $('#modifyRecordBoardForm').find('input');
 
 			$.each(inputObj, function() {
 				var inputId = $(this).attr('id');
@@ -138,7 +143,7 @@
 			});
 
 			if (isSubmit)
-				$('#addRecordBoardForm').submit();
+				$('#modifyRecordBoardForm').submit();
 		});
 	</script>
 		<!-- 등록 버튼 자바스크립트 시작 -->

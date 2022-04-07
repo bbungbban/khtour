@@ -31,10 +31,67 @@ public class HeritageController {
 
 	}
 	
-	/* 작성자 : 김민석
+/////POST 방식////	조회 -> 등록 -> 수정 -> 삭제 순
+	
+	/* 1. 등록
+	*  작성자 : 김민석
+	*  입  력 : Heritage(문화재 리스트)
+	*  출  력 : String (주소)
+	*  설  명 : 문화재 정보 등록(관리자페이지) - post방식 전달
+	*/
+	@PostMapping("/heritageListByItem")
+	public String addHeritage(Heritage heritage
+							, @RequestParam MultipartFile[] heritageImageFiles
+							, HttpServletRequest request) {
+		
+		log.info("{}",heritage);
+		String serverName = request.getServerName();
+		String fileRealPath = "";
+		if("localhost".equals(serverName)) {				
+			fileRealPath = System.getProperty("user.dir") + "/src/main/resources/static/";
+			//fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+		}else {
+			fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+		}
+		
+		heritageService.addHeritage(heritage, heritageImageFiles, fileRealPath);
+		
+		return "redirect:/heritage/heritageListByItem";
+	}
+	
+	/* 2. 수정
+	*  작성자 : 김민석
+	*  입  력 : Heritage(문화재 리스트)
+	*  출  력 : String (주소)
+	*  설  명 : 문화재 정보 수정(관리자페이지) - post방식 전달
+	*/
+	@PostMapping("/modifyHeritage")
+	public String modifyHeritage(Heritage heritage) {
+		
+		heritageService.modifyHeritage(heritage);
+		System.out.println("정보 수정 포스트 전달" + heritageService.modifyHeritage(heritage));
+		
+		return "redirect:/heritage/heritageListSt";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//// GET 방식	////
+	
+	/* 1. 리스트 조회 (관리자 권한)
+	*  작성자 : 김민석
 	*  입  력 : Model, searchKey 검색키워드 종류, searchValue 검색키워드 값
 	*  출  력 : String(주소)
-	*  설  명  : 문화재 조회 (관리자페이지) - get방식 전달
+	*  설  명 : 문화재 조회 (관리자페이지) - get방식 전달
 	*/
 	@GetMapping("/heritageListSt")
 	public String getHeritageListSt(Model model
@@ -72,65 +129,13 @@ public class HeritageController {
 		model.addAttribute("heritageList", heritageList);
 		
 		return "heritage/heritageListSt";
-	}
-	
-	
-	/* 작성자 : 김민석
-	*  입  력 : Heritage(문화재 리스트)
-	*  출  력 : String (주소)
-	*  설  명  : 문화재 정보 수정(관리자페이지) - post방식 전달
-	*/
-	@PostMapping("/modifyHeritage")
-	public String modifyHeritage(Heritage heritage) {
-		
-		heritageService.modifyHeritage(heritage);
-		System.out.println("정보 수정 포스트 전달" + heritageService.modifyHeritage(heritage));
-		
-		return "redirect:/heritage/heritageListSt";
-	}
-	
-	/* 작성자 : 김민석
-	*  입  력 : @RequestParam, Model
-	*  출  력 : String (주소)
-	*  설  명  : 문화재 정보 수정(관리자페이지) - Get방식 전달
-	*/
-	@GetMapping("/heritageModify")
-	public String modifyHeritage(
-			@RequestParam(value="heritageCode", required = false) String heritageCode
-			,Model model) {
-		
-		Heritage heritage = heritageService.getHeritageByCode(heritageCode);
-		List<HeritageCategory> heritageCategory = heritageService.getHeritageCategoryList();
-		
-		model.addAttribute("title", "문화재 수정 페이지");
-		model.addAttribute("heritage", heritage);
-		model.addAttribute("heritageCategory", heritageCategory);		
-		
-		System.out.println("정보 수정 겟방식 전달" + heritage);
-		
-		return "heritage/heritageModify";
 	}	
 	
-	/* 작성자 : 김민석
-	*  입  력 : Heritage(문화재 리스트)
-	*  출  력 : String (주소)
-	*  설  명  : 문화재 정보 삭제(관리자페이지) - Get방식 전달
-	*/
-	@GetMapping("/heritageRemove")
-	public String removeHeritage(Heritage heritage) {
-		String heritageCode = heritage.getHeritageCode();
-		
-		heritageService.removeHeritage(heritageCode);
-		System.out.println("정보 삭제 포스트 전달" + heritageService.removeHeritage(heritageCode));
-		
-		return "redirect:/heritage/heritageListSt";
-		
-	}
-	
-	/* 작성자 : 김민석
+	/* 2. 리스트 조회 (유저 권한)
+	*  작성자 : 김민석
 	*  입  력 : Model, searchKey 검색키워드 종류, searchValue 검색키워드 값
 	*  출  력 : String(주소)
-	*  설  명  : 문화재 조회 - get방식 전달
+	*  설  명 : 문화재 조회 - get방식 전달
 	*/
 	@GetMapping("/heritageListByItem")
 	public String getHeritageListByItem(Model model
@@ -170,38 +175,13 @@ public class HeritageController {
 		model.addAttribute("heritageCategory", heritageCategory);
 		
 		return "heritage/heritageListByItem";
-	}
-			
-	/* 작성자 : 김민석
-	*  입  력 : Heritage(문화재 리스트)
-	*  출  력 : String (주소)
-	*  설  명  : 문화재 정보 등록(관리자페이지) - post방식 전달
-	*/
-	@PostMapping("/heritageListByItem")
-	public String addHeritage(Heritage heritage
-							, @RequestParam MultipartFile[] heritageImageFiles
-							, HttpServletRequest request) {
-		
-		log.info("{}",heritage);
-		String serverName = request.getServerName();
-		String fileRealPath = "";
-		if("localhost".equals(serverName)) {				
-			fileRealPath = System.getProperty("user.dir") + "/src/main/resources/static/";
-			//fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
-		}else {
-			fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
-		}
-		
-		heritageService.addHeritage(heritage, heritageImageFiles, fileRealPath);
-		
-		return "redirect:/heritage/heritageListByItem";
-	}
+	}	
 	
-	
-	/* 작성자 : 김민석
+	/* 3. 상세보기 페이지 조회(유저 권한)
+	*  작성자 : 김민석
 	*  입  력 : @RequestParam, Model
 	*  출  력 : String(주소)
-	*  설  명  : 문화재 상세페이지(코드번호에따른) - get방식 전달
+	*  설  명 : 문화재 상세페이지(코드번호에따른) - get방식 전달
 	*/
 	@GetMapping("/heritageDetail")
 	public String getHeritaDetail(
@@ -212,8 +192,50 @@ public class HeritageController {
 		
 		model.addAttribute("title", "문화재 상세 페이지");
 		model.addAttribute("heritage", heritage);
+		
 		System.out.println("정보 수정 겟방식 전달" + heritage);
+		
 		return "/heritage/heritageDetail";
 	}
+	
+	/* 4. 정보 수정 (관리자 권한)
+	*  작성자 : 김민석
+	*  입  력 : @RequestParam, Model
+	*  출  력 : String (주소)
+	*  설  명 : 문화재 정보 수정(관리자페이지) - Get방식 전달
+	*/
+	@GetMapping("/heritageModify")
+	public String modifyHeritage(
+			@RequestParam(value="heritageCode", required = false) String heritageCode
+			,Model model) {
+		
+		Heritage heritage = heritageService.getHeritageByCode(heritageCode);
+		List<HeritageCategory> heritageCategory = heritageService.getHeritageCategoryList();
+		
+		model.addAttribute("title", "문화재 수정 페이지");
+		model.addAttribute("heritage", heritage);
+		model.addAttribute("heritageCategory", heritageCategory);		
+		
+		System.out.println("정보 수정 겟방식 전달" + heritage);
+		
+		return "heritage/heritageModify";
+	}		
+	
+	/* 5. 정보 삭제 (관리자 권한)
+	*  작성자 : 김민석
+	*  입  력 : Heritage(문화재 리스트)
+	*  출  력 : String (주소)
+	*  설  명 : 문화재 정보 삭제(관리자페이지) - Get방식 전달
+	*/
+	@GetMapping("/heritageRemove")
+	public String removeHeritage(Heritage heritage) {
+		String heritageCode = heritage.getHeritageCode();
+		
+		heritageService.removeHeritage(heritageCode);
+		
+		System.out.println("정보 삭제 포스트 전달" + heritageService.removeHeritage(heritageCode));
+		
+		return "redirect:/heritage/heritageListSt";
+	}	
 	
 }
