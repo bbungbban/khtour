@@ -213,7 +213,8 @@
 						<div class="blog-title mt-3">
 							<h5 class="card-title">
 								<a
-									></a>
+									th:href="@{/accommodation/acoommodationInfo(ldgCode=${l.ldgCode})}"
+									th:text="${l.ldgName}"></a>
 							</h5>
 							<p class="mb-0" th:text="${l.ldgType}"></p>
 							<p class="mb-0" th:text="${l.ldgAddr}"></p>

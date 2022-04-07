@@ -5,6 +5,7 @@ public class AccomReview {
 	private String ldgReviewCode;
 	private String memberId;
 	private String ldgCode;
+	private int ldgGrade;
 	private int ldgCleanliness;
 	private int ldgKindness;
 	private int ldgConvenience;
@@ -29,6 +30,12 @@ public class AccomReview {
 	}
 	public void setLdgCode(String ldgCode) {
 		this.ldgCode = ldgCode;
+	}
+	public int getLdgGrade() {
+		return ldgGrade;
+	}
+	public void setLdgGrade(int ldgGrade) {
+		this.ldgGrade = ldgGrade;
 	}
 	public int getLdgCleanliness() {
 		return ldgCleanliness;
@@ -75,9 +82,9 @@ public class AccomReview {
 	@Override
 	public String toString() {
 		return "AccomReview [ldgReviewCode=" + ldgReviewCode + ", memberId=" + memberId + ", ldgCode=" + ldgCode
-				+ ", ldgCleanliness=" + ldgCleanliness + ", ldgKindness=" + ldgKindness + ", ldgConvenience="
-				+ ldgConvenience + ", ldgLocation=" + ldgLocation + ", ldgPriceSta=" + ldgPriceSta + ", reviewContents="
-				+ reviewContents + ", reviewTime=" + reviewTime + "]";
+				+ ", ldgGrade=" + ldgGrade + ", ldgCleanliness=" + ldgCleanliness + ", ldgKindness=" + ldgKindness
+				+ ", ldgConvenience=" + ldgConvenience + ", ldgLocation=" + ldgLocation + ", ldgPriceSta=" + ldgPriceSta
+				+ ", reviewContents=" + reviewContents + ", reviewTime=" + reviewTime + "]";
 	}
-
+	
 }
