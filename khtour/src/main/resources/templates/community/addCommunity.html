@@ -71,9 +71,9 @@
 		<div class="card-body">
 			<form class="cmxform" id="addCommunityForm" method="post" th:action="@{/addCommunity}">
 				<div class="form-group" th:if="not ${#lists.isEmpty(categoryList)}">
-						<label for="category">등록할 커뮤니티 카테고리</label> <select class="form-control"
+						<label for="category">등록할 커뮤니티</label> <select class="form-control"
 							id="categoryCode" name="categoryCode">
-							<option value="none">===커뮤니티 카테고리 선택===</option>
+							<option value="none">===커뮤니티 선택===</option>
 							<option th:if="${not #lists.isEmpty(categoryList)}" th:value="${cl.categoryCode}" th:text="${cl.categoryName}" th:each="cl: ${categoryList}">
 							</option>
 						</select>
@@ -83,9 +83,10 @@
 					<div class="row">
 						<div class="col-9">
 							<input id="commName" class="form-control" name="commName">
+							<input type="hidden"  th:value="${session.SID}"  name="memberId" />
 						</div>
 						<div class="col-3">
-							<button type="button" class="btn btn-primary active text-center" id="commNameCheck">커뮤니티 중복체크</button>
+							<button type="button" class="btn btn-primary active text-center" id="commNameCheck">중복 체크</button>
 						</div>
 					</div>
 				</div>

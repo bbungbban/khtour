@@ -32,6 +32,7 @@
 		<result column="comments_cnt" property="commentsCnt"/>
 		<result column="report_cnt" property="reportCnt"/>
 		<result column="point_gain" property="pointGain"/>
+		<result column="result_cnt" property="resultCnt"/>
 	</resultMap> 
 	<resultMap type="Rule" id="ruleResultMap">
 		<id column="rule_code" property="ruleCode"/>
@@ -60,6 +61,7 @@
 	<resultMap type="CommReply" id="replyResultMap">
 		<id column="reply_code" property="replyCode"/>
 		<result column="member_id" property="memberId"/>
+		<result column="member_name" property="memberName"/>
 		<result column="post_code" property="postCode"/>
 		<result column="parent_reply_code" property="parentReplyCode"/>
 		<result column="likes_cnt" property="likesCnt"/>
@@ -67,6 +69,7 @@
 		<result column="main_text" property="mainText"/>
 		<result column="reg_time" property="regTime"/>
 		<result column="comments_cnt" property="commentsCnt"/>
+		<result column="result_cnt" property="resultCnt"/>
 	</resultMap>
 	
 	<resultMap type="LikesDislikes" id="likesDislikesResultMap">
@@ -96,6 +99,15 @@
 				c.member_cnt DESC;	
 	</select>
 	
+	<select id="getFileControllerByPostCode" parameterType="String" resultType="String">
+			SELECT
+				f.file_path AS filePath
+			FROM
+				tb_file_control AS f
+			WHERE
+				f.reference_code = #{postCode};			
+	</select>
+	
 	<update id="addCommentCnt" parameterType="String">
 		UPDATE tb_comm_post
 			SET
@@ -103,6 +115,59 @@
 		WHERE
 			post_code=#{postCode};	
 	</update>
+	
+	<update id="addPostLikesCnt" parameterType="String">
+		UPDATE tb_comm_post
+			SET
+			likes_cnt = likes_cnt + 1
+			,result_cnt = result_cnt+1		 
+		WHERE
+			post_code=#{postCode};	
+	</update>
+	<update id="addPostDislikesCnt" parameterType="String">
+		UPDATE tb_comm_post
+			SET
+			dislikes_cnt = dislikes_cnt + 1	
+			,result_cnt = result_cnt-1	 
+		WHERE
+			post_code=#{postCode};	
+	</update>
+	<update id="addReplyLikesCnt" parameterType="String">
+		UPDATE tb_community_reply
+			SET
+			likes_cnt = likes_cnt + 1	
+			,result_cnt = result_cnt + 1		 
+		WHERE
+			reply_code=#{replyCode};	
+	</update>
+	<update id="addReplyDislikesCnt" parameterType="String">
+		UPDATE tb_community_reply
+			SET
+			dislikes_cnt = dislikes_cnt + 1	
+			,result_cnt = result_cnt-1		 
+		WHERE
+			reply_code=#{replyCode};	
+	</update>
+	
+	<select id="getPostResultCnt" resultType="int">
+		Select 
+			c.result_cnt  AS resultCnt
+		FROM
+			tb_comm_post as c
+		WHERE
+			c.post_code=#{postCode};	
+	</select>
+	<select id="getReplyResultCnt" resultType="int">
+		Select 
+			r.result_cnt AS resultCnt
+		FROM
+			tb_community_reply as r
+		WHERE
+			reply_code=#{replyCode};	
+	</select>
+	
+	
+	
 	
 	<update id="addCommentCntOfComments" parameterType="String">
 		UPDATE tb_community_reply
@@ -115,6 +180,8 @@
 	<select id="getCommReplyByParentReplyCode"  resultMap="replyResultMap">
 			SELECT
 				r.reply_code
+				,r.member_id
+				,r.member_name
 				,r.comments_cnt
 				,r.parent_reply_code
 			FROM
@@ -135,6 +202,8 @@
 				,r.main_text    
 				,r.reg_time
 				,r.comments_cnt
+				,r.result_cnt
+				,r.member_name
 			FROM
 				tb_community_reply AS r
 			WHERE
@@ -153,6 +222,7 @@
 				,r.main_text    
 				,r.reg_time
 				,r.comments_cnt
+				,r.result_cnt
 			FROM
 				tb_community_reply AS r
 			WHERE
@@ -189,10 +259,11 @@
 				,p.report_cnt
 				,p.comments_cnt
 				,p.point_gain
+				,p.result_cnt
 			FROM
 				tb_comm_post AS p
 			Order BY 
-				p.likes_cnt DESC;	
+				p.result_cnt DESC;	
 	</select>
 	<select id="getPostListByCommCode"  resultMap="postResultMap">
 			SELECT
@@ -211,6 +282,7 @@
 				,p.comments_cnt
 				,p.report_cnt
 				,p.point_gain
+				,p.result_cnt
 			FROM
 				tb_comm_post AS p
 			WHERE
@@ -235,6 +307,7 @@
 				,p.comments_cnt
 				,p.report_cnt
 				,p.point_gain
+				,p.result_cnt
 			FROM
 				tb_comm_post AS p
 			Order BY 
@@ -258,6 +331,7 @@
 				,p.comments_cnt
 				,p.report_cnt
 				,p.point_gain
+				,p.result_cnt
 			FROM
 				tb_comm_post AS p
 			WHERE
@@ -474,6 +548,8 @@
 				,main_text    
 				,reg_time
 				,comments_cnt
+				,result_cnt
+				,member_name
 			)
 			VALUES(
 				sf_new_reply_code()
@@ -485,6 +561,8 @@
 				,#{mainText}
 				,NOW()	
 				,0		
+				,0
+				,#{memberName}
 			);
 	</insert>
 	

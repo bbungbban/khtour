@@ -66,7 +66,13 @@ public class CommunityService {
 	*  설  명  : 전체 포스트 리스트 찾아서 반환
 	*/
 	public List<CommPost> getPostList(){
-		List<CommPost> postList = communityMapper.getPostList();		
+		List<CommPost> postList = communityMapper.getPostList();	
+		
+		for (int i=0;i<postList.size();i++)
+		{
+			String postCode = postList.get(i).getPostCode();
+			postList.get(i).setFilePath(communityMapper.getFileControllerByPostCode(postCode));
+		}
 		return postListMod(postList);
 	}
 	
@@ -77,6 +83,13 @@ public class CommunityService {
 	*/
 	public List<CommPost> getPostListByCommCode(String CommCode){
 		List<CommPost> postList = communityMapper.getPostListByCommCode(CommCode);
+		
+		for (int i=0;i<postList.size();i++)
+		{
+			String postCode = postList.get(i).getPostCode();
+			postList.get(i).setFilePath(communityMapper.getFileControllerByPostCode(postCode));
+			
+		}
 		return postListMod(postList);
 	}
 	
@@ -91,10 +104,7 @@ public class CommunityService {
 		{
 			CommPost commPost = postList.get(i);
 			commPost.setCommTag(communityMapper.getCommTagByTagCode(commPost.getTagCode()));
-			float likes = Float.parseFloat(postList.get(i).getLikesCnt());
-			float dislikes= Float.parseFloat(postList.get(i).getDislikesCnt());
-			float cnt = likes - dislikes;
-			postList.get(i).setLikesCnt(KhtourLibrary.cntConverter(cnt));		
+			postList.get(i).setResultCnt(KhtourLibrary.cntConverter(Float.parseFloat(postList.get(i).getResultCnt())));		
 		}	
 		return postList;
 	}
@@ -227,12 +237,8 @@ public class CommunityService {
 	public List<CommReply> getCommReplyListByPostCode(String postCode)
 	{
 		
-		List<CommReply> replyList = communityMapper.getCommReplyListByPostCode(postCode);	
+		List<CommReply> replyList = communityMapper.getCommReplyListByPostCode(postCode);
 		replyList = replyChildrenSetter(replyList);
-		for(int i=0; i<replyList.size();i++)
-		{
-			log.info(replyList.get(i).getReplyCode()+": 스탑 TYPE 3 :" + replyList.get(i).getChildrenReply());
-		}
 		return replyList;
 	}
 	public List<CommReply> replyChildrenSetter(List<CommReply> replyList)
@@ -240,8 +246,8 @@ public class CommunityService {
 		for(int i=0;i<replyList.size();i++)
 		{
 			CommReply reply = replyList.get(i);
-			List<CommReply> childrenList = communityMapper.getChildrenReplyListByReplyCode(reply.getReplyCode());
 			
+			List<CommReply> childrenList = communityMapper.getChildrenReplyListByReplyCode(reply.getReplyCode());
 			if(childrenList==null)
 			{
 				return childrenList;
@@ -280,13 +286,8 @@ public class CommunityService {
 		
 		//커뮤니티 포스트 안에든 포스트 코드를 사용하여 포스트 를 찾아서 커뮤니티 포스트에 저장
 		commPost.setCommTag(communityMapper.getCommTagByTagCode(commPost.getTagCode()));
-		//좋아요 - 싫어요 구해줌 
-		float likes = Float.parseFloat(commPost.getLikesCnt());
-		float dislikes= Float.parseFloat(commPost.getDislikesCnt());
-		float cnt = likes -dislikes;
-		
 		//K/M식으로 변환
-		commPost.setLikesCnt(KhtourLibrary.cntConverter(cnt));		
+		commPost.setLikesCnt(KhtourLibrary.cntConverter(Float.valueOf(commPost.getResultCnt())));		
 		return commPost;
 	}
 	
@@ -364,12 +365,9 @@ public class CommunityService {
 	} 
 	
 	public void addCommReplyMod(String parentReplyCode)
-	{
-			log.info("체크: "+ parentReplyCode);		
+	{	
 			communityMapper.addCommentCntOfComments(parentReplyCode);	
-			
 			CommReply commReply = communityMapper.getCommReplyByParentReplyCode(parentReplyCode);
-			log.info("체크2: "+ commReply.getParentReplyCode());		
 		if(commReply.getParentReplyCode()!=null)
 		{
 			addCommReplyMod(commReply.getParentReplyCode());	
@@ -385,6 +383,52 @@ public class CommunityService {
 		communityMapper.addTag(commTag);		
 	}
 	
+	public String addLikesDislikes(String postCode,String likeDislike,String replyCode)
+	{
+		LikesDislikes likesDislikes = new LikesDislikes();
+		likesDislikes.setMemberId("id001");
+		likesDislikes.setPostCode(postCode);
+		likesDislikes.setReplyCode(replyCode);
+		String result = "";
+		if (likeDislike.equals("like"))
+		{
+			if(replyCode==null)
+			{
+				communityMapper.addPostLikesCnt(postCode);
+			}
+			else
+			{
+				communityMapper.addReplyLikesCnt(replyCode);
+			}
+			likesDislikes.setLikesDislikesCate("like");
+			communityMapper.addlikesDislikes(likesDislikes);
+		}
+		else
+		{
+			if(replyCode==null)
+			{
+				communityMapper.addPostDislikesCnt(postCode);
+			}
+			else
+			{
+				communityMapper.addReplyDislikesCnt(replyCode);
+			}
+			likesDislikes.setLikesDislikesCate("dislike");		
+			communityMapper.addlikesDislikes(likesDislikes);
+		}
+		
+		if(replyCode==null)
+		{
+			result = KhtourLibrary.cntConverter((float)communityMapper.getPostResultCnt(postCode));
+		}
+		else
+		{
+			result = KhtourLibrary.cntConverter((float)communityMapper.getReplyResultCnt(replyCode));
+		}
+		
+		log.info("결과 : " + result);
+		return result;
+	}
 	
 	
 	

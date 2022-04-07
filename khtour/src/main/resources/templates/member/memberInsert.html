@@ -230,35 +230,7 @@
 					});
 				});
 				
-				 $('#memberInsertBtn').click(function(){
-					var isIdCheck = $('#idCheck').attr('data-idcheck');
-					var isSubmit = true;
-					var inputObj = $('#memberInsertForm').find('input');
-					var memberId = $('input[name="memberId"]').val();
-					//console.log(validationCheck(memberId));
-					var vCheck = validationCheck(memberId);
-					
-					$.each(inputObj, function(){
-						var inputData = $(this).val();
-						var result = validationCheck(inputData);
-						
-						// 사용자가 입력하지 않은 경우
-						if(!result){
-							alert("올바르게 입력했는지 확인해주세요");
-							$(this).focus();
-							isSubmit = false;
-							return false;
-						}if(isIdCheck && isSubmit) {
-							$('#memberInsertForm').submit();
-							alert("회원가입이 되셨습니다");
-							
-						}			
-					});
-					
-					
-					
-					
-				}); 
+
 			});
 				
 				

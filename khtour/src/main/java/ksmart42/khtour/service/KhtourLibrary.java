@@ -1,8 +1,17 @@
 package ksmart42.khtour.service;
 
-public class KhtourLibrary {
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-	
+import ksmart42.khtour.dto.CommPost;
+import ksmart42.khtour.dto.FileDto;
+import ksmart42.khtour.mapper.FileMapper;
+
+
+
+public class KhtourLibrary {	
 	/* 작성자 : 한경수
 	*  입  력 : float
 	*  출  력 : String
@@ -45,6 +54,22 @@ public class KhtourLibrary {
 		return result;
 	}
 	
+	static public void addFileController(FileMapper fileMapper,CommPost commPost,List<FileDto> fileList)
+	{
+		List<Map<String,String>> addFileControlList = new ArrayList<Map<String,String>>();
+		
+		Map<String , String> addMap = null;
+		
+		if(fileList != null) {
+			for(FileDto fileDto : fileList) {
+				addMap = new HashMap<String , String>();
+				addMap.put("referenceCode", commPost.getPostCode());
+				addMap.put("fileIdx", fileDto.getFileIdx());
+				addFileControlList.add(addMap);
+			}
+		}
+		fileMapper.addFileControl(addFileControlList);
+	}
 	
 	
 	
