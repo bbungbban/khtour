@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ksmart42.khtour.dto.AccomReview;
+import ksmart42.khtour.dto.Accommodation;
 import ksmart42.khtour.mapper.AccomReviewMapper;
 
 @Service
@@ -19,10 +20,26 @@ public class AccomReviewService {
 			this.accomReviewMapper = accomReviewMapper;
 		}
 		
-		
-		public AccomReview getAccomReviewList(String ldgCode){
+		public List<AccomReview> getAccomReviewList(String ldgCode){
 			
 			return accomReviewMapper.getAccomReviewList(ldgCode);
 		}
+		
+		/**
+		 * 숙박업소 코드에 따른 리뷰조회
+		 */
+		public Accommodation getLdgByCode(String ldgCode) {
+			
+			return accomReviewMapper.getLdgByCode(ldgCode);
+		}
+		/**
+		 * 리뷰등록 
+		 */
+		public void addAccomReview(AccomReview accomReview) {
+			
+			accomReviewMapper.addAccomReview(accomReview);
+			
+		}
+		
 }
 

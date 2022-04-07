@@ -52,7 +52,7 @@
 }
 
 .feather {
-	color: #FFB900;
+	color: #f0f1f6;
 	font-size: 20px;
 }
 
@@ -257,12 +257,12 @@
 					</div>
 				</div>
 				<div class="card-footer"></div>
-				<article class="ReviewBox">
+				<article class="ReviewBox" th:if="${not #lists.isEmpty(accomoReviewList)}" th:each="al,index: ${accomoReviewList}">
 					<div class="ReviewContentsBox" style="padding: 18.577px;">
 						<span class="ReviewIcon"><i class="fa fa-smile-o"
 							style="font-size: 50px; color: #FFB900;"></i></span>
 						<div class="ReviewHeader">
-							<div class="" style="position: relative; display: inline-flex;">
+							<div class="rating" style="position: relative; display: inline-flex;" data-rate="${al.ldgGrade}" >
 								<i class="feather icon-star-on" style="font-size: 1.2rem;"></i>
 								<i class="feather icon-star-on" style="font-size: 1.2rem;"></i>
 								<i class="feather icon-star-on" style="font-size: 1.2rem;"></i>
@@ -276,17 +276,18 @@
 									전</span>
 							</div>
 							<div class="ReviewNicknameInfo" style="opacity: 0.5;">
-								닉네임 입니다.<span class="ReviewRoomName">객실 이름입니다.</span>
+							<span>닉네임 입니다.</span>
+							<span class="ReviewRoomName" th:text="${accommodation.ldgName}"></span>
 							</div>
 						</div>
 					</div>
-					<div class="ReviewContentsBox-ReviewContent"><p></p></div>
+						<div class="ReviewContentsBox-ReviewContent"><p th:text="${al.reviewContents}"></p></div>
 					<div class="card-footer"></div>
+				</article>
 					<section
 						style="padding: 20px; text-align: center; font-size: 20px; color: blue;">
-						<a th:href="@{/accomreview/accomreviewList}">전체 후기 보기</a>
+						<a th:href="@{/accomreview/accomreviewList(ldgCode=${accommodation.ldgCode})}">전체 후기 보기</a>
 					</section>
-				</article>
 			</div>
 		</div>
 		<!-- 호텔 리뷰 표시 영역 끝 -->
@@ -346,6 +347,5 @@
 			})
 		})
 	</script>
-
 </th:block>
 </html>

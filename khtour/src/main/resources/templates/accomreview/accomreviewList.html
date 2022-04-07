@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/default}">
+	
 <th:block layout:fragment="customTitle">
 	<title th:text="${title}"></title>
 </th:block>
@@ -25,7 +26,8 @@
 	display: flex;
 	position: relative;
 	align-items: center;
-	padding: 18.577px;
+	padding: 0px;
+	padding-left: 18.577px;
 }
 
 .ReviewIcon {
@@ -47,9 +49,8 @@
 }
 
 .ReviewContentsBox-ReviewContent {
-	font-size: 1.5rem;
-	line-height: 2.2rem;
-	max-height: 8.8rem;
+	font-size: 15px;
+	line-height: normal;
 	overflow: hidden;
 	position: relative;
 	color: #616161;
@@ -57,6 +58,8 @@
 	word-break: break-all;
 	padding-right: 18.577px;
 	padding-left: 18.577px;
+	margin-top: 10px;
+	margin-bottom: 0px;
 }
 
 .feather {
@@ -117,75 +120,6 @@
 	color: blue;
 }
 </style>
-	<div class="row">
-		<div class="col-12">
-			<div class="card">
-				<div class="card-body">
-					<!-- 객실정보 상세검색  -->
-					<form>
-						<div class="form-row">
-							<div class="col-md-4 mb-4">
-								<label for="validationDefault01">여행 지역 선택</label> <select
-									class="form-control border border-secondary"
-									id="exampleFormControlSelect1">
-									<option>전체</option>
-									<option>서울특별시</option>
-									<option>인천광역시</option>
-									<option>대전광역시</option>
-									<option>대구광역시</option>
-									<option>울산광역시</option>
-									<option>부산광역시</option>
-									<option>광주광역시</option>
-									<option>강원도</option>
-									<option>경기도</option>
-									<option>충청남도</option>
-									<option>충청북도</option>
-									<option>경상북도</option>
-									<option>경상남도</option>
-									<option>전라북도</option>
-									<option>전라남도</option>
-									<option>제주도</option>
-								</select>
-							</div>
-							<div class="col-md-4 mb-4">
-								<label for="validationDefault01">여행 도시 선택</label> <select
-									class="form-control border border-secondary"
-									id="exampleFormControlSelect1">
-									<option>전체</option>
-									<option>강남구</option>
-									<option>종로구</option>
-									<option>용산구</option>
-									<option>강릉시</option>
-									<option>안동시</option>
-									<option>포항시</option>
-									<option>거제시</option>
-									<option>공주시</option>
-									<option>천안시</option>
-									<option>전주시</option>
-									<option>군산시</option>
-									<option>제주시</option>
-									<option>서귀포시</option>
-								</select>
-							</div>
-							<div class="col-md-4 mb-4">
-								<label for="validationDefault02">숙박시설 종류 선택</label> <select
-									class="form-control border border-secondary"
-									id="exampleFormControlSelect1">
-									<option>전체</option>
-									<option>호텔</option>
-									<option>펜션</option>
-									<option>모텔</option>
-									<option>리조트</option>
-									<option>게스트하우스</option>
-									<option>캥핑장</option>
-								</select>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
 	<!-- 호텔에 대한 리뷰 표시 영역 -->
 	<div class="roomInfo col-lg-12 col-md-12 col-sm-12" style="padding: 0;">
 		<div class="card">
@@ -195,23 +129,23 @@
 					<span style="display: inline-block; float: left; font-size: 20px;">(1,600개)</span>
 					<a type="button" class="btn addReview" data-toggle="modal"
 						data-target=".bd-example-modal-sm">리뷰작성하기</a>
-					
-					
+
+
 					<!-- 리뷰작성 모달 창 실행 -->
-					<div class="modal fade bd-example-modal-sm" tabindex="-1"
-						role="dialog" aria-labelledby="myLargeModalLabel"
-						aria-hidden="true">
-						<div class="modal-dialog modal-sm">
-							<div class="modal-content" style="margin: 0 auto;">
-								<div class="modal-header"
-									style="display: inline-block; text-align: center;">
-									<h5 class="modal-title" id="exampleModalLabel">리뷰등록</h5>
-								</div>
-								<form id="addReviewForm"
-									th:action="@{/accomreview/accomreviewList}" method="post">
+					<form id="addReviewForm"
+						th:action="@{/accomreview/accomreviewList}" method="post">
+						<div class="modal fade bd-example-modal-sm" tabindex="-1"
+							role="dialog" aria-labelledby="myLargeModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog modal-sm">
+								<div class="modal-content" style="margin: 0 auto;">
+									<div class="modal-header"
+										style="display: inline-block; text-align: center;">
+										<h5 class="modal-title" id="exampleModalLabel">리뷰등록</h5>
+									</div>
 									<div class="modal-body">
-									<input type="hidden" class="form-control" name="ldgCode" th:value="${ldgCode}" readonly="readonly">
-									<input type="hidden" class="form-control" name="memberId" th:value="${memberId}" readonly="readonly">
+										<input type="hidden" class="form-control" name="ldgCode" th:value="${ldgCode}" readonly="readonly"> 
+										<input class="form-control" name="memberId">
 										<div class="panel-hedding" style="text-align: center;">
 											<p>숙소에 대한 별점을 주세요!</p>
 											<select class="rating-fontawesome" name="ldgGrade"
@@ -286,20 +220,20 @@
 										<div class="card-footer"></div>
 										<div class="modal-footer">
 											<textarea class="form-control"
-												id="exampleFormControlTextarea1" rows="3" name="reviewContents"></textarea>
-
+												id="exampleFormControlTextarea1" rows="3"
+												name="reviewContents"></textarea>
 										</div>
 										<div class="modal-footer">
-											<a type="button" data-dismiss="modal">등록취소</a>
-											<a type="button" id="addReviewForm">등록하기</a>
+											<a type="button" data-dismiss="modal">등록취소</a> <a
+												type="button" id="addReviewBtn">등록하기</a>
 										</div>
 									</div>
-								</form>
+								</div>
 							</div>
 						</div>
-					</div>
+					</form>
 					<!-- 리뷰작성 모달창 끝 -->
-					
+
 				</div>
 			</div>
 			<div style="display: flex; justify-content: space-between;">
@@ -363,8 +297,9 @@
 				</div>
 			</div>
 			<div class="card-footer"></div>
-			<article class="ReviewBox">
-				<div></div>
+			<article class="ReviewBox"
+				th:if="${not #lists.isEmpty(accomoReviewList)}"
+				th:each="al,index: ${accomoReviewList}">
 				<div class="ReviewContentsBox">
 					<span class="ReviewIcon"><i class="fa fa-smile-o"
 						style="font-size: 50px; color: #FFB900;"></i></span>
@@ -378,20 +313,20 @@
 						</div>
 						<div class="ReviewTime"
 							style="display: inline-block; font-size: 1.2rem;">
-							<span style="font-weight: 100; margin-left: 0.8rem;"></span> <span
-								style="position: absolute; right: 0; line-height: 1.8rem; padding-right: 15px; font-size: 13px; opacity: 0.5;">16시간
-								전</span>
+							<span style="font-weight: 100; margin-left: 0.8rem;"></span> 
+							<span class="ReviewTime" style="position: absolute; right: 0; line-height: 1.8rem; padding-right: 15px; font-size: 13px; opacity: 0.5;" th:text="${al.reviewTime}"></span>
 						</div>
 						<div class="ReviewNicknameInfo" style="opacity: 0.5;">
 							닉네임 입니다. <span class="ReviewRoomName">객실 이름입니다.</span>
 						</div>
 					</div>
 				</div>
-				<div class="ReviewContentsBox-ReviewContent"><p>동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산 대한사람 대한으로 길이보전하세</p></div>
+				<div class="ReviewContentsBox-ReviewContent">
+					<p th:text="${al.reviewContents}" style="margin: 0px;"></p>
+				</div>
 				<div class="review-bottom"
-					style="display: flex; justify-content: flex-end; padding: 18.577px;">
-					<a type="button" class="btn">수정</a> 
-					<a type="button" class="btn">삭제</a>
+					style="display: flex; justify-content: flex-end; padding: 0px">
+					<a type="button" class="btn">수정</a> <a type="button" class="btn">삭제</a>
 				</div>
 				<div class="card-footer"></div>
 			</article>
@@ -422,14 +357,32 @@
 	<!-- rating custom -->
 	<script th:src="@{/js/rating/rating.js}"></script>
 	<script>
-		$(function(){
+		$(function() {
 			$('.rating-fontawesome').barrating({
-	            theme: 'fontawesome-stars',
-	            showSelectedRating: false
-	        });
+				theme : 'fontawesome-stars',
+				showSelectedRating : false
+			});
 		});
 	</script>
+	<!-- 등록 버튼 자바스크립트 -->
+	<script type="text/javascript" th:inline="javascript">
+		$('#addReviewBtn').click(function() {
 
+			var isSubmit = true;
+			var inputObj = $('#addReviewForm').find('input');
+
+			$.each(inputObj, function() {
+				var inputId = $(this).attr('id');
+				var inputLabel = $('label[for="' + inputId + '"]').text();
+				var inputData = $(this).val();
+
+				// 사용자가 입력하지 않은 경우
+			});
+
+			if (isSubmit)
+				$('#addReviewForm').submit();
+		});
+	</script>
 </th:block>
 </html>
 
