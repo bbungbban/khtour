@@ -108,7 +108,7 @@ public class RoomController {
 		
 		model.addAttribute("ldgCode", ldgCode);
 		model.addAttribute("ldgName", ldgName);
-		model.addAttribute("title", "객실 계획 등록");
+		model.addAttribute("title", "객실 등록");
 		
 		
 		return "room/roomInsert";

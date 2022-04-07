@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ksmart42.khtour.dto.AccomReview;
 import ksmart42.khtour.dto.Accommodation;
 import ksmart42.khtour.dto.Room;
+import ksmart42.khtour.service.AccomReviewService;
 import ksmart42.khtour.service.AccommodationService;
 import ksmart42.khtour.service.RoomService;
 
@@ -24,19 +26,22 @@ public class AccommodationController {
 
 	
 	private static final Logger log = LoggerFactory.getLogger(AccommodationController.class);
+	
 
 	private AccommodationService accommodationService; 
+	private AccomReviewService accomReviewService;
 	
 	private RoomService roomService;
 	
-	public AccommodationController(AccommodationService accommodationService, RoomService roomService) {
+	public AccommodationController(AccommodationService accommodationService, RoomService roomService, AccomReviewService accomReviewService) {
 		this.accommodationService = accommodationService;
 		this.roomService = roomService;
+		this.accomReviewService = accomReviewService;
 	
 	
 	}
 	/*
-	 * 숙박업소 조회 (관리자)(Get 정보 전달)
+	 * 숙박업소 조회 페이지이동(Get 정보 전달)
 	 */
 	@GetMapping("/accommodationList")
 	public String getAccommodationList(Model model) {
@@ -98,17 +103,26 @@ public class AccommodationController {
 	 */
 	@GetMapping("/acoommodationInfo")
 	public String getAcoommodationInfo(
-			@RequestParam(value="ldgCode", required = false) String ldgCode,
-			Model model) {
+			@RequestParam(value="ldgCode", required = false) String ldgCode
+			,Model model) {
+		
 		Accommodation accommodation = accommodationService.getLdgByCode(ldgCode);
 		
-		log.info("roomList");
+		
 		List<Room> roomList = roomService.getRoomListByldgCode(ldgCode);
+		
+		List<AccomReview> accomoReviewList = accomReviewService.getAccomReviewList(ldgCode);
+		log.info(accomoReviewList + "리뷰리스트");
+		
+		model.addAttribute("title", "리뷰 페이지 이동");
+		model.addAttribute("accomoReviewList", accomoReviewList);
+		System.out.println("리뷰 정보 get 전달" + accomoReviewList);
 		
 		model.addAttribute("roomList", roomList);
 		model.addAttribute("title", "숙박업소 상세 페이지");
 		model.addAttribute("accommodation", accommodation);
 		System.out.println("숙박업소 정보 get 전달" + accommodation);
+		
 		return "/accommodation/acoommodationInfo";
 	}
 	
@@ -145,6 +159,23 @@ public class AccommodationController {
 		model.addAttribute("title", "숙박업소 등록");
 		
 		return "accommodation/accommodationInsert";
+	}
+	
+	@GetMapping("/accomreviewList")
+	public String getaccomReviewList(
+			@RequestParam(value="ldgCode", required = false)String ldgCode
+			,Model model ) {
+		
+		Accommodation accommodation = accommodationService.getLdgByCode(ldgCode);
+		
+		List<AccomReview> accomoReviewList = accomReviewService.getAccomReviewList(ldgCode);
+		log.info(accomoReviewList + "리뷰리스트");
+		
+		model.addAttribute("title", "리뷰 페이지 이동");
+		model.addAttribute("accomoReviewList", accomoReviewList);
+		model.addAttribute("accommodation", accommodation);
+		
+		return "/accomreview/accomreviewList";
 	}
 	
 }

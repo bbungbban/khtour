@@ -31,6 +31,6 @@ public interface RoomMapper {
 	//객실 목록조회 관리자
 	public List<Room> getRoomList(Map<String, Object> paramMap);
 	
-	
+	//객실 목록조화 관리자 페이지
 	public List<Room> getRoomListSt(Map<String, Object> paramMap);
 }

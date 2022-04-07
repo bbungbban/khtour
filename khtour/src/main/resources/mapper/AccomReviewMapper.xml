@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ksmart42.khtour.mapper.AccomReviewMapper">
 
-	<resultMap type="AccomReview" id="accomReviewResultMap">
+	<resultMap type="AccomReview" 			id="accomReviewResultMap">
 		<id column="ldg_review_code"  		property="ldgReviewCode"/>
 		<result column="member_id"			property="memberId"/>
 		<result column="ldg_code" 			property="ldgCode"/>
@@ -40,7 +40,7 @@
 		  ldg_code = #{ldgCode};
 </select>
 
-<!-- 
+
 <insert id="addAccomReview" parameterType="AccomReview">
 		INSERT INTO
 			tb_ldg_review
@@ -66,8 +66,8 @@
 			,#{ldgLocation}
 			,#{ldgPriceSta}
 			,#{reviewContents}
-			,#{reviewTime}
+			,now()
 		);
-</insert> -->
+</insert>
 
 </mapper>
