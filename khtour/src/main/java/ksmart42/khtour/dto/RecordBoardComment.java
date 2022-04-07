@@ -2,15 +2,15 @@ package ksmart42.khtour.dto;
 
 public class RecordBoardComment {
 
-	private int commentNum;
+	private String commentNum;
 	private String recordBoardCode;
 	private String content;
 	private String memberId;
 	private String regDate;
-	public int getCommentNum() {
+	public String getCommentNum() {
 		return commentNum;
 	}
-	public void setCommentNum(int commentNum) {
+	public void setCommentNum(String commentNum) {
 		this.commentNum = commentNum;
 	}
 	public String getRecordBoardCode() {

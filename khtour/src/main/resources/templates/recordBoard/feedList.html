@@ -281,18 +281,21 @@
 										</div>
 										<div id="collapse-1" class="p-2 collapse"
 											data-parent="#myGroup">
-											<div class="d-flex flex-row align-items-start">
-												<img class="rounded-circle"
-													src="https://i.imgur.com/RpzrMR2.jpg" width="40">
-												<textarea class="form-control ml-1 shadow-none textarea"></textarea>
-											</div>
-											<div class="mt-2 text-right">
-												<button class="btn btn-primary btn-sm shadow-none"
-													type="button">댓글 작성완료</button>
-												<button
-													class="btn btn-outline-primary btn-sm ml-1 shadow-none"
-													type="button">취소</button>
-											</div>
+											<form id="addCommentForm" method="post" th:action="@{/recordBoard/commentInsert}">
+												<div class="d-flex flex-row align-items-start">
+													<img class="rounded-circle"
+														src="https://i.imgur.com/RpzrMR2.jpg" width="40">
+													<textarea class="form-control ml-1 shadow-none textarea" name="content"></textarea>
+													<input type="hidden" name="recordBoardCode" th:value="${param.recordBoardCode}" >
+												</div>
+												<div class="mt-2 text-right">
+													<button class="btn btn-primary btn-sm shadow-none" id="addCommentBtn"
+														type="button">댓글 작성완료</button>
+													<button
+														class="btn btn-outline-primary btn-sm ml-1 shadow-none"
+														type="button">취소</button>
+												</div>
+											</form>
 											<div class="card p-3 mb-2">
 												<div class="d-flex flex-row">
 													<div class="d-flex flex-column ms-2">
@@ -379,18 +382,6 @@
 	<!-- PRISM -->
 	<script th:src="@{/js/prism/prism.js}"></script>
 
-	<!-- 댓글 보여주기 -->
-	<script type="text/javascript">
-		function doDisplay() {
-			var con = document.getElementById("myDIV");
-			if (con.style.display == 'block') {
-				con.style.display = 'none';
-			} else {
-				con.style.display = 'block';
-			}
-		}
-	</script>
-
 	<!-- 이미지 왼쪽, 오른쪽 넘기는 버튼 생성 -->
 	<script>
 	$(document).ready(function(){
@@ -436,6 +427,24 @@
 
 			if (isSubmit)
 				$('#addFeedForm').submit();
+		});
+	</script>
+	<script type="text/javascript" th:inline="javascript">
+	$('#addCommentBtn').click(function() {
+
+			var isSubmit = true;
+			var inputObj = $('#addCommentForm').find('input');
+
+			$.each(inputObj, function() {
+				var inputId = $(this).attr('id');
+				var inputLabel = $('label[for="' + inputId + '"]').text();
+				var inputData = $(this).val();
+
+				// 사용자가 입력하지 않은 경우
+			});
+
+			if (isSubmit)
+				$('#addCommentForm').submit();
 		});
 	</script>
 	<script>
