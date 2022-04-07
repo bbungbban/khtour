@@ -83,6 +83,13 @@ public class CommunityService {
 	*/
 	public List<CommPost> getPostListByCommCode(String CommCode){
 		List<CommPost> postList = communityMapper.getPostListByCommCode(CommCode);
+		
+		for (int i=0;i<postList.size();i++)
+		{
+			String postCode = postList.get(i).getPostCode();
+			postList.get(i).setFilePath(communityMapper.getFileControllerByPostCode(postCode));
+			
+		}
 		return postListMod(postList);
 	}
 	

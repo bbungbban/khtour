@@ -63,7 +63,7 @@ public class CommunityController {
 	
 	@PostMapping("/addLikes")
 	@ResponseBody
-	public String addLikes(@RequestParam(value = "postCode",required=false) String postCode,@RequestParam(value = "replyCode",required=false) String replyCode)
+	public String addLikes(@RequestParam(value = "postCode",required=false) String postCode,@RequestParam(value = "replyCode",required=false) String replyCode,@RequestParam(name="memberId",required=false) String memberId)
 	{
 		if(replyCode==null)
 		{
@@ -115,6 +115,7 @@ public class CommunityController {
 		List<CommPost> postList = communityService.getPostList();
 		//오늘뜨고있는 상위 포스트 4개 리스트
 		List<CommPost> dailyPostList = communityService.getDailyPostList();
+
 		model.addAttribute("title","커뮤니티 대시보드");
 		model.addAttribute("communityList", communityList);
 		model.addAttribute("postList", postList);
@@ -129,8 +130,13 @@ public class CommunityController {
 	*  설  명  : 포스트 생성 페이지 GET 메서드로 접속
 	*/
 	@GetMapping("/createPost")
-	public String createPost(Model model,@RequestParam(name="commCode",required=false) String commCode) {
+	public String createPost(Model model,@RequestParam(name="commCode",required=false) String commCode,@RequestParam(name="memberId",required=false) String memberId) {
 		
+		if(memberId==null)
+		{
+			return "member/loginMain";
+		}
+			
 		model.addAttribute("title", "포스트 생성");
 		
 		if(commCode==null||commCode=="")
@@ -154,7 +160,13 @@ public class CommunityController {
 	*  설  명  : 커뮤니티 생성 페이지 GET메서드로 접속
 	*/
 	@GetMapping("/addCommunity")
-	public String createCommunity(Model model) {
+	public String createCommunity(Model model ,@RequestParam(name="memberId",required=false) String memberId) {
+		
+		if(memberId==null)
+		{
+			return "member/loginMain";
+		}
+		
 		
 		model.addAttribute("title", "커뮤니티 생성");
 		//전체 카테고리 리스트 모델에 저장
@@ -176,7 +188,7 @@ public class CommunityController {
 		//임시 더미데이터 저장
 		community.setMemberCnt("1");
 		community.setOnlineMemberCnt("0");
-		community.setMemberId("id001");
+		/* community.setMemberId("id001"); */
 		
 		community.setCommCode(communityMapper.getNextCommCode());
 		//커뮤니티 데이터 베이스에 저장
@@ -195,7 +207,12 @@ public class CommunityController {
 	*  설  명  : 새로운 규칙 생성 후에 커뮤니티 페이지로 리다이렉트
 	*/
 	@PostMapping("/addRule")
-	public String addRule(RedirectAttributes reAttr,Rule rule) {
+	public String addRule(RedirectAttributes reAttr,Rule rule,@RequestParam(name="memberId",required=false) String memberId) {
+		
+		if(memberId==null||memberId=="")
+		{
+			return "redirect:/member/loginMain";
+		}
 		
 		//새로운 규칙 데이타 베이스에 저장
 		communityService.addRule(rule);
@@ -212,10 +229,15 @@ public class CommunityController {
 	*  설  명  : 새로운 태그 저장후에 커뮤니티 페이지로 리다이렉트
 	*/
 	@PostMapping("/addTag")
-	public String addTag(RedirectAttributes reAttr,CommTag commTag) {
+	public String addTag(RedirectAttributes reAttr,CommTag commTag,@RequestParam(name="memberId",required=false) String memberId) {
 
 		//임시 더미데이터 저장
-		commTag.setMemberId("id001");	
+		/* commTag.setMemberId("id001"); */
+		
+		if(memberId==null||memberId=="")
+		{
+			return "redirect:/member/loginMain";
+		}
 		
 		//커뮤니티 테그 저장
 		communityService.addTag(commTag);
@@ -235,7 +257,6 @@ public class CommunityController {
 	public String addCommPost(HttpServletRequest request,@RequestParam MultipartFile[] uploadfile,RedirectAttributes reAttr,CommPost commPost) {
 		
 		//임시 더미데이터 저장
-		commPost.setMemberId("id001");	
 		String serverName = request.getServerName();
 		String fileRealPath = "";	
 		List<String> indexList =null;
@@ -258,6 +279,7 @@ public class CommunityController {
 		//포스트 코드 생성후 저장
 			commPost.setPostCode(communityMapper.getNextPostCode());	
 			communityService.addCommPost(commPost);
+
 			List<Map<String,String>> addFileControlList = new ArrayList<Map<String,String>>();	
 			Map<String , String> addMap = null;	
 			if(uploadfile != null&&uploadfile.length>1) {
@@ -267,10 +289,8 @@ public class CommunityController {
 					addMap.put("filePath", "\\" + indexList.get(i));
 					addFileControlList.add(addMap);
 				}
+				fileMapper.addFileControl(addFileControlList);	
 			}		
-			fileMapper.addFileControl(addFileControlList);	
-		
-		
 		//포스트코드 리다이렉트 정보에 저장
 		reAttr.addAttribute("postCode",commPost.getPostCode());
 		return "redirect:/post";	
@@ -278,12 +298,11 @@ public class CommunityController {
 	@PostMapping("/addCommReply")
 	public String addCommReply(RedirectAttributes reAttr,CommReply commReply) {
 		
-		commReply.setMemberId("id001");	
+		if(commReply.getMemberId()==null||commReply.getMemberId()=="")
+		{
+			return "redirect:/member/loginMain";
+		}
 		reAttr.addAttribute("postCode",commReply.getPostCode());
-		
-		log.info("답글 메인 글 : " + commReply.getMainText());
-		
-		
 		communityService.addCommReply(commReply);
 		return "redirect:/post";	
 	}
@@ -300,7 +319,6 @@ public class CommunityController {
 		//포스트 코드로 커뮤니티 포스트를 찾아서 저장
 		CommPost commPost =communityService.getPostByPostCode(postCode);
 		List<CommReply> replyList = communityService.getCommReplyListByPostCode(postCode);
-		log.info("답글리스트 : " + replyList);
 		//커뮤니티포스트에 들어있는 커뮤니티 이름 저장
 		String commCode = commPost.getCommCode();
 		

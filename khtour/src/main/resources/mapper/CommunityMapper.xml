@@ -61,6 +61,7 @@
 	<resultMap type="CommReply" id="replyResultMap">
 		<id column="reply_code" property="replyCode"/>
 		<result column="member_id" property="memberId"/>
+		<result column="member_name" property="memberName"/>
 		<result column="post_code" property="postCode"/>
 		<result column="parent_reply_code" property="parentReplyCode"/>
 		<result column="likes_cnt" property="likesCnt"/>
@@ -179,6 +180,8 @@
 	<select id="getCommReplyByParentReplyCode"  resultMap="replyResultMap">
 			SELECT
 				r.reply_code
+				,r.member_id
+				,r.member_name
 				,r.comments_cnt
 				,r.parent_reply_code
 			FROM
@@ -200,6 +203,7 @@
 				,r.reg_time
 				,r.comments_cnt
 				,r.result_cnt
+				,r.member_name
 			FROM
 				tb_community_reply AS r
 			WHERE
@@ -545,6 +549,7 @@
 				,reg_time
 				,comments_cnt
 				,result_cnt
+				,member_name
 			)
 			VALUES(
 				sf_new_reply_code()
@@ -557,6 +562,7 @@
 				,NOW()	
 				,0		
 				,0
+				,#{memberName}
 			);
 	</insert>
 	

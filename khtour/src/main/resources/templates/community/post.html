@@ -135,16 +135,18 @@
 					</div>
 				</div>
 			</div>
-			<div class="card">
+			<div class="card" >
 				<div class="card-body">
 					<form class="cmxform" id="form2"  method="post" th:action="@{/addCommReply}">
 						<div class="form-group">
 							<div class="avatar avatar-sm bg-danger mr-1">
-								<span class="avatar-name">id001</span>
+								<span class="avatar-name">[[${session.SID}]]</span>
 							</div>
-							<label for="agree">로 댓글 달기</label>
+							<label for="agree">[[${session.SNAME}]] : 댓글 달기</label>
 							<textarea id="mainText" name="mainText" class="form-control" rows="5" placeholder="댓글 내용" required></textarea>
 							<input type="hidden"  th:value="${commPost.postCode}"  name="postCode" />
+							<input type="hidden"  th:value="${session.SID}"  name="memberId" />
+							
 						</div>
 						<div class="form-group">
 							<input class="submit btn btn-primary btn-sm" type="submit" value="댓글 등록">
@@ -154,9 +156,9 @@
 							<div class="card card ml-4 mr-0 mb-1 mt-0"  th:if="${#strings.isEmpty(r1.parentReplyCode)}" th:each="r1,index1: ${replyList}">
 								<div class="card-header ">
 									<div class="avatar avatar-sm bg-secondary mr-1">
-										<span class="avatar-name">id001</span> 
+										<span class="avatar-name">[[${r1.memberId}]]</span> 
 									</div>    
-										<a th:text = "${r1.memberId}"></a>
+										<a th:text = "${r1.memberName}"></a>
 										<a th:text ="${r1.regTime}"></a>
 						
 								</div>	
@@ -187,11 +189,12 @@
 											<form class="cmxform" id="form3"  method="post" th:action="@{/addCommReply}">
 												<div class="form-group">
 													<div class="avatar avatar-sm bg-secondary mr-1">
-														<span class="avatar-name">id001</span>
+														<span class="avatar-name">[[${r1.memberId}]]</span>
 													</div>
 													<textarea id="mainText" name="mainText" class="form-control" rows="5" placeholder="댓글달기" required></textarea>
 													<input type="hidden"  th:value="${commPost.postCode}"  name="postCode" />
 													<input type="hidden"  th:value="${r1.replyCode}"  name="parentReplyCode" />
+													<input type="hidden"  th:value="${session.SID}"  name="memberId" />
 												</div>
 												<div class="form-group">
 													
@@ -205,9 +208,9 @@
 									<div class="card card ml-4 mr-0 mb-1 mt-0" th:if="${not #lists.isEmpty(r1.childrenReply)}" th:each="r2,index2: ${r1.childrenReply}">
 										<div class="card-header ">
 											<div class="avatar avatar-sm bg-success mr-1">
-												<span class="avatar-name">id001</span> 
+												<span class="avatar-name">[[${r2.memberId}]]</span> 
 											</div>    
-												<a th:text = "${r2.memberId}"></a>
+												<a th:text = "${r2.memberName}"></a>
 												<a th:text ="${r2.regTime}"></a>
 											
 										</div>	
@@ -237,11 +240,12 @@
 													<form class="cmxform" id="form3"  method="post" th:action="@{/addCommReply}">
 														<div class="form-group">
 															<div class="avatar avatar-sm bg-success mr-1">
-																<span class="avatar-name">id002</span>
+																<span class="avatar-name">[[${session.SID}]]</span>
 															</div>
 															<textarea id="mainText" name="mainText" class="form-control" rows="5" placeholder="댓글달기" required></textarea>
 															<input type="hidden"  th:value="${commPost.postCode}"  name="postCode" />
 															<input type="hidden"  th:value="${r2.replyCode}"  name="parentReplyCode" />
+															<input type="hidden"  th:value="${session.SID}"  name="memberId" />
 														</div>
 														<div class="form-group">
 															
@@ -255,9 +259,9 @@
 											<div class="card card ml-4 mr-0 mb-1 mt-0" th:if="${not #lists.isEmpty(r1.childrenReply)}" th:each="r3,index3: ${r2.childrenReply}">
 												<div class="card-header ">
 													<div class="avatar avatar-sm bg-primary mr-1">
-														<span class="avatar-name">id001</span> 
+														<span class="avatar-name">[[${r3.memberId}]]</span> 
 													</div>    
-														<a th:text = "${r3.memberId}"></a>
+														<a th:text = "${r3.memberName}"></a>
 														<a th:text ="${r3.regTime}"></a>
 													
 												</div>	
@@ -287,11 +291,12 @@
 															<form class="cmxform" id="form3"  method="post" th:action="@{/addCommReply}">
 																<div class="form-group">
 																	<div class="avatar avatar-sm bg-info mr-1">
-																		<span class="avatar-name">id001</span>
+																		<span class="avatar-name">[[${session.SID}]]</span>
 																	</div>
 																	<textarea id="mainText" name="mainText" class="form-control" rows="5" placeholder="댓글달기" required></textarea>
 																	<input type="hidden"  th:value="${commPost.postCode}"  name="postCode" />
 																	<input type="hidden"  th:value="${r3.replyCode}"  name="parentReplyCode" />
+																	<input type="hidden"  th:value="${session.SID}"  name="memberId" />
 																</div>
 																<div class="form-group">
 																	
@@ -305,9 +310,9 @@
 													<div class="card card ml-4 mr-0 mb-1 mt-0" th:if="${not #lists.isEmpty(r1.childrenReply)}" th:each="r4,index4: ${r3.childrenReply}">
 												<div class="card-header ">
 													<div class="avatar avatar-sm bg-warning mr-1">
-														<span class="avatar-name">id001</span> 
+														<span class="avatar-name">[[${r4.memberId}]]</span> 
 													</div>    
-														<a th:text = "${r4.memberId}"></a>
+														<a th:text = "${r4.memberName}"></a>
 														<a th:text ="${r4.regTime}"></a>
 													
 												</div>	

@@ -83,6 +83,7 @@
 					<div class="row">
 						<div class="col-9">
 							<input id="commName" class="form-control" name="commName">
+							<input type="hidden"  th:value="${session.SID}"  name="memberId" />
 						</div>
 						<div class="col-3">
 							<button type="button" class="btn btn-primary active text-center" id="commNameCheck">중복 체크</button>

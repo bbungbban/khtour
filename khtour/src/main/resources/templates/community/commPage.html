@@ -14,9 +14,8 @@
 	$(function() {
 		$(".upVote").on("click",function(){
 			var postCode = $(this).attr('data-postCode');
-			var likesCnt = $(this).parent().find('#likesCnt')
+			var resultCnt = $(this).parent().find('#resultCnt')
 	       	console.log(postCode);
-			console.log(likesCnt);
 					 $.ajax({
 						url : '/addLikes',
 						type : 'post',
@@ -25,7 +24,7 @@
 						},
 						dataType : 'text',
 						success : function(data) {
-							likesCnt.text(data);	
+							resultCnt.text(data);	
 						}
 					}); 
 	        
@@ -34,9 +33,8 @@
 	$(function() {
 		$(".downVote").on("click",function(){
 			var postCode = $(this).attr('data-postCode');
-			var likesCnt = $(this).parent().find('#likesCnt')
+			var resultCnt = $(this).parent().find('#resultCnt')
 	       	console.log(postCode);
-			console.log(likesCnt);
 					 $.ajax({
 						url : '/addDislikes',
 						type : 'post',
@@ -45,7 +43,7 @@
 						},
 						dataType : 'text',
 						success : function(data) {
-							likesCnt.text(data);	
+							resultCnt.text(data);	
 						}
 					}); 
 	        
@@ -186,9 +184,11 @@
 					<form class="cmxform" method="post" th:action="@{/addTag}">
 						<div class="form-group">
 							<input type="hidden" name="commCode" id="commCode" class="form-control" th:value="${community.commCode}"></input>
+							<input type="hidden"  th:value="${session.SID}"  name="memberId" />
 						</div>
 						<div class="form-group">
-							<label for="tagName">태그이름</label> <input id="tagName" name="tagName" type="text" class="form-control" required></input>
+							<label for="tagName">태그이름</label> 
+							<input id="tagName" name="tagName" type="text" class="form-control" required></input>	
 						</div>
 						
 	
@@ -225,6 +225,7 @@
 					<form class="cmxform" method="post" th:action="@{/addRule}">
 						<div class="form-group">
 							<input type="hidden" name="commCode" id="commCode" class="form-control" th:value="${community.commCode}"></input>
+							<input type="hidden"  th:value="${session.SID}"  name="memberId" />
 						</div>
 						<div class="form-group">
 							<label for="title">규칙 재목</label> 

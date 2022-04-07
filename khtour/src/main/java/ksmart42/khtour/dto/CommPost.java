@@ -115,6 +115,12 @@ public class CommPost {
 	public void setResultCnt(String resultCnt) {
 		this.resultCnt = resultCnt;
 	}
+	public List<String> getFilePath() {
+		return filePath;
+	}
+	public void setFilePath(List<String> filePath) {
+		this.filePath = filePath;
+	}
 	private String postCode;
 	private String commCode;
 	private String memberId;
@@ -127,12 +133,6 @@ public class CommPost {
 	private String videoLink;
 	private String likesCnt;
 	private String dislikesCnt;
-	public List<String> getFilePath() {
-		return filePath;
-	}
-	public void setFilePath(List<String> filePath) {
-		this.filePath = filePath;
-	}
 	private String resultCnt;
 	private String reportCnt;
 	private String pointGain;
