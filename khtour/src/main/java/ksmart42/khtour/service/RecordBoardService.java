@@ -141,5 +141,8 @@ public class RecordBoardService {
 		return recordBoardMapper.updateViewsByCode(recordBoardCode);
 	}
 	
+////////////////게시글 댓글 관련
+	
+
 	
 }

@@ -55,4 +55,10 @@ public interface RecordBoardMapper {
 	
 	public int removeFeedByrCode(String recordBoardCode);
 	
+/*
+ * 댓글 관련	
+ */
+
+	
+	
 }
