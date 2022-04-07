@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import ksmart42.khtour.dto.Feed;
 import ksmart42.khtour.dto.PlanStatus;
 import ksmart42.khtour.dto.RecordBoard;
+import ksmart42.khtour.dto.RecordBoardComment;
 
 @Mapper
 public interface RecordBoardMapper {
@@ -58,6 +59,12 @@ public interface RecordBoardMapper {
 /*
  * 댓글 관련	
  */
+
+	// ldg_code에 맞는 리뷰 조회
+	public List<RecordBoardComment> getCommentListByrCode(String recordBoardCode);
+
+	//리뷰등록
+	public int addComment(RecordBoardComment recordBoardComment);
 
 	
 	

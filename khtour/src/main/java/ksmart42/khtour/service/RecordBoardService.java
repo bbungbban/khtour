@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ksmart42.khtour.dto.Feed;
 import ksmart42.khtour.dto.PlanStatus;
 import ksmart42.khtour.dto.RecordBoard;
+import ksmart42.khtour.dto.RecordBoardComment;
 import ksmart42.khtour.mapper.RecordBoardMapper;
 
 @Service
@@ -129,7 +130,18 @@ public class RecordBoardService {
 		
 		return result;
 	}
+//////////게시글 댓글 관련
 	
+	public List<RecordBoardComment> getCommentListByrCode(String recordBoardCode){
+		return recordBoardMapper.getCommentListByrCode(recordBoardCode);
+	}	
+	
+	public void addComment(RecordBoardComment recordBoardComment) {
+		recordBoardMapper.addComment(recordBoardComment);
+		
+	}	
+	
+
 /////////그 외
 	
 	/**
@@ -141,7 +153,7 @@ public class RecordBoardService {
 		return recordBoardMapper.updateViewsByCode(recordBoardCode);
 	}
 	
-////////////////게시글 댓글 관련
+
 	
 
 	

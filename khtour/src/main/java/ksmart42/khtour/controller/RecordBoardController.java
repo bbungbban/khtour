@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 
 import ksmart42.khtour.dto.Feed;
 import ksmart42.khtour.dto.PlanStatus;
 import ksmart42.khtour.dto.RecordBoard;
+import ksmart42.khtour.dto.RecordBoardComment;
 import ksmart42.khtour.service.RecordBoardService;
 
 @Controller
@@ -125,8 +126,6 @@ public class RecordBoardController {
 		return "recordBoard/recordBoardList";
 	}
 	
-
-
 	/* 3. 리스트 조회 (유저 권한)
 	*  작성자 : 김민석
 	*  입  력 : @RequestParam, Model
@@ -141,12 +140,14 @@ public class RecordBoardController {
 		recordBoardService.updateViewsByCode(recordBoardCode);
 		List<Feed> feedList = recordBoardService.getFeedListByRecordBoardCode(recordBoardCode);
 		List<PlanStatus> planStatusList = recordBoardService.getPlanStatusList();
+		List<RecordBoardComment> recordBoardCommentList = recordBoardService.getCommentListByrCode(recordBoardCode);
 		RecordBoard recordBoard = recordBoardService.getRecordBoardByCode(recordBoardCode);
 
 		model.addAttribute("title", "피드 목록");
 		model.addAttribute("recordBoard", recordBoard);
 		model.addAttribute("planStatusList", planStatusList);
 		model.addAttribute("feedList", feedList);
+		model.addAttribute("recordBoardCommentList", recordBoardCommentList);
 
 		System.out.println("정보 수정 겟방식 전달123" + recordBoard);
 
@@ -233,7 +234,15 @@ public class RecordBoardController {
 	
 /////댓글 관련
     
- 
+	//리뷰 등록(post 정보 전달) request명은 하나의 경로 -> form action 경로와 같아 주면 된다.
+	@RequestMapping("/commentInsert")
+	public String addComment(RecordBoardComment recordBoardComment, RedirectAttributes reAttr) {
+
+		reAttr.addAttribute("recordBoardCode", recordBoardComment.getRecordBoardCode());
+		recordBoardService.addComment(recordBoardComment);
+
+		return "redirect:/recordBoard/feedList";
+	} 
 	
 	
 	
