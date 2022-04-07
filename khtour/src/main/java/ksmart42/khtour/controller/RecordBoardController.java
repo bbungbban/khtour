@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
 import ksmart42.khtour.dto.Feed;
 import ksmart42.khtour.dto.PlanStatus;
 import ksmart42.khtour.dto.RecordBoard;
@@ -27,6 +28,7 @@ public class RecordBoardController {
 		this.recordBoardService = recordBoardService;
 
 	}
+	
 	
 /////POST 방식////	조회 -> 등록 -> 수정 -> 삭제 순
 	
@@ -202,4 +204,38 @@ public class RecordBoardController {
 		return "redirect:/recordBoard/recordBoardListSt";
 
 	}
+	
+	/* 4. 정보 삭제 (관리자 권한)
+	*  작성자 : 김민석
+	*  입  력 : Plan(여행 계획 리스트)
+	*  출  력 : String (주소)
+	*  설  명 : 여행 계획 정보 삭제(관리자페이지) - Get방식 전달
+	*/
+	@GetMapping("/feedRemove")
+	public String removeFeed(Feed feed,  Model model ) {
+		String feedCode = feed.getFeedCode();
+		String recordBoardCode = feed.getRecordBoardCode();
+		System.out.println("feedCode <-----------------" + feedCode);
+		System.out.println("recordBoardCode <-----------------" + recordBoardCode);
+		System.out.println("feed <-----------------" + feed);
+		
+		recordBoardService.removeFeed(feedCode);
+		
+		
+		model.addAttribute("recordBoardCode", recordBoardCode);
+		System.out.println("정보 삭제 포스트 전달" + recordBoardService.removeFeed(feedCode));
+		
+		return "redirect:/recordBoard/feedList";
+	}
+
+	
+	
+	
+/////댓글 관련
+    
+ 
+	
+	
+	
+	
 }

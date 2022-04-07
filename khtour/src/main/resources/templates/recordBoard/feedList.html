@@ -8,24 +8,14 @@
 <th:block layout:fragment="contentsTitle">
 	<style>
 @import url(https://unpkg.com/@webpixels/css@1.1/dist/index.css);
-/* 댓글 창 */
+
 .postbgimg img {
 	width: 100%;
 	height: 274px;
 }
-
-.comment-avtar {
-	padding-right: 2rem;
+.fa {
+    cursor: pointer
 }
-
-.children {
-	padding-left: 8rem;
-}
-
-.btn-outline-danger:hover {
-	background-color: #cb4946 !important;
-}
-
 /* 이미지 앨범 이동 */
 .btn {
 	border-radius: 5px;
@@ -271,6 +261,68 @@
 						th:text="'여행 시작일 : ' + ${recordBoard.startDate} + ' | ' + '여행 종료일 : ' + ${recordBoard.endDate} + ' | ' + '여행 유형 : 나홀로 여행'"></p>
 					<p
 						th:text="'게시글 등록 날짜 : ' + ${recordBoard.regDate} + ' | ' + '조회수 : ' + ${recordBoard.views}"></p>
+													<div class="d-flex flex-column comment-section" id="myGroup">
+										<div class="p-2">
+											<div class="d-flex flex-row fs-12">
+												<div class="like p-2 cursor">
+													<i class="fa fa-thumbs-o-up"></i><span class="ml-1">좋아요</span>
+												</div>
+												<div class="like p-2 cursor action-collapse"
+													data-toggle="collapse" aria-expanded="true"
+													aria-controls="collapse-1" href="#collapse-1">
+													<i class="fa fa-commenting-o"></i><span class="ml-1">댓글</span>
+												</div>
+												<div class="like p-2 cursor action-collapse"
+													data-toggle="collapse" aria-expanded="true"
+													aria-controls="collapse-2" href="#collapse-2">
+													<i class="fa fa-share"></i><span class="ml-1">관리</span>
+												</div>
+											</div>
+										</div>
+										<div id="collapse-1" class="p-2 collapse"
+											data-parent="#myGroup">
+											<div class="d-flex flex-row align-items-start">
+												<img class="rounded-circle"
+													src="https://i.imgur.com/RpzrMR2.jpg" width="40">
+												<textarea class="form-control ml-1 shadow-none textarea"></textarea>
+											</div>
+											<div class="mt-2 text-right">
+												<button class="btn btn-primary btn-sm shadow-none"
+													type="button">댓글 작성완료</button>
+												<button
+													class="btn btn-outline-primary btn-sm ml-1 shadow-none"
+													type="button">취소</button>
+											</div>
+											<div class="card p-3 mb-2">
+												<div class="d-flex flex-row">
+													<div class="d-flex flex-column ms-2">
+														<h3 class="mb-1 text-primary">등록자 아이디 : id003</h3>
+														<p class="comment-text">댓글 내용</p>
+													</div>
+												</div>
+												<div class="d-flex justify-content-between">
+													<div class="d-flex flex-row gap-3 align-items-center"></div>
+													<div class="d-flex flex-row">
+														<span class="text-muted fw-normal fs-10">May 22,2020
+															12:10 PM</span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div id="collapse-2" class="p-2 collapse"
+											data-parent="#myGroup">
+											<div class="d-flex flex-row align-items-start">
+												<a class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1">
+												<!-- 	th:href="@{/recordBoard/recordBoardModify(recordBoardCode=${l.recordBoardCode})}" --><i
+													class="la la-edit"></i> </a>
+												<button class="btn btn-danger btn-icon btn-sm mb-1"
+													id="swal-delete-feed">
+													<!-- th:data-feedCd="${f.feedCode}" -->
+													<i class="fa fa-trash-o"></i>
+												</button>
+											</div>
+										</div>
+									</div>
 				</div>
 			</div>
 
@@ -296,67 +348,18 @@
 							</div>
 							<div class="info">
 								<span>피드 소개 : </span>
-								<h2 class="pt-3">해바라기 가득~</h2>
+								<h2 class="pt-3 pl-1">해바라기 가득~</h2>
 
 								<div class="embed-responsive embed-responsive-16by9">
 									<img th:src="@{/images/traShare/여행이미지1.gif}"
 										class="img-fluid embed-responsive-item" alt="...">
 								</div>
 								KOREA HERITAGETOUR (T)
-								<div class="pt-3">
+								<div class="pt-3 pl-3">
 									<h5>해바라기 농장을 운영하시는 농장주의 넓은 아량 덕분에 이렇게 예쁜!</h5>
 								</div>
 								<div class="pt-3 row">
-									<div class="col-2">
-										<a href="javascript:doDisplay();"><i
-											class="text-dark feather icon-message-circle"></i>댓글</a>
-									</div>
-									<div class="col-4">
-										<a>수정</a> <a>삭제</a>
-									</div>
-									<div id="myDIV" style="display: none;">
-										<div>
-											<span>댓글을 남겨주세요.</span>
-										</div>
-										<textarea class="form-control" placeholder="댓글을 작성해 주세요."></textarea>
-										<div class="pt-2 float-end">
-											<button type="submit" class="btn btn-outline-danger"
-												style="background: #ec5552; color: #fff;">등록</button>
-										</div>
-										<div class="pb-5 pt-5" style="opacity: 0.7;">댓글작성내용</div>
-										<div class="comments-list">
-											<ul class="list-inline">
-												<li class="comments" style="overflow: hidden;">
-													<div class="comment-avtar" style="float: left;">
-														<div class="avatar avatar-xll">
-															<img class="img-fluid" src="images/team/01.jpg" alt="">
-														</div>
-													</div>
-													<div class="comment-info pb-3" style="float: left;">
-														<h5>Airi Satou</h5>
-														<span class="date">12 jan 2021</span>
-														<p class="mt-2 mb-1">댓글 적는중</p>
-														<a href="#!"> Replay <i
-															class="feather icon-arrow-right"></i></a>
-													</div>
-												</li>
-												<li class="comments children" style="overflow: hidden;">
-													<div class="comment-avtar" style="float: left;">
-														<div class="avatar avatar-xll">
-															<img class="img-fluid" src="images/team/02.jpg" alt="">
-														</div>
-													</div>
-													<div class="comment-info">
-														<h5>Bruno Nash</h5>
-														<span class="date">10 feb 2021</span>
-														<p class="mt-2 mb-1">댓글 확실히 적는중</p>
-														<a href="#!"> Replay <i
-															class="feather icon-arrow-right"></i></a>
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
+
 								</div>
 							</div>
 						</li>
@@ -368,6 +371,9 @@
 
 </th:block>
 <th:block layout:fragment="customBodyScript">
+	<!-- delbtn -->
+	<script th:src="@{/js/sweetalert2/sweetalert2.min.js}" aria-hidden="true"></script>
+	<script th:src="@{/js/sweetalert2/sweetalert2-custom.js}" aria-hidden="true"></script>
 	<!-- custom -->
 	<script th:src="@{/js/custom.js}"></script>
 	<!-- PRISM -->
@@ -430,6 +436,49 @@
 
 			if (isSubmit)
 				$('#addFeedForm').submit();
+		});
+	</script>
+	<script>
+		$(function(){
+			$(document).on('click','#swal-delete-feed',function(){
+				var feedCd = $(this).attr('data-feedCd');
+			      const swalWithBootstrapButtons = swal.mixin({
+			          confirmButtonClass: 'btn btn-success',
+			          cancelButtonClass: 'btn btn-danger',
+			          buttonsStyling: false,
+			        });
+
+			        swalWithBootstrapButtons({
+			          title: '정말 삭제 하시겠습니까?',
+			          text: "삭제 클릭시 해당 정보는 복구 할 수 없습니다.",
+			          type: 'warning',
+			          showCancelButton: true,
+			          confirmButtonText: '네',
+			          cancelButtonText: '아니오',
+			          reverseButtons: false
+			        }).then((result) => {
+			          if (result.value) {
+			            swalWithBootstrapButtons(
+			              '삭제완료',
+			              '파일이 안전하게 삭제되었습니다.',
+			              'success'
+			            )
+			            location.href = '/recordBoard/feedRemove?feedCode=' + feedCd;
+			          } else if (
+			            // Read more about handling dismissals
+			            result.dismiss === swal.DismissReason.cancel
+			          ) {
+			            swalWithBootstrapButtons(
+			              '취소',
+			              '사진은 안전하게 보호됩니다.',
+			              'error'
+			            )
+			          }
+			        });
+
+				    			
+			});
+			
 		});
 	</script>
 </th:block>
