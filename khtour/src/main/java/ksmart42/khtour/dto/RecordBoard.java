@@ -1,7 +1,18 @@
 package ksmart42.khtour.dto;
 
 public class RecordBoard {
-			//record_board_code, member_id, record_board_name, content, plan_status_code, image, start_date, end_date, reg_date, like_count, views
+	//record_board_code, 
+	//member_id, 
+	//record_board_name, 
+	//content, 
+	//plan_status_code, 
+	//image, 
+	//start_date, 
+	//end_date, 
+	//reg_date, 
+	//like_count, 
+	//views
+	
 	private String recordBoardCode;
 	private String memberId;
 	private String recordBoardName;

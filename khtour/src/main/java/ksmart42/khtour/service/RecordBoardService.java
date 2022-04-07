@@ -20,29 +20,12 @@ public class RecordBoardService {
 	public RecordBoardService(RecordBoardMapper recordBoardMapper) {
 		this.recordBoardMapper = recordBoardMapper;
 	}
+// 기본적인 조회-> 등록 -> 수정-> 삭제	
 	
 	/**
-	 * 코드에 따른 게시글 조회수 조회
-	 */
-	public int updateViewsByCode(String recordBoardCode) {
-		return recordBoardMapper.updateViewsByCode(recordBoardCode);
-	}
-	
-	/**
-	 * 코드에 따른 여행 계획 조회
-	 */
-	public RecordBoard getRecordBoardByCode(String recordBoardCode) {
-		return recordBoardMapper.getRecordBoardByCode(recordBoardCode);
-	}
-	/**
-	 * 여행 계획 등록
-	 */
-	public void addRecordBoard(RecordBoard recordBoard) {
-		recordBoardMapper.addRecordBoard(recordBoard);
-	}
-	
-	/**
-	 * 여행 계획 목록 조회
+	 * 여행게시글 목록 조회
+	 * @author 김민석
+	 * @param paramMap
 	 */
 	public List<RecordBoard> getRecordBoardList(Map<String, Object> paramMap){
 		List<RecordBoard> recordBoardList = recordBoardMapper.getRecordBoardList(paramMap);
@@ -52,59 +35,92 @@ public class RecordBoardService {
 			PlanStatus planStatus = recordBoardMapper.getPlanStatusByCode(recordBoardList.get(i).getPlanStatusCode());
 			recordBoardList.get(i).setPlanStatus(planStatus);
 		};
-		
-		
-		
 		return recordBoardList;
+	}
+	
+	/**
+	 * 코드에 따른 여행게시글 조회
+	 * @author 김민석
+	 * @param recordBoardCode
+	 */
+	public RecordBoard getRecordBoardByCode(String recordBoardCode) {
+		return recordBoardMapper.getRecordBoardByCode(recordBoardCode);
+	}
+	
+	/**
+	 * 여행상태 목록 조회
+	 * @author 김민석
+	 * @param 
+	 */
+	public List<PlanStatus> getPlanStatusList(){
+		return recordBoardMapper.getPlanStatusList();
+		
+	}
+	
+	/**
+	 * 여행게시글 등록, 이미지 파일 삽입
+	 * @author 김민석
+	 * @param recordBoard, heritageImageFiles, fileRealPath
+	 */
+	public void addRecordBoard(RecordBoard recordBoard) {
+		recordBoardMapper.addRecordBoard(recordBoard);
 	}
 
 	/**
-	 * 여행 계획 정보 수정
+	 * 여행게시글 정보 수정
+	 * @author 김민석
+	 * @param recordBoard
 	 */
 	public int modifyRecordBoard(RecordBoard recordBoard) {
 		return recordBoardMapper.modifyRecordBoard(recordBoard);
 	}
 	
 	/**
-	 * 여행 계획 정보 삭제
+	 * 코드에 따른 여행게시글 정보 삭제
+	 * @author 김민석
+	 * @param recordBoardCode
 	 */
 	public int removeRecordBoard(String recordBoardCode) {
-		int result = recordBoardMapper.removeRecordBoard(recordBoardCode);
+		int result = recordBoardMapper.removeFeedByrCode(recordBoardCode);
 		
 		result += recordBoardMapper.removeRecordBoard(recordBoardCode);
 		
 		return result;
 	}
 	
-	public List<PlanStatus> getPlanStatusList(){
-		return recordBoardMapper.getPlanStatusList();
-		
-	}
-	
+////////////피드
 	
 	/**
-	 * 게시글코드에 따른 피드 조회
+	 * 여행게시글코드에 따른 피드 조회
+	 * @author 김민석
+	 * @param recordBoardCode
 	 */
 	public List<Feed> getFeedListByRecordBoardCode(String recordBoardCode) {
 		return recordBoardMapper.getFeedListByRecordBoardCode(recordBoardCode);
 	}
 	
 	/**
-	 * 피드 등록
+	 * 피드 등록, 이미지 파일 삽입
+	 * @author 김민석
+	 * @param feed, heritageImageFiles, fileRealPath
 	 */
 	public void addFeed(Feed feed) {
 		recordBoardMapper.addFeed(feed);
 	}
 
 	/**
-	 * 피드 수정
+	 * 피드 정보 수정
+	 * @author 김민석
+	 * @param feed
 	 */
 	public int modifyFeed(Feed feed) {
 		return recordBoardMapper.modifyFeed(feed);
 	}
 	
 	/**
-	 * 피드 삭제
+	 * 코드에 따른 피드 정보 삭제
+	 * @author 김민석
+	 * @param feedCode
 	 */
 	public int removeFeed(String feedCode) {
 		int result = recordBoardMapper.removeRecordBoard(feedCode);
@@ -113,4 +129,17 @@ public class RecordBoardService {
 		
 		return result;
 	}
+	
+/////////그 외
+	
+	/**
+	 * 코드에 따른 여행게시글 조회수 정보 추가
+	 * @author 김민석
+	 * @param recordBoardCode
+	 */
+	public int updateViewsByCode(String recordBoardCode) {
+		return recordBoardMapper.updateViewsByCode(recordBoardCode);
+	}
+	
+	
 }

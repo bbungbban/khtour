@@ -14,18 +14,18 @@ public interface HeritageMapper {
 	// 문화재 목록조회
 	public List<Heritage> getHeritageList(Map<String, Object> paramMap);
 	
-	// 문화재 등록
-	public int addHeritage(Heritage heritage);
-
-	// 문화재 조회(문화재 코드)
+	// 문화재 코드에 따른 문화 목록조회
 	public Heritage getHeritageByCode(String heritageCode);
-	
-	// 문화재 수정(문화재코드)
-	public int modifyHeritage(Heritage heritage);
-	
-	// 문화재 삭제
-	public int removeHeritage(String heritageCode);
 	
 	// 문화재 분류 목록 조회
 	public List<HeritageCategory> getHeritageCategoryList();
+	
+	// 문화재 정보 등록
+	public int addHeritage(Heritage heritage);
+
+	// 문화재 정보 수정
+	public int modifyHeritage(Heritage heritage);
+	
+	// 문화재 정보 삭제
+	public int removeHeritage(String heritageCode);
 }

@@ -18,6 +18,7 @@ public class Feed {
 	private String feedTime;
 	private String regDate;
 	private String feedPlanDays;
+	
 	public String getFeedCode() {
 		return feedCode;
 	}
