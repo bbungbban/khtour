@@ -1,5 +1,8 @@
 package ksmart42.khtour.mapper;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import ksmart42.khtour.dto.AccomReview;
@@ -7,8 +10,7 @@ import ksmart42.khtour.dto.AccomReview;
 @Mapper
 public interface AccomReviewMapper {
 	
-	/* 댓글 등록 */
-	public int addAccomReview(AccomReview accomreview);
+	public AccomReview getAccomReviewList(String ldgCode);
 
 
 }

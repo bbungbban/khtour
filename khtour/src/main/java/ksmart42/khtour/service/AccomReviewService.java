@@ -1,5 +1,8 @@
 package ksmart42.khtour.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,11 +18,11 @@ public class AccomReviewService {
 		public AccomReviewService(AccomReviewMapper accomReviewMapper) {
 			this.accomReviewMapper = accomReviewMapper;
 		}
-	
-		/**
-		 * 숙박업소 리뷰 등록
-		 */
-		public void addAccomReview(AccomReview accomReview) {
-			accomReviewMapper.addAccomReview(accomReview);
+		
+		
+		public AccomReview getAccomReviewList(String ldgCode){
+			
+			return accomReviewMapper.getAccomReviewList(ldgCode);
 		}
 }
+

@@ -6,7 +6,7 @@
 	<title th:text="${title}"></title>
 </th:block>
 <th:block layout:fragment="contentsTitle">
-	<h2>숙박업소 정보 조회</h2>
+	<h2>1:1문의 게시판</h2>
 </th:block>
 <th:block layout:fragment="customContents">
 	<link rel="stylesheet" type="text/css"
@@ -29,14 +29,12 @@
 								class="table table-striped table-bordered">
 								<thead>
 									<tr>
-										<th style="width: 75px;">숙박업소코드</th>
-										<th style="width: 75px;">숙박업소이름</th>
-										<th style="width: 75px;">숙박업소종류</th>
-										<th style="width: 80px;">사업자등록번호</th>
-										<th style="width: 300px;">상세주소</th>
-										<th style="width: 80px;">전화번호</th>
-										<th style="width: 80px;">휴대폰번호</th>
-										<th style="width: 50px;">수정/삭제</th>
+										<th>게시글코드</th>
+										<th>제목</th>
+										<th>작성자</th>
+										<th>작성일</th>
+										<th>조회수</th>
+										<th>수정/삭제</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -44,18 +42,16 @@
 										th:each="l : ${boardList}">
 										<td th:text="${l.boardCode}"></td>
 										<td th:text="${l.boardTitle}"></td>
-										<td th:text="${l.member_id}"></td>
-										<td th:text="${l.ins_date}"></td>
-										<td th:text="${l.board_hit}"></td>
-										<td th:text="${l.boardReNum}"></td>
-										<td th:text="${l.boardReLev}"></td>
+										<td th:text="${l.memberId}"></td>
+										<td th:text="${l.boardDate}"></td>
+										<td th:text="${l.boardHit}"></td>
 										<td><a
 											class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1"
-											th:href="@{/accommodation/accommodationModify(ldgCode=${l.ldgCode})}"><i
+											th:href="@{/board/boardModify(ldgCode=${l.boardCode})}"><i
 												class="la la-edit"></i> </a>
 											<button class="btn btn-danger btn-icon btn-sm mb-1"
-												id="swal-delete-accommodation"
-												th:data-accommodationCd="${l.ldgCode}">
+												id="swal-delete-board"
+												th:data-accommodationCd="${l.boardCode}">
 												<i class="fa fa-trash-o"></i>
 											</button></td>
 									</tr>
@@ -79,8 +75,7 @@
 		aria-hidden="true"></script>
 	<!-- datatables -->
 	<script th:src="@{/js/datatables/datatables.js}"></script>
-	<script
-		src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js}"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js}"></script>
 	<script th:src="@{/js/datatables/dataTables.buttons.min.js}"></script>
 	<script th:src="@{/js/datatables/buttons.flash.min.js}"></script>
 	<script th:src="@{/js/datatables/jszip.min.js}"></script>
@@ -100,8 +95,8 @@
 	<script th:src="@{/js/custom.js}"></script>
 	<script>
 		$(function(){
-			$(document).on('click','#swal-delete-accommodation',function(){
-				var accommodationCd = $(this).attr('data-accommodationCd');
+			$(document).on('click','#swal-delete-board',function(){
+				var boardCd = $(this).attr('data-boardCd');
 			      const swalWithBootstrapButtons = swal.mixin({
 			          confirmButtonClass: 'btn btn-success',
 			          cancelButtonClass: 'btn btn-danger',
@@ -123,7 +118,7 @@
 			              '파일이 안전하게 삭제되었습니다.',
 			              'success'
 			            )
-			            location.href = '/accommodation/accommodationRemove?ldgCode=' + accommodationCd;
+			            location.href = '/board/boardRemove?boardCode=' + boardCd;
 			          } else if (
 			            // Read more about handling dismissals
 			            result.dismiss === swal.DismissReason.cancel
