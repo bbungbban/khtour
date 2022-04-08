@@ -33,6 +33,7 @@
 		<result column="report_cnt" property="reportCnt"/>
 		<result column="point_gain" property="pointGain"/>
 		<result column="result_cnt" property="resultCnt"/>
+		<result column="daily_likes_cnt" property="dailyLikesCnt"/>
 	</resultMap> 
 	<resultMap type="Rule" id="ruleResultMap">
 		<id column="rule_code" property="ruleCode"/>
@@ -80,6 +81,14 @@
 		<result column="reg_time" property="regTime"/>
 		<result column="likes_dislikes_cate" property="likesDislikesCate"/>
 	</resultMap>
+	
+	<resultMap type="CommMemberReg" id="commMemberRegResultMap">
+		<id column="comm_member_reg_code" property="commMemberRegCode"/>
+		<result column="comm_code" property="commCode"/>
+		<result column="member_id" property="memberId"/>
+		<result column="comm_member_level" property="commMemberLevel"/>
+		<result column="reg_time" property="regTime"/>
+	</resultMap>
 
 	<select id="getCommunityList"  resultMap="communityResultMap">
 			SELECT
@@ -98,7 +107,28 @@
 			Order BY 
 				c.member_cnt DESC;	
 	</select>
-	
+	<select id="getCommunityListByCommCodeList" parameterType="list" resultMap="communityResultMap">
+			
+			SELECT
+				c.comm_code
+				,c.comm_name
+				,c.member_id		 
+				,c.reg_date
+				,c.category_code
+				,c.banner	 
+				,c.avatar    
+				,c.member_cnt
+				,c.online_member_cnt
+				,c.comm_desc
+			FROM
+				tb_community AS c
+			WHERE	
+			<foreach collection="list" item="commCode" separator="or">
+				c.comm_code = #{commCode}	
+			</foreach>
+			;
+	</select>
+
 	<select id="getFileControllerByPostCode" parameterType="String" resultType="String">
 			SELECT
 				f.file_path AS filePath
@@ -111,16 +141,36 @@
 	<update id="addCommentCnt" parameterType="String">
 		UPDATE tb_comm_post
 			SET
-			comments_cnt = comments_cnt + 1		 
+			comments_cnt = comments_cnt + 1	
+				 
 		WHERE
 			post_code=#{postCode};	
 	</update>
+	
+	<update id="addCommunityMemberCnt" parameterType="String">
+		UPDATE tb_community
+			SET
+			member_cnt = member_cnt + 1	
+				 
+		WHERE
+			comm_code=#{commCode};	
+	</update>
+	<update id="addCategoryMemberCnt" parameterType="String">
+		UPDATE tb_comm_category
+			SET
+			total_member_cnt = total_member_cnt + 1	
+				 
+		WHERE
+			category_code=#{categoryCode};	
+	</update>
+	
 	
 	<update id="addPostLikesCnt" parameterType="String">
 		UPDATE tb_comm_post
 			SET
 			likes_cnt = likes_cnt + 1
-			,result_cnt = result_cnt+1		 
+			,result_cnt = result_cnt+1
+			,daily_likes_cnt = daily_likes_cnt +1		 
 		WHERE
 			post_code=#{postCode};	
 	</update>
@@ -129,6 +179,7 @@
 			SET
 			dislikes_cnt = dislikes_cnt + 1	
 			,result_cnt = result_cnt-1	 
+			,daily_likes_cnt = daily_likes_cnt +1
 		WHERE
 			post_code=#{postCode};	
 	</update>
@@ -136,7 +187,8 @@
 		UPDATE tb_community_reply
 			SET
 			likes_cnt = likes_cnt + 1	
-			,result_cnt = result_cnt + 1		 
+			,result_cnt = result_cnt + 1
+			,daily_likes_cnt = daily_likes_cnt +1		 
 		WHERE
 			reply_code=#{replyCode};	
 	</update>
@@ -144,7 +196,8 @@
 		UPDATE tb_community_reply
 			SET
 			dislikes_cnt = dislikes_cnt + 1	
-			,result_cnt = result_cnt-1		 
+			,result_cnt = result_cnt-1
+			,daily_likes_cnt = daily_likes_cnt +1		 
 		WHERE
 			reply_code=#{replyCode};	
 	</update>
@@ -166,9 +219,6 @@
 			reply_code=#{replyCode};	
 	</select>
 	
-	
-	
-	
 	<update id="addCommentCntOfComments" parameterType="String">
 		UPDATE tb_community_reply
 			SET
@@ -188,6 +238,15 @@
 				tb_community_reply AS r
 			WHERE
 				r.reply_code = #{parentReplyCode}
+	</select>
+	
+	<select id="getCommCodeListByMemberId"    resultType="String">
+			SELECT
+				r.comm_code AS commCode
+			FROM
+				tb_comm_member_reg AS r
+			WHERE
+				r.member_id = #{memberId}
 	</select>
 	
 	
@@ -240,6 +299,8 @@
 				,c.total_member_cnt
 			FROM
 				tb_comm_category AS c
+			Order BY 
+				c.total_member_cnt DESC;	
 	</select>
 
 	<select id="getPostList"  resultMap="postResultMap">
@@ -260,10 +321,59 @@
 				,p.comments_cnt
 				,p.point_gain
 				,p.result_cnt
+				,p.daily_likes_cnt
 			FROM
 				tb_comm_post AS p
 			Order BY 
 				p.result_cnt DESC;	
+	</select>
+	<select id="getPostListHot"  resultMap="postResultMap">
+			SELECT
+				p.post_code
+				,p.comm_code		 
+				,p.member_id
+				,p.tag_code
+				,p.title	 
+				,p.reg_time    
+				,p.main_text
+				,p.reader_cnt
+				,p.picture_link
+				,p.video_link
+				,p.likes_cnt
+				,p.dislikes_cnt
+				,p.report_cnt
+				,p.comments_cnt
+				,p.point_gain
+				,p.result_cnt
+				,p.daily_likes_cnt
+			FROM
+				tb_comm_post AS p
+			Order BY 
+				p.daily_likes_cnt DESC;	
+	</select>
+	<select id="getPostListNew"  resultMap="postResultMap">
+			SELECT
+				p.post_code
+				,p.comm_code		 
+				,p.member_id
+				,p.tag_code
+				,p.title	 
+				,p.reg_time    
+				,p.main_text
+				,p.reader_cnt
+				,p.picture_link
+				,p.video_link
+				,p.likes_cnt
+				,p.dislikes_cnt
+				,p.report_cnt
+				,p.comments_cnt
+				,p.point_gain
+				,p.result_cnt
+				,p.daily_likes_cnt
+			FROM
+				tb_comm_post AS p
+			Order BY 
+				p.reg_time DESC;	
 	</select>
 	<select id="getPostListByCommCode"  resultMap="postResultMap">
 			SELECT
@@ -283,6 +393,7 @@
 				,p.report_cnt
 				,p.point_gain
 				,p.result_cnt
+				,p.daily_likes_cnt
 			FROM
 				tb_comm_post AS p
 			WHERE
@@ -290,6 +401,60 @@
 			Order BY 
 				p.likes_cnt DESC;	
 	</select>
+	<select id="getPostListByCommCodeHot"  resultMap="postResultMap">
+			SELECT
+				p.post_code
+				,p.comm_code		 
+				,p.member_id
+				,p.tag_code
+				,p.title	 
+				,p.reg_time    
+				,p.main_text
+				,p.reader_cnt
+				,p.picture_link
+				,p.video_link
+				,p.likes_cnt
+				,p.dislikes_cnt
+				,p.comments_cnt
+				,p.report_cnt
+				,p.point_gain
+				,p.result_cnt
+				,p.daily_likes_cnt
+			FROM
+				tb_comm_post AS p
+			WHERE
+				p.comm_code = #{commCode}
+			Order BY 
+				p.daily_likes_cnt DESC;	
+	</select>
+	<select id="getPostListByCommCodeNew"  resultMap="postResultMap">
+			SELECT
+				p.post_code
+				,p.comm_code		 
+				,p.member_id
+				,p.tag_code
+				,p.title	 
+				,p.reg_time    
+				,p.main_text
+				,p.reader_cnt
+				,p.picture_link
+				,p.video_link
+				,p.likes_cnt
+				,p.dislikes_cnt
+				,p.comments_cnt
+				,p.report_cnt
+				,p.point_gain
+				,p.result_cnt
+				,p.daily_likes_cnt
+			FROM
+				tb_comm_post AS p
+			WHERE
+				p.comm_code = #{commCode}
+			Order BY 
+				p.reg_time DESC;	
+	</select>
+	
+	
 	<select id="getDailyPostList"  resultMap="postResultMap">
 			SELECT
 				p.post_code
@@ -308,10 +473,11 @@
 				,p.report_cnt
 				,p.point_gain
 				,p.result_cnt
+				,p.daily_likes_cnt
 			FROM
 				tb_comm_post AS p
 			Order BY 
-				p.likes_cnt DESC
+				p.daily_likes_cnt DESC
 			LIMIT 4;	
 	</select>
 	<select id="getPostByPostCode"  resultMap="postResultMap">
@@ -332,6 +498,7 @@
 				,p.report_cnt
 				,p.point_gain
 				,p.result_cnt
+				,p.daily_likes_cnt
 			FROM
 				tb_comm_post AS p
 			WHERE
@@ -441,6 +608,7 @@
 				,comments_cnt
 				,report_cnt
 				,point_gain
+				,p.daily_likes_cnt
 		)VALUES (
 			 #{postCode}
 			, #{commCode}
@@ -451,6 +619,7 @@
 			, #{mainText}
 			, 0
 			, #{pictureLink}
+			, 0
 			, 0
 			, 0
 			, 0
@@ -496,6 +665,22 @@
 			, #{commCode}
 			, #{title}
 			, #{detail}
+			, NOW()
+		);
+	</insert>
+	
+	<insert id="addCommMemberReg" parameterType="commMemberReg"> 
+		INSERT INTO tb_comm_member_reg
+			(	 comm_member_reg_code
+				,comm_code		 
+				,member_id
+				,comm_member_level
+				,reg_time	 
+		)VALUES (
+			  sf_new_comm_member_reg_code()
+			, #{commCode}
+			, #{memberId}
+			, #{commMemberLevel}
 			, NOW()
 		);
 	</insert>

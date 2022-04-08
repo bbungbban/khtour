@@ -81,7 +81,6 @@
 			}
 		})
 	});
- 
 	</script>
 </th:block>
 <th:block layout:fragment="customContents">
@@ -383,7 +382,7 @@
 				</div>
 				<div class="card-foot p-2 text-center border-top ">
 					<a href="/commDashboard" class="btn btn-primary active btn-sm" role="button" aria-pressed="true">커뮤니티 가입</a> 
-					<a th:href="@{/createPost(commName=${community.commName})}" class="btn btn-primary active btn-sm" role="button" aria-pressed="true">포스트 만들기</a>
+					<a th:href="@{/createPost(commName=${community.commName},memberId=${session.SID})}" class="btn btn-primary active btn-sm" role="button" aria-pressed="true">포스트 만들기</a>
 					</div>
 				</div>
 			<div class="card">
@@ -434,8 +433,8 @@
 				<div class="modal-body p-5">
 					<form class="cmxform" method="post" th:action="@{/addRule}">
 						<div class="form-group">
-							<input type="hidden" name="commName" id="commName"
-								class="form-control" th:value="${community.commName}"></input>
+							<input type="hidden" name="commName" id="commName" class="form-control" th:value="${community.commName}"></input>
+							<input type="hidden"  th:value="${session.SID}"  name="memberId" />
 						</div>
 						<div class="form-group">
 							<label for="title">규칙 제목</label> <input id="title" name="title"

@@ -85,9 +85,9 @@
 								<h5 class="text-white">인기 포스트</h5>
 							</div>
 						<div class="card-body text-center pt-3 pb-3">
-							<button type="button" class="btn btn-primary btn-sm mr-5 pl-4 pr-4"><i class="fa fa-heart-o"></i>HOT</button>
-							<button type="button" class="btn btn-primary btn-sm mr-5 ml-5 pl-4 pr-4"><i class="fa fa-heart-o"></i>New</button>
-							<button type="button" class="btn btn-primary btn-sm ml-5 pl-4 pr-4"><i class="fa fa-heart-o"></i>Top</button>
+							<a th:href="@{/commDashboard(order='hot')}" class="btn btn-primary btn-sm mr-5 pl-4 pr-4" role="button" aria-pressed="true"><i class="fa fa-heart-o"></i>HOT</a> 
+							<a th:href="@{/commDashboard(order='new')}" class="btn btn-primary btn-sm mr-5 ml-5 pl-4 pr-4" role="button" aria-pressed="true"><i class="fa fa-heart-o"></i>NEW</a> 
+							<a th:href="@{/commDashboard(order='top')}" class="btn btn-primary btn-sm ml-5 pl-4 pr-4" role="button" aria-pressed="true"><i class="fa fa-heart-o"></i>TOP</a> 
 						</div>
 						</div>
 					<div th:replace="community/singlePost :: singlePost"></div>
@@ -109,7 +109,7 @@
 												</div>
 											</td>
 											<td class="text-right pl-0 pr-0">
-											<button type="button" class="btn btn-primary btn-sm pl-4 pr-4" style="z-index: 2; position: relative;">가입</button></td>
+											<a th:href="@{/addCommMemberReg(memberId=${session.SID},commCode=${l.commCode})}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" style="z-index: 2; position: relative;">가입</a> 
 										</tr>
 									</tbody>
 								</table>
@@ -122,11 +122,11 @@
 					</div>
 					<div class="card">
 						<div class="card-header bg-primary pb-1">
-							<h5 class="text-white">HOME</h5>
+							<h5 class="text-white">HOME  [[${status}]]</h5>
 						</div>
 						<div class="card-body m-0 text-center">				
-							<a th:href="@{/createPost(memberId=${session.SID})}" class="btn btn-sm btn-primary active mt-0 mb-0 mr-4" role="button" aria-pressed="true">포스트 등록</a> 
-							<a th:href="@{/createPost(memberId=${session.SID})}" class="btn btn-sm btn-primary active mt-0 mb-0" role="button" aria-pressed="true">커뮤니티등록</a>
+							<a th:href="@{/createPost(memberId=${session.SID})}" class="btn btn-sm btn-primary active mt-0 mb-0 mr-4" role="button" aria-pressed="true">포스트 등록 </a> 
+							<a th:href="@{/addCommunity(memberId=${session.SID})}" class="btn btn-sm btn-primary active mt-0 mb-0" role="button" aria-pressed="true">커뮤니티등록</a>
 						</div>
 						
 					</div>

@@ -10,9 +10,18 @@ public class CommPost {
 				+ tagCode + ", title=" + title + ", regTime=" + regTime + ", mainText=" + mainText + ", readerCnt="
 				+ readerCnt + ", pictureLink=" + pictureLink + ", videoLink=" + videoLink + ", likesCnt=" + likesCnt
 				+ ", dislikesCnt=" + dislikesCnt + ", resultCnt=" + resultCnt + ", reportCnt=" + reportCnt
-				+ ", pointGain=" + pointGain + ", commTag=" + commTag + ", commentsCnt=" + commentsCnt + ", filePath="
-				+ filePath + "]";
+				+ ", pointGain=" + pointGain + ", commTag=" + commTag + ", commentsCnt=" + commentsCnt
+				+ ", dailyLikesCnt=" + dailyLikesCnt + ", filePath=" + filePath + "]";
 	}
+	
+	public String getDailyLikesCnt() {
+		return dailyLikesCnt;
+	}
+
+	public void setDailyLikesCnt(String dailyLikesCnt) {
+		this.dailyLikesCnt = dailyLikesCnt;
+	}
+
 	public String getPostCode() {
 		return postCode;
 	}
@@ -138,6 +147,7 @@ public class CommPost {
 	private String pointGain;
 	private CommTag commTag;
 	private String commentsCnt;
+	private String dailyLikesCnt;
 	private List<String> filePath;
 	
 }

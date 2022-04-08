@@ -11,7 +11,13 @@
 <th:block layout:fragment="customScript">
 	<script>
 
-	$(function() {
+	$(function() 
+			{
+		$(document).ready(function(){ 
+			
+			
+		
+		}); 	
 		$(".upVote").on("click",function(){
 			var postCode = $(this).attr('data-postCode');
 			var resultCnt = $(this).parent().find('#resultCnt')
@@ -62,6 +68,7 @@
 	<div class="card bg-primary">
 		<div class="card-body text-center pb-2 pt-2">
 			<h2 class="mb-0 mt-2 text-white " th:text="${community.commName} + ' 커뮤니티'"></h2>
+			<p  class="mb-0 bt-0 text-white" th:text="${status}"></p>
 		</div>
 	</div>
 
@@ -72,9 +79,9 @@
 				<h5 class="text-white">인기 포스트</h5>
 			</div>
 				<div class="card-body text-center pt-3 pb-3">
-					<button type="button" class="btn btn-primary btn-sm mr-5 pl-4 pr-4">HOT</button>
-					<button type="button" class="btn btn-primary btn-sm mr-5 ml-5 pl-4 pr-4">New</button>
-					<button type="button" class="btn btn-primary btn-sm ml-5 pl-4 pr-4">Top</button>
+					<a th:href="@{/commPage(order='hot',commCode=${community.commCode})}" class="btn btn-primary btn-sm mr-5 pl-4 pr-4" role="button" aria-pressed="true"><i class="fa fa-heart-o"></i>HOT</a> 
+					<a th:href="@{/commPage(order='new',commCode=${community.commCode})}" class="btn btn-primary btn-sm mr-5 ml-5 pl-4 pr-4" role="button" aria-pressed="true"><i class="fa fa-heart-o"></i>NEW</a> 
+					<a th:href="@{/commPage(order='top',commCode=${community.commCode})}" class="btn btn-primary btn-sm ml-5 pl-4 pr-4" role="button" aria-pressed="true"><i class="fa fa-heart-o"></i>TOP</a> 
 				</div>
 			</div>
 			<div th:replace="community/singlePost :: singlePost"></div>
@@ -116,8 +123,8 @@
 					</table>
 				</div>
 				<div class="card-foot p-2 text-center border-top ">
-					<a href="/commDashboard" class="btn btn-primary active btn-sm" role="button" aria-pressed="true">커뮤니티 가입</a> 
-					<a th:href="@{/createPost(commCode=${community.commCode})}" class="btn btn-primary active btn-sm" role="button" aria-pressed="true">포스트 만들기</a>
+					<a th:href="@{/addCommMemberReg(memberId=${session.SID},commCode=${community.commCode})}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">커뮤니티 가입</a> 
+					<a th:href="@{/createPost(commCode=${community.commCode},memberId=${session.SID})}" class="btn btn-primary active btn-sm" role="button" aria-pressed="true">포스트 만들기</a>
 				</div>
 			</div>
 			<div class="card">
