@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ksmart42.khtour.dto.CommCategory;
+import ksmart42.khtour.dto.CommMemberReg;
 import ksmart42.khtour.dto.CommPost;
 import ksmart42.khtour.dto.CommReply;
 import ksmart42.khtour.dto.CommTag;
@@ -108,11 +109,13 @@ public class CommunityController {
 	*  설  명  : 커뮤니티 데쉬보드 로 접속
 	*/
 	@GetMapping("/commDashboard")
-	public String commDashboard(Model model,HttpServletRequest request) {
+	public String commDashboard(Model model,HttpServletRequest request
+								,@RequestParam(name="order",required=false) String order
+								,@RequestParam(name="status",required=false) String status) {
 		//전체 커뮤니티 리스트
 		List<Community> communityList = communityService.getCommunityList();
 		//전체 포스트 리스트
-		List<CommPost> postList = communityService.getPostList();
+		List<CommPost> postList = communityService.getPostList(order);
 		//오늘뜨고있는 상위 포스트 4개 리스트
 		List<CommPost> dailyPostList = communityService.getDailyPostList();
 
@@ -120,7 +123,7 @@ public class CommunityController {
 		model.addAttribute("communityList", communityList);
 		model.addAttribute("postList", postList);
 		model.addAttribute("dailyPostList",dailyPostList);
-		
+		model.addAttribute("status",status);
 		return "community/commDashboard";
 	}
 
@@ -130,9 +133,9 @@ public class CommunityController {
 	*  설  명  : 포스트 생성 페이지 GET 메서드로 접속
 	*/
 	@GetMapping("/createPost")
-	public String createPost(Model model,@RequestParam(name="commCode",required=false) String commCode,@RequestParam(name="memberId",required=false) String memberId) {
+	public String createPost(RedirectAttributes reAttr,Model model,@RequestParam(name="commCode",required=false) String commCode,@RequestParam(name="memberId",required=false) String memberId) {
 		
-		if(memberId==null)
+		if(memberId==null||memberId=="")
 		{
 			return "member/loginMain";
 		}
@@ -142,7 +145,18 @@ public class CommunityController {
 		if(commCode==null||commCode=="")
 		{
 			//전체 커뮤니티 리스트  모델에 저장
-			model.addAttribute("commList",communityService.getCommunityList());
+			List<String> commCodeList = communityMapper.getCommCodeListByMemberId(memberId);
+			;
+			if(commCodeList.size()>0)
+			{
+				List<Community> commList = communityMapper.getCommunityListByCommCodeList(commCodeList);
+				model.addAttribute("commList", commList);
+			}
+			else
+			{
+				reAttr.addAttribute("status","가입된 커뮤니티가 없습니다.");
+				return "redirect:/commDashboard";
+			}
 		}
 		else
 		{
@@ -162,17 +176,14 @@ public class CommunityController {
 	@GetMapping("/addCommunity")
 	public String createCommunity(Model model ,@RequestParam(name="memberId",required=false) String memberId) {
 		
-		if(memberId==null)
+		if(memberId==null||memberId=="")
 		{
 			return "member/loginMain";
 		}
-		
-		
 		model.addAttribute("title", "커뮤니티 생성");
 		//전체 카테고리 리스트 모델에 저장
 		List<CommCategory> categoryList = communityService.getCommCategoryList();
 		model.addAttribute("categoryList",categoryList);
-		
 		return "community/addCommunity";
 	}
 	
@@ -379,28 +390,66 @@ public class CommunityController {
 	*  설  명  : 특정 커뮤니티 페이지로 커뮤니티 이름을 사용해서 접속,        * 테그 이름을 받았을 경우 테그에 맞는 포스트만 띄워준다.
 	*/
 	@GetMapping("/commPage")
-	public String commPage(Model model,@RequestParam(value = "commCode") String commCode, @RequestParam(name="tagCode",required=false) String tagCode) {
+	public String commPage(Model model,@RequestParam(value = "commCode") String commCode
+									  , @RequestParam(name="tagCode",required=false) String tagCode
+									  , @RequestParam(name="order",required=false) String order
+									  , @RequestParam(name="status",required=false) String status) {
 
 		//커뮤니티 이름에 맞는 커뮤니티 리스트,규칙 리스트,테그 리스트, 포스트 리스트 를 저장
 		Community community = communityService.getCommunityByCommCode(commCode);
 		List<Rule> ruleList = communityService.getRuleListByCommCode(commCode);
 		List<CommTag> tagList = communityService.getTagListByCommCode(commCode);
-		List<CommPost> postList = communityService.getPostListByCommCode(commCode);
-		
+		List<CommPost> postList = communityService.getPostListByCommCode(commCode,order);
 		//테그코드를 받았을경우 포스트 리스트를 수정하여, 테그코드가 동일한 포스트만 추려서 다시 저장.
 		if(tagCode!=null && tagCode!= "")
 		{
 			postList = communityService.getPostByTagCode(postList, tagCode);	
 		}
-
+		
+		if(status!=null && status!="")
+		{
+			model.addAttribute("status",status);
+		}
 		model.addAttribute("community",community);
 		model.addAttribute("tagList", tagList);
 		model.addAttribute("title", "커뮤니티페이지");
 		model.addAttribute("ruleList", ruleList);
-		model.addAttribute("postList", postList);
-		
+		model.addAttribute("postList", postList);	
 		return "community/commPage";
 	}
+	
+	@GetMapping("/addCommMemberReg")
+	public String addCommMemberReg(RedirectAttributes reAttr,@RequestParam(value = "commCode") String commCode,@RequestParam(name="memberId",required=false) String memberId)
+	{
+		if(memberId==null||memberId=="")
+		{
+			return "member/loginMain";
+		}
+		List<String> joinedCommList = communityMapper.getCommCodeListByMemberId(memberId);
+		for(int i=0; i<joinedCommList.size();i++)
+		{
+			if(joinedCommList.get(i).equals(commCode))
+			{
+				reAttr.addAttribute("commCode",commCode);
+				reAttr.addAttribute("status", "이미 가입된 커뮤니티 입니다!");
+				return "redirect:/commPage";
+			}
+		}
+		CommMemberReg commMemberReg = new CommMemberReg();
+		commMemberReg.setCommCode(commCode);
+		commMemberReg.setMemberId(memberId);
+		commMemberReg.setCommMemberLevel("일반 회원");
+		
+		communityMapper.addCommunityMemberCnt(commCode);
+		String categoryCode = communityMapper.getCommunityByCommCode(commCode).getCategoryCode();
+		communityMapper.addCategoryMemberCnt(categoryCode);
+		
+		communityService.addCommMemberReg(commMemberReg);
+		reAttr.addAttribute("commCode",commCode);
+		reAttr.addAttribute("status", "가입 완료되었습니다!");
+		return "redirect:/commPage";
+	}
+	
 	
 	
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import ksmart42.khtour.dto.CommCategory;
+import ksmart42.khtour.dto.CommMemberReg;
 import ksmart42.khtour.dto.CommPost;
 import ksmart42.khtour.dto.CommReply;
 import ksmart42.khtour.dto.CommTag;
@@ -17,21 +18,29 @@ public interface CommunityMapper {
 
 	// 1  : 커뮤니티 전체리스트 반환
 	public List<Community> getCommunityList();
+	public List<Community> getCommunityListByCommCodeList(List<String> commCodeList);
 	// 2  : 커뮤니티 포스트 전체리스트 반환
 	public List<CommPost> getPostList();
+	public List<CommPost> getPostListHot();
+	public List<CommPost> getPostListNew();
 	// 3 : 커뮤니티 포스트 전체 리스트 반환
 	public List<CommPost> getDailyPostList();
 	
 	public List<CommCategory> getCommCategoryList();
 	
 	public List<CommPost> getPostListByCommCode(String commCode);
+	public List<CommPost> getPostListByCommCodeHot(String commCode);
+	public List<CommPost> getPostListByCommCodeNew(String commCode);
 	
 	public List<Community> getCommunityListByCategoryCode(String categoryCode);
 	
 	public List<CommReply> getCommReplyListByPostCode(String postCode);
 	
 	public List<CommReply> getChildrenReplyListByReplyCode(String replyCode);
-	
+
+	public void addCommMemberReg(CommMemberReg commMemberReg);
+	public List<String> getCommCodeListByMemberId(String memberId);
+
 	// 4 : 커뮤니티 이름으로 커뮤니티  찾아서 반환 
 	public Community getCommunityByCommCode(String commCode);
 	
@@ -40,6 +49,9 @@ public interface CommunityMapper {
 	
 	public void addCommentCnt(String postCode);
 	public void addCommentCntOfComments(String replyCode);
+	
+	public void addCommunityMemberCnt(String commCode);
+	public void addCategoryMemberCnt(String categoryCode);
 	
 	public void addPostLikesCnt(String postCode);
 	public void addPostDislikesCnt(String postCode);

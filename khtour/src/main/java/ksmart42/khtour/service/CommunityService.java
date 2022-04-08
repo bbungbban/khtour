@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ksmart42.khtour.controller.CommunityController;
 import ksmart42.khtour.dto.CommCategory;
+import ksmart42.khtour.dto.CommMemberReg;
 import ksmart42.khtour.dto.CommPost;
 import ksmart42.khtour.dto.CommReply;
 import ksmart42.khtour.dto.CommTag;
@@ -65,8 +66,21 @@ public class CommunityService {
 	*  출  력 : List<CommPost> (전체 포스트 리스트)
 	*  설  명  : 전체 포스트 리스트 찾아서 반환
 	*/
-	public List<CommPost> getPostList(){
-		List<CommPost> postList = communityMapper.getPostList();	
+	public List<CommPost> getPostList(String order){
+		List<CommPost> postList = null;
+		
+		if(order==null||order.equals("top"))
+		{
+			postList = communityMapper.getPostList();	
+		}
+		else if(order.equals("hot"))
+		{
+			postList = communityMapper.getPostListHot();	
+		}
+		else if(order.equals("new"))
+		{
+			postList = communityMapper.getPostListNew();	
+		}
 		
 		for (int i=0;i<postList.size();i++)
 		{
@@ -81,8 +95,21 @@ public class CommunityService {
 	*  출  력 : List<CommPost> (특정 커뮤니티의 포스트 리스트)
 	*  설  명  : 특정 커뮤니티 에 맞는 포스트 리스트 반환
 	*/
-	public List<CommPost> getPostListByCommCode(String CommCode){
-		List<CommPost> postList = communityMapper.getPostListByCommCode(CommCode);
+	public List<CommPost> getPostListByCommCode(String CommCode,String order){
+		
+		List<CommPost> postList = null;
+		if(order==null||order.equals("top"))
+		{
+			postList = communityMapper.getPostListByCommCode(CommCode);
+		}
+		else if(order.equals("hot"))
+		{
+			postList = communityMapper.getPostListByCommCodeHot(CommCode);	
+		}
+		else if(order.equals("new"))
+		{
+			postList = communityMapper.getPostListByCommCodeNew(CommCode);
+		}
 		
 		for (int i=0;i<postList.size();i++)
 		{
@@ -153,19 +180,9 @@ public class CommunityService {
 		for(int i = 0;i<categoryList.size();i++)
 		{
 			String result = "";
-			float memberCnt=0;
 			CommCategory category = categoryList.get(i);
-			
-			//커뮤니티 카테고리에 맞는 모든 커뮤니티 리스트 저장
-			List<Community> communityList = communityMapper.getCommunityListByCategoryCode(category.getCategoryCode());
-			
-			//카테고리에 속한 모든 커뮤니티 좋아요 합쳐줌
-			for (int j = 0;j<communityList.size();j++)
-			{
-				memberCnt += Float.parseFloat(communityList.get(j).getMemberCnt());
-			}
 			//K/M식으로 변환
-			result = KhtourLibrary.cntConverter(memberCnt);
+			result = KhtourLibrary.cntConverter(Float.parseFloat(categoryList.get(i).getTotalMemberCnt()));
 			//카테고리에 총 결과 저장
 			category.setTotalMemberCnt(result);
 		}
@@ -381,6 +398,9 @@ public class CommunityService {
 	*/
 	public void addTag(CommTag commTag) {		
 		communityMapper.addTag(commTag);		
+	}
+	public void addCommMemberReg(CommMemberReg commMemberReg) {		
+		communityMapper.addCommMemberReg(commMemberReg);		
 	}
 	
 	public String addLikesDislikes(String postCode,String likeDislike,String replyCode)
