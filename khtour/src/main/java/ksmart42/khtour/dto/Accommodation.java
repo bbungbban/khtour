@@ -5,7 +5,6 @@ public class Accommodation {
    private String ldgCode;
    private String ldgName;
    private String ldgType;
-   private String ldgImg;
    private String businessNumber;
    private String ldgAddr;
    private String ldgDetailAddr;
@@ -17,6 +16,7 @@ public class Accommodation {
    private String ldgPhone;
    private String ldgEmail;
    private String ldgHomepage;
+   private String ldgImagePath;
    
 public String getLdgCode() {
 	return ldgCode;
@@ -35,12 +35,6 @@ public String getLdgType() {
 }
 public void setLdgType(String ldgType) {
 	this.ldgType = ldgType;
-}
-public String getLdgImg() {
-	return ldgImg;
-}
-public void setLdgImg(String ldgImg) {
-	this.ldgImg = ldgImg;
 }
 public String getBusinessNumber() {
 	return businessNumber;
@@ -108,14 +102,22 @@ public String getLdgHomepage() {
 public void setLdgHomepage(String ldgHomepage) {
 	this.ldgHomepage = ldgHomepage;
 }
+public String getLdgImagePath() {
+	return ldgImagePath;
+}
+public void setLdgImagePath(String ldgImagePath) {
+	this.ldgImagePath = ldgImagePath;
+}
 @Override
 public String toString() {
-	return "Accommodation [ldgCode=" + ldgCode + ", ldgName=" + ldgName + ", ldgType=" + ldgType + ", ldgImg=" + ldgImg
-			+ ", businessNumber=" + businessNumber + ", ldgAddr=" + ldgAddr + ", ldgDetailAddr=" + ldgDetailAddr
-			+ ", ldgExplain1=" + ldgExplain1 + ", ldgExplain2=" + ldgExplain2 + ", ldgExplain3=" + ldgExplain3
-			+ ", ldgExplain4=" + ldgExplain4 + ", ldgTel=" + ldgTel + ", ldgPhone=" + ldgPhone + ", ldgEmail="
-			+ ldgEmail + ", ldgHomepage=" + ldgHomepage + "]";
+	return "Accommodation [ldgCode=" + ldgCode + ", ldgName=" + ldgName + ", ldgType=" + ldgType + ", businessNumber="
+			+ businessNumber + ", ldgAddr=" + ldgAddr + ", ldgDetailAddr=" + ldgDetailAddr + ", ldgExplain1="
+			+ ldgExplain1 + ", ldgExplain2=" + ldgExplain2 + ", ldgExplain3=" + ldgExplain3 + ", ldgExplain4="
+			+ ldgExplain4 + ", ldgTel=" + ldgTel + ", ldgPhone=" + ldgPhone + ", ldgEmail=" + ldgEmail
+			+ ", ldgHomepage=" + ldgHomepage + ", ldgImagePath=" + ldgImagePath + "]";
 }
    
+   
+
 
 }

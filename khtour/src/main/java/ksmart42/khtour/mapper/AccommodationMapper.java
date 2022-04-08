@@ -9,6 +9,7 @@ import ksmart42.khtour.dto.Accommodation;
 
 @Mapper
 public interface AccommodationMapper {
+	
 	//숙박업소 등록
 	public int addAccommodation(Accommodation accommodation);
 	
