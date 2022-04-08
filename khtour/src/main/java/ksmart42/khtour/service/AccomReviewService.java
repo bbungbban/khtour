@@ -40,6 +40,16 @@ public class AccomReviewService {
 			accomReviewMapper.addAccomReview(accomReview);
 			
 		}
+		/**
+		 * 코드에 따른 리뷰 삭제
+		 */
+		public int deleteReview(String ldgReviewCode) {
+			int result = accomReviewMapper.deleteReview(ldgReviewCode);
+			
+			result += accomReviewMapper.deleteReview(ldgReviewCode);
+			
+			return result;
+		}
 		
 }
 

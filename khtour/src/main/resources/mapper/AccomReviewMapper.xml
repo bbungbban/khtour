@@ -18,6 +18,17 @@
 		<result column="review_time" 		property="reviewTime"/>
 	</resultMap>
 	
+	
+<!-- 리뷰 삭제 -->
+  	<delete id="deleteReview" parameterType="String">
+  	
+  		DELETE 
+  		FROM 
+  			tb_ldg_review
+  		WHERE 
+  			ldg_review_code = #{ldgReviewCode};
+  		
+  	</delete>
 
 
 <!-- ldgCode에 따른 리뷰조회 SQL -->
@@ -66,7 +77,7 @@
 			,#{ldgLocation}
 			,#{ldgPriceSta}
 			,#{reviewContents}
-			,now()
+			,CURDATE()
 		);
 </insert>
 

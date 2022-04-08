@@ -314,10 +314,10 @@
 						<div class="ReviewTime"
 							style="display: inline-block; font-size: 1.2rem;">
 							<span style="font-weight: 100; margin-left: 0.8rem;"></span> 
-							<span class="ReviewTime" style="position: absolute; right: 0; line-height: 1.8rem; padding-right: 15px; font-size: 13px; opacity: 0.5;" th:text="${al.reviewTime}"></span>
+							<span style="position: absolute; right: 0; line-height: 1.8rem; padding-right: 15px; font-size: 13px; opacity: 0.5;" th:text="${al.reviewTime}"></span>
 						</div>
 						<div class="ReviewNicknameInfo" style="opacity: 0.5;">
-							닉네임 입니다. <span class="ReviewRoomName">객실 이름입니다.</span>
+							<span class="memberId" th:text="${al.memberId}"></span><span class="ReviewRoomName">객실 이름입니다.</span>
 						</div>
 					</div>
 				</div>
@@ -326,7 +326,8 @@
 				</div>
 				<div class="review-bottom"
 					style="display: flex; justify-content: flex-end; padding: 0px">
-					<a type="button" class="btn">수정</a> <a type="button" class="btn">삭제</a>
+					<a type="button" class="btn">수정</a> 
+					<button class="btn" id="swal-delete-accomreview" th:data-accomreviewCd="${al.ldgReviewCode}">삭제</button>
 				</div>
 				<div class="card-footer"></div>
 			</article>
@@ -335,6 +336,11 @@
 	<!-- 호텔 리뷰 표시 영역 끝 -->
 </th:block>
 <th:block layout:fragment="customBodyScript">
+	<!-- delbtn -->
+	<script th:src="@{/js/sweetalert2/sweetalert2.min.js}"
+		aria-hidden="true"></script>
+	<script th:src="@{/js/sweetalert2/sweetalert2-custom.js}"
+		aria-hidden="true"></script>
 	<!-- PRISM -->
 	<script th:src="@{/js/prism/prism.js}"></script>
 
@@ -381,6 +387,47 @@
 
 			if (isSubmit)
 				$('#addReviewForm').submit();
+		});
+	</script>
+	<script>
+		$(function(){
+			$(document).on('click','#swal-delete-accomreview',function(){
+				var accomreviewCd = $(this).attr('data-accomreviewCd');
+			      const swalWithBootstrapButtons = swal.mixin({
+			          confirmButtonClass: 'btn btn-success',
+			          cancelButtonClass: 'btn btn-danger',
+			          buttonsStyling: false,
+			        });
+
+			        swalWithBootstrapButtons({
+			          title: '정말 삭제 하시겠습니까?',
+			          text: "삭제 클릭시 해당 정보는 복구 할 수 없습니다.",
+			          type: 'warning',
+			          showCancelButton: true,
+			          confirmButtonText: '네',
+			          cancelButtonText: '아니오',
+			          reverseButtons: false
+			        }).then((result) => {
+			          if (result.value) {
+			            swalWithBootstrapButtons(
+			              '삭제완료',
+			              '파일이 안전하게 삭제되었습니다.',
+			              'success'
+			            )
+			            location.href = '/accomreview/deleteReview?ldgReviewCode=' + accomreviewCd;
+			          } else if (
+			            // Read more about handling dismissals
+			            result.dismiss === swal.DismissReason.cancel
+			          ) {
+			            swalWithBootstrapButtons(
+			              '취소',
+			              '사진은 안전하게 보호됩니다.',
+			              'error'
+			            )
+			          }
+			        });	
+			});
+			
 		});
 	</script>
 </th:block>
