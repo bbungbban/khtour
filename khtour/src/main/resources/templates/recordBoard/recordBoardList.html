@@ -215,7 +215,7 @@
 							<div class="blog mb-5">
 								<div class="blog-image">
 									<div class="embed-responsive embed-responsive-4by3">
-										<img th:src="@{/images/traShare/여행이미지1.gif}"
+										<img th:src="@{${#strings.isEmpty(l.recordBoardImagePath) ? '/images/traShare/여행이미지1.gif': '/' + #strings.replace(l.recordBoardImagePath,'\','/')}}"
 											class="card-img-top h-10 embed-responsive-item"
 											alt="...">
 									</div>
@@ -224,6 +224,7 @@
 									<div class="blog-date">
 										<a href="#!" th:text="${l.planStatus.getPlanStatusName()}">
 										</a>
+										<p class="text-right" th:text="'등록일자: '+${l.regDate}"></p>
 									</div>
 									<hr class="my-2">
 									<div class="blog-title mt-3">
@@ -235,28 +236,18 @@
 										<p class="mb-0" th:text="${l.content}"></p>
 									</div>
 								</div>
-								<div class="blog-bottom text-center">
+								<div class="blog-bottom">
 									<div class="row">
-										<div class="col-4">
-											<div class="feather icon-heart-on">
-												<span th:text="${l.likeCount}+개" style="opacity: 0.5;"></span>
-											</div>
+										<div class="feather icon-heart-on" style="padding-right: 10px; padding-left: 10px;">
+											<span th:text="${l.likeCount}" style="opacity: 0.5;"></span>
 										</div>
-										<div class="col-4">
-											<div class="feather icon-image">
-												<span style="opacity: 0.5;">무슨 갯수</span>
-											</div>
+										<div class="feather icon-image" style="padding-right: 10px;">
+											<span style="opacity: 0.5;">5</span>
 										</div>
-										<div class="col-4">
-											<div class="feather icon-tv">
-												<span th:text="${l.views}+뷰" style="opacity: 0.5;"></span>
-											</div>
+										<div class="feather icon-tv" style="padding-right: 10px;">
+											<span th:text="${l.views}" style="opacity: 0.5;"></span>
 										</div>
-
 									</div>
-
-
-
 								</div>
 							</div>
 						</div>

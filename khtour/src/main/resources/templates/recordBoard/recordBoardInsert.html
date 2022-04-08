@@ -42,7 +42,7 @@
 				</div>
 				<div class="card-body">
 					<form id="addRecordBoardForm"
-						th:action="@{/recordBoard/recordBoardInsert}" method="post">
+						th:action="@{/recordBoard/recordBoardInsert}" method="post" enctype="multipart/form-data">
 						<div class="form-group">
 							<label for="recordBoardName">게시글 제목</label> <input type="text"
 								class="form-control" placeholder="게시글 이름을 입력하세요."
@@ -98,8 +98,9 @@
 							</select>
 						</div>
 						<div class="form-group">
-							<label for="image">#이미지 선택</label> <input type="file" id="image"
-								class="form-control" name="image" required="">
+							<label for="recordBoardImage">이미지 선택</label> <input
+								type="file" id="recordBoardImage" class="form-control"
+								name="recordBoardImageFiles" required="">
 						</div>
 						<div class="form-group text-center">
 						<button type="button" id="addRecordBoardBtn"

@@ -25,6 +25,8 @@ public class RecordBoard {
 	private String likeCount;
 	private int views;
 	
+	private String recordBoardImagePath;
+
 	private PlanStatus planStatus;
 
 	public String getRecordBoardCode() {
@@ -122,13 +124,23 @@ public class RecordBoard {
 	public void setPlanStatus(PlanStatus planStatus) {
 		this.planStatus = planStatus;
 	}
+	
+	public String getRecordBoardImagePath() {
+		return recordBoardImagePath;
+	}
+
+	public void setRecordBoardImagePath(String recordBoardImagePath) {
+		this.recordBoardImagePath = recordBoardImagePath;
+	}
 
 	@Override
 	public String toString() {
 		return "RecordBoard [recordBoardCode=" + recordBoardCode + ", memberId=" + memberId + ", recordBoardName="
 				+ recordBoardName + ", content=" + content + ", planStatusCode=" + planStatusCode + ", image=" + image
 				+ ", startDate=" + startDate + ", endDate=" + endDate + ", regDate=" + regDate + ", likeCount="
-				+ likeCount + ", views=" + views + ", planStatus=" + planStatus + "]";
+				+ likeCount + ", views=" + views + ", recordBoardImagePath=" + recordBoardImagePath + ", planStatus="
+				+ planStatus + "]";
 	}
+
 
 }
