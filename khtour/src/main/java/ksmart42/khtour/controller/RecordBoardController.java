@@ -4,13 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ksmart42.khtour.dto.Feed;
@@ -40,10 +42,19 @@ public class RecordBoardController {
 	*  설  명 : 여행게시글 정보 등록(관리자페이지) - post방식 전달
 	*/
 	@PostMapping("/recordBoardInsert")
-	public String addRecordBoard(RecordBoard recordBoard) {
-
+	public String addRecordBoard(RecordBoard recordBoard
+									, @RequestParam MultipartFile[] recordBoardImageFiles
+									, HttpServletRequest request) {
+		String serverName = request.getServerName();
+		String fileRealPath = "";
+		if("localhost".equals(serverName)) {				
+			fileRealPath = System.getProperty("user.dir") + "/src/main/resources/static/";
+			//fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+		}else {
+			fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+		}
 		recordBoard.setMemberId("id001");
-		recordBoardService.addRecordBoard(recordBoard);
+		recordBoardService.addRecordBoard(recordBoard, recordBoardImageFiles, fileRealPath);
 
 		return "redirect:/recordBoard/recordBoardListSt";
 	}
@@ -70,11 +81,21 @@ public class RecordBoardController {
 	*  설  명 : 피드 정보 등록(유저페이지) - post방식 전달
 	*/
 	@PostMapping("/feedList")
-	public String addFeed(Feed feed, RedirectAttributes attr) {
-
-		recordBoardService.addFeed(feed);
-		System.out.println("-----------------------" + feed.getRecordBoardCode());
+	public String addFeed(Feed feed, RedirectAttributes attr
+								, @RequestParam MultipartFile[] feedImageFiles
+								, HttpServletRequest request) {
+		String serverName = request.getServerName();
+		String fileRealPath = "";
+		if("localhost".equals(serverName)) {				
+			fileRealPath = System.getProperty("user.dir") + "/src/main/resources/static/";
+			//fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+		}else {
+			fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+		}
+		
 		attr.addAttribute("recordBoardCode", feed.getRecordBoardCode());
+		recordBoardService.addFeed(feed, feedImageFiles, fileRealPath);
+		System.out.println("-----------------------" + feed.getRecordBoardCode());
 		return "redirect:/recordBoard/feedList";
 	}
 	

@@ -54,18 +54,20 @@ public interface RecordBoardMapper {
 	// 피드 삭제
 	public int removeFeed(String feedCode);
 	
+	// 여행게시글 코드에 따른 피드 삭제
 	public int removeFeedByrCode(String recordBoardCode);
 	
 /*
  * 댓글 관련	
  */
 
-	// ldg_code에 맞는 리뷰 조회
+	// 댓글 목록조회(게시글 코드)
 	public List<RecordBoardComment> getCommentListByrCode(String recordBoardCode);
 
-	//리뷰등록
+	// 댓글 등록
 	public int addComment(RecordBoardComment recordBoardComment);
+	
+	// 여행 게시글 코드에 따른 댓글 삭제
+	public int removeCommentByrCode(String recordBoardCode);
 
-	
-	
 }

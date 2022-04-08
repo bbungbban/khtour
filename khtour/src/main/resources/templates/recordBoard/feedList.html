@@ -220,12 +220,9 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="exampleFormControlSelect1">이미지선택</label>
-										<div class="custom-file">
-											<input type="file" class="custom-file-input" id="customFile">
-											<label class="custom-file-label" for="customFile">이미지
-												파일</label>
-										</div>
+										<label for="feedImage">이미지 선택</label> <input
+											type="file" id="feedImage" class="form-control"
+											name="feedImageFiles" required="">
 									</div>
 									<div class="form-group">
 										<label for="feedContent">피드 내용</label>
@@ -290,24 +287,21 @@
 												</div>
 												<div class="mt-2 text-right">
 													<button class="btn btn-primary btn-sm shadow-none" id="addCommentBtn"
-														type="button">댓글 작성완료</button>
-													<button
-														class="btn btn-outline-primary btn-sm ml-1 shadow-none"
-														type="button">취소</button>
+														type="button">작성완료</button>
 												</div>
 											</form>
-											<div class="card p-3 mb-2">
+											<div class="card p-3 mb-2" th:if="${not #lists.isEmpty(recordBoardCommentList)}"
+							th:each="c : ${recordBoardCommentList}">
 												<div class="d-flex flex-row">
 													<div class="d-flex flex-column ms-2">
-														<h3 class="mb-1 text-primary">등록자 아이디 : id003</h3>
-														<p class="comment-text">댓글 내용</p>
+														<h3 class="mb-1 text-primary" th:text="'등록자 아이디 : ' + ${c.memberId}">\</h3>
+														<p class="comment-text" th:text="'내용: ' + ${c.content}">댓글 내용</p>
 													</div>
 												</div>
 												<div class="d-flex justify-content-between">
 													<div class="d-flex flex-row gap-3 align-items-center"></div>
 													<div class="d-flex flex-row">
-														<span class="text-muted fw-normal fs-10">May 22,2020
-															12:10 PM</span>
+														<span class="text-muted fw-normal fs-10" th:text="'작성 시간:'+${c.regDate}"></span>
 													</div>
 												</div>
 											</div>
@@ -354,7 +348,7 @@
 								<h2 class="pt-3 pl-1">해바라기 가득~</h2>
 
 								<div class="embed-responsive embed-responsive-16by9">
-									<img th:src="@{/images/traShare/여행이미지1.gif}"
+									<img th:src="@{${#strings.isEmpty(f.feedImagePath) ? '/images/traShare/여행이미지1.gif': '/' + #strings.replace(f.feedImagePath,'\','/')}}"
 										class="img-fluid embed-responsive-item" alt="...">
 								</div>
 								KOREA HERITAGETOUR (T)

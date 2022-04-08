@@ -1,16 +1,22 @@
 package ksmart42.khtour.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import ksmart42.khtour.dto.Feed;
+import ksmart42.khtour.dto.FileDto;
 import ksmart42.khtour.dto.PlanStatus;
 import ksmart42.khtour.dto.RecordBoard;
 import ksmart42.khtour.dto.RecordBoardComment;
+import ksmart42.khtour.mapper.FileMapper;
 import ksmart42.khtour.mapper.RecordBoardMapper;
+import ksmart42.khtour.util.FileUtil;
 
 @Service
 @Transactional
@@ -18,8 +24,14 @@ public class RecordBoardService {
 	//DI 의존성 주입
 	private RecordBoardMapper recordBoardMapper;
 	
-	public RecordBoardService(RecordBoardMapper recordBoardMapper) {
+	private FileUtil fileUtil;
+	
+	private FileMapper fileMapper;
+	
+	public RecordBoardService(RecordBoardMapper recordBoardMapper, FileUtil fileUtil, FileMapper fileMapper) {
 		this.recordBoardMapper = recordBoardMapper;
+		this.fileUtil = fileUtil;
+		this.fileMapper = fileMapper;
 	}
 // 기본적인 조회-> 등록 -> 수정-> 삭제	
 	
@@ -63,8 +75,26 @@ public class RecordBoardService {
 	 * @author 김민석
 	 * @param recordBoard, heritageImageFiles, fileRealPath
 	 */
-	public void addRecordBoard(RecordBoard recordBoard) {
+	public void addRecordBoard(RecordBoard recordBoard,  MultipartFile[] recordBoardImageFiles, String fileRealPath) {
+		List<FileDto> fileList = fileUtil.parseFileInfo(recordBoardImageFiles, fileRealPath);
+		fileMapper.addFile(fileList);
+		
 		recordBoardMapper.addRecordBoard(recordBoard);
+	
+		List<Map<String,String>> addFileControlList = new ArrayList<Map<String,String>>();
+		
+		Map<String , String> addMap = null;
+		
+		if(fileList != null) {
+			for(FileDto fileDto : fileList) {
+				addMap = new HashMap<String , String>();
+				addMap.put("referenceCode", recordBoard.getRecordBoardCode());
+				addMap.put("fileIdx", fileDto.getFileIdx());
+				addFileControlList.add(addMap);
+			}
+		}
+		
+		fileMapper.addFileControl(addFileControlList);
 	}
 
 	/**
@@ -105,8 +135,26 @@ public class RecordBoardService {
 	 * @author 김민석
 	 * @param feed, heritageImageFiles, fileRealPath
 	 */
-	public void addFeed(Feed feed) {
+	public void addFeed(Feed feed, MultipartFile[] feedImageFiles, String fileRealPath) {
+		List<FileDto> fileList = fileUtil.parseFileInfo(feedImageFiles, fileRealPath);
+		fileMapper.addFile(fileList);
 		recordBoardMapper.addFeed(feed);
+		
+		
+		List<Map<String,String>> addFileControlList = new ArrayList<Map<String,String>>();
+		
+		Map<String , String> addMap = null;
+		
+		if(fileList != null) {
+			for(FileDto fileDto : fileList) {
+				addMap = new HashMap<String , String>();
+				addMap.put("referenceCode", feed.getFeedCode());
+				addMap.put("fileIdx", fileDto.getFileIdx());
+				addFileControlList.add(addMap);
+			}
+		}
+		
+		fileMapper.addFileControl(addFileControlList);
 	}
 
 	/**

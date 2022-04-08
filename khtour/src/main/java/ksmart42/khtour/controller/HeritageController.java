@@ -45,6 +45,7 @@ public class HeritageController {
 							, HttpServletRequest request) {
 		
 		log.info("{}",heritage);
+		heritage.setMemberId("id001");
 		String serverName = request.getServerName();
 		String fileRealPath = "";
 		if("localhost".equals(serverName)) {				
