@@ -19,6 +19,8 @@ public interface AccomReviewMapper {
 	
 	//리뷰등록
 	public int addAccomReview(AccomReview accomReview);
-
+	
+	//리뷰삭제
+	public int deleteReview(String ldgReviewCode);
 
 }

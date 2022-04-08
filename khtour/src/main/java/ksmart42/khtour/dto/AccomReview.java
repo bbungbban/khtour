@@ -1,8 +1,5 @@
 package ksmart42.khtour.dto;
 
-import java.util.Date;
-
-import ksmart42.khtour.util.Time;
 
 public class AccomReview {
 	
@@ -81,9 +78,10 @@ public class AccomReview {
 	public String getReviewTime() {
 		return reviewTime;
 	}
-	public void setReviewTime(Date date) {
-		this.reviewTime = Time.calculateTime(date);
+	public void setReviewTime(String reviewTime) {
+		this.reviewTime = reviewTime;
 	}
+	
 	@Override
 	public String toString() {
 		return "AccomReview [ldgReviewCode=" + ldgReviewCode + ", memberId=" + memberId + ", ldgCode=" + ldgCode
