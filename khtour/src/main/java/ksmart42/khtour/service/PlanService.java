@@ -20,20 +20,24 @@ public class PlanService {
 	}
 	
 	/**
-	 * 코드에 따른 여행 계획 조회
+	 * 코드에 따른 여행계획 목록 조회
+	 * @author 김민석
+	 * @param planCode
 	 */
 	public Plan getPlanByCode(String planCode) {
 		return planMapper.getPlanByCode(planCode);
 	}
 	/**
-	 * 여행 계획 등록
+	 * 여행계획 등록
+	 * @author 김민석
+	 * @param plan
 	 */
 	public void addPlan(Plan plan) {
 		planMapper.addPlan(plan);
 	}
 	
 	/**
-	 * 여행 계획 목록 조회
+	 * 여행계획 목록 조회
 	 */
 	public List<Plan> getPlanList(Map<String, Object> paramMap){
 		List<Plan> planList = planMapper.getPlanList(paramMap);
@@ -42,14 +46,18 @@ public class PlanService {
 	}
 
 	/**
-	 * 여행 계획 정보 수정
+	 * 여행계획 정보 수정
+	 * @author 김민석
+	 * @param plan
 	 */
 	public int modifyPlan(Plan plan) {
 		return planMapper.modifyPlan(plan);
 	}
 	
 	/**
-	 * 여행 계획 정보 삭제
+	 * 코드에 따른 여행계획 정보 삭제
+	 * @author 김민석
+	 * @param planCode
 	 */
 	public int removePlan(String planCode) {
 		int result = planMapper.removePlan(planCode);

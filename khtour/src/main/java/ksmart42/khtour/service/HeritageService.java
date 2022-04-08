@@ -32,14 +32,43 @@ public class HeritageService {
 		this.fileMapper = fileMapper;
 	}
 	
+	
 	/**
-	 * 코드에 따른 문화재 조회
+	 * 코드에 따른 문화재 목록 조회
+	 * @author 김민석
+	 * @param heritageCode
 	 */
 	public Heritage getHeritageByCode(String heritageCode) {
 		return heritageMapper.getHeritageByCode(heritageCode);
 	}
+	
 	/**
-	 * 문화재등록
+	 * 문화재 목록 조회
+	 * @author 김민석
+	 * @param paramMap
+	 */
+	public List<Heritage> getHeritageList(Map<String, Object> paramMap){
+		List<Heritage> heritageList = heritageMapper.getHeritageList(paramMap);
+		
+		return heritageList;
+	}
+
+	/**
+	 * 문화재 분류 목록 조회
+	 * @author 김민석
+	 * @param 
+	 */
+	public List<HeritageCategory> getHeritageCategoryList(){
+		
+		List<HeritageCategory> heritageCategoryList = heritageMapper.getHeritageCategoryList();
+		
+		return heritageCategoryList;
+	}	
+	
+	/**
+	 * 문화재 등록, 이미지 파일 삽입
+	 * @author 김민석
+	 * @param heritage, heritageImageFiles, fileRealPath
 	 */
 	public void addHeritage(Heritage heritage, MultipartFile[] heritageImageFiles, String fileRealPath) {
 		List<FileDto> fileList = fileUtil.parseFileInfo(heritageImageFiles, fileRealPath);
@@ -60,37 +89,21 @@ public class HeritageService {
 		}
 		
 		fileMapper.addFileControl(addFileControlList);
-		
-	}
-	
-	/**
-	 * 문화재 목록 조회
-	 */
-	public List<Heritage> getHeritageList(Map<String, Object> paramMap){
-		List<Heritage> heritageList = heritageMapper.getHeritageList(paramMap);
-		
-		return heritageList;
-	}
-
-	/**
-	 * 문화재 분류 목록 조회
-	 */
-	public List<HeritageCategory> getHeritageCategoryList(){
-		
-		List<HeritageCategory> heritageCategoryList = heritageMapper.getHeritageCategoryList();
-		
-		return heritageCategoryList;
 	}
 	
 	/**
 	 * 문화재 정보 수정
+	 * @author 김민석
+	 * @param heritage
 	 */
 	public int modifyHeritage(Heritage heritage) {
 		return heritageMapper.modifyHeritage(heritage);
 	}
 	
 	/**
-	 * 문화재 정보 삭제
+	 * 코드에 따른 문화재 정보 삭제
+	 * @author 김민석
+	 * @param heritageCode
 	 */
 	public int removeHeritage(String heritageCode) {
 		int result = heritageMapper.removeHeritage(heritageCode);

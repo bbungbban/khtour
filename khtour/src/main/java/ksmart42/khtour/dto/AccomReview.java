@@ -1,17 +1,20 @@
 package ksmart42.khtour.dto;
 
+
 public class AccomReview {
 	
 	private String ldgReviewCode;
 	private String memberId;
 	private String ldgCode;
-	private int ldgCleanliness;
-	private int ldgKindness;
-	private int ldgConvenience;
-	private int ldgLocation;
-	private int ldgPriceSta;
+	private String ldgGrade;
+	private String ldgCleanliness;
+	private String ldgKindness;
+	private String ldgConvenience;
+	private String ldgLocation;
+	private String ldgPriceSta;
 	private String reviewContents;
 	private String reviewTime;
+	
 	public String getLdgReviewCode() {
 		return ldgReviewCode;
 	}
@@ -30,34 +33,40 @@ public class AccomReview {
 	public void setLdgCode(String ldgCode) {
 		this.ldgCode = ldgCode;
 	}
-	public int getLdgCleanliness() {
+	public String getLdgGrade() {
+		return ldgGrade;
+	}
+	public void setLdgGrade(String ldgGrade) {
+		this.ldgGrade = ldgGrade;
+	}
+	public String getLdgCleanliness() {
 		return ldgCleanliness;
 	}
-	public void setLdgCleanliness(int ldgCleanliness) {
+	public void setLdgCleanliness(String ldgCleanliness) {
 		this.ldgCleanliness = ldgCleanliness;
 	}
-	public int getLdgKindness() {
+	public String getLdgKindness() {
 		return ldgKindness;
 	}
-	public void setLdgKindness(int ldgKindness) {
+	public void setLdgKindness(String ldgKindness) {
 		this.ldgKindness = ldgKindness;
 	}
-	public int getLdgConvenience() {
+	public String getLdgConvenience() {
 		return ldgConvenience;
 	}
-	public void setLdgConvenience(int ldgConvenience) {
+	public void setLdgConvenience(String ldgConvenience) {
 		this.ldgConvenience = ldgConvenience;
 	}
-	public int getLdgLocation() {
+	public String getLdgLocation() {
 		return ldgLocation;
 	}
-	public void setLdgLocation(int ldgLocation) {
+	public void setLdgLocation(String ldgLocation) {
 		this.ldgLocation = ldgLocation;
 	}
-	public int getLdgPriceSta() {
+	public String getLdgPriceSta() {
 		return ldgPriceSta;
 	}
-	public void setLdgPriceSta(int ldgPriceSta) {
+	public void setLdgPriceSta(String ldgPriceSta) {
 		this.ldgPriceSta = ldgPriceSta;
 	}
 	public String getReviewContents() {
@@ -72,12 +81,14 @@ public class AccomReview {
 	public void setReviewTime(String reviewTime) {
 		this.reviewTime = reviewTime;
 	}
+	
 	@Override
 	public String toString() {
 		return "AccomReview [ldgReviewCode=" + ldgReviewCode + ", memberId=" + memberId + ", ldgCode=" + ldgCode
-				+ ", ldgCleanliness=" + ldgCleanliness + ", ldgKindness=" + ldgKindness + ", ldgConvenience="
-				+ ldgConvenience + ", ldgLocation=" + ldgLocation + ", ldgPriceSta=" + ldgPriceSta + ", reviewContents="
-				+ reviewContents + ", reviewTime=" + reviewTime + "]";
+				+ ", ldgGrade=" + ldgGrade + ", ldgCleanliness=" + ldgCleanliness + ", ldgKindness=" + ldgKindness
+				+ ", ldgConvenience=" + ldgConvenience + ", ldgLocation=" + ldgLocation + ", ldgPriceSta=" + ldgPriceSta
+				+ ", reviewContents=" + reviewContents + ", reviewTime=" + reviewTime + "]";
 	}
-
+	
+	
 }

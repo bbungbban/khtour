@@ -31,7 +31,7 @@ public class RoomController {
 	}
 	
 	/*
-	 * 객실 계획 조회 (관리자)(Get 정보 전달)
+	 * 객실 정보 조회 (관리자)(Get 정보 전달)
 	 */
 	@GetMapping("/roomListSt")
 	public String getRoomList(Model model) {
@@ -108,7 +108,7 @@ public class RoomController {
 		
 		model.addAttribute("ldgCode", ldgCode);
 		model.addAttribute("ldgName", ldgName);
-		model.addAttribute("title", "객실 계획 등록");
+		model.addAttribute("title", "객실 등록");
 		
 		
 		return "room/roomInsert";

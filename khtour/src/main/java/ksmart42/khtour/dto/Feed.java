@@ -18,6 +18,15 @@ public class Feed {
 	private String feedTime;
 	private String regDate;
 	private String feedPlanDays;
+	
+	private String feedImagePath;
+	
+	public String getFeedImagePath() {
+		return feedImagePath;
+	}
+	public void setFeedImagePath(String feedImagePath) {
+		this.feedImagePath = feedImagePath;
+	}
 	public String getFeedCode() {
 		return feedCode;
 	}
@@ -70,7 +79,8 @@ public class Feed {
 	public String toString() {
 		return "Feed [feedCode=" + feedCode + ", recordBoardCode=" + recordBoardCode + ", feedTitle=" + feedTitle
 				+ ", feedIdx=" + feedIdx + ", feedContent=" + feedContent + ", feedTime=" + feedTime + ", regDate="
-				+ regDate + ", feedPlanDays=" + feedPlanDays + "]";
+				+ regDate + ", feedPlanDays=" + feedPlanDays + ", feedImagePath=" + feedImagePath + "]";
 	}
+	
 	
 }

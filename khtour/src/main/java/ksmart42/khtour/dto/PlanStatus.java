@@ -1,7 +1,12 @@
 package ksmart42.khtour.dto;
 
 public class PlanStatus {
-			//plan_status_code, plan_status_name, reg_date, plan_status_cnt
+	//plan_status_code,
+	//plan_status_name,
+	//reg_date,
+	//plan_status_cnt
+	
+	
 	private String planStatusCode;
 	private String planStatusName;
 	private String regDate;

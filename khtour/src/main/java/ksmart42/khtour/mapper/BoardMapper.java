@@ -10,7 +10,18 @@ import ksmart42.khtour.dto.Board;
 @Mapper
 public interface BoardMapper {
 	
-	// 1:1 문의게시판리스트 조회
-	List<Board> getBoardList(Map<String, Object> paramMap);
+	// 1:1문의게시판 목록조회
+	public List<Board> getBoardList(Map<String, Object> paramMap);
+		
+	// 1:1문의게시판 등록
+	public int addBoard(Board board);
 
+	// 1:1문의게시판 조회(1:1문의게시판 코드)
+	public Board getBoardByCode(String boardCode);
+		
+	// 1:1문의게시판 수정(1:1문의게시판코드)
+	public int modifyBoard(Board board);
+		
+	// 1:1문의게시판 삭제
+	public int removeBoard(String boardCode);
 }

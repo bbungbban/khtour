@@ -4,7 +4,14 @@ import java.util.Objects;
 import java.util.StringJoiner;
 
 public class Plan {
-		// plan_code, plan_name, start_time, end_time, solo_party, plan_materials, plan_expenses , plan_location
+	//plan_code,
+	//plan_name, 
+	//start_time, 
+	//end_time, 
+	//solo_party, 
+	//plan_materials, 
+	//plan_expenses , 
+	//plan_location
 	
 	private String planCode;
 	private String memberId;

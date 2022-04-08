@@ -1,5 +1,7 @@
 package ksmart42.khtour.dto;
 
+import java.util.List;
+
 public class CommPost {
 
 	@Override
@@ -7,9 +9,19 @@ public class CommPost {
 		return "CommPost [postCode=" + postCode + ", commCode=" + commCode + ", memberId=" + memberId + ", tagCode="
 				+ tagCode + ", title=" + title + ", regTime=" + regTime + ", mainText=" + mainText + ", readerCnt="
 				+ readerCnt + ", pictureLink=" + pictureLink + ", videoLink=" + videoLink + ", likesCnt=" + likesCnt
-				+ ", dislikesCnt=" + dislikesCnt + ", reportCnt=" + reportCnt + ", pointGain=" + pointGain
-				+ ", commTag=" + commTag + ", commentsCnt=" + commentsCnt + "]";
+				+ ", dislikesCnt=" + dislikesCnt + ", resultCnt=" + resultCnt + ", reportCnt=" + reportCnt
+				+ ", pointGain=" + pointGain + ", commTag=" + commTag + ", commentsCnt=" + commentsCnt
+				+ ", dailyLikesCnt=" + dailyLikesCnt + ", filePath=" + filePath + "]";
 	}
+	
+	public String getDailyLikesCnt() {
+		return dailyLikesCnt;
+	}
+
+	public void setDailyLikesCnt(String dailyLikesCnt) {
+		this.dailyLikesCnt = dailyLikesCnt;
+	}
+
 	public String getPostCode() {
 		return postCode;
 	}
@@ -106,6 +118,18 @@ public class CommPost {
 	public void setCommentsCnt(String commentsCnt) {
 		this.commentsCnt = commentsCnt;
 	}
+	public String getResultCnt() {
+		return resultCnt;
+	}
+	public void setResultCnt(String resultCnt) {
+		this.resultCnt = resultCnt;
+	}
+	public List<String> getFilePath() {
+		return filePath;
+	}
+	public void setFilePath(List<String> filePath) {
+		this.filePath = filePath;
+	}
 	private String postCode;
 	private String commCode;
 	private String memberId;
@@ -118,9 +142,12 @@ public class CommPost {
 	private String videoLink;
 	private String likesCnt;
 	private String dislikesCnt;
+	private String resultCnt;
 	private String reportCnt;
 	private String pointGain;
 	private CommTag commTag;
 	private String commentsCnt;
+	private String dailyLikesCnt;
+	private List<String> filePath;
 	
 }

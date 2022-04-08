@@ -39,7 +39,9 @@
 				<div class="card-body" data-select2-id="5">
 					<form id="modifyPlanForm" th:action="@{/plan/planModify}"
 						method="post">
-
+						<input type="hidden" class="form-control" id="planCode"
+							name="planCode" th:value="${plan.planCode}">
+						
 						<div class="form-group">
 							<label for="planName">여행 이름</label> <input type="text"
 								class="form-control" id="planName" name="planName" th:value="${plan.planName}">
@@ -96,7 +98,7 @@
 								class="form-control" id="planExpenses" name="planExpenses" th:value="${plan.planExpenses}"
 								required="">
 						</div>
-						<button type="submit" id="addPlanBtn" class="btn btn-primary">정보수정 완료	</button>
+						<button type="submit" class="btn btn-primary">정보수정 완료	</button>
 						<a type="button" class="btn btn-danger"
 							th:href="@{/plan/planListSt}">취소</a>
 					</form>

@@ -13,7 +13,6 @@
 		<result column="heritage_era" 				property="heritageEra"/>				<!-- 문화재 시대명 -->
 		<result column="heritage_designation" 		property="heritageDesignation"/>		<!-- 문화재 지정일 -->
 		<result column="heritage_classification" 	property="heritageClassification"/>		<!-- 문화재 분류 -->
-		<result column="heritage_image" 			property="heritageImage"/>				<!-- 문화재 이미지 -->
 		<result column="file_path" 					property="heritageImagePath"/>			<!-- 문화재 이미지 -->
 		<result column="heritage_detail" 			property="heritageDetail"/>				<!-- 문화재 부가설명 -->
 		<result column="heritage_owner" 			property="heritageOwner"/>				<!-- 문화재 소유자 -->
@@ -43,7 +42,6 @@
 		   ,h.heritage_era
 		   ,h.heritage_designation   
 		   ,h.heritage_classification   
-		   ,h.heritage_image    
 		   ,h.heritage_detail
 		   ,h.heritage_owner
 		   ,h.heritage_manager
@@ -86,7 +84,6 @@
 		   ,h.heritage_era
 		   ,h.heritage_designation   
 		   ,h.heritage_classification   
-		   ,h.heritage_image    
 		   ,h.heritage_detail
 		   ,h.heritage_owner
 		   ,h.heritage_manager
@@ -113,7 +110,6 @@
 		   ,heritage_era
 		   ,heritage_designation   
 		   ,heritage_classification   
-		   ,heritage_image    
 		   ,heritage_detail
 		   ,heritage_owner
 		   ,heritage_manager
@@ -128,7 +124,6 @@
 		   ,#{heritageEra}
 		   ,#{heritageDesignation}
 		   ,#{heritageClassification}
-		   ,#{heritageImage}
 		   ,#{heritageDetail}
 		   ,#{heritageOwner}
 		   ,#{heritageManager}
@@ -159,10 +154,7 @@
 			</if>
 			<if test="heritageClassification != null and heritageClassification != ''">
 				heritage_classification = #{heritageClassification},
-			</if>		
-			<if test="heritageImage != null and heritageImage != ''">
-				heritage_image = #{heritageImage},
-			</if>		
+			</if>			
 			<if test="heritageDetail != null and heritageDetail != ''">
 				heritage_detail = #{heritageDetail},
 			</if>		

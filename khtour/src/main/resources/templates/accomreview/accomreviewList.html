@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/default}">
+	
 <th:block layout:fragment="customTitle">
 	<title th:text="${title}"></title>
 </th:block>
@@ -12,7 +13,8 @@
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="#">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page">후기 관리 및 조회</li>
+					<li class="breadcrumb-item active" aria-current="page">후기 관리 및
+						조회</li>
 				</ol>
 			</nav>
 		</div>
@@ -24,7 +26,8 @@
 	display: flex;
 	position: relative;
 	align-items: center;
-	padding: 18.577px;
+	padding: 0px;
+	padding-left: 18.577px;
 }
 
 .ReviewIcon {
@@ -46,9 +49,8 @@
 }
 
 .ReviewContentsBox-ReviewContent {
-	font-size: 1.5rem;
-	line-height: 2.2rem;
-	max-height: 8.8rem;
+	font-size: 15px;
+	line-height: normal;
 	overflow: hidden;
 	position: relative;
 	color: #616161;
@@ -56,6 +58,8 @@
 	word-break: break-all;
 	padding-right: 18.577px;
 	padding-left: 18.577px;
+	margin-top: 10px;
+	margin-bottom: 0px;
 }
 
 .feather {
@@ -86,76 +90,36 @@
 .border-secondary {
 	border-color: #6c7d7b00 !important;
 }
+
+.br-theme-fontawesome-stars .br-widget {
+	height: auto;
+	white-space: nowrap;
+}
+
+.br-theme-fontawesome-stars .br-widget a:after {
+	font-size: 30px;
+	content: '\f005';
+	color: #f0f1f6;
+}
+
+.br-theme-fontawesome-stars .br-widget a.br-selected:after {
+	color: #ffea04;
+}
+
+.modal-sm {
+	max-width: 400px;
+}
+
+.addReview {
+	display: flex;
+	justify-content: flex-end;
+	padding-right: 0px;
+}
+
+.addReview:hover {
+	color: blue;
+}
 </style>
-	<div class="row">
-		<div class="col-12">
-			<div class="card">
-				<div class="card-body">
-					<!-- 객실정보 상세검색  -->
-					<form>
-						<div class="form-row">
-							<div class="col-md-4 mb-4">
-								<label for="validationDefault01">여행 지역 선택</label> <select
-									class="form-control border border-secondary"
-									id="exampleFormControlSelect1">
-									<option>전체</option>
-									<option>서울특별시</option>
-									<option>인천광역시</option>
-									<option>대전광역시</option>
-									<option>대구광역시</option>
-									<option>울산광역시</option>
-									<option>부산광역시</option>
-									<option>광주광역시</option>
-									<option>강원도</option>
-									<option>경기도</option>
-									<option>충청남도</option>
-									<option>충청북도</option>
-									<option>경상북도</option>
-									<option>경상남도</option>
-									<option>전라북도</option>
-									<option>전라남도</option>
-									<option>제주도</option>
-								</select>
-							</div>
-							<div class="col-md-4 mb-4">
-								<label for="validationDefault01">여행 도시 선택</label> <select
-									class="form-control border border-secondary"
-									id="exampleFormControlSelect1">
-									<option>전체</option>
-									<option>강남구</option>
-									<option>종로구</option>
-									<option>용산구</option>
-									<option>강릉시</option>
-									<option>안동시</option>
-									<option>포항시</option>
-									<option>거제시</option>
-									<option>공주시</option>
-									<option>천안시</option>
-									<option>전주시</option>
-									<option>군산시</option>
-									<option>제주시</option>
-									<option>서귀포시</option>
-								</select>
-							</div>
-							<div class="col-md-4 mb-4">
-								<label for="validationDefault02">숙박시설 종류 선택</label> <select
-									class="form-control border border-secondary"
-									id="exampleFormControlSelect1">
-									<option>전체</option>
-									<option>호텔</option>
-									<option>펜션</option>
-									<option>모텔</option>
-									<option>리조트</option>
-									<option>게스트하우스</option>
-									<option>캥핑장</option>
-								</select>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
 	<!-- 호텔에 대한 리뷰 표시 영역 -->
 	<div class="roomInfo col-lg-12 col-md-12 col-sm-12" style="padding: 0;">
 		<div class="card">
@@ -163,7 +127,113 @@
 				<div>
 					<h2 style="display: inline; float: left;">후기</h2>
 					<span style="display: inline-block; float: left; font-size: 20px;">(1,600개)</span>
-					<div class="col-12 col-md-12"></div>
+					<a type="button" class="btn addReview" data-toggle="modal"
+						data-target=".bd-example-modal-sm">리뷰작성하기</a>
+
+
+					<!-- 리뷰작성 모달 창 실행 -->
+					<form id="addReviewForm"
+						th:action="@{/accomreview/accomreviewList}" method="post">
+						<div class="modal fade bd-example-modal-sm" tabindex="-1"
+							role="dialog" aria-labelledby="myLargeModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog modal-sm">
+								<div class="modal-content" style="margin: 0 auto;">
+									<div class="modal-header"
+										style="display: inline-block; text-align: center;">
+										<h5 class="modal-title" id="exampleModalLabel">리뷰등록</h5>
+									</div>
+									<div class="modal-body">
+										<input type="hidden" class="form-control" name="ldgCode" th:value="${ldgCode}" readonly="readonly"> 
+										<input class="form-control" name="memberId">
+										<div class="panel-hedding" style="text-align: center;">
+											<p>숙소에 대한 별점을 주세요!</p>
+											<select class="rating-fontawesome" name="ldgGrade"
+												autocomplete="off">
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+											</select>
+										</div>
+										<div class="card-footer"></div>
+										<div class="panel-hedding" style="text-align: center;">
+											<p>청결도에 대한 별점을 주세요!</p>
+											<select class="rating-fontawesome" name="ldgCleanliness"
+												autocomplete="off">
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+											</select>
+										</div>
+										<div class="card-footer"></div>
+										<div class="panel-hedding" style="text-align: center;">
+											<p>친절도에 대한 별점을 주세요!</p>
+											<select class="rating-fontawesome" name="ldgKindness"
+												autocomplete="off">
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+											</select>
+										</div>
+										<div class="card-footer"></div>
+										<div class="panel-hedding" style="text-align: center;">
+											<p>편의성에 대한 별점을 주세요!</p>
+											<select class="rating-fontawesome" name="ldgConvenience"
+												autocomplete="off">
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+											</select>
+										</div>
+										<div class="card-footer"></div>
+										<div class="panel-hedding" style="text-align: center;">
+											<p>가격만족도에 대한 별점을 주세요!</p>
+											<select class="rating-fontawesome" name="ldgPriceSta"
+												autocomplete="off">
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+											</select>
+										</div>
+										<div class="card-footer"></div>
+										<div class="panel-hedding" style="text-align: center;">
+											<p>위치만족도에 대한 별점을 주세요!</p>
+											<select class="rating-fontawesome" name="ldgLocation"
+												autocomplete="off">
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+											</select>
+										</div>
+										<div class="card-footer"></div>
+										<div class="modal-footer">
+											<textarea class="form-control"
+												id="exampleFormControlTextarea1" rows="3"
+												name="reviewContents"></textarea>
+										</div>
+										<div class="modal-footer">
+											<a type="button" data-dismiss="modal">등록취소</a> <a
+												type="button" id="addReviewBtn">등록하기</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+					<!-- 리뷰작성 모달창 끝 -->
+
 				</div>
 			</div>
 			<div style="display: flex; justify-content: space-between;">
@@ -211,7 +281,8 @@
 				</div>
 			</div>
 			<div class="card-footer" style="padding: 0;"></div>
-			<div class="col-12 col-md-12" style="margin: 10px; display: flex; justify-content: space-between;">
+			<div class="col-12 col-md-12"
+				style="margin: 10px; display: flex; justify-content: space-between;">
 				<select class="form-review border border-secondary"
 					style="padding: 1px;" id="exampleFormControlSelect1">
 					<option>최근 작성순</option>
@@ -226,8 +297,9 @@
 				</div>
 			</div>
 			<div class="card-footer"></div>
-			<article class="ReviewBox">
-				<div></div>
+			<article class="ReviewBox"
+				th:if="${not #lists.isEmpty(accomoReviewList)}"
+				th:each="al,index: ${accomoReviewList}">
 				<div class="ReviewContentsBox">
 					<span class="ReviewIcon"><i class="fa fa-smile-o"
 						style="font-size: 50px; color: #FFB900;"></i></span>
@@ -241,21 +313,21 @@
 						</div>
 						<div class="ReviewTime"
 							style="display: inline-block; font-size: 1.2rem;">
-							<span style="font-weight: 100; margin-left: 0.8rem;"></span> <span
-								style="position: absolute; right: 0; line-height: 1.8rem; padding-right: 15px; font-size: 13px; opacity: 0.5;">16시간
-								전</span>
+							<span style="font-weight: 100; margin-left: 0.8rem;"></span> 
+							<span style="position: absolute; right: 0; line-height: 1.8rem; padding-right: 15px; font-size: 13px; opacity: 0.5;" th:text="${al.reviewTime}"></span>
 						</div>
 						<div class="ReviewNicknameInfo" style="opacity: 0.5;">
-							닉네임 입니다. <span class="ReviewRoomName">객실 이름입니다.</span>
+							<span class="memberId" th:text="${al.memberId}"></span><span class="ReviewRoomName">객실 이름입니다.</span>
 						</div>
 					</div>
 				</div>
-				<div class="ReviewContentsBox-ReviewContent">동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산 대한사람 대한으로 길이보전하세</div>
+				<div class="ReviewContentsBox-ReviewContent">
+					<p th:text="${al.reviewContents}" style="margin: 0px;"></p>
+				</div>
 				<div class="review-bottom"
-					style="display: flex; justify-content: flex-end; padding: 18.577px;">
-					<button type="button" class="btn btn-outline-light">등록</button>
-					<button type="button" class="btn btn-outline-light">수정</button>
-					<button type="button" class="btn btn-outline-light">삭제</button>
+					style="display: flex; justify-content: flex-end; padding: 0px">
+					<a type="button" class="btn">수정</a> 
+					<button class="btn" id="swal-delete-accomreview" th:data-accomreviewCd="${al.ldgReviewCode}">삭제</button>
 				</div>
 				<div class="card-footer"></div>
 			</article>
@@ -264,10 +336,100 @@
 	<!-- 호텔 리뷰 표시 영역 끝 -->
 </th:block>
 <th:block layout:fragment="customBodyScript">
+	<!-- delbtn -->
+	<script th:src="@{/js/sweetalert2/sweetalert2.min.js}"
+		aria-hidden="true"></script>
+	<script th:src="@{/js/sweetalert2/sweetalert2-custom.js}"
+		aria-hidden="true"></script>
 	<!-- PRISM -->
 	<script th:src="@{/js/prism/prism.js}"></script>
+
+	<!-- summernote -->
+	<script th:src="@{/js/summernote/summernote.min.js}"></script>
+
+	<!-- summernote -->
+	<script th:src="@{/js/simplemde/simplemde.min.js}"></script>
+	<script th:src="@{/js/simplemde/simplemde.js}"></script>
+
+	<!-- rating -->
+	<script th:src="@{/js/rating/jquery.barrating.min.js}"></script>
+
+	<!-- PRISM -->
+	<script th:src="@{/js/prism/prism.js}"></script>
+
 	<!-- custom -->
 	<script th:src="@{/js/custom.js}"></script>
+
+	<!-- rating custom -->
+	<script th:src="@{/js/rating/rating.js}"></script>
+	<script>
+		$(function() {
+			$('.rating-fontawesome').barrating({
+				theme : 'fontawesome-stars',
+				showSelectedRating : false
+			});
+		});
+	</script>
+	<!-- 등록 버튼 자바스크립트 -->
+	<script type="text/javascript" th:inline="javascript">
+		$('#addReviewBtn').click(function() {
+
+			var isSubmit = true;
+			var inputObj = $('#addReviewForm').find('input');
+
+			$.each(inputObj, function() {
+				var inputId = $(this).attr('id');
+				var inputLabel = $('label[for="' + inputId + '"]').text();
+				var inputData = $(this).val();
+
+				// 사용자가 입력하지 않은 경우
+			});
+
+			if (isSubmit)
+				$('#addReviewForm').submit();
+		});
+	</script>
+	<script>
+		$(function(){
+			$(document).on('click','#swal-delete-accomreview',function(){
+				var accomreviewCd = $(this).attr('data-accomreviewCd');
+			      const swalWithBootstrapButtons = swal.mixin({
+			          confirmButtonClass: 'btn btn-success',
+			          cancelButtonClass: 'btn btn-danger',
+			          buttonsStyling: false,
+			        });
+
+			        swalWithBootstrapButtons({
+			          title: '정말 삭제 하시겠습니까?',
+			          text: "삭제 클릭시 해당 정보는 복구 할 수 없습니다.",
+			          type: 'warning',
+			          showCancelButton: true,
+			          confirmButtonText: '네',
+			          cancelButtonText: '아니오',
+			          reverseButtons: false
+			        }).then((result) => {
+			          if (result.value) {
+			            swalWithBootstrapButtons(
+			              '삭제완료',
+			              '파일이 안전하게 삭제되었습니다.',
+			              'success'
+			            )
+			            location.href = '/accomreview/deleteReview?ldgReviewCode=' + accomreviewCd;
+			          } else if (
+			            // Read more about handling dismissals
+			            result.dismiss === swal.DismissReason.cancel
+			          ) {
+			            swalWithBootstrapButtons(
+			              '취소',
+			              '사진은 안전하게 보호됩니다.',
+			              'error'
+			            )
+			          }
+			        });	
+			});
+			
+		});
+	</script>
 </th:block>
 </html>
 

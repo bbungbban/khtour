@@ -54,7 +54,7 @@
 								<thead>
 									<tr>
 										<th>순위</th>
-										<th>커뮤니티 이름</th>
+										<th>커뮤니티 이름	</th>
 										<th colspan="2">맴버수</th>
 									</tr>
 								</thead>
@@ -91,7 +91,7 @@
 										<th scope="row"><a th:href="@{/commPage(commCode=${l.commCode})}" class="stretched-link" th:text="${index.index}+1"></a></th>
 										<td th:text="${l.commName}"></td>
 										<td th:text="${l.memberCnt}"></td>
-										<td class="text-right"><button type="button" class="btn btn-primary btn-sm" style="z-index: 2; position: relative;">가입</button></td>
+										<td class="text-right"><a th:href="@{/addCommMemberReg(memberId=${session.SID},commCode=${l.commCode})}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" style="z-index: 2; position: relative;">가입</a></td>
 									</tr>
 								</tbody>
 							</table>
@@ -117,14 +117,12 @@
 										<th colspan="2">맴버수</th>
 									</tr>
 								</thead>
-								
-								
 								<tbody>
 									<tr th:if="${not #lists.isEmpty(m.value)}" th:each="ml,mlIndex : ${m.value}" style="transform: rotate(0);">
 										<th scope="row"><a th:href="@{/commPage(commCode=${ml.commCode})}" class="stretched-link" th:text="${mlIndex.index}+1"></a></th>
 										<td><div class="p-0 d-inline-block text-truncate" style="max-width: 90px;"><p class="pt-2 m-0" th:text="${ml.commName}"></p></div></td>
 										<td th:text="${ml.memberCnt}"> </td>
-										<td class="text-right"><button type="button" class="btn btn-primary btn-sm" style="z-index: 2; position: relative;">가입</button></td>
+										<td class="text-right"><a th:href="@{/addCommMemberReg(memberId=${session.SID},commCode=${ml.commCode})}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" style="z-index: 2; position: relative;">가입</a></td>
 									</tr>
 								</tbody>
 							</table>						
@@ -135,14 +133,7 @@
 		</div>
 	</div>
 	</div>
-
-
 </th:block>
-
-
-
-
-
 
 <th:block layout:fragment="customBodyScript">
 	<!-- PRISM -->

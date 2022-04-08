@@ -36,11 +36,13 @@
 		(
 			 reference_code
 			,file_idx
+			,file_path
 		)VALUES
 		<foreach collection="list" item="data" separator=",">
 		( 
 			 #{data.referenceCode}
 			,#{data.fileIdx}
+			,#{data.filePath}
 		)
 		</foreach>
 	</insert>

@@ -7,12 +7,68 @@
 </th:block>
 <th:block layout:fragment="contentsTitle">
 </th:block>
+
+<th:block layout:fragment="customScript">
+	<script>
+
+	$(function() 
+			{
+		$(document).ready(function(){ 
+			
+			
+		
+		}); 	
+		$(".upVote").on("click",function(){
+			var postCode = $(this).attr('data-postCode');
+			var resultCnt = $(this).parent().find('#resultCnt')
+	       	console.log(postCode);
+					 $.ajax({
+						url : '/addLikes',
+						type : 'post',
+						data : {
+							'postCode' : postCode
+						},
+						dataType : 'text',
+						success : function(data) {
+							resultCnt.text(data);	
+						}
+					}); 
+	        
+		})
+	});
+	$(function() {
+		$(".downVote").on("click",function(){
+			var postCode = $(this).attr('data-postCode');
+			var resultCnt = $(this).parent().find('#resultCnt')
+	       	console.log(postCode);
+					 $.ajax({
+						url : '/addDislikes',
+						type : 'post',
+						data : {
+							'postCode' : postCode
+						},
+						dataType : 'text',
+						success : function(data) {
+							resultCnt.text(data);	
+						}
+					}); 
+	        
+		})
+	});
+ 
+	</script>
+</th:block>
+
+
+
+
 <th:block layout:fragment="customContents">
 	<div class="row justify-content-center">
 	<div class="card" style="width:1000px">
 	<div class="card bg-primary">
 		<div class="card-body text-center pb-2 pt-2">
 			<h2 class="mb-0 mt-2 text-white " th:text="${community.commName} + ' 커뮤니티'"></h2>
+			<p  class="mb-0 bt-0 text-white" th:text="${status}"></p>
 		</div>
 	</div>
 
@@ -20,12 +76,12 @@
 		<div class="col-md-8">
 			<div class="card">
 			<div class="card-header bg-primary pb-1">
-				<h5 class="text-white">인기포스트</h5>
+				<h5 class="text-white">인기 포스트</h5>
 			</div>
 				<div class="card-body text-center pt-3 pb-3">
-					<button type="button" class="btn btn-primary btn-sm mr-5 pl-4 pr-4">HOT</button>
-					<button type="button" class="btn btn-primary btn-sm mr-5 ml-5 pl-4 pr-4">New</button>
-					<button type="button" class="btn btn-primary btn-sm ml-5 pl-4 pr-4">Top</button>
+					<a th:href="@{/commPage(order='hot',commCode=${community.commCode})}" class="btn btn-primary btn-sm mr-5 pl-4 pr-4" role="button" aria-pressed="true"><i class="fa fa-heart-o"></i>HOT</a> 
+					<a th:href="@{/commPage(order='new',commCode=${community.commCode})}" class="btn btn-primary btn-sm mr-5 ml-5 pl-4 pr-4" role="button" aria-pressed="true"><i class="fa fa-heart-o"></i>NEW</a> 
+					<a th:href="@{/commPage(order='top',commCode=${community.commCode})}" class="btn btn-primary btn-sm ml-5 pl-4 pr-4" role="button" aria-pressed="true"><i class="fa fa-heart-o"></i>TOP</a> 
 				</div>
 			</div>
 			<div th:replace="community/singlePost :: singlePost"></div>
@@ -49,8 +105,7 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td colspan="2"><p class="card-text"
-										th:text="${community.commDesc}"></p></td>
+								<td colspan="2"><p class="card-text" th:text="${community.commDesc}"></p></td>
 							</tr>
 							<tr>
 								<td><p class="card-text">회원수</p></td>
@@ -58,8 +113,7 @@
 							</tr>
 							<tr>
 								<td><p class="card-text">온라인</p></td>
-								<td><p class="card-text"
-										th:text="${community.onlineMemberCnt}"></p></td>
+								<td><p class="card-text" th:text="${community.onlineMemberCnt}"></p></td>
 							</tr>
 							<tr>
 								<td><p class="card-text">생성날짜</p></td>
@@ -69,8 +123,8 @@
 					</table>
 				</div>
 				<div class="card-foot p-2 text-center border-top ">
-					<a href="/commDashboard" class="btn btn-primary active btn-sm" role="button" aria-pressed="true">커뮤니티 가입</a> 
-					<a th:href="@{/createPost(commCode=${community.commCode})}" class="btn btn-primary active btn-sm" role="button" aria-pressed="true">포스트 만들기</a>
+					<a th:href="@{/addCommMemberReg(memberId=${session.SID},commCode=${community.commCode})}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">커뮤니티 가입</a> 
+					<a th:href="@{/createPost(commCode=${community.commCode},memberId=${session.SID})}" class="btn btn-primary active btn-sm" role="button" aria-pressed="true">포스트 만들기</a>
 				</div>
 			</div>
 			<div class="card">
@@ -97,7 +151,7 @@
                </div>
             </div>
             <div class="card-foot p-2 text-center border-top">
-              		<button type="button" class="btn btn-primary text-white btn-sm" data-toggle="modal" data-target="#exampleModal-02">커뮤니티 규칙 추가  </button>
+              		<button type="button" class="btn btn-primary text-white btn-sm" data-toggle="modal" data-target="#exampleModal-02">규칙 추가  </button>
 				</div> 
          </div>
 			<div class="card">
@@ -113,7 +167,7 @@
 				</div>
 				<div class="card-foot p-2 text-center border-top">
 					<button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-						data-target="#exampleModal-03">커뮤니티 테그 추가</button>
+						data-target="#exampleModal-03">테그 추가</button>
 				</div>
 			</div>
 		</div>
@@ -127,10 +181,9 @@
 		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
-				<div class="modal-footer">
-					<h5 class="modal-title" id="exampleModalLabel">커뮤니티 테그 추가</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">태그추가</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
@@ -138,14 +191,16 @@
 					<form class="cmxform" method="post" th:action="@{/addTag}">
 						<div class="form-group">
 							<input type="hidden" name="commCode" id="commCode" class="form-control" th:value="${community.commCode}"></input>
+							<input type="hidden"  th:value="${session.SID}"  name="memberId" />
 						</div>
 						<div class="form-group">
-							<label for="tagName">테그이름</label> <input id="tagName" name="tagName" type="text" class="form-control" required></input>
+							<label for="tagName">태그이름</label> 
+							<input id="tagName" name="tagName" type="text" class="form-control" required></input>	
 						</div>
 						
 	
 						<div class="form-group">
-							<label for="tagColor">테그색상</label> <select class="form-control"
+							<label for="tagColor">태그 색상</label> <select class="form-control"
 								id="tagColor" name="tagColor">
 								<option  th:value="success">초록색</option>
 								<option  th:value="warning">노랑색</option>
@@ -155,8 +210,7 @@
 								<option  th:value="primary">갈색</option>
 							</select>
 						</div>
-						<button type="submit" class="btn btn-primary pull-right">테그
-							추가</button>
+						<button type="submit" class="btn btn-primary pull-right">태그등록</button>
 					</form>
 				</div>
 			</div>
@@ -168,7 +222,7 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">커뮤니티 규칙 추가</h5>
+					<h5 class="modal-title" id="exampleModalLabel">규칙등록</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -178,18 +232,19 @@
 					<form class="cmxform" method="post" th:action="@{/addRule}">
 						<div class="form-group">
 							<input type="hidden" name="commCode" id="commCode" class="form-control" th:value="${community.commCode}"></input>
+							<input type="hidden"  th:value="${session.SID}"  name="memberId" />
 						</div>
 						<div class="form-group">
-							<label for="title">규칙 제목</label> 
+							<label for="title">규칙 재목</label> 
 							<input id="title" name="title" type="text" class="form-control" required></input>
 						</div>
 						
 
 						<div class="form-group">
-							<label for="detail">규칙 상세 설명</label>
+							<label for="detail">추가설명</label>
 							<textarea id="detail" name="detail" class="form-control" rows="10" required></textarea>
 						</div>
-						<button type="submit" class="btn btn-primary pull-right">규칙 추가</button>
+						<button type="submit" class="btn btn-primary pull-right">등록</button>
 					</form>
 				</div>
 			</div>
