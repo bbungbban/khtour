@@ -56,7 +56,7 @@ public class RecordBoardController {
 		recordBoard.setMemberId("id001");
 		recordBoardService.addRecordBoard(recordBoard, recordBoardImageFiles, fileRealPath);
 
-		return "redirect:/recordBoard/recordBoardListSt";
+		return "redirect:/recordBoard/recordBoardList";
 	}
 	
 	/* 2. 수정 (관리자 권한)

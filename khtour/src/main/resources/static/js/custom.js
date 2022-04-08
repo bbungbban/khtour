@@ -533,7 +533,9 @@
           ]
       } );
     }  
-
+    /*
+     *  2022-03-20 김민석 검색기능 해제 수정
+     */
     var _table_selected = $( '#table-selected' );
     if ( _table_selected.exists() ) {
       _table_selected.DataTable( {
