@@ -116,6 +116,10 @@
 								<td><p class="card-text" th:text="${community.onlineMemberCnt}"></p></td>
 							</tr>
 							<tr>
+								<td><p class="card-text">관리자</p></td>
+								<td><p class="card-text" th:text="${community.memberId}"></p></td>
+							</tr>
+							<tr>
 								<td><p class="card-text">생성날짜</p></td>
 								<td><p class="card-text" th:text="${community.regDate}"></p></td>
 							</tr>
@@ -150,7 +154,7 @@
                   </div>
                </div>
             </div>
-            <div class="card-foot p-2 text-center border-top">
+            <div class="card-foot p-2 text-center border-top" th:if="${session.SID}==${community.memberId}">
               		<button type="button" class="btn btn-primary text-white btn-sm" data-toggle="modal" data-target="#exampleModal-02">규칙 추가  </button>
 				</div> 
          </div>
@@ -165,7 +169,7 @@
 					</th:block>
 
 				</div>
-				<div class="card-foot p-2 text-center border-top">
+				<div class="card-foot p-2 text-center border-top" th:if="${session.SID}==${community.memberId}">
 					<button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
 						data-target="#exampleModal-03">테그 추가</button>
 				</div>

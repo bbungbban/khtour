@@ -16,6 +16,7 @@ public class CommReply {
 	private String mainText;
 	private String regTime;
 	private String commentsCnt;
+	
 	private List<CommReply> childrenReply;
 	
 	
