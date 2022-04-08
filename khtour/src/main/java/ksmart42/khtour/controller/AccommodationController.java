@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import ksmart42.khtour.dto.AccomReview;
 import ksmart42.khtour.dto.Accommodation;
@@ -44,10 +47,30 @@ public class AccommodationController {
 	 * 숙박업소 조회 페이지이동(Get 정보 전달)
 	 */
 	@GetMapping("/accommodationList")
-	public String getAccommodationList(Model model) {
+	public String getAccommodationList(Model model
+			,@RequestParam(name="searchKey", required=false) String searchKey
+			,@RequestParam(name="searchValue", required=false) String searchValue) {
+		
 		Map<String, Object> paramMap = new HashMap<String , Object>();
 		
+		if(searchKey != null) {
+			if("ldgName".equals(searchKey)) {
+				searchKey = "ldg_name";
+			}else if("ldgType".equals(searchKey)) {
+				searchKey = "ldg_type";
+			}else if("ldgAddr".equals(searchKey)) {
+			searchKey = "ldg_addr";
+			}
+		}
+		
+		paramMap.put("searchKey", searchKey);
+		paramMap.put("searchValue", searchValue);
+		log.info("입력 데이터 값 : {}",paramMap);
+		
+		
 		List<Accommodation> accommodationList = accommodationService.getAccommodationList(paramMap);
+		
+		paramMap = null;
 		
 		model.addAttribute("title", "숙박업소 관리페이지");
 		model.addAttribute("accommodationList", accommodationList);
@@ -144,9 +167,20 @@ public class AccommodationController {
 	 * 숙박업소 등록(Post 정보 전달)
 	 */
 	@PostMapping("/accommodationInsert")
-	public String addAccommodation(Accommodation accommodation) {
+	public String addAccommodation(Accommodation accommodation
+								   ,@RequestParam MultipartFile[] accommodationImageFiles
+								   ,HttpServletRequest request) {
 		
-		accommodationService.addAccommodation(accommodation);
+		String serverName = request.getServerName();
+		String fileRealPath = "";
+		if("localhost".equals(serverName)) {				
+			fileRealPath = System.getProperty("user.dir") + "/src/main/resources/static/";
+			//fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+		}else {
+			fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+		}
+		
+		accommodationService.addAccommodation(accommodation, accommodationImageFiles, fileRealPath);
 		
 		return "redirect:/accommodation/accommodationListSt";
 	}
