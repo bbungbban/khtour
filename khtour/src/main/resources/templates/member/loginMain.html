@@ -34,7 +34,7 @@
 			</div>
 			<button type="button" id="loginBtn" onclick="('포인트가 적립되었습니다.')" class="btn btn-primary">로그인</button>
 			<div th:if="${not #strings.isEmpty(result)}">
-				<p th:text="${result}"></p>
+				<p id="resultM" th:text="${result}"></p>
 			</div>
 		</form>
 		<span class="text-dark">계정이 없는가요? 계정을 생성합니다 
@@ -49,6 +49,7 @@
 	<script th:src="@{/js/custom.js}"></script>
 	<script>
 		$(function() {
+			
 			function validationCheck(data) {
 				if (typeof data == 'undefined' || data == '' || data == null) {
 					return false;

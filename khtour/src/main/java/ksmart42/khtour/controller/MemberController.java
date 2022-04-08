@@ -58,6 +58,7 @@ public class MemberController {
 		System.out.println("회원 로그인 처리 PostMapping");
 		String memberId = member.getMemberId();
 		String memberPw = member.getMemberPw();
+		String memberEmail = member.getMemberEmail();
 		
 		Member checkMember = memberMapper.getMemberInfoById(memberId);
 		
@@ -73,7 +74,7 @@ public class MemberController {
 			session.setAttribute("SID", memberId);
 			session.setAttribute("SNAME", sessionName);
 			session.setAttribute("SLEVEL", sessionLevel);
-			
+			session.setAttribute("SEMAIL", checkMember.getMemberEmail());
 			log.info("로그인 성공");
 			
 			return "redirect:/";
@@ -133,11 +134,14 @@ public class MemberController {
 	 * @return redirect: -> request.sendRedirect("")
 	 */
 	@PostMapping("/memberInsert")
-	public String memberInsert(Member member) {
+	public String memberInsert(Member member, RedirectAttributes reAttr) {
+		String msg1 = "";
+		 
 		log.info("회원가입폼에서 입력받은 데이터: {}", member);
 		
 		memberService.memberInsert(member);
-		
+		/* reAttr.addAttribute("resultId", member.getMemberId() + "아이디로 회원가입되셨습니다"); */
+		msg1 = "회원가입되셨습니다";
 		return "redirect:/member/loginMain";
 	}
 	

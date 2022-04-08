@@ -47,7 +47,7 @@
 				<input id="memberPw" type="password" class="form-control" placeholder="비밀번호" required="" name="memberPw">
 			</div>
 			<div class="form-group">
-				<label for="memberPw2">비밀번호</label>
+				<label for="memberPw2">비밀번호 확인</label>
 				<input id="memberPw2" type="password" class="form-control" placeholder="비밀번호 확인" required="" name="memberPw2">
 				&nbsp;<span id="pwCheck"></span>
 				<!-- <div class="check_font" id="pwCheck"></div> -->
@@ -216,12 +216,12 @@
 								$('#memberId').attr('data-idcheck', true);
 								$("#idCheck").text("사용가능한 아이디입니다");
 								$("#idCheck").css("color", "blue");
-								$("#submit").attr("disabled", false);
+								$("#memberInsertBtn").attr("disabled", false);
 							}else{
 								$('#memberId').attr('data-idcheck', false);
 								$("#idCheck").text("사용중인 아이디입니다");
 								$("#idCheck").css("color", "red");
-								$("#submit").attr("disabled", true);
+								$("#memberInsertBtn").attr("disabled", true);
 							}
 						},error: function(xhr, status, errorThrown) {
 							console.log(xhr);
@@ -229,36 +229,6 @@
 						}
 					});
 				});
-				
-				 $('#memberInsertBtn').click(function(){
-					var isIdCheck = $('#idCheck').attr('data-idcheck');
-					var isSubmit = true;
-					var inputObj = $('#memberInsertForm').find('input');
-					var memberId = $('input[name="memberId"]').val();
-					//console.log(validationCheck(memberId));
-					var vCheck = validationCheck(memberId);
-					
-					$.each(inputObj, function(){
-						var inputData = $(this).val();
-						var result = validationCheck(inputData);
-						
-						// 사용자가 입력하지 않은 경우
-						if(!result){
-							alert("올바르게 입력했는지 확인해주세요");
-							$(this).focus();
-							isSubmit = false;
-							return false;
-						}if(isIdCheck && isSubmit) {
-							$('#memberInsertForm').submit();
-							alert("회원가입이 되셨습니다");
-							
-						}			
-					});
-					
-					
-					
-					
-				}); 
 			});
 				
 				
