@@ -47,7 +47,7 @@
 				<input id="memberPw" type="password" class="form-control" placeholder="비밀번호" required="" name="memberPw">
 			</div>
 			<div class="form-group">
-				<label for="memberPw2">비밀번호</label>
+				<label for="memberPw2">비밀번호 확인</label>
 				<input id="memberPw2" type="password" class="form-control" placeholder="비밀번호 확인" required="" name="memberPw2">
 				&nbsp;<span id="pwCheck"></span>
 				<!-- <div class="check_font" id="pwCheck"></div> -->
@@ -216,12 +216,12 @@
 								$('#memberId').attr('data-idcheck', true);
 								$("#idCheck").text("사용가능한 아이디입니다");
 								$("#idCheck").css("color", "blue");
-								$("#submit").attr("disabled", false);
+								$("#memberInsertBtn").attr("disabled", false);
 							}else{
 								$('#memberId').attr('data-idcheck', false);
 								$("#idCheck").text("사용중인 아이디입니다");
 								$("#idCheck").css("color", "red");
-								$("#submit").attr("disabled", true);
+								$("#memberInsertBtn").attr("disabled", true);
 							}
 						},error: function(xhr, status, errorThrown) {
 							console.log(xhr);
@@ -229,13 +229,10 @@
 						}
 					});
 				});
-				
-
 			});
 				
 				
 	  </script>
-	  
 	  
    </th:block>
 </html>

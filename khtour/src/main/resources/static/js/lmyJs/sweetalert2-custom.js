@@ -99,10 +99,7 @@
       })
     });
     
-    /*
-     * 2022-03-20
-     * 김민석 수정
-     * */
+   
     $("#swal-delete").on("click",function(){
       const swalWithBootstrapButtons = swal.mixin({
           confirmButtonClass: 'btn btn-success',

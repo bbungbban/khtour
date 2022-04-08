@@ -75,7 +75,8 @@
 										<td th:text="${l.memberRegTime}"></td>
 										<td th:text="${l.memberCountry}"></td>
 										<td>
-											<button class="btn btn-danger btn-icon btn-sm mb-1" id="swal-delete-member" th:data-mId="${l.memberId}">
+											<a th:href="@{/member/memberList(memberId=${l.memberId})}"></a>
+											<button class="btn btn-danger btn-icon btn-sm mb-1" id="#swal-delete-member" th:data-mId="${l.memberId}">
 												<i class="fa fa-trash-o"></i>
 											</button>
 										</td>
@@ -111,6 +112,9 @@
 </form>
 </th:block>
 <th:block layout:fragment="customBodyScript">
+	<!-- delbtn -->
+	<script th:src="@{/js/lmyJs/sweetalert2.min.js}"></script>
+	<script th:src="@{/js/lmyJs/sweetalert2-custom.js}"></script>
 	<!-- datatables -->
 	<script th:src="@{/js/datatables/datatables.js}"></script>
 	<!-- <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js}"></script> -->
@@ -130,7 +134,7 @@
 	<!-- dataTables.rowGroup.min -->
 	<script th:src="@{/js/datatables/dataTables.rowGroup.min.js}"></script>
 	<!-- custom -->
-	<script th:src="@{/js/custom.js}"></script>
+	<script th:src="@{/js/lmyJs/custom.js}"></script>
 	<script>
 		$(function(){
 			$(document).on('click','#swal-delete-member',function(){
