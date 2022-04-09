@@ -1,16 +1,18 @@
 package ksmart42.khtour.dto;
 
 public class Mus {
+	//대분류코드 대분류종류 고유코드 이름 주소 상세설명 사이트 전화번호 체험활동 유/무 시작시간 종료시간 휴무일
 	private String musCode;
 	private String musLargeCateCode;
+	private String musLargeCateName;
 	private String musName;
 	private String musAddr;
 	private String musDetail;
 	private String musSite;
 	private String musNum;
 	private String musDisclose;
-	private int musStart;
-	private int musEnd;
+	private String musStart;
+	private String musEnd;
 	private String musClose;
 	
 	public String getMusCode() {
@@ -24,6 +26,13 @@ public class Mus {
 	}
 	public void setMusLargeCateCode(String musLargeCateCode) {
 		this.musLargeCateCode = musLargeCateCode;
+	}
+	
+	public String getMusLargeCateName() {
+		return musLargeCateName;
+	}
+	public void setMusLargeCateName(String musLargeCateName) {
+		this.musLargeCateName = musLargeCateName;
 	}
 	public String getMusName() {
 		return musName;
@@ -62,16 +71,16 @@ public class Mus {
 	public void setMusDisclose(String musDisclose) {
 		this.musDisclose = musDisclose;
 	}
-	public int getMusStart() {
+	public String getMusStart() {
 		return musStart;
 	}
-	public void setMusStart(int musStart) {
+	public void setMusStart(String musStart) {
 		this.musStart = musStart;
 	}
-	public int getMusEnd() {
+	public String getMusEnd() {
 		return musEnd;
 	}
-	public void setMusEnd(int musEnd) {
+	public void setMusEnd(String musEnd) {
 		this.musEnd = musEnd;
 	}
 	public String getMusClose() {
@@ -82,11 +91,12 @@ public class Mus {
 	}
 	@Override
 	public String toString() {
-		return "Mus [musCode=" + musCode + ", musLargeCateCode=" + musLargeCateCode + ", musName=" + musName
-				+ ", musAddr=" + musAddr + ", musDetail=" + musDetail + ", musSite=" + musSite + ", musNum=" + musNum
-				+ ", musDisclose=" + musDisclose + ", musStart=" + musStart + ", musEnd=" + musEnd + ", musClose="
-				+ musClose + "]";
+		return "Mus [musCode=" + musCode + ", musLargeCateCode=" + musLargeCateCode + ", musLargeCateName="
+				+ musLargeCateName + ", musName=" + musName + ", musAddr=" + musAddr + ", musDetail=" + musDetail
+				+ ", musSite=" + musSite + ", musNum=" + musNum + ", musDisclose=" + musDisclose + ", musStart="
+				+ musStart + ", musEnd=" + musEnd + ", musClose=" + musClose + "]힘들다아아아아악";
 	}
+	
 	
 	
 }

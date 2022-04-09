@@ -3,15 +3,18 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ksmart42.khtour.mapper.ExhibMapper">
-	<resultMap type="Exhib" 			id="exhibResultMap">
-		<id column="exhib_code" 		property="exhibCode" />
-		<result column="ch_mus_code" 	property="chMusCode" />
-		<result column="exhib_cate" 	property="exhibCate" />
-		<result column="exhib_name" 	property="exhibName" />
-		<result column="exhib_start" 	property="exhibStart" />
-		<result column="exhib_end"	 	property="exhibEnd" />
-		<result column="exhib_con"		property="exhibCon" />
-		<result column="exhib_current" 	property="exhibCurrent" />
+	<resultMap type="Exhib" 				id="exhibResultMap">
+		<id column="exhib_code" 			property="exhibCode" />			<!-- 전시회 코드 -->
+		<result column="mus_code" 			property="musCode" />			<!-- 문화재 및 박물관 코드 -->
+		<result column="exhib_cate" 		property="exhibCate" />			<!-- 전시회카테고리코드 -->
+		<result column="exhib_cate_name" 	property="exhibCateName" />		<!-- 전시회카테고리 -->
+		<result column="exhib_name" 		property="exhibName" />			<!-- 전시회이름 -->
+		<result column="exhib_start" 		property="exhibStart" />		<!-- 전시회시작일 -->
+		<result column="exhib_end"	 		property="exhibEnd" />			<!-- 전시회종료일 -->
+		<result column="exhib_con"			property="exhibCon" />			<!-- 전시회내용 -->
+		<result column="exhib_current" 		property="exhibCurrent" />		<!-- 전시회현황 -->
+		<result column="exhib_img" 			property="exhibImg" />			<!-- 포스터이미지-->
+		<result column="exhib_page" 		property="exhibPage" />			<!-- 전시회홈페이지-->
 	</resultMap>
 
 	<!-- 전시회 등록 SQL -->
@@ -19,22 +22,26 @@
 		INSERT INTO
 		tb_exhib
 		( exhib_code
-		,ch_mus_code
+		,mus_code
 		,exhib_cate
+		,exhib_cate_name
 		,exhib_name
 		,exhib_start
 		,exhib_end
 		,exhib_con
 		,exhib_current
+		,exhib_page
 		) VALUES (
 		sf_new_exhib_code()
-		,#{chMusCode}
+		,#{musCode}
 		,#{exhibCate}
+		,#{exhibCateName}
 		,#{exhibName}
 		,#{exhibStart}
 		,#{exhibEnd}
 		,#{exhibCon}
 		,#{exhibCurrent}
+		,#{exhibPage}
 		);
 	</insert>
 
@@ -42,13 +49,15 @@
 	<select id="getExhibByCode" parameterType="String" resultMap="exhibResultMap">
 		SELECT
 		 s.exhib_code
-		,s.ch_mus_code
+		,s.mus_code
 		,s.exhib_cate
+		,s.exhib_cate_name
 		,s.exhib_name
 		,s.exhib_start
 		,s.exhib_end
 		,s.exhib_con
 		,s.exhib_current
+		,s.exhib_page
 		FROM
 			tb_exhib AS s
 		WHERE
@@ -60,26 +69,37 @@
 	<select id="getExhibList" resultMap="exhibResultMap">
 		SELECT
 		 s.exhib_code
-		,s.ch_mus_code
+		,s.mus_code
 		,s.exhib_cate
+		,s.exhib_cate_name
 		,s.exhib_name
 		,s.exhib_start
 		,s.exhib_end
 		,s.exhib_con
 		,s.exhib_current
+		,s.exhib_page
 		FROM
-		tb_exhib AS s;
+		tb_exhib AS s
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="searchKey != null and searchKey != '' and searchValue != ''">
+		 		AND ${searchKey} LIKE CONCAT('%', #{searchValue}, '%')
+		 	</if>
+		</trim>
+		ORDER BY s.exhib_code;
 	</select>
 	
 	<!-- 전시회 수정 SQL -->
 	<update id="modifyExhib" parameterType="Exhib">
 		UPDATE tb_exhib
 		<trim prefix="SET" suffixOverrides=",">
-			<if test="chMusCode != null and chMusCode != ''">
-				ch_mus_code = #{chMusCode},
+			<if test="musCode != null and musCode != ''">
+				mus_code = #{musCode},
 			</if>		
 			<if test="exhibCate != null and exhibCate != ''">
 				exhib_cate = #{exhibCate},
+			</if>		
+			<if test="exhibCateName != null and exhibCateName != ''">
+				exhib_cate_name = #{exhibCateName},
 			</if>		
 			<if test="exhibName != null and exhibName != ''">
 				exhib_name = #{exhibName},
@@ -95,6 +115,9 @@
 			</if>		
 			<if test="exhibCurrent != null and exhibCurrent != ''">
 				exhib_current = #{exhibCurrent},
+			</if>		
+			<if test="exhibPage != null and exhibPage != ''">
+				exhib_page = #{exhibPage},
 			</if>		
 		</trim>
 		WHERE
