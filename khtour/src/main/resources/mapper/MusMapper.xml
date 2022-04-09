@@ -6,6 +6,7 @@
 	<resultMap type="Mus" id="musResultMap">
 		<id column="mus_code" 					property="musCode" />
 		<result column="mus_large_cate_code" 	property="musLargeCateCode" />
+		<result column="mus_large_cate_name" 	property="musLargeCateName" />
 		<result column="mus_name" 				property="musName" />
 		<result column="mus_addr" 				property="musAddr" />
 		<result column="mus_detail" 			property="musDetail" />
@@ -21,8 +22,9 @@
 	<insert id="addMus" parameterType="Mus">
 		INSERT INTO tb_mus_info
 		(
-		mus_code
+		 mus_code
 		,mus_large_cate_code
+		,mus_large_cate_name
 		,mus_name
 		,mus_addr
 		,mus_detail
@@ -35,6 +37,7 @@
 		) VALUES (
 		sf_new_mus_code()
 		,#{musLargeCateCode}
+		,#{musLargeCateName}
 		,#{musName}
 		,#{musAddr}
 		,#{musDetail}
@@ -51,6 +54,7 @@
 		SELECT
 		 m.mus_code
 		,m.mus_large_cate_code
+		,m.mus_large_cate_name
 		,m.mus_name
 		,m.mus_addr
 		,m.mus_detail
@@ -71,6 +75,7 @@
 		SELECT
 		 m.mus_code
 		,m.mus_large_cate_code
+		,m.mus_large_cate_name
 		,m.mus_name
 		,m.mus_addr
 		,m.mus_detail
@@ -82,6 +87,12 @@
 		,m.mus_close
 		FROM
 		tb_mus_info AS m
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="searchKey != null and searchKey != '' and searchValue != ''">
+		 		AND ${searchKey} LIKE CONCAT('%', #{searchValue}, '%')
+		 	</if>
+		</trim>
+		ORDER BY m.mus_code;	
 	</select>
 
 	<!-- 전시회 수정 SQL -->
@@ -90,6 +101,9 @@
 		<trim prefix="SET" suffixOverrides=",">
 			<if test="musLargeCateCode != null and musLargeCateCode != ''">
 				mus_large_cate_code = #{musLargeCateCode},
+			</if>
+			<if test="musLargeCateName != null and musLargeCateName != ''">
+				mus_large_cate_name = #{musLargeCateName},
 			</if>
 			<if test="musName != null and musName != ''">
 				mus_name = #{musName},

@@ -1,24 +1,22 @@
 @charset "UTF-8";
-
-*{font-size:15px;}
-p{font-size:15px;}
-a{font-size:15px;}
-label{font-size:15px;}
-li{font-size:15px;}
-.wizard .nav-pills .nav-link.active{font-size:15px;}
-.btn{font-size:15px;}
-.form-control{font-size:15px;}
-.wizard .nav-pills .nav-link .number{line-height:2.5;}
-
-#exhibList #table-selected{background:#fff;}
+/*폰트크기변경*/
+#khtour .card *{font-size:15px;}
+#khtour .card p{font-size:15px;}
+#khtour .card a{font-size:15px;}
+#khtour .card label{font-size:15px;}
+#khtour .card li{font-size:15px;}
+#khtour .card .wizard .nav-pills .nav-link.active{font-size:15px;}
+#khtour .card .btn{font-size:15px;}
+#khtour .card .form-control{font-size:15px;}
+#khtour .card .nav-pills .nav-link .number{line-height:2.5;}
 
 .main-panel{background:##F3F5F7;}
 .ftbtn{border-radius:6px;transition:all 0.2s ease-in-out;}
 
-#exhibInsert .btn{border-radius:3px;}
-#exhibInsert .card-title-text{font-weight:bold;}
-#exhibInsert .margincorrection .card{margin-bottom:1.77em;}
-#exhibInsert .popover-header{display:none;}
+#khtour .btn{border-radius:3px;}
+#khtour .card-title-text{font-weight:bold;}
+#khtour .margincorrection .card{margin-bottom:1.77em;}
+#khtour .popover-header{display:none;}
 
 #start_date-popover-body .datepicker-btns .btn:hover{background:none;}
 #start_date-popover-body .btn.btn-outline-dark{color:#212529;}
@@ -29,6 +27,16 @@ li{font-size:15px;}
 #start_date-popover-body .btn{border-radius:4px;transition:none;}
 #start_date-popover-body .btn-info:not(:disabled):not(.disabled).active, .btn-info:not(:disabled):not(.disabled):active, .show>.btn-info.dropdown-toggle{background:#335eea;border-color:#335eea;}
 #start_date-popover-body #start_date-popover-body .btn.btn-outline-dark{color:#fff;}
+
+#end_date-popover-body .datepicker-btns .btn:hover{background:none;}
+#end_date-popover-body .btn.btn-outline-dark{color:#212529;}
+#end_date-popover-body .datepicker-table td button.today{background-color:#335eea;color:#fff;}
+#end_date-popover-body .datepicker-table td button:not(:disabled):hover{background-color:#eee !important;border-color:#eee !important;color:#212529;}
+#end_date-popover-body .table .thead-light th{background:none;}
+#end_date-popover-body .btn.btn-outline-secondary{color:#999;}
+#end_date-popover-body .btn{border-radius:4px;transition:none;}
+#end_date-popover-body .btn-info:not(:disabled):not(.disabled).active, .btn-info:not(:disabled):not(.disabled):active, .show>.btn-info.dropdown-toggle{background:#335eea;border-color:#335eea;}
+#end_date-popover-body #end_date-popover-body .btn.btn-outline-dark{color:#fff;}
 
 #cosCate .btnhover {transition: 0.2s;}
 #cosCate .dd-list .dd-list {padding: 0;margin-left: 2.143rem;}
@@ -52,4 +60,5 @@ li{font-size:15px;}
 #pointList .btn{border-radius:3px;margin-top:2px;}
 #pointList .form-group{margin-bottom:0;}
 
+.btn{border-radius:3px;}
 #List .btn.btn-icon.btn-sm{line-height:1.5;}

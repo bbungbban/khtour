@@ -1,15 +1,17 @@
 package ksmart42.khtour.dto;
 
 public class Exhib {
-	//전시회코드 문화재 및 박물관 코드 카테고리 이름 시작일 종료일 내용 전시회 현황
+	//전시회코드 문화재및박물관코드 카테고리코드 카테고리명 이름 시작일 종료일 내용 현황 포스터 홈페이지
 	private String exhibCode;
-	private String chMusCode;
+	private String musCode;
 	private String exhibCate;
+	private String exhibCateName;
 	private String exhibName;
 	private String exhibStart;
 	private String exhibEnd;
 	private String exhibCon;
 	private String exhibCurrent;
+	private String exhibImg;
 	private String exhibPage;
 	
 	public String getExhibCode() {
@@ -18,17 +20,24 @@ public class Exhib {
 	public void setExhibCode(String exhibCode) {
 		this.exhibCode = exhibCode;
 	}
-	public String getChMusCode() {
-		return chMusCode;
+	public String getMusCode() {
+		return musCode;
 	}
-	public void setChMusCode(String chMusCode) {
-		this.chMusCode = chMusCode;
+	public void setMusCode(String musCode) {
+		this.musCode = musCode;
 	}
 	public String getExhibCate() {
 		return exhibCate;
 	}
 	public void setExhibCate(String exhibCate) {
 		this.exhibCate = exhibCate;
+	}
+	
+	public String getExhibCateName() {
+		return exhibCateName;
+	}
+	public void setExhibCateName(String exhibCateName) {
+		this.exhibCateName = exhibCateName;
 	}
 	public String getExhibName() {
 		return exhibName;
@@ -60,6 +69,12 @@ public class Exhib {
 	public void setExhibCurrent(String exhibCurrent) {
 		this.exhibCurrent = exhibCurrent;
 	}
+	public String getExhibImg() {
+		return exhibImg;
+	}
+	public void setExhibImg(String exhibImg) {
+		this.exhibImg = exhibImg;
+	}
 	public String getExhibPage() {
 		return exhibPage;
 	}
@@ -68,10 +83,12 @@ public class Exhib {
 	}
 	@Override
 	public String toString() {
-		return "Exhib [exhibCode=" + exhibCode + ", chMusCode=" + chMusCode + ", exhibCate=" + exhibCate
-				+ ", exhibName=" + exhibName + ", exhibStart=" + exhibStart + ", exhibEnd=" + exhibEnd + ", exhibCon="
-				+ exhibCon + ", exhibCurrent=" + exhibCurrent +", exhibPage=" + exhibPage+ "]";
+		return "Exhib [exhibCode=" + exhibCode + ", musCode=" + musCode + ", exhibCate=" + exhibCate
+				+ ", exhibCateName=" + exhibCateName + ", exhibName=" + exhibName + ", exhibStart=" + exhibStart
+				+ ", exhibEnd=" + exhibEnd + ", exhibCon=" + exhibCon + ", exhibCurrent=" + exhibCurrent + ", exhibImg="
+				+ exhibImg + ", exhibPage=" + exhibPage + "]";
 	}
+	
 	
 	
 }

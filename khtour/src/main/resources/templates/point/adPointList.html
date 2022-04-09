@@ -17,13 +17,11 @@
 		th:href="@{/js/datatables/fixedColumns.bootstrap4.min.css}">
 	<link rel="stylesheet" type="text/css"
 		th:href="@{/css/plugins/KmyCss/addCssKmy.css}">
+	<!-- **********************************  Start ContentsWrap  ********************************** -->
 	<div id="List">
-		<!-- **********************************  Start ContentsWrap  ********************************** -->
-
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card">
-
 					<div class="card-body">
 						<div class="accordion" id="accordionExample">
 							<div class="card">
@@ -36,32 +34,44 @@
 								</div>
 								<div id="collapseOne" class="collapse show"
 									aria-labelledby="headingOne" data-parent="#accordionExample">
-									<div class="card-body">
-									<p style="color:red;">* 1000점 이상일 경우 사용 가능</p>
-											<div class="table-responsive">
-												<table class="table table-sm mb-0">
-													<tbody>
-														<tr>
-															<td>하루 한 번 로그인</td>
-															<td>50</td>
-														</tr>
-														<tr>
-															<td>커뮤니티 글 작성</td>
-															<td>100</td>
-														</tr>
-														<tr>
-															<td>좋아요 받은 수</td>
-															<td>1</td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
+									<div class="card-body"
+										style="border-bottom: 1px solid #e5e5e5;">
+										<p style="color: red;">* 1000점 이상일 경우 사용 가능</p>
+										<div class="table-responsive">
+											<table class="table table-sm mb-0">
+												<tbody>
+													<tr>
+														<td>하루 한 번 로그인</td>
+														<td>50</td>
+													</tr>
+													<tr>
+														<td>커뮤니티 글 작성</td>
+														<td>100</td>
+													</tr>
+													<tr>
+														<td>좋아요 받은 수</td>
+														<td>1</td>
+													</tr>
+												</tbody>
+											</table>
 										</div>
 									</div>
+								</div>
+							</div>
+							<div class="input-group mb-3">
+								<select class="custom-select col-3" id="inputGroupSelect02">
+									<option selected="">:: 선택 ::</option>
+									<option value="1">아이디</option>
+									<option value="2">적립/사용처</option>
+									<option value="3">포인트내역</option>
+								</select>
+								<input type="text" class="form-control"
+									placeholder="검색어를 입력하세요." aria-describedby="button-addon2">
+								<button class="btn btn-outline-primary" type="button"
+									id="button-addon2">검색</button>
 							</div>
 							<div class="table-responsive">
-								<table id="table-selected"
-									class="table table-striped table-bordered">
+								<table id="table-selected" class="table table-striped table-bordered">
 									<thead>
 										<tr>
 											<th>아이디</th>
@@ -70,12 +80,12 @@
 											<th>일자</th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody th:if="${not #lists.isEmpty(getAdPointList)}" th:each="l:${getAdPointList}">
 										<tr>
-											<td>id001</td>
-											<td>숙박결제</td>
-											<td>+0</td>
-											<td>2022-03-24</td>
+											<td th:text="${l.memberId}"></td>
+											<td th:text="${l.pointAmount}"></td>
+											<td th:text="${l.pointLog}"></td>
+											<td th:text="${l.regTime}"></td>
 										</tr>
 									</tbody>
 									<tfoot>
@@ -95,6 +105,7 @@
 
 			<!-- **********************************  End ContentsWrap  ********************************** -->
 		</div>
+	</div>
 </th:block>
 <th:block layout:fragment="customBodyScript">
 	<!-- bootstrap -->

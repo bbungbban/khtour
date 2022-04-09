@@ -7,7 +7,7 @@ public class Point {
 	/* tb_point_log 포인트 적립 및 사용 목록 */
 	private String pointLog;
 	private String memberId;
-	private String pointType;
+	private String pointCode;
 	private String pointAmount;
 	private String regTime;
 	public String getComment() {
@@ -34,11 +34,11 @@ public class Point {
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-	public String getPointType() {
-		return pointType;
+	public String getPointCode() {
+		return pointCode;
 	}
-	public void setPointType(String pointType) {
-		this.pointType = pointType;
+	public void setPointCode(String pointCode) {
+		this.pointCode = pointCode;
 	}
 	public String getPointAmount() {
 		return pointAmount;
@@ -55,7 +55,7 @@ public class Point {
 	@Override
 	public String toString() {
 		return "Point [comment=" + comment + ", pointGetUse=" + pointGetUse + ", pointLog=" + pointLog + ", memberId="
-				+ memberId + ", pointType=" + pointType + ", pointAmount=" + pointAmount + ", regTime=" + regTime + "]";
+				+ memberId + ", pointCode=" + pointCode + ", pointAmount=" + pointAmount + ", regTime=" + regTime + "]";
 	}
 	
 }
