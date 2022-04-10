@@ -86,24 +86,17 @@
 					<div class="card-group md-3">
 						<div class="card col-sm-1 bg-primary d-flex pl-0 pr-0">
 							<div class="card-body pl-0 pr-0 pt-5">
-								<a href="#" onclick="return false;" class="upVote"
-									th:data-postCode="${commPost.postCode}"> <i
-									class="la la-caret-up d-flex la-3x justify-content-center text-white pb-5"></i></a>
-								<p id="resultCnt"
-									class="card-text text-white text-center mb-0 pb-0">[[${commPost.resultCnt}]]</p>
+								<a href="#" onclick="return false;" class="upVote" th:data-postCode="${commPost.postCode}"> <i class="la la-caret-up d-flex la-3x justify-content-center text-white pb-5"></i></a>
+								<p id="resultCnt" class="card-text text-white text-center mb-0 pb-0">[[${commPost.resultCnt}]]</p>
 								<p class="card-text text-white text-center mt-0 pt-0 pb-5">좋아요</p>
-								<a href="#!" onclick="return false;" class="downVote"
-									th:data-postCode="${commPost.postCode}"> <i
-									class="la la-caret-down d-flex la-3x justify-content-center text-white"></i></a>
+								<a href="#!" onclick="return false;" class="downVote" th:data-postCode="${commPost.postCode}"> <i class="la la-caret-down d-flex la-3x justify-content-center text-white"></i></a>
 							</div>
 						</div>
 						<div class="card col-sm-11">
 							<div class="card-body">
 								<div th:if="${not #strings.isEmpty(commPost.CommTag)}">
 									<p>작성자 : [[${commPost.memberId}]]</p>
-									<button
-										th:class="'btn active btn-sm pt-1 pb-1 pull-left mr-2 btn-'+${commPost.CommTag.getTagColor()}"
-										th:text="${commPost.CommTag.getTagName()}"></button>
+									<button th:class="'btn active btn-sm pt-1 pb-1 pull-left mr-2 btn-'+${commPost.CommTag.getTagColor()}" th:text="${commPost.CommTag.getTagName()}"></button>
 								</div>
 								<h5 class="card-title" th:text="${commPost.title}"></h5>
 								<p class="card-text" th:text="${commPost.mainText}"></p>
@@ -119,15 +112,11 @@
 												<img class="d-block w-100" th:src="@{${fc}}">
 											</div>
 										</div>
-										<a class="carousel-control-prev"
-											href="#carouselExampleControls" role="button"
-											data-slide="prev"> <span
-											class="carousel-control-prev-icon" aria-hidden="true"></span>
+										<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 											<span class="sr-only">Previous</span>
-										</a> <a class="carousel-control-next"
-											href="#carouselExampleControls" role="button"
-											data-slide="next"> <span
-											class="carousel-control-next-icon" aria-hidden="true"></span>
+										</a> 
+										<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next"> 
+											<span class="carousel-control-next-icon" aria-hidden="true"></span>
 											<span class="sr-only">Next</span>
 										</a>
 									</div>
