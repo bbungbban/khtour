@@ -39,15 +39,13 @@
 								<tr>
 									<th>문화재 코드</th>
 									<th>문화재 명</th>
-									<th>한문명</th>
 									<th>문화재 대분류</th>
-									<th>소재지</th>
+									<th>문화재 중분류</th>
 									<th>관리자</th>
 									<th>소유자</th>
 									<th>시대명</th>
-									<th>수량/면적</th>
 									<th>문화재 지정일</th>
-									<th>문화재 중분류</th>
+									<th>수량/면적</th>
 									<th>수정</th>
 									<th>삭제</th>
 								</tr>
@@ -57,14 +55,12 @@
 									th:each="l : ${heritageList}">
 									<td th:text="${l.heritageCode}"></td>
 									<td th:text="${l.heritageName}"></td>
-									<td th:text="${l.heritageSubName}"></td>
 									<td th:text="${l.heritageClassification}"></td>
 									<td th:text="${l.heritageCategory}"></td>
-									<td th:text="${l.heritageLocation}"></td>
+									<td th:text="${l.heritageManager}"></td>
+									<td th:text="${l.heritageOwner}"></td>
 									<td th:text="${l.heritageEra}"></td>
 									<td th:text="${l.heritageDesignation}"></td>
-									<td th:text="${l.heritageOwner}"></td>
-									<td th:text="${l.heritageManager}"></td>
 									<td th:text="${l.heritageArea}"></td>
 									<td><a
 										class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1"

@@ -138,7 +138,8 @@
 								class="content d-flex flex-column align-items-center justify-content-center">
 								<div>
 									<h3 class="text-white fs-5" th:text="${dp.title}"></h3>
-									<p class="fs-6 text-white" th:text="${dp.mainText}"></p>
+									<p style="display: -webkit-box; -webkit-line-clamp: 8; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;"
+										class="card-text" th:text="${dp.mainText}"></p>
 								</div>
 							</div>
 						</div>
