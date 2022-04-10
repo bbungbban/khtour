@@ -136,12 +136,34 @@ public class RecordBoardController {
 	*  설  명 : 여행 게시글 조회 (유저페이지) - get방식 전달
 	*/
 	@GetMapping("/recordBoardList")
-	public String getRecordBoardList(Model model) {
+	public String getRecordBoardList(Model model
+			,@RequestParam(name="searchKey", required=false) String searchKey
+			,@RequestParam(name="searchValue", required=false) String searchValue) {
+		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 
+		if(searchKey != null) {
+			if("memberId".equals(searchKey)) {
+				searchKey = "member_id";
+			}else if("recordBoardName".equals(searchKey)) {
+				searchKey = "record_board_name";
+			}else if("recordBoardSubName".equals(searchKey)) {
+				searchKey = "record_board_sub_name";
+			}
+		}
+		
+		paramMap.put("searchKey", searchKey);
+		paramMap.put("searchValue", searchValue);
+		
 		List<RecordBoard> recordBoardList = recordBoardService.getRecordBoardList(paramMap);
-
-		model.addAttribute("title", "문화재 종목별 검색 페이지");
+		for(int i=0; i<recordBoardList.size(); i++) {
+		String feedCount =	recordBoardService.getrecordBoardByfeedCount(recordBoardList.get(i).getRecordBoardCode());
+		recordBoardList.get(i).setLikeCount(feedCount);
+		}
+		
+		paramMap = null;
+		
+		model.addAttribute("title", "여행기록 게시판");
 		model.addAttribute("recordBoardList", recordBoardList);
 
 		return "recordBoard/recordBoardList";

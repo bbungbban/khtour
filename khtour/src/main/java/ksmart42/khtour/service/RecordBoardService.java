@@ -35,6 +35,10 @@ public class RecordBoardService {
 	}
 // 기본적인 조회-> 등록 -> 수정-> 삭제	
 	
+	public String getrecordBoardByfeedCount(String recordBoardCode) {
+		return recordBoardMapper.getrecordBoardByfeedCount(recordBoardCode);
+	}
+	
 	/**
 	 * 여행게시글 목록 조회
 	 * @author 김민석
@@ -58,6 +62,17 @@ public class RecordBoardService {
 	 */
 	public RecordBoard getRecordBoardByCode(String recordBoardCode) {
 		return recordBoardMapper.getRecordBoardByCode(recordBoardCode);
+	}
+	
+	/**
+	 * 조회수에 따른 Top4 여행게시글 조회
+	 * @author 김민석
+	 * @param 
+	 */
+	public List<RecordBoard> getTopRecordBoardList(){
+		List<RecordBoard> TopRecordBoardList = recordBoardMapper.getTopRecordBoardList();
+		
+		return TopRecordBoardList;
 	}
 	
 	/**

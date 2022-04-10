@@ -53,6 +53,11 @@
 								id="recordBoardName" name="recordBoardName" th:value="${recordBoard.recordBoardName}">
 						</div>
 						<div class="form-group">
+							<label for="recordBoardSubName">게시글 부제목</label> <input type="text"
+								class="form-control" placeholder="게시글 이름을 입력하세요."
+								id="recordBoardSubName" name="recordBoardSubName" th:value="${recordBoard.recordBoardSubName}">
+						</div>
+						<div class="form-group">
 							<label for="content">게시글 내용</label>
 							<textarea class="form-control" rows="3" id="content" th:text="${recordBoard.content}"
 								name="content"></textarea>

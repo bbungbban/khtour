@@ -151,26 +151,8 @@
 
 							</div>
 						</div>
-						<div class="form-group">
-							<label for="customRange2" class="form-label">여행 기간</label> 
-							<div class="card-footer" style="padding: 5px;"></div><span
-								class="irs-line" tabindex="0"></span> <span class="irs-from"
-								style="visibility: hidden;">0</span> <span class="irs-to"
-								style="visibility: hidden;">0</span> <span class="irs-single"
-								style="left: 48.4707%;"></span> <span class="irs-grid"></span> <span
-								class="irs-bar irs-bar--single" style="left: 0px; width: 50%;"></span>
-							<span class="irs-shadow shadow-single" style="display: none;"></span>
-							<span class="irs-handle single" style="left: 49.0831%;"><i></i><i></i><i></i></span>
-							<input id="rangeslider-basic" type="hidden" value=""
-								class="irs-hidden-input" tabindex="-1" readonly="">
-						</div>
-						<div class="form-group">
-							<label for="textFormControlInput2">키워드 추가</label>
-							<div class="card-footer" style="padding: 5px;"></div> <input
-								type="text" class="form-control" id="textFormControlInput2" placeholder="키워드를 입력해주세요.">
-						</div>
-						<button type="submit" class="btn btn-outline-primary col-12" style="margin-left: 0px;">적용</button>
 					</form>
+						<div th:include="searchMinSeok/search.html :: searchRecordBoardListFragment"></div>
 					<!-- 블로그 리스트 끝 -->
 				</div>
 			</div>
@@ -237,19 +219,16 @@
 											th:href="@{/recordBoard/feedList(recordBoardCode=${l.recordBoardCode})}"
 												th:text="${l.recordBoardName}"></a></strong>
 										</h4>
-										<p class="mb-0" th:text="${l.content}"></p>
+										<p class="mb-0" th:text="${l.recordBoardSubName}"></p>
 									</div>
 								</div>
 								<div class="blog-bottom">
 									<div class="row">
-										<div class="feather icon-heart-on" style="padding-right: 10px; padding-left: 10px;">
-											<span th:text="${l.likeCount}" style="opacity: 0.5;"></span>
+										<div class="feather icon-image col-6">
+											<span th:text="'피드개수 : ' + ${l.likeCount}" style="opacity: 0.5;"></span>
 										</div>
-										<div class="feather icon-image" style="padding-right: 10px;">
-											<span style="opacity: 0.5;">5</span>
-										</div>
-										<div class="feather icon-tv" style="padding-right: 10px;">
-											<span th:text="${l.views}" style="opacity: 0.5;"></span>
+										<div class="feather icon-tv col-6">
+											<span th:text="'조회수 : ' + ${l.views}" style="opacity: 0.5;"></span>
 										</div>
 									</div>
 								</div>
