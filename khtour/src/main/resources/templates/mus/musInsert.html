@@ -71,6 +71,7 @@
 										<option value="금">금</option>
 										<option value="토">토</option>
 										<option value="일">일</option>
+										<option value="없음">없음</option>
 									</select>
 								</div>
 								<div class="form-group">
@@ -100,8 +101,8 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="">주소</label> 
-								<input type="text" class="form-control" readonly name="addr1">
+								<label for="musAddr">주소</label> 
+								<input type="text" class="form-control" readonly name="musAddr">
 							</div>
 							<div class="form-group">
 								<label for="">상세주소</label> 
@@ -120,7 +121,7 @@
 												oncomplete : function(data) {
 													$('[name=zip]').val(
 															data.zonecode); // 우편번호 (5자리)
-													$('[name=addr1]').val(
+													$('[name=musAddr]').val(
 															data.address);
 													$('[name=addr2]').val(
 															data.buildingName);
@@ -129,12 +130,12 @@
 								}
 							</script>
 							<div class="form-group">
-								<label for="chMusNum">전화번호</label>
-								<input type="text" class="phone_us form-control" name="chMusNum" maxlength="14" placeholder="000-000-0000" id="phoneNum">
+								<label for="musNum">전화번호</label>
+								<input type="text" class="phone_us form-control" name="musNum" maxlength="14" placeholder="000-000-0000" id="phoneNum">
 							</div>
 							<div class="form-group">
-								<label for="chMusDetail">상세설명 </label> 
-								<input type="text" class="form-control" name="chMusDetail">
+								<label for="musDetail">상세설명 </label> 
+								<input type="text" class="form-control" name="musDetail">
 							</div>
 							<div class="col-12">
 								<div class="add-new text-center mb-5">

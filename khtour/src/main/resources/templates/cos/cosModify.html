@@ -6,19 +6,17 @@
 	<title th:text="${title}"></title>
 </th:block>
 <th:block layout:fragment="contentsTitle">
-	<h2>코스 등록</h2>
+	<h2>코스 수정</h2>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="#">Home</a></li>
-			<li class="breadcrumb-item active" aria-current="page">코스 등록</li>
+			<li class="breadcrumb-item"><a th:href="@{/cos/cosList}">코스 조회 및 수정</a></li>
+			<li class="breadcrumb-item active" aria-current="page">코스 수정</li>
 		</ol>
 	</nav>
 </th:block>
 <th:block layout:fragment="customContents">
-	<link rel="stylesheet" type="text/css"
-		th:href="@{/css/plugins/datepicker/daterangepicker.css}">
-	<link rel="stylesheet" type="text/css"
-		th:href="@{/css/plugins/KmyCss/addCssKmy.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/plugins/datepicker/daterangepicker.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/plugins/KmyCss/addCssKmy.css}">
 	<div id="cosInsert">
 		<div class="row justify-content-center">
 			<div class="col-12 col-la-10 col-xl-7">
@@ -27,11 +25,11 @@
 				<div class="card">
 					<div class="card-title">
 						<div class="card-title-left">
-							<h4 class="card-title-text">코스 기본 정보</h4>
+							<h4 class="card-title-text">코스 수정</h4>
 						</div>
 					</div>
 					<div class="card-body">
-						<script language='javascript'>
+					<script language='javascript'>
 						<!--
 							var cnt = new Array();
 							cnt[0] = new Array('전체');
@@ -102,28 +100,29 @@
 							}
 						//-->
 						</script>
-						<form id="addCos" th:action="@{/cos/cosInsert}" method="post" name="addCos">
+						<form th:action="@{/mus/modifyCos}" method="post">
+							<input type="hidden" class="form-control" id="cosCode" name="cosCode" th:value="${cos.cosCode}">
 							<div class="form-group">
 								<label for="cosArea1">지역선택</label>
 								<div class="input-group">
-									<select class="custom-select col-3" name="cosArea1" onchange="change(this.selectedIndex);">
-										<option value='전체'>전체</option>
-										<option value='서울'>서울특별시</option>
-										<option value='부산'>부산광역시</option>
-										<option value='대구'>대구광역시</option>
-										<option value='인천'>인천광역시</option>
-										<option value='광주'>광주광역시</option>
-										<option value='대전'>대전광역시</option>
-										<option value='울산'>울산광역시</option>
-										<option value='경기'>경기도</option>
-										<option value='강원'>강원도</option>
-										<option value='충북'>충청북도</option>
-										<option value='충남'>충청남도</option>
-										<option value='전북'>전라북도</option>
-										<option value='전남'>전라남도</option>
-										<option value='경북'>경상북도</option>
-										<option value='경남'>경상남도</option>
-										<option value='제주'>제주도</option>
+									<select class="custom-select col-3" name="cosArea1" onchange="change(this.selectedIndex);" th:value="${cos.cosArea1}"> 
+										<option th:selected="${cos.cosArea1=='전체'}">전체</option>
+										<option th:selected="${cos.cosArea1=='서울'}">서울특별시</option>
+										<option th:selected="${cos.cosArea1=='부산'}">부산광역시</option>
+										<option th:selected="${cos.cosArea1=='대구'}">대구광역시</option>
+										<option th:selected="${cos.cosArea1=='인천'}">인천광역시</option>
+										<option th:selected="${cos.cosArea1=='광주'}">광주광역시</option>
+										<option th:selected="${cos.cosArea1=='대전'}">대전광역시</option>
+										<option th:selected="${cos.cosArea1=='울산'}">울산광역시</option>
+										<option th:selected="${cos.cosArea1=='경기'}">경기도</option>
+										<option th:selected="${cos.cosArea1=='강원'}">강원도</option>
+										<option th:selected="${cos.cosArea1=='충북'}">충청북도</option>
+										<option th:selected="${cos.cosArea1=='충남'}">충청남도</option>
+										<option th:selected="${cos.cosArea1=='전북'}">전라북도</option>
+										<option th:selected="${cos.cosArea1=='전남'}">전라남도</option>
+										<option th:selected="${cos.cosArea1=='경북'}">경상북도</option>
+										<option th:selected="${cos.cosArea1=='경남'}">경상남도</option>
+										<option th:selected="${cos.cosArea1=='제주'}">제주도</option>
 									</select>
 									<select class="custom-select col-3 select" name="cosArea2">
 										<option value=''>전체</option>
@@ -149,7 +148,7 @@
 							</div>
 							<div class="form-group">
 								<label for="cosName">코스명</label>
-								<input type="text" class="form-control" name="cosName" placeholder="코스이름을 입력하세요.">
+								<input type="text" class="form-control" name="cosName" th:value="${cos.cosName}">
 							</div>
 							<div class="form-group">
 								<label>코스설정</label>

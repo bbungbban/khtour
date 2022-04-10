@@ -8,8 +8,7 @@
 	<h2>박물관 수정</h2>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a th:href="@{/mus/musList}">박물관
-					조회 및 수정</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/mus/musList}">박물관 조회 및 수정</a></li>
 			<li class="breadcrumb-item active" aria-current="page">박물관 수정</li>
 		</ol>
 	</nav>
@@ -34,7 +33,6 @@
 										<option th:selected="${mus.musLargeCateName=='문화재'}">문화재</option>
 										<option th:selected="${mus.musLargeCateName=='박물관'}">박물관</option>
 									</select>
-
 								</div>
 								<div class="form-group col-8">
 									<label for="musName">박물관 명</label>
@@ -73,6 +71,7 @@
 										<option th:selected="${mus.musClose=='금'}">금</option>
 										<option th:selected="${mus.musClose=='토'}">토</option>
 										<option th:selected="${mus.musClose=='일'}">일</option>
+										<option th:selected="${mus.musClose=='없음'}">없음</option>
 									</select>
 
 								</div>
@@ -103,8 +102,8 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="">주소</label>
-								<input type="text" class="form-control" readonly name="addr1">
+								<label for="musAddr">주소</label>
+								<input type="text" class="form-control" readonly name="musAddr">
 							</div>
 							<div class="form-group">
 								<label for="">상세주소</label>
@@ -119,7 +118,7 @@
 								function openZipSearch() {new daum.Postcode({oncomplete : function(data) {
 													$('[name=zip]').val(
 															data.zonecode); // 우편번호 (5자리)
-													$('[name=addr1]').val(
+													$('[name=musAddr]').val(
 															data.address);
 													$('[name=addr2]').val(
 															data.buildingName);}}).open();}

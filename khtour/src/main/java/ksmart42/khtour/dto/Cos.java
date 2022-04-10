@@ -4,9 +4,11 @@ public class Cos {
 	private String cosCode;
 	private String memberId; 
 	private String themeCategoryCode;
+	private String themeCategory;
 	private String musCode;
-	private String cosArea;
-	private String tripName;
+	private String cosArea1;
+	private String cosArea2;
+	private String cosName;
 	private String cosRegist;
 	private String cosOpen;
 	private String cosShare;
@@ -29,6 +31,13 @@ public class Cos {
 	public void setThemeCategoryCode(String themeCategoryCode) {
 		this.themeCategoryCode = themeCategoryCode;
 	}
+	
+	public String getThemeCategory() {
+		return themeCategory;
+	}
+	public void setThemeCategory(String themeCategory) {
+		this.themeCategory = themeCategory;
+	}
 	public String getMusCode() {
 		return musCode;
 	}
@@ -36,17 +45,23 @@ public class Cos {
 		this.musCode = musCode;
 	}
 	
-	public String getCosArea() {
-		return cosArea;
+	public String getCosArea1() {
+		return cosArea1;
 	}
-	public void setCosArea(String cosArea) {
-		this.cosArea = cosArea;
+	public void setCosArea1(String cosArea1) {
+		this.cosArea1 = cosArea1;
 	}
-	public String getTripName() {
-		return tripName;
+	public String getCosArea2() {
+		return cosArea2;
 	}
-	public void setTripName(String tripName) {
-		this.tripName = tripName;
+	public void setCosArea2(String cosArea2) {
+		this.cosArea2 = cosArea2;
+	}
+	public String getCosName() {
+		return cosName;
+	}
+	public void setCosName(String cosName) {
+		this.cosName = cosName;
 	}
 	public String getCosRegist() {
 		return cosRegist;
@@ -66,13 +81,14 @@ public class Cos {
 	public void setCosShare(String cosShare) {
 		this.cosShare = cosShare;
 	}
-	
 	@Override
 	public String toString() {
 		return "Cos [cosCode=" + cosCode + ", memberId=" + memberId + ", themeCategoryCode=" + themeCategoryCode
-				+ ", musCode=" + musCode + ", tripName=" + tripName + ", cosRegist=" + cosRegist + ", cosOpen="
-				+ cosOpen + ", cosShare=" + cosShare + ", cosArea=" + cosArea +"]";
+				+ ", themeCategory=" + themeCategory + ", musCode=" + musCode + ", cosArea1=" + cosArea1 + ", cosArea2="
+				+ cosArea2 + ", cosName=" + cosName + ", cosRegist=" + cosRegist + ", cosOpen=" + cosOpen
+				+ ", cosShare=" + cosShare + "]";
 	}
+	
 	
 	
 }
