@@ -38,9 +38,21 @@
 								th:value="${heritage.heritageName}">
 						</div>
 						<div class="form-group">
-							<label for="heritageCategory"> 문화재 대분류 </label> <input
-								type="text" class="form-control" id="heritageCategory"
-								name="heritageCategory" th:value="${heritage.heritageCategory}">
+							<label for="heritageCategory"> 문화재 대분류 </label>
+								<div class="input-group">
+									<select class="custom-select" name="heritageCategory" onchange="change(this.selectedIndex);" th:value="${heritage.heritageCategory}"> 
+										<option th:selected="${heritage.heritageCategory=='전체'}">:: 선택 :: </option>
+										<option th:selected="${heritage.heritageCategory=='국가등록문화재'}">국보</option>
+										<option th:selected="${heritage.heritageCategory=='국보'}">국보</option>
+										<option th:selected="${heritage.heritageCategory=='명승'}">명승</option>
+										<option th:selected="${heritage.heritageCategory=='문화재 자료'}">문화재 자료</option>
+										<option th:selected="${heritage.heritageCategory=='보물'}">보물</option>
+										<option th:selected="${heritage.heritageCategory=='사적'}">사적</option>
+										<option th:selected="${heritage.heritageCategory=='신문'}">신문</option>
+										<option th:selected="${heritage.heritageCategory=='종이'}">종이</option>
+
+									</select>
+								</div>
 						</div>
 						<div class="form-group">
 							<label for="heritageSubName"> 문화재 한문명 </label> <input type="text"
