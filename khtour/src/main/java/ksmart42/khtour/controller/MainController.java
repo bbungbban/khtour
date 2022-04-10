@@ -8,6 +8,7 @@ import java.net.URISyntaxException;
 import java.net.URLEncoder;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,26 +28,66 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import ksmart42.khtour.service.CommunityService;
 import ksmart42.khtour.service.FileService;
+import ksmart42.khtour.service.RecordBoardService;
+import ksmart42.khtour.dto.CommPost;
 import ksmart42.khtour.dto.FileDto;
+import ksmart42.khtour.dto.RecordBoard;
 
 @Controller
 public class MainController {
-
+	private RecordBoardService recordBoardService;
+	private CommunityService communityService;
+	
 	private FileService fileService;
 	
-	public MainController(FileService fileService) {
+	public MainController(RecordBoardService recordBoarService, CommunityService communityService,FileService fileService) {
+		this.recordBoardService = recordBoarService;
+		this.communityService = communityService;
 		this.fileService = fileService;
 	}
 	@GetMapping("/")
 	public String main(Model model) {
-		
+		List<RecordBoard> TopRecordBoardList = recordBoardService.getTopRecordBoardList();
+		List<CommPost> dailyPostList = communityService.getDailyPostList();
+
 		model.addAttribute("title", "메인 화면 이동");
 		
+		model.addAttribute("TopRecordBoardList",TopRecordBoardList);
+		model.addAttribute("dailyPostList",dailyPostList);
 		return "main";
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 파일업로드 관련
 	@GetMapping("/file/upload")
 	public String archiveUpload(Model model) {
 		

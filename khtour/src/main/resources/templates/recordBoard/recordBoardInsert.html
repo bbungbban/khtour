@@ -45,8 +45,13 @@
 						th:action="@{/recordBoard/recordBoardInsert}" method="post" enctype="multipart/form-data">
 						<div class="form-group">
 							<label for="recordBoardName">게시글 제목</label> <input type="text"
-								class="form-control" placeholder="게시글 이름을 입력하세요."
+								class="form-control" placeholder="게시글 제목을 입력하세요."
 								id="recordBoardName" name="recordBoardName">
+						</div>
+						<div class="form-group">
+							<label for="recordBoardSubName">게시글 부제목</label> <input type="text"
+								class="form-control" placeholder="게시글 부제목을 입력하세요."
+								id="recordBoardSubName" name="recordBoardSubName">
 						</div>
 						<div class="form-group">
 							<label for="content">게시글 내용</label>

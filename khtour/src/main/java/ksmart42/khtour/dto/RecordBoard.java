@@ -4,9 +4,9 @@ public class RecordBoard {
 	//record_board_code, 
 	//member_id, 
 	//record_board_name, 
+	//record_board_sub_name, 
 	//content, 
 	//plan_status_code, 
-	//image, 
 	//start_date, 
 	//end_date, 
 	//reg_date, 
@@ -16,9 +16,9 @@ public class RecordBoard {
 	private String recordBoardCode;
 	private String memberId;
 	private String recordBoardName;
+	private String recordBoardSubName;
 	private String content;
 	private String planStatusCode;
-	private String image;
 	private String startDate;
 	private String endDate;
 	private String regDate;
@@ -53,6 +53,14 @@ public class RecordBoard {
 		this.recordBoardName = recordBoardName;
 	}
 
+	public String getRecordBoardSubName() {
+		return recordBoardSubName;
+	}
+
+	public void setRecordBoardSubName(String recordBoardSubName) {
+		this.recordBoardSubName = recordBoardSubName;
+	}
+
 	public String getContent() {
 		return content;
 	}
@@ -67,14 +75,6 @@ public class RecordBoard {
 
 	public void setPlanStatusCode(String planStatusCode) {
 		this.planStatusCode = planStatusCode;
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
 	}
 
 	public String getStartDate() {
@@ -117,14 +117,6 @@ public class RecordBoard {
 		this.views = views;
 	}
 
-	public PlanStatus getPlanStatus() {
-		return planStatus;
-	}
-
-	public void setPlanStatus(PlanStatus planStatus) {
-		this.planStatus = planStatus;
-	}
-	
 	public String getRecordBoardImagePath() {
 		return recordBoardImagePath;
 	}
@@ -133,14 +125,23 @@ public class RecordBoard {
 		this.recordBoardImagePath = recordBoardImagePath;
 	}
 
+	public PlanStatus getPlanStatus() {
+		return planStatus;
+	}
+
+	public void setPlanStatus(PlanStatus planStatus) {
+		this.planStatus = planStatus;
+	}
+
 	@Override
 	public String toString() {
 		return "RecordBoard [recordBoardCode=" + recordBoardCode + ", memberId=" + memberId + ", recordBoardName="
-				+ recordBoardName + ", content=" + content + ", planStatusCode=" + planStatusCode + ", image=" + image
-				+ ", startDate=" + startDate + ", endDate=" + endDate + ", regDate=" + regDate + ", likeCount="
-				+ likeCount + ", views=" + views + ", recordBoardImagePath=" + recordBoardImagePath + ", planStatus="
-				+ planStatus + "]";
+				+ recordBoardName + ", recordBoardSubName=" + recordBoardSubName + ", content=" + content
+				+ ", planStatusCode=" + planStatusCode + ", startDate=" + startDate + ", endDate=" + endDate
+				+ ", regDate=" + regDate + ", likeCount=" + likeCount + ", views=" + views + ", recordBoardImagePath="
+				+ recordBoardImagePath + ", planStatus=" + planStatus + "]";
 	}
 
+	
 
 }

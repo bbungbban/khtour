@@ -36,8 +36,13 @@ public interface RecordBoardMapper {
 	// 여행게시글 정보 삭제
 	public int removeRecordBoard(String recordBoardCode);
 	
+	// 조회수 순 top4개의 포스트 조회
+	public List<RecordBoard> getTopRecordBoardList();
+	
 	// 여행게시글 조회수 업데이트
 	public int updateViewsByCode(String recordBoardCode);
+	
+	public String getrecordBoardByfeedCount(String recordBoardCode);
 	
 /*
  * 피드 관련

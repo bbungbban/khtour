@@ -8,9 +8,9 @@
 		<id column="record_board_code" 			property="recordBoardCode"/>				<!-- 여행게시글 코드 -->
 		<result column="member_id" 				property="memberId"/>						<!-- 등록자 아이디 -->										
 		<result column="record_board_name" 		property="recordBoardName"/>				<!-- 여행게시글 이름 -->
+		<result column="record_board_sub_name" 	property="recordBoardSubName"/>				<!-- 여행게시글 서브 이름 -->
 		<result column="content" 				property="content"/>						<!-- 여행게시글 내용 -->
 		<result column="plan_status_code"		property="planStatusCode"/>					<!-- 여행 상태 -->
-		<result column="image"					property="image"/>
 		<result column="file_path" 				property="recordBoardImagePath"/>			<!-- 여행 이미지 -->
 		<result column="start_date"				property="startDate"/>						<!-- 여행 출발일 -->
 		<result column="end_date" 				property="endDate"/>						<!-- 여행 종료일 -->
@@ -79,9 +79,9 @@
 		  r.record_board_code
 		   ,r.member_id
 		   ,r.record_board_name
+		   ,r.record_board_sub_name
 		   ,r.content
 		   ,r.plan_status_code    
-		   ,r.image
 		   ,r.start_date   
 		   ,r.end_date
 		   ,r.reg_date    
@@ -101,7 +101,16 @@
 		   LEFT JOIN 
 		   tb_file AS f
 		   ON 
-		   fc.file_idx = f.file_idx;
+		   fc.file_idx = f.file_idx
+		   <trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="memberId != null and memberId != ''">
+				h.member_id = #{memberId}
+			</if>
+			<if test="searchKey != null and searchKey != '' and searchValue != ''">
+		 		AND ${searchKey} LIKE CONCAT('%', #{searchValue}, '%')
+		 	</if>
+		</trim>
+		ORDER BY r.record_board_code;	
 	</select>
 	
 	<!-- 코드에 따른 여행게시글 조회 SQL -->
@@ -110,9 +119,9 @@
 		    r.record_board_code
 		   ,r.member_id
 		   ,r.record_board_name
+		   ,r.record_board_sub_name
 		   ,r.content
 		   ,r.plan_status_code    
-		   ,r.image
 		   ,r.start_date   
 		   ,r.end_date
 		   ,r.reg_date    
@@ -125,6 +134,25 @@
 	
 	</select>
 	
+	<select id="getTopRecordBoardList"  resultMap="recordBoardResultMap">
+		SELECT
+			r.record_board_code
+			,r.member_id		 
+			,r.plan_status_code
+			,r.record_board_name
+			,r.content  
+			,r.start_date
+			,r.end_date
+			,r.reg_date
+			,r.like_count
+			,r.views
+		FROM
+			tb_record_board AS r
+		Order BY 
+			r.views DESC
+			LIMIT 4;	
+	</select>
+	
 	<!-- 여행게시글 등록 SQL -->
 	<insert id="addRecordBoard" parameterType="RecordBoard">
 		<selectKey resultType="string" keyProperty="recordBoardCode" order="BEFORE">
@@ -134,9 +162,9 @@
 		(   record_board_code
 		   ,member_id
 		   ,record_board_name
+		   ,record_board_sub_name
 		   ,content  
 		   ,plan_status_code    
-		   ,image
 		   ,start_date   
 		   ,end_date
 		   ,reg_date    
@@ -146,9 +174,9 @@
 		    #{recordBoardCode}
 		   ,#{memberId}
 		   ,#{recordBoardName}
+		   ,#{recordBoardSubName}
 		   ,#{content}
 		   ,#{planStatusCode}
-		   ,#{image}
 		   ,#{startDate}
 		   ,#{endDate}
 		   ,CURDATE()
@@ -168,6 +196,20 @@
 		record_board_code = #{recordBoardCode};
 	</update>
 	
+	<!-- 여행게시글에 피드갯수 구하는 SQL -->
+	<select id="getrecordBoardByfeedCount" parameterType="String" resultType="string">
+	SELECT
+	COUNT(*)
+	FROM
+		tb_record_board AS r
+	INNER join
+		tb_record_board_feed AS f
+	on
+		r.record_board_code = f.record_board_code
+	WHERE 
+		r.record_board_code = #{recordBoardCode};
+	</select>
+	
 	<!-- 여행 게시글 정보 수정 SQL -->
 	<update id="modifyRecordBoard" parameterType="RecordBoard">
 		UPDATE tb_record_board
@@ -175,14 +217,14 @@
 			<if test="recordBoardName != null and recordBoardName != ''">
 				record_board_name = #{recordBoardName},
 			</if>
+			<if test="recordBoardSubName != null and recordBoardSubName != ''">
+				record_board_sub_name = #{recordBoardSubName},
+			</if>
 			<if test="content != null and content != ''">
 				content = #{content},
 			</if>
 			<if test="planStatusCode != null and planStatusCode != ''">
 				plan_status_code = #{planStatusCode},
-			</if>
-			<if test="image != null and image != ''">
-				image = #{image},
 			</if>
 			<if test="startDate != null and startDate != ''">
 				start_date = #{startDate},
