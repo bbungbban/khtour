@@ -36,6 +36,7 @@ public class AccommodationService {
 	 * 코드에 따른 숙박업소 조회
 	 */
 	public Accommodation getLdgByCode(String ldgCode) {
+		
 		return accommodationMapper.getLdgByCode(ldgCode);
 	}
 	/**

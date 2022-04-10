@@ -17,7 +17,7 @@ public interface BoardMapper {
 	public int addBoard(Board board);
 
 	// 1:1문의게시판 조회(1:1문의게시판 코드)
-	public Board getBoardByCode(String boardNum);
+	public Board getBoardByNum(String boardNum);
 		
 	// 1:1문의게시판 수정(1:1문의게시판코드)
 	public int modifyBoard(Board board);
@@ -27,4 +27,5 @@ public interface BoardMapper {
 	
 	// 1:1문의 조회수 업데이트
 	public int boardHitUpdate(String boardNum);
+
 }

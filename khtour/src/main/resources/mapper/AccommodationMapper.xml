@@ -25,23 +25,23 @@
 	<select id="getLdgByCode" parameterType="String"
 		resultMap="accommodationResultMap">
 		SELECT
-		l.ldg_code
-		,l.ldg_name
-		,l.ldg_type
-		,l.business_number
-		,l.ldg_addr
-		,l.ldg_detail_addr
-		,l.ldg_explain1
-		,l.ldg_explain2
-		,l.ldg_explain3
-		,l.ldg_explain4
-		,l.ldg_tel
-		,l.ldg_phone
-		,l.ldg_email
+			l.ldg_code
+			,l.ldg_name
+			,l.ldg_type
+			,l.business_number
+			,l.ldg_addr
+			,l.ldg_detail_addr
+			,l.ldg_explain1
+			,l.ldg_explain2
+			,l.ldg_explain3
+			,l.ldg_explain4
+			,l.ldg_tel
+			,l.ldg_phone
+			,l.ldg_email
 		FROM
-		tb_ldg_information AS l
+			tb_ldg_information AS l
 		WHERE
-		ldg_code = #{ldgCode};
+			ldg_code = #{ldgCode};
 
 	</select>
 

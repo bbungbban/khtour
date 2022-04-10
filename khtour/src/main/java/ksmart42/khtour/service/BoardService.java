@@ -18,10 +18,10 @@ public class BoardService {
 		
 	}
 		/**
-		 * 코드에 따른 1:1 문의게시판 조회
+		 * 번호에 따른 1:1 문의게시판 조회
 		 */
-		public Board getBoardByCode(String boardNum) {
-			return boardMapper.getBoardByCode(boardNum);
+		public Board getBoardByNum(String boardNum) {
+			return boardMapper.getBoardByNum(boardNum);
 		}
 		/**
 		 * 1:1 문의게시판 등록

@@ -128,11 +128,11 @@ public class AccommodationController {
 	public String getAcoommodationInfo(
 			@RequestParam(value="ldgCode", required = false) String ldgCode
 			,Model model) {
-		
+		log.info(ldgCode + "숙박업소코드");
 		Accommodation accommodation = accommodationService.getLdgByCode(ldgCode);
 		
-		
 		List<Room> roomList = roomService.getRoomListByldgCode(ldgCode);
+		log.info(roomList + "객실리스트");
 		
 		List<AccomReview> accomoReviewList = accomReviewService.getAccomReviewList(ldgCode);
 		log.info(accomoReviewList + "리뷰리스트");

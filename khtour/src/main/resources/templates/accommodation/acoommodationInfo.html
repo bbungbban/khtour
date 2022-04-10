@@ -128,9 +128,6 @@
 					<div class="card-footer"></div>
 					<div class="row" th:if="${not #lists.isEmpty(roomList)}" th:each="r,index: ${roomList}">
 						<!-- 호텔 객실 세부 내역 -->
-						<div class="col-1" style="margin: 100px 0px;">
-							<input type="checkbox">
-						</div>
 						<div class="col-10 col-md-10 col-lg-4" style="cursor: pointer;"
 							onclick="location.href='roomPayment';">
 						<div class="embed-responsive embed-responsive-4by3">

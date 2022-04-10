@@ -52,6 +52,7 @@ public class RoomService {
 			}
 			return roomList;
 		}
+		
 		/**
 		 * 객실 목록 조회
 		 */
@@ -64,6 +65,7 @@ public class RoomService {
 		/**
 		 * 코드에 따른 객실 조회
 		 */
+		
 		public Room getRoomByCode(String roomCode) {
 			return roomMapper.getRoomByCode(roomCode);
 		}
