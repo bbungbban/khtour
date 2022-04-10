@@ -20,36 +20,40 @@ public class CosService {
 	}
 	
 	/**
-	 * 코드에 따른 전시회 조회
+	 * 코드에 따른 코스 조회
 	 */
 	public Cos getCosByCode(String cosCode) {
 		return cosMapper.getCosByCode(cosCode);
 	}
 	/**
-	 * 전시회등록
+	 * 코스등록
 	 */
 	public void addCos(Cos cos) {
 		cosMapper.addCos(cos);
 	}
 	
+	public List<Cos> categoryList(Map<String, Object> paramMap){
+		List<Cos> cosInsert = cosMapper.categoryList(paramMap);
+		return cosInsert;
+	}
+	
 	/**
-	 * 전시회 목록 조회
+	 * 코스 목록 조회
 	 */
 	public List<Cos> getCosList(Map<String, Object> paramMap){
 		List<Cos> cosList = cosMapper.getCosList(paramMap);
-		
 		return cosList;
 	}
 
 	/**
-	 * 전시회 정보 수정
+	 * 코스 정보 수정
 	 */
 	public int modifyCos(Cos cos) {
 		return cosMapper.modifyCos(cos);
 	}
 	
 	/**
-	 * 전시회 정보 삭제
+	 * 코스 정보 삭제
 	 */
 	public int removeCos(String cosCode) {
 		int result = cosMapper.removeCos(cosCode);

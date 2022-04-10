@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default3}">
+<th:block layout:fragment="customTitle">
+	<title th:text="${title}"></title>
+</th:block>
+<th:block layout:fragment="contentsTitle">
+	<!-- 페이지 타이틀 시작 -->
+	<h2>코스</h2>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="#" onclick="return false;">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page">코스</li>
+		</ol>
+	</nav>
+	<!-- 페이지 타이틀 종료 -->
+</th:block>
+<th:block layout:fragment="customContents">
+	<link rel="stylesheet" type="text/css"
+		th:href="@{/css/plugins/KmyCss/addCssKmy.css}">
+<!-- **********************************  Start ContentsWrap  ********************************** -->
+	<div id="khtour">
+		<div class="cosBoard card">
+		
+			<div class="card-body" style="padding-left: 3.4rem;">
+				<div class="tab tab-outline tab-center">
+					<ul class="nav justify-content-center" id="myTab-04" role="tablist">
+						<li class="nav-item">
+							<a class="nav-link active" id="home-tab-04" data-toggle="tab" href="#home-04" role="tab" aria-controls="home" aria-selected="false">선사시대</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="profile-tab-04" data-toggle="tab" href="#profile-04" role="tab" aria-controls="profile" aria-selected="false">석기시대</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="contact-tab-12" data-toggle="tab" href="#contact-12" role="tab" aria-controls="contact" aria-selected="true">청동기시대</a>
+						</li>
+						<li class="nav-item" role="presentation">
+    						<a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">철기시대</a>
+  						</li>
+						<li class="nav-item" role="presentation">
+    						<a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">삼한시대</a>
+  						</li>
+						<li class="nav-item" role="presentation">
+    						<a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">삼국시대</a>
+  						</li>
+						<li class="nav-item" role="presentation">
+    						<a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">발해</a>
+  						</li>
+						<li class="nav-item" role="presentation">
+    						<a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">통일신라</a>
+  						</li>
+						<li class="nav-item" role="presentation">
+    						<a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">고려시대</a>
+  						</li>
+						<li class="nav-item" role="presentation">
+    						<a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">조선시대</a>
+  						</li>
+						<li class="nav-item" role="presentation">
+    						<a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">대한제국시대</a>
+  						</li>
+						<li class="nav-item" role="presentation">
+    						<a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">일제강점기</a>
+  						</li>
+						<li class="nav-item" role="presentation">
+    						<a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">시대미상</a>
+  						</li>
+					</ul>
+<!-- **********************************  Start 봄  ********************************** -->
+					<div class="tab-content" id="myTabContent-04">
+						<div class="tab-pane fade active show" id="home-04" role="tabpanel" aria-labelledby="home-tab-04">
+							<div class="container">
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="row">
+											<div class="col-sm-12 col-md-3 sHover" style="padding-right: 0;" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true">
+												<div class="textbox"><span>신라역사투어</span></div>
+												<a href="#" onclick="return false;">
+													<img th:src="@{'/images/cos/hcosImg01.jpg'}" class="img-fluid">
+												</a>
+											</div>
+											<div class="col-sm-12 col-md-6" style="padding: 0;">
+												<div class="row">
+													<div class="col-sm-12 sHover" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+														<div class="textbox"><span>가야문명의길</span></div>
+														<a href="#" onclick="return false;"><img th:src="@{'/images/cos/cosImg07.jpg'}" class="img-fluid"></a>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-12 col-md-3" style="padding: 0;">
+												<div class="row">
+													<div class="col-sm-12 sHover" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+														<div class="textbox"><span>관동풍류의길</span></div>
+														<a href="#" class=""><img th:src="@{'/images/cos/cosImg05.jpg'}" class="img-fluid"></a>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-sm-12 sHover" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+														<div class="textbox"><span>빛나는<br/>철기문화유산</span></div>
+														<a href="#" onclick="return false;"><img th:src="@{'/images/cos/cosImg04.jpg'}" class="img-fluid"></a>
+													</div>
+												</div>
+											</div>
+										</div>
+<div class="accordion" id="accordionExample">
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <img th:src="@{'/images/cos/1cos.jpg'}" class="img-fluid">
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+        <img th:src="@{'/images/cos/2cos.jpg'}" class="img-fluid">
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+        <img th:src="@{'/images/cos/3cos.jpg'}" class="img-fluid">
+    </div>
+    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+        <img th:src="@{'/images/cos/4cos.jpg'}" class="img-fluid">
+    </div>
+    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+        <img th:src="@{'/images/cos/3cos.jpg'}" class="img-fluid">
+    </div>
+    <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+        <img th:src="@{'/images/cos/2cos.jpg'}" class="img-fluid">
+    </div>
+    <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
+        <img th:src="@{'/images/cos/1cos.jpg'}" class="img-fluid">
+    </div>
+    <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
+        <img th:src="@{'/images/cos/4cos.jpg'}" class="img-fluid">
+    </div>
+</div>
+										<div class="row">
+											<div class="col-sm-12 col-md-6" style="padding-right: 0;">
+												<div class="row">
+													<div class="col-sm-12 sHover" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+														<div class="textbox"><span>한국의<br/>교육 시설</span></div>
+														<a href="#" onclick="return false;"><img th:src="@{'/images/cos/cosImg01.jpg'}" class="img-fluid"></a>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-12 col-md-3" style="padding: 0;">
+												<div class="row">
+													<div class="col-sm-12 sHover" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+														<div class="textbox"><span>전설을 품은 <br/>세계유산</span></div>
+														<a href="#" onclick="return false;"><img th:src="@{'/images/cos/cosImg02.jpg'}" class="img-fluid"></a>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-sm-12 sHover" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+														<div class="textbox"><span>세계문화유산투어</span></div>
+														<a href="#" onclick="return false;"><img th:src="@{'/images/cos/cosImg08.jpg'}" class="img-fluid"></a>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-12 col-md-3 sHover" style="padding: 0;padding-right: 0;" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+												<div class="textbox"><span>세계로 <br/>떠나는<br/>문화유산투어</span></div>
+												<a href="#" onclick="return false;"><img th:src="@{'/images/cos/hcosImg01.jpg'}" class="img-fluid"></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+<!-- **********************************  End 봄  ********************************** -->
+<!-- **********************************  Start 여름 ******************************* -->					
+						<div class="tab-pane fade active" id="profile-04" role="tabpanel" aria-labelledby="profile-tab-04">
+							<div class="container">
+							여름
+							</div>
+						</div>
+<!-- **********************************  End 여름  ********************************** -->
+<!-- **********************************  Start 가을 ******************************** -->						
+						<div class="tab-pane fade active" id="contact-12" role="tabpanel" aria-labelledby="contact-tab-12">
+							<div class="container">
+							가을
+							</div>
+						</div>
+<!-- **********************************  End 가을  ********************************** -->
+<!-- **********************************  Start 겨울 ******************************* -->
+						 <div class="tab-pane fade active" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+							<div class="container">
+							겨울
+							</div>
+						</div>
+<!-- **********************************  End 겨울  ********************************** -->
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</th:block>
+<th:block layout:fragment="customBodyScript">
+	<script th:src="@{/js/custom.js}"></script>
+	<script th:src="@{/js/moment.min.js}"></script>
+</th:block>
+</html>

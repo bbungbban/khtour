@@ -19,7 +19,7 @@ import ksmart42.khtour.service.MusService;
 @Controller
 @RequestMapping("/mus")
 public class MusController {
-	private static final Logger log = LoggerFactory.getLogger(CommunityController.class);
+	private static final Logger log = LoggerFactory.getLogger(MusController.class);
 
 	private MusService musService;
 
@@ -45,7 +45,7 @@ public class MusController {
 				searchKey = "mus_large_cate_name";
 			}else if("musName".equals(searchKey)) {
 				searchKey = "mus_name";
-			}else if("musAddr".equals(searchKey)) {
+			}else if("addr1".equals(searchKey)) {
 			searchKey = "mus_addr";
 			}else if("musDisclose".equals(searchKey)) {
 				searchKey = "mus_disclose";
@@ -65,7 +65,7 @@ public class MusController {
 		model.addAttribute("musList", musList);
 		
 		return "mus/musList";
-	}	
+	}
 	
 	/*
 	 * 박물관 정보 수정 (관리자) (Post 정보 전달)
@@ -97,7 +97,7 @@ public class MusController {
 	}
 
 	/*
-	 * 박물관 계획 정보 삭제(post 정보 전달)
+	 * 박물관 정보 삭제(post 정보 전달)
 	 */
 	@GetMapping("/musRemove")
 	public String removeMus(Mus mus) {
