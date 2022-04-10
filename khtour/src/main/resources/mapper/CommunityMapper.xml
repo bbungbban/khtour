@@ -608,7 +608,7 @@
 				,comments_cnt
 				,report_cnt
 				,point_gain
-				,p.daily_likes_cnt
+				,daily_likes_cnt
 		)VALUES (
 			 #{postCode}
 			, #{commCode}
