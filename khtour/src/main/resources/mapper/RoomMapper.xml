@@ -75,18 +75,11 @@
 		   ,r.room_checkin   
 		   ,r.room_price    
 		   ,r.room_discount    
-		   ,r.room_final_price
-		   ,f.file_path    
+		   ,r.room_final_price 
 		FROM
-		  tb_room_info AS r
-		LEFT JOIN 
-		   tb_file_control AS fc
-		   ON 
-		   r.room_code = fc.reference_code
-		   LEFT JOIN 
-		   tb_file AS f
-		   ON 
-		   fc.file_idx = f.file_idx;
+		  	tb_room_info AS r
+		WHERE
+		  	ldg_code = #{ldgCode};
 	</select>
 	
 	<!-- 객실 등록 SQL -->

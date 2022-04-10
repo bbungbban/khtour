@@ -65,12 +65,12 @@
 	
 	<!-- 1:1문의 조회수 업데이트 SQL -->
 	<update id="boardHitUpdate" parameterType="String"> 
-		UPDATE
-	 		tb_board 
+		UPDATE 
+			tb_board 
 	 	SET 
-	 		board_hit = boardHit+1 
+	 		board_hit = board_hit + 1 
 		WHERE
-	 		board_num=#{boardNum} 
+	 		board_num = #{boardNum};
 	</update>
 
 

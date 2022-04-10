@@ -6,15 +6,35 @@
 	<title th:text="${title}"></title>
 </th:block>
 <th:block layout:fragment="contentsTitle">
-	<h2>1:1문의 작성</h2>
+	<h2>1:1문의 상세페이지</h2>
 </th:block>
 <th:block layout:fragment="customContents">
+<style>
+.card .card-footer {
+	margin: 0px;
+	padding: 7px;
+}
+</style>
 	<div class="row">
 		<div class="col-12">
 			<div class="card">
 				<div class="card-body">
 					<form class="boardDetailForm">
-						<p></p>
+						<h5>작성자 </h5>
+						<p th:text="${board.memberId}"></p>
+						<div class="card-footer"></div>
+						<h5>작성일  </h5>
+						<p th:text="${board.boardDate}"></p>
+						<div class="card-footer"></div>
+						<h5>문의 분류 : </h5>
+						<p th:text="${board.boardType}"></p>
+						<div class="card-footer"></div>
+						<h5>제목</h5>
+						<p th:text="${board.boardTitle}"></p>
+						<div class="card-footer"></div>
+						<h5>문의 내용</h5>
+						<p th:text="${board.boardContent}"></p>
+						<div class="card-footer"></div>
 					</form>
 				</div>
 			</div>
@@ -23,14 +43,5 @@
 
 </th:block>
 <th:block layout:fragment="customBodyScript">
-	<!-- PRISM -->
-	<script th:src="@{/js/prism/prism.js}"></script>
-	<!-- summernote -->
-	<script src="js/summernote/summernote.min.js"></script>
-	<!-- summernote -->
-	<script src="js/simplemde/simplemde.min.js"></script>
-	<script src="js/simplemde/simplemde.js"></script>
-	<!-- custom -->
-	<script src="js/custom.js"></script>
 </th:block>
 </html>

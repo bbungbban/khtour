@@ -32,13 +32,15 @@ public class BoardController {
 	 * 1:1문의 상세페이지 (Get 정보 전달)
 	 */
 	@GetMapping("/boardDetail")
-	public String getoardDetail(Model model) {
+	public String getBoardDetail(@RequestParam(value = "boardNum") String boardNum, Model model) {
 		
-	
+		Board board = boardService.getBoardByNum(boardNum);
+		
+		boardService.boardHitUpdate(boardNum);
 		
 		model.addAttribute("title", "1:1문의 상세페이지");
+		model.addAttribute("board", board);
 	
-		
 		return "board/boardDetail";
 	}
 	
@@ -76,7 +78,7 @@ public class BoardController {
 	public String modifyBoard(
 			@RequestParam(value="boardCode", required = false) String boardCode
 			,Model model) {
-		Board board = boardService.getBoardByCode(boardCode);
+		Board board = boardService.getBoardByNum(boardCode);
 		
 		model.addAttribute("title", "1:1문의 수정 페이지");
 		model.addAttribute("board", board);
