@@ -109,8 +109,6 @@
 		<div class="col-12">
 			<div class="card">
 				<div class="card-body">
-					<!-- 객실정보 상세검색  -->
-					<!-- <form class="roomform" id="form2" method="get" th:action="@{/room/roomInsert(ldgCode=${accommodation.ldgCode})}"> -->
 					<form class="roomform">
 					<!-- 호텔 대표 이미지 등록 -->
 					<div class="embed-responsive embed-responsive-16by9">
@@ -135,10 +133,11 @@
 						</div>
 						<div class="col-10 col-md-10 col-lg-4" style="cursor: pointer;"
 							onclick="location.href='roomPayment';">
-							<div class="blog-image">
-								<img class="img-fluid w-100"
-									th:src="@{/images/room/sinlaroom1.jpg}" alt="">
-							</div>
+						<div class="embed-responsive embed-responsive-4by3">
+							<img
+								th:src="@{${#strings.isEmpty(r.roomImagePath) ? '/images/heritage/서울 숭례문.jpg': '/' + #strings.replace(r.roomImagePath,'\','/')}}"
+								class="card-img-top h-20 embed-responsive-item" alt="...">
+						</div>
 						</div>
 						<div class="col-12 col-md-12 col-lg-7" style="cursor: pointer;"
 							onclick="location.href='accommodationInfo';">
@@ -186,7 +185,7 @@
 					<div>
 						<div id="map" style="width: 100%; height: 350px;"></div>
 						<p style="font-size: 15px; display: inline;">
-							<i class="feather icon-map-pin" style="color: blue;"><span id="addr" style="color: black; font-size: 15px;" th:text="${accommodation.ldgAddr}"></span></i>
+							<i class="feather icon-map-pin" style="color: blue;"><span class="addr" style="color: black; font-size: 15px;" th:text="${accommodation.ldgAddr}"></span></i>
 						</p>
 						<span style="display: inline; float: right; font-size: 15px;"><a
 							type="button" id="copy_btn">주소복사</a></span>

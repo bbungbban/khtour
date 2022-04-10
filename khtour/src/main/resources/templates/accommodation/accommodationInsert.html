@@ -125,18 +125,18 @@
 										class="form-control" name="ldgName">
 								</div>
 								<div class="form-group col-12 col-md-6 col-lg-6">
-									<label for="ldgType">숙박시설 종류 선택</label> <select
-									class="form-control border border-secondary"
-									id="exampleFormControlSelect1" name="ldgType">
-									<option value="5성급호텔">5성급호텔</option>
-									<option value="4성급호텔">4성급호텔</option>
-									<option value="호텔">호텔</option>
-									<option value="비지니스호텔">비지니스호텔</option>
-									<option value="펜션">펜션</option>
-									<option value="게스트하우스">게스트하우스</option>
-									<option value="캠핑장">캥핑장</option>
-									<option value="모텔">모텔</option>
-								</select>
+									<label for="ldgType">숙박시설 종류 선택</label> 
+									<select class="form-control border border-secondary"
+										id="exampleFormControlSelect1" name="ldgType">
+										<option value="5성급호텔">5성급호텔</option>
+										<option value="4성급호텔">4성급호텔</option>
+										<option value="호텔">호텔</option>
+										<option value="비지니스호텔">비지니스호텔</option>
+										<option value="펜션">펜션</option>
+										<option value="게스트하우스">게스트하우스</option>
+										<option value="캠핑장">캥핑장</option>
+										<option value="모텔">모텔</option>
+									</select>
 								</div>
 								<div class="form-group col-12 col-md-6 col-lg-6">
 									<label for="businessNumber">사업자번호</label> <input type="text"
@@ -215,7 +215,7 @@
 										class="form-control" rows="1" placeholder="업체 상세 내용 입력"
 										required></textarea>
 								</div>
-								<div class="col-2" style="display: inline-block;">
+								<div class="col-12" style="display: flex; justify-content: space-around;">
 									<button type="submit" class="btn btn-primary" id="addAccommodation">신규등록</button>
 								</div>
 							</div>
@@ -291,6 +291,5 @@
 				}
 			});
 	</script>
-
 
 </th:block>

@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import ksmart42.khtour.dto.Room;
 import ksmart42.khtour.service.RoomService;
@@ -89,12 +92,23 @@ public class RoomController {
 	}
 			
 	/*
-	 * 객실 계획 등록(Post 정보 전달)
+	 * 객실 등록(Post 정보 전달)
 	 */
 	@PostMapping("/roomInsert")
-	public String addRoom(Room room) {
+	public String addRoom(Room room
+						  ,@RequestParam MultipartFile[] roomImageFiles
+						  ,HttpServletRequest request) {
 		
-		roomService.addRoom(room);
+		String serverName = request.getServerName();
+		String fileRealPath = "";
+		if("localhost".equals(serverName)) {				
+			fileRealPath = System.getProperty("user.dir") + "/src/main/resources/static/";
+			//fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+		}else {
+			fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+		}
+		
+		roomService.addRoom(room, roomImageFiles, fileRealPath);
 		
 		return "redirect:/room/roomListSt";
 	}

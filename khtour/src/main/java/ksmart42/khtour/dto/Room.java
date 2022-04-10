@@ -4,7 +4,6 @@ public class Room {
 
 	private String roomCode;
 	private String ldgCode;
-	private String roomImg;
 	private String roomName;
 	private String roomExplain;
 	private String roomPersonnel;
@@ -13,6 +12,7 @@ public class Room {
 	private String roomPrice;
 	private String roomDiscount;
 	private String roomFinalPrice;
+	private String roomImagePath;
 	
 	public String getRoomCode() {
 		return roomCode;
@@ -25,12 +25,6 @@ public class Room {
 	}
 	public void setLdgCode(String ldgCode) {
 		this.ldgCode = ldgCode;
-	}
-	public String getRoomImg() {
-		return roomImg;
-	}
-	public void setRoomImg(String roomImg) {
-		this.roomImg = roomImg;
 	}
 	public String getRoomName() {
 		return roomName;
@@ -80,13 +74,19 @@ public class Room {
 	public void setRoomFinalPrice(String roomFinalPrice) {
 		this.roomFinalPrice = roomFinalPrice;
 	}
+	public String getRoomImagePath() {
+		return roomImagePath;
+	}
+	public void setRoomImagePath(String roomImagePath) {
+		this.roomImagePath = roomImagePath;
+	}
 	@Override
 	public String toString() {
-		return "Room [roomCode=" + roomCode + ", ldgCode=" + ldgCode + ", roomImg=" + roomImg + ", roomName=" + roomName
-				+ ", roomExplain=" + roomExplain + ", roomPersonnel=" + roomPersonnel + ", roomType=" + roomType
-				+ ", roomCheckin=" + roomCheckin + ", roomPrice=" + roomPrice + ", roomDiscount=" + roomDiscount
-				+ ", roomFinalPrice=" + roomFinalPrice + "]";
+		return "Room [roomCode=" + roomCode + ", ldgCode=" + ldgCode + ", roomName=" + roomName + ", roomExplain="
+				+ roomExplain + ", roomPersonnel=" + roomPersonnel + ", roomType=" + roomType + ", roomCheckin="
+				+ roomCheckin + ", roomPrice=" + roomPrice + ", roomDiscount=" + roomDiscount + ", roomFinalPrice="
+				+ roomFinalPrice + ", roomImagePath=" + roomImagePath + "]";
 	}
-
+	
 	
 }

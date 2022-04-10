@@ -1,24 +1,36 @@
 package ksmart42.khtour.service;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import ksmart42.khtour.dto.FileDto;
 import ksmart42.khtour.dto.Room;
+import ksmart42.khtour.mapper.FileMapper;
 import ksmart42.khtour.mapper.RoomMapper;
+import ksmart42.khtour.util.FileUtil;
 
 @Service
 @Transactional
 public class RoomService {
-	//DI 의존성 주입
+		//DI 의존성 주입
 		private RoomMapper roomMapper;
 		
+		//파일 업로드 테이블 
+		private FileUtil fileUtil;
 		
-		public RoomService(RoomMapper roomMapper) {
+		private FileMapper fileMapper;
+		
+		public RoomService(RoomMapper roomMapper, FileUtil fileUtil, FileMapper fileMapper) {
 			this.roomMapper = roomMapper;
+			this.fileUtil = fileUtil;
+			this.fileMapper = fileMapper;
 		}
 		
 		/**
@@ -58,8 +70,25 @@ public class RoomService {
 		/**
 		 * 객실 등록
 		 */
-		public void addRoom(Room room) {
+		public void addRoom(Room room,  MultipartFile[] roomImageFiles, String fileRealPath) {
+			List<FileDto> fileList = fileUtil.parseFileInfo(roomImageFiles, fileRealPath);
+			fileMapper.addFile(fileList);
 			roomMapper.addRoom(room);
+
+			List<Map<String,String>> addFileControlList = new ArrayList<Map<String,String>>();
+			
+			Map<String , String> addMap = null;
+			
+			if(fileList != null) {
+				for(FileDto fileDto : fileList) {
+					addMap = new HashMap<String , String>();
+					addMap.put("referenceCode", room.getRoomCode());
+					addMap.put("fileIdx", fileDto.getFileIdx());
+					addFileControlList.add(addMap);
+				}
+			}
+			
+			fileMapper.addFileControl(addFileControlList);
 		}
 		
 		/**

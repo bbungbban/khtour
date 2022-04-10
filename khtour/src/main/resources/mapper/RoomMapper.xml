@@ -4,18 +4,18 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ksmart42.khtour.mapper.RoomMapper">
 
-	<resultMap type="Room" id="roomResultMap">
-	<id column="room_code" 				property="roomCode"/>
-	<result column="ldg_code" 			property="ldgCode"/>
-	<result column="room_img"	 		property="roomImg"/>
-	<result column="room_name" 			property="roomName"/>
-	<result column="room_explain" 		property="roomExplain"/>
-	<result column="room_personnel" 	property="roomPersonnel"/>
-	<result column="room_type" 			property="roomType"/>
-	<result column="room_checkin" 		property="roomCheckin"/>
-	<result column="room_price" 		property="roomPrice"/>
-	<result column="room_discount" 		property="roomDiscount"/>
-	<result column="room_final_price" 	property="roomFinalPrice"/>
+	<resultMap type="Room" 					id="roomResultMap">
+		<id column="room_code" 				property="roomCode"/>
+		<result column="ldg_code" 			property="ldgCode"/>
+		<result column="room_name" 			property="roomName"/>
+		<result column="room_explain" 		property="roomExplain"/>
+		<result column="room_personnel" 	property="roomPersonnel"/>
+		<result column="room_type" 			property="roomType"/>
+		<result column="room_checkin" 		property="roomCheckin"/>
+		<result column="room_price" 		property="roomPrice"/>
+		<result column="room_discount" 		property="roomDiscount"/>
+		<result column="room_final_price" 	property="roomFinalPrice"/>
+		<result column="file_path" 			property="roomImagePath"/>
 	</resultMap>
 	
 	<!-- 객실 정보 삭제 SQL -->
@@ -32,7 +32,6 @@
 		SELECT
 		  	r.room_code
 		   ,r.ldg_code
-		   ,r.room_img
 		   ,r.room_name  
 		   ,r.room_explain    
 		   ,r.room_personnel
@@ -40,7 +39,7 @@
 		   ,r.room_checkin   
 		   ,r.room_price    
 		   ,r.room_discount    
-		   ,r.room_final_price    
+		   ,r.room_final_price   
 		FROM
 		  tb_room_info AS r;
 	</select>
@@ -50,7 +49,6 @@
 		SELECT
 		  	r.room_code
 		   ,r.ldg_code
-		   ,r.room_img
 		   ,r.room_name  
 		   ,r.room_explain    
 		   ,r.room_personnel
@@ -70,7 +68,6 @@
 		SELECT
 		  	r.room_code
 		   ,r.ldg_code
-		   ,r.room_img
 		   ,r.room_name  
 		   ,r.room_explain    
 		   ,r.room_personnel
@@ -78,19 +75,30 @@
 		   ,r.room_checkin   
 		   ,r.room_price    
 		   ,r.room_discount    
-		   ,r.room_final_price    
+		   ,r.room_final_price
+		   ,f.file_path    
 		FROM
 		  tb_room_info AS r
-		WHERE
-		   r.ldg_code = #{ldgCode};
+		LEFT JOIN 
+		   tb_file_control AS fc
+		   ON 
+		   r.room_code = fc.reference_code
+		   LEFT JOIN 
+		   tb_file AS f
+		   ON 
+		   fc.file_idx = f.file_idx;
 	</select>
 	
 	<!-- 객실 등록 SQL -->
 	<insert id="addRoom" parameterType="Room">
-		INSERT INTO tb_room_info
-		(   room_code
+	<selectKey resultType="string" keyProperty="roomCode" order="BEFORE">
+			SELECT sf_new_room_code() as roomCode
+	</selectKey>
+		INSERT INTO 
+			tb_room_info
+		(   
+			room_code
 		   ,ldg_code
-		   ,room_img
 		   ,room_name  
 		   ,room_explain    
 		   ,room_personnel
@@ -99,10 +107,11 @@
 		   ,room_price    
 		   ,room_discount    
 		   ,room_final_price   
-		) VALUES (
-		   sf_new_room_code()
+		) 
+		VALUES 
+		(
+		    #{roomCode}
 		   ,#{ldgCode}
-		   ,#{roomImg}
 		   ,#{roomName}
 		   ,#{roomExplain}
 		   ,#{roomPersonnel}
@@ -118,9 +127,6 @@
 		<update id="modifyRoom" parameterType="Room">
 		UPDATE tb_room_info
 		<trim prefix="SET" suffixOverrides=",">
-			<if test="roomImg != null and roomImg != ''">
-				room_img = #{roomImg},
-			</if>
 			<if test="roomName != null and roomName != ''">
 				room_name = #{roomName},
 			</if>

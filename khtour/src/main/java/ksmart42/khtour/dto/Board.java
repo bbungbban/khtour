@@ -2,18 +2,18 @@ package ksmart42.khtour.dto;
 
 public class Board {
 	
-	private String boardCode;
+	private String boardNum;
 	private String memberId;
 	private String boardTitle;
+	private String boardType;
 	private String boardContent;
 	private String boardHit;
 	private String boardDate;
-	
-	public String getBoardCode() {
-		return boardCode;
+	public String getBoardNum() {
+		return boardNum;
 	}
-	public void setBoardCode(String boardCode) {
-		this.boardCode = boardCode;
+	public void setBoardNum(String boardNum) {
+		this.boardNum = boardNum;
 	}
 	public String getMemberId() {
 		return memberId;
@@ -26,6 +26,12 @@ public class Board {
 	}
 	public void setBoardTitle(String boardTitle) {
 		this.boardTitle = boardTitle;
+	}
+	public String getBoardType() {
+		return boardType;
+	}
+	public void setBoardType(String boardType) {
+		this.boardType = boardType;
 	}
 	public String getBoardContent() {
 		return boardContent;
@@ -47,9 +53,11 @@ public class Board {
 	}
 	@Override
 	public String toString() {
-		return "Board [boardCode=" + boardCode + ", memberId=" + memberId + ", boardTitle=" + boardTitle
-				+ ", boardContent=" + boardContent + ", boardHit=" + boardHit + ", boardDate=" + boardDate + "]";
+		return "Board [boardNum=" + boardNum + ", memberId=" + memberId + ", boardTitle=" + boardTitle + ", boardType="
+				+ boardType + ", boardContent=" + boardContent + ", boardHit=" + boardHit + ", boardDate=" + boardDate
+				+ "]";
 	}
+	
 	
 
 }

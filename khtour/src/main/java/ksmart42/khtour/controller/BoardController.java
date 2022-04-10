@@ -29,6 +29,20 @@ public class BoardController {
 	}
 	
 	/*
+	 * 1:1문의 상세페이지 (Get 정보 전달)
+	 */
+	@GetMapping("/boardDetail")
+	public String getoardDetail(Model model) {
+		
+	
+		
+		model.addAttribute("title", "1:1문의 상세페이지");
+	
+		
+		return "board/boardDetail";
+	}
+	
+	/*
 	 * 1:1문의 조회 (Get 정보 전달)
 	 */
 	@GetMapping("/boardList")
@@ -37,14 +51,14 @@ public class BoardController {
 		
 		List<Board> boardList = boardService.getBoardList(paramMap);
 		
-		model.addAttribute("title", "1:1문의 관리페이지");
+		model.addAttribute("title", "1:1문의 조회페이지");
 		model.addAttribute("boardList", boardList);
 		
 		return "board/boardList";
 	}
 	
 	/*
-	 * 1:1문의 정보 수정(Post 정보 전달)
+	 * 1:1문의  수정(Post 정보 전달)
 	 */
 	@PostMapping("/modifyBoard")
 	public String modifyBoard(Board board) {
@@ -56,7 +70,7 @@ public class BoardController {
 	}
 	
 	/*
-	 * 1:1문의 정보 수정(Get 정보 전달)
+	 * 1:1문의  수정(Get 정보 전달)
 	 */
 	@GetMapping("/boardModify")
 	public String modifyBoard(
@@ -72,11 +86,11 @@ public class BoardController {
 	}	
 	
 	/*
-	 * 1:1문의 정보 삭제(post 정보 전달)
+	 * 1:1문의 삭제(post 정보 전달)
 	 */
 	@GetMapping("/boardRemove")
 	public String removePlan(Board board) {
-		String boardCode = board.getBoardCode();
+		String boardCode = board.getBoardNum();
 		
 		boardService.removeBoard(boardCode);
 		System.out.println("정보 삭제 포스트 전달" + boardService.removeBoard(boardCode));
@@ -88,10 +102,9 @@ public class BoardController {
 	/*
 	 * 1:1문의 등록(Post 정보 전달)
 	 */
-	@PostMapping("/boardInsert")
+	@PostMapping("/boardPost")
 	public String addPlan(Board board) {
 		
-		board.setMemberId("id001");
 		boardService.addBoard(board);
 		
 		return "redirect:/board/boardList";
@@ -99,7 +112,7 @@ public class BoardController {
 	/*
 	 * 1:1문의 등록(Get 정보 전달)
 	 */
-	@GetMapping("/boardInsert")
+	@GetMapping("/boardPost")
 	public String addBoard(Model model) {
 		Map<String, Object> paramMap = new HashMap<String , Object>();
 		
@@ -108,7 +121,7 @@ public class BoardController {
 		model.addAttribute("title", "1:1문의 등록");
 		model.addAttribute("boardList", boardList);
 		
-		return "board/boardInsert";
+		return "board/boardPost";
 	}
 	
 }
