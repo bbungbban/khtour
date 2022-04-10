@@ -20,8 +20,8 @@ public class BoardService {
 		/**
 		 * 코드에 따른 1:1 문의게시판 조회
 		 */
-		public Board getBoardByCode(String boardCode) {
-			return boardMapper.getBoardByCode(boardCode);
+		public Board getBoardByCode(String boardNum) {
+			return boardMapper.getBoardByCode(boardNum);
 		}
 		/**
 		 * 1:1 문의게시판 등록
@@ -49,11 +49,19 @@ public class BoardService {
 		/**
 		 * 1:1 문의게시판 정보 삭제
 		 */
-		public int removeBoard(String boardCode) {
-			int result = boardMapper.removeBoard(boardCode);
+		public int removeBoard(String boardNum) {
+			int result = boardMapper.removeBoard(boardNum);
 			
-			result += boardMapper.removeBoard(boardCode);
+			result += boardMapper.removeBoard(boardNum);
 			
 			return result;
 		}
+		
+		/**
+		 * 1:1문의 게시판 조회수 증가
+		 * */
+		public int boardHitUpdate(String boardNum) {
+			return boardMapper.boardHitUpdate(boardNum);
+		}
+	
 	}

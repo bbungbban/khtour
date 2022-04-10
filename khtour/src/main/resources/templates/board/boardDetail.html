@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default}">
+<th:block layout:fragment="customTitle">
+	<title th:text="${title}"></title>
+</th:block>
+<th:block layout:fragment="contentsTitle">
+	<h2>1:1문의 작성</h2>
+</th:block>
+<th:block layout:fragment="customContents">
+	<div class="row">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-body">
+					<form class="boardDetailForm">
+						<p></p>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</th:block>
+<th:block layout:fragment="customBodyScript">
+	<!-- PRISM -->
+	<script th:src="@{/js/prism/prism.js}"></script>
+	<!-- summernote -->
+	<script src="js/summernote/summernote.min.js"></script>
+	<!-- summernote -->
+	<script src="js/simplemde/simplemde.min.js"></script>
+	<script src="js/simplemde/simplemde.js"></script>
+	<!-- custom -->
+	<script src="js/custom.js"></script>
+</th:block>
+</html>

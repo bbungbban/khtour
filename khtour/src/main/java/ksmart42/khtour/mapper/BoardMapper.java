@@ -17,11 +17,14 @@ public interface BoardMapper {
 	public int addBoard(Board board);
 
 	// 1:1문의게시판 조회(1:1문의게시판 코드)
-	public Board getBoardByCode(String boardCode);
+	public Board getBoardByCode(String boardNum);
 		
 	// 1:1문의게시판 수정(1:1문의게시판코드)
 	public int modifyBoard(Board board);
 		
 	// 1:1문의게시판 삭제
-	public int removeBoard(String boardCode);
+	public int removeBoard(String boardNum);
+	
+	// 1:1문의 조회수 업데이트
+	public int boardHitUpdate(String boardNum);
 }
