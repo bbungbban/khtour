@@ -20,14 +20,12 @@
 	<link rel="stylesheet" type="text/css"
 		th:href="@{/css/plugins/KmyCss/addCssKmy.css}">
 	<div id="cosInsert">
-		<div class="row justify-content-center">
-			<div class="col-12 col-la-10 col-xl-7">
 				<!-- **********************************  Start ContentsWrap  ********************************** -->
-				<!-- **********************************  Start 코스기본정보 ********************************** -->
+				<!-- **********************************  Start 코스 등록 ********************************** -->
 				<div class="card">
 					<div class="card-title">
 						<div class="card-title-left">
-							<h4 class="card-title-text">코스 기본 정보</h4>
+							<h4 class="card-title-text">코스 등록</h4>
 						</div>
 					</div>
 					<div class="card-body">
@@ -140,14 +138,6 @@
 								</select>
 							</div>
 							<div class="form-group">
-								<label for="musCode">문화재/박물관 선택</label>
-								<select class="form-control" name="musCode">
-									<option>:: 선택 ::</option>
-									<option value="mus_code001">박물관1</option>
-									<option value="mus_code002">박물관2</option>
-								</select>
-							</div>
-							<div class="form-group">
 								<label for="cosName">코스명</label>
 								<input type="text" class="form-control" name="cosName" placeholder="코스이름을 입력하세요.">
 							</div>
@@ -178,23 +168,258 @@
 									</div>
 									<div class="tab-content">
 										<div class="tab-pane" id="tabadd1">
-										<!-- <div th:include="mus/musListFragment.html :: musListFragment"></div> -->
+											<table id="table-selected" class="table table-striped table-bordered">
+												<thead style="text-align: center;">
+													<tr>
+														<th>코드</th>
+														<th>카테고리</th>
+														<th>이름</th>
+														<th>주소</th>
+														<th style="display:none">홈페이지</th>
+														<th>전화번호</th>
+														<th>체험활동<br/>유/무</th>
+														<th>운영시간</th>
+														<th>휴관일</th>
+														<th style="display: none;">상세설명</th>
+														<th>선택</th>
+													</tr>
+												</thead>
+												<tbody class="text-center">
+													<tr th:if="${not #lists.isEmpty(musList)}" th:each="l:${musList}">
+														<td th:text="${l.musCode}"></td>
+														<td th:text="${l.musLargeCateName}"></td>
+														<td th:text="${l.musName}"></td>
+														<td th:text="${l.musAddr}"></td>
+														<td th:text="${l.musSite}" style="display:none"></td>
+														<td th:text="${l.musNum}"></td>
+														<td th:text="${l.musDisclose}"></td>
+														<td th:text="|${l.musStart}~ ${l.musEnd}|"></td>
+														<td style="display: none;" th:text="${l.musDetail}"></td>
+														<td th:text="${l.musClose}"></td>
+														<td><input type="checkbox" class="musCheck" name="musCode1" th:value="${l.musName}" aria-label="Checkbox for following text input" ></td>
+													</tr>
+												</tbody>
+												<tfoot style="text-align: center;">
+													<tr>
+														<th>코드</th>
+														<th>카테고리</th>
+														<th>이름</th>
+														<th>주소</th>
+														<th style="display:none">홈페이지</th>
+														<th>전화번호</th>
+														<th>체험활동<br/>유/무</th>
+														<th>운영시간</th>
+														<th>휴관일</th>
+														<th style="display: none;">상세설명</th>
+														<th>선택</th>
+													</tr>
+												</tfoot>
+											</table>
 										</div>
 										<div class="tab-pane" id="tabadd2">
+											<table id="table-selected" class="table table-striped table-bordered">
+												<thead style="text-align: center;">
+													<tr>
+														<th>코드</th>
+														<th>카테고리</th>
+														<th>이름</th>
+														<th>주소</th>
+														<th style="display:none">홈페이지</th>
+														<th>전화번호</th>
+														<th>체험활동<br/>유/무</th>
+														<th>운영시간</th>
+														<th>휴관일</th>
+														<th style="display: none;">상세설명</th>
+														<th>선택</th>
+													</tr>
+												</thead>
+												<tbody class="text-center">
+													<tr th:if="${not #lists.isEmpty(musList)}" th:each="l:${musList}">
+														<td th:text="${l.musCode}"></td>
+														<td th:text="${l.musLargeCateName}"></td>
+														<td th:text="${l.musName}"></td>
+														<td th:text="${l.musAddr}"></td>
+														<td th:text="${l.musSite}" style="display:none"></td>
+														<td th:text="${l.musNum}"></td>
+														<td th:text="${l.musDisclose}"></td>
+														<td th:text="|${l.musStart}~ ${l.musEnd}|"></td>
+														<td style="display: none;" th:text="${l.musDetail}"></td>
+														<td th:text="${l.musClose}"></td>
+														<td><input type="checkbox" class="musCheck" name="musCode2" th:value="${l.musName}" aria-label="Checkbox for following text input" ></td>
+													</tr>
+												</tbody>
+												<tfoot style="text-align: center;">
+													<tr>
+														<th>코드</th>
+														<th>카테고리</th>
+														<th>이름</th>
+														<th>주소</th>
+														<th style="display:none">홈페이지</th>
+														<th>전화번호</th>
+														<th>체험활동<br/>유/무</th>
+														<th>운영시간</th>
+														<th>휴관일</th>
+														<th style="display: none;">상세설명</th>
+														<th>선택</th>
+													</tr>
+												</tfoot>
+											</table>
 										</div>
 										<div class="tab-pane" id="tabadd3">
+											<table id="table-selected" class="table table-striped table-bordered">
+												<thead style="text-align: center;">
+													<tr>
+														<th>코드</th>
+														<th>카테고리</th>
+														<th>이름</th>
+														<th>주소</th>
+														<th style="display:none">홈페이지</th>
+														<th>전화번호</th>
+														<th>체험활동<br/>유/무</th>
+														<th>운영시간</th>
+														<th>휴관일</th>
+														<th style="display: none;">상세설명</th>
+														<th>선택</th>
+													</tr>
+												</thead>
+												<tbody class="text-center">
+													<tr th:if="${not #lists.isEmpty(musList)}" th:each="l:${musList}">
+														<td th:text="${l.musCode}"></td>
+														<td th:text="${l.musLargeCateName}"></td>
+														<td th:text="${l.musName}"></td>
+														<td th:text="${l.musAddr}"></td>
+														<td th:text="${l.musSite}" style="display:none"></td>
+														<td th:text="${l.musNum}"></td>
+														<td th:text="${l.musDisclose}"></td>
+														<td th:text="|${l.musStart}~ ${l.musEnd}|"></td>
+														<td style="display: none;" th:text="${l.musDetail}"></td>
+														<td th:text="${l.musClose}"></td>
+														<td><input type="checkbox" class="musCheck" name="musCode3" th:value="${l.musName}" aria-label="Checkbox for following text input" ></td>
+													</tr>
+												</tbody>
+												<tfoot style="text-align: center;">
+													<tr>
+														<th>코드</th>
+														<th>카테고리</th>
+														<th>이름</th>
+														<th>주소</th>
+														<th style="display:none">홈페이지</th>
+														<th>전화번호</th>
+														<th>체험활동<br/>유/무</th>
+														<th>운영시간</th>
+														<th>휴관일</th>
+														<th style="display: none;">상세설명</th>
+														<th>선택</th>
+													</tr>
+												</tfoot>
+											</table>
 										</div>
 										<div class="tab-pane" id="tabadd4">
+											<table id="table-selected" class="table table-striped table-bordered">
+												<thead style="text-align: center;">
+													<tr>
+														<th>코드</th>
+														<th>카테고리</th>
+														<th>이름</th>
+														<th>주소</th>
+														<th style="display:none">홈페이지</th>
+														<th>전화번호</th>
+														<th>체험활동<br/>유/무</th>
+														<th>운영시간</th>
+														<th>휴관일</th>
+														<th style="display: none;">상세설명</th>
+														<th>선택</th>
+													</tr>
+												</thead>
+												<tbody class="text-center">
+													<tr th:if="${not #lists.isEmpty(musList)}" th:each="l:${musList}">
+														<td th:text="${l.musCode}"></td>
+														<td th:text="${l.musLargeCateName}"></td>
+														<td th:text="${l.musName}"></td>
+														<td th:text="${l.musAddr}"></td>
+														<td th:text="${l.musSite}" style="display:none"></td>
+														<td th:text="${l.musNum}"></td>
+														<td th:text="${l.musDisclose}"></td>
+														<td th:text="|${l.musStart}~ ${l.musEnd}|"></td>
+														<td style="display: none;" th:text="${l.musDetail}"></td>
+														<td th:text="${l.musClose}"></td>
+														<td><input type="checkbox" class="musCheck" name="musCode4" th:value="${l.musName}" aria-label="Checkbox for following text input" ></td>
+													</tr>
+												</tbody>
+												<tfoot style="text-align: center;">
+													<tr>
+														<th>코드</th>
+														<th>카테고리</th>
+														<th>이름</th>
+														<th>주소</th>
+														<th style="display:none">홈페이지</th>
+														<th>전화번호</th>
+														<th>체험활동<br/>유/무</th>
+														<th>운영시간</th>
+														<th>휴관일</th>
+														<th style="display: none;">상세설명</th>
+														<th>선택</th>
+													</tr>
+												</tfoot>
+											</table>
 										</div>
 										<div class="tab-pane" id="tabadd5">
+											<table id="table-selected" class="table table-striped table-bordered">
+												<thead style="text-align: center;">
+													<tr>
+														<th>코드</th>
+														<th>카테고리</th>
+														<th>이름</th>
+														<th>주소</th>
+														<th style="display:none">홈페이지</th>
+														<th>전화번호</th>
+														<th>체험활동<br/>유/무</th>
+														<th>운영시간</th>
+														<th>휴관일</th>
+														<th style="display: none;">상세설명</th>
+														<th>선택</th>
+													</tr>
+												</thead>
+												<tbody class="text-center">
+													<tr th:if="${not #lists.isEmpty(musList)}" th:each="l:${musList}">
+														<td th:text="${l.musCode}"></td>
+														<td th:text="${l.musLargeCateName}"></td>
+														<td th:text="${l.musName}"></td>
+														<td th:text="${l.musAddr}"></td>
+														<td th:text="${l.musSite}" style="display:none"></td>
+														<td th:text="${l.musNum}"></td>
+														<td th:text="${l.musDisclose}"></td>
+														<td th:text="|${l.musStart}~ ${l.musEnd}|"></td>
+														<td style="display: none;" th:text="${l.musDetail}"></td>
+														<td th:text="${l.musClose}"></td>
+														<td><input type="checkbox" class="musCheck" name="musCode5" th:value="${l.musName}" aria-label="Checkbox for following text input" ></td>
+													</tr>
+												</tbody>
+												<tfoot style="text-align: center;">
+													<tr>
+														<th>코드</th>
+														<th>카테고리</th>
+														<th>이름</th>
+														<th>주소</th>
+														<th style="display:none">홈페이지</th>
+														<th>전화번호</th>
+														<th>체험활동<br/>유/무</th>
+														<th>운영시간</th>
+														<th>휴관일</th>
+														<th style="display: none;">상세설명</th>
+														<th>선택</th>
+													</tr>
+												</tfoot>
+											</table>
 										</div>
 										<ul class="pager wizard list-unstyled text-right"
 											style="margin-top: 3.1em;">
 											<li class="previous list-inline-item" style="float: left;">
 												<a class="btn btn-primary">이전</a>
 											</li>
-											<li class="next list-inline-item disabled"><a
-												class="btn btn-primary">다음</a></li>
+											<li class="next list-inline-item disabled">
+												<a class="btn btn-primary">다음</a>
+											</li>
 										</ul>
 									</div>
 								</div>
@@ -215,20 +440,24 @@
 												<div class="card-body switcher">
 													<ul class="list-unstyled">
 														<li>공유여부</li>
-														<li><label for="cosShare" class="switch">. <input
-																type="checkbox" class="primary" name="cosShare">
+														<li>
+															<label for="cosShare" class="switch">.
+																<input type="checkbox" class="primary" name="cosShare">
 																<span class="slider round name"></span>
-														</label></li>
+															</label>
+														</li>
 													</ul>
 													<ul class="list-unstyled">
 														<li>공개여부</li>
-														<li><label for="cosOpen" class="switch">. <input
-																type="checkbox" class="primary" checked=""
-																name="cosOpen"> <span class="slider round name"></span>
-														</label></li>
+														<li>
+															<label for="cosOpen" class="switch">.
+																<input type="checkbox" class="primary" checked="" name="cosOpen">
+																<span class="slider round name"></span>
+															</label>
+														</li>
 													</ul>
 												</div>
-												<button type="submit" class="btn btn-primary">등록</button>
+												<button class="btn btn-primary ftbtn" type="submit" id="addCos">등록</button>
 											</div>
 										</div>
 									</div>
@@ -239,22 +468,18 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
 	<!-- **********************************  End ContentsWrap ********************************** -->
 </th:block>
 <th:block layout:fragment="customBodyScript">
 	<script th:src="@{/js/KmyJs/postcode.v2.js}"></script>
-	<script type="text/javascript">
-		function openZipSearch() {
-			new daum.Postcode({
-				oncomplete : function(data) {
-					$('[name=zip]').val(data.zonecode); // 우편번호 (5자리)
-					$('[name=addr1]').val(data.address);
-					$('[name=addr2]').val(data.buildingName);
-				}
-			}).open();
-		}
+	
+	<script>
+		$(function(){
+			$(document).on('click', '.musCheck', function(){
+				$('.musCheck').prop('checked', false);
+				$(this).prop('checked', true);
+			});
+		});
 	</script>
 	<!-- bootstrap wizard-->
 	<script th:src="@{/js/bootstrap-wizard/jquery.bootstrap.wizard.min.js}"></script>

@@ -5,7 +5,11 @@ public class Cos {
 	private String memberId; 
 	private String themeCategoryCode;
 	private String themeCategory;
-	private String musCode;
+	private String musCode1;
+	private String musCode2;
+	private String musCode3;
+	private String musCode4;
+	private String musCode5;
 	private String cosArea1;
 	private String cosArea2;
 	private String cosName;
@@ -31,20 +35,42 @@ public class Cos {
 	public void setThemeCategoryCode(String themeCategoryCode) {
 		this.themeCategoryCode = themeCategoryCode;
 	}
-	
 	public String getThemeCategory() {
 		return themeCategory;
 	}
 	public void setThemeCategory(String themeCategory) {
 		this.themeCategory = themeCategory;
 	}
-	public String getMusCode() {
-		return musCode;
+	public String getMusCode1() {
+		return musCode1;
 	}
-	public void setMusCode(String musCode) {
-		this.musCode = musCode;
+	public void setMusCode1(String musCode1) {
+		this.musCode1 = musCode1;
 	}
-	
+	public String getMusCode2() {
+		return musCode2;
+	}
+	public void setMusCode2(String musCode2) {
+		this.musCode2 = musCode2;
+	}
+	public String getMusCode3() {
+		return musCode3;
+	}
+	public void setMusCode3(String musCode3) {
+		this.musCode3 = musCode3;
+	}
+	public String getMusCode4() {
+		return musCode4;
+	}
+	public void setMusCode4(String musCode4) {
+		this.musCode4 = musCode4;
+	}
+	public String getMusCode5() {
+		return musCode5;
+	}
+	public void setMusCode5(String musCode5) {
+		this.musCode5 = musCode5;
+	}
 	public String getCosArea1() {
 		return cosArea1;
 	}
@@ -84,11 +110,9 @@ public class Cos {
 	@Override
 	public String toString() {
 		return "Cos [cosCode=" + cosCode + ", memberId=" + memberId + ", themeCategoryCode=" + themeCategoryCode
-				+ ", themeCategory=" + themeCategory + ", musCode=" + musCode + ", cosArea1=" + cosArea1 + ", cosArea2="
-				+ cosArea2 + ", cosName=" + cosName + ", cosRegist=" + cosRegist + ", cosOpen=" + cosOpen
-				+ ", cosShare=" + cosShare + "]";
+				+ ", themeCategory=" + themeCategory + ", musCode1=" + musCode1 + ", musCode2=" + musCode2
+				+ ", musCode3=" + musCode3 + ", musCode4=" + musCode4 + ", musCode5=" + musCode5 + ", cosArea1="
+				+ cosArea1 + ", cosArea2=" + cosArea2 + ", cosName=" + cosName + ", cosRegist=" + cosRegist
+				+ ", cosOpen=" + cosOpen + ", cosShare=" + cosShare + "]";
 	}
-	
-	
-	
 }

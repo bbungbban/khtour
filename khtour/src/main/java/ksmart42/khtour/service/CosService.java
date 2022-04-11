@@ -7,16 +7,28 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ksmart42.khtour.dto.Cos;
+import ksmart42.khtour.dto.Mus;
 import ksmart42.khtour.mapper.CosMapper;
+import ksmart42.khtour.mapper.MusMapper;
 
 @Service
 @Transactional
 public class CosService {
 	//DI 의존성 주입
 	private CosMapper cosMapper;
+	private MusMapper musMapper;
 	
-	public CosService(CosMapper cosMapper) {
+	public CosService(CosMapper cosMapper,MusMapper musMapper) {
 		this.cosMapper = cosMapper;
+		this.musMapper = musMapper;
+	}
+	
+	/**
+	 * 박물관 목록 조회
+	 */
+	public List<Mus> getMusList(Map<String, Object> paramMap){
+		List<Mus> musList = musMapper.getMusList(paramMap);
+		return musList;
 	}
 	
 	/**
