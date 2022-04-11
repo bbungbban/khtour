@@ -10,11 +10,15 @@ import  ksmart42.khtour.dto.FileDto;
 @Mapper
 public interface FileMapper {
 
-	public int addFile(List<FileDto> fileList); 
-	
-	public List<FileDto> getFileList();
-	
-	public FileDto getFileInfoByIdx(String fileIdx);
-	
-	public int addFileControl(List<Map<String,String>> addFileControlList);
+   public int addFile(List<FileDto> fileList); 
+   
+   public List<FileDto> getFileList();
+   
+   public FileDto getFileInfoByIdx(String fileIdx);
+   
+   public int addFileControl(List<Map<String,String>> addFileControlList);
+   
+   public int removeFile(String fileIdx);
+
+   public int removeFileControl(String fileIdx);
 }
