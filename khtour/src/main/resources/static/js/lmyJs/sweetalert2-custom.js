@@ -119,7 +119,7 @@
           if (result.value) {
             swalWithBootstrapButtons(
               '삭제완료',
-              '파일이 안전하게 삭제되었습니다.',
+              '정보가 안전하게 삭제되었습니다.',
               'success'
             )
           } else if (
@@ -128,7 +128,7 @@
           ) {
             swalWithBootstrapButtons(
               '취소',
-              '사진은 안전하게 보호됩니다.',
+              '정보는 안전하게 보호됩니다.',
               'error'
             )
           }

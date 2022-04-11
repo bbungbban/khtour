@@ -75,7 +75,7 @@
 										<td th:text="${l.memberRegTime}"></td>
 										<td th:text="${l.memberCountry}"></td>
 										<td>
-											<a th:href="@{/member/memberList(memberId=${l.memberId})}"></a>
+											<a th:href="@{/member/memberDelete(memberId=${l.memberId})}"></a>
 											<button class="btn btn-danger btn-icon btn-sm mb-1" id="#swal-delete-member" th:data-mId="${l.memberId}">
 												<i class="fa fa-trash-o"></i>
 											</button>
@@ -167,7 +167,7 @@
 			          ) {
 			            swalWithBootstrapButtons(
 			              '취소',
-			              '취소가 완료 되었습니다.',
+			              '취소 되었습니다.',
 			              'error'
 			            )
 			          }
@@ -177,5 +177,6 @@
 			});
 			
 		});
+	</script>
 </th:block>
 </html>
