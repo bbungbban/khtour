@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -12,8 +14,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import ksmart42.khtour.dto.Board;
+import ksmart42.khtour.dto.Room;
 import ksmart42.khtour.service.BoardService;
 
 @Controller
@@ -76,9 +80,9 @@ public class BoardController {
 	 */
 	@GetMapping("/boardModify")
 	public String modifyBoard(
-			@RequestParam(value="boardCode", required = false) String boardCode
+			@RequestParam(value="boardNum", required = false) String boardNum
 			,Model model) {
-		Board board = boardService.getBoardByNum(boardCode);
+		Board board = boardService.getBoardByNum(boardNum);
 		
 		model.addAttribute("title", "1:1문의 수정 페이지");
 		model.addAttribute("board", board);
@@ -92,10 +96,10 @@ public class BoardController {
 	 */
 	@GetMapping("/boardRemove")
 	public String removePlan(Board board) {
-		String boardCode = board.getBoardNum();
+		String boardNum = board.getBoardNum();
 		
-		boardService.removeBoard(boardCode);
-		System.out.println("정보 삭제 포스트 전달" + boardService.removeBoard(boardCode));
+		boardService.removeBoard(boardNum);
+		System.out.println("정보 삭제 포스트 전달" + boardService.removeBoard(boardNum));
 		
 		return "redirect:/board/boardList";
 		
@@ -124,6 +128,32 @@ public class BoardController {
 		model.addAttribute("boardList", boardList);
 		
 		return "board/boardPost";
+	}
+	
+	/*
+	 * 객실 등록(Post 정보 전달)
+	 */
+	@PostMapping("/boardRePost")
+	public String addReBoard(Board board) {
+		
+		boardService.addReBoard(board);
+		
+		return "redirect:/board/boardList";
+	}
+	
+	/*
+	 * 1:1문의 답글 등록(Get 정보 전달)
+	 */
+	@GetMapping("/boardRePost")
+	public String addReBoard(Model model
+							,@RequestParam(value = "boardNum") String boardNum) {
+
+		
+		log.info(boardNum + "게시글 번호");
+		model.addAttribute("title", "1:1문의 답변 등록");
+		model.addAttribute("boardNum", boardNum);
+		
+		return "board/boardRePost";
 	}
 	
 }

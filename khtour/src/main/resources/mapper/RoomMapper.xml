@@ -5,7 +5,7 @@
 <mapper namespace="ksmart42.khtour.mapper.RoomMapper">
 
 	<resultMap type="Room" 					id="roomResultMap">
-		<id column="room_code" 				property="roomCode"/>
+		<id 	column="room_code" 			property="roomCode"/>
 		<result column="ldg_code" 			property="ldgCode"/>
 		<result column="room_name" 			property="roomName"/>
 		<result column="room_explain" 		property="roomExplain"/>

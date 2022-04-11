@@ -51,5 +51,12 @@ public class AccomReviewService {
 			return result;
 		}
 		
+		public List<AccomReview> getReviewByDate(String ldgCode){
+			
+			return accomReviewMapper.getReviewByDate(ldgCode);
+		}
+		
+		
+		
 }
 

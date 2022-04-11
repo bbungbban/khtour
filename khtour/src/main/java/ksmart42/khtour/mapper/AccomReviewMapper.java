@@ -23,4 +23,6 @@ public interface AccomReviewMapper {
 	//리뷰삭제
 	public int deleteReview(String ldgReviewCode);
 
+	// 시간별 리뷰 리스트 조회 2개
+	public List<AccomReview> getReviewByDate(String ldgCode);
 }

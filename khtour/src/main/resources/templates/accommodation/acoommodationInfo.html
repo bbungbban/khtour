@@ -52,6 +52,16 @@
 }
 
 .feather {
+	color: #FFB900;
+	font-size: 20px;
+}
+
+.feather-on {
+	color: #FFB900;
+	font-size: 20px;
+}
+
+.feather-off {
 	color: #f0f1f6;
 	font-size: 20px;
 }
@@ -253,23 +263,22 @@
 					</div>
 				</div>
 				<div class="card-footer"></div>
-				<article class="ReviewBox" th:if="${not #lists.isEmpty(accomoReviewList)}" th:each="al,index: ${accomoReviewList}">
+				<article class="ReviewBox" th:if="${not #lists.isEmpty(reviewBydate)}" th:each="al,index: ${reviewBydate}">
 					<div class="ReviewContentsBox" style="padding: 18.577px;">
 						<span class="ReviewIcon"><i class="fa fa-smile-o"
 							style="font-size: 50px; color: #FFB900;"></i></span>
 						<div class="ReviewHeader">
 							<div class="rating" style="position: relative; display: inline-flex;" data-rate="${al.ldgGrade}" >
-								<i class="feather icon-star-on" style="font-size: 1.2rem;"></i>
-								<i class="feather icon-star-on" style="font-size: 1.2rem;"></i>
-								<i class="feather icon-star-on" style="font-size: 1.2rem;"></i>
-								<i class="feather icon-star-on" style="font-size: 1.2rem;"></i>
-								<i class="feather icon-star-on" style="font-size: 1.2rem;"></i>
+								<th:block th:each="num : ${#numbers.sequence(1,5)}">
+								<i th:if="${num <= #conversions.convert(al.ldgGrade, 'java.lang.Integer')}" 	class="feather icon-star-on feather-on" style="font-size: 1.2rem;"></i>
+								<i th:unless="${num <= #conversions.convert(al.ldgGrade, 'java.lang.Integer')}" class="feather icon-star-on feather-off" style="font-size: 1.2rem;"></i>
+							</th:block>
 							</div>
 							<div class="ReviewTime"
 								style="display: inline-block; font-size: 1.2rem;">
 								<span style="font-weight: 100; margin-left: 0.8rem;"></span> <span
-									style="position: absolute; right: 0; line-height: 1.8rem; padding-right: 15px; font-size: 13px; opacity: 0.5;">16시간
-									전</span>
+									style="position: absolute; right: 0; line-height: 1.8rem; padding-right: 15px; font-size: 13px; opacity: 0.5;" th:text="${al.reviewTime}">
+									</span>
 							</div>
 							<div class="ReviewNicknameInfo" style="opacity: 0.5;">
 							<span>닉네임 입니다.</span>

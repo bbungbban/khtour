@@ -51,6 +51,28 @@
 		  ldg_code = #{ldgCode};
 </select>
 
+<!-- ldgCode에 따른 리뷰조회 SQL -->
+<select id="getReviewByDate"  resultMap="accomReviewResultMap">
+		SELECT
+		  	r.ldg_review_code
+		   ,r.member_id
+		   ,r.ldg_code
+		   ,r.ldg_grade  
+		   ,r.ldg_cleanliness    
+		   ,r.ldg_kindness
+		   ,r.ldg_convenience   
+		   ,r.ldg_location   
+		   ,r.ldg_price_sta    
+		   ,r.review_contents    
+		   ,r.review_time    
+		FROM
+		  tb_ldg_review AS r
+		WHERE
+		  ldg_code = #{ldgCode}
+	Order BY 
+			r.ldg_review_code DESC
+			LIMIT 2;	
+</select>
 
 <insert id="addAccomReview" parameterType="AccomReview">
 		INSERT INTO
