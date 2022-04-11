@@ -14,27 +14,42 @@
 	margin: 0px;
 	padding: 7px;
 }
+.btn.btn-primary {
+    background-color: #f3f5f700;
+    border-color: #f3f5f700;
+    color: #212529;
+}
+.btn.btn-primary:hover {
+	background-color: #f3f5f700;
+	border-color: #f3f5f700;
+}
 </style>
 	<div class="row">
 		<div class="col-12">
 			<div class="card">
 				<div class="card-body">
 					<form class="boardDetailForm">
+						<input type="hidden" th:value="${board.boardNum}">
 						<h5>작성자 </h5>
 						<p th:text="${board.memberId}"></p>
 						<div class="card-footer"></div>
 						<h5>작성일  </h5>
 						<p th:text="${board.boardDate}"></p>
 						<div class="card-footer"></div>
-						<h5>문의 분류 : </h5>
+						<h5>분류 </h5>
 						<p th:text="${board.boardType}"></p>
 						<div class="card-footer"></div>
 						<h5>제목</h5>
 						<p th:text="${board.boardTitle}"></p>
 						<div class="card-footer"></div>
-						<h5>문의 내용</h5>
+						<h5>내용</h5>
 						<p th:text="${board.boardContent}"></p>
 						<div class="card-footer"></div>
+						<div class="col-12" style="display: flex; justify-content: flex-end; ">
+							<a role="button" class="btn btn-primary" th:href="@{/board/boardRePost(boardNum=${board.boardNum})}">답변등록</a>
+							<button type="submit" class="btn btn-primary" id="addAccommodation">수정</button>
+							<button type="submit" class="btn btn-primary" id="addAccommodation">삭제</button>
+						</div>
 					</form>
 				</div>
 			</div>

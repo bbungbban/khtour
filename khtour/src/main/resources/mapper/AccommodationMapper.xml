@@ -18,6 +18,7 @@
 		<result column="ldg_tel" 			property="ldgTel" />
 		<result column="ldg_phone"			property="ldgPhone" />
 		<result column="ldg_email" 			property="ldgEmail" />
+		<result column="ldg_avg_grade" 		property="ldgAvgGrade" />
 		<result column="file_path" 			property="ldgImagePath"/>
 	</resultMap>
 
@@ -37,6 +38,7 @@
 			,l.ldg_explain4
 			,l.ldg_tel
 			,l.ldg_phone
+			,l.ldg_avg_grade
 			,l.ldg_email
 		FROM
 			tb_ldg_information AS l
@@ -112,6 +114,7 @@
 			,l.ldg_explain4
 			,l.ldg_tel
 			,l.ldg_phone
+			,l.ldg_avg_grade
 			,l.ldg_email
 			,f.file_path
 		FROM
@@ -178,5 +181,18 @@
 		</trim>
 		WHERE
 		ldg_code = #{ldgCode};
+	</update>
+	
+	<!-- 숙박업소에 대한 별점 평균 구하는 SQL(SubQuery) -->
+	<update id="updateGrade">
+		UPDATE tb_ldg_information
+			SET
+				ldg_avg_grade = (	SELECT
+											ROUND(avg(ldg_grade),1) 
+										FROM tb_ldg_review AS l
+										WHERE
+											l.ldg_code = '#{ldgCode}')
+			WHERE 
+				ldg_code = #{ldgCode};
 	</update>
 </mapper>

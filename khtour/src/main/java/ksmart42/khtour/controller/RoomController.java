@@ -116,9 +116,9 @@ public class RoomController {
 	 * ldgCode에 맞는 객실 정보 조회(Get 정보 전달)
 	 */
 	@GetMapping("/roomInsert")
-	public String addRoom(Model model, 
-			 @RequestParam(value = "ldgCode") String ldgCode
-			,@RequestParam(value = "ldgName") String ldgName) {
+	public String addRoom(Model model
+						 ,@RequestParam(value = "ldgCode") String ldgCode
+						 ,@RequestParam(value = "ldgName") String ldgName) {
 		
 		model.addAttribute("ldgCode", ldgCode);
 		model.addAttribute("ldgName", ldgName);

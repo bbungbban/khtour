@@ -27,5 +27,10 @@ public interface BoardMapper {
 	
 	// 1:1문의 조회수 업데이트
 	public int boardHitUpdate(String boardNum);
+	
+	// 1:1문의 답변등록 
+	public int addReBoard(Board board);
+
+	public List<Board> getReBoardByNum(String boardNum);
 
 }

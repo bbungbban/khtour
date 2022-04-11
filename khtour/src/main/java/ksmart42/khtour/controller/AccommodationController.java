@@ -133,7 +133,8 @@ public class AccommodationController {
 		
 		List<Room> roomList = roomService.getRoomListByldgCode(ldgCode);
 		log.info(roomList + "객실리스트");
-		
+				
+		List<AccomReview> reviewBydate = accomReviewService.getReviewByDate(ldgCode);
 		List<AccomReview> accomoReviewList = accomReviewService.getAccomReviewList(ldgCode);
 		log.info(accomoReviewList + "리뷰리스트");
 		
@@ -141,6 +142,7 @@ public class AccommodationController {
 		model.addAttribute("accomoReviewList", accomoReviewList);
 		System.out.println("리뷰 정보 get 전달" + accomoReviewList);
 		
+		model.addAttribute("reviewBydate", reviewBydate);
 		model.addAttribute("roomList", roomList);
 		model.addAttribute("title", "숙박업소 상세 페이지");
 		model.addAttribute("accommodation", accommodation);

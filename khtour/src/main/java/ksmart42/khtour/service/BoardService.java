@@ -63,5 +63,18 @@ public class BoardService {
 		public int boardHitUpdate(String boardNum) {
 			return boardMapper.boardHitUpdate(boardNum);
 		}
+		
+		/**
+		 * 번호에 따른 1:1문의 답변
+		 */
+		public List<Board> getReBoardByNum(String boardNum) {
+			List<Board> boardList = boardMapper.getReBoardByNum(boardNum);
+			
+			return boardList;
+		}
+		
+		public void addReBoard(Board board) {
+			boardMapper.addReBoard(board);
+		}
 	
 	}

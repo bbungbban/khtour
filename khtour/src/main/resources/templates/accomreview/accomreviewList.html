@@ -67,6 +67,16 @@
 	font-size: 20px;
 }
 
+.feather-on {
+	color: #FFB900;
+	font-size: 20px;
+}
+
+.feather-off {
+	color: #f0f1f6;
+	font-size: 20px;
+}
+
 .card .card-footer {
 	padding: 0.5rem 0;
 }
@@ -305,11 +315,10 @@
 						style="font-size: 50px; color: #FFB900;"></i></span>
 					<div class="ReviewHeader">
 						<div class="" style="position: relative; display: inline-flex;">
-							<i class="feather icon-star-on" style="font-size: 1.2rem;"></i> <i
-								class="feather icon-star-on" style="font-size: 1.2rem;"></i> <i
-								class="feather icon-star-on" style="font-size: 1.2rem;"></i> <i
-								class="feather icon-star-on" style="font-size: 1.2rem;"></i> <i
-								class="feather icon-star-on" style="font-size: 1.2rem;"></i>
+							<th:block th:each="num : ${#numbers.sequence(1,5)}">
+								<i th:if="${num <= #conversions.convert(al.ldgGrade, 'java.lang.Integer')}" 	class="feather icon-star-on feather-on" style="font-size: 1.2rem;"></i>
+								<i th:unless="${num <= #conversions.convert(al.ldgGrade, 'java.lang.Integer')}" class="feather icon-star-on feather-off" style="font-size: 1.2rem;"></i>
+							</th:block>
 						</div>
 						<div class="ReviewTime"
 							style="display: inline-block; font-size: 1.2rem;">
@@ -317,7 +326,7 @@
 							<span style="position: absolute; right: 0; line-height: 1.8rem; padding-right: 15px; font-size: 13px; opacity: 0.5;" th:text="${al.reviewTime}"></span>
 						</div>
 						<div class="ReviewNicknameInfo" style="opacity: 0.5;">
-							<span class="memberId" th:text="${al.memberId}"></span><span class="ReviewRoomName">객실 이름입니다.</span>
+							<span class="memberId" th:text="${al.memberId}"></span><span class="ReviewRoomName" th:text="${accommodation.ldgName}">객실 이름입니다.</span>
 						</div>
 					</div>
 				</div>
