@@ -158,12 +158,12 @@
 			</div>
 			<div class="card text-center">
 				<div class="card-title">
-					나도 포스트 달기
+					나도 여행 기록 달기
 				</div>
 				<hr class="mt-2">
 				<div class="card-body">
 					<a th:href="@{/recordBoard/recordBoardInsert}" type="button"
-						class="btn btn-primary"> <i class="feather icon-plus"></i>포스트
+						class="btn btn-primary"> <i class="feather icon-plus"></i>여행 기록
 						등록
 					</a>
 				</div>
@@ -214,11 +214,11 @@
 									</div>
 									<hr class="my-2">
 									<div class="blog-title mt-3">
-										<h4 class="mb-3">
+										<h5 class="mb-3">
 											<strong><a
 											th:href="@{/recordBoard/feedList(recordBoardCode=${l.recordBoardCode})}"
 												th:text="${l.recordBoardName}"></a></strong>
-										</h4>
+										</h5>
 										<p class="mb-0" th:text="${l.recordBoardSubName}"></p>
 									</div>
 								</div>

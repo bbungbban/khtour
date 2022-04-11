@@ -88,9 +88,22 @@
 		   ,h.heritage_owner
 		   ,h.heritage_manager
 		   ,h.heritage_category
-		   ,h.heritage_area  
+		   ,h.heritage_area 
+		   ,f.file_path   
 		FROM
-			tb_heritage_detail AS h
+		   tb_heritage_detail AS h
+		   INNER JOIN 
+		   tb_member AS m
+		   ON 
+		   h.member_id = m.member_id
+		   LEFT JOIN 
+		   tb_file_control AS fc
+		   ON 
+		   h.heritage_code = fc.reference_code
+		   LEFT JOIN 
+		   tb_file AS f
+		   ON 
+		   fc.file_idx = f.file_idx
 		WHERE
 			heritage_code = #{heritageCode};
 	

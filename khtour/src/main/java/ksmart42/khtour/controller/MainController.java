@@ -54,6 +54,7 @@ public class MainController {
 
 		model.addAttribute("title", "메인 화면 이동");
 		
+		System.out.println(TopRecordBoardList+"<--------------TopRecordBoardList");
 		model.addAttribute("TopRecordBoardList",TopRecordBoardList);
 		model.addAttribute("dailyPostList",dailyPostList);
 		return "main";

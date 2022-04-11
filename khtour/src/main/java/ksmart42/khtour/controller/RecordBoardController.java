@@ -118,11 +118,31 @@ public class RecordBoardController {
 	*  설  명 : 여행 게시글 조회 (관리자페이지) - get방식 전달
 	*/
 	@GetMapping("/recordBoardListSt")
-	public String getRecordBoardListSt(Model model) {
+	public String getRecordBoardListSt(Model model
+			,@RequestParam(name="searchKey", required=false) String searchKey
+			,@RequestParam(name="searchValue", required=false) String searchValue) {
+		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 
+		if(searchKey != null) {
+			if("memberId".equals(searchKey)) {
+				searchKey = "member_id";
+			}else if("recordBoardCode".equals(searchKey)) {
+				searchKey = "record_board_code";
+			}
+			}else if("recordBoardName".equals(searchKey)) {
+				searchKey = "record_board_name";
+			}else if("recordBoardSubName".equals(searchKey)) {
+				searchKey = "record_board_sub_name";
+		}
+		
+		paramMap.put("searchKey", searchKey);
+		paramMap.put("searchValue", searchValue);
+		
 		List<RecordBoard> recordBoardList = recordBoardService.getRecordBoardList(paramMap);
 
+		paramMap = null;
+		
 		model.addAttribute("title", "문화재 종목별 검색 페이지");
 		model.addAttribute("recordBoardList", recordBoardList);
 
@@ -193,7 +213,8 @@ public class RecordBoardController {
 		model.addAttribute("recordBoardCommentList", recordBoardCommentList);
 
 		System.out.println("정보 수정 겟방식 전달123" + recordBoard);
-
+		System.out.println(feedList+"<----------test feedList");
+		
 		return "/recordBoard/feedList";
 	}
 

@@ -123,7 +123,7 @@
 		<div class="col-9">
 			<div class="card">
 				<div class="card-title">
-					<h2>추천 커뮤니티 인기 포스트 TOP 4</h2>
+					<h2>커뮤니티 인기 포스트 TOP 4</h2>
 				</div>
 				<div
 					class="container d-flex align-items-center justify-content-center flex-wrap">
@@ -146,11 +146,11 @@
 					</div>
 
 				</div>
-				<a class="btn btn-light btn-block" href="#">커뮤니티 페이지 바로가기</a>
+				<a class="btn btn-light btn-block" th:href="@{/commDashboard}">커뮤니티 페이지 바로가기</a>
 			</div>
 			<div class="card">
 				<div class="card-title">
-					<h2>추천 여행일정 공유기록 게시판 TOP 4</h2>
+					<h2>여행일정 공유기록 게시판 TOP 4</h2>
 				</div>
 				<div
 					class="container d-flex align-items-center justify-content-center flex-wrap">
@@ -171,11 +171,11 @@
 						</div>
 					</div>
 				</div>
-				<a class="btn btn-light btn-block" href="#">여행일정 게시판 바로가기</a>
+				<a class="btn btn-light btn-block" th:href="@{/recordBoard/recordBoardList}">여행기록 게시판 바로가기</a>
 			</div>
 			<div class="card">
 				<div class="card-title">
-					<h2>추천 숙박업소 TOP 4</h2>
+					<h2>숙박업소 TOP 4</h2>
 				</div>
 				<div
 					class="container d-flex align-items-center justify-content-center flex-wrap">
@@ -252,7 +252,7 @@
 						</div>
 					</div>
 				</div>
-				<a class="btn btn-light btn-block" href="#">숙박업소 페이지 바로가기</a>
+				<a class="btn btn-light btn-block" th:href="@{/accommodation/accommodationList}">숙박업소 페이지 바로가기</a>
 			</div>
 		</div>
 		<div class="col-3">
@@ -308,6 +308,7 @@
 							</div>
 						</div>
 					</div>
+					<a class="btn btn-light btn-block" th:href="@{/cos/cosList}">추천 코스 페이지 바로가기</a>
 				</div>
 			</div>
 			<div class="card">
@@ -340,7 +341,7 @@
 							<span>Canada</span>
 						</div>
 					</div>
-					<a class="btn btn-light btn-block mt-4" href="#">다른 도시 날씨 보기</a>
+					<a class="btn btn-light btn-block mt-4" th:href="@{/traWhether/traWhetherList}">다른 도시 날씨 보기</a>
 				</div>
 			</div>
 		</div>

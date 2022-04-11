@@ -39,9 +39,9 @@
 		<!-- 문화재 이미지 시작 -->
 		<div class="col-md-5">
 			<div class="card">
-				<div class="card-body">
+				<div class="card-body text-center">
 					<div class="blog-image">
-						<img th:src="@{/images/heritage/서울 숭례문.jpg}" class="img-thumbnail"
+						<img th:src="@{${#strings.isEmpty(heritage.heritageImagePath) ? '/images/heritage/서울 숭례문.jpg': '/' + #strings.replace(heritage.heritageImagePath,'\','/')}}" class="img-fluid"
 							style="height: 420px; line-height: 280px;" alt="...">
 					</div>
 				</div>

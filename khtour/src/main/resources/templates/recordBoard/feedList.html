@@ -309,7 +309,7 @@
 										<div id="collapse-2" class="p-2 collapse"
 											data-parent="#myGroup">
 											<div class="d-flex flex-row align-items-start">
-												<a class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1">
+												<a class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1" th:href="@{/recordBoard/recordBoardModify(recordBoardCode=${recordBoard.recordBoardCode})}">
 												<!-- 	th:href="@{/recordBoard/recordBoardModify(recordBoardCode=${l.recordBoardCode})}" --><i
 													class="la la-edit"></i> </a>
 												<button class="btn btn-danger btn-icon btn-sm mb-1"
@@ -337,9 +337,8 @@
 						<li th:if="${not #lists.isEmpty(feedList)}"
 							th:each="f: ${feedList}">
 							<div class="time">
-								<span th:text="${f.feedTime}"></span> <span>등록날짜:
-									2021-21-32</span>
-							</div>
+								<span th:text="${f.feedTime}"></span><span th:text=${f.RegDate}></span>
+							</div>	
 							<div class="icon bg-primary">
 								<i class="zmdi zmdi-camera"></i>
 							</div>
@@ -352,11 +351,8 @@
 										class="img-fluid embed-responsive-item" alt="...">
 								</div>
 								KOREA HERITAGETOUR (T)
-								<div class="pt-3 pl-3">
-									<h5>해바라기 농장을 운영하시는 농장주의 넓은 아량 덕분에 이렇게 예쁜!</h5>
-								</div>
-								<div class="pt-3 row">
-
+								<div class="pl-3">
+									내용 : <h3 th:text=${f.feedContent}></h3>
 								</div>
 							</div>
 						</li>

@@ -136,18 +136,29 @@
 	
 	<select id="getTopRecordBoardList"  resultMap="recordBoardResultMap">
 		SELECT
-			r.record_board_code
-			,r.member_id		 
-			,r.plan_status_code
-			,r.record_board_name
-			,r.content  
-			,r.start_date
-			,r.end_date
-			,r.reg_date
-			,r.like_count
-			,r.views
+		    r.record_board_code
+		   ,r.member_id
+		   ,r.record_board_name
+		   ,r.record_board_sub_name
+		   ,r.content
+		   ,r.plan_status_code    
+		   ,r.start_date   
+		   ,r.end_date
+		   ,r.reg_date    
+		   ,r.like_count    
+		   ,r.views
+			,c.file_idx
+			,f.file_path    
 		FROM
-			tb_record_board AS r
+		 tb_record_board AS r
+		 INNER join
+		 tb_file_control AS c
+		 ON 
+		 r.record_board_code = c.reference_code
+		 INNER JOIN 
+		 tb_file AS f
+		 ON 
+		 f.file_idx = c.file_idx
 		Order BY 
 			r.views DESC
 			LIMIT 4;	
@@ -294,13 +305,15 @@
          ,f.feed_content  
          ,f.feed_time    
          ,f.feed_reg_date
-         ,f.feed_plan_days     
+         ,f.feed_plan_days
+         ,fi.file_path
+		 ,fi.file_idx        
       FROM
         tb_record_board_feed AS f
 		   LEFT JOIN 
 		   tb_file_control AS fc
 		   ON 
-		   f.record_board_code = fc.reference_code
+		   f.feed_code = fc.reference_code
 		   LEFT JOIN 
 		   tb_file AS fi
 		   ON 
