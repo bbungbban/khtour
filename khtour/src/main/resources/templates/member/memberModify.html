@@ -27,27 +27,34 @@
 			</div>
 		</div>
 		<div class="card-body">
-			<form class="cmxform" id="signupForm" method="get"
-				novalidate="novalidate">
+			<form class="cmxform" id="memberModify" th:action="@{/member/memberDelete}" th:unless="${session.SID == null}" method="post" novalidate="novalidate">
 				<div class="form-group">
-					<label for="name">이름</label>
-					<input id="name" class="form-control" name="name" type="text">
+					<label for="memberId">아이디</label>
+					<input id="memberId" class="form-control" name="memberId" th:value="${session.SID}" type="text" readonly="readonly">
 				</div>
 				<div class="form-group">
-					<label for="username">닉네임</label>
-					<input id="username" class="form-control" name="username" type="text">
+					<label for="memberPw">암호</label>
+					<input id="memberPw" class="form-control" name="memberPw" type="password">
 				</div>
 				<div class="form-group">
-					<label for="password">암호</label>
-					<input id="password" class="form-control" name="password" type="password">
+					<label for="memberPw2">암호 확인</label> 
+					<input id="memberPw2" class="form-control" name="memberPw2" type="password">
 				</div>
 				<div class="form-group">
-					<label for="confirm_password">암호 확인</label> 
-					<input id="confirm_password" class="form-control" name="confirm_password" type="password">
+					<label for="memberName">이름</label>
+					<input id="memberName" class="form-control" name="memberName" th:value="${session.SNAME}" type="text" readonly="readonly">
 				</div>
 				<div class="form-group">
-					<label for="email">이메일</label>
-					<input id="email1" class="form-control" name="email" type="email">
+					<label for="memberUserName">닉네임</label>
+					<input id="memberUserName" class="form-control" name="memberUserName" th:value="${session.SUSERNAME}" type="text">
+				</div>
+				<div class="form-group">
+					<label for="memberContact">연락처</label>
+					<input id="memberContact" class="form-control" name="memberContact" th:value="${session.SCONTACT}" type="text">
+				</div>
+				<div class="form-group">
+					<label for="memberEmail">이메일</label>
+					<input id="memberEmail" class="form-control" name="memberEmail" th:value="${session.SEMAIL}" type="email">
 				</div>
 				<div class="custom-control custom-checkbox form-group">
 					<input type="checkbox" class="custom-control-input" id="agree" name="agree"> 
@@ -60,6 +67,12 @@
 				<div class="form-group">
 					<button class="submit btn btn-primary" type="submit" value="">수정하기</button>
 				</div>
+				<div class="form-group">
+					<button class="submit btn btn-primary" type="button" id="removeBtn">탈퇴하기</button>
+				</div>
+				<div th:if="${not #strings.isEmpty(result)}">
+					<p th:text="${result}"></p>
+				</div>
 			</form>
 		</div>
 	</div>
@@ -69,5 +82,16 @@
       <script th:src="@{/js/prism/prism.js}"></script>
       <!-- custom -->
       <script th:src="@{/js/custom.js}"></script>
+      <script>
+      	$(function(){
+      		$('#removeBtn').click(function(){
+      			var confirmResult = confirm('정말 탈퇴하시겠습니까?');
+      			
+      			if(confirmResult){
+      				$('#removeBtn').submit();
+      			}
+      		});
+      	});
+      </script>
    </th:block>
 </html>

@@ -22,7 +22,7 @@ public interface MemberMapper {
 		public int removeLoginHistory(String memberId);
 		
 		// 회원 삭제
-		public int memberList(String memberId);
+		public int memberDelete(String memberId);
 		
 		// 회원수정
 		public int memberModify(Member member);
@@ -38,7 +38,7 @@ public interface MemberMapper {
 		public List<MemberLevel> getMemberLevelList();
 		
 		// 회원 전체 목록 조회
-		public List<Member> getMemberList(String searchKey, String searchValue);
+		public List<Member> getMemberList();
 		
 		// 회원 가입
 		public int memberInsert(Member member);

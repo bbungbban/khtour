@@ -58,7 +58,6 @@ public class MemberController {
 		System.out.println("회원 로그인 처리 PostMapping");
 		String memberId = member.getMemberId();
 		String memberPw = member.getMemberPw();
-		String memberEmail = member.getMemberEmail();
 		
 		Member checkMember = memberMapper.getMemberInfoById(memberId);
 		
@@ -75,6 +74,8 @@ public class MemberController {
 			session.setAttribute("SNAME", sessionName);
 			session.setAttribute("SLEVEL", sessionLevel);
 			session.setAttribute("SEMAIL", checkMember.getMemberEmail());
+			session.setAttribute("SCONTACT", checkMember.getMemberContact());
+			session.setAttribute("SUSERNAME", checkMember.getMemberUserName());
 			log.info("로그인 성공");
 			
 			return "redirect:/";
@@ -135,26 +136,23 @@ public class MemberController {
 	 */
 	@PostMapping("/memberInsert")
 	public String memberInsert(Member member, RedirectAttributes reAttr) {
-		String msg1 = "";
+		
 		 
 		log.info("회원가입폼에서 입력받은 데이터: {}", member);
 		
 		memberService.memberInsert(member);
-		/* reAttr.addAttribute("resultId", member.getMemberId() + "아이디로 회원가입되셨습니다"); */
-		msg1 = "회원가입되셨습니다";
+		/* reAttr.addAttribute("result", member.getMemberId() + "아이디로 회원가입되셨습니다"); */
+		
 		return "redirect:/member/loginMain";
 	}
 	
 	/*
 	 * 회원 정보 검색 및 전체 리스트 화면
-	 * 회원정보 삭제 기능
 	 */
 	@GetMapping("/memberList")
 	public String getMemberList(Model model
 							   ,@RequestParam(value="searchKey", required = false) String searchKey
-							   ,@RequestParam(value="searchValue", required = false) String searchValue
-							   ,@RequestParam(name="memberId", required = false) String memberId 
-							   ,@RequestParam(name="result", required = false) String result) {
+							   ,@RequestParam(value="searchValue", required = false) String searchValue) {
 		
 		
 		log.info("회원목록 요청");
@@ -172,14 +170,18 @@ public class MemberController {
 			}
 		}
 		
-		List<Member> memberList = memberService.getMemberList(searchKey, searchValue);
+		List<Member> memberList = memberService.getMemberList();
 
 		model.addAttribute("title", "회원목록조회");
 		model.addAttribute("memberList", memberList);
-		model.addAttribute("memberId", memberId);
-		if(result != null) model.addAttribute("result", result);
 		
 		return "member/memberList";
+	}
+	
+	@PostMapping("/memberList")
+	public String getMemberList() {
+		return null;
+		
 	}
 	
 	
@@ -200,35 +202,6 @@ public class MemberController {
 		  return idCheck;
 	  }
 	 
-	
-	/**
-	 *  회원 탈퇴 처리
-	 */
-	@PostMapping("/memberList")
-	public String memberList(@RequestParam(name="memberId", required = false) String memberId
-							  ,@RequestParam(name="memberPw", required = false, defaultValue = "") String memberPw
-							  ,RedirectAttributes reAttr) {
-		
-		log.info("회원 탈퇴 처리 memberId: {}", memberId);
-		log.info("회원 탈퇴 처리 memberPw: {}", memberPw);
-		Member member = memberMapper.getMemberInfoById(memberId);
-		
-		if(member != null && member.getMemberPw() != null && memberPw.equals(member.getMemberPw())) {
-			memberService.memberList(member);
-			log.info("회원삭제성공");
-			
-			return "redirect:/member/memberList";
-		}
-		
-		reAttr.addAttribute("memberId", memberId);
-		reAttr.addAttribute("result", "회원의 정보가 일치하지 않습니다.");
-		log.info("회원삭제실패");
-		
-		
-		return "redirect:/member/memberList";
-	
-	}
-	
 	/**
 	 * 회원수정처리
 	 */
@@ -284,10 +257,42 @@ public class MemberController {
 	 * 회원 탈퇴 화면
 	 */
 	@GetMapping("/memberDelete")
-	public String getMemberDelete(Model model) {
+	public String memberDelete(Model model
+			,@RequestParam(name="memberId", required= false) String memberId
+			,@RequestParam(name="result", required = false) String result) {
 		
-		model.addAttribute("title", "회원 탈퇴");
+		model.addAttribute("title", "회원 탈퇴 화면");
+		model.addAttribute("memberId", memberId);
+		if(result != null) model.addAttribute("result", result);
 		
-		return "/member/memberDelete"; 
+		return "member/memberModify";
+
+	}
+	
+	/**
+	 *  회원 탈퇴 처리
+	 */
+	@PostMapping("/memberDelete")
+	public String memberList(@RequestParam(name="memberId", required = false) String memberId
+							  ,@RequestParam(name="memberPw", required = false, defaultValue = "") String memberPw
+							  ,RedirectAttributes reAttr) {
+		
+		log.info("회원 탈퇴 처리 memberId: {}", memberId);
+		log.info("회원 탈퇴 처리 memberPw: {}", memberPw);
+		Member member = memberMapper.getMemberInfoById(memberId);
+		
+		if(member != null && member.getMemberPw() != null && memberPw.equals(member.getMemberPw())) {
+			log.info("회원 탈퇴 성공");
+			return "redirect:/member/memberList";
+			
+		}
+		
+		reAttr.addAttribute("memberId", memberId);
+		reAttr.addAttribute("result", "회원정보가 일치하지 않습니다");
+		log.info("회원 탈퇴 실패");
+		
+		
+		return "redirect:/member/memberModify";
+	
 	}
 }

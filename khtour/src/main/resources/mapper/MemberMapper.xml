@@ -193,8 +193,8 @@
 		   , #{memberName}
 		   , #{memberBirthday}
 		   , #{memberUserName}
-		   , #{memberLevel}
-		   , #{memberStatus}
+		   , '일반회원'
+		   , '정상'
 		   , #{memberTotalPointCode}
 		   , #{memberTotalPointUsed}
 		   , #{memberUsablePoint}
@@ -209,13 +209,19 @@
 	<select id="getMemberList" parameterType="String" resultMap="memberResultMap" fetchSize="1000">
 		/* 회원목록조회 */
 		SELECT
-		    m.member_id         
-		   ,m.member_pw        
+		    m.member_id 
+		   ,m.point_level
+		   ,m.total_point_code
+		   ,m.total_point_used
+		   ,m.usable_point     
+		   ,m.member_status       
 		   ,m.member_name      
 		   ,m.member_level
 		   ,m.gender
+		   ,m.birthday
 		   ,m.email     
-		   ,m.contact      
+		   ,m.contact 
+		   ,m.country     
 		   ,m.reg_time  
 		FROM
 		   tb_member AS m

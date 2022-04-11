@@ -49,9 +49,9 @@ public class MemberService {
 		return memberMapper.getMemberInfoById(memberId);
 	}
 	
-	public List<Member> getMemberList(String searchKey, String searchValue){
+	public List<Member> getMemberList(){
 		
-		List<Member> memberList = memberMapper.getMemberList(searchKey, searchValue);
+		List<Member> memberList = memberMapper.getMemberList();
 		
 		return memberList;
 	}
@@ -69,8 +69,8 @@ public class MemberService {
 		
 		return memberLevelList;
 	}
-	//회원탈퇴
-	public void memberList(Member member) {
+	//회원삭제
+	public void memberDelete(Member member) {
 		//회원아이디
 		String memberId = member.getMemberId();
 		//권한
@@ -80,9 +80,11 @@ public class MemberService {
 		//공통사항 삭제 프로세스
 		memberMapper.removeLoginHistory(memberId);
 				
-		memberMapper.memberList(memberId);
+		memberMapper.memberDelete(memberId);
 		
 	}
+
+	
 
 	
 	
