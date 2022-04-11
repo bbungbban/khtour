@@ -187,8 +187,7 @@
 		UPDATE tb_community_reply
 			SET
 			likes_cnt = likes_cnt + 1	
-			,result_cnt = result_cnt + 1
-			,daily_likes_cnt = daily_likes_cnt +1		 
+			,result_cnt = result_cnt + 1	 
 		WHERE
 			reply_code=#{replyCode};	
 	</update>
@@ -196,8 +195,7 @@
 		UPDATE tb_community_reply
 			SET
 			dislikes_cnt = dislikes_cnt + 1	
-			,result_cnt = result_cnt-1
-			,daily_likes_cnt = daily_likes_cnt +1		 
+			,result_cnt = result_cnt-1	 
 		WHERE
 			reply_code=#{replyCode};	
 	</update>
@@ -249,6 +247,68 @@
 				r.member_id = #{memberId}
 	</select>
 	
+	<select id = "checkLikeDislikeByMemberIdAndPostCode" parameterType="String" resultType="String">
+			SELECT
+				ld.likes_dislikes_cate
+			FROM
+				tb_likes_dislikes AS ld
+			WHERE
+				ld.member_id = #{memberId}
+			AND
+				ld.post_code = #{postCode};
+	</select>
+	
+	<select id = "checkLikeDislikeByMemberIdAndReplyCode" parameterType="String" resultType="String">
+			SELECT
+				ld.likes_dislikes_cate
+			FROM
+				tb_likes_dislikes AS ld
+			WHERE
+				ld.member_id = #{memberId}
+			AND
+				ld.reply_code = #{replyCode};
+	</select>
+	
+	<update id="updatePostLikeToDislike" parameterType="String">
+		UPDATE tb_likes_dislikes
+			SET
+			likes_dislikes_cate = 'dislike'	
+			,reg_time = now()	 
+		WHERE
+			member_id = #{memberId}
+		AND
+			post_code = #{postCode};	
+	</update>
+	<update id="updatePostDislikeToLike" parameterType="String">
+		UPDATE tb_likes_dislikes
+			SET
+			likes_dislikes_cate = 'like'	
+			,reg_time = now()	 
+		WHERE
+			member_id = #{memberId}
+		AND
+			post_code = #{postCode};	
+	</update>
+	<update id="updateReplyLikeToDislike" parameterType="String">
+		UPDATE tb_likes_dislikes
+			SET
+			likes_dislikes_cate = 'dislike'	
+			,reg_time = now()	 
+		WHERE
+			member_id = #{memberId}
+		AND
+			reply_code = #{replyCode};	
+	</update>
+	<update id="updateReplyDislikeToLike" parameterType="String">
+		UPDATE tb_likes_dislikes
+			SET
+			likes_dislikes_cate = 'like'	
+			,reg_time = now()	 
+		WHERE
+			member_id = #{memberId}
+		AND
+			reply_code =#{replyCode};
+	</update>
 	
 	<select id="getCommReplyListByPostCode"  resultMap="replyResultMap">
 			SELECT

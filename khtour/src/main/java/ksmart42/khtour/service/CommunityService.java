@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,6 +91,55 @@ public class CommunityService {
 		}
 		return postListMod(postList);
 	}
+	
+	public String updateLikeDislike(String postCode,String likeDislike,String replyCode,HttpSession session)
+	{
+		if(likeDislike.equals("like"))
+		{
+			if(replyCode==null)
+			{
+				
+				communityMapper.updatePostLikeToDislike((String)session.getAttribute("SID"), postCode);
+				communityMapper.addPostDislikesCnt(postCode);
+				communityMapper.addPostDislikesCnt(postCode);
+			}
+			else
+			{
+				communityMapper.updateReplyLikeToDislike((String)session.getAttribute("SID"), replyCode);
+				communityMapper.addReplyDislikesCnt(replyCode);
+				communityMapper.addReplyDislikesCnt(replyCode);
+			}
+		}
+		else
+		{
+			if(replyCode==null)
+			{	
+				communityMapper.updatePostDislikeToLike((String)session.getAttribute("SID"), postCode);
+				communityMapper.addPostLikesCnt(postCode);
+				communityMapper.addPostLikesCnt(postCode);
+			}
+			else
+			{
+				communityMapper.updateReplyDislikeToLike((String)session.getAttribute("SID"), replyCode);
+				communityMapper.addReplyLikesCnt(replyCode);
+				communityMapper.addReplyLikesCnt(replyCode);
+			}
+		}
+		String result= "";
+		if(replyCode==null)
+		{
+			result = KhtourLibrary.cntConverter((float)communityMapper.getPostResultCnt(postCode));
+		}
+		else
+		{
+			result = KhtourLibrary.cntConverter((float)communityMapper.getReplyResultCnt(replyCode));
+		}
+		return result;
+	}
+	
+	
+	
+	
 	
 	/* 작성자 : 한경수
 	*  입  력 : String (커뮤니티 이름)
@@ -251,14 +302,17 @@ public class CommunityService {
 		return postList;
 	}
 	
-	public List<CommReply> getCommReplyListByPostCode(String postCode)
+	public List<CommReply> getCommReplyListByPostCode(String postCode,HttpSession session)
 	{
 		
 		List<CommReply> replyList = communityMapper.getCommReplyListByPostCode(postCode);
-		replyList = replyChildrenSetter(replyList);
+
+		
+		String memberId = (String)session.getAttribute("SID");
+		replyList = replyChildrenSetter(memberId,replyList);
 		return replyList;
 	}
-	public List<CommReply> replyChildrenSetter(List<CommReply> replyList)
+	public List<CommReply> replyChildrenSetter(String memberId, List<CommReply> replyList)
 	{
 		for(int i=0;i<replyList.size();i++)
 		{
@@ -269,7 +323,15 @@ public class CommunityService {
 			{
 				return childrenList;
 			}
-			childrenList = replyChildrenSetter(childrenList);
+				
+			childrenList = replyChildrenSetter(memberId,childrenList);
+			
+			for(int j = 0;j<childrenList.size();j++)
+			{
+				String likeOrDislike = communityMapper.checkLikeDislikeByMemberIdAndReplyCode(memberId, childrenList.get(j).getReplyCode());
+				childrenList.get(j).setLikeOrDislike(likeOrDislike);
+			}
+			
 			reply.setChildrenReply(childrenList);
 		}
 		return replyList;
@@ -403,10 +465,10 @@ public class CommunityService {
 		communityMapper.addCommMemberReg(commMemberReg);		
 	}
 	
-	public String addLikesDislikes(String postCode,String likeDislike,String replyCode)
+	public String addLikesDislikes(String postCode,String likeDislike,String replyCode,HttpSession session)
 	{
 		LikesDislikes likesDislikes = new LikesDislikes();
-		likesDislikes.setMemberId("id001");
+		likesDislikes.setMemberId((String)session.getAttribute("SID"));
 		likesDislikes.setPostCode(postCode);
 		likesDislikes.setReplyCode(replyCode);
 		String result = "";
