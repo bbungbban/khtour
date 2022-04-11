@@ -128,19 +128,11 @@ public class CosController {
 	 */
 	@PostMapping("/cosInsert")
 	public String addCos(Cos cos) {
-		if (cos.getThemeCategory().equals("선사시대")){cos.setThemeCategoryCode("theme_cate_code001");} 
-		else if (cos.getThemeCategory().equals("석기시대")){cos.setThemeCategoryCode("theme_cate_code002");} 
-		else if (cos.getThemeCategory().equals("청동기시대")){cos.setThemeCategoryCode("theme_cate_code003");} 
-		else if (cos.getThemeCategory().equals("철기시대")){cos.setThemeCategoryCode("theme_cate_code004");} 
-		else if (cos.getThemeCategory().equals("삼한시대")){cos.setThemeCategoryCode("theme_cate_code005");} 
-		else if (cos.getThemeCategory().equals("삼국시대")){cos.setThemeCategoryCode("theme_cate_code006");} 
-		else if (cos.getThemeCategory().equals("발해")){cos.setThemeCategoryCode("theme_cate_code007");} 
-		else if (cos.getThemeCategory().equals("통일신라")){cos.setThemeCategoryCode("theme_cate_code008");} 
-		else if (cos.getThemeCategory().equals("고려시대")){cos.setThemeCategoryCode("theme_cate_code009");}
-		else if (cos.getThemeCategory().equals("조선시대")){cos.setThemeCategoryCode("theme_cate_code010");}
-		else if (cos.getThemeCategory().equals("대한제국시대")){cos.setThemeCategoryCode("theme_cate_code011");}
-		else if (cos.getThemeCategory().equals("일제강점기")){cos.setThemeCategoryCode("theme_cate_code012");} 
-		else if (cos.getThemeCategory().equals("시대미상")){cos.setThemeCategoryCode("theme_cate_code013");} 
+		if (cos.getThemeCategory().equals("역사")){cos.setThemeCategoryCode("theme_cate_code001");} 
+		else if (cos.getThemeCategory().equals("인문")){cos.setThemeCategoryCode("theme_cate_code002");} 
+		else if (cos.getThemeCategory().equals("전쟁")){cos.setThemeCategoryCode("theme_cate_code003");} 
+		else if (cos.getThemeCategory().equals("종교사")){cos.setThemeCategoryCode("theme_cate_code004");} 
+		else if (cos.getThemeCategory().equals("민속")){cos.setThemeCategoryCode("theme_cate_code005");}
 		cosService.addCos(cos);
 		return "redirect:/cos/cosList";
 	}
