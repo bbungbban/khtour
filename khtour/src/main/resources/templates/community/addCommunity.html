@@ -16,11 +16,13 @@
 				}
 				return true;
 			}
-			$('#commNameCheck').click(
-					function() {
+			$('#commName, #categoryCode, #commDesc').on('change',
+					function(e) {
 						var commName = $('input[name="commName"]').val();
+						var commCategory =$('#categoryCode').val();
+						var commDesc = $('#commDesc').val();
 						console.log(commName);
-						if (validationCheck(commName)) {
+							if (validationCheck(commName)) {
 							$.ajax({
 								url : '/commNameCheck',
 								type : 'post',
@@ -31,17 +33,32 @@
 								success : function(data) {
 									console.log(data);
 									if (data == true) {
-										$('#addCommunityForm input').prop('disabled', false);
-										$('#addCommunityForm button').prop('disabled', false);
+										$('#nameCheckSuccess').prop('hidden', false);
+										$('#nameCheckFail').prop('hidden', true); 
 										
+										if(validationCheck(commCategory)&&validationCheck(commDesc))
+										{
+											$('#addCommunityBtn').prop('disabled',false);
+										}
+										else
+										{
+											$('#addCommunityBtn').prop('disabled',true);
+										}
 										
 									} else {
-										$('#addCommunityForm input').not('input[name="commName"]').prop('disabled', true);
-										$('#addCommunityForm button').not('#commNameCheck').prop('disabled', true);
+										$('#nameCheckSuccess').prop('hidden', true);
+										$('#nameCheckFail').prop('hidden', false); 
+										$('#addCommunityBtn').prop('disabled',true);
 									}
 								}
 							});
 						}
+							else
+							{
+								$('#nameCheckSuccess').prop('hidden', true);
+								$('#nameCheckFail').prop('hidden', false); 
+								$('#addCommunityBtn').prop('disabled',true);				
+							}
 
 					});
 
@@ -71,24 +88,19 @@
 		<div class="card-body">
 			<form class="cmxform" id="addCommunityForm" method="post" th:action="@{/addCommunity}">
 				<div class="form-group" th:if="not ${#lists.isEmpty(categoryList)}">
-						<label for="category">등록할 커뮤니티</label> <select class="form-control"
-							id="categoryCode" name="categoryCode">
-							<option value="none">===커뮤니티 선택===</option>
+						<label for="category">등록할 커뮤니티</label> <select class="form-control" id="categoryCode" name="categoryCode">
+							<option value=''>===커뮤니티 선택===</option>
 							<option th:if="${not #lists.isEmpty(categoryList)}" th:value="${cl.categoryCode}" th:text="${cl.categoryName}" th:each="cl: ${categoryList}">
 							</option>
 						</select>
 					</div>
 				<div class="form-group">
 					<label for="commName">커뮤니티 이름</label>
-					<div class="row">
-						<div class="col-9">
-							<input id="commName" class="form-control" name="commName">
-							<input type="hidden"  th:value="${session.SID}"  name="memberId" />
-						</div>
-						<div class="col-3">
-							<button type="button" class="btn btn-primary active text-center" id="commNameCheck">중복 체크</button>
-						</div>
-					</div>
+					<input id="commName" class="form-control" name="commName">
+					<input type="hidden"  th:value="${session.SID}"  name="memberId" />
+					<p id='nameCheckSuccess' class='text-success'  hidden="hidden">사용하실수 있는 커뮤니티 이름입니다. </p>
+					<p id='nameCheckFail' class='text-danger'  hidden="hidden">사용하실수 없는 커뮤니티 이름입니다. </p>
+	
 				</div>
 				<div class="form-group">
 					<label for="commDesc">커뮤니티 설명</label>

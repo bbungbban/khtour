@@ -12,6 +12,76 @@
 	<script>
 
 	$(function() {
+		
+		$(document).ready(function(){
+			var ruleCode = $("#ruleListSelect").val();
+			$.ajax({
+				url : '/getRuleByRuleCode',
+				type : 'post',
+				data : {
+					'ruleCode' : ruleCode
+				},
+				dataType : 'json',
+				success : function(data) {	
+					console.log(data.title);
+				
+						$('#titleRuleModal').val(data.title);							
+						$('#detailRuleModal').val(data.detail);							
+					}	
+			});
+			var tagCode = $("#tagListSelect").val();
+			$.ajax({
+				url : '/getTagByTagCode',
+				type : 'post',
+				data : {
+					'tagCode' : tagCode
+				},
+				dataType : 'json',
+				success : function(data) {	
+					console.log(data.title);
+				
+						$('#tagNameModal').val(data.tagName);							
+						$('#tagColorModal').val(data.tagColor);							
+					}	
+			});
+			
+		});
+		 $("#ruleListSelect").on('change', function(e) {
+			var ruleCode = $("#ruleListSelect").val();
+				$.ajax({
+					url : '/getRuleByRuleCode',
+					type : 'post',
+					data : {
+						'ruleCode' : ruleCode
+					},
+					dataType : 'json',
+					success : function(data) {	
+						console.log(data.title);
+					
+							$('#titleRuleModal').val(data.title);							
+							$('#detailRuleModal').val(data.detail);							
+						}	
+				});
+			}); 
+		 $("#tagListSelect").on('change', function(e) {
+				var tagCode = $("#tagListSelect").val();
+					$.ajax({
+						url : '/getTagByTagCode',
+						type : 'post',
+						data : {
+							'tagCode' : tagCode
+						},
+						dataType : 'json',
+						success : function(data) {	
+							console.log(data.title);
+						
+								$('#tagNameModal').val(data.tagName);							
+								$('#tagColorModal').val(data.tagColor);							
+							}	
+				});
+		}); 
+		
+		
 		$(".upVote").on("click",function(){
 			var postCode = $(this).attr('data-postCode');
 			var resultCnt = $(this).parent().find('#resultCnt');
@@ -230,7 +300,8 @@
                </div>
             </div>
             <div class="card-foot p-2 text-center border-top" th:if="${isAdmin=='true'}">
-              		<button type="button" class="btn btn-primary text-white btn-sm" data-toggle="modal" data-target="#exampleModal-02">규칙 추가  </button>
+              		<button type="button" class="btn btn-primary text-white btn-sm" data-toggle="modal" data-target="#addRuleModal">규칙 추가  </button>
+              		<button type="button" class="btn btn-primary text-white btn-sm" data-toggle="modal" data-target="#updateRuleModal">규칙 변경  </button>
 				</div> 
          </div>
 			<div class="card">
@@ -245,8 +316,8 @@
 
 				</div>
 				<div class="card-foot p-2 text-center border-top" th:if="${isAdmin=='true'}">
-					<button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-						data-target="#exampleModal-03">테그 추가</button>
+					<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addTagModal">테그 추가</button>
+					<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updateTagModal">테그 수정</button>
 				</div>
 			</div>
 		</div>
@@ -256,7 +327,7 @@
 	</div>
 
 	<!-- Modal -->
-	<div class="modal fade" id="exampleModal-03" tabindex="-1"
+	<div class="modal fade" id="addTagModal" tabindex="-1"
 		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -295,8 +366,52 @@
 			</div>
 		</div>
 	</div>
+	<div class="modal fade" id="updateTagModal" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">태그수정</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body p-5">
+					<form class="cmxform" method="post" th:action="@{/updateTag}">
+					
+					
+						<div class="form-group pb-4 border-bottom">
+							<label for="tagListSelect">수정할 규칙</label> 
+							<select class="form-control" id="tagListSelect" name="tagCode">
+								<option th:value="${tl.tagCode}" th:text="${tl.tagName}" th:each="tl: ${tagList}" />
+							</select>
+						</div>
+						<div class="form-group">
+							<input type="hidden" name="commCode" id="commCode" class="form-control" th:value="${community.commCode}"></input>
+						</div>
+						<div class="form-group">
+							<label for="tagNameModal">태그이름</label> 
+							<input id="tagNameModal" name="tagName" type="text" class="form-control" required></input>	
+						</div>
+						<div class="form-group">
+							<label for="tagColorModal">태그 색상</label> <select class="form-control"
+								id="tagColorModal" name="tagColor">
+								<option  th:value="success">초록색</option>
+								<option  th:value="warning">노랑색</option>
+								<option  th:value="dark">검은색</option>
+								<option  th:value="light">회색</option>
+								<option  th:value="danger">빨강색</option>
+								<option  th:value="primary">갈색</option>
+							</select>
+						</div>
+						<button type="submit" class="btn btn-primary pull-right">태그등록</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- Modal -->
-	<div class="modal fade" id="exampleModal-02" tabindex="-1"
+	<div class="modal fade" id="addRuleModal" tabindex="-1"
 		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -315,13 +430,52 @@
 						</div>
 						<div class="form-group">
 							<label for="title">규칙 재목</label> 
-							<input id="title" name="title" type="text" class="form-control" required></input>
+							<input id="title" name="title" type="text" class="form-control" required ></input>
 						</div>
 						
 
 						<div class="form-group">
 							<label for="detail">추가설명</label>
 							<textarea id="detail" name="detail" class="form-control" rows="10" required></textarea>
+						</div>
+						<button type="submit" class="btn btn-primary pull-right">등록</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+		<div class="modal fade" id="updateRuleModal" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">규칙변경</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body p-5">
+					<form class="cmxform" method="post" th:action="@{/updateRule}">
+					
+						<div class="form-group pb-4 border-bottom">
+							<label for="ruleListSelect">수정할 규칙</label> 
+							<select class="form-control" id="ruleListSelect" name="ruleCode">
+								<option th:value="${rl.ruleCode}" th:text="${rl.title}" th:each="rl: ${ruleList}" />
+							</select>
+						</div>
+						<div class="form-group">
+							<input type="hidden" name="commCode" id="commCode" class="form-control" th:value="${community.commCode}"></input>
+						</div>
+						<div class="form-group">
+							<label for="titleRuleModal">규칙 재목</label> 
+							<input id="titleRuleModal" name="title" type="text" class="form-control" required ></input>
+						</div>
+						
+
+						<div class="form-group">
+							<label for="detailRuleModal">추가설명</label>
+							<textarea id="detailRuleModal" name="detail" class="form-control" rows="10" required></textarea>
 						</div>
 						<button type="submit" class="btn btn-primary pull-right">등록</button>
 					</form>
