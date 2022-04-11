@@ -26,6 +26,15 @@ public interface CommunityMapper {
 	// 3 : 커뮤니티 포스트 전체 리스트 반환
 	public List<CommPost> getDailyPostList();
 	
+	public String checkLikeDislikeByMemberIdAndPostCode(String memberId, String postCode);
+	public String checkLikeDislikeByMemberIdAndReplyCode(String memberId, String replyCode);
+	
+	public void updatePostLikeToDislike(String memberId, String postCode);
+	public void updatePostDislikeToLike(String memberId, String postCode);
+	
+	public void updateReplyLikeToDislike(String memberId, String replyCode);
+	public void updateReplyDislikeToLike(String memberId, String replyCode);
+	
 	public List<CommCategory> getCommCategoryList();
 	
 	public List<CommPost> getPostListByCommCode(String commCode);

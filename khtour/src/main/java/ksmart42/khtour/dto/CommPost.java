@@ -11,7 +11,8 @@ public class CommPost {
 				+ readerCnt + ", pictureLink=" + pictureLink + ", videoLink=" + videoLink + ", likesCnt=" + likesCnt
 				+ ", dislikesCnt=" + dislikesCnt + ", resultCnt=" + resultCnt + ", reportCnt=" + reportCnt
 				+ ", pointGain=" + pointGain + ", commTag=" + commTag + ", commentsCnt=" + commentsCnt
-				+ ", dailyLikesCnt=" + dailyLikesCnt + ", filePath=" + filePath + "]";
+				+ ", dailyLikesCnt=" + dailyLikesCnt + ", filePath=" + filePath + ", likeOrDislike=" + likeOrDislike
+				+ "]";
 	}
 	
 	public String getDailyLikesCnt() {
@@ -127,6 +128,15 @@ public class CommPost {
 	public List<String> getFilePath() {
 		return filePath;
 	}
+	
+	public String getLikeOrDislike() {
+		return likeOrDislike;
+	}
+
+	public void setLikeOrDislike(String likeOrDislike) {
+		this.likeOrDislike = likeOrDislike;
+	}
+	
 	public void setFilePath(List<String> filePath) {
 		this.filePath = filePath;
 	}
@@ -149,5 +159,6 @@ public class CommPost {
 	private String commentsCnt;
 	private String dailyLikesCnt;
 	private List<String> filePath;
+	private String likeOrDislike;
 	
 }

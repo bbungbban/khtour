@@ -11,47 +11,120 @@
 <th:block layout:fragment="customScript">
 	<script>
 
-	$(function() 
-			{
-		$(document).ready(function(){ 
-			
-			
-		
-		}); 	
+	$(function() {
 		$(".upVote").on("click",function(){
 			var postCode = $(this).attr('data-postCode');
-			var resultCnt = $(this).parent().find('#resultCnt')
-	       	console.log(postCode);
-					 $.ajax({
-						url : '/addLikes',
+			var resultCnt = $(this).parent().find('#resultCnt');
+			var upVote = $(this);
+			var downVote = $(this).parent().find('.downVote');
+	       			$.ajax({
+						url : '/likesDislikesCheck',
 						type : 'post',
 						data : {
 							'postCode' : postCode
 						},
 						dataType : 'text',
 						success : function(data) {
-							resultCnt.text(data);	
+							console.log(data);
+							 if(data=='available')
+							{
+								 $.ajax({
+										url : '/addLikes',
+										type : 'post',
+										data : {
+											'postCode' : postCode
+										},
+										dataType : 'text',
+										success : function(data1) {
+											resultCnt.text(data1);	
+											upVote.empty();
+											upVote.append('<i class="la la-caret-up d-flex la-3x justify-content-center text-success pb-5"></i>');
+											
+										}
+								 }); 
+								
+							}
+							 else if(data=='dislike')
+							{
+								 $.ajax({
+										url : '/updateLikeDislike',
+										type : 'post',
+										data : {
+											'postCode' : postCode,
+											'likeDislike' : 'dislike'
+										},
+										dataType : 'text',
+										success : function(data2) {
+											resultCnt.text(data2);	
+											upVote.empty();
+											downVote.empty();
+											upVote.append('<i class="la la-caret-up d-flex la-3x justify-content-center text-success pb-5"></i>');
+											downVote.append('<i class="la la-caret-down d-flex la-3x justify-content-center text-white"></i>');
+										}
+								 }); 
+								
+							}
 						}
 					}); 
+					
 	        
 		})
 	});
 	$(function() {
 		$(".downVote").on("click",function(){
 			var postCode = $(this).attr('data-postCode');
-			var resultCnt = $(this).parent().find('#resultCnt')
+			var resultCnt = $(this).parent().find('#resultCnt');
+			var downVote = $(this);
+			var upVote = $(this).parent().find('.upVote');
 	       	console.log(postCode);
-					 $.ajax({
-						url : '/addDislikes',
-						type : 'post',
-						data : {
-							'postCode' : postCode
-						},
-						dataType : 'text',
-						success : function(data) {
-							resultCnt.text(data);	
-						}
-					}); 
+			$.ajax({
+				url : '/likesDislikesCheck',
+				type : 'post',
+				data : {
+					'postCode' : postCode
+				},
+				dataType : 'text',
+				success : function(data) {
+					console.log(data);
+					 if(data=='available')
+					{
+						 $.ajax({
+								url : '/addDislikes',
+								type : 'post',
+								data : {
+									'postCode' : postCode
+								},
+								dataType : 'text',
+								success : function(data1) {
+									resultCnt.text(data1);	
+									downVote.empty();
+									downVote.append('<i class="la la-caret-down d-flex la-3x justify-content-center text-danger"></i>');
+								}
+						 }); 
+						
+					}
+					 else if(data=='like')
+					{
+						 $.ajax({
+								url : '/updateLikeDislike',
+								type : 'post',
+								data : {
+									'postCode' : postCode,
+									'likeDislike' : 'like'
+								},
+								dataType : 'text',
+								success : function(data2) {
+									resultCnt.text(data2);	
+									downVote.empty();
+									upVote.empty();
+									upVote.append('<i class="la la-caret-up d-flex la-3x justify-content-center text-white pb-5"></i>');
+									downVote.append('<i class="la la-caret-down d-flex la-3x justify-content-center text-danger"></i>');
+								}
+						 }); 
+							 
+					}
+				}
+			}); 
 	        
 		})
 	});
@@ -67,8 +140,9 @@
 	<div class="card" style="width:1000px">
 	<div class="card bg-primary">
 		<div class="card-body text-center pb-2 pt-2">
-			<h2 class="mb-0 mt-2 text-white " th:text="${community.commName} + ' 커뮤니티'"></h2>
-			<p  class="mb-0 bt-0 text-white" th:text="${status}"></p>
+			<h2 th:if="${isAdmin=='true'}" class="mt-2 mb-0 bt-0 text-white">[관리자로그인] [[${community.commName}]] 커뮤니티</h2>
+			<h2 th:if="not ${isAdmin=='true'}" class="mb-0 mt-2 text-white " th:text="${community.commName} + ' 커뮤니티'"></h2>
+			<p  class="mb-0 bt-0 text-white" th:text="${status}"></p>	
 		</div>
 	</div>
 
@@ -127,7 +201,8 @@
 					</table>
 				</div>
 				<div class="card-foot p-2 text-center border-top ">
-					<a th:href="@{/addCommMemberReg(memberId=${session.SID},commCode=${community.commCode})}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">커뮤니티 가입</a> 
+					<a th:if="${isAdmin=='false'}" th:href="@{/addCommMemberReg(memberId=${session.SID},commCode=${community.commCode})}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">커뮤니티 가입</a> 
+					<a th:if="${isAdmin=='true'}" th:href="@{/updateCommunity(commCode=${community.commCode})}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">커뮤니티 수정</a> 
 					<a th:href="@{/createPost(commCode=${community.commCode},memberId=${session.SID})}" class="btn btn-primary active btn-sm" role="button" aria-pressed="true">포스트 만들기</a>
 				</div>
 			</div>
@@ -154,7 +229,7 @@
                   </div>
                </div>
             </div>
-            <div class="card-foot p-2 text-center border-top" th:if="${session.SID}==${community.memberId}">
+            <div class="card-foot p-2 text-center border-top" th:if="${isAdmin=='true'}">
               		<button type="button" class="btn btn-primary text-white btn-sm" data-toggle="modal" data-target="#exampleModal-02">규칙 추가  </button>
 				</div> 
          </div>
@@ -169,7 +244,7 @@
 					</th:block>
 
 				</div>
-				<div class="card-foot p-2 text-center border-top" th:if="${session.SID}==${community.memberId}">
+				<div class="card-foot p-2 text-center border-top" th:if="${isAdmin=='true'}">
 					<button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
 						data-target="#exampleModal-03">테그 추가</button>
 				</div>

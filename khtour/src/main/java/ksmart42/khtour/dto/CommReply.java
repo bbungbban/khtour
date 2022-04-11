@@ -16,11 +16,17 @@ public class CommReply {
 	private String mainText;
 	private String regTime;
 	private String commentsCnt;
-	
+	private String likeOrDislike;
 	private List<CommReply> childrenReply;
 	
 	
 	
+	public String getLikeOrDislike() {
+		return likeOrDislike;
+	}
+	public void setLikeOrDislike(String likeOrDislike) {
+		this.likeOrDislike = likeOrDislike;
+	}
 	public String getResultCnt() {
 		return resultCnt;
 	}
@@ -109,8 +115,8 @@ public class CommReply {
 		return "CommReply [replyCode=" + replyCode + ", memberId=" + memberId + ", postCode=" + postCode
 				+ ", parentReplyCode=" + parentReplyCode + ", likesCnt=" + likesCnt + ", dislikesCnt=" + dislikesCnt
 				+ ", memberName=" + memberName + ", resultCnt=" + resultCnt + ", reportCnt=" + reportCnt + ", mainText="
-				+ mainText + ", regTime=" + regTime + ", commentsCnt=" + commentsCnt + ", childrenReply="
-				+ childrenReply + "]";
+				+ mainText + ", regTime=" + regTime + ", commentsCnt=" + commentsCnt + ", likeOrDislike="
+				+ likeOrDislike + ", childrenReply=" + childrenReply + "]";
 	}
 
 	

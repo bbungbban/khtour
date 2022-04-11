@@ -13,31 +13,109 @@
 			$(".upVote").on("click", function() {
 				var postCode = $(this).attr('data-postCode');
 				var replyCode = $(this).attr('data-replyCode');
-				var resultCnt = $(this).parent().find('#resultCnt')
+				var resultCnt = $(this).parent().find('#resultCnt');
+				var upVote = $(this);
+				var downVote = $(this).parent().find('.downVote');
 				if (typeof replyCode == 'undefined') {
 					$.ajax({
-						url : '/addLikes',
+						url : '/likesDislikesCheck',
 						type : 'post',
 						data : {
 							'postCode' : postCode
 						},
 						dataType : 'text',
 						success : function(data) {
-							resultCnt.text(data);
+							console.log(data);
+							 if(data=='available')
+							{
+								 $.ajax({
+										url : '/addLikes',
+										type : 'post',
+										data : {
+											'postCode' : postCode
+										},
+										dataType : 'text',
+										success : function(data1) {
+											resultCnt.text(data1);	
+											upVote.empty();
+											upVote.append('<i class="la la-caret-up d-flex la-3x justify-content-center text-success pb-5"></i>');
+											
+										}
+								 }); 
+								
+							}
+							 else if(data=='dislike')
+							{
+								 $.ajax({
+										url : '/updateLikeDislike',
+										type : 'post',
+										data : {
+											'postCode' : postCode,
+											'likeDislike' : 'dislike'
+										},
+										dataType : 'text',
+										success : function(data2) {
+											resultCnt.text(data2);
+											upVote.empty();
+											downVote.empty();
+											upVote.append('<i class="la la-caret-up d-flex la-3x justify-content-center text-success pb-5"></i>');
+											downVote.append('<i class="la la-caret-down d-flex la-3x justify-content-center text-white"></i>');
+											
+										}
+								 }); 
+								
+							}
 						}
-					});
+					}); 
 				} else {
 					$.ajax({
-						url : '/addLikes',
+						url : '/likesDislikesCheck',
 						type : 'post',
 						data : {
 							'replyCode' : replyCode
 						},
 						dataType : 'text',
 						success : function(data) {
-							resultCnt.text(data);
+							console.log(data);
+							 if(data=='available')
+							{
+								 $.ajax({
+										url : '/addLikes',
+										type : 'post',
+										data : {
+											'replyCode' : replyCode
+										},
+										dataType : 'text',
+										success : function(data1) {
+											resultCnt.text(data1);	
+											upVote.empty();
+											upVote.append('<i class="la la-caret-up d-flex la-3x justify-content-center text-success pb-2"></i>');
+										}
+								 }); 
+								
+							}
+							 else if(data=='dislike')
+							{
+								 $.ajax({
+										url : '/updateLikeDislike',
+										type : 'post',
+										data : {
+											'replyCode' : replyCode,
+											'likeDislike' : 'dislike'
+										},
+										dataType : 'text',
+										success : function(data2) {
+											resultCnt.text(data2);
+											upVote.empty();
+											downVote.empty();
+											upVote.append('<i class="la la-caret-up d-flex la-3x justify-content-center text-success pb-2"></i>');
+											downVote.append('<i class="la la-caret-down d-flex la-3x justify-content-center text-dark"></i>');
+										}
+								 }); 
+								
+							}
 						}
-					});
+					}); 
 				}
 
 			})
@@ -47,30 +125,104 @@
 				var postCode = $(this).attr('data-postCode');
 				var replyCode = $(this).attr('data-replyCode');
 				var resultCnt = $(this).parent().find('#resultCnt')
+				var downVote = $(this);
+				var upVote = $(this).parent().find('.upVote');
 				if (typeof replyCode == 'undefined') {
 					$.ajax({
-						url : '/addDislikes',
+						url : '/likesDislikesCheck',
 						type : 'post',
 						data : {
 							'postCode' : postCode
 						},
 						dataType : 'text',
 						success : function(data) {
-							resultCnt.text(data);
+							 if(data=='available')
+							{
+								 $.ajax({
+										url : '/addDislikes',
+										type : 'post',
+										data : {
+											'postCode' : postCode
+										},
+										dataType : 'text',
+										success : function(data1) {
+											resultCnt.text(data1);	
+											downVote.empty();
+											downVote.append('<i class="la la-caret-down d-flex la-3x justify-content-center text-danger"></i>');
+										}
+								 }); 
+								
+							}
+							 else if(data=='like')
+							{
+								 $.ajax({
+										url : '/updateLikeDislike',
+										type : 'post',
+										data : {
+											'postCode' : postCode,
+											'likeDislike' : 'like'
+										},
+										dataType : 'text',
+										success : function(data2) {
+											resultCnt.text(data2);	
+											downVote.empty();
+											upVote.empty();
+											upVote.append('<i class="la la-caret-up d-flex la-3x justify-content-center text-white pb-5"></i>');
+											downVote.append('<i class="la la-caret-down d-flex la-3x justify-content-center text-danger"></i>');
+										}
+								 }); 
+									 
+							}
 						}
-					});
+					}); 
 				} else {
 					$.ajax({
-						url : '/addDislikes',
+						url : '/likesDislikesCheck',
 						type : 'post',
 						data : {
 							'replyCode' : replyCode
 						},
 						dataType : 'text',
 						success : function(data) {
-							resultCnt.text(data);
+							 if(data=='available')
+							{
+								 $.ajax({
+										url : '/addDislikes',
+										type : 'post',
+										data : {
+											'replyCode' : replyCode
+										},
+										dataType : 'text',
+										success : function(data1) {
+											resultCnt.text(data1);	
+											downVote.empty();
+											downVote.append('<i class="la la-caret-down d-flex la-3x justify-content-center text-danger"></i>');
+										}
+								 }); 
+								
+							}
+							 else if(data=='like')
+							{
+								 $.ajax({
+										url : '/updateLikeDislike',
+										type : 'post',
+										data : {
+											'replyCode' : replyCode,
+											'likeDislike' : 'like'
+										},
+										dataType : 'text',
+										success : function(data2) {
+											resultCnt.text(data2);	
+											downVote.empty();
+											upVote.empty();
+											upVote.append('<i class="la la-caret-up d-flex la-3x justify-content-center text-dark pb-2"></i>');
+											downVote.append('<i class="la la-caret-down d-flex la-3x justify-content-center text-danger"></i>');
+										}
+								 }); 
+									 
+							}
 						}
-					});
+					}); 
 				}
 			})
 		});
@@ -86,10 +238,10 @@
 					<div class="card-group md-3">
 						<div class="card col-sm-1 bg-primary d-flex pl-0 pr-0">
 							<div class="card-body pl-0 pr-0 pt-5">
-								<a href="#" onclick="return false;" class="upVote" th:data-postCode="${commPost.postCode}"> <i class="la la-caret-up d-flex la-3x justify-content-center text-white pb-5"></i></a>
+								<a href="#!" onclick="return false;" class="upVote" th:data-postCode="${commPost.postCode}"> <i th:if="${commPost.likeOrDislike != 'like'}" class="la la-caret-up d-flex la-3x justify-content-center text-white pb-5"></i><i th:if="${commPost.likeOrDislike == 'like'}" class="la la-caret-up d-flex la-3x justify-content-center text-success pb-5"></i></a>
 								<p id="resultCnt" class="card-text text-white text-center mb-0 pb-0">[[${commPost.resultCnt}]]</p>
 								<p class="card-text text-white text-center mt-0 pt-0 pb-5">좋아요</p>
-								<a href="#!" onclick="return false;" class="downVote" th:data-postCode="${commPost.postCode}"> <i class="la la-caret-down d-flex la-3x justify-content-center text-white"></i></a>
+								<a href="#!" onclick="return false;" class="downVote" th:data-postCode="${commPost.postCode}">  <i th:if="${commPost.likeOrDislike != 'dislike'}" class="la la-caret-down d-flex la-3x justify-content-center text-white"></i><i th:if="${commPost.likeOrDislike == 'dislike'}" class="la la-caret-down d-flex la-3x justify-content-center text-danger"></i></a>
 							</div>
 						</div>
 						<div class="card col-sm-11">
@@ -165,14 +317,10 @@
 									<div class="card-body">
 										<div class="row">
 											<div class="col-sm-2 border-right">
-												<a href="#" onclick="return false;" class="upVote"
-													th:data-replyCode="${r1.replyCode}"> <i
-													class="la la-caret-up d-flex la-3x justify-content-center  pb-2"></i></a>
+												<a href="#" onclick="return false;" class="upVote" th:data-replyCode="${r1.replyCode}"> <i th:if="${r1.likeOrDislike != 'like'}" class="la la-caret-up d-flex la-3x justify-content-center text-dark pb-2"></i><i th:if="${r1.likeOrDislike == 'like'}" class="la la-caret-up d-flex la-3x justify-content-center text-success pb-2"></i></a>
 												<p id="resultCnt" class="card-text  text-center mb-0 pb-0">[[${r1.resultCnt}]]</p>
 												<p class="card-text  text-center mt-0 pt-0 pb-2">좋아요</p>
-												<a href="#!" onclick="return false;" class="downVote"
-													th:data-replyCode="${r1.replyCode}"> <i
-													class="la la-caret-down d-flex la-3x justify-content-center "></i></a>
+												<a href="#!" onclick="return false;" class="downVote" th:data-replyCode="${r1.replyCode}"> <i th:if="${r1.likeOrDislike != 'dislike'}" class="la la-caret-down d-flex la-3x justify-content-center text-dark"></i><i th:if="${r1.likeOrDislike == 'dislike'}" class="la la-caret-down d-flex la-3x justify-content-center text-danger"></i></a>
 											</div>
 											<div class="col-sm-10 border-left">
 												<div class="card-text pt-3 pb-3 mt-2 mb-2"
@@ -238,14 +386,10 @@
 										<div class="card-body">
 											<div class="row">
 												<div class="col-sm-2 border-right">
-													<a href="#" onclick="return false;" class="upVote"
-														th:data-replyCode="${r2.replyCode}"> <i
-														class="la la-caret-up d-flex la-3x justify-content-center  pb-2"></i></a>
+													<a href="#" onclick="return false;" class="upVote" th:data-replyCode="${r2.replyCode}"> <i th:if="${r2.likeOrDislike != 'like'}" class="la la-caret-up d-flex la-3x justify-content-center text-dark pb-2"></i><i th:if="${r2.likeOrDislike == 'like'}" class="la la-caret-up d-flex la-3x justify-content-center text-success pb-2"></i></a>
 													<p id="resultCnt" class="card-text  text-center mb-0 pb-0">[[${r2.resultCnt}]]</p>
 													<p class="card-text  text-center mt-0 pt-0 pb-2">좋아요</p>
-													<a href="#!" onclick="return false;" class="downVote"
-														th:data-replyCode="${r2.replyCode}"> <i
-														class="la la-caret-down d-flex la-3x justify-content-center "></i></a>
+													<a href="#!" onclick="return false;" class="downVote" th:data-replyCode="${r2.replyCode}"> <i th:if="${r2.likeOrDislike != 'dislike'}" class="la la-caret-down d-flex la-3x justify-content-center text-dark"></i><i th:if="${r2.likeOrDislike == 'dislike'}" class="la la-caret-down d-flex la-3x justify-content-center text-danger"></i></a>
 												</div>
 												<div class="col-sm-10 border-left">
 													<div class="card-text pt-3 pb-3 mt-2 mb-2"
@@ -257,12 +401,8 @@
 											<div class="accordion accordion-box" id="accordionExample-03">
 												<div class="card">
 													<div class="card-header" id="headingOne-03">
-														<div class="accordion-title bg-white pb-1 pt-1"
-															data-toggle="collapse"
-															th:attr="data-target='#collapseOne-' + ${index2.index} + ${index1.index}"
-															aria-expanded="true" aria-controls="collapseOne-03">
-															<a><i class="text-dark feather icon-message-circle"></i>
-																댓글([[${r2.commentsCnt}]])</a>
+														<div class="accordion-title bg-white pb-1 pt-1" data-toggle="collapse" th:attr="data-target='#collapseOne-' + ${index2.index} + ${index1.index}" aria-expanded="true" aria-controls="collapseOne-03">
+															<a><i class="text-dark feather icon-message-circle"></i> 댓글([[${r2.commentsCnt}]])</a>
 														</div>
 													</div>
 													<div
@@ -312,14 +452,11 @@
 											<div class="card-body bg-white">
 												<div class="row">
 													<div class="col-sm-2 border-right">
-														<a href="#" onclick="return false;" class="upVote"
-															th:data-replyCode="${r3.replyCode}"> <i
-															class="la la-caret-up d-flex la-3x justify-content-center  pb-2"></i></a>
+														<a href="#" onclick="return false;" class="upVote" th:data-replyCode="${r3.replyCode}"> <i th:if="${r3.likeOrDislike != 'like'}" class="la la-caret-up d-flex la-3x justify-content-center text-dark pb-2"></i><i th:if="${r3.likeOrDislike == 'like'}" class="la la-caret-up d-flex la-3x justify-content-center text-success pb-2"></i></a>
 														<p id="resultCnt" class="card-text  text-center mb-0 pb-0">[[${r3.resultCnt}]]</p>
 														<p class="card-text  text-center mt-0 pt-0 pb-2">좋아요</p>
 														<a href="#!" onclick="return false;" class="downVote"
-															th:data-replyCode="${r3.replyCode}"> <i
-															class="la la-caret-down d-flex la-3x justify-content-center "></i></a>
+															th:data-replyCode="${r3.replyCode}"> <i th:if="${r3.likeOrDislike != 'dislike'}" class="la la-caret-down d-flex la-3x justify-content-center text-dark"></i><i th:if="${r3.likeOrDislike == 'dislike'}" class="la la-caret-down d-flex la-3x justify-content-center text-danger"></i></a>
 													</div>
 													<div class="col-sm-10 border-left">
 														<div class="card-text pt-3 pb-3 mt-2 mb-2"
@@ -385,16 +522,13 @@
 												<div class="card-body bg-white">
 													<div class="row">
 														<div class="col-sm-2 border-right">
-															<a href="#" onclick="return false;" class="upVote"
-																th:data-replyCode="${r4.replyCode}"> <i
-																class="la la-caret-up d-flex la-3x justify-content-center  pb-2"></i></a>
+															<a href="#" onclick="return false;" class="upVote" th:data-replyCode="${r4.replyCode}"> <i th:if="${r4.likeOrDislike != 'like'}" class="la la-caret-up d-flex la-3x justify-content-center text-dark pb-2"></i><i th:if="${r4.likeOrDislike == 'like'}" class="la la-caret-up d-flex la-3x justify-content-center text-success pb-2"></i></a>
 															<p id="resultCnt"
 																class="card-text  text-center mb-0 pb-0">[[${r4.resultCnt}]]</p>
 															<p class="card-text  text-center mt-0 pt-0 pb-2">좋아요</p>
 															<a href="#!" onclick="return false;" class="downVote"
-																th:data-replyCode="${r4.replyCode}"> <i
-																class="la la-caret-down d-flex la-3x justify-content-center "></i></a>
-														</div>
+																th:data-replyCode="${r4.replyCode}"> <i th:if="${r4.likeOrDislike != 'dislike'}" class="la la-caret-down d-flex la-3x justify-content-center text-dark"></i><i th:if="${r4.likeOrDislike == 'dislike'}" class="la la-caret-down d-flex la-3x justify-content-center text-danger"></i></a>
+															</div>
 														<div class="col-sm-10 border-left">
 															<div class="card-text pt-3 pb-3 mt-2 mb-2"
 																th:text="${r4.mainText}"></div>
@@ -488,7 +622,7 @@
 							</div>
 						</div>
 						<div class="card-foot p-2 text-center border-top"
-							th:if="${session.SID}==${community.memberId}">
+							th:if="${isAdmin=='true'}">
 							<button type="button" class="btn btn-primary text-white btn-sm"
 								data-toggle="modal" data-target="#exampleModal-02">규칙
 								추가</button>
