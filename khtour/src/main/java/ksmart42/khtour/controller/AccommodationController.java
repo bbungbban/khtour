@@ -137,6 +137,8 @@ public class AccommodationController {
 		List<AccomReview> reviewBydate = accomReviewService.getReviewByDate(ldgCode);
 		List<AccomReview> accomoReviewList = accomReviewService.getAccomReviewList(ldgCode);
 		log.info(accomoReviewList + "리뷰리스트");
+		accommodationService.updateGrade(ldgCode);
+		System.out.println(	accommodationService.updateGrade(ldgCode) + "update 04 011");		
 		
 		model.addAttribute("title", "리뷰 페이지 이동");
 		model.addAttribute("accomoReviewList", accomoReviewList);

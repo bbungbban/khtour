@@ -89,4 +89,14 @@ public class AccommodationService {
 		
 		return result;
 	}
+	
+	/**
+	 * 코드에 따른 여행게시글 조회수 정보 추가
+	 * @author 김민석
+	 * @param recordBoardCode
+	 */
+	public double updateGrade(String ldgCode) {
+		return accommodationMapper.updateGrade(ldgCode);
+	}
+	
 }

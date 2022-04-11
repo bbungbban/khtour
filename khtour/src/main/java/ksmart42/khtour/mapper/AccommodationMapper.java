@@ -25,4 +25,5 @@ public interface AccommodationMapper {
 	//숙박업소 수정
 	public int modifyAccommodation(Accommodation accommodation);
 
+	public double updateGrade(String ldgCode);
 }
