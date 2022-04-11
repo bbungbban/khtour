@@ -142,6 +142,10 @@
 								<input type="text" class="form-control" name="cosName" placeholder="코스이름을 입력하세요.">
 							</div>
 							<div class="form-group">
+								<label for="cosRegist">코스설명</label>
+								<input type="text" class="form-control" name="cosRegist" placeholder="코스설명을 입력하세요.">
+							</div>
+							<div class="form-group">
 								<label>코스설정</label>
 								<div id="wizard-04" class="wizard">
 									<div class="wizard-nav">
@@ -196,7 +200,7 @@
 														<td th:text="|${l.musStart}~ ${l.musEnd}|"></td>
 														<td style="display: none;" th:text="${l.musDetail}"></td>
 														<td th:text="${l.musClose}"></td>
-														<td><input type="checkbox" class="musCheck" name="musCode1" th:value="${l.musName}" aria-label="Checkbox for following text input" ></td>
+														<td><input type="checkbox" class="musCheck1" name="musCode1" th:value="${l.musName}" aria-label="Checkbox for following text input" ></td>
 													</tr>
 												</tbody>
 												<tfoot style="text-align: center;">
@@ -245,7 +249,7 @@
 														<td th:text="|${l.musStart}~ ${l.musEnd}|"></td>
 														<td style="display: none;" th:text="${l.musDetail}"></td>
 														<td th:text="${l.musClose}"></td>
-														<td><input type="checkbox" class="musCheck" name="musCode2" th:value="${l.musName}" aria-label="Checkbox for following text input" ></td>
+														<td><input type="checkbox" class="musCheck2" name="musCode2" th:value="${l.musName}" aria-label="Checkbox for following text input" ></td>
 													</tr>
 												</tbody>
 												<tfoot style="text-align: center;">
@@ -294,7 +298,7 @@
 														<td th:text="|${l.musStart}~ ${l.musEnd}|"></td>
 														<td style="display: none;" th:text="${l.musDetail}"></td>
 														<td th:text="${l.musClose}"></td>
-														<td><input type="checkbox" class="musCheck" name="musCode3" th:value="${l.musName}" aria-label="Checkbox for following text input" ></td>
+														<td><input type="checkbox" class="musCheck3" name="musCode3" th:value="${l.musName}" aria-label="Checkbox for following text input" ></td>
 													</tr>
 												</tbody>
 												<tfoot style="text-align: center;">
@@ -343,7 +347,7 @@
 														<td th:text="|${l.musStart}~ ${l.musEnd}|"></td>
 														<td style="display: none;" th:text="${l.musDetail}"></td>
 														<td th:text="${l.musClose}"></td>
-														<td><input type="checkbox" class="musCheck" name="musCode4" th:value="${l.musName}" aria-label="Checkbox for following text input" ></td>
+														<td><input type="checkbox" class="musCheck4" name="musCode4" th:value="${l.musName}" aria-label="Checkbox for following text input" ></td>
 													</tr>
 												</tbody>
 												<tfoot style="text-align: center;">
@@ -392,7 +396,7 @@
 														<td th:text="|${l.musStart}~ ${l.musEnd}|"></td>
 														<td style="display: none;" th:text="${l.musDetail}"></td>
 														<td th:text="${l.musClose}"></td>
-														<td><input type="checkbox" class="musCheck" name="musCode5" th:value="${l.musName}" aria-label="Checkbox for following text input" ></td>
+														<td><input type="checkbox" class="musCheck5" name="musCode5" th:value="${l.musName}" aria-label="Checkbox for following text input" ></td>
 													</tr>
 												</tbody>
 												<tfoot style="text-align: center;">
@@ -472,11 +476,26 @@
 </th:block>
 <th:block layout:fragment="customBodyScript">
 	<script th:src="@{/js/KmyJs/postcode.v2.js}"></script>
-	
 	<script>
 		$(function(){
-			$(document).on('click', '.musCheck', function(){
-				$('.musCheck').prop('checked', false);
+			$(document).on('click', '.musCheck1', function(){
+				$('.musCheck1').prop('checked', false);
+				$(this).prop('checked', true);
+			});
+			$(document).on('click', '.musCheck2', function(){
+				$('.musCheck2').prop('checked', false);
+				$(this).prop('checked', true);
+			});
+			$(document).on('click', '.musCheck3', function(){
+				$('.musCheck3').prop('checked', false);
+				$(this).prop('checked', true);
+			});
+			$(document).on('click', '.musCheck4', function(){
+				$('.musCheck4').prop('checked', false);
+				$(this).prop('checked', true);
+			});
+			$(document).on('click', '.musCheck5', function(){
+				$('.musCheck5').prop('checked', false);
 				$(this).prop('checked', true);
 			});
 		});
