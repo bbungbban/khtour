@@ -614,6 +614,18 @@
 			WHERE 
 				r.comm_code = #{commCode};
 	</select>
+	<select id="getRuleByRuleCode"  resultMap="ruleResultMap">
+			SELECT
+				r.rule_code
+				,r.comm_code
+				,r.title
+				,r.detail
+				,r.reg_time
+			FROM
+			 	tb_comm_rules AS r
+			WHERE 
+				r.rule_code = #{ruleCode};
+	</select>
 	
 	<select id="getTagListByCommCode"  resultMap="tagResultMap">
 			SELECT
@@ -713,6 +725,27 @@
 			, #{commDesc}
 		);
 	</insert>
+	<update id="updateCommunity" parameterType="Community">
+		UPDATE tb_community
+			SET
+			comm_name = #{commName}	
+			,category_code = #{categoryCode}
+			,comm_desc = #{commDesc}	 
+		WHERE
+			comm_code = #{commCode};	
+	</update>
+	<update id="updatePost" parameterType="CommPost">
+		UPDATE tb_comm_post
+			SET
+			tag_code = #{tagCode}	
+			,title = #{title}
+			,main_text = #{mainText}	 
+		WHERE
+			post_code = #{postCode};	
+	</update>
+	
+	
+	
 	<insert id="addRule" parameterType="Rule">
 		INSERT INTO tb_comm_rules
 			(	 rule_code
@@ -728,6 +761,23 @@
 			, NOW()
 		);
 	</insert>
+	<update id="updateRule" parameterType="Rule">
+		UPDATE tb_comm_rules
+			SET
+			title = #{title}	
+			,detail = #{detail} 
+		WHERE
+			rule_code = #{ruleCode};	
+	</update>
+	<update id="updateTag" parameterType="CommTag">
+		UPDATE tb_comm_tag
+			SET
+			tag_name = #{tagName}	
+			,tag_color = #{tagColor} 
+		WHERE
+			tag_code = #{tagCode};	
+	</update>
+	
 	
 	<insert id="addCommMemberReg" parameterType="commMemberReg"> 
 		INSERT INTO tb_comm_member_reg

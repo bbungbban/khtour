@@ -76,6 +76,9 @@ public interface CommunityMapper {
 	
 	// 6 : 커뮤니티 이름으로 규칙 리스트 찾아서 반환 
 	public List<Rule> getRuleListByCommCode(String commCode);
+	
+	public Rule getRuleByRuleCode(String ruleCode);
+	
 	// 7 : 커뮤니티 이름으로 커뮤니티 테그 찾아서 반환 
 	public List<CommTag> getTagListByCommCode(String commCode);
 	
@@ -83,10 +86,18 @@ public interface CommunityMapper {
 	
 	// 8 : 커뮤니티 추가
 	public void addCommunity(Community community);
+	
+	public void updateCommunity(Community community);
+	public void updatePost(CommPost commPost);
+	public void updateTag(CommTag commTag);
+	
 	// 9 : 커뮤니티 포스트 추가
 	public void addCommPost(CommPost commpost);
 	// 10 : 커뮤니티 규칙 추가
 	public void addRule(Rule rule);
+	
+	public void updateRule(Rule rule);
+	
 	// 11 : 커뮤니티 테그 추가
 	public void addTag(CommTag commTag);
 	

@@ -62,8 +62,21 @@ public class CommunityController {
 		boolean nameCheck = false;
 		boolean result = communityMapper.commNameCheck(commName);
 		nameCheck= result;
-		log.info("커뮤니티 이름중복체크 여부: {}",result);
 		return nameCheck;
+	}	
+	@PostMapping("/getRuleByRuleCode")
+	@ResponseBody
+	public Rule getRuleByRuleCode(@RequestParam(value = "ruleCode") String ruleCode)
+	{
+		Rule rule = communityMapper.getRuleByRuleCode(ruleCode);
+		return rule;
+	}	
+	@PostMapping("/getTagByTagCode")
+	@ResponseBody
+	public CommTag getTagByTagCode(@RequestParam(value = "tagCode") String tagCode)
+	{
+		CommTag commTag = communityMapper.getCommTagByTagCode(tagCode);
+		return commTag;
 	}	
 	
 	@PostMapping("/likesDislikesCheck")
@@ -243,9 +256,20 @@ public class CommunityController {
 	public String updateCommunity(@RequestParam(name="commCode",required=false) String commCode,Model model){
 		
 		Community community = communityMapper.getCommunityByCommCode(commCode);
+		List<CommCategory> categoryList = communityService.getCommCategoryList();
 		model.addAttribute("community", community);
-		
+		model.addAttribute("categoryList", categoryList);
 		return "community/updateCommunity";
+	}
+	
+	@PostMapping("updateCommunity")
+	public String updateCommunity(RedirectAttributes reAttr,Community community){
+		
+		
+		communityService.updateCommunity(community);
+		
+		reAttr.addAttribute("commCode",community.getCommCode());
+		return "redirect:/commPage";
 	}
 	
 	
@@ -280,13 +304,10 @@ public class CommunityController {
 		
 		//임시 더미데이터 저장
 		community.setMemberCnt("1");
-		community.setOnlineMemberCnt("0");
-		/* community.setMemberId("id001"); */
-		
+		community.setOnlineMemberCnt("0");		
 		community.setCommCode(communityMapper.getNextCommCode());
 		//커뮤니티 데이터 베이스에 저장
 		communityService.addCommunity(community);
-
 		//커뮤니티 이름 리다이렉트 정보에 저장
 		reAttr.addAttribute("commCode",community.getCommCode());
 		
@@ -377,7 +398,10 @@ public class CommunityController {
 		}
 		//포스트 데이타 베이스에 저장
 		//포스트 코드 생성후 저장
-			commPost.setPostCode(communityMapper.getNextPostCode());	
+			commPost.setPostCode(communityMapper.getNextPostCode());
+			
+
+	
 			communityService.addCommPost(commPost);
 
 			List<Map<String,String>> addFileControlList = new ArrayList<Map<String,String>>();	
@@ -422,6 +446,14 @@ public class CommunityController {
 		String likeOrDislike = communityMapper.checkLikeDislikeByMemberIdAndPostCode((String)session.getAttribute("SID"), commPost.getPostCode());
 		commPost.setLikeOrDislike(likeOrDislike);
 		
+		if(commPost.getMemberId().equals(session.getAttribute("SID")))
+		{
+			model.addAttribute("isPostMaker","true");
+		}
+		else
+		{
+			model.addAttribute("isPostMaker","false");
+		}
 		
 		
 		List<CommReply> replyList = communityService.getCommReplyListByPostCode(postCode,session);
@@ -437,40 +469,13 @@ public class CommunityController {
 		// 커뮤니티 이름으로 특정 커뮤니티 찾아서 저장
 		Community community = communityService.getCommunityByCommCode(commCode);
 		
-		String isAdmin = "false";
-		
-		if(session.getAttribute("SID") !=null &&session.getAttribute("SLEVEL")!=null)
-		{
-			String memberLevel = (String)session.getAttribute("SLEVEL");
-			String memberId = (String)session.getAttribute("SID");	
-			if(memberLevel.equals("관리자"))
-			{
-				isAdmin = "true";
-			}
-			else
-			{
-				if(community.getMemberId().equals(memberId))
-				{
-					isAdmin="true";
-				}			
-				else
-				{
-					isAdmin = "false";
-				}
-			}	
-		}
-		
 		
 		
 		// 커뮤니티 이름으로 특정 커뮤니티의 규칙 리스트 찾아서 저장
 		List<Rule> ruleList = communityService.getRuleListByCommCode(commCode);
-		
 		List<String> filePathList= communityMapper.getFileControllerByPostCode(postCode);
 		
-		log.info("파일 주소 리스트: "+ filePathList);
-		
 		//모델에 정보들 저장
-		model.addAttribute("isAdmin", isAdmin);
 		model.addAttribute("filePathList",filePathList);
 		model.addAttribute("replyList",replyList);
 		model.addAttribute("ruleList", ruleList);
@@ -612,6 +617,53 @@ public class CommunityController {
 		communityService.addCommMemberReg(commMemberReg);
 		reAttr.addAttribute("commCode",commCode);
 		reAttr.addAttribute("status", "가입 완료되었습니다!");
+		return "redirect:/commPage";
+	}
+	
+	@GetMapping("/updatePost")
+	public String updatePost(Model model, @RequestParam(value = "postCode") String postCode)
+	{
+		CommPost commPost = communityMapper.getPostByPostCode(postCode);
+		List<CommTag> tagList = communityService.getTagListByCommCode(commPost.getCommCode());
+
+		
+		model.addAttribute("commPost",  commPost);
+		model.addAttribute("tagList",tagList);
+		return "community/updatePost";
+	}
+	
+	@PostMapping("updatePost")
+	public String updatePost(RedirectAttributes reAttr,CommPost commPost)
+	{
+		
+		communityService.updatePost(commPost);
+		
+		reAttr.addAttribute("postCode",commPost.getPostCode());
+		
+		
+		return "redirect:/post";
+	}
+	@PostMapping("updateRule")
+	public String updateRule(RedirectAttributes reAttr,Rule rule)
+	{
+		
+		communityService.updateRule(rule);
+		
+		reAttr.addAttribute("commCode",rule.getCommCode());
+		
+		
+		return "redirect:/commPage";
+	}
+	
+	@PostMapping("updateTag")
+	public String updateTag(RedirectAttributes reAttr,CommTag commTag)
+	{
+		
+		communityService.updateTag(commTag);
+		
+		reAttr.addAttribute("commCode",commTag.getCommCode());
+		
+		
 		return "redirect:/commPage";
 	}
 	

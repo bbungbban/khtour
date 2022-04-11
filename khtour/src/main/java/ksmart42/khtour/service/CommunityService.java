@@ -512,6 +512,25 @@ public class CommunityService {
 		return result;
 	}
 	
+	public void updateCommunity(Community community)
+	{
+		communityMapper.updateCommunity(community);
+	}
+	
+	public void updatePost(CommPost commPost)
+	{
+		communityMapper.updatePost(commPost);
+	}
+	
+	public void updateRule(Rule rule)
+	{
+		communityMapper.updateRule(rule);
+	}
+	public void updateTag(CommTag commTag)
+	{
+		communityMapper.updateTag(commTag);
+	}
+	
 	
 	
 	
