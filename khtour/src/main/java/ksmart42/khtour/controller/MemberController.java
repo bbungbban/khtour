@@ -178,12 +178,6 @@ public class MemberController {
 		return "member/memberList";
 	}
 	
-	@PostMapping("/memberList")
-	public String getMemberList() {
-		return null;
-		
-	}
-	
 	
 	/*
 	 * 아이디 중복 체크
@@ -283,7 +277,7 @@ public class MemberController {
 		
 		if(member != null && member.getMemberPw() != null && memberPw.equals(member.getMemberPw())) {
 			log.info("회원 탈퇴 성공");
-			return "redirect:/member/memberList";
+			return "redirect:/";
 			
 		}
 		
