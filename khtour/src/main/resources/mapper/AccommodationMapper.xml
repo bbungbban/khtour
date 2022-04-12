@@ -213,7 +213,7 @@
 		i.ldg_code = #{ldgCode};
 	</select>
 	
-	<!-- 숙박업소 리뷰 개수  + 카운터 SQL -->
+	<!-- 숙박업소 리뷰 개수 + 카운터 SQL -->
 	<update id="addReviewCnt" parameterType="String">
       UPDATE tb_ldg_information
          SET
