@@ -16,9 +16,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ksmart42.khtour.dto.AccomReview;
 import ksmart42.khtour.dto.Accommodation;
-import ksmart42.khtour.dto.Room;
 import ksmart42.khtour.service.AccomReviewService;
 import ksmart42.khtour.service.AccommodationService;
+import ksmart42.khtour.service.MemberService;
 
 @Controller
 @RequestMapping("/accomreview")
@@ -32,6 +32,7 @@ public class AccomreviewController {
 	public AccomreviewController(AccomReviewService accomReviewService, AccommodationService accommodationService) {
 		this.accomReviewService = accomReviewService;
 		this.accommodationService = accommodationService;
+
 	}
 
 	// ldgCode(숙박업소)에 따른 리뷰를 화면에 리스트 출력
@@ -43,11 +44,16 @@ public class AccomreviewController {
 
 		List<AccomReview> accomoReviewList = accomReviewService.getAccomReviewList(ldgCode);
 		log.info(accomoReviewList + "리뷰리스트");
+		String avgGrade = accommodationService.avgGrade(ldgCode);
+		String avgCleanliness = accommodationService.avgCleanliness(ldgCode);
 
 		model.addAttribute("title", "리뷰 페이지 이동");
 		model.addAttribute("accomoReviewList", accomoReviewList);
 		model.addAttribute("accommodation", accommodation);
 		model.addAttribute("ldgCode", ldgCode);
+		model.addAttribute("avgGrade", avgGrade);
+		model.addAttribute("avgCleanliness", avgCleanliness);
+
 
 		return "/accomreview/accomreviewList";
 	}
@@ -60,6 +66,8 @@ public class AccomreviewController {
 		log.info(accomReview + "리뷰 등록");
 
 		attr.addAttribute("ldgCode", accomReview.getLdgCode());
+		
+		accommodationService.addReviewCnt(accomReview.getLdgCode());
 		return "redirect:/accomreview/accomreviewList";
 	}
 
@@ -67,10 +75,15 @@ public class AccomreviewController {
 	@GetMapping("/deleteReview")
 	public String deleteReview(Model model, AccomReview accomReview, RedirectAttributes attr,
 			@RequestParam(name = "ldgReviewCode", required = false) String ldgReviewCode) {
-
+		
+		String ldgCode = accomReviewService.getLdgCodeByReviewCode(ldgReviewCode);
+		accommodationService.subtractReviewCnt(ldgCode);
+		log.info(accomReview + "리뷰삭제");
+		
 		accomReviewService.deleteReview(ldgReviewCode);
 		
 		attr.addAttribute("ldgCode", accomReview.getLdgCode());
+		
 		return "redirect:/accommodation/accommodationList";
 
 	}

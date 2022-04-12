@@ -18,7 +18,7 @@
 		<result column="ldg_tel" 			property="ldgTel" />
 		<result column="ldg_phone"			property="ldgPhone" />
 		<result column="ldg_email" 			property="ldgEmail" />
-		<result column="ldg_avg_grade" 		property="ldgAvgGrade" />
+		<result column="review_cnt" 		property="reviewCnt" />
 		<result column="file_path" 			property="ldgImagePath"/>
 	</resultMap>
 
@@ -38,8 +38,8 @@
 			,l.ldg_explain4
 			,l.ldg_tel
 			,l.ldg_phone
-			,l.ldg_avg_grade
 			,l.ldg_email
+			,l.review_cnt
 		FROM
 			tb_ldg_information AS l
 		WHERE
@@ -114,8 +114,8 @@
 			,l.ldg_explain4
 			,l.ldg_tel
 			,l.ldg_phone
-			,l.ldg_avg_grade
 			,l.ldg_email
+			,l.review_cnt
 			,f.file_path
 		FROM
 			tb_ldg_information AS l
@@ -182,33 +182,54 @@
 		WHERE
 		ldg_code = #{ldgCode};
 	</update>
-	
-	<!-- 숙박업소에 대한 별점 평균 구하는 업데이트 SQL(SubQuery) -->
-	<update id="updateGrade" parameterType="String">
-		UPDATE tb_ldg_information
-			SET
-				ldg_avg_grade = (	SELECT
-											ROUND(avg(ldg_grade),1) 
-										FROM tb_ldg_review AS l
-										WHERE
-											l.ldg_code = #{ldgCode})
-			WHERE 
-				ldg_code = #{ldgCode};
-	</update>
-	
+
 	<!-- 숙박업소 평균 별점 조회 SQL(서브쿼리) -->
-	<select id="avgGrade" parameterType="String">
+	<select id="avgGrade" parameterType="String" resultType="String">
 	SELECT 
-		i.ldg_code	
-		,(SELECT
-			ROUND(AVG(r.ldg_grade),1)
-		FROM
-			tb_ldg_review AS r
-		WHERE
-			r.ldg_code = ldg_code) AS ldg_avg_grade
+		(SELECT
+				ROUND(AVG(r.ldg_grade),1)
+			FROM
+				tb_ldg_review AS r
+			WHERE
+				r.ldg_code = ldg_code) AS ldg_avg_grade
 	FROM
 		tb_ldg_information AS i
 	WHERE
 		i.ldg_code = #{ldgCode};
 	</select>
+	
+	<!-- 숙박업소 청결도 평균 별점 조회 SQL(서브쿼리) -->
+	<select id="avgCleanliness" parameterType="String" resultType="String">
+	SELECT 
+		(SELECT
+				ROUND(AVG(r.ldg_cleanliness),1)
+			FROM
+				tb_ldg_review AS r
+			WHERE
+				r.ldg_code = ldg_code) AS ldg_avg_cleanliness
+	FROM
+		tb_ldg_information AS i
+	WHERE
+		i.ldg_code = #{ldgCode};
+	</select>
+	
+	<!-- 숙박업소 리뷰 개수  + 카운터 SQL -->
+	<update id="addReviewCnt" parameterType="String">
+      UPDATE tb_ldg_information
+         SET
+         review_cnt = review_cnt + 1   
+             
+      WHERE
+         ldg_code = #{ldgCode};   
+   </update>
+   
+	<!-- 숙박업소 리뷰 개수  - 카운터 SQL -->
+	<update id="subtractReviewCnt" parameterType="String">
+      UPDATE tb_ldg_information
+         SET
+         review_cnt = review_cnt - 1   
+             
+      WHERE
+         ldg_code = #{ldgCode};   
+   </update>
 </mapper>

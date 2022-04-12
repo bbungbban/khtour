@@ -16,10 +16,10 @@ public class Accommodation {
    private String ldgPhone;
    private String ldgEmail;
    private String ldgHomepage;
-   private String ldgAvgGrade;
+   private String reviewCnt;
    private String ldgImagePath;
-	
-   public String getLdgCode() {
+   
+	public String getLdgCode() {
 		return ldgCode;
 	}
 	public void setLdgCode(String ldgCode) {
@@ -103,11 +103,11 @@ public class Accommodation {
 	public void setLdgHomepage(String ldgHomepage) {
 		this.ldgHomepage = ldgHomepage;
 	}
-	public String getLdgAvgGrade() {
-		return ldgAvgGrade;
+	public String getReviewCnt() {
+		return reviewCnt;
 	}
-	public void setLdgAvgGrade(String ldgAvgGrade) {
-		this.ldgAvgGrade = ldgAvgGrade;
+	public void setReviewCnt(String reviewCnt) {
+		this.reviewCnt = reviewCnt;
 	}
 	public String getLdgImagePath() {
 		return ldgImagePath;
@@ -121,8 +121,8 @@ public class Accommodation {
 				+ businessNumber + ", ldgAddr=" + ldgAddr + ", ldgDetailAddr=" + ldgDetailAddr + ", ldgExplain1="
 				+ ldgExplain1 + ", ldgExplain2=" + ldgExplain2 + ", ldgExplain3=" + ldgExplain3 + ", ldgExplain4="
 				+ ldgExplain4 + ", ldgTel=" + ldgTel + ", ldgPhone=" + ldgPhone + ", ldgEmail=" + ldgEmail
-				+ ", ldgHomepage=" + ldgHomepage + ", ldgAvgGrade=" + ldgAvgGrade + ", ldgImagePath=" + ldgImagePath + "]";
+				+ ", ldgHomepage=" + ldgHomepage + ", reviewCnt=" + reviewCnt + ", ldgImagePath=" + ldgImagePath + "]";
 	}
-	   
-
+		
+   
 }

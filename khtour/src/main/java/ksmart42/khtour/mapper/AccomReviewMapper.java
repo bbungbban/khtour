@@ -1,7 +1,6 @@
 package ksmart42.khtour.mapper;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -25,4 +24,7 @@ public interface AccomReviewMapper {
 
 	// 시간별 리뷰 리스트 조회 2개
 	public List<AccomReview> getReviewByDate(String ldgCode);
+	
+	//리뷰코드를 가지고 리뷰코드에 맞는 숙박업소 코드를 조회
+	public String getLdgCodeByReviewCode(String ldgReviewCode);
 }

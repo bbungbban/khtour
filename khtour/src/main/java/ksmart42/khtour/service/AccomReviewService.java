@@ -43,8 +43,6 @@ public class AccomReviewService {
 			
 			accomReviewMapper.addAccomReview(accomReview);
 			
-			accommodationMapper.updateGrade(accomReview.getLdgCode());
-			
 		}
 		/**
 		 * 코드에 따른 리뷰 삭제
@@ -62,6 +60,14 @@ public class AccomReviewService {
 		public List<AccomReview> getReviewByDate(String ldgCode){
 			
 			return accomReviewMapper.getReviewByDate(ldgCode);
+		}
+		
+		/**
+		 * 리뷰코드를 가지고 리뷰코드에 맞는 숙박업소 코드를 조회
+		 */
+		public String getLdgCodeByReviewCode(String ldgReviewCode) {
+			
+			return accomReviewMapper.getLdgCodeByReviewCode(ldgReviewCode);
 		}
 		
 		
