@@ -72,6 +72,9 @@ public interface RecordBoardMapper {
 	// 댓글 등록
 	public int addComment(RecordBoardComment recordBoardComment);
 	
+	// 댓글 삭제
+	public int removeRecordBoardComment(String commentNum);
+	
 	// 여행 게시글 코드에 따른 댓글 삭제
 	public int removeCommentByrCode(String recordBoardCode);
 

@@ -107,4 +107,31 @@
 	</form>
 </div>
 
+<!-- 여행 일정(관리자) 검색 바 -->
+<div th:fragment="searchPlanListStFragment">
+	<form th:action="@{/plan/planListSt}" method="get">
+		<h5>키워드별 검색</h5>
+		<div class="form-row pt-2 mb-4">
+			<div class="form-group col-2">
+				<select class="form-control" name="searchKey">
+					<option value="none">:: 검색 분야 ::</option>
+					<option value="planCode">여행계획코드</option>
+					<option value="memberId">등록자 아이디</option>
+					<option value="planName">여행 계획 이름</option>
+					<option value="soloParty">개인/단체</option>
+					<option value="planMaterials">여행 준비물</option>
+					<option value="planLocation">여행 지역</option>
+				</select>
+			</div>
+			<div class="form-group col-2">
+				<input type="text" name="searchValue" class="form-control"
+					id="formGroupExampleInput" placeholder="검색 키워드를 입력하세요.">
+			</div>
+			<div class="form-group col-1">
+				<button type="submit" class="btn btn-outline-danger">검색</button>
+			</div>
+		</div>
+	</form>
+</div>
+
 </html>

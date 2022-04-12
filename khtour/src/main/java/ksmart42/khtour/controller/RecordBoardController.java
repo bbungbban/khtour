@@ -263,6 +263,8 @@ public class RecordBoardController {
 	public String removeRecordBoard(RecordBoard recordBoard) {
 		String recordBoardCode = recordBoard.getRecordBoardCode();
 
+		recordBoardService.removeCommentByrCode(recordBoardCode);
+		recordBoardService.removeFeedByrCode(recordBoardCode);
 		recordBoardService.removeRecordBoard(recordBoardCode);
 		System.out.println("정보 삭제 포스트 전달" + recordBoardService.removeRecordBoard(recordBoardCode));
 
@@ -308,6 +310,21 @@ public class RecordBoardController {
 		return "redirect:/recordBoard/feedList";
 	} 
 	
+	/* 5. 정보 삭제 (관리자 권한)
+	 *  작성자 : 김민석
+	 *  입  력 : RecordBoard(여행 게시글 리스트)
+	 *  출  력 : String (주소)
+	 *  설  명 : 여행 게시글 정보 삭제(관리자페이지) - Get방식 전달
+	 */
+	@GetMapping("/commentRemove")
+	public String removeRecordBoardComment(RecordBoardComment recordBoardComment) {
+		String CommentNum = recordBoardComment.getCommentNum();
+		
+		recordBoardService.removeRecordBoardComment(CommentNum);
+		
+		return "redirect:/recordBoard/feedList";
+		
+	}	
 	
 	
 	

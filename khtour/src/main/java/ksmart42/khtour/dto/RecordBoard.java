@@ -11,7 +11,8 @@ public class RecordBoard {
 	//end_date, 
 	//reg_date, 
 	//like_count, 
-	//views
+	//views,
+	//travel_style
 	
 	private String recordBoardCode;
 	private String memberId;
@@ -24,6 +25,7 @@ public class RecordBoard {
 	private String regDate;
 	private String likeCount;
 	private int views;
+	private String travelStyle;
 	
 	private String recordBoardImagePath;
 
@@ -133,14 +135,24 @@ public class RecordBoard {
 		this.planStatus = planStatus;
 	}
 
+	
+	public String getTravelStyle() {
+		return travelStyle;
+	}
+
+	public void setTravelStyle(String travelStyle) {
+		this.travelStyle = travelStyle;
+	}
+
 	@Override
 	public String toString() {
 		return "RecordBoard [recordBoardCode=" + recordBoardCode + ", memberId=" + memberId + ", recordBoardName="
 				+ recordBoardName + ", recordBoardSubName=" + recordBoardSubName + ", content=" + content
 				+ ", planStatusCode=" + planStatusCode + ", startDate=" + startDate + ", endDate=" + endDate
-				+ ", regDate=" + regDate + ", likeCount=" + likeCount + ", views=" + views + ", recordBoardImagePath="
-				+ recordBoardImagePath + ", planStatus=" + planStatus + "]";
+				+ ", regDate=" + regDate + ", likeCount=" + likeCount + ", views=" + views + ", travelStyle="
+				+ travelStyle + ", recordBoardImagePath=" + recordBoardImagePath + ", planStatus=" + planStatus + "]";
 	}
+
 
 	
 

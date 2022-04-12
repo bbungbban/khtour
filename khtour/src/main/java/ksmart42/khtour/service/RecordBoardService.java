@@ -127,11 +127,28 @@ public class RecordBoardService {
 	 * @param recordBoardCode
 	 */
 	public int removeRecordBoard(String recordBoardCode) {
-		int result = recordBoardMapper.removeFeedByrCode(recordBoardCode);
 		
-		result += recordBoardMapper.removeRecordBoard(recordBoardCode);
+		return recordBoardMapper.removeRecordBoard(recordBoardCode);
+	}
+	
+	/**
+	 * 여행게시글코드에 따른 댓글 정보 삭제
+	 * @author 김민석
+	 * @param recordBoardCode
+	 */
+	public int removeCommentByrCode(String recordBoardCode) {
 		
-		return result;
+		return recordBoardMapper.removeCommentByrCode(recordBoardCode);
+	}
+	
+	/**
+	 * 여행게시글코드에 따른 피드 정보 삭제
+	 * @author 김민석
+	 * @param recordBoardCode
+	 */
+	public int removeFeedByrCode(String recordBoardCode) {
+		
+		return recordBoardMapper.removeFeedByrCode(recordBoardCode);
 	}
 	
 ////////////피드
@@ -187,11 +204,8 @@ public class RecordBoardService {
 	 * @param feedCode
 	 */
 	public int removeFeed(String feedCode) {
-		int result = recordBoardMapper.removeRecordBoard(feedCode);
-		
-		result += recordBoardMapper.removeRecordBoard(feedCode);
-		
-		return result;
+
+		return recordBoardMapper.removeRecordBoard(feedCode);
 	}
 //////////게시글 댓글 관련
 	
@@ -205,6 +219,15 @@ public class RecordBoardService {
 	}	
 	
 
+	/**
+	 * 코드에 따른 피드 정보 삭제
+	 * @author 김민석
+	 * @param feedCode
+	 */
+	public int removeRecordBoardComment(String commentNum) {
+		
+		return recordBoardMapper.removeRecordBoardComment(commentNum);
+	}
 /////////그 외
 	
 	/**

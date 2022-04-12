@@ -29,7 +29,16 @@
          ,p.plan_expenses   
          ,p.plan_location    
       FROM
-        tb_tra_plan AS p;
+        tb_tra_plan AS p
+   	<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="memberId != null and memberId != ''">
+				h.member_id = #{memberId}
+			</if>
+			<if test="searchKey != null and searchKey != '' and searchValue != ''">
+		 		AND ${searchKey} LIKE CONCAT('%', #{searchValue}, '%')
+		 	</if>
+	</trim>
+	ORDER BY p.plan_code;	
    </select>
    
    <!-- 코드에 따른 여행계획 조회 SQL -->
