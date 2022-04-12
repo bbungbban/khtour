@@ -38,6 +38,16 @@ public class LoginInterceptor implements HandlerInterceptor{
       
       // 회원가입을 하고 관리자만 들어갈 수 있도록 제한
       List<String> admin = new ArrayList<String>();
+      admin.add("/heritage/heritageDetail");				// 문화재 상세 페이지
+      admin.add("/plan/planInsert");						// 여행일정 등록 페이지
+      admin.add("/recordBoard/feedList");				// 게시글에 따른 피드 리스트 조회 페이지
+      admin.add("/recordBoard/feedModify");				// 피드 리스트 수정 페이지
+      admin.add("/recordBoard/recordBoardInsert");		// 여행 게시글 등록 페이지
+      admin.add("/cos/cosBoardList");					// 코스 리스트 조회 페이지
+      admin.add("/cos/cosInsert");						// 코스 등록 페잉지
+      admin.add("/accommodation/accomreviewList");		// 리뷰 리스트 조회 페이지
+      admin.add("/accommodation/acoommodationInfo");		// 숙박업소 리스트 조회 페이지
+      admin.add("/accommodation/accomreviewList");		// 숙박업소 리뷰 조회 페이지
       admin.add("/heritage/heritageListSt");				// 문화재 (관리자) 리스트 조회 페이지
       admin.add("/heritage/heritageModify");				// 문화재 리스트 수정 페이지
       admin.add("/recordBoard/recordBoardListSt");			// 여행 일정 (관리자) 리스트 조회 페이지
