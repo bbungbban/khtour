@@ -47,6 +47,7 @@ public class MainController {
 		this.communityService = communityService;
 		this.fileService = fileService;
 	}
+
 	@GetMapping("/")
 	public String main(Model model) {
 		List<RecordBoard> TopRecordBoardList = recordBoardService.getTopRecordBoardList();
