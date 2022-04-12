@@ -60,15 +60,17 @@ public class LoginInterceptor implements HandlerInterceptor{
 
       
       // 로그인 안하면 로그인 페이지로 이동
-      if(sessionLevel == null && "일반회원".equals(sessionLevel)) {
-         response.sendRedirect("/member/loginMain");
+      if(sessionLevel == null){
+        if(authUser.contains(requestURI)) {
+    	 response.sendRedirect("/member/loginMain");
          return false;
+        }
       // 로그인 했을 때 로그인 한 회원 권한에 따라 주소에 못 들어가도록 설정
       }else {
          //String sessionLevel = (String) session.getAttribute("SLEVEL");
          
          // 회원가입이 완료된 아이디로 로그인 후 해당 페이지 이동
-         if(sessionLevel != null && "관리자".equals(sessionLevel)) {
+         if(sessionLevel != null && "일반회원".equals(sessionLevel)) {
             if(admin.contains(requestURI)) {
                response.sendRedirect("/");
                return false;
