@@ -70,7 +70,7 @@ public class LoginInterceptor implements HandlerInterceptor{
          //String sessionLevel = (String) session.getAttribute("SLEVEL");
          
          // 회원가입이 완료된 아이디로 로그인 후 해당 페이지 이동
-         if(sessionLevel != null && "일반회원".equals(sessionLevel)) {
+         if(sessionLevel == null || "일반회원".equals(sessionLevel)) {
             if(admin.contains(requestURI)) {
                response.sendRedirect("/");
                return false;
