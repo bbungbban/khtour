@@ -71,7 +71,7 @@ public class AccomreviewController {
 		accomReviewService.deleteReview(ldgReviewCode);
 		
 		attr.addAttribute("ldgCode", accomReview.getLdgCode());
-		return "redirect:/accommodation/accomreviewList";
+		return "redirect:/accommodation/accommodationList";
 
 	}
 

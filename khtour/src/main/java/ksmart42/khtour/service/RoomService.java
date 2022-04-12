@@ -69,6 +69,7 @@ public class RoomService {
 		public Room getRoomByCode(String roomCode) {
 			return roomMapper.getRoomByCode(roomCode);
 		}
+		
 		/**
 		 * 객실 등록
 		 */

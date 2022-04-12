@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ksmart42.khtour.dto.AccomReview;
 import ksmart42.khtour.dto.Accommodation;
 import ksmart42.khtour.mapper.AccomReviewMapper;
+import ksmart42.khtour.mapper.AccommodationMapper;
 
 @Service
 @Transactional
@@ -16,8 +17,11 @@ public class AccomReviewService {
 	//DI 의존성 주입
 		private AccomReviewMapper accomReviewMapper;
 		
-		public AccomReviewService(AccomReviewMapper accomReviewMapper) {
+		private AccommodationMapper accommodationMapper;
+		
+		public AccomReviewService(AccomReviewMapper accomReviewMapper, AccommodationMapper accommodationMapper) {
 			this.accomReviewMapper = accomReviewMapper;
+			this.accommodationMapper = accommodationMapper;
 		}
 		
 		public List<AccomReview> getAccomReviewList(String ldgCode){
@@ -39,6 +43,8 @@ public class AccomReviewService {
 			
 			accomReviewMapper.addAccomReview(accomReview);
 			
+			accommodationMapper.updateGrade(accomReview.getLdgCode());
+			
 		}
 		/**
 		 * 코드에 따른 리뷰 삭제
@@ -50,7 +56,9 @@ public class AccomReviewService {
 			
 			return result;
 		}
-		
+		/**
+		 * 최신 리뷰 2개만 화면에 조회 
+		 */
 		public List<AccomReview> getReviewByDate(String ldgCode){
 			
 			return accomReviewMapper.getReviewByDate(ldgCode);

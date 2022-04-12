@@ -24,6 +24,10 @@ public interface AccommodationMapper {
 	
 	//숙박업소 수정
 	public int modifyAccommodation(Accommodation accommodation);
-
-	public double updateGrade(String ldgCode);
+	
+	//숙박업소 리뷰 평점에 대한 평균 업데이트
+	public int updateGrade(String ldgCode);
+	
+	//숙박업소 평균별점 조회 
+	public Accommodation avgGrade(String ldgCode);
 }

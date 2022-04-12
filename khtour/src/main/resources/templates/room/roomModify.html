@@ -8,11 +8,11 @@
 <th:block layout:fragment="contentsTitle">
 	<div class="row">
 		<div class="col">
-			<h2>객실정보 수정</h2>
+			<h2>객실정보 등록</h2>
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="#">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page">객실정보 수정</li>
+					<li class="breadcrumb-item active" aria-current="page">객실정보 등록</li>
 				</ol>
 			</nav>
 		</div>
@@ -24,88 +24,6 @@
 .form-group {
 	float: left;
 }
-
-.filebox input[type="file"] {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	border: 0;
-}
-
-.filebox label {
-	display: inline-block;
-	padding: 0.7rem 0.75rem;
-	color: #53cad8;
-	font-size: inherit;
-	line-height: normal;
-	vertical-align: middle;
-	background-color: #f8f9fa;
-	cursor: pointer;
-	border: 1px solid #53cad8;
-	border-bottom-color: #53cad8;
-	border-radius: .25em;
-}
-
-/* named upload */
-.filebox .upload-name {
-	display: inline-block;
-	padding: 0.7em 3.75rem; /* label의 패딩값과 일치 */
-	font-size: inherit;
-	font-family: inherit;
-	line-height: normal;
-	vertical-align: middle;
-	background-color: #f5f5f5;
-	border: 1px solid #ebebeb;
-	border-bottom-color: #e2e2e2;
-	border-radius: .25em;
-	-webkit-appearance: none; /* 네이티브 외형 감추기 */
-	-moz-appearance: none;
-	appearance: none;
-}
-
-.filebox input[type="file"] { /* 파일 필드 숨기기 */
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	border: 0;
-}
-
-.filebox .upload-display { /* 이미지가 표시될 지역 */
-	margin-bottom: 5px;
-}
-
-@media ( min-width : 768px) {
-	.filebox .upload-display {
-		display: inline-block;
-		margin-right: 5px;
-		margin-bottom: 0;
-	}
-}
-
-.filebox .upload-thumb-wrap { /* 추가될 이미지를 감싸는 요소 */
-	display: inline-block;
-	width: 73px;
-	padding: 2px;
-	vertical-align: middle;
-	border: 1px solid #ddd;
-	border-radius: 5px;
-	background-color: #fff;
-}
-
-.filebox .upload-display img { /* 추가될 이미지 */
-	display: block;
-	max-width: 100%;
-	width: 100% \9;
-	height: auto;
-}
 </style>
 
 	<link rel="stylesheet" type="text/css"
@@ -116,55 +34,66 @@
 			<div class="card">
 				<div class="card-body">
 					<div class="card-title">
-						<form id="modifyRoom"
-							th:action="@{/room/modifyRoom}" method="post">
+						<form id="modifyRoomForm" 
+						th:action="@{/room/modifyRoom}" method="post">
 							<div class="card-title-left">
 								<h4 class="card-title-text">등록 정보 입력</h4>
-								<div class="form-group col-12 col-md-6 col-lg-6">
-									<label for="ldgCode">숙박업소 이름</label> <input
-										type="text" class="form-control" th:value="${ldgName}" readonly="readonly">
-									<input type="hidden" class="form-control" name="ldgCode" th:value="${ldgCode}" readonly="readonly">
+								<div class="form-group col-12 col-md-12 col-lg-12">
+									<label for="ldgCode">숙박업소 코드</label>
+									<input type="hidden" class="form-control" name="ldgCode" th:value="${room.ldgCode}" readonly="readonly">
+									<input type="hidden" class="form-control" name="roomCode" th:value="${room.roomCode}" readonly="readonly">
 								</div>
 								<div class="form-group col-12 col-md-6 col-lg-6">
 									<label for="roomName">객실 이름</label> <input
-										type="text" class="form-control" name="roomName" th:value="${room.roomName}">
-								</div>
-								<div class="form-group col-12 col-md-6 col-lg-6">
-									<label for="roomImg">객실 이미지</label> <input
-										type="text" class="form-control" name="roomImg" th:value="${room.roomImg}">
+										type="text" class="form-control" th:value="${room.roomName}">
 								</div>
 								<div class="form-group col-12 col-md-6 col-lg-6">
 									<label for="roomExplain">객실 상세설명</label> <input type="text"
 										class="form-control" name="roomExplain" th:value="${room.roomExplain}">
 								</div>
-								<div class="form-group col-12 col-md-6 col-lg-6">
-									<label for="roomPersonnel">객실 수용인원</label> <input
-										type="text" class="form-control" name="roomPersonnel" th:value="${room.roomPersonnel}">
+								<div class="form-group col-12 col-md-4 col-lg-4">
+									<label for="roomPersonnel">객실 기준인원</label> 
+									<select class="form-control border border-secondary"
+										id="exampleFormControlSelect1" name="roomPersonnel">
+										<option value="기준 2명 / 최대 2명">기준 2명 / 최대 2명</option>
+										<option value="기준 2명 / 최대 3명">기준 2명 / 최대 3명</option>
+										<option value="기준 2명 / 최대 4명">기준 2명 / 최대 4명</option>
+										<option value="기준 2명 / 최대 6명">기준 2명 / 최대 6명</option>
+										<option value="기준 2명 / 최대 8명">기준 2명 / 최대 8명</option>
+										<option value="기준 2명 / 최대 10명">기준 2명 / 최대10명</option>
+										<option value="기준 2명 / 최대 12명">기준 2명 / 최대 12명</option>
+									</select>
 								</div>
-								<div class="form-group col-12 col-md-6 col-lg-6">
-									<label for="roomType">숙박/대실 </label> <input type="text"
-										class="form-control" name="roomType" th:value="${room.roomType}">
+								<div class="form-group col-12 col-md-4 col-lg-4">
+									<label for="roomType">객실 타입</label> 
+									<select class="form-control border border-secondary"
+										id="exampleFormControlSelect1" name="roomType">
+										<option value="숙박">숙박</option>
+										<option value="대실">대실</option>
+									</select>
 								</div>
-								<div class="form-group col-12 col-md-6 col-lg-6">
-									<label for="roomCheckin">입실 시간</label> <input type="text"
-										class="form-control" name="roomCheckin" th:value="${room.roomCheckin}">
+								<div class="form-group col-12 col-md-4 col-lg-4">
+									<label for="roomCheckin">입실 시간</label> 
+									<select class="form-control border border-secondary"
+										id="exampleFormControlSelect1" name="roomCheckin">
+										<option value="13:00">13:00</option>
+										<option value="14:00">14:00</option>
+										<option value="15:00">15:00</option>
+										<option value="16:00">16:00</option>
+										<option value="17:00">17:00</option>
+										<option value="18:00">18:00</option>
+									</select>
 								</div>
-								<div class="form-group col-12 col-md-6 col-lg-6">
+								<div class="form-group ccol-12 col-md-4 col-lg-4">
 									<label for="roomPrice">객실 가격</label> <input type="text"
 										class="form-control" name="roomPrice" th:value="${room.roomPrice}">
 								</div>
-								<div class="form-group col-12 col-md-6 col-lg-6">
+								<div class="form-group col-12 col-md-4 col-lg-4">
 									<label for="roomDiscount">객실 할인율</label> <input type="text"
 										class="form-control" name="roomDiscount" th:value="${room.roomDiscount}">
 								</div>
-								<div class="form-group col-12 col-md-6 col-lg-6">
-									<label for="roomFinalPrice">최종 가격</label> <input type="text"
-										class="form-control" name="roomFinalPrice" th:value="${room.roomFinalPrice}">
-								</div>
-								<div class="col-2" style="display: inline-block;">
-									<button type="submit" class="btn btn-primary" id="modifyRoom">수정</button>
-								</div>
 							</div>
+							<button type="submit" class="btn btn-primary">수정완료</button>
 						</form>
 					</div>
 				</div>

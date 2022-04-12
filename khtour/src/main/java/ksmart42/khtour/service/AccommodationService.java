@@ -39,6 +39,15 @@ public class AccommodationService {
 		
 		return accommodationMapper.getLdgByCode(ldgCode);
 	}
+	
+	/**
+	 * 코드에따른 숙박업소 평균 별점 조회 
+	 */
+	public Accommodation avgGrade(String ldgCode) {
+		
+		return accommodationMapper.avgGrade(ldgCode);
+	}
+	
 	/**
 	 * 숙박업소 등록
 	 */
@@ -91,9 +100,7 @@ public class AccommodationService {
 	}
 	
 	/**
-	 * 코드에 따른 여행게시글 조회수 정보 추가
-	 * @author 김민석
-	 * @param recordBoardCode
+	 * 숙박업소 평균 별점 
 	 */
 	public double updateGrade(String ldgCode) {
 		return accommodationMapper.updateGrade(ldgCode);

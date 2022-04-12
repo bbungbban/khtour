@@ -18,7 +18,8 @@ public class Accommodation {
    private String ldgHomepage;
    private String ldgAvgGrade;
    private String ldgImagePath;
-	public String getLdgCode() {
+	
+   public String getLdgCode() {
 		return ldgCode;
 	}
 	public void setLdgCode(String ldgCode) {
