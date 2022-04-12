@@ -205,7 +205,8 @@ public class RecordBoardController {
 		List<PlanStatus> planStatusList = recordBoardService.getPlanStatusList();
 		List<RecordBoardComment> recordBoardCommentList = recordBoardService.getCommentListByrCode(recordBoardCode);
 		RecordBoard recordBoard = recordBoardService.getRecordBoardByCode(recordBoardCode);
-
+		
+		
 		model.addAttribute("title", "피드 목록");
 		model.addAttribute("recordBoard", recordBoard);
 		model.addAttribute("planStatusList", planStatusList);
@@ -317,10 +318,12 @@ public class RecordBoardController {
 	 *  설  명 : 여행 게시글 정보 삭제(관리자페이지) - Get방식 전달
 	 */
 	@GetMapping("/commentRemove")
-	public String removeRecordBoardComment(RecordBoardComment recordBoardComment) {
-		String CommentNum = recordBoardComment.getCommentNum();
+	public String removeRecordBoardComment(@RequestParam(value="commentNum", required = false) 		String commentNum
+										  ,@RequestParam(value="recordBoardCode", required = false) String recordBoardCode
+										  ,RedirectAttributes reAttr) {
 		
-		recordBoardService.removeRecordBoardComment(CommentNum);
+		if(commentNum != null)	recordBoardService.removeRecordBoardComment(commentNum);
+		reAttr.addAttribute("recordBoardCode", recordBoardCode);
 		
 		return "redirect:/recordBoard/feedList";
 		

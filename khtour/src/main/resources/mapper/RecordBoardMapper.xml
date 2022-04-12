@@ -137,6 +137,21 @@
 	
 	</select>
 	
+	<!-- 코드에 따른 댓글 조회 SQL -->
+	<select id="getCommentdByCode" parameterType="String" resultMap="CommentResultMap">
+		SELECT
+			 c.comment_num
+			,c.record_board_code
+			,c.content
+			,c.member_id
+			,reg_date  
+		FROM
+		 tb_record_board_comment AS c
+		WHERE
+			comment_num = #{commentNum};
+	
+	</select>
+	
 	<select id="getTopRecordBoardList"  resultMap="recordBoardResultMap">
 		SELECT
 		    r.record_board_code
