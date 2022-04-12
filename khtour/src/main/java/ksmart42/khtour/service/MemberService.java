@@ -31,7 +31,7 @@ public class MemberService {
 	 */
 	public Map<String, Object> getLoginHistory(){
 		
-		List<LoginHistory> loginList = memberMapper.getLoginHistory1();
+		List<LoginHistory> loginList = memberMapper.getLoginHistory();
 		List<Map<String, Object>> loginMapList = memberMapper.getLoginHistory2();
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
@@ -70,7 +70,7 @@ public class MemberService {
 		return memberLevelList;
 	}
 	//회원삭제
-	public void memberDelete(Member member) {
+	public int memberDelete(Member member) {
 		//회원아이디
 		String memberId = member.getMemberId();
 		//권한
@@ -81,6 +81,9 @@ public class MemberService {
 		memberMapper.removeLoginHistory(memberId);
 				
 		memberMapper.memberDelete(memberId);
+		
+		int result = memberMapper.memberDelete(memberId);
+		return result;
 		
 	}
 

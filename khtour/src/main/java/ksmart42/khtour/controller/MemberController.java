@@ -265,7 +265,7 @@ public class MemberController {
 		model.addAttribute("memberId", memberId);
 		if(result != null) model.addAttribute("result", result);
 		
-		return "member/memberModify";
+		return "member/memberDelete";
 
 	}
 	
@@ -292,7 +292,7 @@ public class MemberController {
 		log.info("회원 탈퇴 실패");
 		
 		
-		return "redirect:/member/memberModify";
+		return "redirect:/member/memberDelete";
 	
 	}
 }

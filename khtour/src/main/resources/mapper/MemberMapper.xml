@@ -115,10 +115,7 @@
 				member_pw = #{memberPw},
 			</if>
 			<if test="memberLevel != null and memberLevel != ''">
-				member_level = #{memberLevel},
-			</if>
-			<if test="memberName != null and memberName != ''">
-				member_name = #{memberName},
+				member_user_name = #{memberUserName},
 			</if>
 			<if test="memberContact != null and memberContact != ''">
 				contact = #{memberContact},
