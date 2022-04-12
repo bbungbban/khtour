@@ -98,7 +98,7 @@
 					<i class="feather icon-dollar-sign"></i> <span>결제 관리 (이민영)</span> <span class="sidebar-badge"></span> <i class="la la-angle-right down-arrow"></i>
 				</a>
 				<ul class="sidebar-submenu">
-					<li><a th:href="@{/payment/payDetail.html}"><i class="la la-minus"></i> <span> 결제 정보 </span> </a></li>
+					<li><a th:href="@{/payment/payDetail.html}" th:unless="${session.SID == null && session.SLEVEL != '관리자'}"><i class="la la-minus"></i> <span> 결제 정보 </span> </a></li>
 				</ul>
 			</li>
 	        <li>
@@ -106,8 +106,8 @@
 					<i class="feather icon-dollar-sign"></i> <span>환불 관리 (이민영)</span> <span class="sidebar-badge"></span> <i class="la la-angle-right down-arrow"></i>
 				</a>
 				<ul class="sidebar-submenu">
-					<li><a th:href="@{/refund/refundList.html}"><i class="la la-minus"></i> <span> 환불 신청 내역 </span> </a></li>
-					<li><a th:href="@{/refund/refundDetail.html}"><i class="la la-minus"></i> <span> 환불 정보 </span> </a></li>
+					<li><a th:href="@{/refund/refundList.html}" th:unless="${session.SID == null && session.SLEVEL != '관리자'}"><i class="la la-minus"></i> <span> 환불 신청 내역 </span> </a></li>
+					<li><a th:href="@{/refund/refundDetail.html}" th:unless="${session.SID == null && session.SLEVEL != '관리자'}"><i class="la la-minus"></i> <span> 환불 정보 </span> </a></li>
 				</ul>
 			</li>
 			<li>
