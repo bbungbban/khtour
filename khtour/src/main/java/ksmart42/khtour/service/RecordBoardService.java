@@ -65,6 +65,15 @@ public class RecordBoardService {
 	}
 	
 	/**
+	 * 코드에 따른 여행게시글댓글 조회
+	 * @author 김민석
+	 * @param recordBoardCode
+	 */
+	public RecordBoardComment getCommentdByCode(String commentNum) {
+		return recordBoardMapper.getCommentdByCode(commentNum);
+	}
+	
+	/**
 	 * 조회수에 따른 Top4 여행게시글 조회
 	 * @author 김민석
 	 * @param 
@@ -239,7 +248,7 @@ public class RecordBoardService {
 		return recordBoardMapper.updateViewsByCode(recordBoardCode);
 	}
 	
-
+	
 	
 
 	

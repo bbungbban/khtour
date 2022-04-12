@@ -69,6 +69,9 @@ public interface RecordBoardMapper {
 	// 댓글 목록조회(게시글 코드)
 	public List<RecordBoardComment> getCommentListByrCode(String recordBoardCode);
 
+	// 코드에 따른 댓글 목록 조회(댓글 코드)
+	public RecordBoardComment getCommentdByCode(String commentNum);
+	
 	// 댓글 등록
 	public int addComment(RecordBoardComment recordBoardComment);
 	

@@ -295,10 +295,9 @@
 														<p class="comment-text" th:text="'내용: ' + ${c.content}">댓글 내용</p>
 													</div>
 													<div class="col-10 text-right">
-													<button class="btn btn-danger btn-icon btn-sm mb-1" th:data-commentCd="${recordBoardComment.commentNum}"
-													id="swal-delete-comment">
-													<i class="fa fa-trash-o"></i>
-												</button>
+													
+													<a th:href="@{/recordBoard/commentRemove(commentNum=${c.commentNum}, recordBoardCode=${recordBoard.recordBoardCode})}"><i class="fa fa-trash-o"></i></a> 
+												
 												</div>
 												</div>
 												<div class="d-flex justify-content-between">
