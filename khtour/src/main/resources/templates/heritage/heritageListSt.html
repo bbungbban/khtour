@@ -62,15 +62,29 @@
 									<td th:text="${l.heritageEra}"></td>
 									<td th:text="${l.heritageDesignation}"></td>
 									<td th:text="${l.heritageArea}"></td>
-									<td><a
+									<td><a 
 										class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1"
+										th:if="${session.SLEVEL != '일반회원'}"
 										th:href="@{/heritage/heritageModify(heritageCode=${l.heritageCode})}"><i
-											class="la la-edit"></i> </a></td>
+											class="la la-edit"></i> </a>
+										<a 
+										class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1"
+										th:unless="${session.SLEVEL != '일반회원'}"
+										onclick="alert('일반회원은 문화재 정보를 수정할 수 없습니다.')"><i
+											class="la la-edit"></i> </a>	
+											</td>
 									<td><button class="btn btn-danger btn-icon btn-sm mb-1"
+											th:if="${session.SLEVEL != '일반회원'}"	
 											id="swal-delete-heritage"
 											th:data-heritageCd="${l.heritageCode}">
 											<i class="fa fa-trash-o"></i>
-										</button></td>
+										</button>
+										<button class="btn btn-danger btn-icon btn-sm mb-1"
+											th:unless="${session.SLEVEL != '일반회원'}"
+											onclick="alert('일반회원은 문화재 정보를 삭제할 수 없습니다.')">
+											<i class="fa fa-trash-o"></i>
+										</button>
+										</td>
 								</tr>
 							</tbody>
 						</table>

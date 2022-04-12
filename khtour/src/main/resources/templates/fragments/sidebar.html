@@ -10,7 +10,7 @@
 				</a>
 				<ul class="sidebar-submenu">
 					<li><a th:href="@{/heritage/heritageListByItem}"><i class="la la-minus"></i> <span> 문화재 리스트 </span> </a></li>
-					<li><a th:if="${session.SID != null && session.SLEVEL == '관리자'}" th:href="@{/heritage/heritageListSt}"><i class="la la-minus"></i> <span> 문화재 조회 (관리자)</span> </a></li>
+					<li><a th:href="@{/heritage/heritageListSt}"><i class="la la-minus"></i> <span> 문화재 조회(테이블형)</span> </a></li>
 				</ul>
 			</li>
 			<li>
@@ -47,7 +47,7 @@
 				</a>
 				<ul class="sidebar-submenu">
 					<li><a th:href="@{/recordBoard/recordBoardList}"><i class="la la-minus"></i> <span> 여행기록 게시글 리스트 </span> </a></li>
-					<li><a th:if="${session.SID != null && session.SLEVEL == '관리자'}" th:href="@{/recordBoard/recordBoardListSt}"><i class="la la-minus"></i> <span> 여행기록 게시글 리스트 (관리자)</span> </a></li>
+					<li><a th:href="@{/recordBoard/recordBoardListSt}"><i class="la la-minus"></i> <span> 여행기록 게시글 리스트(테이블형)</span> </a></li>
 				</ul>
 			</li>
 			<li>
@@ -56,7 +56,7 @@
 				</a>
 				<ul class="sidebar-submenu">
 					<li><a th:href="@{/plan/planInsert}"><i class="la la-minus"></i> <span> 여행 일정 만들기 </span> </a></li>
-					<li><a th:href="@{/plan/planListSt}"><i class="la la-minus"></i> <span> 여행 일정 리스트 </span> </a></li>
+					<li><a th:href="@{/plan/planListSt}"><i class="la la-minus"></i> <span> 여행 일정 리스트(테이블형) </span> </a></li>
 				</ul>
 			</li>
 			<li>

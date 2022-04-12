@@ -200,6 +200,11 @@
 									enctype="multipart/form-data">
 									
 									<input type="hidden" name="recordBoardCode" th:value="${param.recordBoardCode}" >
+									<div class="form-group">
+										<label for="memberId"> 등록자 아이디 </label> <input
+											type="text" class="form-control" id="memberId" th:value="${session.SID}"
+											name="memberId" readonly="readonly" required="">
+									</div>
 									
 									<div class="form-group">
 										<label for="feedTitle">피드 제목</label> <input
@@ -276,11 +281,13 @@
 										<div id="collapse-1" class="p-2 collapse"
 											data-parent="#myGroup">
 											<form id="addCommentForm" method="post" th:action="@{/recordBoard/commentInsert}">
+	
 												<div class="d-flex flex-row align-items-start">
 													<img class="rounded-circle"
 														src="https://i.imgur.com/RpzrMR2.jpg" width="40">
 													<textarea class="form-control ml-1 shadow-none textarea" name="content"></textarea>
 													<input type="hidden" name="recordBoardCode" th:value="${param.recordBoardCode}" >
+													<input type="hidden" name="memberId" th:value="${session.SID}">
 												</div>
 												<div class="mt-2 text-right">
 													<button class="btn btn-primary btn-sm shadow-none" id="addCommentBtn"
@@ -296,7 +303,8 @@
 													</div>
 													<div class="col-10 text-right">
 													
-													<a th:href="@{/recordBoard/commentRemove(commentNum=${c.commentNum}, recordBoardCode=${recordBoard.recordBoardCode})}"><i class="fa fa-trash-o"></i></a> 
+													<a th:unless="${session.SID != c.memberId}"
+													th:href="@{/recordBoard/commentRemove(commentNum=${c.commentNum}, recordBoardCode=${recordBoard.recordBoardCode})}"><i class="fa fa-trash-o"></i></a> 
 												
 												</div>
 												</div>
@@ -311,10 +319,20 @@
 										<div id="collapse-2" class="p-2 collapse"
 											data-parent="#myGroup">
 											<div class="d-flex flex-row align-items-start">
-												<a class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1" th:href="@{/recordBoard/recordBoardModify(recordBoardCode=${recordBoard.recordBoardCode})}">
-												<i
-													class="la la-edit"></i> </a>
-												<button class="btn btn-danger btn-icon btn-sm mb-1" th:data-recordBoardCd="${recordBoard.recordBoardCode}"
+												<a class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1"
+												th:if="${session.SID != recordBoard.memberId}"
+												onclick="alert('게시글 작성자만 정보를 수정,삭제할 수 있습니다.')"
+												>
+												<i class="la la-edit"></i> </a></a>
+											
+												<a th:unless="${session.SID != recordBoard.memberId}"
+												class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1" th:href="@{/recordBoard/recordBoardModify(recordBoardCode=${recordBoard.recordBoardCode})}">
+												<i class="la la-edit"></i> </a>
+												<a th:unless="${session.SID != recordBoard.memberId}"
+												class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1">
+												<i class="la la-edit"></i> </a>
+												<button th:unless="${session.SID != recordBoard.memberId}"
+												class="btn btn-danger btn-icon btn-sm mb-1" th:data-recordBoardCd="${recordBoard.recordBoardCode}"
 													id="swal-delete-recordBoard">
 													<i class="fa fa-trash-o"></i>
 												</button>
@@ -421,6 +439,17 @@
 		});
 	</script>
 	<script type="text/javascript" th:inline="javascript">
+	$(function(){
+		/*<![CDATA[*/
+	    var sessionLevel = [[${session.SLEVEL}]];
+	    /*]]>*/
+		
+		function validationCheck(data){
+			if(typeof data == 'undefined' || data == '' || data == null){
+				return false;
+			}
+			return true;
+	}
 	$('#addCommentBtn').click(function() {
 
 			var isSubmit = true;
@@ -430,12 +459,19 @@
 				var inputId = $(this).attr('id');
 				var inputLabel = $('label[for="' + inputId + '"]').text();
 				var inputData = $(this).val();
+				var result = validationCheck(inputData);
 
 				// 사용자가 입력하지 않은 경우
+				if(!result){
+					alert(inputLabel + '을 입력해주세요');
+					$(this).focus();
+					isSubmit = false;
+					return false;
+				}
 			});
 
-			if (isSubmit)
-				$('#addCommentForm').submit();
+			if (isSubmit) $('#addCommentForm').submit();
+			});
 		});
 	</script>
 	<script>

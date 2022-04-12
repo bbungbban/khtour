@@ -234,6 +234,11 @@
 					<form id="addPlanForm" th:action="@{/plan/planInsert}"
 						method="post">
 						<div class="form-group">
+							<label for="memberId"> 등록자 아이디 </label> <input
+								type="text" class="form-control" id="memberId" th:value="${session.SID}"
+								name="memberId" readonly="readonly" required="">
+						</div>
+						<div class="form-group">
 							<label for="planName">여행 이름</label> <input type="text"
 								class="form-control" id="planName" name="planName" placeholder="예)신라시대 2박3일 여행" required="">
 						</div>
@@ -653,8 +658,23 @@
 	
 	<!-- 등록 버튼 자바스크립트 시작 -->
 	<script type="text/javascript" th:inline="javascript">
+		$(function(){
+			/*<![CDATA[*/
+		    var sessionLevel = [[${session.SLEVEL}]];
+		    /*]]>*/
+			
+			function validationCheck(data){
+				if(typeof data == 'undefined' || data == '' || data == null){
+					return false;
+				}
+				return true;
+		}	
 		$('#addPlanBtn').click(function() {
 
+			if(sessionLevel != '일반회원' && sessionLevel != '관리자'){
+				alert('회원과 관리자만 여행 일정등록이 가능합니다')
+				return false;
+			}
 			var isSubmit = true;
 			var inputObj = $('#addPlanForm').find('input');
 
@@ -662,12 +682,20 @@
 				var inputId = $(this).attr('id');
 				var inputLabel = $('label[for="' + inputId + '"]').text();
 				var inputData = $(this).val();
+				var result = validationCheck(inputData);
 
 				// 사용자가 입력하지 않은 경우
+				if(!result){
+					alert(inputLabel + '을 입력해주세요');
+					$(this).focus();
+					isSubmit = false;
+					return false;
+				}
 			});
+			
 
-			if (isSubmit)
-				$('#addPlanForm').submit();
+			if (isSubmit) $('#addPlanForm').submit();
+			});
 		});
 	</script>
 	<!-- 등록 버튼 자바스크립트 종료 -->

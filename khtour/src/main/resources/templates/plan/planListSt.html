@@ -58,13 +58,28 @@
 									<td th:text="${l.soloParty}"></td>
 									<td th:text="${l.planMaterials}"></td>
 									<td th:text="${l.planExpenses}"></td>
-									<td class="text-center"><a
+									<td class="text-center">
+									<a
 										class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1"
+										th:if="${session.SLEVEL != '일반회원'}"
 										th:href="@{/plan/planModify(planCode=${l.planCode})}"><i
-											class="la la-edit"></i> </a></td>
+											class="la la-edit"></i> </a>
+											
+									<a
+										class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1"
+										th:unless="${session.SLEVEL != '일반회원'}"
+										onclick="alert('일반회원은 여행 일정 정보를 수정할 수 없습니다.')"><i
+											class="la la-edit"></i> </a>		
+									</td>
 									<td class="text-center"> 	
 										<button class="btn btn-danger btn-icon btn-sm mb-1"
+											th:if="${session.SLEVEL != '일반회원'}"	
 											id="swal-delete-plan" th:data-planCd="${l.planCode}">
+											<i class="fa fa-trash-o"></i>
+										</button>
+										<button class="btn btn-danger btn-icon btn-sm mb-1"
+											th:unless="${session.SLEVEL != '일반회원'}"
+											onclick="alert('일반회원은 여행일정 정보를 삭제할 수 없습니다.')">
 											<i class="fa fa-trash-o"></i>
 										</button></td>
 								</tr>
