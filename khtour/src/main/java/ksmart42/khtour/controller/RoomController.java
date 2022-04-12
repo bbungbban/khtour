@@ -50,35 +50,35 @@ public class RoomController {
 	}
 	
 	/*
-	 * 객실 계획 정보 수정 (관리자) (Post 정보 전달)
+	 * 객실 획 정보 수정 (관리자) (Post 정보 전달)
 	 */
 	@PostMapping("/modifyRoom")
 	public String modifyRoom(Room room) {
 		
 		roomService.modifyRoom(room);
-		System.out.println("정보 수정 포스트 전달" + roomService.modifyRoom(room));
+		log.info(room + "수정정보");
+		System.out.println("정보수정 POST방식 전달" + roomService.modifyRoom(room));
 		
 		return "redirect:/room/roomListSt";
 	}
 	
 	/*
-	 * 객실 계획 정보 수정 (관리자) (Get 정보 전달)
+	 * 객실 정보 수정 (관리자) (Get 정보 전달)
 	 */
 	@GetMapping("/roomModify")
-	public String modifyRoom(
-			@RequestParam(value="roomCode", required = false) String roomCode
-			,Model model) {
+	public String modifyRoom(@RequestParam(value = "roomCode", required = false) String roomCode
+							,Model model) {
 		Room room = roomService.getRoomByCode(roomCode);
 		
-		model.addAttribute("title", "객실 계획 수정 페이지");
+		model.addAttribute("title", "객실 수정 페이지");
 		model.addAttribute("room", room);
-		System.out.println("정보 수정 겟방식 전달" + room);
+		System.out.println("객실수정 GEt방식 전달" + room);
 		
 		return "room/roomModify";
 	}	
 	
 	/*
-	 * 객실 계획 정보 삭제(post 정보 전달)
+	 * 객실  정보 삭제(post 정보 전달)
 	 */
 	@GetMapping("/roomRemove")
 	public String removeRoom(Room room) {
@@ -113,7 +113,7 @@ public class RoomController {
 		return "redirect:/room/roomListSt";
 	}
 	/*
-	 * ldgCode에 맞는 객실 정보 조회(Get 정보 전달)
+	 * ldgCode에 맞는 겍실 등록(Get 정보 전달)
 	 */
 	@GetMapping("/roomInsert")
 	public String addRoom(Model model

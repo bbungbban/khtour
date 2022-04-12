@@ -250,7 +250,7 @@
 				<div class="col-6 col-md-4 col-lg-4"
 					style="padding: 18.577px; padding-right: 0; padding-bottom: 0;">
 					<span><i class="feather icon-star-on"
-						style="font-size: 30px;"></i></span> <span style="font-size: 40px;">4.7</span>
+						style="font-size: 30px;"></i></span> <span style="font-size: 40px;" th:text="${accommodation.ldgAvgGrade}"></span>
 					<span style="opacity: 0.5; font-size: 20px;">/5</span>
 					<p style="opacity: 0.5;">최근 12개월 누적 평점</p>
 				</div>
@@ -326,7 +326,7 @@
 							<span style="position: absolute; right: 0; line-height: 1.8rem; padding-right: 15px; font-size: 13px; opacity: 0.5;" th:text="${al.reviewTime}"></span>
 						</div>
 						<div class="ReviewNicknameInfo" style="opacity: 0.5;">
-							<span class="memberId" th:text="${al.memberId}"></span><span class="ReviewRoomName" th:text="${accommodation.ldgName}">객실 이름입니다.</span>
+							<span class="memberId" th:text="${al.memberId}"></span><span class="ReviewRoomName" th:text="${accommodation.ldgName}"></span>
 						</div>
 					</div>
 				</div>

@@ -39,9 +39,18 @@
 		   ,r.room_checkin   
 		   ,r.room_price    
 		   ,r.room_discount    
-		   ,r.room_final_price   
+		   ,r.room_final_price
+		   ,f.file_path   
 		FROM
-		  tb_room_info AS r;
+		  tb_room_info AS r
+		LEFT JOIN 
+		   tb_file_control AS fc
+		   ON 
+		   r.ldg_code = fc.reference_code
+		   LEFT JOIN 
+		   tb_file AS f
+		   ON 
+		   fc.file_idx = f.file_idx
 	</select>
 	
 	<!-- 객실 조회 SQL -->
@@ -76,10 +85,19 @@
 		   ,r.room_price    
 		   ,r.room_discount    
 		   ,r.room_final_price 
+		   ,f.file_path   
 		FROM
-		  	tb_room_info AS r
+		  tb_room_info AS r
+		LEFT JOIN 
+		   tb_file_control AS fc
+		   ON 
+		   r.room_code = fc.reference_code
+		   LEFT JOIN 
+		   tb_file AS f
+		   ON 
+		   fc.file_idx = f.file_idx
 		WHERE
-		  	ldg_code = #{ldgCode};
+			ldg_code = #{ldgCode};
 	</select>
 	
 	<!-- 객실 등록 SQL -->
@@ -140,10 +158,7 @@
 			</if>				
 			<if test="roomDiscount != null and roomDiscount != ''">
 				room_discount = #{roomDiscount},
-			</if>				
-			<if test="roomFinalPrice != null and roomFinalPrice != ''">
-				room_final_price = #{roomFinalPrice},
-			</if>				
+			</if>							
 		</trim>
 		WHERE
 			room_code = #{roomCode};

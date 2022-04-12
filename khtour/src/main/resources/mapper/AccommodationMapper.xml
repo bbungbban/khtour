@@ -183,7 +183,7 @@
 		ldg_code = #{ldgCode};
 	</update>
 	
-	<!-- 숙박업소에 대한 별점 평균 구하는 SQL(SubQuery) -->
+	<!-- 숙박업소에 대한 별점 평균 구하는 업데이트 SQL(SubQuery) -->
 	<update id="updateGrade" parameterType="String">
 		UPDATE tb_ldg_information
 			SET
@@ -191,8 +191,24 @@
 											ROUND(avg(ldg_grade),1) 
 										FROM tb_ldg_review AS l
 										WHERE
-											l.ldg_code = '#{ldgCode}')
+											l.ldg_code = #{ldgCode})
 			WHERE 
 				ldg_code = #{ldgCode};
 	</update>
+	
+	<!-- 숙박업소 평균 별점 조회 SQL(서브쿼리) -->
+	<select id="avgGrade" parameterType="String">
+	SELECT 
+		i.ldg_code	
+		,(SELECT
+			ROUND(AVG(r.ldg_grade),1)
+		FROM
+			tb_ldg_review AS r
+		WHERE
+			r.ldg_code = ldg_code) AS ldg_avg_grade
+	FROM
+		tb_ldg_information AS i
+	WHERE
+		i.ldg_code = #{ldgCode};
+	</select>
 </mapper>
