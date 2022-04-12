@@ -37,7 +37,7 @@
 		  	r.ldg_review_code
 		   ,r.member_id
 		   ,r.ldg_code
-		   ,r.ldg_grade  
+		   ,r.ldg_grade
 		   ,r.ldg_cleanliness    
 		   ,r.ldg_kindness
 		   ,r.ldg_convenience   
@@ -48,7 +48,17 @@
 		FROM
 		  tb_ldg_review AS r
 		WHERE
-		  ldg_code = #{ldgCode};
+		  r.ldg_code = #{ldgCode};
+</select>
+
+<!-- ldgCode에 따른 리뷰조회 SQL -->
+<select id="getLdgCodeByReviewCode"  resultType="String">
+		SELECT
+		   r.ldg_code
+		FROM
+		  tb_ldg_review AS r
+		WHERE
+		  r.ldg_review_code = #{ldgReviewCode};
 </select>
 
 <!-- ldgCode에 따른 리뷰조회 SQL -->
@@ -57,7 +67,7 @@
 		  	r.ldg_review_code
 		   ,r.member_id
 		   ,r.ldg_code
-		   ,r.ldg_grade  
+		   ,r.ldg_grade
 		   ,r.ldg_cleanliness    
 		   ,r.ldg_kindness
 		   ,r.ldg_convenience   

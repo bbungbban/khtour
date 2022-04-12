@@ -43,9 +43,17 @@ public class AccommodationService {
 	/**
 	 * 코드에따른 숙박업소 평균 별점 조회 
 	 */
-	public Accommodation avgGrade(String ldgCode) {
+	public String avgGrade(String ldgCode) {
 		
 		return accommodationMapper.avgGrade(ldgCode);
+	}
+	
+	/**
+	 * 코드에따른 숙박업소 청결도 평균 별점 조회 
+	 */
+	public String avgCleanliness(String ldgCode) {
+		
+		return accommodationMapper.avgCleanliness(ldgCode);
 	}
 	
 	/**
@@ -100,10 +108,20 @@ public class AccommodationService {
 	}
 	
 	/**
-	 * 숙박업소 평균 별점 
+	 * 숙박업소 리뷰 + 
 	 */
-	public double updateGrade(String ldgCode) {
-		return accommodationMapper.updateGrade(ldgCode);
+	public void addReviewCnt(String ldgCode) {
+		accommodationMapper.addReviewCnt(ldgCode);
+		
+		
+	}
+	
+	/**
+	 * 숙박업소 리뷰 -
+	 */
+	public void subtractReviewCnt(String ldgCode) {
+		accommodationMapper.subtractReviewCnt(ldgCode);
+		
 	}
 	
 }

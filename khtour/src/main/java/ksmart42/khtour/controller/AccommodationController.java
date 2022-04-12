@@ -21,6 +21,7 @@ import ksmart42.khtour.dto.Accommodation;
 import ksmart42.khtour.dto.Room;
 import ksmart42.khtour.service.AccomReviewService;
 import ksmart42.khtour.service.AccommodationService;
+import ksmart42.khtour.service.MemberService;
 import ksmart42.khtour.service.RoomService;
 
 @Controller
@@ -33,13 +34,14 @@ public class AccommodationController {
 
 	private AccommodationService accommodationService; 
 	private AccomReviewService accomReviewService;
-	
 	private RoomService roomService;
+	private MemberService memberService;
 	
-	public AccommodationController(AccommodationService accommodationService, RoomService roomService, AccomReviewService accomReviewService) {
+	public AccommodationController(AccommodationService accommodationService, RoomService roomService, AccomReviewService accomReviewService, MemberService memberService) {
 		this.accommodationService = accommodationService;
 		this.roomService = roomService;
 		this.accomReviewService = accomReviewService;
+		this.memberService = memberService;
 	
 	
 	}
@@ -138,6 +140,9 @@ public class AccommodationController {
 		List<AccomReview> accomoReviewList = accomReviewService.getAccomReviewList(ldgCode);
 		log.info(accomoReviewList + "리뷰리스트");	
 		
+		String avgGrade = accommodationService.avgGrade(ldgCode);
+		String avgCleanliness = accommodationService.avgCleanliness(ldgCode);
+		
 		model.addAttribute("title", "리뷰 페이지 이동");
 		model.addAttribute("accomoReviewList", accomoReviewList);
 		System.out.println("리뷰 정보 get 전달" + accomoReviewList);
@@ -147,6 +152,10 @@ public class AccommodationController {
 		model.addAttribute("title", "숙박업소 상세 페이지");
 		model.addAttribute("accommodation", accommodation);
 		System.out.println("숙박업소 정보 get 전달" + accommodation);
+		model.addAttribute("avgGrade", avgGrade);
+		log.info(avgGrade + "평균");
+		model.addAttribute("avgCleanliness", avgCleanliness);
+		log.info(avgCleanliness + "평균");
 		
 		return "/accommodation/acoommodationInfo";
 	}
@@ -203,7 +212,6 @@ public class AccommodationController {
 			,Model model ) {
 		
 		Accommodation accommodation = accommodationService.getLdgByCode(ldgCode);
-		Accommodation avgGrade = accommodationService.avgGrade(ldgCode);
 		
 		List<AccomReview> accomoReviewList = accomReviewService.getAccomReviewList(ldgCode);
 		log.info(accomoReviewList + "리뷰리스트");
@@ -211,7 +219,6 @@ public class AccommodationController {
 		model.addAttribute("title", "리뷰 페이지 이동");
 		model.addAttribute("accomoReviewList", accomoReviewList);
 		model.addAttribute("accommodation", accommodation);
-		model.addAttribute("avgGrade", avgGrade);
 		
 		return "/accomreview/accomreviewList";
 	}

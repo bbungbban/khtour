@@ -130,9 +130,9 @@
 					<h2 th:text="${accommodation.ldgName}"></h2>
 					<div class="">
 						<span><i class="feather icon-star-on"></i></span><span
-							th:text="${accommodation.ldgAvgGrade}"></span> <span class="">/5</span>
+							th:text="${avgGrade}"></span> <span class="">/5</span>
 					</div>
-					<span class=""> 후기 <b>1,600</b> 개
+					<span class=""> 후기 <b th:text="${accommodation.reviewCnt}"></b> 개
 					</span>
 					<!-- 호텔 기본 정보 및 리뷰 끝 -->
 					<div class="row card-footer" th:if="${not #lists.isEmpty(roomList)}" th:each="r,index: ${roomList}" style="justify-content: space-between;}">
@@ -213,7 +213,7 @@
 				<div class="card-body" style="padding-bottom: 0;">
 					<div>
 						<h2 style="display: inline; float: left;">후기</h2>
-						<span style="display: inline-block; float: left; font-size: 20px;">(1,600개)</span>
+						<span style="display: inline-block; float: left; font-size: 20px;">([[${accommodation.reviewCnt}]]개)</span>
 						<div class="col-12 col-md-12"></div>
 					</div>
 				</div>
@@ -221,7 +221,7 @@
 					<div class="col-6 col-md-4 col-lg-4"
 						style="padding: 18.577px; padding-right: 0; padding-bottom: 0;">
 						<span><i class="feather icon-star-on"
-							style="font-size: 30px;"></i></span> <span style="font-size: 40px;" th:text="${accommodation.ldgAvgGrade}"></span>
+							style="font-size: 30px;"></i></span> <span style="font-size: 40px;" th:text="${avgGrade}"></span>
 						<span style="opacity: 0.5; font-size: 20px;">/5</span>
 						<p style="opacity: 0.5;">최근 12개월 누적 평점</p>
 					</div>
@@ -233,7 +233,7 @@
 									<div class="progress-bar" role="progressbar"
 										style="width: 75%; background-color: #FFB900;"
 										aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-								</div> <span style="padding-left: 0.5rem;">4.8</span></li>
+								</div> <span style="padding-left: 0.5rem;" th:text="${avgCleanliness}"></span></li>
 							<li class="star"><span style="padding-right: 0.5rem;">친절도</span>
 								<div class="progress progress-h-5" style="width: 5rem;">
 									<div class="progress-bar" role="progressbar"
@@ -280,7 +280,7 @@
 									</span>
 							</div>
 							<div class="ReviewNicknameInfo" style="opacity: 0.5;">
-							<span>닉네임 입니다.</span>
+							<span th:text="${al.memberId}"></span>
 							<span class="ReviewRoomName" th:text="${accommodation.ldgName}"></span>
 							</div>
 						</div>
