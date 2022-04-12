@@ -58,6 +58,10 @@ public interface CommunityMapper {
 	
 	public void addCommentCnt(String postCode);
 	public void addCommentCntOfComments(String replyCode);
+	public void subtractCommentCnt(String postCode);
+	public void subtractCommentCntOfComments(String replyCode);
+	
+	
 	
 	public void addCommunityMemberCnt(String commCode);
 	public void addCategoryMemberCnt(String categoryCode);
@@ -71,8 +75,7 @@ public interface CommunityMapper {
 	public int getPostResultCnt(String postCode);
 	public int getReplyResultCnt(String replyCode);
 	
-	
-	public CommReply getCommReplyByParentReplyCode(String parentReplyCode);
+	public CommReply getCommReplyByReplyCode(String replyCode);
 	
 	// 6 : 커뮤니티 이름으로 규칙 리스트 찾아서 반환 
 	public List<Rule> getRuleListByCommCode(String commCode);
@@ -90,6 +93,16 @@ public interface CommunityMapper {
 	public void updateCommunity(Community community);
 	public void updatePost(CommPost commPost);
 	public void updateTag(CommTag commTag);
+	public void updateReply(CommReply commReply);
+	
+	public void deleteRule(String ruleCode);
+	public void deleteCommReply(String replyCode);
+	public void deleteLikesDislikesByReplyCode(String replyCode);
+	
+
+	
+	
+	public void resetDailyLikeCnt();
 	
 	// 9 : 커뮤니티 포스트 추가
 	public void addCommPost(CommPost commpost);

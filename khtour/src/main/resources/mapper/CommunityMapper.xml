@@ -146,6 +146,14 @@
 		WHERE
 			post_code=#{postCode};	
 	</update>
+	<update id="subtractCommentCnt" parameterType="String">
+		UPDATE tb_comm_post
+			SET
+			comments_cnt = comments_cnt - 1	
+				 
+		WHERE
+			post_code=#{postCode};	
+	</update>
 	
 	<update id="addCommunityMemberCnt" parameterType="String">
 		UPDATE tb_community
@@ -225,17 +233,29 @@
 			reply_code=#{replyCode};	
 	</update>
 	
-	<select id="getCommReplyByParentReplyCode"  resultMap="replyResultMap">
+	<update id="subtractCommentCntOfComments" parameterType="String">
+		UPDATE tb_community_reply
+			SET
+			comments_cnt = comments_cnt - 1		 
+		WHERE
+			reply_code=#{replyCode};	
+	</update>
+	
+	
+	
+	<select id="getCommReplyByReplyCode"  resultMap="replyResultMap">
 			SELECT
 				r.reply_code
 				,r.member_id
 				,r.member_name
 				,r.comments_cnt
 				,r.parent_reply_code
+				,r.main_text
+				,r.post_code
 			FROM
 				tb_community_reply AS r
 			WHERE
-				r.reply_code = #{parentReplyCode}
+				r.reply_code = #{replyCode}
 	</select>
 	
 	<select id="getCommCodeListByMemberId"    resultType="String">
@@ -769,6 +789,31 @@
 		WHERE
 			rule_code = #{ruleCode};	
 	</update>
+	
+	<delete id="deleteRule" parameterType="String">
+		DELETE FROM 
+			tb_comm_rules
+		WHERE 
+			rule_code = #{ruleCode};
+	</delete>
+	<delete id="deleteCommReply" parameterType="String">
+		DELETE FROM 
+			tb_community_reply
+		WHERE 
+			reply_code = #{replyCode};
+	</delete>
+	<delete id="deleteLikesDislikesByReplyCode" parameterType="String">
+		DELETE FROM 
+			tb_likes_dislikes
+		WHERE 
+			reply_code = #{replyCode};
+	</delete>
+	
+	
+	
+	
+	
+	
 	<update id="updateTag" parameterType="CommTag">
 		UPDATE tb_comm_tag
 			SET
@@ -776,6 +821,13 @@
 			,tag_color = #{tagColor} 
 		WHERE
 			tag_code = #{tagCode};	
+	</update>
+	<update id="updateReply" parameterType="CommReply">
+		UPDATE tb_community_reply
+			SET
+			main_text = #{mainText}	
+		WHERE
+			reply_code = #{replyCode};	
 	</update>
 	
 	
@@ -870,6 +922,11 @@
 			c.comm_Name = #{commName};	
 	</select>
 	
+	<update id="resetDailyLikeCnt">
+		UPDATE tb_comm_post 
+			SET
+			daily_likes_cnt = 0;	
+	</update>
 	
 	
 	
