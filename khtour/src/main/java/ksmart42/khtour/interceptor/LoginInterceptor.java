@@ -56,7 +56,7 @@ public class LoginInterceptor implements HandlerInterceptor{
       admin.add("/accommodation/accommodationInsert");		// 숙박업소 등록 페이지
       admin.add("/room/roomModify");						// 객실 정보 수정 페이지
       admin.add("/room/roomListSt");						// 객실 (관리자) 리스트 조회 페이지
-      admin.add("/member/memberList");						// 회원 리스트조회 페이지
+	  admin.add("/member/memberList");						// 회원 리스트조회 페이지
 
       
       // 로그인 안하면 로그인 페이지로 이동

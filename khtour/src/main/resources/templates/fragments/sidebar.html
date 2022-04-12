@@ -90,8 +90,7 @@
 				<ul class="sidebar-submenu">
 					<li><a th:href="@{/member/memberInsert}" th:if="${session.SID == null}"><i class="la la-minus"></i> <span> 회원 가입 </span> </a></li>
 					<li><a th:href="@{/member/memberModify}" th:unless="${session.SID == null}"><i class="la la-minus"></i> <span> 회원 정보 수정 </span> </a></li>
-					<li><a th:href="@{/member/memberList}" th:unless="${session.SID == null}"><i class="la la-minus"></i> <span> 회원 정보 조회 및 삭제 </span> </a></li>
-					<li><a th:href="@{/member/memberDelete}" th:unless="${session.SID == null}"><i class="la la-minus"></i> <span> 회원 탈퇴 </span> </a></li>
+					<li><a th:href="@{/member/memberList}" th:unless="${session.SID == null && session.SLEVEL != '관리자'}"><i class="la la-minus"></i> <span> 회원 정보 조회 </span> </a></li>
 				</ul>
 			</li>
 	        <li>
