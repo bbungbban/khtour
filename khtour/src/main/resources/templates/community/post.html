@@ -10,6 +10,37 @@
 <th:block layout:fragment="customScript">
 	<script>
 		$(function() {
+			
+			$(".updateReplyButton").on('click', function() {
+				var replyCode = $(this).attr('data-replyCode');
+					$.ajax({
+						url : '/getReplyByReplyCode',
+						type : 'post',
+						data : {
+							'replyCode' : replyCode
+						},
+						dataType : 'json',
+						success : function(data) {	
+							$('#mainTextModal').val(data.mainText);	
+							$('#replyCodeModal').val(replyCode);
+							}	
+					});
+			});
+			$(".deleteReplyButton").on('click', function() {
+				var replyCode = $(this).attr('data-replyCode');
+					$.ajax({
+						url : '/getReplyByReplyCode',
+						type : 'post',
+						data : {
+							'replyCode' : replyCode
+						},
+						dataType : 'json',
+						success : function(data) {	
+							$('#replyCodeModal2').val(replyCode);
+							}	
+					});
+			});
+			
 			$(".upVote").on("click", function() {
 				var postCode = $(this).attr('data-postCode');
 				var replyCode = $(this).attr('data-replyCode');
@@ -316,6 +347,8 @@
 											<span class="avatar-name">[[${r1.memberId}]]</span>
 										</div>
 										<a th:text="${r1.memberName}"></a> <a th:text="${r1.regTime}"></a>
+										<button type="button" class="deleteReplyButton btn btn-primary text-white btn-sm" th:data-replyCode="${r1.replyCode}" data-toggle="modal" data-target="#deleteReplyModal" style="float:right;">삭제</button> 
+										<button type="button" class="updateReplyButton btn btn-primary text-white btn-sm" th:data-replyCode="${r1.replyCode}" data-toggle="modal" data-target="#updateReplyModal" style="float:right;">수정</button> 
 
 									</div>
 									<div class="card-body">
@@ -345,8 +378,7 @@
 														data-toggle="collapse"
 														th:attr="data-target='#collapseOne-' + ${index1.index}"
 														aria-expanded="true" aria-controls="collapseOne-03">
-														<a><i class="text-dark feather icon-message-circle"></i>
-															댓글([[${r1.commentsCnt}]])</a>
+														<a><i class="text-dark feather icon-message-circle"></i>댓글([[${r1.commentsCnt}]])</a>
 													</div>
 												</div>
 												<div th:id="'collapseOne-'+${index1.index}" class="collapse"
@@ -366,9 +398,7 @@
 																<input type="hidden" th:value="${session.SID}" name="memberId" />
 															</div>
 															<div class="form-group">
-
-																<input class="submit btn btn-primary btn-sm"
-																	type="submit" value="등록">
+																<input class="submit btn btn-primary btn-sm" type="submit" value="등록">
 															</div>
 														</form>
 													</div>
@@ -386,7 +416,8 @@
 												<span class="avatar-name">[[${r2.memberId}]]</span>
 											</div>
 											<a th:text="${r2.memberName}"></a> <a th:text="${r2.regTime}"></a>
-
+											<button type="button" class="deleteReplyButton btn btn-primary text-white btn-sm" th:data-replyCode="${r2.replyCode}" data-toggle="modal" data-target="#deleteReplyModal" style="float:right;">삭제</button> 
+											<button  type="button" class="updateReplyButton btn btn-primary text-white btn-sm" th:data-replyCode="${r2.replyCode}" data-toggle="modal" data-target="#updateReplyModal" style="float:right;">수정</button> 
 										</div>
 										<div class="card-body">
 											<div class="row">
@@ -453,6 +484,8 @@
 												</div>
 												<a th:text="${r3.memberName}"></a> <a
 													th:text="${r3.regTime}"></a>
+													<button type="button" class="deleteReplyButton btn btn-primary text-white btn-sm" th:data-replyCode="${r3.replyCode}" data-toggle="modal" data-target="#deleteReplyModal" style="float:right;">삭제</button> 
+													<button type="button" class="updateReplyButton btn btn-primary text-white btn-sm" th:data-replyCode="${r3.replyCode}" data-toggle="modal" data-target="#updateReplyModal" style="float:right;">수정</button> 
 
 											</div>
 											<div class="card-body bg-white">
@@ -522,6 +555,8 @@
 													</div>
 													<a th:text="${r4.memberName}"></a> <a
 														th:text="${r4.regTime}"></a>
+													<button type="button" class="deleteReplyButton btn btn-primary text-white btn-sm" th:data-replyCode="${r4.replyCode}" data-toggle="modal" data-target="#deleteReplyModal" style="float:right;">삭제</button> 
+													<button  type="button" class="updateReplyButton btn btn-primary text-white btn-sm" th:data-replyCode="${r4.replyCode}" data-toggle="modal" data-target="#updateReplyModal" style="float:right;">수정</button> 
 												</div>
 												<div class="card-body bg-white">
 													<div class="row">
@@ -594,6 +629,7 @@
 						<div class="card-foot p-2 text-center border-top ">
 							<a th:href="@{/commPage(commCode=${community.commCode})}" class="stretched-link"></a>
 							<a th:if="${isPostMaker=='true'}" th:href="@{/updatePost(postCode=${commPost.postCode})}" class="btn btn-primary active btn-sm" role="button" aria-pressed="true" style="z-index: 2; position: relative;">포스트 수정</a> 
+							<button type="button" class="btn btn-primary text-white btn-sm" data-toggle="modal" data-target="#deletePostModal" style="z-index: 2; position: relative;">포스트 삭제  </button>
 							
 						</div>
 					</div>
@@ -630,7 +666,81 @@
 			</div>
 		</div>
 	</div>
-
+<div class="modal fade" id="updateReplyModal" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">규칙변경</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body p-5">
+					<form class="cmxform" method="post" th:action="@{/updateReply}">
+						<div class="form-group">
+							<input type="hidden" name="postCode" id="postCode" class="form-control" th:value="${commPost.postCode}"></input>
+							
+						</div>
+						<div class="form-group">
+							<label for="mainTextModal">답장 내용</label>
+							<textarea id="mainTextModal" name="mainText" class="form-control" rows="10" required></textarea>
+							<input type="hidden" name="replyCode" id="replyCodeModal" class="form-control"></input>
+						</div>
+						<button type="submit" class="btn btn-primary pull-right">등록</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="modal fade" id="deleteReplyModal" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">댓글 삭제</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body p-5">
+					<form class="cmxform" method="post" th:action="@{/deleteCommReply}">
+						<div class="form-group">
+							<input type="hidden" name="postCode" id="postCode" class="form-control" th:value="${commPost.postCode}"></input>
+							<h2>경고! 정말 삭제 하시겠습니까?</h2>
+							<input type="hidden" name="replyCode" id="replyCodeModal2" class="form-control"></input>
+						</div>
+						<button type="submit" class="btn btn-primary pull-right">확인</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="deletePostModal" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">포스트 삭제</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body p-5">
+					<form class="cmxform" method="post" th:action="@{/deleteCommReply}">
+						<div class="form-group">
+							<input type="hidden" name="postCode" id="postCode" class="form-control" th:value="${commPost.postCode}"></input>
+							<h2>경고! 정말 삭제 하시겠습니까?</h2>
+						</div>
+						<button type="submit" class="btn btn-primary pull-right">확인</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
 </th:block>
 <th:block layout:fragment="customBodyScript">

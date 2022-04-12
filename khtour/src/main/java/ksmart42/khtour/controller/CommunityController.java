@@ -64,6 +64,15 @@ public class CommunityController {
 		nameCheck= result;
 		return nameCheck;
 	}	
+	
+	
+	@PostMapping("/getReplyByReplyCode")
+	@ResponseBody
+	public CommReply getReplyByReplyCode(@RequestParam(value = "replyCode") String replyCode)
+	{
+		CommReply commReply = communityMapper.getCommReplyByReplyCode(replyCode);
+		return commReply;
+	}	
 	@PostMapping("/getRuleByRuleCode")
 	@ResponseBody
 	public Rule getRuleByRuleCode(@RequestParam(value = "ruleCode") String ruleCode)
@@ -575,10 +584,9 @@ public class CommunityController {
 			postList = communityService.getPostByTagCode(postList, tagCode);	
 		}
 		
-		if(status!=null && status!="")
-		{
-			model.addAttribute("status",status);
-		}
+
+		
+		model.addAttribute("status",status);
 		model.addAttribute("isAdmin", isAdmin);
 		model.addAttribute("community",community);
 		model.addAttribute("tagList", tagList);
@@ -667,6 +675,34 @@ public class CommunityController {
 		return "redirect:/commPage";
 	}
 	
-	
+	@PostMapping("updateReply")
+	public String updateReply(RedirectAttributes reAttr,CommReply commReply)
+	{
+		log.info("머야이거 : " + commReply.getReplyCode());
+		communityService.updateReply(commReply);
+		
+		reAttr.addAttribute("postCode",commReply.getPostCode());
+		
+		
+		return "redirect:/post";
+	}
+	@PostMapping("deleteRule")
+	public String deleteRule(RedirectAttributes reAttr,Rule commRule)
+	{
+		reAttr.addAttribute("commCode",commRule.getCommCode());
+		
+		communityService.deleteRule(commRule.getRuleCode());
+		
+		return "redirect:/commPage";
+	}
+	@PostMapping("deleteCommReply")
+	public String deleteCommReply(RedirectAttributes reAttr,CommReply commReply)
+	{
+		reAttr.addAttribute("postCode",commReply.getPostCode());
+		
+		communityService.deleteCommReply(commReply.getReplyCode());
+		
+		return "redirect:/post";
+	}
 	
 }
