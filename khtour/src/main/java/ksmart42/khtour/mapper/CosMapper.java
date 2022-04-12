@@ -8,8 +8,11 @@ import ksmart42.khtour.dto.Cos;
 @Mapper
 public interface CosMapper {
 
-	// 코스 목록조회
+	// 코스 조회
 	public List<Cos> getCosList(Map<String, Object> paramMap);
+	
+	// 카테고리별 코스 조회
+	public List<Cos> history(Map<String, Object> paramMap);
 	
 	// 코스 등록
 	public int addCos(Cos cos);

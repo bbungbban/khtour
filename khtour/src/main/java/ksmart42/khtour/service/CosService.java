@@ -37,6 +37,7 @@ public class CosService {
 	public Cos getCosByCode(String cosCode) {
 		return cosMapper.getCosByCode(cosCode);
 	}
+	
 	/**
 	 * 코스등록
 	 */
@@ -56,7 +57,15 @@ public class CosService {
 		List<Cos> cosList = cosMapper.getCosList(paramMap);
 		return cosList;
 	}
-
+	
+	/**
+	 * 카테고리역사별 코스 목록 조회
+	 */
+	public List<Cos> history(Map<String, Object> paramMap){
+		List<Cos> history = cosMapper.history(paramMap);
+		return history;
+	}
+	
 	/**
 	 * 코스 정보 수정
 	 */

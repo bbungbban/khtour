@@ -26,20 +26,26 @@ public class CosController {
 	public CosController(CosService cosService) {
 		this.cosService = cosService;
 	}
+	
 	/* 
-	 * 2. 코스 조회 (유저 권한)
+	 * 코스 조회 (유저 권한)
 	*/
 	@GetMapping("/cosBoardList")
 	public String getRecordBoardList(Model model) {
-		//Map<String, Object> paramMap = new HashMap<String, Object>();
+		Map<String, Object> paramMap = new HashMap<String, Object>();
 
-		//List<CosBoard> cosBoardService = cosBoardService.getCosBoardList(paramMap);
-
+		List<Cos> cosList = cosService.getCosList(paramMap);
+		List<Cos> history = cosService.history(paramMap);
+		
 		model.addAttribute("title", "코스 조회 페이지");
-		//model.addAttribute("cosBoardService", cosBoardService);
-
+	    model.addAttribute("cosBoardList", cosList);
+	    model.addAttribute("history", history);
+	    model.addAttribute("cosList", cosList);
+	    log.info("코스유저:{}",cosList);
+	    log.info("카테고리 별 코스 조회:{}",history);
 		return "cos/cosBoardList";
 	}
+	
 	/*
 	 * 코스  조회 (관리자)(Get 정보 전달)
 	 */
@@ -136,6 +142,7 @@ public class CosController {
 		cosService.addCos(cos);
 		return "redirect:/cos/cosList";
 	}
+	
 	/*
 	 * 코스 등록(Get 정보 전달)
 	 */
