@@ -44,8 +44,11 @@ public class LoginInterceptor implements HandlerInterceptor{
       admin.add("/recordBoard/recordBoardModify");			// 여행 일정 수정 페이지
       admin.add("/exhib/exhibInsert");						// 전시회 등록 페이지
       admin.add("/exhib/exhibModify");						// 전시회 수정 페이지
+      admin.add("/mus/musInsert");							// 박물관 등록 페이지
+      admin.add("/mus/musModify");							// 박물관 수정 페이지
       admin.add("/plan/planModify");						// 여행일정 수정 페이지
       admin.add("/plan/planListSt");						// 여행일정 (관리자) 리스트 조회 페이지
+      admin.add("/cos/cosInsert");							// 코스 등록 페이지
       admin.add("/cos/cosModify");							// 코스 수정 페이지
       admin.add("/heritage/heritageModify");				// 문화재 수정 페이지
       admin.add("/accommodation/accommodationListSt");		// 숙박업소 (관리자) 리스트 조회 페이지
