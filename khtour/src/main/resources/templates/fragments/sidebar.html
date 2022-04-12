@@ -10,7 +10,7 @@
 				</a>
 				<ul class="sidebar-submenu">
 					<li><a th:href="@{/heritage/heritageListByItem}"><i class="la la-minus"></i> <span> 문화재 리스트 </span> </a></li>
-					<li><a th:href="@{/heritage/heritageListSt}"><i class="la la-minus"></i> <span> 문화재 조회 (관리자)</span> </a></li>
+					<li><a th:if="${session.SID != null && session.SLEVEL == '관리자'}" th:href="@{/heritage/heritageListSt}"><i class="la la-minus"></i> <span> 문화재 조회 (관리자)</span> </a></li>
 				</ul>
 			</li>
 			<li>
@@ -18,7 +18,7 @@
 					<i class="la la-bank"></i> <span>박물관(김문영)</span> <span class="sidebar-badge"></span> <i class="la la-angle-right down-arrow"></i>
 				</a>
 				<ul class="sidebar-submenu">
-					<li><a th:href="@{/mus/musInsert}"><i class="la la-minus"></i> <span> #adm박물관 등록</span> </a></li>
+					<li><a th:if="${session.SID != null && session.SLEVEL == '관리자'}" th:href="@{/mus/musInsert}"><i class="la la-minus"></i> <span> #adm박물관 등록</span> </a></li>
 					<li><a th:href="@{/mus/musList}"><i class="la la-minus"></i> <span> #adm박물관 조회 및 수정</span> </a></li>
 				</ul>
 			</li>
@@ -27,7 +27,7 @@
 					<i class="la la-camera-retro"></i> <span>전시회 (김문영)</span> <span class="sidebar-badge"></span> <i class="la la-angle-right down-arrow"></i>
 				</a>
 				<ul class="sidebar-submenu">
-					<li><a th:href="@{/exhib/exhibInsert}"><i class="la la-minus"></i> <span> #adm전시회 등록 </span> </a></li>
+					<li><a th:if="${session.SID != null && session.SLEVEL == '관리자'}" th:href="@{/exhib/exhibInsert}"><i class="la la-minus"></i> <span> #adm전시회 등록 </span> </a></li>
 					<li><a th:href="@{/exhib/exhibList}"><i class="la la-minus"></i> <span> #adm전시회 조회 및 수정 </span> </a></li>
 				</ul>
 			</li>
@@ -37,7 +37,7 @@
 				</a>
 				<ul class="sidebar-submenu">
 					<li><a th:href="@{/cos/cosBoardList}"><i class="la la-minus"></i> <span>코스</span> </a></li>
-					<li><a th:href="@{/cos/cosInsert}"><i class="la la-minus"></i> <span> adm코스 등록</span> </a></li>
+					<li><a th:if="${session.SID != null && session.SLEVEL == '관리자'}" th:href="@{/cos/cosInsert}"><i class="la la-minus"></i> <span> adm코스 등록</span> </a></li>
 					<li><a th:href="@{/cos/cosList}"><i class="la la-minus"></i> <span> adm코스  조회 및 수정</span> </a></li>
 				</ul>
 			</li>
@@ -47,7 +47,7 @@
 				</a>
 				<ul class="sidebar-submenu">
 					<li><a th:href="@{/recordBoard/recordBoardList}"><i class="la la-minus"></i> <span> 여행기록 게시글 리스트 </span> </a></li>
-					<li><a th:href="@{/recordBoard/recordBoardListSt}"><i class="la la-minus"></i> <span> 여행기록 게시글 리스트 (관리자)</span> </a></li>
+					<li><a th:if="${session.SID != null && session.SLEVEL == '관리자'}" th:href="@{/recordBoard/recordBoardListSt}"><i class="la la-minus"></i> <span> 여행기록 게시글 리스트 (관리자)</span> </a></li>
 				</ul>
 			</li>
 			<li>
@@ -65,8 +65,8 @@
 	            </a>
 	            <ul class="sidebar-submenu">
 	               	<li><a th:href="@{/accommodation/accommodationList}"><i class="la la-minus"></i> <span> #숙박업소 리스트</span> </a></li>
-	               	<li><a th:href="@{/accommodation/accommodationListSt}"><i class="la la-minus"></i> <span> #숙박업소 상세관리(관리자용)</span> </a></li>
-	               	<li><a th:href="@{/room/roomListSt}"><i class="la la-minus"></i> <span>#객실정보 상세관리(관리자) </span> </a></li>
+	               	<li><a th:if="${session.SID != null && session.SLEVEL == '관리자'}" th:href="@{/accommodation/accommodationListSt}"><i class="la la-minus"></i> <span> #숙박업소 상세관리(관리자용)</span> </a></li>
+	               	<li><a th:if="${session.SID != null && session.SLEVEL == '관리자'}" th:href="@{/room/roomListSt}"><i class="la la-minus"></i> <span>#객실정보 상세관리(관리자) </span> </a></li>
 	            </ul>
          	</li>
         	<li>
@@ -112,44 +112,10 @@
 				</ul>
 			</li>
 			<li>
-				<a href="#">
-					<i class="la la-money"></i> <span>포인트관리 (김문영)</span> <span class="sidebar-badge"></span> <i class="la la-angle-right down-arrow"></i>
-				</a>
-				<ul class="sidebar-submenu">
-					<li><a th:href="@{/point/adPointList}"><i class="la la-minus"></i><span> 포인트 적립 및 사용 내역adm</span></a></li>
-					<li><a th:href="@{/point/adPointCList}"><i class="la la-minus"></i> <span> 포인트 현황adm </span> </a></li>
-					<li><a th:href="@{/point/pointList}"><i class="la la-minus"></i><span>포인트 조회</span> </a></li>
-				</ul>
-			</li>
-			<li>
 				<a th:href="@{/traWhether/traWhetherList}">
 					<i class="feather icon-sun"></i> <span>지역별 날씨 정보 관리 <br/>(김민석)</span> <span class="sidebar-badge"></span>
 				</a>
 			</li>
-			<li class="sidebar-header"> Extras </li>
-			<li>
-			<a href="#">
-				<i class="la la-share"></i> <span>Multilevel</span>
-				<i class="la la-angle-right down-arrow"></i>
-			</a>
-			<ul class="sidebar-submenu">
-				<li><a href="#"><i class="la la-minus"></i> <span> Level One </span> </a></li>
-				<li>
-					<a href="#"><i class="la la-minus"></i> <span> Level One </span> <i class="la la-angle-right down-arrow"></i></a>
-					<ul class="sidebar-submenu">
-						<li><a href="#"><i class="la la-minus"></i> <span> Level Two </span> </a></li>
-						<li>
-							<a href="#"><i class="la la-minus"></i> <span> Level Two </span> <i class="la la-angle-right down-arrow"></i></a>
-							<ul class="sidebar-submenu">
-								<li><a href="#"><i class="la la-minus"></i> <span> Level Three </span> </a></li>
-								<li><a href="#"><i class="la la-minus"></i> <span> Level Three </span> </a></li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-				<li><a href="#"><i class="la la-minus"></i> <span> Level One </span> </a></li>
-			</ul>
-		</li>
 	</ul>
 	</div>
 </html>
