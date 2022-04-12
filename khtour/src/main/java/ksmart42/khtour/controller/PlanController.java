@@ -76,12 +76,41 @@ public class PlanController {
 	*  설  명 : 여행 계획 조회(관리자페이지) - get방식 전달
 	*/
 	@GetMapping("/planListSt")
-	public String getPlanListSt(Model model) {
+	public String getPlanListSt(Model model
+			,@RequestParam(name="searchKey", required=false) String searchKey
+			,@RequestParam(name="searchValue", required=false) String searchValue) {
+		
 		Map<String, Object> paramMap = new HashMap<String , Object>();
+		
+		if(searchKey != null) {
+			if("memberId".equals(searchKey)) {
+				searchKey = "member_id";
+			}else if("planCode".equals(searchKey)) {
+				searchKey = "plan_code";
+			}else if("memberId".equals(searchKey)) {
+				searchKey = "member_id";
+			}else if("planName".equals(searchKey)) {
+				searchKey = "plan_name";
+			}else if("soloParty".equals(searchKey)) {
+				searchKey = "solo_party";
+			}else if("planMaterials".equals(searchKey)) {
+				searchKey = "plan_materials";
+			}else if("planMaterials".equals(searchKey)) {
+					searchKey = "plan_materials";
+			}else if("planLocation".equals(searchKey)) {
+				searchKey = "plan_location";
+			}
+	}
+	
+		
+		paramMap.put("searchKey", searchKey);
+		paramMap.put("searchValue", searchValue);
 		
 		List<Plan> planList = planService.getPlanList(paramMap);
 		
-		model.addAttribute("title", "여행 계획 관리페이지");
+		paramMap = null;
+		
+		model.addAttribute("title", "여행 일정 관리페이지");
 		model.addAttribute("planList", planList);
 		
 		return "plan/planListSt";

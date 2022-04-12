@@ -17,6 +17,7 @@
 		<result column="reg_date" 				property="regDate"/>						<!-- 게시글 등록 일자 -->
 		<result column="like_count" 			property="likeCount"/>						<!-- 좋아요 개수 -->
 		<result column="views" 					property="views"/>							<!-- 조회수 -->					
+		<result column="travel_style" 			property="travelStyle"/>					<!-- 여행 스타일 -->					
 	</resultMap> 
 	
 	<!-- 여행게시글 댓글 resultMap -->
@@ -86,7 +87,8 @@
 		   ,r.end_date
 		   ,r.reg_date    
 		   ,r.like_count    
-		   ,r.views 
+		   ,r.views
+		   ,r.travel_style 
 		   ,f.file_path     
 		FROM
 		   tb_record_board AS r
@@ -126,7 +128,8 @@
 		   ,r.end_date
 		   ,r.reg_date    
 		   ,r.like_count    
-		   ,r.views    
+		   ,r.views
+		   ,r.travel_style    
 		FROM
 		 tb_record_board AS r
 		WHERE
@@ -147,6 +150,7 @@
 		   ,r.reg_date    
 		   ,r.like_count    
 		   ,r.views
+		   ,r.travel_style
 			,c.file_idx
 			,f.file_path    
 		FROM
@@ -180,7 +184,8 @@
 		   ,end_date
 		   ,reg_date    
 		   ,like_count    
-		   ,views    
+		   ,views
+		   ,travel_style    
 		) VALUES (
 		    #{recordBoardCode}
 		   ,#{memberId}
@@ -193,6 +198,7 @@
 		   ,CURDATE()
 		   ,#{likeCount}
 		   ,#{views}
+		   ,#{travelStyle}
 		);
 	
 	</insert>
@@ -252,6 +258,9 @@
 			<if test="views != null and views != ''">
 				views = #{views},
 			</if>				
+			<if test="travelStyle != null and travelStyle != ''">
+				travel_style = #{travelStyle},
+			</if>				
 		</trim>
 		WHERE
 			record_board_code = #{recordBoardCode};
@@ -264,6 +273,15 @@
 			tb_record_board
 		WHERE
 			record_board_code = #{recordBoardCode};
+	</delete>
+	
+	<!-- 댓글  정보 삭제 SQL -->
+	<delete id="removeRecordBoardComment" parameterType="String">
+		DELETE
+		FROM
+			tb_record_board_comment
+		WHERE
+			comment_num = #{commentNum};
 	</delete>
 		
 	<!-- 게시글코드에 따른 피드 삭제 SQL -->

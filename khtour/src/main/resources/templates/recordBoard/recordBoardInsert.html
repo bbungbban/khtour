@@ -64,11 +64,21 @@
 						
 						 <select class="form-control"
 							id="planStatusCode" name="planStatusCode">
-							<option value="none">:: 여행 상태 ::</option>
+							<option value="none">:: 선택 ::</option>
 							<option th:if="${not #lists.isEmpty(planStatusList)}" th:value="${s.planStatusCode}" th:text="${s.planStatusName}" th:each="s: ${planStatusList}">
 							</option>
 						</select>
 					</div>
+						<div class="form-group">
+							<label for="travelStyle">여행 스타일</label> <select
+								class="form-control" id="travelStyle" name="travelStyle">
+								<option value="none">:: 선택 ::</option>
+								<option value="나홀로 여행">나홀로 여행</option>
+								<option value="79친구">79친구</option>
+								<option value="가족여행">가족여행</option>
+								<option value="패키지여행">패키지여행</option>
+							</select>
+						</div>
 											<div class="form-group">
 							<label for="startDate"> 여행 시작 </label>
 							<div class="input-group mb-3">
@@ -91,16 +101,6 @@
 									</button>
 								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label for="exampleFormControlSelect1">#여행 멤버</label> <select
-								class="form-control" id="exampleFormControlSelect1">
-								<option>:: 선택 ::</option>
-								<option>나홀로 여행</option>
-								<option>79친구</option>
-								<option>가족여행</option>
-								<option>패키지여행</option>
-							</select>
 						</div>
 						<div class="form-group">
 							<label for="recordBoardImage">이미지 선택</label> <input

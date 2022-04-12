@@ -40,10 +40,10 @@
 									<th>등록자 아이디</th>
 									<th>게시판 제목</th>
 									<th>여행 상태</th>
+									<th>여행 스타일</th>
 									<th>여행 시작</th>
 									<th>여행 종료</th>
 									<th>게시판 등록 날짜</th>
-									<th>좋아요 개수</th>
 									<th>조회수</th>
 									<th>수정/삭제</th>
 								</tr>
@@ -54,11 +54,11 @@
 									<td th:text="${l.recordBoardCode}"></td>
 									<td th:text="${l.memberId}"></td>
 									<td th:text="${l.recordBoardName}"></td>
-									<td th:text="${l.planStatus.getPlanStatusName()}"></td>
+									<td th:text="${l.planStatus.getPlanStatusName()}"></td>									
+									<td th:text="${l.travelStyle}"></td>
 									<td th:text="${l.startDate}"></td>
 									<td th:text="${l.endDate}"></td>
 									<td th:text="${l.regDate}"></td>
-									<td th:text="${l.likeCount}"></td>
 									<td th:text="${l.views}"></td>
 									<td class="text-center"><a
 										class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1"

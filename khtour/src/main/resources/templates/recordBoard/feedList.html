@@ -255,15 +255,12 @@
 				<div class="card-footer mb-4 pt-8">
 					<hr class="my-2">
 					<p class="pt-4"
-						th:text="'여행 시작일 : ' + ${recordBoard.startDate} + ' | ' + '여행 종료일 : ' + ${recordBoard.endDate} + ' | ' + '여행 유형 : 나홀로 여행'"></p>
+						th:text="'여행 시작일 : ' + ${recordBoard.startDate} + ' | ' + '여행 종료일 : ' + ${recordBoard.endDate} + ' | ' + '여행 스타일  : ' + ${recordBoard.travelStyle}"></p>
 					<p
 						th:text="'게시글 등록 날짜 : ' + ${recordBoard.regDate} + ' | ' + '조회수 : ' + ${recordBoard.views}"></p>
 													<div class="d-flex flex-column comment-section" id="myGroup">
 										<div class="p-2">
 											<div class="d-flex flex-row fs-12">
-												<div class="like p-2 cursor">
-													<i class="fa fa-thumbs-o-up"></i><span class="ml-1">좋아요</span>
-												</div>
 												<div class="like p-2 cursor action-collapse"
 													data-toggle="collapse" aria-expanded="true"
 													aria-controls="collapse-1" href="#collapse-1">
@@ -297,11 +294,17 @@
 														<h3 class="mb-1 text-primary" th:text="'등록자 아이디 : ' + ${c.memberId}">\</h3>
 														<p class="comment-text" th:text="'내용: ' + ${c.content}">댓글 내용</p>
 													</div>
+													<div class="col-10 text-right">
+													<button class="btn btn-danger btn-icon btn-sm mb-1" th:data-commentCd="${recordBoardComment.commentNum}"
+													id="swal-delete-comment">
+													<i class="fa fa-trash-o"></i>
+												</button>
+												</div>
 												</div>
 												<div class="d-flex justify-content-between">
 													<div class="d-flex flex-row gap-3 align-items-center"></div>
 													<div class="d-flex flex-row">
-														<span class="text-muted fw-normal fs-10" th:text="'작성 시간:'+${c.regDate}"></span>
+												<span class="text-muted fw-normal fs-10" th:text="'작성 시간:'+${c.regDate}"></span>
 													</div>
 												</div>
 											</div>
@@ -310,11 +313,10 @@
 											data-parent="#myGroup">
 											<div class="d-flex flex-row align-items-start">
 												<a class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1" th:href="@{/recordBoard/recordBoardModify(recordBoardCode=${recordBoard.recordBoardCode})}">
-												<!-- 	th:href="@{/recordBoard/recordBoardModify(recordBoardCode=${l.recordBoardCode})}" --><i
+												<i
 													class="la la-edit"></i> </a>
-												<button class="btn btn-danger btn-icon btn-sm mb-1"
-													id="swal-delete-feed">
-													<!-- th:data-feedCd="${f.feedCode}" -->
+												<button class="btn btn-danger btn-icon btn-sm mb-1" th:data-recordBoardCd="${recordBoard.recordBoardCode}"
+													id="swal-delete-recordBoard">
 													<i class="fa fa-trash-o"></i>
 												</button>
 											</div>
@@ -343,16 +345,16 @@
 								<i class="zmdi zmdi-camera"></i>
 							</div>
 							<div class="info">
-								<span>피드 소개 : </span>
-								<h2 class="pt-3 pl-1">해바라기 가득~</h2>
+								<span>피드 제목 : </span>
+								<h2 class="pt-3 pl-1" th:text="${f.feedTitle}"></h2>
 
 								<div class="embed-responsive embed-responsive-16by9">
 									<img th:src="@{${#strings.isEmpty(f.feedImagePath) ? '/images/traShare/여행이미지1.gif': '/' + #strings.replace(f.feedImagePath,'\','/')}}"
 										class="img-fluid embed-responsive-item" alt="...">
 								</div>
-								KOREA HERITAGETOUR (T)
-								<div class="pl-3">
-									내용 : <h3 th:text=${f.feedContent}></h3>
+								<div style="color:#AD8B73;"> KOREA HERITAGETOUR (T) </div>
+								<div>
+									내용 : <h3 class="pl-5" th:text=${f.feedContent}></h3>
 								</div>
 							</div>
 						</li>
@@ -439,8 +441,8 @@
 	</script>
 	<script>
 		$(function(){
-			$(document).on('click','#swal-delete-feed',function(){
-				var feedCd = $(this).attr('data-feedCd');
+			$(document).on('click','#swal-delete-recordBoard',function(){
+				var recordBoardCd = $(this).attr('data-recordBoardCd');
 			      const swalWithBootstrapButtons = swal.mixin({
 			          confirmButtonClass: 'btn btn-success',
 			          cancelButtonClass: 'btn btn-danger',
@@ -462,7 +464,48 @@
 			              '파일이 안전하게 삭제되었습니다.',
 			              'success'
 			            )
-			            location.href = '/recordBoard/feedRemove?feedCode=' + feedCd;
+			            location.href = '/recordBoard/recordBoardRemove?recordBoardCode=' + recordBoardCd;
+			          } else if (
+			            // Read more about handling dismissals
+			            result.dismiss === swal.DismissReason.cancel
+			          ) {
+			            swalWithBootstrapButtons(
+			              '취소',
+			              '사진은 안전하게 보호됩니다.',
+			              'error'
+			            )
+			          }
+			        });
+
+				    			
+			});
+			
+		});
+		$(function(){
+			$(document).on('click','#swal-delete-comment',function(){
+				var commentCd = $(this).attr('data-commentCd');
+			      const swalWithBootstrapButtons = swal.mixin({
+			          confirmButtonClass: 'btn btn-success',
+			          cancelButtonClass: 'btn btn-danger',
+			          buttonsStyling: false,
+			        });
+
+			        swalWithBootstrapButtons({
+			          title: '정말 삭제 하시겠습니까?',
+			          text: "삭제 클릭시 해당 정보는 복구 할 수 없습니다.",
+			          type: 'warning',
+			          showCancelButton: true,
+			          confirmButtonText: '네',
+			          cancelButtonText: '아니오',
+			          reverseButtons: false
+			        }).then((result) => {
+			          if (result.value) {
+			            swalWithBootstrapButtons(
+			              '삭제완료',
+			              '파일이 안전하게 삭제되었습니다.',
+			              'success'
+			            )
+			            location.href = '/recordBoard/commentRemove?commentNum=' + commentCd;
 			          } else if (
 			            // Read more about handling dismissals
 			            result.dismiss === swal.DismissReason.cancel
