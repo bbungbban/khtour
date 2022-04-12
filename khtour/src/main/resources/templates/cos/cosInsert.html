@@ -100,7 +100,7 @@
 							}
 						//-->
 						</script>
-						<form id="addCos" th:action="@{/cos/cosInsert}" method="post" name="addCos">
+						<form id="addCos" th:action="@{/cos/cosInsert}" method="post" name="addCos" enctype="multipart/form-data">
 							<div class="form-group">
 								<label for="cosArea1">지역선택</label>
 								<div class="input-group">
@@ -156,7 +156,7 @@
 									<div class="wizard-nav">
 										<ul class="nav nav-fill nav-pills">
 											<li class="nav-item">
-												<a class="nav-link" href="#tab10" data-toggle="tab"><span class="number">01</span> 여행지</a>
+												<a class="nav-link active" href="#tab10" data-toggle="tab"><span class="number">01</span> 여행지</a>
 											</li>
 											<li class="nav-item">
 												<a class="nav-link" href="#tab11" data-toggle="tab"><span class="number">02</span> 여행지</a>
@@ -168,12 +168,12 @@
 											<a class="nav-link" href="#tab13" data-toggle="tab"><span class="number">04</span> 여행지</a>
 											</li>
 											<li class="nav-item">
-											<a class="nav-link active" href="#tab14" data-toggle="tab"> <span class="number">05</span>여행지</a>
+											<a class="nav-link" href="#tab14" data-toggle="tab"> <span class="number">05</span>여행지</a>
 											</li>
 										</ul>
 									</div>
 									<div class="tab-content">
-										<div class="tab-pane" id="tab10">
+										<div class="tab-pane active" id="tab10">
 											<table id="table-selected" class="table table-striped table-bordered">
 												<thead style="text-align: center;">
 													<tr>

@@ -24,7 +24,7 @@ import ksmart42.khtour.service.CosService;
 @RequestMapping("/cos")
 public class CosController {
 	private CosService cosService; 
-	private static final Logger log = LoggerFactory.getLogger(AccommodationController.class);
+	private static final Logger log = LoggerFactory.getLogger(CosController.class);
 
 	public CosController(CosService cosService) {
 		this.cosService = cosService;
@@ -114,7 +114,7 @@ public class CosController {
 		model.addAttribute("cosInsert", cosInsert);
 		model.addAttribute("musList", musList);
 		System.out.println("정보 수정 겟방식 전달" + cos);
-		log.info("입력 데이터 값sssssssssssssssssssssssssssssssss : {}",cosInsert);
+		log.info("입력 데이터 값   : {}",cosInsert);
 		return "cos/cosModify";
 	}	
 	
@@ -153,7 +153,6 @@ public class CosController {
 	         fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
 	      }
 		cosService.addCos(cos, cosImageFiles, fileRealPath);
-		cos.setMemberId("zxcv2134");
 		return "redirect:/cos/cosList";
 	}
 	
@@ -168,7 +167,7 @@ public class CosController {
 		model.addAttribute("title", "코스등록");
 		model.addAttribute("cosInsert", cosInsert);
 		model.addAttribute("musList", musList);
-		log.info("입력 데이터 값MMMMMMMMMMMMMM : {}",musList);		
+		log.info("입력 데이터 값 : {}",musList);		
 
 		return "cos/cosInsert";
 	}
