@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import ksmart42.khtour.dto.Cos;
 import ksmart42.khtour.dto.Mus;
@@ -133,13 +136,24 @@ public class CosController {
 	 * 코스 등록(Post 정보 전달)
 	 */
 	@PostMapping("/cosInsert")
-	public String addCos(Cos cos) {
+	public String addCos(Cos cos
+						, @RequestParam MultipartFile[] cosImageFiles
+			            , HttpServletRequest request) {
 		if (cos.getThemeCategory().equals("역사")){cos.setThemeCategoryCode("theme_cate_code001");} 
 		else if (cos.getThemeCategory().equals("인문")){cos.setThemeCategoryCode("theme_cate_code002");} 
 		else if (cos.getThemeCategory().equals("전쟁")){cos.setThemeCategoryCode("theme_cate_code003");} 
 		else if (cos.getThemeCategory().equals("종교사")){cos.setThemeCategoryCode("theme_cate_code004");} 
 		else if (cos.getThemeCategory().equals("민속")){cos.setThemeCategoryCode("theme_cate_code005");}
-		cosService.addCos(cos);
+		String serverName = request.getServerName();
+	      String fileRealPath = "";
+	      if("localhost".equals(serverName)) {            
+	         fileRealPath = System.getProperty("user.dir") + "/src/main/resources/static/";
+	         //fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+	      }else {
+	         fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+	      }
+		cosService.addCos(cos, cosImageFiles, fileRealPath);
+		cos.setMemberId("zxcv2134");
 		return "redirect:/cos/cosList";
 	}
 	
