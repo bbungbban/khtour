@@ -17,33 +17,83 @@
 	<!-- 페이지 타이틀 종료 -->
 </th:block>
 <th:block layout:fragment="customContents">
-	<link rel="stylesheet" type="text/css"
-		th:href="@{/css/plugins/KmyCss/addCssKmy.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/plugins/KmyCss/addCssKmy.css}">
 <!-- **********************************  Start ContentsWrap  ********************************** -->
 	<div id="khtour">
 		<div class="cosBoard card">
-			<div class="card-body" style="padding-left: 3.4rem;">
+			<div class="card-body" style="padding-left:3.4rem;">
 				<div class="tab tab-outline tab-center">
 					<ul class="nav justify-content-center" id="myTab-04" role="tablist">
 						<li class="nav-item">
-							<a class="nav-link active" id="home-tab-04" data-toggle="tab" href="#home-04" role="tab" aria-controls="home" aria-selected="false">역사</a>
+							<a class="nav-link active" id="home-tab-04" data-toggle="tab" href="#home-04" role="tab">역사</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" id="profile-tab-04" data-toggle="tab" href="#profile-04" role="tab" aria-controls="profile" aria-selected="false">인문</a>
+							<a class="nav-link" id="profile-tab-04" data-toggle="tab" href="#profile-04" role="tab">인문</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" id="contact-tab-12" data-toggle="tab" href="#contact-12" role="tab" aria-controls="contact" aria-selected="true">전쟁</a>
+							<a class="nav-link" id="contact-tab-12" data-toggle="tab" href="#contact-12" role="tab">전쟁</a>
 						</li>
 						<li class="nav-item" role="presentation">
-    						<a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">종교사</a>
+    						<a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab">종교사</a>
   						</li>
 						<li class="nav-item" role="presentation">
-    						<a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">민족</a>
+    						<a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab">민족</a>
   						</li>
 					</ul>
-<!-- **********************************  Start 봄  ********************************** -->
+<!-- **********************************  Start 역사  ********************************** -->
 					<div class="tab-content" id="myTabContent-04">
 						<div class="tab-pane fade active show" id="home-04" role="tabpanel" aria-labelledby="home-tab-04">
+							<div class="container">
+								<div th:if="${not #lists.isEmpty(history)}" th:each="l:${history}" class="dk">
+									<div th:text="${l.cosCode}"></div>
+									<div th:text="${l.memberId}"></div>
+									<div th:text="|${l.cosArea1}${l.cosArea2}|"></div>
+									<div th:text="${l.themeCategory}"></div>
+									<div th:text="${l.cosName}"></div>
+									<div th:text="|${l.musCode1}-${l.musCode2}-${l.musCode3}-${l.musCode4}-${l.musCode5}|"></div>
+									<div th:text="${l.cosRegist}"></div>
+									<div th:text="${l.cosOpen}"></div>
+									<div th:text="${l.cosShare}"></div>
+								</div>
+							</div>
+						</div>
+<!-- **********************************  End 역사  ********************************** -->
+<!-- **********************************  Start 인문 ******************************* -->					
+						<div class="tab-pane fade active" id="profile-04" role="tabpanel" aria-labelledby="profile-tab-04">
+							<div class="container">
+								<div th:if="${not #lists.isEmpty(history)}" th:each="l:${history}" class="dk">
+									<div th:text="${l.cosCode}"></div>
+									<div th:text="${l.memberId}"></div>
+									<div th:text="|${l.cosArea1}${l.cosArea2}|"></div>
+									<div th:text="${l.themeCategory}"></div>
+									<div th:text="${l.cosName}"></div>
+									<div th:text="|${l.musCode1}-${l.musCode2}-${l.musCode3}-${l.musCode4}-${l.musCode5}|"></div>
+									<div th:text="${l.cosRegist}"></div>
+									<div th:text="${l.cosOpen}"></div>
+									<div th:text="${l.cosShare}"></div>
+								</div>
+							</div>
+						</div>
+<!-- **********************************  End 인문  ********************************** -->
+<!-- **********************************  Start 전쟁 ******************************** -->						
+						<div class="tab-pane fade active" id="contact-12" role="tabpanel" aria-labelledby="contact-tab-12">
+							<div class="container">
+								<div th:if="${not #lists.isEmpty(history)}" th:each="l:${history}">
+									<div th:text="${l.cosCode}"></div>
+									<div th:text="${l.memberId}"></div>
+									<div th:text="|${l.cosArea1}${l.cosArea2}|"></div>
+									<div th:text="${l.themeCategory}"></div>
+									<div th:text="${l.cosName}"></div>
+									<div th:text="|${l.musCode1}-${l.musCode2}-${l.musCode3}-${l.musCode4}-${l.musCode5}|"></div>
+									<div th:text="${l.cosRegist}"></div>
+									<div th:text="${l.cosOpen}"></div>
+									<div th:text="${l.cosShare}"></div>
+								</div>
+							</div>
+						</div>
+<!-- **********************************  End 전쟁  ********************************** -->
+<!-- **********************************  Start 종교사 ******************************* -->
+						 <div class="tab-pane fade active" id="settings" role="tabpanel" aria-labelledby="settings-tab">
 							<div class="container">
 								<div class="row">
 									<div class="col-sm-12">
@@ -135,28 +185,7 @@
 								</div>
 							</div>
 						</div>
-<!-- **********************************  End 봄  ********************************** -->
-<!-- **********************************  Start 여름 ******************************* -->					
-						<div class="tab-pane fade active" id="profile-04" role="tabpanel" aria-labelledby="profile-tab-04">
-							<div class="container">
-							여름
-							</div>
-						</div>
-<!-- **********************************  End 여름  ********************************** -->
-<!-- **********************************  Start 가을 ******************************** -->						
-						<div class="tab-pane fade active" id="contact-12" role="tabpanel" aria-labelledby="contact-tab-12">
-							<div class="container">
-							가을
-							</div>
-						</div>
-<!-- **********************************  End 가을  ********************************** -->
-<!-- **********************************  Start 겨울 ******************************* -->
-						 <div class="tab-pane fade active" id="settings" role="tabpanel" aria-labelledby="settings-tab">
-							<div class="container">
-							겨울
-							</div>
-						</div>
-<!-- **********************************  End 겨울  ********************************** -->
+<!-- **********************************  End 종교사  ********************************** -->
 					</div>
 				</div>
 

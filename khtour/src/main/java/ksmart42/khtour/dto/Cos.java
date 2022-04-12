@@ -12,6 +12,7 @@ public class Cos {
 	private String musCode5;
 	private String cosArea1;
 	private String cosArea2;
+	private String cosImage;
 	private String cosName;
 	private String cosRegist;
 	private String cosOpen;
@@ -83,6 +84,13 @@ public class Cos {
 	public void setCosArea2(String cosArea2) {
 		this.cosArea2 = cosArea2;
 	}
+	
+	public String getCosImage() {
+		return cosImage;
+	}
+	public void setCosImage(String cosImage) {
+		this.cosImage = cosImage;
+	}
 	public String getCosName() {
 		return cosName;
 	}
@@ -112,7 +120,8 @@ public class Cos {
 		return "Cos [cosCode=" + cosCode + ", memberId=" + memberId + ", themeCategoryCode=" + themeCategoryCode
 				+ ", themeCategory=" + themeCategory + ", musCode1=" + musCode1 + ", musCode2=" + musCode2
 				+ ", musCode3=" + musCode3 + ", musCode4=" + musCode4 + ", musCode5=" + musCode5 + ", cosArea1="
-				+ cosArea1 + ", cosArea2=" + cosArea2 + ", cosName=" + cosName + ", cosRegist=" + cosRegist
-				+ ", cosOpen=" + cosOpen + ", cosShare=" + cosShare + "]";
+				+ cosArea1 + ", cosArea2=" + cosArea2 + ", cosImage=" + cosImage + ", cosName=" + cosName
+				+ ", cosRegist=" + cosRegist + ", cosOpen=" + cosOpen + ", cosShare=" + cosShare + "]";
 	}
+	
 }
