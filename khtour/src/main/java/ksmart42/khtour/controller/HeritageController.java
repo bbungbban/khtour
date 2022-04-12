@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,7 +47,6 @@ public class HeritageController {
                      , HttpServletRequest request) {
       
       log.info("{}",heritage);
-      heritage.setMemberId("id001");
       String serverName = request.getServerName();
       String fileRealPath = "";
       if("localhost".equals(serverName)) {            
@@ -142,7 +142,8 @@ public class HeritageController {
    @GetMapping("/heritageListByItem")
    public String getHeritageListByItem(Model model
          ,@RequestParam(name="searchKey", required=false) String searchKey
-         ,@RequestParam(name="searchValue", required=false) String searchValue) {
+         ,@RequestParam(name="searchValue", required=false) String searchValue
+         ) {
       
       Map<String, Object> paramMap = new HashMap<String , Object>();
       

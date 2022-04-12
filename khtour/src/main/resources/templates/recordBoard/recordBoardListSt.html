@@ -60,13 +60,28 @@
 									<td th:text="${l.endDate}"></td>
 									<td th:text="${l.regDate}"></td>
 									<td th:text="${l.views}"></td>
-									<td class="text-center"><a
+									<td class="text-center">
+									<a
 										class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1"
+										th:if="${session.SLEVEL != '일반회원'}"
 										th:href="@{/recordBoard/recordBoardModify(recordBoardCode=${l.recordBoardCode})}"><i
 											class="la la-edit"></i> </a>
-											<button class="btn btn-danger btn-icon btn-sm mb-1" id="swal-delete-recordBoard" th:data-recordBoardCd="${l.recordBoardCode}">
-												<i class="fa fa-trash-o"></i>
-											</button>
+									<a
+										class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1"
+										th:unless="${session.SLEVEL != '일반회원'}"
+										onclick="alert('일반회원은 문화재 정보를 수정할 수 없습니다.')"><i
+											class="la la-edit"></i> </a>
+										<button class="btn btn-danger btn-icon btn-sm mb-1" 
+											th:if="${session.SLEVEL != '일반회원'}"
+											id="swal-delete-recordBoard" 
+											th:data-recordBoardCd="${l.recordBoardCode}">
+											<i class="fa fa-trash-o"></i>
+										</button>
+										<button class="btn btn-danger btn-icon btn-sm mb-1" 
+											th:unless="${session.SLEVEL != '일반회원'}"
+											onclick="alert('일반회원은 문화재 정보를 수정할 수 없습니다.')">
+											<i class="fa fa-trash-o"></i>
+										</button>
 									</td>
 								</tr>
 							</tbody>

@@ -66,6 +66,11 @@
 												<form id="addHeritageForm"
 													th:action="@{/heritage/heritageListByItem}" method="post" enctype="multipart/form-data">
 													<div class="form-group">
+														<label for="memberId"> 등록자 아이디 </label> <input
+															type="text" class="form-control" id="memberId" th:value="${session.SID}"
+															name="memberId" readonly="readonly" required="">
+													</div>
+													<div class="form-group">
 														<label for="heritageName"> 문화재 명 </label> <input
 															type="text" class="form-control" id="heritageName"
 															name="heritageName" placeholder="문화재 명" required="">
@@ -265,6 +270,9 @@
 								</div>
 							</div>
 						</div>
+						<div th:unless="${not #lists.isEmpty(heritageList)}">
+							<div>등록된 상품의 정보가 없습니다.</div>
+						</div>
 					</div>
 					<div class="text-center">
 						<!-- 페이징 시작 -->
@@ -294,10 +302,26 @@
 
 <!-- javascript 삽입 시작 -->
 <th:block layout:fragment="customBodyScript">
-	<!-- 등록 버튼 자바스크립트 -->
+	<!-- 등록 버튼 자바스크립트 = 관리자만 등록 가능(유효성 검사) -->
 	<script type="text/javascript" th:inline="javascript">
+		$(function(){
+		/*<![CDATA[*/
+	    var sessionLevel = [[${session.SLEVEL}]];
+	    /*]]>*/
+		
+		function validationCheck(data){
+			if(typeof data == 'undefined' || data == '' || data == null){
+				return false;
+			}
+			return true;
+		}
 		$('#addHeritageBtn').click(function() {
-
+		
+			if(sessionLevel != '관리자'){
+				alert('관리자만 문화재등록이 가능합니다')
+				return false;
+			}
+			
 			var isSubmit = true;
 			var inputObj = $('#addHeritageForm').find('input');
 
@@ -305,12 +329,21 @@
 				var inputId = $(this).attr('id');
 				var inputLabel = $('label[for="' + inputId + '"]').text();
 				var inputData = $(this).val();
+				var result = validationCheck(inputData);
 
 				// 사용자가 입력하지 않은 경우
+				if(!result){
+					alert(inputLabel + '을 입력해주세요');
+					$(this).focus();
+					isSubmit = false;
+					return false;
+				}
 			});
-
-			if (isSubmit)
-				$('#addHeritageForm').submit();
+			
+			console.log('유효여부 폼전송할건지?' + isSubmit )
+	
+			if (isSubmit) $('#addHeritageForm').submit();
+			});
 		});
 	</script>
 	<!-- custom -->
