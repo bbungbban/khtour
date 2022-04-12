@@ -13,7 +13,7 @@ import ksmart42.khtour.dto.MemberLevel;
 public interface MemberMapper {
 
 	// 로그인 이력조회1
-		public List<LoginHistory> getLoginHistory1();
+		public List<LoginHistory> getLoginHistory();
 
 		// 로그인 이력조회2
 		public List<Map<String, Object>> getLoginHistory2();
