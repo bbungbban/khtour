@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layout/default3}">
+	<th:block layout:fragment="customTitle">
+		<title th:text="${title}"></title>
+	</th:block>
+	<th:block layout:fragment="contentsTitle">
+	<!-- 페이지 타이틀 시작 -->
+	<h2> 마이페이지 </h2>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page"> 마이페이지 </li>
+		</ol>
+	</nav>
+	<!-- 페이지 타이틀 종료 -->
+	</th:block>
+	
+	<th:block layout:fragment="customContents">	
+	
+	
+	<div class="row">
+		<div class="col-12">
+				<div class="card">
+					<div class="card-title">
+						<div class="card-title-left">
+							<h4 class="card-title-text">Tabs vertical icon</h4>
+						</div>
+					</div>
+					  <div class="card-body">
+					  	<div class="tab tab-vertical">
+						 <ul class="nav nav-pills" id="myTab-07" role="tablist">
+						  <li class="nav-item">
+						    <a class="nav-link" id="home-tab-07" data-toggle="tab" href="#home-07" role="tab" aria-controls="home" aria-selected="false">
+						    	<i class="fa fa-home"></i> Home</a>
+						  </li>
+						  <li class="nav-item">
+						    <a class="nav-link" id="profile-tab-07" data-toggle="tab" href="#profile-07" role="tab" aria-controls="profile" aria-selected="false"><i class="fa fa-user-o"></i> Profile</a>
+						  </li>
+						  <li class="nav-item">
+						    <a class="nav-link active" id="contact-tab-07" data-toggle="tab" href="#contact-07" role="tab" aria-controls="contact" aria-selected="true">
+						    	<i class="fa fa-headphones"></i>Contact</a>
+						  </li>
+						</ul>
+						<div class="tab-content" id="myTabContent-07">
+						  <div class="tab-pane fade" id="home-07" role="tabpanel" aria-labelledby="home-tab-07">
+								<p>Consectetur lorem ipsum dolor sit amet, adipisicing elit. Dolorum qui, facilis saepe. Repudiandae, animi, perferendis!</p>
+						        <p>Blanditiis explicabo facilis ducimus, ipsam quasi quisquam, perspiciatis ea dolore rerum adipisci asperiores voluptatibus provident non quas. lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+							  </div>
+							  <div class="tab-pane fade" id="profile-07" role="tabpanel" aria-labelledby="profile-tab-07">
+								<p>Consectetur lorem ipsum dolor sit amet, adipisicing elit. Dolorum qui, facilis saepe. Repudiandae, animi, perferendis!</p>
+						        <p>Blanditiis explicabo facilis ducimus, ipsam quasi quisquam, perspiciatis ea dolore rerum adipisci asperiores voluptatibus provident non quas. lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+							  </div>
+							  <div class="tab-pane fade active show" id="contact-07" role="tabpanel" aria-labelledby="contact-tab-07">
+							  	<p>Consectetur lorem ipsum dolor sit amet, adipisicing elit. Dolorum qui, facilis saepe. Repudiandae, animi, perferendis!</p>
+						        <p>Blanditiis explicabo facilis ducimus, ipsam quasi quisquam, perspiciatis ea dolore rerum adipisci asperiores voluptatibus provident non quas. lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+						    </div>
+							</div>
+						</div>
+					 </div>
+				</div>
+		</div>
+	</div>
+	</th:block>
+	<th:block layout:fragment="customBodyScript">
+		<!-- PRISM -->
+		<script th:src="@{/js/prism/prism.js}"></script>
+		<!-- custom -->
+		<script th:src="@{/js/custom.js}"></script>
+	</th:block>
+</html>
