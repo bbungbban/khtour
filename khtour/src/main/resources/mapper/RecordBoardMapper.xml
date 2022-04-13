@@ -42,6 +42,27 @@
 		<result column="feed_plan_days" 		property="feedPlanDays"/>		<!-- 문화재 이미지 -->
 	</resultMap>
 	 	
+	<select id="fileInfoByFileIdx" resultType="FileDto">
+      SELECT
+          f.file_idx            AS fileIdx
+         ,f.file_new_name      AS fileNewName
+         ,f.file_original_name   AS fileOriginalName
+         ,f.file_path         AS filePath
+         ,f.file_size         AS fileSize
+      FROM
+         tb_record_board AS r
+         LEFT JOIN 
+         tb_file_control AS fc
+         ON 
+         r.record_board_code = fc.reference_code
+         LEFT JOIN 
+         tb_file AS f   
+         ON 
+         f.file_idx = fc.file_idx
+      WHERE
+         r.record_board_code = #{recordBoardCode};
+   </select> 	
+	 	
 	<!-- 여행 상태 resultMap -->
 	<resultMap type="PlanStatus" id="PlanStatusResultMap">
 		<id column="plan_status_code" property="planStatusCode"/>				
@@ -130,11 +151,24 @@
 		   ,r.like_count    
 		   ,r.views
 		   ,r.travel_style    
-		FROM
-		 tb_record_board AS r
-		WHERE
-			record_board_code = #{recordBoardCode};
-	
+		   ,f.file_path   
+	      FROM
+	         tb_record_board AS r
+	         INNER JOIN 
+	         tb_member AS m
+	         ON 
+	         r.member_id = m.member_id
+	         LEFT JOIN 
+	         tb_file_control AS fc
+	         ON 
+	         r.record_board_code = fc.reference_code
+	         LEFT JOIN 
+	         tb_file AS f
+	         ON 
+	         fc.file_idx = f.file_idx
+	      WHERE
+	         record_board_code = #{recordBoardCode};
+	   
 	</select>
 	
 	<!-- 코드에 따른 댓글 조회 SQL -->

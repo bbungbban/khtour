@@ -1,5 +1,6 @@
 package ksmart42.khtour.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,7 +54,6 @@ public class RecordBoardController {
 		}else {
 			fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
 		}
-		recordBoard.setMemberId("id001");
 		recordBoardService.addRecordBoard(recordBoard, recordBoardImageFiles, fileRealPath);
 
 		return "redirect:/recordBoard/recordBoardList";
@@ -261,14 +261,23 @@ public class RecordBoardController {
 	*  설  명 : 여행 게시글 정보 삭제(관리자페이지) - Get방식 전달
 	*/
 	@GetMapping("/recordBoardRemove")
-	public String removeRecordBoard(RecordBoard recordBoard) {
+	public String removeRecordBoard(RecordBoard recordBoard, HttpServletRequest request) throws IOException {
 		String recordBoardCode = recordBoard.getRecordBoardCode();
 
+		String serverName = request.getServerName();
+	    String fileRealPath = "";
+	      if("localhost".equals(serverName)) {            
+	         fileRealPath = System.getProperty("user.dir") + "/src/main/resources/static/";
+	         //fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+	      }else {
+	         fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+	      }
+	    
+	    int result = recordBoardService.removeRecordBoard(recordBoardCode, fileRealPath);  
+	      
 		recordBoardService.removeCommentByrCode(recordBoardCode);
 		recordBoardService.removeFeedByrCode(recordBoardCode);
-		recordBoardService.removeRecordBoard(recordBoardCode);
-		System.out.println("정보 삭제 포스트 전달" + recordBoardService.removeRecordBoard(recordBoardCode));
-
+		System.out.println("정보 삭제 포스트 전달" + result);
 		return "redirect:/recordBoard/recordBoardListSt";
 
 	}

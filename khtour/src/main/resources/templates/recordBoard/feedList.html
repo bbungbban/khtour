@@ -235,7 +235,12 @@
 											name="feedContent" rows="3" required=""></textarea>
 									</div>
 
-									<button type="button" id="addFeedBtn"
+									<button type="button" 
+												th:if="${session.SID != recordBoard.memberId}"
+												onclick="alert('게시글 작성자만 정보를 등록 할 수 있습니다.')"
+										class="btn btn-primary">등록</button>
+									<button type="button" id="addFeedBtn" 
+												th:unless="${session.SID != recordBoard.memberId}"
 										class="btn btn-primary">등록</button>
 									<button type="button" class="btn btn-danger"
 										data-dismiss="modal">취소</button>

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import ksmart42.khtour.dto.Feed;
+import ksmart42.khtour.dto.FileDto;
 import ksmart42.khtour.dto.PlanStatus;
 import ksmart42.khtour.dto.RecordBoard;
 import ksmart42.khtour.dto.RecordBoardComment;
@@ -43,6 +44,9 @@ public interface RecordBoardMapper {
 	public int updateViewsByCode(String recordBoardCode);
 	
 	public String getrecordBoardByfeedCount(String recordBoardCode);
+	
+	// 여행게시글 등록 파일 정보 조회
+	public FileDto fileInfoByFileIdx(String recordBoardCode);
 	
 /*
  * 피드 관련

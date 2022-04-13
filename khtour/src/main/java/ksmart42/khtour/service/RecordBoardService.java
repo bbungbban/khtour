@@ -1,5 +1,6 @@
 package ksmart42.khtour.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -97,7 +98,7 @@ public class RecordBoardService {
 	/**
 	 * 여행게시글 등록, 이미지 파일 삽입
 	 * @author 김민석
-	 * @param recordBoard, heritageImageFiles, fileRealPath
+	 * @param recordBoard, recordBoardImageFiles, fileRealPath
 	 */
 	public void addRecordBoard(RecordBoard recordBoard,  MultipartFile[] recordBoardImageFiles, String fileRealPath) {
 		List<FileDto> fileList = fileUtil.parseFileInfo(recordBoardImageFiles, fileRealPath);
@@ -135,10 +136,34 @@ public class RecordBoardService {
 	 * @author 김민석
 	 * @param recordBoardCode
 	 */
-	public int removeRecordBoard(String recordBoardCode) {
-		
-		return recordBoardMapper.removeRecordBoard(recordBoardCode);
-	}
+	public int removeRecordBoard(String recordBoardCode, String fileRootPath) throws IOException {
+	      
+	      FileDto fileDto = recordBoardMapper.fileInfoByFileIdx(recordBoardCode);
+	      
+	      int result = 0;
+
+	      if(fileDto != null) {
+	         
+	         String fileIdx = fileDto.getFileIdx();
+	         String filePath = fileDto.getFilePath();
+	   
+	         if(fileIdx != null) {
+	            
+	            fileMapper.removeFileControl(fileIdx);
+	            
+	            fileMapper.removeFile(fileIdx);
+	            
+	            result += recordBoardMapper.removeRecordBoard(recordBoardCode);
+	            
+	            if(result > 0) fileUtil.fileDelete(fileRootPath, filePath);
+	         }
+	      }else {
+	         
+	         result += recordBoardMapper.removeRecordBoard(recordBoardCode);
+	         
+	      }
+	      return result;
+	   }
 	
 	/**
 	 * 여행게시글코드에 따른 댓글 정보 삭제
@@ -174,7 +199,7 @@ public class RecordBoardService {
 	/**
 	 * 피드 등록, 이미지 파일 삽입
 	 * @author 김민석
-	 * @param feed, heritageImageFiles, fileRealPath
+	 * @param feed, recordBoardImageFiles, fileRealPath
 	 */
 	public void addFeed(Feed feed, MultipartFile[] feedImageFiles, String fileRealPath) {
 		List<FileDto> fileList = fileUtil.parseFileInfo(feedImageFiles, fileRealPath);
