@@ -17,11 +17,9 @@ public class AccomReviewService {
 	//DI 의존성 주입
 		private AccomReviewMapper accomReviewMapper;
 		
-		private AccommodationMapper accommodationMapper;
 		
-		public AccomReviewService(AccomReviewMapper accomReviewMapper, AccommodationMapper accommodationMapper) {
+		public AccomReviewService(AccomReviewMapper accomReviewMapper) {
 			this.accomReviewMapper = accomReviewMapper;
-			this.accommodationMapper = accommodationMapper;
 		}
 		
 		public List<AccomReview> getAccomReviewList(String ldgCode){

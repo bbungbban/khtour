@@ -73,7 +73,7 @@ public class RoomService {
 		/**
 		 * 객실 등록
 		 */
-		public void addRoom(Room room,  MultipartFile[] roomImageFiles, String fileRealPath) {
+		public void addRoom(Room room, MultipartFile[] roomImageFiles, String fileRealPath) {
 			List<FileDto> fileList = fileUtil.parseFileInfo(roomImageFiles, fileRealPath);
 			fileMapper.addFile(fileList);
 			roomMapper.addRoom(room);

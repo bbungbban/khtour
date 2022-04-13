@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/default}">
-	
+
 <th:block layout:fragment="customTitle">
 	<title th:text="${title}"></title>
 </th:block>
@@ -21,7 +21,7 @@
 	</div>
 </th:block>
 <th:block layout:fragment="customContents">
-<style>
+	<style>
 .ReviewContentsBox {
 	display: flex;
 	position: relative;
@@ -129,13 +129,97 @@
 .addReview:hover {
 	color: blue;
 }
+.filebox input[type="file"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
+.filebox label {
+	display: inline-block;
+	padding: 0.7rem 0.75rem;
+	color: #53cad8;
+	font-size: inherit;
+	line-height: normal;
+	vertical-align: middle;
+	background-color: #f8f9fa;
+	cursor: pointer;
+	border: 1px solid #53cad8;
+	border-bottom-color: #53cad8;
+	border-radius: .25em;
+}
+
+/* named upload */
+.filebox .upload-name {
+	display: inline-block;
+	padding: 0.7em 3.75rem; /* label의 패딩값과 일치 */
+	font-size: inherit;
+	font-family: inherit;
+	line-height: normal;
+	vertical-align: middle;
+	background-color: #f5f5f5;
+	border: 1px solid #ebebeb;
+	border-bottom-color: #e2e2e2;
+	border-radius: .25em;
+	-webkit-appearance: none; /* 네이티브 외형 감추기 */
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.filebox input[type="file"] { /* 파일 필드 숨기기 */
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
+.filebox .upload-display { /* 이미지가 표시될 지역 */
+	margin-bottom: 5px;
+}
+
+@media ( min-width : 768px) {
+	.filebox .upload-display {
+		display: inline-block;
+		margin-right: 5px;
+		margin-bottom: 0;
+	}
+}
+
+.filebox .upload-thumb-wrap { /* 추가될 이미지를 감싸는 요소 */
+	display: inline-block;
+	width: 73px;
+	padding: 2px;
+	vertical-align: middle;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	background-color: #fff;
+}
+
+.filebox .upload-display img { /* 추가될 이미지 */
+	display: block;
+	max-width: 100%;
+	width: 100% \9;
+	height: auto;
+}
 </style>
 	<!-- 호텔에 대한 리뷰 표시 영역 -->
 	<div class="roomInfo col-lg-12 col-md-12 col-sm-12" style="padding: 0;">
 		<div class="card">
 			<div class="card-body" style="padding-bottom: 0;">
 				<div>
-				<div><a type="button" style="padding: 10px; padding-left: 0px;" th:href="@{/accommodation/acoommodationInfo}">돌아가기</a></div>
+					<div>
+						<a type="button" style="padding: 10px; padding-left: 0px;"
+							onclick="history.back(-1)">돌아가기</a>
+					</div>
 					<h2 style="display: inline; float: left;">후기</h2>
 					<span style="display: inline-block; float: left; font-size: 20px;">([[${accommodation.reviewCnt}]]개)</span>
 					<a type="button" class="btn addReview" data-toggle="modal"
@@ -155,8 +239,10 @@
 										<h5 class="modal-title" id="exampleModalLabel">리뷰등록</h5>
 									</div>
 									<div class="modal-body">
-										<input type="hidden" class="form-control" name="ldgCode" th:value="${ldgCode}" readonly="readonly"> 
-										<input class="form-control" name="memberId" th:value="${memberId}">
+										<input type="hidden" class="form-control" name="ldgCode"
+											th:value="${ldgCode}" readonly="readonly"> <input
+											type="hidden" class="form-control" name="memberId"
+											th:value="${session.SID}">
 										<div class="panel-hedding" style="text-align: center;">
 											<p>숙소에 대한 별점을 주세요!</p>
 											<select class="rating-fontawesome" name="ldgGrade"
@@ -234,6 +320,15 @@
 												id="exampleFormControlTextarea1" rows="3"
 												name="reviewContents"></textarea>
 										</div>
+										<label class="form-group col-12 col-md-12 col-lg-12"
+											style="margin-top: 0.5rem">숙박업체 대표사진등록</label>
+										<div class="filebox preview-image col-12 col-md-12 col-lg-12"
+											style="margin-bottom: 1rem;">
+											<input class="upload-name" value="파일선택" disabled="disabled">
+											<label for="ldgImg" style="margin-bottom: 0;">업로드</label> <input
+												multiple="multiple" type="file" id="ldgImg"
+												class="upload-hidden" name="accommodationImageFiles">
+										</div>
 										<div class="modal-footer">
 											<a type="button" data-dismiss="modal">등록취소</a> <a
 												type="button" id="addReviewBtn">등록하기</a>
@@ -251,8 +346,9 @@
 				<div class="col-6 col-md-4 col-lg-4"
 					style="padding: 18.577px; padding-right: 0; padding-bottom: 0;">
 					<span><i class="feather icon-star-on"
-						style="font-size: 30px;"></i></span> <span style="font-size: 40px;" th:text="${avgGrade}"></span>
-					<span style="opacity: 0.5; font-size: 20px;">/5</span>
+						style="font-size: 30px;"></i></span> <span style="font-size: 40px;"
+						th:text="${avgGrade}"></span> <span
+						style="opacity: 0.5; font-size: 20px;">/5</span>
 					<p style="opacity: 0.5;">최근 12개월 누적 평점</p>
 				</div>
 				<div class="col-6 col-md-8 col-lg-8"
@@ -317,17 +413,25 @@
 					<div class="ReviewHeader">
 						<div class="" style="position: relative; display: inline-flex;">
 							<th:block th:each="num : ${#numbers.sequence(1,5)}">
-								<i th:if="${num <= #conversions.convert(al.ldgGrade, 'java.lang.Integer')}" 	class="feather icon-star-on feather-on" style="font-size: 1.2rem;"></i>
-								<i th:unless="${num <= #conversions.convert(al.ldgGrade, 'java.lang.Integer')}" class="feather icon-star-on feather-off" style="font-size: 1.2rem;"></i>
+								<i
+									th:if="${num <= #conversions.convert(al.ldgGrade, 'java.lang.Integer')}"
+									class="feather icon-star-on feather-on"
+									style="font-size: 1.2rem;"></i>
+								<i
+									th:unless="${num <= #conversions.convert(al.ldgGrade, 'java.lang.Integer')}"
+									class="feather icon-star-on feather-off"
+									style="font-size: 1.2rem;"></i>
 							</th:block>
 						</div>
 						<div class="ReviewTime"
 							style="display: inline-block; font-size: 1.2rem;">
-							<span style="font-weight: 100; margin-left: 0.8rem;"></span> 
-							<span style="position: absolute; right: 0; line-height: 1.8rem; padding-right: 15px; font-size: 13px; opacity: 0.5;" th:text="${al.reviewTime}"></span>
+							<span style="font-weight: 100; margin-left: 0.8rem;"></span> <span
+								style="position: absolute; right: 0; line-height: 1.8rem; padding-right: 15px; font-size: 13px; opacity: 0.5;"
+								th:text="${al.reviewTime}"></span>
 						</div>
 						<div class="ReviewNicknameInfo" style="opacity: 0.5;">
-							<span class="memberId" th:text="${al.memberId}"></span><span class="ReviewRoomName" th:text="${accommodation.ldgName}"></span>
+							<span class="memberId" th:text="${al.memberId}"></span><span
+								class="ReviewRoomName" th:text="${accommodation.ldgName}"></span>
 						</div>
 					</div>
 				</div>
@@ -336,13 +440,15 @@
 				</div>
 				<div class="review-bottom"
 					style="display: flex; justify-content: flex-end; padding: 0px">
-					<button class="btn" id="swal-delete-accomreview" 
-					th:unless="${session.SID != al.memberId}"
-					th:data-accomreviewCd="${al.ldgReviewCode}">삭제</button>
+					<button class="btn" id="swal-delete-accomreview"
+						th:unless="${session.SID != al.memberId}"
+						th:data-accomreviewCd="${al.ldgReviewCode}">삭제</button>
 				</div>
 				<div class="card-footer"></div>
 			</article>
-				<div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="btn">더보기</a> </div>
+			<div id="js-btn-wrap" class="btn-wrap">
+				<a href="javascript:;" class="btn">더보기</a>
+			</div>
 		</div>
 	</div>
 	<!-- 호텔 리뷰 표시 영역 끝 -->
@@ -463,6 +569,7 @@
 		    $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
 		}
 	</script>
+	
 </th:block>
 </html>
 
