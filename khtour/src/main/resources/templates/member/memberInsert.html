@@ -30,6 +30,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.12.0/validate.min.js"></script>
 	<style>
 		#memberInsertForm label.error { color: red; }
+		.loginsnsicon{width:20px;height:20px;margin-right:5px;}
 	</style>
 	<div class="login bg-white py-5 px-5" id="memberInsert">
 		<div class="title">
@@ -95,9 +96,9 @@
 			<div class="form-group col-12" style=" text-align: center;">
 			<button type="submit" id="memberInsertBtn"  class="btn btn-primary col-5">가입하기</button>
 			</div>
-			<button type="button" class="btn btn-outline-primary btn-block"><i class="fa fa-facebook"></i>페이스북으로 가입하기</button>
-			<button type="button" class="btn btn-outline-secondary btn-block"><i class="fa fa-instagram"></i>인스타로 가입하기</button>
-			<button type="button" class="btn btn-outline-warning btn-block"><i class="feather icon-message-circle"></i>카카오톡으로 가입하기</button>
+			<button type="button" class="btn btn-outline-primary btn-block"><img class="loginsnsicon" th:src="@{'/images/login/facebook.png'}"/>페이스북으로 가입하기</button>
+			<button type="button" class="btn btn-outline-secondary btn-block"><img class="loginsnsicon" th:src="@{'/images/login/insta.png'}"/>인스타로 가입하기</button>
+			<button type="button" class="btn btn-outline-warning btn-block"><img class="loginsnsicon" th:src="@{'/images/login/Kakao.png'}"/>카카오톡으로 가입하기</button>
 		</form>
 		<p class="mb-0" >귀하는 당사의 
 			<a href="#" _istranslated="1"> 약관에 동의합니다.</a>
