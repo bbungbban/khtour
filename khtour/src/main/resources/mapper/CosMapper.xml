@@ -16,6 +16,7 @@
 		<result column="mus_code5" 				property="musCode5" />
 		<result column="cos_area1" 				property="cosArea1" />
 		<result column="cos_area2" 				property="cosArea2" />
+		<result column="file_path" 				property="cosImagePath"/>
 		<result column="cos_image" 				property="cosImage" />
 		<result column="cos_name" 				property="cosName" />
 		<result column="cos_regist" 			property="cosRegist" />
@@ -86,6 +87,9 @@
 	
 	<!-- 코스 등록 SQL -->
 	<insert id="addCos" parameterType="Cos">
+	    <selectKey resultType="string" keyProperty="cosCode" order="BEFORE">
+        SELECT sf_new_cos_code() as cosCode
+      	</selectKey>
 		INSERT INTO tb_suggest_cos_regist
 		(
 		 cos_code
@@ -105,7 +109,7 @@
 		,cos_open
 		,cos_share
 		) VALUES (
-		sf_new_cos_code()
+		 #{cosCode}
 		,#{memberId}
 		,#{themeCategoryCode}
 		,#{themeCategory}
@@ -141,12 +145,21 @@
 			,c.cos_regist
 			,c.cos_open
 			,c.cos_share
+			,f.file_path 
 		FROM
 			tb_suggest_cos_regist AS c
 		INNER JOIN
 			tb_member AS m
 			ON
 			c.member_id = m.member_id
+			LEFT JOIN 
+	         tb_file_control AS fc
+	         ON 
+	         c.cos_code = fc.reference_code
+	         LEFT JOIN 
+	         tb_file AS f
+	         ON 
+	         fc.file_idx = f.file_idx
 		WHERE
 			cos_code = #{themeCategory};
 	</select>
@@ -169,13 +182,25 @@
 			,c.cos_regist
 			,c.cos_open
 			,c.cos_share
+			,f.file_path
 		FROM
 			tb_suggest_cos_regist AS c
 		INNER JOIN
 			tb_member AS m
 		ON
 		c.member_id = m.member_id
-		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+		LEFT JOIN 
+         tb_file_control AS fc
+         ON 
+         c.cos_code = fc.reference_code
+         LEFT JOIN 
+         tb_file AS f
+         ON 
+         fc.file_idx = f.file_idx
+		 <trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="memberId != null and memberId != ''">
+				c.member_id = #{memberId}
+			</if>
 			<if test="searchKey != null and searchKey != '' and searchValue != ''">
 		 		AND ${searchKey} LIKE CONCAT('%', #{searchValue}, '%')
 		 	</if>
