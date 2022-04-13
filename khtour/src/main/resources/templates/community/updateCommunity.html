@@ -82,12 +82,12 @@
 <th:block layout:fragment="customContents">
 	<div class="card bg-light">
 		<div class="card-header  bg-primary pb-0">
-			<h4 class="text-white">커뮤니티 생성</h4>
+			<h4 class="text-white">커뮤니티 수정</h4>
 		</div>
 		<div class="card-body">
 			<form class="cmxform" id="addCommunityForm" method="post" th:action="@{/updateCommunity}">
 				<div class="form-group" th:if="not ${#lists.isEmpty(categoryList)}">
-						<label for="category">등록할 커뮤니티</label> <select class="form-control" id="categoryCode" name="categoryCode">
+						<label for="category">수정할 커뮤니티</label> <select class="form-control" id="categoryCode" name="categoryCode">
 							<option th:if="${cl.categoryCode == community.categoryCode}" th:value="${cl.categoryCode}" th:text="${cl.categoryName}" th:each="cl: ${categoryList}" selected="selected"></option>
 							<option th:if="${cl.categoryCode != community.categoryCode}" th:value="${cl.categoryCode}" th:text="${cl.categoryName}" th:each="cl: ${categoryList}"></option>
 						</select>
