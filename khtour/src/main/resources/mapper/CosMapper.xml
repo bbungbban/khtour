@@ -21,7 +21,6 @@
 		<result column="cos_regist" 			property="cosRegist" />
 		<result column="cos_open" 				property="cosOpen" />
 		<result column="cos_share" 				property="cosShare" />
-		<result column="file_path"              property="cosImagePath"/>         <!-- 문화재 이미지 -->
 	</resultMap>
 	<resultMap type="Mus" id="musResultMap">
 		<result column="mus_large_cate_code" 	property="musLargeCateCode" />
@@ -36,7 +35,7 @@
 		<result column="mus_end" 				property="musEnd" />
 		<result column="mus_close" 				property="musClose" />
 	</resultMap>
-	
+	<!-- 삭제 어려움 민석이오빠가 도와줄거 -->
 	<select id="fileInfoByFileIdx" resultType="FileDto">
       SELECT
           f.file_idx            AS fileIdx
