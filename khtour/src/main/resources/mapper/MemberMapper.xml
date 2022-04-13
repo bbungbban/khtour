@@ -54,7 +54,7 @@
 			<result column="banner_image"		property="memberBannerImage"/>
 	</resultMap>
 	
-	<select id="getLoginHistory1" resultMap="loginResultMap" fetchSize="1000">
+	<select id="getLoginHistory" resultMap="loginResultMap" fetchSize="1000">
 		SELECT
 		    l.login_num
 		   ,l.login_id
