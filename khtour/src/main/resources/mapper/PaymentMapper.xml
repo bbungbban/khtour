@@ -24,7 +24,7 @@
 		 d.room_pmt_code
 		,d.room_resv_code
 		,d.pmt_way_code
-		,m.member_id
+		,d.member_id
 		,d.total_pmt_amount
 		,d.point_use
 		,d.subtotal_pmt_amount
@@ -36,6 +36,8 @@
 		tb_member AS m
 		INNER JOIN 
 		tb_room_pmt AS d
+		on
+		m.member_id = d.member_id;
 			<trim prefix="WHERE" prefixOverrides="AND |OR ">
 				<if test="searchKey != null and searchKey != '' and searchValue != ''">
 					${searchKey} LIKE CONCAT('%', #{searchValue}, '%')
