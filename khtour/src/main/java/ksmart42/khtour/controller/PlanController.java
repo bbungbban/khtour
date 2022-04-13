@@ -171,5 +171,4 @@ public class PlanController {
 		return "redirect:/plan/planListSt";
 	}
 			
-	
 }

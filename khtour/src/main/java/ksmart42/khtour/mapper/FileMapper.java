@@ -19,6 +19,8 @@ public interface FileMapper {
    public int addFileControl(List<Map<String,String>> addFileControlList);
    
    public int removeFile(String fileIdx);
+   public int removeFileByFilePath(String filePath);
 
    public int removeFileControl(String fileIdx);
+   public int removeFileControlByFilePath(String filePath);
 }

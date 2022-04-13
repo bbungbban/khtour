@@ -481,6 +481,22 @@
 			Order BY 
 				p.likes_cnt DESC;	
 	</select>
+	<select id="getPostCodeListByTagCode"  resultType="String">
+			SELECT
+				p.post_code
+			FROM
+				tb_comm_post AS p
+			WHERE
+				p.tag_code = #{tagCode};	
+	</select>
+	<select id="getPostCodeListByCommCode"  resultType="String">
+			SELECT
+				p.post_code
+			FROM
+				tb_comm_post AS p
+			WHERE
+				p.comm_code = #{commCode};	
+	</select>
 	<select id="getPostListByCommCodeHot"  resultMap="postResultMap">
 			SELECT
 				p.post_code
@@ -796,6 +812,36 @@
 		WHERE 
 			rule_code = #{ruleCode};
 	</delete>
+	<delete id="deleteRuleByCommCode" parameterType="String">
+		DELETE FROM 
+			tb_comm_rules
+		WHERE 
+			comm_code = #{commCode};
+	</delete>
+	<delete id="deleteCommunityByCommCode" parameterType="String">
+		DELETE FROM 
+			tb_community
+		WHERE 
+			comm_code = #{commCode};
+	</delete>
+	<delete id="deleteCommMemberRegByCommCode" parameterType="String">
+		DELETE FROM 
+			tb_comm_member_reg
+		WHERE 
+			comm_code = #{commCode};
+	</delete>
+	<delete id="deleteTag" parameterType="String">
+		DELETE FROM 
+			tb_comm_tag
+		WHERE 
+			tag_code = #{tagCode};
+	</delete>
+	<delete id="deleteTagByCommCode" parameterType="String">
+		DELETE FROM 
+			tb_comm_tag
+		WHERE 
+			comm_code = #{commCode};
+	</delete>
 	<delete id="deleteCommReply" parameterType="String">
 		DELETE FROM 
 			tb_community_reply
@@ -807,6 +853,18 @@
 			tb_likes_dislikes
 		WHERE 
 			reply_code = #{replyCode};
+	</delete>
+	<delete id="deleteLikesDislikesByPostCode" parameterType="String">
+		DELETE FROM 
+			tb_likes_dislikes
+		WHERE 
+			post_code = #{postCode};
+	</delete>
+	<delete id="deleteCommPostByPostCode" parameterType="String">
+		DELETE FROM 
+			tb_comm_post
+		WHERE 
+			post_code = #{postCode};
 	</delete>
 	
 	
@@ -927,19 +985,6 @@
 			SET
 			daily_likes_cnt = 0;	
 	</update>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 </mapper>

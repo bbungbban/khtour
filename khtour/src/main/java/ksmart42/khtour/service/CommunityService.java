@@ -1,5 +1,6 @@
 package ksmart42.khtour.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,16 +24,22 @@ import ksmart42.khtour.dto.Community;
 import ksmart42.khtour.dto.Rule;
 import ksmart42.khtour.dto.LikesDislikes;
 import ksmart42.khtour.mapper.CommunityMapper;
+import ksmart42.khtour.mapper.FileMapper;
+import ksmart42.khtour.util.FileUtil;
 
 @Service
 @Transactional
 public class CommunityService {
 	private CommunityMapper communityMapper;
 	private static final Logger log = LoggerFactory.getLogger(CommunityController.class);
-
+	private FileUtil fileUtil;  
+	private FileMapper fileMapper;
+	
 	@Autowired
-	public CommunityService(CommunityMapper communityMapper) {
+	public CommunityService(CommunityMapper communityMapper, FileUtil fileUtil, FileMapper fileMapper) {
 		this.communityMapper = communityMapper;
+		 this.fileUtil = fileUtil;
+		 this.fileMapper = fileMapper;
 	}
 
 	/*
@@ -66,7 +73,7 @@ public class CommunityService {
 	 */
 	public List<CommPost> getPostList(String order) {
 		List<CommPost> postList = null;
-
+		
 		if (order == null || order.equals("top")) {
 			postList = communityMapper.getPostList();
 		} else if (order.equals("hot")) {
@@ -76,8 +83,10 @@ public class CommunityService {
 		}
 
 		for (int i = 0; i < postList.size(); i++) {
-			String postCode = postList.get(i).getPostCode();
-			postList.get(i).setFilePath(communityMapper.getFileControllerByPostCode(postCode));
+			CommPost tempPost = postList.get(i);
+			String postCode = tempPost.getPostCode();
+			
+			tempPost.setFilePath(communityMapper.getFileControllerByPostCode(postCode));
 		}
 		return postListMod(postList);
 	}
@@ -145,7 +154,6 @@ public class CommunityService {
 		for (int i = 0; i < postList.size(); i++) {
 			CommPost commPost = postList.get(i);
 			commPost.setCommTag(communityMapper.getCommTagByTagCode(commPost.getTagCode()));
-			postList.get(i).setResultCnt(KhtourLibrary.cntConverter(Float.parseFloat(postList.get(i).getResultCnt())));
 		}
 		return postList;
 	}
@@ -528,8 +536,6 @@ public class CommunityService {
 		 communityMapper.deleteCommReply(replyCode);
 		 
 	}
-	
-
 	public List<CommReply> getChildrenReplyByReplyList(List<CommReply> replyList) {
 		List<CommReply> replyNextLevel = new ArrayList<CommReply>();
 		for (int i = 0; i < replyList.size(); i++) {
@@ -547,6 +553,74 @@ public class CommunityService {
 		communityMapper.deleteLikesDislikesByReplyCode(replyCode);
 	}
 
+	public void deleteCommPost(String postCode, String fileRootPath) throws IOException {
+		
+		
+		CommPost commPost = communityMapper.getPostByPostCode(postCode);
+		String pictureLink = commPost.getPictureLink();
+		
+		if(pictureLink!=null&&pictureLink!="")
+		{
+			fileUtil.fileDelete(fileRootPath, pictureLink);
+			fileMapper.removeFileByFilePath(pictureLink);
+		}
+		
+		List<String> listOfAdditionalPictureLink = communityMapper.getFileControllerByPostCode(postCode);
+		if(listOfAdditionalPictureLink!=null)
+		{
+			for(int i = 0 ;i<listOfAdditionalPictureLink.size();i++)
+			{
+				fileUtil.fileDelete(fileRootPath, listOfAdditionalPictureLink.get(i).substring(1));
+				fileMapper.removeFileByFilePath(listOfAdditionalPictureLink.get(i).substring(1));
+				fileMapper.removeFileControlByFilePath(listOfAdditionalPictureLink.get(i));
+			}
+		}
+		
+		List<CommReply> listCommReply = communityMapper.getCommReplyListByPostCode(postCode);
+		//1.뎃글지우고
+		for(int i =0;i<listCommReply.size();i++)
+		{
+			deleteCommReply(listCommReply.get(i).getReplyCode());
+		}
+		//2. 포스트 좋아요 싫어요 지우고
+		communityMapper.deleteLikesDislikesByPostCode(postCode);
+		//3. 포스트 지우고
+		communityMapper.deleteCommPostByPostCode(postCode);
+		
+	}
+	
+	public void deleteTag(CommTag commTag, String fileRootPath) throws IOException {
+		
+		//테그에 관련된 모든 포스트 제거.
+		String tagCode = commTag.getTagCode();
+		List<String> postCodeList = communityMapper.getPostCodeListByTagCode(tagCode);	
+		for(int i =0;i<postCodeList.size();i++)
+		{
+			deleteCommPost(postCodeList.get(i),fileRootPath);
+		}
+		
+		// 테그삭제
+		communityMapper.deleteTag(tagCode);
+	}
+	public void deleteCommunity(String commCode, String fileRootPath) throws IOException {
+		
+		//커뮤니티에 관련된 모든 포스트 제거.
+		List<String> postCodeList = communityMapper.getPostCodeListByCommCode(commCode);	
+		for(int i =0;i<postCodeList.size();i++)
+		{
+			deleteCommPost(postCodeList.get(i),fileRootPath);
+		}
+		//커뮤니티에 관련된 모든 커뮤니티 회원 가입 정보 삭제.
+		communityMapper.deleteCommMemberRegByCommCode(commCode);
+		// 커뮤니티에 관련된 모든 테그삭제
+		communityMapper.deleteTagByCommCode(commCode);
+		// 커뮤니티에 관련된 모든 규칙 삭제
+		communityMapper.deleteRuleByCommCode(commCode);
+		//커뮤니티 삭제
+		communityMapper.deleteCommunityByCommCode(commCode);
+
+	}
+	
 	
 
 }

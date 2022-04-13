@@ -1,5 +1,6 @@
 package ksmart42.khtour.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +13,9 @@ import ksmart42.khtour.mapper.FileMapper;
 
 
 public class KhtourLibrary {	
+	
+	
+	
 	/* 작성자 : 한경수
 	*  입  력 : float
 	*  출  력 : String
@@ -53,6 +57,15 @@ public class KhtourLibrary {
 		
 		return result;
 	}
+	
+	static public String dateToMillisec(String regDate)
+	{
+		SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//dd/MM/yyyy
+	    String strDate = sdfDate.format(regDate);
+	    return strDate;
+	}
+	
+	
 	
 	static public void addFileController(FileMapper fileMapper,CommPost commPost,List<FileDto> fileList)
 	{
