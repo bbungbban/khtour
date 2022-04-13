@@ -1,8 +1,6 @@
 package ksmart42.khtour.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +16,6 @@ import ksmart42.khtour.dto.AccomReview;
 import ksmart42.khtour.dto.Accommodation;
 import ksmart42.khtour.service.AccomReviewService;
 import ksmart42.khtour.service.AccommodationService;
-import ksmart42.khtour.service.MemberService;
 
 @Controller
 @RequestMapping("/accomreview")

@@ -54,7 +54,7 @@
 	overflow: hidden;
 	position: relative;
 	color: #616161;
-	white-space: pre-wrap;
+	white-space: nowrap;
 	word-break: break-all;
 	padding-right: 18.577px;
 	padding-left: 18.577px;
@@ -135,6 +135,7 @@
 		<div class="card">
 			<div class="card-body" style="padding-bottom: 0;">
 				<div>
+				<div><a type="button" style="padding: 10px; padding-left: 0px;" th:href="@{/accommodation/acoommodationInfo}">돌아가기</a></div>
 					<h2 style="display: inline; float: left;">후기</h2>
 					<span style="display: inline-block; float: left; font-size: 20px;">([[${accommodation.reviewCnt}]]개)</span>
 					<a type="button" class="btn addReview" data-toggle="modal"
@@ -335,10 +336,13 @@
 				</div>
 				<div class="review-bottom"
 					style="display: flex; justify-content: flex-end; padding: 0px">
-					<button class="btn" id="swal-delete-accomreview" th:if="${session.memberId == 'memberId'}" th:data-accomreviewCd="${al.ldgReviewCode}">삭제</button>
+					<button class="btn" id="swal-delete-accomreview" 
+					th:unless="${session.SID != al.memberId}"
+					th:data-accomreviewCd="${al.ldgReviewCode}">삭제</button>
 				</div>
 				<div class="card-footer"></div>
 			</article>
+				<div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="btn">더보기</a> </div>
 		</div>
 	</div>
 	<!-- 호텔 리뷰 표시 영역 끝 -->
@@ -437,6 +441,27 @@
 			});
 			
 		});
+	</script>
+	<script>
+		$(window).on('load', function () {
+		    load('#jReviewBox', '4');
+		    $("#js-btn-wrap .button").on("click", function () {
+		        load('#ReviewBox', '4', '#js-btn-wrap');
+		    })
+		});
+		 
+		function load(id, cnt, btn) {
+		    var girls_list = id + " .js-load:not(.active)";
+		    var girls_length = $(girls_list).length;
+		    var girls_total_cnt;
+		    if (cnt < girls_length) {
+		        girls_total_cnt = cnt;
+		    } else {
+		        girls_total_cnt = girls_length;
+		        $('.button').hide()
+		    }
+		    $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
+		}
 	</script>
 </th:block>
 </html>
