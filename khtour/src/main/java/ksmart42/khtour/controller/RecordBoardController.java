@@ -338,47 +338,6 @@ public class RecordBoardController {
 		
 	}	
 	
-////////마이페이지 
-
-/* 2. 리스트 조회 (유저 권한)
-*  작성자 : 김민석
-*  입  력 : Model, searchKey 검색키워드 종류, searchValue 검색키워드 값
-*  출  력 : String(주소)
-*  설  명 : 여행 게시글 조회 (유저페이지) - get방식 전달
-*/
-	@GetMapping("/mypage/mypage")
-		public String getRecordBoardListMypage(Model model
-				,@RequestParam(name="searchKey", required=false) String searchKey
-				,@RequestParam(name="searchValue", required=false) String searchValue) {
-			
-			Map<String, Object> paramMap = new HashMap<String, Object>();
-		
-			if(searchKey != null) {
-				if("memberId".equals(searchKey)) {
-					searchKey = "member_id";
-				}else if("recordBoardName".equals(searchKey)) {
-					searchKey = "record_board_name";
-				}else if("recordBoardSubName".equals(searchKey)) {
-					searchKey = "record_board_sub_name";
-				}
-			}
-			
-			paramMap.put("searchKey", searchKey);
-			paramMap.put("searchValue", searchValue);
-			
-			List<RecordBoard> recordBoardList = recordBoardService.getRecordBoardList(paramMap);
-			for(int i=0; i<recordBoardList.size(); i++) {
-			String feedCount =	recordBoardService.getrecordBoardByfeedCount(recordBoardList.get(i).getRecordBoardCode());
-			recordBoardList.get(i).setLikeCount(feedCount);
-			}
-			
-			paramMap = null;
-			
-			model.addAttribute("title", "여행기록 게시판");
-			model.addAttribute("recordBoardList", recordBoardList);
-		
-			return "mypage/mypage";
-		}
 		
 	}
 
