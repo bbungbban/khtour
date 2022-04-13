@@ -27,6 +27,16 @@ public class RecordBoard {
 	private int views;
 	private String travelStyle;
 	
+	private Member member;
+	
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
 	private String recordBoardImagePath;
 
 	private PlanStatus planStatus;
@@ -150,9 +160,17 @@ public class RecordBoard {
 				+ recordBoardName + ", recordBoardSubName=" + recordBoardSubName + ", content=" + content
 				+ ", planStatusCode=" + planStatusCode + ", startDate=" + startDate + ", endDate=" + endDate
 				+ ", regDate=" + regDate + ", likeCount=" + likeCount + ", views=" + views + ", travelStyle="
-				+ travelStyle + ", recordBoardImagePath=" + recordBoardImagePath + ", planStatus=" + planStatus + "]";
+				+ travelStyle + ", member=" + member + ", recordBoardImagePath=" + recordBoardImagePath
+				+ ", planStatus=" + planStatus + ", getMember()=" + getMember() + ", getRecordBoardCode()="
+				+ getRecordBoardCode() + ", getMemberId()=" + getMemberId() + ", getRecordBoardName()="
+				+ getRecordBoardName() + ", getRecordBoardSubName()=" + getRecordBoardSubName() + ", getContent()="
+				+ getContent() + ", getPlanStatusCode()=" + getPlanStatusCode() + ", getStartDate()=" + getStartDate()
+				+ ", getEndDate()=" + getEndDate() + ", getRegDate()=" + getRegDate() + ", getLikeCount()="
+				+ getLikeCount() + ", getViews()=" + getViews() + ", getRecordBoardImagePath()="
+				+ getRecordBoardImagePath() + ", getPlanStatus()=" + getPlanStatus() + ", getTravelStyle()="
+				+ getTravelStyle() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
 	}
-
 
 	
 

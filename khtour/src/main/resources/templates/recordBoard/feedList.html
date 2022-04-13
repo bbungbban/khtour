@@ -118,19 +118,30 @@
 				<div class="card-body">
 					<div class="d-flex justify-content-center">
 						<a href="#">
-							<img class="rounded-circle" style="width: 150px;" alt="..." th:src="@{'/images/iii.jpg'}">
+							<img class="rounded-circle" style="width: 150px;" alt="..." th:src="@{/images/heritage/member.jpg}">
 						</a>
 					</div>
-					<div class="text-center my-6">
+					<div class="my-6">
 						<!-- Title -->
-						<a href="#" class="d-block h5" style="font-size: 20px;">치밀한컴케이크</a>
-						<div class="pb-5" th:text=" ${recordBoard.memberId}"></div>
+						<a href="#" class="d-block text-center h5" style="font-size: 20px;" th:text=${recordBoard.member.memberName}></a>
+						<div class="pt-5 " th:text="'등록자 아이디 :' + ${recordBoard.memberId}"></div>
+						<hr>
+						<div  th:text="'유저 이름 : ' + ${recordBoard.member.memberUserName}"></div>
+						<hr>
+						<div  th:text="'성별: ' + ${recordBoard.member.memberGender}"></div>
+						<hr>
+						<div  th:text="'생일 : ' + ${recordBoard.member.memberBirthday}"></div>
+						<hr>
+						<div  th:text="'이메일 : '+  ${recordBoard.member.memberEmail}"></div>
+						<hr>
 						<!-- th:text="${recordBoardList.memberId.getMemberUserName()}" -->
 						<!-- Subtitle -->
+						<div class="text-center">
 							<button type="button" class="btn btn-primary" data-toggle="modal"
 								data-target=".bd-example-modal-lg">
 								<i class="feather icon-plus"></i>피드 등록
 							</button>
+						</div>
 							<!-- 모달 시작 -->
 							<div class="modal fade bd-example-modal-lg" tabindex="-1"
 								role="dialog" aria-labelledby="exampleModalLabel"
@@ -210,31 +221,11 @@
 				</div>
 
 			</div>
-			<div class="card">
-				<div class="card-title">
-					<h3>Photo</h3>
-				</div>
-				<hr class="my-2">
-				<div style="padding: 5px;">
-					<div>
-						<img id="first" class="image"
-							th:src="@{https://i.imgur.com/3pcJdqF.jpg}"> <img
-							class="image" th:src="@{https://i.imgur.com/zFRM6Ww.jpg}">
-						<img class="image active"
-							th:src="@{https://i.imgur.com/oDSYIAB.jpg}"> <img
-							class="image" th:src="@{https://i.imgur.com/lfEnSRg.jpg}">
-						<img id="last" class="image"
-							th:src="@{https://i.imgur.com/gl9AZz0.jpg}">
-					</div>
-					<span class="fa fa-angle-left" id="left"></span> <span
-						class="fa fa-angle-right" id="right"></span>
-				</div>
-			</div>
 		</div>
 		<div class="col-12 col-md-8 col-lg-9">
 			<div class="card">
 				<div class="card-title">
-					<h3>게시글</h3>
+					<h3 th:text="${recordBoard.memberId} + ' 님의 게시글'"></h3>
 				</div>
 				<hr class="my-2">
 				<div class="card-body">
@@ -268,7 +259,7 @@
 
 								<div class="d-flex flex-row align-items-start">
 									<img class="rounded-circle"
-										src="https://i.imgur.com/RpzrMR2.jpg" width="40">
+										th:src="@{/images/heritage/member.jpg}" width="40">
 									<textarea class="form-control ml-1 shadow-none textarea"
 										name="content"></textarea>
 									<input type="hidden" name="recordBoardCode"
@@ -317,9 +308,6 @@
 									class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1"
 									th:href="@{/recordBoard/recordBoardModify(recordBoardCode=${recordBoard.recordBoardCode})}">
 									<i class="la la-edit"></i>
-								</a> <a th:unless="${session.SID != recordBoard.memberId}"
-									class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1"> <i
-									class="la la-edit"></i>
 								</a>
 								<button th:unless="${session.SID != recordBoard.memberId}"
 									class="btn btn-danger btn-icon btn-sm mb-1"
