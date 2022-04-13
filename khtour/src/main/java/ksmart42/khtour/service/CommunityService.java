@@ -87,7 +87,6 @@ public class CommunityService {
 			String postCode = tempPost.getPostCode();
 			
 			tempPost.setFilePath(communityMapper.getFileControllerByPostCode(postCode));
-			tempPost.setRegTime(communityMapper.dateCompare(KhtourLibrary.dateToMillisec(tempPost.getRegTime())));
 		}
 		return postListMod(postList);
 	}
