@@ -111,11 +111,6 @@ public interface CommunityMapper {
 	public void deleteCommunityByCommCode(String commCode);
 	
 	
-	public String dateCompare(String regDate);
-	
-
-	
-	
 	public void resetDailyLikeCnt();
 	
 	// 9 : 커뮤니티 포스트 추가
