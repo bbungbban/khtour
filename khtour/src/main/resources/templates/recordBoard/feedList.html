@@ -13,8 +13,9 @@
 	width: 100%;
 	height: 274px;
 }
+
 .fa {
-    cursor: pointer
+	cursor: pointer
 }
 /* 이미지 앨범 이동 */
 .btn {
@@ -112,45 +113,100 @@
 		<div class="col-12 col-md-4 col-lg-3">
 			<!-- Component -->
 			<div class="card">
-				<div class="card-title"
-					th:text="'작성자 아이디 : ' + ${recordBoard.memberId}"></div>
+				
 				<hr class="my-2">
 				<div class="card-body">
 					<div class="d-flex justify-content-center">
-						<a href="#" class="avatar avatar-xl rounded-circle"> <img
-							alt="..."
-							src="https://images.unsplash.com/photo-1579463148228-138296ac3b98?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80">
+						<a href="#">
+							<img class="rounded-circle" style="width: 150px;" alt="..." th:src="@{'/images/iii.jpg'}">
 						</a>
 					</div>
 					<div class="text-center my-6">
 						<!-- Title -->
-						<a href="#" class="d-block h5 mb-0">닉네임</a>
+						<a href="#" class="d-block h5" style="font-size: 20px;">치밀한컴케이크</a>
+						<div class="pb-5" th:text=" ${recordBoard.memberId}"></div>
 						<!-- th:text="${recordBoardList.memberId.getMemberUserName()}" -->
 						<!-- Subtitle -->
-						<span class="d-block text-sm text-muted">이메일@company.com</span>
-						<div style="text-align: center; padding: 10px">
-							<button type="button" class="btn btn-outline-danger">팔로우</button>
-						</div>
+							<button type="button" class="btn btn-primary" data-toggle="modal"
+								data-target=".bd-example-modal-lg">
+								<i class="feather icon-plus"></i>피드 등록
+							</button>
+							<!-- 모달 시작 -->
+							<div class="modal fade bd-example-modal-lg" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalLabel"
+								aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">
+												<i class="feather icon-plus"></i> 상세정보 등록
+											</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body p-5">
+											<form id="addFeedForm" th:action="@{/recordBoard/feedList}"
+												method="post" enctype="multipart/form-data">
+
+												<input type="hidden" name="recordBoardCode"
+													th:value="${param.recordBoardCode}">
+												<div class="form-group">
+													<label for="memberId"> 등록자 아이디 </label> <input type="text"
+														class="form-control" id="memberId"
+														th:value="${session.SID}" name="memberId"
+														readonly="readonly" required="">
+												</div>
+
+												<div class="form-group">
+													<label for="feedTitle">피드 제목</label> <input type="text"
+														class="form-control" name="feedTitle"
+														placeholder="피드 제목을 입력해주세요.">
+												</div>
+
+												<div class="form-group">
+													<label for="feedPlanDays">피드 일자</label> <input type="text"
+														placeholder="피드 시간을 입력해주세요." class="form-control">
+												</div>
+												<div class="form-group">
+													<label for="feedTime">피드 시간</label>
+													<div class="input-group bootstrap-timepicker timepicker">
+														<input id="timepicker1" type="text"
+															class="form-control input-small"><span
+															class="input-group-prepend"><i
+															class="fa fa-clock-o"></i></span>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="feedImage">이미지 선택</label> <input type="file"
+														id="feedImage" class="form-control" name="feedImageFiles"
+														required="">
+												</div>
+												<div class="form-group">
+													<label for="feedContent">피드 내용</label>
+													<textarea class="form-control" id="heritageDetail"
+														name="feedContent" rows="3" required=""></textarea>
+												</div>
+
+												<button type="button"
+													th:if="${session.SID != recordBoard.memberId}"
+													onclick="alert('게시글 작성자만 정보를 등록 할 수 있습니다.')"
+													class="btn btn-primary">등록</button>
+												<button type="button" id="addFeedBtn"
+													th:unless="${session.SID != recordBoard.memberId}"
+													class="btn btn-primary">등록</button>
+												<button type="button" class="btn btn-danger"
+													data-dismiss="modal">취소</button>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- 모달 끝 -->
 					</div>
 					<!-- Stats -->
 
-					<div class="d-flex">
-						<div class="col-4 text-center">
-							<i class="feather icon-image"></i><a href="#"
-								class="h4 font-bolder mb-0">25</a> <span class="d-block text-sm">게시글
-								수</span>
-						</div>
-						<div class="col-4 text-center">
-							<i class="fa fa-heart-o"></i> <a href="#"
-								class="h4 font-bolder mb-0">350</a> <span
-								class="d-block text-sm">팔로잉</span>
-						</div>
-						<div class="col-4 text-center">
-							<i class="fa fa-heart-o"></i> <a href="#"
-								class="h4 font-bolder mb-0">1.5K</a> <span
-								class="d-block text-sm">팔로워</span>
-						</div>
-					</div>
 				</div>
 
 			</div>
@@ -174,83 +230,6 @@
 						class="fa fa-angle-right" id="right"></span>
 				</div>
 			</div>
-			<div class="card">
-				<button type="button" class="btn btn-primary" data-toggle="modal"
-					data-target=".bd-example-modal-lg">
-					<i class="feather icon-plus"></i>피드 등록
-				</button>
-				<!-- 모달 시작 -->
-				<div class="modal fade bd-example-modal-lg" tabindex="-1"
-					role="dialog" aria-labelledby="exampleModalLabel"
-					aria-hidden="true">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">
-									<i class="feather icon-plus"></i> 상세정보 등록
-								</h5>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body p-5">
-								<form id="addFeedForm"
-									th:action="@{/recordBoard/feedList}" method="post"
-									enctype="multipart/form-data">
-									
-									<input type="hidden" name="recordBoardCode" th:value="${param.recordBoardCode}" >
-									<div class="form-group">
-										<label for="memberId"> 등록자 아이디 </label> <input
-											type="text" class="form-control" id="memberId" th:value="${session.SID}"
-											name="memberId" readonly="readonly" required="">
-									</div>
-									
-									<div class="form-group">
-										<label for="feedTitle">피드 제목</label> <input
-											type="text" class="form-control" name="feedTitle" placeholder="피드 제목을 입력해주세요.">
-									</div>
-
-									<div class="form-group">
-										<label for="feedPlanDays">피드 일자</label> <input
-											type="text" placeholder="피드 시간을 입력해주세요."
-											class="form-control">
-									</div>
-									<div class="form-group">
-										<label for="feedTime">피드 시간</label>
-										<div class="input-group bootstrap-timepicker timepicker">
-											<input id="timepicker1" type="text"
-												class="form-control input-small" ><span
-												class="input-group-prepend"><i class="fa fa-clock-o"></i></span>
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="feedImage">이미지 선택</label> <input
-											type="file" id="feedImage" class="form-control"
-											name="feedImageFiles" required="">
-									</div>
-									<div class="form-group">
-										<label for="feedContent">피드 내용</label>
-										<textarea class="form-control" id="heritageDetail"
-											name="feedContent" rows="3" required=""></textarea>
-									</div>
-
-									<button type="button" 
-												th:if="${session.SID != recordBoard.memberId}"
-												onclick="alert('게시글 작성자만 정보를 등록 할 수 있습니다.')"
-										class="btn btn-primary">등록</button>
-									<button type="button" id="addFeedBtn" 
-												th:unless="${session.SID != recordBoard.memberId}"
-										class="btn btn-primary">등록</button>
-									<button type="button" class="btn btn-danger"
-										data-dismiss="modal">취소</button>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- 모달 끝 -->
-			</div>
 		</div>
 		<div class="col-12 col-md-8 col-lg-9">
 			<div class="card">
@@ -268,82 +247,89 @@
 						th:text="'여행 시작일 : ' + ${recordBoard.startDate} + ' | ' + '여행 종료일 : ' + ${recordBoard.endDate} + ' | ' + '여행 스타일  : ' + ${recordBoard.travelStyle}"></p>
 					<p
 						th:text="'게시글 등록 날짜 : ' + ${recordBoard.regDate} + ' | ' + '조회수 : ' + ${recordBoard.views}"></p>
-													<div class="d-flex flex-column comment-section" id="myGroup">
-										<div class="p-2">
-											<div class="d-flex flex-row fs-12">
-												<div class="like p-2 cursor action-collapse"
-													data-toggle="collapse" aria-expanded="true"
-													aria-controls="collapse-1" href="#collapse-1">
-													<i class="fa fa-commenting-o"></i><span class="ml-1">댓글</span>
-												</div>
-												<div class="like p-2 cursor action-collapse"
-													data-toggle="collapse" aria-expanded="true"
-													aria-controls="collapse-2" href="#collapse-2">
-													<i class="fa fa-share"></i><span class="ml-1">관리</span>
-												</div>
-											</div>
-										</div>
-										<div id="collapse-1" class="p-2 collapse"
-											data-parent="#myGroup">
-											<form id="addCommentForm" method="post" th:action="@{/recordBoard/commentInsert}">
-	
-												<div class="d-flex flex-row align-items-start">
-													<img class="rounded-circle"
-														src="https://i.imgur.com/RpzrMR2.jpg" width="40">
-													<textarea class="form-control ml-1 shadow-none textarea" name="content"></textarea>
-													<input type="hidden" name="recordBoardCode" th:value="${param.recordBoardCode}" >
-													<input type="hidden" name="memberId" th:value="${session.SID}">
-												</div>
-												<div class="mt-2 text-right">
-													<button class="btn btn-primary btn-sm shadow-none" id="addCommentBtn"
-														type="button">작성완료</button>
-												</div>
-											</form>
-											<div class="card p-3 mb-2" th:if="${not #lists.isEmpty(recordBoardCommentList)}"
-							th:each="c : ${recordBoardCommentList}">
-												<div class="d-flex flex-row">
-													<div class="d-flex flex-column ms-2">
-														<h3 class="mb-1 text-primary" th:text="'등록자 아이디 : ' + ${c.memberId}">\</h3>
-														<p class="comment-text" th:text="'내용: ' + ${c.content}">댓글 내용</p>
-													</div>
-													<div class="col-10 text-right">
-													
-													<a th:unless="${session.SID != c.memberId}"
-													th:href="@{/recordBoard/commentRemove(commentNum=${c.commentNum}, recordBoardCode=${recordBoard.recordBoardCode})}"><i class="fa fa-trash-o"></i></a> 
-												
-												</div>
-												</div>
-												<div class="d-flex justify-content-between">
-													<div class="d-flex flex-row gap-3 align-items-center"></div>
-													<div class="d-flex flex-row">
-												<span class="text-muted fw-normal fs-10" th:text="'작성 시간:'+${c.regDate}"></span>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div id="collapse-2" class="p-2 collapse"
-											data-parent="#myGroup">
-											<div class="d-flex flex-row align-items-start">
-												<a class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1"
-												th:if="${session.SID != recordBoard.memberId}"
-												onclick="alert('게시글 작성자만 정보를 수정,삭제할 수 있습니다.')"
-												>
-												<i class="la la-edit"></i> </a></a>
-											
-												<a th:unless="${session.SID != recordBoard.memberId}"
-												class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1" th:href="@{/recordBoard/recordBoardModify(recordBoardCode=${recordBoard.recordBoardCode})}">
-												<i class="la la-edit"></i> </a>
-												<a th:unless="${session.SID != recordBoard.memberId}"
-												class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1">
-												<i class="la la-edit"></i> </a>
-												<button th:unless="${session.SID != recordBoard.memberId}"
-												class="btn btn-danger btn-icon btn-sm mb-1" th:data-recordBoardCd="${recordBoard.recordBoardCode}"
-													id="swal-delete-recordBoard">
-													<i class="fa fa-trash-o"></i>
-												</button>
-											</div>
-										</div>
+					<div class="d-flex flex-column comment-section" id="myGroup">
+						<div class="p-2">
+							<div class="d-flex flex-row fs-12">
+								<div class="like p-2 cursor action-collapse"
+									data-toggle="collapse" aria-expanded="true"
+									aria-controls="collapse-1" href="#collapse-1">
+									<i class="fa fa-commenting-o"></i><span class="ml-1">댓글</span>
+								</div>
+								<div class="like p-2 cursor action-collapse"
+									data-toggle="collapse" aria-expanded="true"
+									aria-controls="collapse-2" href="#collapse-2">
+									<i class="fa fa-share"></i><span class="ml-1">관리</span>
+								</div>
+							</div>
+						</div>
+						<div id="collapse-1" class="p-2 collapse" data-parent="#myGroup">
+							<form id="addCommentForm" method="post"
+								th:action="@{/recordBoard/commentInsert}">
+
+								<div class="d-flex flex-row align-items-start">
+									<img class="rounded-circle"
+										src="https://i.imgur.com/RpzrMR2.jpg" width="40">
+									<textarea class="form-control ml-1 shadow-none textarea"
+										name="content"></textarea>
+									<input type="hidden" name="recordBoardCode"
+										th:value="${param.recordBoardCode}"> <input
+										type="hidden" name="memberId" th:value="${session.SID}">
+								</div>
+								<div class="mt-2 text-right">
+									<button class="btn btn-primary btn-sm shadow-none"
+										id="addCommentBtn" type="button">작성완료</button>
+								</div>
+							</form>
+							<div class="card p-3 mb-2"
+								th:if="${not #lists.isEmpty(recordBoardCommentList)}"
+								th:each="c : ${recordBoardCommentList}">
+								<div class="d-flex flex-row">
+									<div class="d-flex flex-column ms-2">
+										<h3 class="mb-1 text-primary"
+											th:text="'등록자 아이디 : ' + ${c.memberId}">\</h3>
+										<p class="comment-text" th:text="'내용: ' + ${c.content}">댓글
+											내용</p>
 									</div>
+									<div class="col-10 text-right">
+
+										<a th:unless="${session.SID != c.memberId}"
+											th:href="@{/recordBoard/commentRemove(commentNum=${c.commentNum}, recordBoardCode=${recordBoard.recordBoardCode})}"><i
+											class="fa fa-trash-o"></i></a>
+
+									</div>
+								</div>
+								<div class="d-flex justify-content-between">
+									<div class="d-flex flex-row gap-3 align-items-center"></div>
+									<div class="d-flex flex-row">
+										<span class="text-muted fw-normal fs-10"
+											th:text="'작성 시간:'+${c.regDate}"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="collapse-2" class="p-2 collapse" data-parent="#myGroup">
+							<div class="d-flex flex-row align-items-start">
+								<a class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1"
+									th:if="${session.SID != recordBoard.memberId}"
+									onclick="alert('게시글 작성자만 정보를 수정,삭제할 수 있습니다.')">
+									<i class="la la-edit"></i>
+								</a></a> <a th:unless="${session.SID != recordBoard.memberId}"
+									class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1"
+									th:href="@{/recordBoard/recordBoardModify(recordBoardCode=${recordBoard.recordBoardCode})}">
+									<i class="la la-edit"></i>
+								</a> <a th:unless="${session.SID != recordBoard.memberId}"
+									class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1"> <i
+									class="la la-edit"></i>
+								</a>
+								<button th:unless="${session.SID != recordBoard.memberId}"
+									class="btn btn-danger btn-icon btn-sm mb-1"
+									th:data-recordBoardCd="${recordBoard.recordBoardCode}"
+									id="swal-delete-recordBoard">
+									<i class="fa fa-trash-o"></i>
+								</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -362,21 +348,23 @@
 							th:each="f: ${feedList}">
 							<div class="time">
 								<span th:text="${f.feedTime}"></span><span th:text=${f.RegDate}></span>
-							</div>	
+							</div>
 							<div class="icon bg-primary">
 								<i class="zmdi zmdi-camera"></i>
 							</div>
 							<div class="info">
-								<span>피드 제목 : </span>
-								<h2 class="pt-3 pl-1" th:text="${f.feedTitle}"></h2>
-
 								<div class="embed-responsive embed-responsive-16by9">
-									<img th:src="@{${#strings.isEmpty(f.feedImagePath) ? '/images/traShare/여행이미지1.gif': '/' + #strings.replace(f.feedImagePath,'\','/')}}"
+									<img
+										th:src="@{${#strings.isEmpty(f.feedImagePath) ? '/images/traShare/여행이미지1.gif': '/' + #strings.replace(f.feedImagePath,'\','/')}}"
 										class="img-fluid embed-responsive-item" alt="...">
 								</div>
-								<div style="color:#AD8B73;"> KOREA HERITAGETOUR (T) </div>
+								<h2 class="pt-5" th:text="${f.feedTitle}"></h2>
+								<div style="color: #AD8B73;">KOREA HERITAGETOUR (T)</div>
 								<div>
-									내용 : <h3 class="pl-5" th:text=${f.feedContent}></h3>
+									<p style="font-size: 18px;" th:text="${f.feedContent}"></p>
+									<div class="float-end pb-3">
+										<a><span>수정</span></a> <a><span style="margin-left: 5px;">삭제</span></a>
+									</div>
 								</div>
 							</div>
 						</li>
@@ -389,8 +377,10 @@
 </th:block>
 <th:block layout:fragment="customBodyScript">
 	<!-- delbtn -->
-	<script th:src="@{/js/sweetalert2/sweetalert2.min.js}" aria-hidden="true"></script>
-	<script th:src="@{/js/sweetalert2/sweetalert2-custom.js}" aria-hidden="true"></script>
+	<script th:src="@{/js/sweetalert2/sweetalert2.min.js}"
+		aria-hidden="true"></script>
+	<script th:src="@{/js/sweetalert2/sweetalert2-custom.js}"
+		aria-hidden="true"></script>
 	<!-- custom -->
 	<script th:src="@{/js/custom.js}"></script>
 	<!-- PRISM -->
@@ -424,7 +414,7 @@
 
 		});
 	</script>
-		<!-- 등록 버튼 자바스크립트 -->
+	<!-- 등록 버튼 자바스크립트 -->
 	<script type="text/javascript" th:inline="javascript">
 		$('#addFeedBtn').click(function() {
 

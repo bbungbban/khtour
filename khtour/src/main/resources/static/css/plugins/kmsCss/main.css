@@ -156,3 +156,8 @@ small {
     background-image: none;
     border-color: #ed433e !important
 }
+
+
+
+/*220413 김문영*/
+.timeline-left>li .info{padding:4.2em !important;}
