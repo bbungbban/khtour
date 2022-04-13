@@ -21,7 +21,6 @@ import ksmart42.khtour.dto.Accommodation;
 import ksmart42.khtour.dto.Room;
 import ksmart42.khtour.service.AccomReviewService;
 import ksmart42.khtour.service.AccommodationService;
-import ksmart42.khtour.service.MemberService;
 import ksmart42.khtour.service.RoomService;
 
 @Controller
@@ -35,14 +34,12 @@ public class AccommodationController {
 	private AccommodationService accommodationService; 
 	private AccomReviewService accomReviewService;
 	private RoomService roomService;
-	private MemberService memberService;
+
 	
-	public AccommodationController(AccommodationService accommodationService, RoomService roomService, AccomReviewService accomReviewService, MemberService memberService) {
+	public AccommodationController(AccommodationService accommodationService, RoomService roomService, AccomReviewService accomReviewService) {
 		this.accommodationService = accommodationService;
 		this.roomService = roomService;
 		this.accomReviewService = accomReviewService;
-		this.memberService = memberService;
-	
 	
 	}
 	/*
