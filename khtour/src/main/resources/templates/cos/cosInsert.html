@@ -100,7 +100,7 @@
 							}
 						//-->
 						</script>
-						<form id="addCos" th:action="@{/cos/cosInsert}" method="post" name="addCos" enctype="multipart/form-data">
+						<form id="addCos" th:action="@{/cos/cosInsert}" method="post" enctype="multipart/form-data">
 							<div class="form-group">
 								<label for="cosArea1">지역선택</label>
 								<div class="input-group">
@@ -142,8 +142,9 @@
 								<input type="text" class="form-control" name="cosName" placeholder="코스이름을 입력하세요.">
 							</div>
 							<div class="form-group">
-								<label for="cosImage">이미지 업로드</label>
-								<input type="file" class="form-control" name="cosImageFiles" style="line-height:1.2;">
+							<label for="cosImage">이미지 업로드</label> <input style="line-height:1.2;"
+									type="file" id="cosImage" class="form-control"
+									name="cosImageFiles" required="">
 							</div>
 							<div class="form-group">
 								<label for="cosRegist">코스설명</label>

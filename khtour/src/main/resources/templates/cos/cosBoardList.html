@@ -55,6 +55,16 @@
 									<div th:text="${l.cosOpen}"></div>
 									<div th:text="${l.cosShare}"></div>
 								</div>
+								das
+								<div class="col-md-3 col-lg-3"
+							th:if="${not #lists.isEmpty(cosList)}"
+							th:each="c : ${cosList}">
+							<div class="embed-responsive embed-responsive-4by3">
+										<img th:src="@{${#strings.isEmpty(c.cosImagePath) ? '/images/traShare/여행이미지1.gif': '/' + #strings.replace(c.cosImagePath,'\','/')}}"
+											class="card-img-top h-10 embed-responsive-item"
+											alt="...">
+									</div>
+							</div>
 							</div>
 						</div>
 <!-- **********************************  End 역사  ********************************** -->

@@ -1,5 +1,6 @@
 package ksmart42.khtour.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,8 +41,9 @@ public class CosController {
 		List<Cos> cosList = cosService.getCosList(paramMap);
 		List<Cos> history = cosService.history(paramMap);
 		
+		paramMap = null;
+		
 		model.addAttribute("title", "코스 조회 페이지");
-	    model.addAttribute("cosBoardList", cosList);
 	    model.addAttribute("history", history);
 	    model.addAttribute("cosList", cosList);
 	    log.info("코스유저:{}",cosList);
@@ -122,15 +124,26 @@ public class CosController {
 	 * 코스 정보 삭제(post 정보 전달)
 	 */
 	@GetMapping("/cosRemove")
-	public String removeCos(Cos cos) {
-		String cosCode = cos.getCosCode();
+	public String removeCos(Cos cos, HttpServletRequest request) throws IOException {
 		
-		cosService.removeCos(cosCode);
-		System.out.println("정보 삭제 포스트 전달" + cosService.removeCos(cosCode));
+		  String cosCode = cos.getCosCode();
+		  String serverName = request.getServerName();
 		
-		return "redirect:/cos/cosList";
-		
+	      String fileRealPath = "";
+	      if("localhost".equals(serverName)) {            
+	         fileRealPath = System.getProperty("user.dir") + "/src/main/resources/static/";
+	         //fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+	      }else {
+	         fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+	      }
+	      
+	      int result = cosService.removeCos(cosCode, fileRealPath);
+	      
+	      System.out.println("정보 삭제 포스트 전달" + result);
+	
+	      return "redirect:/cos/cosList";
 	}
+
 			
 	/*
 	 * 코스 등록(Post 정보 전달)
@@ -145,15 +158,18 @@ public class CosController {
 		else if (cos.getThemeCategory().equals("종교사")){cos.setThemeCategoryCode("theme_cate_code004");} 
 		else if (cos.getThemeCategory().equals("민속")){cos.setThemeCategoryCode("theme_cate_code005");}
 		String serverName = request.getServerName();
-	      String fileRealPath = "";
+	    String fileRealPath = "";
 	      if("localhost".equals(serverName)) {            
 	         fileRealPath = System.getProperty("user.dir") + "/src/main/resources/static/";
 	         //fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
 	      }else {
 	         fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
 	      }
-		cosService.addCos(cos, cosImageFiles, fileRealPath);
-		return "redirect:/cos/cosList";
+	    cos.setMemberId("id004");
+		
+	    cosService.addCos(cos, cosImageFiles, fileRealPath);
+		
+	    return "redirect:/cos/cosBoardList";
 	}
 	
 	/*

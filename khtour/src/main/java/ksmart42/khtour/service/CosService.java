@@ -1,5 +1,6 @@
 package ksmart42.khtour.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,8 +52,8 @@ public class CosService {
 	/**
 	 * 코스등록
 	 */
-	public void addCos(Cos cos, MultipartFile[] heritageImageFiles, String fileRealPath) {
-		List<FileDto> fileList = fileUtil.parseFileInfo(heritageImageFiles, fileRealPath);
+	public void addCos(Cos cos, MultipartFile[] cosImageFiles, String fileRealPath) {
+		List<FileDto> fileList = fileUtil.parseFileInfo(cosImageFiles, fileRealPath);
 		fileMapper.addFile(fileList);
 		cosMapper.addCos(cos);
 		
@@ -102,11 +103,32 @@ public class CosService {
 	/**
 	 * 코스 정보 삭제
 	 */
-	public int removeCos(String cosCode) {
-		int result = cosMapper.removeCos(cosCode);
+	public int removeCos(String cosCode, String fileRootPath) throws IOException {
+		
+		FileDto fileDto = cosMapper.fileInfoByFileIdx(cosCode);
+		  
+		int result = 0;
 
-		result += cosMapper.removeCos(cosCode);
-
-		return result;
+	      if(fileDto != null) {
+	         
+	         String fileIdx = fileDto.getFileIdx();
+	         String filePath = fileDto.getFilePath();
+	   
+	         if(fileIdx != null) {
+	            
+	            fileMapper.removeFileControl(fileIdx);
+	            
+	            fileMapper.removeFile(fileIdx);
+	            
+	            result += cosMapper.removeCos(cosCode);
+	            
+	            if(result > 0) fileUtil.fileDelete(fileRootPath, filePath);
+	         }
+	      }else {
+	         
+	         result += cosMapper.removeCos(cosCode);
+	         
+	      }
+	      return result;
+	   }
 	}
-}

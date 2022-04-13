@@ -18,6 +18,8 @@ public class Cos {
 	private String cosOpen;
 	private String cosShare;
 	
+	private String  cosImagePath;
+	
 	public String getCosCode() {
 		return cosCode;
 	}
@@ -115,13 +117,31 @@ public class Cos {
 	public void setCosShare(String cosShare) {
 		this.cosShare = cosShare;
 	}
+	
+	public String getCosImagePath() {
+		return cosImagePath;
+	}
+	public void setCosImagePath(String cosImagePath) {
+		this.cosImagePath = cosImagePath;
+	}
 	@Override
 	public String toString() {
 		return "Cos [cosCode=" + cosCode + ", memberId=" + memberId + ", themeCategoryCode=" + themeCategoryCode
 				+ ", themeCategory=" + themeCategory + ", musCode1=" + musCode1 + ", musCode2=" + musCode2
 				+ ", musCode3=" + musCode3 + ", musCode4=" + musCode4 + ", musCode5=" + musCode5 + ", cosArea1="
 				+ cosArea1 + ", cosArea2=" + cosArea2 + ", cosImage=" + cosImage + ", cosName=" + cosName
-				+ ", cosRegist=" + cosRegist + ", cosOpen=" + cosOpen + ", cosShare=" + cosShare + "]";
+				+ ", cosRegist=" + cosRegist + ", cosOpen=" + cosOpen + ", cosShare=" + cosShare + ", cosImagePath="
+				+ cosImagePath + ", getCosCode()=" + getCosCode() + ", getMemberId()=" + getMemberId()
+				+ ", getThemeCategoryCode()=" + getThemeCategoryCode() + ", getThemeCategory()=" + getThemeCategory()
+				+ ", getMusCode1()=" + getMusCode1() + ", getMusCode2()=" + getMusCode2() + ", getMusCode3()="
+				+ getMusCode3() + ", getMusCode4()=" + getMusCode4() + ", getMusCode5()=" + getMusCode5()
+				+ ", getCosArea1()=" + getCosArea1() + ", getCosArea2()=" + getCosArea2() + ", getCosImage()="
+				+ getCosImage() + ", getCosName()=" + getCosName() + ", getCosRegist()=" + getCosRegist()
+				+ ", getCosOpen()=" + getCosOpen() + ", getCosShare()=" + getCosShare() + ", getCosImagePath()="
+				+ getCosImagePath() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
 	}
+	
+	
 	
 }
