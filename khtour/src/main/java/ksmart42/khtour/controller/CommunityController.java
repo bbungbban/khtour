@@ -1,4 +1,5 @@
 package ksmart42.khtour.controller;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -704,5 +705,61 @@ public class CommunityController {
 		
 		return "redirect:/post";
 	}
+	@PostMapping("deleteCommPost")
+	public String deleteCommPost(RedirectAttributes reAttr, @RequestParam(value = "postCode") String postCode,HttpServletRequest request) throws IOException
+	{
+		
+		 String serverName = request.getServerName();
+	      String fileRootPath = "";
+	      if("localhost".equals(serverName)) {            
+	         fileRootPath = System.getProperty("user.dir") + "/src/main/resources/static/";
+	      }else {
+	         fileRootPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+	      }
+		
+		
+		
+		reAttr.addAttribute("postCode",postCode);
+		communityService.deleteCommPost(postCode,fileRootPath);
+		
+		return "redirect:/commDashboard";
+	}
+	
+	@PostMapping("deleteTag")
+	public String deleteTag(RedirectAttributes reAttr,CommTag commTag,HttpServletRequest request) throws IOException
+	{
+		 String serverName = request.getServerName();
+	      String fileRootPath = "";
+	      if("localhost".equals(serverName)) {            
+	         fileRootPath = System.getProperty("user.dir") + "/src/main/resources/static/";
+	      }else {
+	         fileRootPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+	      }
+		communityService.deleteTag(commTag, fileRootPath);
+		
+		reAttr.addAttribute("commCode",commTag.getCommCode());
+		
+		return "redirect:/commPage";
+	}
+	@PostMapping("deleteCommunity")
+	public String deleteCommunity(RedirectAttributes reAttr,  @RequestParam(value = "commCode") String commCode, HttpServletRequest request) throws IOException
+	{
+		String serverName = request.getServerName();
+		String fileRootPath = "";
+		if("localhost".equals(serverName)) {            
+			fileRootPath = System.getProperty("user.dir") + "/src/main/resources/static/";
+		}else {
+			fileRootPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+		}
+		
+		communityService.deleteCommunity(commCode, fileRootPath);
+		
+		
+		
+		
+		return "redirect:/commDashboard";
+	}
+	
+	
 	
 }

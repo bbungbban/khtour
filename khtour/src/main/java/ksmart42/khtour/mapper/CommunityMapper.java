@@ -40,6 +40,10 @@ public interface CommunityMapper {
 	public List<CommPost> getPostListByCommCode(String commCode);
 	public List<CommPost> getPostListByCommCodeHot(String commCode);
 	public List<CommPost> getPostListByCommCodeNew(String commCode);
+	public List<String> getPostCodeListByTagCode(String tagCode);
+	public List<String> getPostCodeListByCommCode(String commCode);
+	
+	
 	
 	public List<Community> getCommunityListByCategoryCode(String categoryCode);
 	
@@ -96,8 +100,18 @@ public interface CommunityMapper {
 	public void updateReply(CommReply commReply);
 	
 	public void deleteRule(String ruleCode);
+	public void deleteRuleByCommCode(String commCode);
+	public void deleteCommMemberRegByCommCode(String commCode);
+	public void deleteTag(String tagCode);
+	public void deleteTagByCommCode(String commCode);
 	public void deleteCommReply(String replyCode);
 	public void deleteLikesDislikesByReplyCode(String replyCode);
+	public void deleteLikesDislikesByPostCode(String postCode);
+	public void deleteCommPostByPostCode(String postCode);
+	public void deleteCommunityByCommCode(String commCode);
+	
+	
+	public String dateCompare(String regDate);
 	
 
 	

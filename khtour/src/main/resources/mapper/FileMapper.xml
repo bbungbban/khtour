@@ -74,9 +74,16 @@
    <delete id="removeFile" parameterType="String">
       DELETE 
       FROM 
-         tb_file_control
+         tb_file
       WHERE 
          file_idx = #{fileIdx};
+   </delete>
+    <delete id="removeFileByFilePath" parameterType="String">
+      DELETE 
+      FROM 
+         tb_file
+      WHERE 
+         file_path = #{filePath};
    </delete>
    
    <delete id="removeFileControl" parameterType="String">
@@ -85,5 +92,12 @@
          tb_file_control
       WHERE 
          file_idx = #{fileIdx};
+   </delete>
+   <delete id="removeFileControlByFilePath" parameterType="String">
+      DELETE 
+      FROM 
+         tb_file_control
+      WHERE 
+        file_path = #{filePath};
    </delete>
 </mapper>

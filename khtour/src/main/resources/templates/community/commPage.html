@@ -279,6 +279,7 @@
 				<div class="card-foot p-2 text-center border-top ">
 					<a th:if="${isAdmin=='false'}" th:href="@{/addCommMemberReg(memberId=${session.SID},commCode=${community.commCode})}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">커뮤니티 가입</a> 
 					<a th:if="${isAdmin=='true'}" th:href="@{/updateCommunity(commCode=${community.commCode})}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">커뮤니티 수정</a> 
+					<button type="button" class="btn btn-primary text-white btn-sm" data-toggle="modal" data-target="#deleteCommunityModal">커뮤니티 삭제  </button>
 					<a th:href="@{/createPost(commCode=${community.commCode},memberId=${session.SID})}" class="btn btn-primary active btn-sm" role="button" aria-pressed="true">포스트 만들기</a>
 				</div>
 			</div>
@@ -325,6 +326,7 @@
 				<div class="card-foot p-2 text-center border-top" th:if="${isAdmin=='true'}">
 					<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addTagModal">테그 추가</button>
 					<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updateTagModal">테그 수정</button>
+					<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#deleteTagModal">테그 삭제</button>
 				</div>
 			</div>
 		</div>
@@ -388,7 +390,7 @@
 					
 					
 						<div class="form-group pb-4 border-bottom">
-							<label for="tagListSelect">수정할 규칙</label> 
+							<label for="tagListSelect">수정할 테그</label> 
 							<select class="form-control" id="tagListSelect" name="tagCode">
 								<option th:value="${tl.tagCode}" th:text="${tl.tagName}" th:each="tl: ${tagList}" />
 							</select>
@@ -412,6 +414,33 @@
 							</select>
 						</div>
 						<button type="submit" class="btn btn-primary pull-right">태그변경</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="deleteTagModal" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">태그삭제</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body p-5">
+					<form class="cmxform" method="post" th:action="@{/deleteTag}">
+						<div class="form-group pb-4 border-bottom">
+							<label for="tagListSelect">삭제할 테그</label> 
+							<select class="form-control" id="tagListSelect" name="tagCode">
+								<option th:value="${tl.tagCode}" th:text="${tl.tagName}" th:each="tl: ${tagList}" />
+							</select>
+							<p class="text-danger mt-4">테그 삭제시 테그에 해당하는 모든 포스트도 삭제됩니다.</p>
+							<input type="hidden" name="commCode" id="commCode" class="form-control" th:value="${community.commCode}"></input>
+						</div>
+
+						<button type="submit" class="btn btn-primary pull-right">태그삭제</button>
 					</form>
 				</div>
 			</div>
@@ -519,6 +548,30 @@
 			</div>
 		</div>
 	</div>
+	<div class="modal fade" id="deleteCommunityModal" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">커뮤니티 삭제</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body p-5">
+					<form class="cmxform" method="post" th:action="@{/deleteCommunity}">
+						<div class="form-group pb-4 border-bottom">
+							<h4 class="text-danger mt-4">정말 삭제 하시겠습니까?</h4>
+							<input type="hidden" name="commCode" id="commCode" class="form-control" th:value="${community.commCode}"></input>
+						</div>
+						<button type="submit" class="btn btn-primary pull-right">커뮤니티 삭제</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
 
 </th:block>
 
