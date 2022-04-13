@@ -17,7 +17,16 @@
 		<result column="reg_date" 				property="regDate"/>						<!-- 게시글 등록 일자 -->
 		<result column="like_count" 			property="likeCount"/>						<!-- 좋아요 개수 -->
 		<result column="views" 					property="views"/>							<!-- 조회수 -->					
-		<result column="travel_style" 			property="travelStyle"/>					<!-- 여행 스타일 -->					
+		<result column="travel_style" 			property="travelStyle"/>					<!-- 여행 스타일 -->	
+		<association property="member" javaType="Member">
+			<id column ="member_id"				property="memberId"></id>
+			<result column="member_name" 		property="memberName"/>
+			<result column="member_user_name" 	property="memberUserName"/>
+			<result column="gender" 			property="memberGender"/>
+			<result column="birthday" 			property="memberBirthday"/>
+			<result column="email"				property="memberEmail"/>
+			<result column="reg_time"			property="memberRegTime"/>
+		</association>			
 	</resultMap> 
 	
 	<!-- 여행게시글 댓글 resultMap -->
@@ -151,7 +160,12 @@
 		   ,r.like_count    
 		   ,r.views
 		   ,r.travel_style    
-		   ,f.file_path   
+		   ,f.file_path
+		   ,m.member_name
+		   ,m.member_user_name
+		   ,m.gender
+		   ,m.birthday
+		   ,m.email  
 	      FROM
 	         tb_record_board AS r
 	         INNER JOIN 
