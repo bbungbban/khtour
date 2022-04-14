@@ -17,185 +17,101 @@
 	<!-- 페이지 타이틀 종료 -->
 </th:block>
 <th:block layout:fragment="customContents">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/plugins/KmyCss/addCssKmy.css}">
-<!-- **********************************  Start ContentsWrap  ********************************** -->
+	<link rel="stylesheet" type="text/css"
+		th:href="@{/css/plugins/KmyCss/addCssKmy.css}">
+	<!-- **********************************  Start ContentsWrap  ********************************** -->
 	<div id="khtour">
 		<div class="cosBoard card">
-			<div class="card-body" style="padding-left:3.4rem;">
+			<div class="card-body" style="padding-left: 3.4rem;">
 				<div class="tab tab-outline tab-center">
 					<ul class="nav justify-content-center" id="myTab-04" role="tablist">
-						<li class="nav-item">
-							<a class="nav-link active" id="home-tab-04" data-toggle="tab" href="#home-04" role="tab">역사</a>
+						<li class="nav-item"><a class="nav-link active"
+							id="home-tab-04" data-toggle="tab" href="#home-04" role="tab">역사</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" id="profile-tab-04" data-toggle="tab" href="#profile-04" role="tab">인문</a>
+						<li class="nav-item"><a class="nav-link" id="profile-tab-04"
+							data-toggle="tab" href="#profile-04" role="tab">인문</a></li>
+						<li class="nav-item"><a class="nav-link" id="contact-tab-12"
+							data-toggle="tab" href="#contact-12" role="tab">전쟁</a></li>
+						<li class="nav-item" role="presentation"><a class="nav-link"
+							id="settings-tab" data-toggle="tab" href="#settings" role="tab">종교사</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" id="contact-tab-12" data-toggle="tab" href="#contact-12" role="tab">전쟁</a>
+						<li class="nav-item" role="presentation"><a class="nav-link"
+							id="settings-tab" data-toggle="tab" href="#settings" role="tab">민족</a>
 						</li>
-						<li class="nav-item" role="presentation">
-    						<a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab">종교사</a>
-  						</li>
-						<li class="nav-item" role="presentation">
-    						<a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab">민족</a>
-  						</li>
 					</ul>
-<!-- **********************************  Start 역사  ********************************** -->
+					<!-- **********************************  Start 역사  ********************************** -->
 					<div class="tab-content" id="myTabContent-04">
 						<div class="tab-pane fade active show" id="home-04" role="tabpanel" aria-labelledby="home-tab-04">
-							<div class="container">
-								<div th:if="${not #lists.isEmpty(history)}" th:each="l:${history}" class="dk">
-									<div th:text="${l.cosCode}"></div>
-									<div th:text="${l.memberId}"></div>
-									<div th:text="|${l.cosArea1}${l.cosArea2}|"></div>
-									<div th:text="${l.themeCategory}"></div>
-									<div th:text="${l.cosName}"></div>
-									<div th:text="|${l.musCode1}-${l.musCode2}-${l.musCode3}-${l.musCode4}-${l.musCode5}|"></div>
-									<div th:text="${l.cosRegist}"></div>
-									<div th:text="${l.cosOpen}"></div>
-									<div th:text="${l.cosShare}"></div>
-								</div>
-								das
-								<div class="col-md-3 col-lg-3"
-							th:if="${not #lists.isEmpty(cosList)}"
-							th:each="c : ${cosList}">
-							<div class="embed-responsive embed-responsive-4by3">
+							<div class="row row-cols-1 row-cols-md-3 g-4">
+								<div class="col" th:if="${not #lists.isEmpty(cosList)}" th:each="c : ${cosList}">
+									<div class="card">
 										<img th:src="@{${#strings.isEmpty(c.cosImagePath) ? '/images/traShare/여행이미지1.gif': '/' + #strings.replace(c.cosImagePath,'\','/')}}"
-											class="card-img-top h-10 embed-responsive-item"
-											alt="...">
+										class="img-fluid" alt="...">
+										<div class="card-body">
+											<h5 th:text="${c.cosCode}"></h5>
+											<p th:text="${c.cosName}"></p>
+											<p th:text="|${c.musCode1}-${c.musCode2}-${c.musCode3}-${c.musCode4}-${c.musCode5}|"></p>
+											<p th:text="${c.cosRegist}"></p>
+										</div>
 									</div>
-							</div>
+								</div>
 							</div>
 						</div>
-<!-- **********************************  End 역사  ********************************** -->
-<!-- **********************************  Start 인문 ******************************* -->					
+						<!-- **********************************  End 역사  ********************************** -->
+						<!-- **********************************  Start 인문 ******************************* -->
 						<div class="tab-pane fade active" id="profile-04" role="tabpanel" aria-labelledby="profile-tab-04">
-							<div class="container">
-								<div th:if="${not #lists.isEmpty(history)}" th:each="l:${history}" class="dk">
-									<div th:text="${l.cosCode}"></div>
-									<div th:text="${l.memberId}"></div>
-									<div th:text="|${l.cosArea1}${l.cosArea2}|"></div>
-									<div th:text="${l.themeCategory}"></div>
-									<div th:text="${l.cosName}"></div>
-									<div th:text="|${l.musCode1}-${l.musCode2}-${l.musCode3}-${l.musCode4}-${l.musCode5}|"></div>
-									<div th:text="${l.cosRegist}"></div>
-									<div th:text="${l.cosOpen}"></div>
-									<div th:text="${l.cosShare}"></div>
-								</div>
-							</div>
-						</div>
-<!-- **********************************  End 인문  ********************************** -->
-<!-- **********************************  Start 전쟁 ******************************** -->						
-						<div class="tab-pane fade active" id="contact-12" role="tabpanel" aria-labelledby="contact-tab-12">
-							<div class="container">
-								<div th:if="${not #lists.isEmpty(history)}" th:each="l:${history}">
-									<div th:text="${l.cosCode}"></div>
-									<div th:text="${l.memberId}"></div>
-									<div th:text="|${l.cosArea1}${l.cosArea2}|"></div>
-									<div th:text="${l.themeCategory}"></div>
-									<div th:text="${l.cosName}"></div>
-									<div th:text="|${l.musCode1}-${l.musCode2}-${l.musCode3}-${l.musCode4}-${l.musCode5}|"></div>
-									<div th:text="${l.cosRegist}"></div>
-									<div th:text="${l.cosOpen}"></div>
-									<div th:text="${l.cosShare}"></div>
-								</div>
-							</div>
-						</div>
-<!-- **********************************  End 전쟁  ********************************** -->
-<!-- **********************************  Start 종교사 ******************************* -->
-						 <div class="tab-pane fade active" id="settings" role="tabpanel" aria-labelledby="settings-tab">
-							<div class="container">
-								<div class="row">
-									<div class="col-sm-12">
-										<div class="row">
-											<div class="col-sm-12 col-md-3 sHover" style="padding-right: 0;" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true">
-												<div class="textbox"><span>신라역사투어</span></div>
-												<a href="#" onclick="return false;">
-													<img th:src="@{'/images/cos/hcosImg01.jpg'}" class="img-fluid">
-												</a>
-											</div>
-											<div class="col-sm-12 col-md-6" style="padding: 0;">
-												<div class="row">
-													<div class="col-sm-12 sHover" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-														<div class="textbox"><span>가야문명의길</span></div>
-														<a href="#" onclick="return false;"><img th:src="@{'/images/cos/cosImg07.jpg'}" class="img-fluid"></a>
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-12 col-md-3" style="padding: 0;">
-												<div class="row">
-													<div class="col-sm-12 sHover" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-														<div class="textbox"><span>관동풍류의길</span></div>
-														<a href="#" class=""><img th:src="@{'/images/cos/cosImg05.jpg'}" class="img-fluid"></a>
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-sm-12 sHover" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-														<div class="textbox"><span>빛나는<br/>철기문화유산</span></div>
-														<a href="#" onclick="return false;"><img th:src="@{'/images/cos/cosImg04.jpg'}" class="img-fluid"></a>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="accordion" id="accordionExample">
-										    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-										        <img th:src="@{'/images/cos/1cos.jpg'}" class="img-fluid">
-										    </div>
-										    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-										        <img th:src="@{'/images/cos/2cos.jpg'}" class="img-fluid">
-										    </div>
-										    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-										        <img th:src="@{'/images/cos/3cos.jpg'}" class="img-fluid">
-										    </div>
-										    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-										        <img th:src="@{'/images/cos/4cos.jpg'}" class="img-fluid">
-										    </div>
-										    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
-										        <img th:src="@{'/images/cos/3cos.jpg'}" class="img-fluid">
-										    </div>
-										    <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
-										        <img th:src="@{'/images/cos/2cos.jpg'}" class="img-fluid">
-										    </div>
-										    <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
-										        <img th:src="@{'/images/cos/1cos.jpg'}" class="img-fluid">
-										    </div>
-										    <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
-										        <img th:src="@{'/images/cos/4cos.jpg'}" class="img-fluid">
-										    </div>
-										</div>
-										<div class="row">
-											<div class="col-sm-12 col-md-6" style="padding-right: 0;">
-												<div class="row">
-													<div class="col-sm-12 sHover" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-														<div class="textbox"><span>한국의<br/>교육 시설</span></div>
-														<a href="#" onclick="return false;"><img th:src="@{'/images/cos/cosImg01.jpg'}" class="img-fluid"></a>
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-12 col-md-3" style="padding: 0;">
-												<div class="row">
-													<div class="col-sm-12 sHover" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-														<div class="textbox"><span>전설을 품은 <br/>세계유산</span></div>
-														<a href="#" onclick="return false;"><img th:src="@{'/images/cos/cosImg02.jpg'}" class="img-fluid"></a>
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-sm-12 sHover" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-														<div class="textbox"><span>세계문화유산투어</span></div>
-														<a href="#" onclick="return false;"><img th:src="@{'/images/cos/cosImg08.jpg'}" class="img-fluid"></a>
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-12 col-md-3 sHover" style="padding: 0;padding-right: 0;" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-												<div class="textbox"><span>세계로 <br/>떠나는<br/>문화유산투어</span></div>
-												<a href="#" onclick="return false;"><img th:src="@{'/images/cos/hcosImg01.jpg'}" class="img-fluid"></a>
-											</div>
+							<div class="row row-cols-1 row-cols-md-3 g-4">
+								<div class="col" th:if="${not #lists.isEmpty(cosList)}" th:each="c : ${cosList}">
+									<div class="card">
+										<img th:src="@{${#strings.isEmpty(c.cosImagePath) ? '/images/traShare/여행이미지1.gif': '/' + #strings.replace(c.cosImagePath,'\','/')}}"
+										class="img-fluid" alt="...">
+										<div class="card-body">
+											<h5 th:text="${c.cosCode}"></h5>
+											<p th:text="${c.cosName}"></p>
+											<p th:text="|${c.musCode1}-${c.musCode2}-${c.musCode3}-${c.musCode4}-${c.musCode5}|"></p>
+											<p th:text="${c.cosRegist}"></p>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-<!-- **********************************  End 종교사  ********************************** -->
+						<!-- **********************************  End 인문  ********************************** -->
+						<!-- **********************************  Start 전쟁 ******************************** -->
+						<div class="tab-pane fade active" id="contact-12" role="tabpanel" aria-labelledby="contact-tab-12">
+							<div class="row row-cols-1 row-cols-md-3 g-4">
+								<div class="col" th:if="${not #lists.isEmpty(cosList)}" th:each="c : ${cosList}">
+									<div class="card">
+										<img th:src="@{${#strings.isEmpty(c.cosImagePath) ? '/images/traShare/여행이미지1.gif': '/' + #strings.replace(c.cosImagePath,'\','/')}}"
+										class="img-fluid" alt="...">
+										<div class="card-body">
+											<h5 th:text="${c.cosCode}"></h5>
+											<p th:text="${c.cosName}"></p>
+											<p th:text="|${c.musCode1}-${c.musCode2}-${c.musCode3}-${c.musCode4}-${c.musCode5}|"></p>
+											<p th:text="${c.cosRegist}"></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- **********************************  End 전쟁  ********************************** -->
+						<!-- **********************************  Start 종교사 ******************************* -->
+						<div class="tab-pane fade active" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+							<div class="row row-cols-1 row-cols-md-3 g-4">
+								<div class="col" th:if="${not #lists.isEmpty(cosList)}" th:each="c : ${cosList}">
+									<div class="card">
+										<img th:src="@{${#strings.isEmpty(c.cosImagePath) ? '/images/traShare/여행이미지1.gif': '/' + #strings.replace(c.cosImagePath,'\','/')}}"
+										class="img-fluid" alt="...">
+										<div class="card-body">
+											<h5 th:text="${c.cosCode}"></h5>
+											<p th:text="${c.cosName}"></p>
+											<p th:text="|${c.musCode1}-${c.musCode2}-${c.musCode3}-${c.musCode4}-${c.musCode5}|"></p>
+											<p th:text="${c.cosRegist}"></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- **********************************  End 종교사  ********************************** -->
 					</div>
 				</div>
 
