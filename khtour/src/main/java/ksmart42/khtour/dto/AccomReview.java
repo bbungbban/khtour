@@ -14,7 +14,7 @@ public class AccomReview {
 	private String ldgPriceSta;
 	private String reviewContents;
 	private String reviewTime;
-	
+	private Member member;
 	public String getLdgReviewCode() {
 		return ldgReviewCode;
 	}
@@ -81,13 +81,18 @@ public class AccomReview {
 	public void setReviewTime(String reviewTime) {
 		this.reviewTime = reviewTime;
 	}
-	
+	public Member getMember() {
+		return member;
+	}
+	public void setMember(Member member) {
+		this.member = member;
+	}
 	@Override
 	public String toString() {
 		return "AccomReview [ldgReviewCode=" + ldgReviewCode + ", memberId=" + memberId + ", ldgCode=" + ldgCode
 				+ ", ldgGrade=" + ldgGrade + ", ldgCleanliness=" + ldgCleanliness + ", ldgKindness=" + ldgKindness
 				+ ", ldgConvenience=" + ldgConvenience + ", ldgLocation=" + ldgLocation + ", ldgPriceSta=" + ldgPriceSta
-				+ ", reviewContents=" + reviewContents + ", reviewTime=" + reviewTime + "]";
+				+ ", reviewContents=" + reviewContents + ", reviewTime=" + reviewTime + ", member=" + member + "]";
 	}
 	
 	

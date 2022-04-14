@@ -25,7 +25,7 @@
 		<!-- **********************************  Start ContentsWrap  ********************************** -->
 
 		<div class="row">
-			<div class="col-lg-12">
+			<div class="col-12 col-md-12 col-lg-12">
 				<div class="card">
 					<div class="card-body">
 							<div class="col-12" style="display:flex; justify-content: flex-end;">
@@ -48,11 +48,11 @@
 								<tbody>
 									<tr th:if="${not #lists.isEmpty(boardList)}"
 										th:each="b : ${boardList}">
-										<td th:text="${b.boardNum}"></td>
+										<td th:text="${b.boardReRef}"></td>
 										<td th:text="${b.boardType}"></td>
-										<td><a th:href="@{/board/boardDetail(boardNum=${b.boardNum})}"
+										<td><a th:href="@{/board/boardDetail(boardCode=${b.boardCode})}"
 											th:text="${b.boardTitle}" style="color: #212529;"></a></td>
-										<td th:text="${b.memberId}"></td>
+										<td th:text="${b.member.memberUserName}"></td>
 										<td th:text="${b.boardDate}"></td>
 										<td th:text="${b.boardHit}"></td>
 									</tr>
@@ -71,8 +71,7 @@
 <th:block layout:fragment="customBodyScript">
 	<!-- datatables -->
 	<script th:src="@{/js/datatables/datatables.js}"></script>
-	<script
-		src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js}"></script>
+	<script th:src="@{https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js}"></script>
 	<script th:src="@{/js/datatables/dataTables.buttons.min.js}"></script>
 	<script th:src="@{/js/datatables/buttons.flash.min.js}"></script>
 	<script th:src="@{/js/datatables/jszip.min.js}"></script>

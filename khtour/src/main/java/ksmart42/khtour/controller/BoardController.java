@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
+import ksmart42.khtour.dto.AccomReview;
 import ksmart42.khtour.dto.Board;
-
+import ksmart42.khtour.dto.BoardReply;
 import ksmart42.khtour.service.BoardService;
 
 @Controller
@@ -35,14 +36,17 @@ public class BoardController {
 	 * 1:1문의 상세페이지 (Get 정보 전달)
 	 */
 	@GetMapping("/boardDetail")
-	public String getBoardDetail(@RequestParam(value = "boardNum") String boardNum, Model model) {
+	public String getBoardDetail(@RequestParam(value = "boardCode") String boardCode, Model model) {
 		
-		Board board = boardService.getBoardByNum(boardNum);
+		Board board = boardService.getBoardByCode(boardCode);
+		List<BoardReply> BoardReplyList = boardService.getBoardReplyList(boardCode);
 		
-		boardService.boardHitUpdate(boardNum);
+		boardService.boardHitUpdate(boardCode);
+		
 		
 		model.addAttribute("title", "1:1문의 상세페이지");
 		model.addAttribute("board", board);
+		model.addAttribute("BoardReplyList", BoardReplyList);
 	
 		return "board/boardDetail";
 	}
@@ -79,9 +83,9 @@ public class BoardController {
 	 */
 	@GetMapping("/boardModify")
 	public String modifyBoard(
-			@RequestParam(value="boardNum", required = false) String boardNum
+			@RequestParam(value="boardCode", required = false) String boardCode
 			,Model model) {
-		Board board = boardService.getBoardByNum(boardNum);
+		Board board = boardService.getBoardByCode(boardCode);
 		
 		model.addAttribute("title", "1:1문의 수정 페이지");
 		model.addAttribute("board", board);
@@ -95,10 +99,10 @@ public class BoardController {
 	 */
 	@GetMapping("/boardRemove")
 	public String removePlan(Board board) {
-		String boardNum = board.getBoardNum();
+		String boardCode = board.getBoardCode();
 		
-		boardService.removeBoard(boardNum);
-		System.out.println("정보 삭제 포스트 전달" + boardService.removeBoard(boardNum));
+		boardService.removeBoard(boardCode);
+		System.out.println("정보 삭제 포스트 전달" + boardService.removeBoard(boardCode));
 		
 		return "redirect:/board/boardList";
 		
@@ -129,30 +133,16 @@ public class BoardController {
 		return "board/boardPost";
 	}
 	
-	/*
-	 * 객실 등록(Post 정보 전달)
-	 */
-	@PostMapping("/boardRePost")
-	public String addReBoard(Board board) {
-		
-		boardService.addReBoard(board);
-		
-		return "redirect:/board/boardList";
-	}
-	
-	/*
-	 * 1:1문의 답글 등록(Get 정보 전달)
-	 */
-	@GetMapping("/boardRePost")
-	public String addReBoard(Model model
-							,@RequestParam(value = "boardNum") String boardNum) {
+	// 1:1문의 답글 등록(post 정보 전달)
+		@PostMapping("/boardDetail")
+		public String addBoardReply(BoardReply boardReply, RedirectAttributes attr) {
 
-		
-		log.info(boardNum + "게시글 번호");
-		model.addAttribute("title", "1:1문의 답변 등록");
-		model.addAttribute("boardNum", boardNum);
-		
-		return "board/boardRePost";
-	}
+			boardService.addBoardReply(boardReply);
+			log.info(boardReply + "1:1문의 답글 등록");
+
+			attr.addAttribute("boardCode", boardReply.getBoardCode());
+	
+			return "redirect:/board/boardDetail";
+		}
 	
 }

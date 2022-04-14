@@ -2,19 +2,26 @@ package ksmart42.khtour.dto;
 
 public class Board {
 	
-	private String boardNum;
+	private String boardCode;
+	private String boardReRef;
 	private String memberId;
-	private String boardTitle;
 	private String boardType;
+	private String boardTitle;
 	private String boardContent;
 	private String boardHit;
 	private String boardDate;
-	
-	public String getBoardNum() {
-		return boardNum;
+	private Member member;
+	public String getBoardCode() {
+		return boardCode;
 	}
-	public void setBoardNum(String boardNum) {
-		this.boardNum = boardNum;
+	public void setBoardCode(String boardCode) {
+		this.boardCode = boardCode;
+	}
+	public String getBoardReRef() {
+		return boardReRef;
+	}
+	public void setBoardReRef(String boardReRef) {
+		this.boardReRef = boardReRef;
 	}
 	public String getMemberId() {
 		return memberId;
@@ -22,17 +29,17 @@ public class Board {
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-	public String getBoardTitle() {
-		return boardTitle;
-	}
-	public void setBoardTitle(String boardTitle) {
-		this.boardTitle = boardTitle;
-	}
 	public String getBoardType() {
 		return boardType;
 	}
 	public void setBoardType(String boardType) {
 		this.boardType = boardType;
+	}
+	public String getBoardTitle() {
+		return boardTitle;
+	}
+	public void setBoardTitle(String boardTitle) {
+		this.boardTitle = boardTitle;
 	}
 	public String getBoardContent() {
 		return boardContent;
@@ -52,12 +59,21 @@ public class Board {
 	public void setBoardDate(String boardDate) {
 		this.boardDate = boardDate;
 	}
+	public Member getMember() {
+		return member;
+	}
+	public void setMember(Member member) {
+		this.member = member;
+	}
 	@Override
 	public String toString() {
-		return "Board [boardNum=" + boardNum + ", memberId=" + memberId + ", boardTitle=" + boardTitle + ", boardType="
-				+ boardType + ", boardContent=" + boardContent + ", boardHit=" + boardHit + ", boardDate=" + boardDate
-				+ "]";
+		return "Board [boardCode=" + boardCode + ", boardReRef=" + boardReRef + ", memberId=" + memberId
+				+ ", boardType=" + boardType + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
+				+ ", boardHit=" + boardHit + ", boardDate=" + boardDate + ", member=" + member + "]";
 	}
+	
+	
+	
 	
 	
 

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import ksmart42.khtour.dto.Board;
+import ksmart42.khtour.dto.BoardReply;
 
 @Mapper
 public interface BoardMapper {
@@ -17,20 +18,26 @@ public interface BoardMapper {
 	public int addBoard(Board board);
 
 	// 1:1문의게시판 조회(1:1문의게시판 코드)
-	public Board getBoardByNum(String boardNum);
+	public Board getBoardByCode(String boardCode);
 		
 	// 1:1문의게시판 수정(1:1문의게시판코드)
 	public int modifyBoard(Board board);
 		
 	// 1:1문의게시판 삭제
-	public int removeBoard(String boardNum);
+	public int removeBoard(String boardCode);
 	
 	// 1:1문의 조회수 업데이트
-	public int boardHitUpdate(String boardNum);
+	public int boardHitUpdate(String boardCode);
 	
-	// 1:1문의 답변등록 
-	public int addReBoard(Board board);
+	// 1:1문의 답글 등록
+	public void addBoardReply(BoardReply boardReply);
+	
+	// 1:1문의 답글 조회
+	public List<BoardReply> getBoardReplyList(String boardCode);
+	
 
-	public List<Board> getReBoardByNum(String boardNum);
+
+	
+	
 
 }

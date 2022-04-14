@@ -200,7 +200,7 @@
 	
 	<!-- 숙박업소 청결도 평균 별점 조회 SQL(서브쿼리) -->
 	<select id="avgCleanliness" parameterType="String" resultType="String">
-	SELECT 
+	SELECT
 		(SELECT
 				ROUND(AVG(r.ldg_cleanliness),1)
 			FROM

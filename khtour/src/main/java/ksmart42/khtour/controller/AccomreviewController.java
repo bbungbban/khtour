@@ -32,7 +32,7 @@ public class AccomreviewController {
 
 	}
 
-	// ldgCode(숙박업소)에 따른 리뷰를 화면에 리스트 출력
+	// ldgCode(숙박업소)에 따른 리뷰를 화면에 조회
 	@GetMapping("/accomreviewList")
 	public String getaccomReviewList(Model model,
 			@RequestParam(value = "ldgCode", required = false) String ldgCode) {
