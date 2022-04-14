@@ -143,7 +143,7 @@
 		/* var imgURL = "http://openweathermap.org/img/w/" + resp.weather[0].icon + ".png";
 		 $(".fa whether").attr("src", imgURL); */
 		 
-		var apiURI = "http://api.openweathermap.org/data/2.5/weather?q=jeonju&appid=aff28fafca14a465fb79be67dc3df923";
+		var apiURI = "http://api.openweathermap.org/data/2.5/weather?lang=kr&q=jeonju&appid=aff28fafca14a465fb79be67dc3df923";
 		var loaded = false;
 		
 		$(document).ready(function() {
@@ -161,7 +161,7 @@
 			  
 			$('#searchCT').click(function(){
 				
-				apiURI = "http://api.openweathermap.org/data/2.5/weather?q=" + $("#cityName").val() + "&appid=aff28fafca14a465fb79be67dc3df923";
+				apiURI = "http://api.openweathermap.org/data/2.5/weather?lang=kr&q=" + $("#cityName").val() + "&appid=aff28fafca14a465fb79be67dc3df923";
 				$.ajax({
 					url : apiURI,
 					dataType : "json",
