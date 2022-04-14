@@ -258,6 +258,7 @@
 								<div class="embed-responsive embed-responsive-4by3">
 									<img th:src="@{${#strings.isEmpty(l.heritageImagePath) ? '/images/heritage/서울 숭례문.jpg': '/' + #strings.replace(l.heritageImagePath,'\','/')}}"
 										class="card-img-top h-10 embed-responsive-item" alt="...">
+										<a th:href="@{/heritage/heritageDetail(heritageCode=${l.heritageCode})}" class="stretched-link"></a>
 								</div>
 								<div class="card-body">
 									<p class="card-text" th:text="${l.heritageCategory}"></p>

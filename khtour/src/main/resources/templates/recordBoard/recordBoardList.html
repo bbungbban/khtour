@@ -150,6 +150,7 @@
 										<img th:src="@{${#strings.isEmpty(l.recordBoardImagePath) ? '/images/traShare/여행이미지1.gif': '/' + #strings.replace(l.recordBoardImagePath,'\','/')}}"
 											class="card-img-top h-10 embed-responsive-item"
 											alt="...">
+											<a th:href="@{/recordBoard/feedList(recordBoardCode=${l.recordBoardCode})}" class="stretched-link"></a>
 									</div>
 								</div>
 								<div class="blog-info">
