@@ -19,6 +19,9 @@ public interface AccommodationMapper {
 	//숙박업소 리스트(숙박업소 코드)
 	public Accommodation getLdgByCode(String ldgCode);
 	
+	//리뷰수 순 top4개의 숙박업소 조회
+	public List<Accommodation> getTopAccommodationList();
+	
 	//숙박업소 삭제
 	public int removeAccommodation(String ldgCode);
 	
@@ -39,4 +42,5 @@ public interface AccommodationMapper {
 	
 	//숙박업소 리뷰 - 
 	public void subtractReviewCnt(String ldgCode);
+	
 }

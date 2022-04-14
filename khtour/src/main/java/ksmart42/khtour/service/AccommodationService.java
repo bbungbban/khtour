@@ -90,6 +90,15 @@ public class AccommodationService {
 	}
 
 	/**
+	 * 리뷰수에 따른 Top4 숙박업소 조회
+	 */
+	public List<Accommodation> getTopAccommodationList(){
+		List<Accommodation> TopAccommodationList = accommodationMapper.getTopAccommodationList();
+		
+		return TopAccommodationList;
+	}
+	
+	/**
 	 * 숙박업소 정보 수정
 	 */
 	public int modifyAccommodation(Accommodation accommodation) {

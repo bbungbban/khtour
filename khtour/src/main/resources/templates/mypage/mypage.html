@@ -23,11 +23,11 @@
 			<div class="card">
 				<div class="card-body">
 					<div class="text-center my-6">
-						<a href="#"> <img class="rounded-circle" style="width: 150px;"
+						<a th:href="@{/member/memberList}"> <img class="rounded-circle" style="width: 150px;"
 							alt="..." th:src="@{/images/heritage/member.jpg}">
 						</a>
 						<!-- Title -->
-						<a href="#" class="d-block h5 pt-3" style="font-size: 20px;" th:text="'이름: '+ ${session.SNAME}"></a>
+						<a th:href="@{/member/memberModify}" class="d-block h5 pt-3" style="font-size: 20px;" th:text="'이름: '+ ${session.SNAME}"></a>
 						<hr>
 						<div class="text-left">
 						<div class="pb-1" style="padding-left: 200px" th:text="'아이디 : '+ ${session.SID}"></div>
@@ -40,9 +40,9 @@
 						<hr>
 						<!-- Subtitle -->
 						</div>
-						<button type="button" class="btn btn-primary">
+						<a type="button" class="btn btn-primary" th:href="@{/member/memberModify}">
 							<i class="feather icon-plus"></i>회원 정보 수정
-						</button>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -83,9 +83,9 @@
 												</div>
 												<div class="col-md-6">
 													<div class="card-body">
-														<h5 class="card-title" th:text="${l.recordBoardSubName}"></h5>
+														<a style="font-size:20px;" class="card-title " th:href="@{/recordBoard/feedList(recordBoardCode=${l.recordBoardCode})}" th:text="${l.recordBoardSubName}"></a>
 														<p class="card-text">
-															<small class="text-muted" th:text="${l.planStatus.getPlanStatusName()}"></small>
+															<span class="text-muted" th:text="${l.planStatus.getPlanStatusName()}"></span>
 														</p>
 													</div>
 												</div>
@@ -116,8 +116,11 @@
 									    </div>
 									</div>
 								</div>
-																<div>
-									<a> 여행 일정 만들러 가기</a>
+								<br>
+								<div class="text-center">
+									    <a type="button" class="btn btn-primary text-center">
+													여행 기록 공유하러 가기
+													</a>
 								</div>
 							</div>
 							<div class="tab-pane fade" id="profile-07" role="tabpanel"
@@ -131,9 +134,9 @@
 											</div>
 											<div class="col-md-6">
 												<div class="card-body">
-													<h5 class="card-title" th:text="${p.planLocation}"></h5>
+													<a href="#" style="font-size:20px" class="card-title" th:text="${p.planLocation}"></a>
 													<p class="card-text">
-														<small class="text-muted" th:text="${p.soloParty}"></small>
+														<span class="text-muted" th:text="${p.soloParty}"></span>
 													</p>
 													<p class="card-text" th:text="'준비물: '+${p.planMaterials}"></p>
 												</div>
@@ -161,12 +164,15 @@
 										    <ul style="overflow: hidden;list-style: none;">
 										        <li style="float: left; color:blue;">여행 경비</li>
 										        <li style="padding-left: 5%;float: left;" th:text="${p.planExpenses} + ' 만원'"></li>
-										    </ul>
+										    </ul>    
 									    </div>
 									</div>
 								</div>
-								<div>
-									<a> 여행 일정 만들러 가기</a>
+								<br>
+								<div class="text-center">
+									    <a type="button" class="btn btn-primary text-center">
+													여행 일정 만들러 가기
+													</a>
 								</div>
 							</div>
 						</div>
