@@ -6,86 +6,19 @@
 	<title th:text="${title}"></title>
 </th:block>
 <th:block layout:fragment="contentsTitle">
+<link th:href="@{https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/datedropper.css}" rel="stylesheet">
 	<style>
 @import url(https://unpkg.com/@webpixels/css@1.1/dist/index.css);
-
+/* datedrapper 버튼 색 */
+.btn-outline-warning {
+    color: #F44336 !important;
+    background-color: #fff;
+    background-image: none;
+    border-color: #ed433e !important
+}
 .postbgimg img {
 	width: 100%;
 	height: 274px;
-}
-
-.fa {
-	cursor: pointer
-}
-/* 이미지 앨범 이동 */
-.btn {
-	border-radius: 5px;
-	margin: 5px;
-}
-
-.blog-info {
-	height: 200px;
-}
-
-.set-p {
-	padding-left: 15px;
-	padding-right: 15px
-}
-
-.fa-angle-left, .fa-angle-right {
-	position: absolute;
-	color: #757575;
-	font-size: 80px;
-	top: 50%;
-	cursor: pointer
-}
-
-#left {
-	left: 2%
-}
-
-#left:hover {
-	color: #E0E0E0
-}
-
-#right {
-	right: 2%
-}
-
-#right:hover {
-	color: #E0E0E0
-}
-
-.image {
-	object-fit: cover;
-	width: 100%;
-	height: 280px;
-	display: none
-}
-
-.image.active {
-	display: block
-}
-
-.rating {
-	background-color: #3D5AFE;
-	color: #fff;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px
-}
-
-.grade {
-	font-size: 18px
-}
-
-.line {
-	height: 1px;
-	background-color: #E0E0E0
-}
-
-.text-sm {
-	font-size: 14px
 }
 </style>
 	<div class="row">
@@ -177,8 +110,15 @@
 												</div>
 
 												<div class="form-group">
-													<label for="feedPlanDays">피드 일자</label> <input type="text"
-														placeholder="피드 시간을 입력해주세요." class="form-control">
+													<label for="feedPlanDays"> 피드 날짜 </label>
+														<div class="input-group mb-3">
+															<input name="feedPlanDays" id="feedPlanDays" type="text" class="form-control input-text">
+															<div class="input-group-append">
+																<button class="btn btn-outline-warning btn-lg" type="button">
+																	<i class="fa fa-calendar"></i>
+																</button>
+															</div>
+														</div>
 												</div>
 												<div class="form-group">
 													<label for="feedTime">피드 시간</label>
@@ -351,7 +291,7 @@
 								<div>
 									<p style="font-size: 18px;" th:text="${f.feedContent}"></p>
 									<div class="float-end pb-3">
-										<a><span>수정</span></a> <a><span style="margin-left: 5px;">삭제</span></a>
+										<a><span>수정</span></a> <a th:href="@{/recordBoard/feedRemove(feedCode=${f.feedCode}, recordBoardCode=${recordBoard.recordBoardCode})}"><span style="margin-left: 5px;">삭제</span></a>
 									</div>
 								</div>
 							</div>
@@ -373,35 +313,6 @@
 	<script th:src="@{/js/custom.js}"></script>
 	<!-- PRISM -->
 	<script th:src="@{/js/prism/prism.js}"></script>
-
-	<!-- 이미지 왼쪽, 오른쪽 넘기는 버튼 생성 -->
-	<script>
-	$(document).ready(function(){
-
-		$('#left').click(function(){
-		var tmp = $(".active");
-		$(tmp).removeClass("active");
-		if($(tmp).is(':first-child')) {
-		$("#last").addClass("active");
-		}
-		else {
-		$(tmp).prev().addClass("active");
-		}
-		});
-
-		$('#right').click(function(){
-		var tmp = $(".active");
-		$(tmp).removeClass("active");
-		if($(tmp).is(':last-child')) {
-		$("#first").addClass("active");
-		}
-		else {
-		$(tmp).next().addClass("active");
-		}
-		});
-
-		});
-	</script>
 	<!-- 등록 버튼 자바스크립트 -->
 	<script type="text/javascript" th:inline="javascript">
 		$('#addFeedBtn').click(function() {
@@ -499,47 +410,35 @@
 			});
 			
 		});
-		$(function(){
-			$(document).on('click','#swal-delete-comment',function(){
-				var commentCd = $(this).attr('data-commentCd');
-			      const swalWithBootstrapButtons = swal.mixin({
-			          confirmButtonClass: 'btn btn-success',
-			          cancelButtonClass: 'btn btn-danger',
-			          buttonsStyling: false,
-			        });
+		
+		
+	</script>
+	<script th:src="@{/js/kmsJs/datepickerKms.js}"></script>
+		<!-- 피드 날짜 datepciker 자바스크립트 시작 -->
+	<script>
+		$(document).ready(function() {
 
-			        swalWithBootstrapButtons({
-			          title: '정말 삭제 하시겠습니까?',
-			          text: "삭제 클릭시 해당 정보는 복구 할 수 없습니다.",
-			          type: 'warning',
-			          showCancelButton: true,
-			          confirmButtonText: '네',
-			          cancelButtonText: '아니오',
-			          reverseButtons: false
-			        }).then((result) => {
-			          if (result.value) {
-			            swalWithBootstrapButtons(
-			              '삭제완료',
-			              '파일이 안전하게 삭제되었습니다.',
-			              'success'
-			            )
-			            location.href = '/recordBoard/commentRemove?commentNum=' + commentCd;
-			          } else if (
-			            // Read more about handling dismissals
-			            result.dismiss === swal.DismissReason.cancel
-			          ) {
-			            swalWithBootstrapButtons(
-			              '취소',
-			              '사진은 안전하게 보호됩니다.',
-			              'error'
-			            )
-			          }
-			        });
+			$("#feedPlanDays").dateDropper({
+				animate : true,
+				init_animation : "fadein",
+				format : "d/m/Y",
+				lang : "ko",
+				lock : false,
+				minYear : 1970,
+				yearsRange : 10,
 
-				    			
+				//CSS PRIOPRIETIES
+				dropPrimaryColor : "#01CEFF",
+				dropTextColor : "#333333",
+				dropBackgroundColor : "#FFFFFF",
+				dropBorder : "1px solid #08C",
+				dropBorderRadius : 8,
+				dropShadow : "0 0 10px 0 rgba(0, 136, 204, 0.45)",
+				dropWidth : 124,
+				dropTextWeight : 'bold'
 			});
-			
 		});
 	</script>
+	<!-- 출발 날짜 datepciker 자바스크립트 종료 -->
 </th:block>
 </html>

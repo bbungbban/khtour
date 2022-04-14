@@ -19,20 +19,27 @@
 
 <th:block layout:fragment="customContents">
 	<div class="row justify-content-center">
-		<div class="col-8">
+		<div class="col-6">
 			<div class="card">
 				<div class="card-body">
 					<div class="text-center my-6">
 						<a href="#"> <img class="rounded-circle" style="width: 150px;"
-							alt="..." th:src="@{'/images/iii.jpg'}">
+							alt="..." th:src="@{/images/heritage/member.jpg}">
 						</a>
 						<!-- Title -->
-						<a href="#" class="d-block h5 pt-3" style="font-size: 20px;">닉네임
-							: 치밀한컴케이크</a>
-						<div class="pb-1">아이디 : id001</div>
-						<div class="pb-1">이메일 : klm7637@naver.com</div>
-						<div class="pb-3">생일 : 1997.05.01</div>
+						<a href="#" class="d-block h5 pt-3" style="font-size: 20px;" th:text="'이름: '+ ${session.SNAME}"></a>
+						<hr>
+						<div class="text-left">
+						<div class="pb-1" style="padding-left: 200px" th:text="'아이디 : '+ ${session.SID}"></div>
+						<hr>
+						<div class="pb-1" style="padding-left: 200px" th:text="'이메일 : '+ ${session.SEMAIL}"></div>
+						<hr>
+						<div class="pb-1" style="padding-left: 200px" th:text="'권한 : '+ ${session.SLEVEL}"></div>
+						<hr>
+						<div class="pb-1" style="padding-left: 200px" th:text="'전화번호 : '+ ${session.SCONTACT}"></div>
+						<hr>
 						<!-- Subtitle -->
+						</div>
 						<button type="button" class="btn btn-primary">
 							<i class="feather icon-plus"></i>회원 정보 수정
 						</button>
@@ -47,7 +54,7 @@
 			<div class="card">
 				<div class="card-title">
 					<div class="card-title-left">
-						<h4 class="card-title-text">id005 의 기록</h4>
+						<h4 class="card-title-text">위시리스트</h4>
 					</div>
 				</div>
 				<div class="card-body">
@@ -56,31 +63,79 @@
 							<li class="nav-item"><a class="nav-link" id="home-tab-07"
 								data-toggle="tab" href="#home-07" role="tab"
 								aria-controls="home" aria-selected="false"> <i
-									class="fa fa-home"></i>나의 여행 일정
+									class="fa fa-home"></i>나의 여행 기록
 							</a></li>
 							<li class="nav-item"><a class="nav-link" id="profile-tab-07"
 								data-toggle="tab" href="#profile-07" role="tab"
 								aria-controls="profile" aria-selected="false"> <i
-									class="fa fa-user-o"></i>나의 여행 기록
+									class="fa fa-user-o"></i>나의 여행 일정
 							</a></li>
 						</ul>
 						<div class="tab-content" id="myTabContent-07">
 							<div class="tab-pane fade" id="home-07" role="tabpanel"
 								aria-labelledby="home-tab-07">
-								<div class="row">
+								<div class="row pb-5 border"  th:if="${not #lists.isEmpty(recordBoardList)}" th:each="l : ${recordBoardList}"  th:unless="${session.SID != l.memberId}">
+										<div class="col-lg-4 col-md-12">
+											<div class="row g-0">
+												<div class="col-md-6">
+											<img th:src="@{${#strings.isEmpty(l.recordBoardImagePath) ? '/images/heritage/서울 숭례문.jpg': '/' + #strings.replace(l.recordBoardImagePath,'\','/')}}"
+												style="padding-top:25px;" class="card-img" alt="...">
+												</div>
+												<div class="col-md-6">
+													<div class="card-body">
+														<h5 class="card-title" th:text="${l.recordBoardSubName}"></h5>
+														<p class="card-text">
+															<small class="text-muted" th:text="${l.planStatus.getPlanStatusName()}"></small>
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									<div class="col-lg-4 col-md-12">
+										<div class="card-body">
+											<ul style="overflow: hidden;list-style: none;">
+										        <li style="float: left; color:blue;">여행이름</li>
+										        <li style="padding-left: 5%;float: left;" th:text="${l.recordBoardName}"></li>
+										    </ul>
+										    <ul style="overflow: hidden;list-style: none;">
+										        <li style="float: left; color:blue;">여행일자</li>
+										        <li style="padding-left: 5%;float: left;" th:text="${l.startDate} + ' ~ ' + ${l.endDate}"></li>
+										    </ul>
+									    </div>
+									</div>
+									<div class="col-lg-4 col-md-12">
+										<div class="card-body">
+											<ul style="overflow: hidden;list-style: none;">
+										        <li style="float: left; color:blue;">등록 날짜</li>
+										        <li style="padding-left: 5%;float: left;" th:text="${l.regDate}"></li>
+										    </ul>
+										    <ul style="overflow: hidden;list-style: none;">
+										        <li style="float: left; color:blue;">여행 유형</li>
+										        <li style="padding-left: 5%;float: left;" th:text="${l.travelStyle}"></li>
+										    </ul>
+									    </div>
+									</div>
+								</div>
+																<div>
+									<a> 여행 일정 만들러 가기</a>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="profile-07" role="tabpanel"
+								aria-labelledby="profile-tab-07">
+								<div class="row pb-5 border"  th:if="${not #lists.isEmpty(planList)}" th:each="p : ${planList}" th:unless="${session.SID != p.memberId}">
 									<div class="col-lg-4 col-md-12">
 										<div class="row g-0">
 											<div class="col-md-6">
-												<img class="img-fluid"
-													src="https://myro.co.kr/myro_image/city/hawaii.jpg" alt="">
+												<img th:src="@{/images/traShare/travel.jpeg}" style="padding-top:20px"
+													class="card-img-top h-10 embed-responsive-item" alt="...">
 											</div>
 											<div class="col-md-6">
 												<div class="card-body">
-													<h5 class="card-title">HAWAII</h5>
+													<h5 class="card-title" th:text="${p.planLocation}"></h5>
 													<p class="card-text">
-														<small class="text-muted">미국 하와이</small>
+														<small class="text-muted" th:text="${p.soloParty}"></small>
 													</p>
-													<p class="card-text">zxcv199698@naver.com</p>
+													<p class="card-text" th:text="'준비물: '+${p.planMaterials}"></p>
 												</div>
 											</div>
 										</div>
@@ -88,48 +143,31 @@
 									<div class="col-lg-4 col-md-12">
 										<div class="card-body">
 											<ul style="overflow: hidden;list-style: none;">
-										        <li style="float: left;">여행이름</li>
-										        <li style="padding-left: 5%;float: left;">여행이름</li>
+										        <li style="float: left; color:blue;">여행이름</li>
+										        <li style="padding-left: 5%;float: left;" th:text="${p.planName}">여행이름</li>
 										    </ul>
 										    <ul style="overflow: hidden;list-style: none;">
-										        <li style="float: left;">여행일자</li>
-										        <li style="padding-left: 5%;float: left;">2022.04.20-2022.04.22</li>
+										        <li style="float: left; color:blue;">여행일자</li>
+										        <li style="padding-left: 5%;float: left;" th:text="${p.startDate} + ' ~ ' + ${p.endDate}"></li>
 										    </ul>
 									    </div>
 									</div>
 									<div class="col-lg-4 col-md-12">
 										<div class="card-body">
 											<ul style="overflow: hidden;list-style: none;">
-										        <li style="float: left;">최종수정</li>
-										        <li style="padding-left: 5%;float: left;">2022.04.20</li>
+										        <li style="float: left; color:blue;">등록 날짜</li>
+										        <li style="padding-left: 5%;float: left;" th:text="${p.regDate}"></li>
 										    </ul>
 										    <ul style="overflow: hidden;list-style: none;">
-										        <li style="float: left;">선택장소</li>
-										        <li style="padding-left: 5%;float: left;">11</li>
+										        <li style="float: left; color:blue;">여행 경비</li>
+										        <li style="padding-left: 5%;float: left;" th:text="${p.planExpenses} + ' 만원'"></li>
 										    </ul>
 									    </div>
 									</div>
 								</div>
-								<div style="float:right;">
-									<button class="btn">수정</button>
-									<button class="btn">삭제</button>
+								<div>
+									<a> 여행 일정 만들러 가기</a>
 								</div>
-							</div>
-							<div class="tab-pane fade" id="profile-07" role="tabpanel"
-								aria-labelledby="profile-tab-07">
-								<p>Consectetur lorem ipsum dolor sit amet, adipisicing elit.
-									Dolorum qui, facilis saepe. Repudiandae, animi,
-									perferendis!Consectetur lorem ipsum dolor sit amet, adipisicing
-									elit. Dolorum qui, facilis saepe. Repudiandae, animi,
-									perferendis!Consectetur lorem ipsum dolor sit amet, adipisicing
-									elit. Dolorum qui, facilis saepe. Repudiandae, animi,
-									perferendis!Consectetur lorem ipsum dolor sit amet, adipisicing
-									elit. Dolorum qui, facilis saepe. Repudiandae, animi,
-									perferendis!</p>
-								<p>Blanditiis explicabo facilis ducimus, ipsam quasi
-									quisquam, perspiciatis ea dolore rerum adipisci asperiores
-									voluptatibus provident non quas. lorem ipsum dolor sit amet,
-									consectetur adipisicing elit.</p>
 							</div>
 						</div>
 					</div>

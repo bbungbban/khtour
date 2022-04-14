@@ -1,7 +1,5 @@
 package ksmart42.khtour.dto;
 
-import java.util.Objects;
-import java.util.StringJoiner;
 
 public class Plan {
 	//plan_code,
@@ -11,7 +9,8 @@ public class Plan {
 	//solo_party, 
 	//plan_materials, 
 	//plan_expenses , 
-	//plan_location
+	//plan_location,
+	//reg_date
 	
 	private String planCode;
 	private String memberId;
@@ -22,10 +21,12 @@ public class Plan {
 	private String planMaterials;
 	private String planExpenses;
 	private String planLocation;
+	private String regDate;
+	
 	/*
 	 * startDate dd/mm/y -> ymmdd로 형식 변환 코드
 	 */
-	private String newStartDateFormat(String startDate) {
+	/* private String newStartDateFormat(String startDate) {
 		if(Objects.nonNull(startDate) && !startDate.isEmpty() && startDate.indexOf("/") > -1) {
 			String[] dateArray = startDate.split("/");
 			if(dateArray.length == 3) {				
@@ -38,9 +39,11 @@ public class Plan {
 		}
 		return startDate;	
 	}
+	*/
 	/*
 	 * endDate: dd/mm/y -> ymmdd로 형식 변환 코드
 	 */
+	/*
 	private String newEndDateFormat(String endDate) {
 		if(Objects.nonNull(endDate) && !endDate.isEmpty() && endDate.indexOf("/") > -1) {
 			String[] dateArray = endDate.split("/");
@@ -54,8 +57,7 @@ public class Plan {
 		}
 		return endDate;	
 	}
-	
-	
+	*/
 	
 	
 	public String getPlanCode() {
@@ -77,13 +79,13 @@ public class Plan {
 		this.planName = planName;
 	}
 	public String getStartDate() {
-		return newStartDateFormat(startDate);
+		return startDate;
 	}
 	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 	public String getEndDate() {
-		return newEndDateFormat(endDate);
+		return endDate;
 	}
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
@@ -112,11 +114,17 @@ public class Plan {
 	public void setPlanLocation(String planLocation) {
 		this.planLocation = planLocation;
 	}
+	public String getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
+	}
 	@Override
 	public String toString() {
 		return "Plan [planCode=" + planCode + ", memberId=" + memberId + ", planName=" + planName + ", startDate="
 				+ startDate + ", endDate=" + endDate + ", soloParty=" + soloParty + ", planMaterials=" + planMaterials
-				+ ", planExpenses=" + planExpenses + ", planLocation=" + planLocation + "]";
+				+ ", planExpenses=" + planExpenses + ", planLocation=" + planLocation + ", regDate=" + regDate + "]";
 	}
 	
 }

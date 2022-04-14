@@ -237,9 +237,33 @@ public class RecordBoardService {
 	 * @author 김민석
 	 * @param feedCode
 	 */
-	public int removeFeed(String feedCode) {
+	public int removeFeed(String feedCode, String fileRootPath) throws IOException {
+		
+		FileDto fileDto = recordBoardMapper.fileInfoByFileIdx2(feedCode);
+	      
+	      int result = 0;
 
-		return recordBoardMapper.removeRecordBoard(feedCode);
+	      if(fileDto != null) {
+	         
+	         String fileIdx = fileDto.getFileIdx();
+	         String filePath = fileDto.getFilePath();
+	   
+	         if(fileIdx != null) {
+	            
+	            fileMapper.removeFileControl(fileIdx);
+	            
+	            fileMapper.removeFile(fileIdx);
+	            
+	            result += recordBoardMapper.removeFeed(feedCode);
+	            
+	            if(result > 0) fileUtil.fileDelete(fileRootPath, filePath);
+	         }
+	      }else {
+	         
+	         result += recordBoardMapper.removeFeed(feedCode);
+	         
+	      }
+	      return result;
 	}
 //////////게시글 댓글 관련
 	

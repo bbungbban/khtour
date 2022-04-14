@@ -66,6 +66,9 @@ public interface RecordBoardMapper {
 	// 여행게시글 코드에 따른 피드 삭제
 	public int removeFeedByrCode(String recordBoardCode);
 	
+	// 여행게시글 피드 등록 파일 정보 조회
+	public FileDto fileInfoByFileIdx2(String feedCode);
+	
 /*
  * 댓글 관련	
  */
