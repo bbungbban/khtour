@@ -1,8 +1,5 @@
 package ksmart42.khtour.dto;
 
-import java.util.Objects;
-import java.util.StringJoiner;
-
 public class Heritage {
 	//heritage_code 
 	//member_id 
@@ -37,7 +34,7 @@ public class Heritage {
 	/*
 	 * heritageDesignation dd/mm/y -> ymmdd로 형식 변환 코드
 	 */
-	private String newHeritageDesignationFormat(String heritageDesignation) {
+	/* private String newHeritageDesignationFormat(String heritageDesignation) {
 		if(Objects.nonNull(heritageDesignation) && !heritageDesignation.isEmpty() && heritageDesignation.indexOf("/") > -1) {
 			String[] dateArray = heritageDesignation.split("/");
 			if(dateArray.length == 3) {				
@@ -50,93 +47,119 @@ public class Heritage {
 		}
 		return heritageDesignation;	
 	}
+	*/
 	
-	
-	public String getHeritageImagePath() {
-		return heritageImagePath;
-	}
-	public void setHeritageImagePath(String heritageImagePath) {
-		this.heritageImagePath = heritageImagePath;
-	}
 	public String getHeritageCode() {
 		return heritageCode;
 	}
+
 	public void setHeritageCode(String heritageCode) {
 		this.heritageCode = heritageCode;
 	}
+
 	public String getMemberId() {
 		return memberId;
 	}
+
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-	public String getHeritageName() {
-		return heritageName;
-	}
-	public void setHeritageName(String heritageName) {
-		this.heritageName = heritageName;
-	}
-	public String getHeritageSubName() {
-		return heritageSubName;
-	}
-	public void setHeritageSubName(String heritageSubName) {
-		this.heritageSubName = heritageSubName;
-	}
-	public String getHeritageLocation() {
-		return heritageLocation;
-	}
-	public void setHeritageLocation(String heritageLocation) {
-		this.heritageLocation = heritageLocation;
-	}
-	public String getHeritageEra() {
-		return heritageEra;
-	}
-	public void setHeritageEra(String heritageEra) {
-		this.heritageEra = heritageEra;
-	}
-	public String getHeritageDesignation() {
-		return newHeritageDesignationFormat(heritageDesignation);
-	}
-	public void setHeritageDesignation(String heritageDesignation) {
-		this.heritageDesignation = heritageDesignation;
-	}
-	public String getHeritageClassification() {
-		return heritageClassification;
-	}
-	public void setHeritageClassification(String heritageClassification) {
-		this.heritageClassification = heritageClassification;
-	}
-	public String getHeritageDetail() {
-		return heritageDetail;
-	}
-	public void setHeritageDetail(String heritageDetail) {
-		this.heritageDetail = heritageDetail;
-	}
-	public String getHeritageOwner() {
-		return heritageOwner;
-	}
-	public void setHeritageOwner(String heritageOwner) {
-		this.heritageOwner = heritageOwner;
-	}
-	public String getHeritageManager() {
-		return heritageManager;
-	}
-	public void setHeritageManager(String heritageManager) {
-		this.heritageManager = heritageManager;
-	}
+
 	public String getHeritageCategory() {
 		return heritageCategory;
 	}
+
 	public void setHeritageCategory(String heritageCategory) {
 		this.heritageCategory = heritageCategory;
 	}
+
+	public String getHeritageName() {
+		return heritageName;
+	}
+
+	public void setHeritageName(String heritageName) {
+		this.heritageName = heritageName;
+	}
+
+	public String getHeritageSubName() {
+		return heritageSubName;
+	}
+
+	public void setHeritageSubName(String heritageSubName) {
+		this.heritageSubName = heritageSubName;
+	}
+
+	public String getHeritageLocation() {
+		return heritageLocation;
+	}
+
+	public void setHeritageLocation(String heritageLocation) {
+		this.heritageLocation = heritageLocation;
+	}
+
+	public String getHeritageEra() {
+		return heritageEra;
+	}
+
+	public void setHeritageEra(String heritageEra) {
+		this.heritageEra = heritageEra;
+	}
+
+	public String getHeritageDesignation() {
+		return heritageDesignation;
+	}
+
+	public void setHeritageDesignation(String heritageDesignation) {
+		this.heritageDesignation = heritageDesignation;
+	}
+
+	public String getHeritageClassification() {
+		return heritageClassification;
+	}
+
+	public void setHeritageClassification(String heritageClassification) {
+		this.heritageClassification = heritageClassification;
+	}
+
+	public String getHeritageDetail() {
+		return heritageDetail;
+	}
+
+	public void setHeritageDetail(String heritageDetail) {
+		this.heritageDetail = heritageDetail;
+	}
+
+	public String getHeritageOwner() {
+		return heritageOwner;
+	}
+
+	public void setHeritageOwner(String heritageOwner) {
+		this.heritageOwner = heritageOwner;
+	}
+
+	public String getHeritageManager() {
+		return heritageManager;
+	}
+
+	public void setHeritageManager(String heritageManager) {
+		this.heritageManager = heritageManager;
+	}
+
 	public String getHeritageArea() {
 		return heritageArea;
 	}
+
 	public void setHeritageArea(String heritageArea) {
 		this.heritageArea = heritageArea;
 	}
 
+	public String getHeritageImagePath() {
+		return heritageImagePath;
+	}
+
+	public void setHeritageImagePath(String heritageImagePath) {
+		this.heritageImagePath = heritageImagePath;
+	}
 
 	@Override
 	public String toString() {

@@ -71,6 +71,27 @@
       WHERE
          r.record_board_code = #{recordBoardCode};
    </select> 	
+   
+	<select id="fileInfoByFileIdx2" resultType="FileDto">
+      SELECT
+          f.file_idx            AS fileIdx
+         ,f.file_new_name      AS fileNewName
+         ,f.file_original_name   AS fileOriginalName
+         ,f.file_path         AS filePath
+         ,f.file_size         AS fileSize
+      FROM
+         tb_record_board_feed AS fe
+         LEFT JOIN 
+         tb_file_control AS fc
+         ON 
+         fe.feed_code = fc.reference_code
+         LEFT JOIN 
+         tb_file AS f   
+         ON 
+         f.file_idx = fc.file_idx
+      WHERE
+         fe.feed_code = #{feedCode};
+   </select> 	
 	 	
 	<!-- 여행 상태 resultMap -->
 	<resultMap type="PlanStatus" id="PlanStatusResultMap">

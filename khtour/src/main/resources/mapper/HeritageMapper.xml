@@ -157,7 +157,7 @@
          ,#{heritageSubName}
          ,#{heritageLocation}
          ,#{heritageEra}
-         ,#{heritageDesignation}
+         ,DATE_FORMAT('#{heritageDesignation}','%d/%m/%Y')
          ,#{heritageClassification}
          ,#{heritageDetail}
          ,#{heritageOwner}

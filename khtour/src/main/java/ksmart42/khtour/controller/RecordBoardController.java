@@ -278,8 +278,9 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 	      }else {
 	         fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
 	      }
-	    
-	    int result = recordBoardService.removeRecordBoard(recordBoardCode, fileRealPath);  
+	    int result = recordBoardService.removeCommentByrCode(recordBoardCode);
+	    result += recordBoardService.removeFeedByrCode(recordBoardCode);
+	    result += recordBoardService.removeRecordBoard(recordBoardCode, fileRealPath);  
 	      
 		recordBoardService.removeCommentByrCode(recordBoardCode);
 		recordBoardService.removeFeedByrCode(recordBoardCode);
@@ -295,18 +296,24 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 	*  설  명 : 여행 계획 정보 삭제(관리자페이지) - Get방식 전달
 	*/
 	@GetMapping("/feedRemove")
-	public String removeFeed(Feed feed,  Model model ) {
-		String feedCode = feed.getFeedCode();
-		String recordBoardCode = feed.getRecordBoardCode();
-		System.out.println("feedCode <-----------------" + feedCode);
-		System.out.println("recordBoardCode <-----------------" + recordBoardCode);
-		System.out.println("feed <-----------------" + feed);
+	public String removeFeed(@RequestParam(value="feedCode", required = false) 			String feedCode
+							,@RequestParam(value="recordBoardCode", required = false)	String recordBoardCode
+							,RedirectAttributes reAttr
+							,HttpServletRequest request) throws IOException {
 		
-		recordBoardService.removeFeed(feedCode);
-		
-		
-		model.addAttribute("recordBoardCode", recordBoardCode);
-		System.out.println("정보 삭제 포스트 전달" + recordBoardService.removeFeed(feedCode));
+		String serverName = request.getServerName();
+	    String fileRealPath = "";
+	      if("localhost".equals(serverName)) {            
+	         fileRealPath = System.getProperty("user.dir") + "/src/main/resources/static/";
+	         //fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+	      }else {
+	         fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+	      }
+	      
+		if(feedCode != null) 
+		recordBoardService.removeFeed(feedCode, fileRealPath);
+		System.out.println(recordBoardService.removeFeed(feedCode, fileRealPath)+ "<------------피드 삭제 테스트");
+		reAttr.addAttribute("recordBoardCode", recordBoardCode);
 		
 		return "redirect:/recordBoard/feedList";
 	}

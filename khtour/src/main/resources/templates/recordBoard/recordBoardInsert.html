@@ -87,7 +87,7 @@
 											<div class="form-group">
 							<label for="startDate"> 여행 시작 </label>
 							<div class="input-group mb-3">
-								<input id="startDate" type="text" class="form-control input-text">
+								<input name="startDate" id="startDate" type="text" class="form-control input-text">
 								<div class="input-group-append">
 									<button class="btn btn-outline-warning btn-lg" type="button">
 										<i class="fa fa-calendar"></i>
@@ -99,7 +99,7 @@
 						<div class="form-group">
 							<label for="endDate"> 여행 종료</label>
 							<div class="input-group mb-3">
-								<input id="endDate" type="text" class="form-control input-text">
+								<input name="endDate" id="endDate" type="text" class="form-control input-text">
 								<div class="input-group-append">
 									<button class="btn btn-outline-warning btn-lg" type="button">
 										<i class="fa fa-calendar"></i>
@@ -180,7 +180,7 @@
 		});
 	</script>
 		<!-- 등록 버튼 자바스크립트 종료 -->
-	<script th:src="@{https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/datedropper.js}"></script>
+	
 	<!-- 출발 날짜 datepciker 자바스크립트 시작 -->
 	<script>
 		$(document).ready(function() {
@@ -188,8 +188,8 @@
 			$("#startDate").dateDropper({
 				animate : true,
 				init_animation : "fadein",
-				format : "m/d/Y",
-				lang : "en",
+				format : "Y/m/d",
+				lang : "ko",
 				lock : false,
 				minYear : 1970,
 				yearsRange : 10,
@@ -233,5 +233,6 @@
 		});
 	</script>
 	<!-- 도착 날짜 datepciker 자바스크립트 종료 -->
+<script th:src="@{/js/kmsJs/datepickerKms.js}"></script>
 </th:block>
 </html>
