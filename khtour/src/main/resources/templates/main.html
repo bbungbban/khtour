@@ -78,7 +78,7 @@
 			<div class="col-12 col-md-9 col-lg-9">
 			<div class="card">
 				<div class="card-title">
-					<h2>커뮤니티 인기 포스트 TOP 4</h2>
+					<h2>추천 커뮤니티 인기 포스트</h2>
 				</div>
 				<div
 					class="container d-flex align-items-center justify-content-center flex-wrap">
@@ -106,7 +106,35 @@
 			</div>
 			<div class="card">
 				<div class="card-title">
-					<h2>여행일정 공유기록 게시판 TOP 4</h2>
+					<h2>리뷰 순으로 보는 숙박업소</h2>
+				</div>
+				<div
+					class="container d-flex align-items-center justify-content-center flex-wrap">
+					<div class="box" th:if="${not #lists.isEmpty(topAccomodationList)}"
+						th:each="ta: ${topAccomodationList}">
+						<div class="body">
+							<div class="imgContainer">
+								<img th:src="@{${#strings.isEmpty(ta.ldgImagePath) ? '/images/heritage/서울 숭례문.jpg': '/' + #strings.replace(ta.ldgImagePath,'\','/')}}" alt="">
+							</div>
+							<div
+								class="content d-flex flex-column align-items-center justify-content-center">
+								<div>
+									<h3 class="text-white fs-5" th:text="${ta.ldgName}"></h3>
+									<p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;"
+										th:text="${ta.ldgExplain1}"></p>
+									<p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;"
+										th:text="${ta.ldgAddr}"></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<a class="btn btn-light btn-block"
+					th:href="@{/accommodation/accommodationList}">숙박업소 리스트 바로가기</a>
+			</div>
+			<div class="card">
+				<div class="card-title">
+					<h2>조회순으로 보는 인기 게시글</h2>
 				</div>
 				<div
 					class="container d-flex align-items-center justify-content-center flex-wrap">
@@ -114,15 +142,18 @@
 						th:each="tr: ${TopRecordBoardList}">
 						<div class="body">
 							<div class="imgContainer">
-								<img st
-									th:src="@{${#strings.isEmpty(tr.recordBoardImagePath) ? '/images/heritage/서울 숭례문.jpg': '/' + #strings.replace(tr.recordBoardImagePath,'\','/')}}"
-									alt="">
+								<img th:src="@{${#strings.isEmpty(tr.recordBoardImagePath) ? '/images/heritage/서울 숭례문.jpg': '/' + #strings.replace(tr.recordBoardImagePath,'\','/')}}" alt="">
 							</div>
 							<div
 								class="content d-flex flex-column align-items-center justify-content-center">
 								<div>
 									<h3 class="text-white fs-5" th:text="${tr.recordBoardName}"></h3>
-									<p class="fs-6 text-white" th:text="${tr.content}"></p>
+									<p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;"
+										th:text="${tr.content}"></p>
+									<p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;"
+										th:text="'여행시작 : ' + ${tr.startDate}"></p>
+									<p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;"
+										th:text="' ~ ' + '여행 종료: ' + ${tr.endDate}"></p>
 								</div>
 							</div>
 						</div>
@@ -130,88 +161,6 @@
 				</div>
 				<a class="btn btn-light btn-block"
 					th:href="@{/recordBoard/recordBoardList}">여행기록 게시판 바로가기</a>
-			</div>
-			<div class="card">
-				<div class="card-title">
-					<h2>숙박업소 TOP 4</h2>
-				</div>
-				<div
-					class="container d-flex align-items-center justify-content-center flex-wrap">
-					<div class="box">
-						<div class="body">
-							<div class="imgContainer">
-								<img
-									src="https://images.pexels.com/photos/1532771/pexels-photo-1532771.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-									alt="">
-							</div>
-							<div
-								class="content d-flex flex-column align-items-center justify-content-center">
-								<div>
-									<h3 class="text-white fs-5">Post Title</h3>
-									<p class="fs-6 text-white">Lorem ipsum dolor sit amet
-										consectetur adipisicing elit. Explicabo sed cum neque, rem
-										provident ex. Laboriosam perspiciatis modi eveniet in?</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="box">
-						<div class="body">
-							<div class="imgContainer">
-								<img
-									src="https://images.pexels.com/photos/573238/pexels-photo-573238.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
-									alt="">
-							</div>
-							<div
-								class="content d-flex flex-column align-items-center justify-content-center">
-								<div>
-									<h3 class="text-white fs-5">Post Title</h3>
-									<p class="fs-6 text-white">Lorem ipsum dolor sit amet
-										consectetur adipisicing elit. Explicabo sed cum neque, rem
-										provident ex. Laboriosam perspiciatis modi eveniet in?</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="box">
-						<div class="body">
-							<div class="imgContainer">
-								<img
-									src="https://images.pexels.com/photos/573238/pexels-photo-573238.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
-									alt="">
-							</div>
-							<div
-								class="content d-flex flex-column align-items-center justify-content-center">
-								<div>
-									<h3 class="text-white fs-5">Post Title</h3>
-									<p class="fs-6 text-white">Lorem ipsum dolor sit amet
-										consectetur adipisicing elit. Explicabo sed cum neque, rem
-										provident ex. Laboriosam perspiciatis modi eveniet in?</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="box">
-						<div class="body">
-							<div class="imgContainer">
-								<img
-									src="https://images.pexels.com/photos/573238/pexels-photo-573238.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
-									alt="">
-							</div>
-							<div
-								class="content d-flex flex-column align-items-center justify-content-center">
-								<div>
-									<h3 class="text-white fs-5">Post Title</h3>
-									<p class="fs-6 text-white">Lorem ipsum dolor sit amet
-										consectetur adipisicing elit. Explicabo sed cum neque, rem
-										provident ex. Laboriosam perspiciatis modi eveniet in?</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<a class="btn btn-light btn-block"
-					th:href="@{/accommodation/accommodationList}">숙박업소 페이지 바로가기</a>
 			</div>
 		</div>
 		<div class="col-12 col-md-3 col-lg-3">
@@ -319,40 +268,6 @@
 					</div>
 					<a class="btn btn-light btn-block" th:href="@{/cos/cosList}">추천
 						코스 페이지 바로가기</a>
-				</div>
-			</div>
-			<div class="card">
-				<div class="card-title">
-					<div class="card-title-left">
-						<h4 class="card-title-text">Weather today</h4>
-					</div>
-				</div>
-				<div class="card-body">
-					<div class="d-flex mb-4">
-						<i class="wi wi-day-showers display-3 text-warning"></i>
-						<div class="ml-auto ">
-							<h2 class="display-4">30°</h2>
-							<span>San francisco, USA </span>
-						</div>
-					</div>
-					<p class="mb-5">Officia nam sed possimus repellat et, assumenda
-						corporis velit The secret of getting ahead is getting started.</p>
-					<div class="row mb-4">
-						<div class="col text-center mb-2">
-							<h3 class="mb-1">31°</h3>
-							<span>London UK</span>
-						</div>
-						<div class="col text-center mb-2">
-							<h3 class="mb-1">02°</h3>
-							<span>USA</span>
-						</div>
-						<div class="col text-center mb-2">
-							<h3 class="mb-1">01°</h3>
-							<span>Canada</span>
-						</div>
-					</div>
-					<a class="btn btn-light btn-block mt-4"
-						th:href="@{/traWhether/traWhetherList}">다른 도시 날씨 보기</a>
 				</div>
 			</div>
 		</div>

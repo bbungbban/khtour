@@ -134,6 +134,39 @@
 		</trim>
 		ORDER BY l.ldg_code;
 	</select>
+	
+	
+	<select id="getTopAccommodationList" resultMap="accommodationResultMap">
+		SELECT
+			l.ldg_code
+			,l.ldg_name
+			,l.ldg_type
+			,l.business_number
+			,l.ldg_addr
+			,l.ldg_detail_addr
+			,l.ldg_explain1
+			,l.ldg_explain2
+			,l.ldg_explain3
+			,l.ldg_explain4
+			,l.ldg_tel
+			,l.ldg_phone
+			,l.ldg_email
+			,l.review_cnt
+			,f.file_path
+		FROM
+			tb_ldg_information AS l
+		LEFT JOIN 
+		   tb_file_control AS fc
+		   ON 
+		   l.ldg_code = fc.reference_code
+		   LEFT JOIN 
+		   tb_file AS f
+		   ON 
+		   fc.file_idx = f.file_idx
+		ORDER BY 
+			l.review_cnt DESC
+			LIMIT 4;
+	</select>
 
 	<!-- 숙박업소 정보 수정 SQL -->
 	<update id="modifyAccommodation" parameterType="Accommodation">

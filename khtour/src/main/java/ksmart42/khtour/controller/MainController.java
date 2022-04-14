@@ -28,9 +28,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import ksmart42.khtour.service.AccommodationService;
 import ksmart42.khtour.service.CommunityService;
 import ksmart42.khtour.service.FileService;
 import ksmart42.khtour.service.RecordBoardService;
+import ksmart42.khtour.dto.Accommodation;
 import ksmart42.khtour.dto.CommPost;
 import ksmart42.khtour.dto.FileDto;
 import ksmart42.khtour.dto.RecordBoard;
@@ -39,12 +41,17 @@ import ksmart42.khtour.dto.RecordBoard;
 public class MainController {
 	private RecordBoardService recordBoardService;
 	private CommunityService communityService;
+	private AccommodationService accommodationService;
+	
 	
 	private FileService fileService;
 	
-	public MainController(RecordBoardService recordBoarService, CommunityService communityService,FileService fileService) {
+	public MainController(RecordBoardService recordBoarService, CommunityService communityService, FileService fileService, AccommodationService accommodationService) {
 		this.recordBoardService = recordBoarService;
 		this.communityService = communityService;
+		this.accommodationService = accommodationService;
+		
+		
 		this.fileService = fileService;
 	}
 
@@ -52,12 +59,15 @@ public class MainController {
 	public String main(Model model) {
 		List<RecordBoard> TopRecordBoardList = recordBoardService.getTopRecordBoardList();
 		List<CommPost> dailyPostList = communityService.getDailyPostList();
-
+		List<Accommodation> topAccomodationList = accommodationService.getTopAccommodationList();
+		
+		
 		model.addAttribute("title", "메인 화면 이동");
 		
 		System.out.println(TopRecordBoardList+"<--------------TopRecordBoardList");
 		model.addAttribute("TopRecordBoardList",TopRecordBoardList);
 		model.addAttribute("dailyPostList",dailyPostList);
+		model.addAttribute("topAccomodationList",topAccomodationList);
 		return "main";
 	}
 	
