@@ -39,15 +39,23 @@ public class CosController {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 
 		List<Cos> cosList = cosService.getCosList(paramMap);
-		List<Cos> history = cosService.history(paramMap);
+		List<Cos> cosHistory = cosService.cosHistory(paramMap);
+		List<Cos> cosHumanities = cosService.cosHumanities(paramMap);
+		List<Cos> cosWar = cosService.cosWar(paramMap);
+		List<Cos> cosReligion = cosService.cosReligion(paramMap);
+		List<Cos> cosFolklore = cosService.cosFolklore(paramMap);
 		
 		paramMap = null;
 		
 		model.addAttribute("title", "코스 조회 페이지");
-	    model.addAttribute("history", history);
+	    model.addAttribute("cosHistory", cosHistory);
+	    model.addAttribute("cosHumanities", cosHumanities);
+	    model.addAttribute("cosWar", cosWar);
+	    model.addAttribute("cosReligion", cosReligion);
+	    model.addAttribute("cosFolklore", cosFolklore);
 	    model.addAttribute("cosList", cosList);
 	    log.info("코스유저:{}",cosList);
-	    log.info("카테고리 별 코스 조회:{}",history);
+	    log.info("카테고리 별 코스 조회:{}",cosHistory);
 		return "cos/cosBoardList";
 	}
 	

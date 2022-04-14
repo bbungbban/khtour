@@ -86,11 +86,27 @@ public class CosService {
 	}
 
 	/**
-	 * 카테고리역사별 코스 목록 조회
+	 * 카테고리별 코스 목록 조회
 	 */
-	public List<Cos> history(Map<String, Object> paramMap) {
-		List<Cos> history = cosMapper.history(paramMap);
-		return history;
+	public List<Cos> cosHistory(Map<String, Object> paramMap) {
+		List<Cos> cosHistory = cosMapper.cosHistory(paramMap);
+		return cosHistory;
+	}
+	public List<Cos> cosHumanities(Map<String, Object> paramMap) {
+		List<Cos> cosHumanities = cosMapper.cosHumanities(paramMap);
+		return cosHumanities;
+	}
+	public List<Cos> cosWar(Map<String, Object> paramMap) {
+		List<Cos> cosWar = cosMapper.cosWar(paramMap);
+		return cosWar;
+	}
+	public List<Cos> cosReligion(Map<String, Object> paramMap) {
+		List<Cos> cosReligion = cosMapper.cosReligion(paramMap);
+		return cosReligion;
+	}
+	public List<Cos> cosFolklore(Map<String, Object> paramMap) {
+		List<Cos> cosFolklore = cosMapper.cosFolklore(paramMap);
+		return cosFolklore;
 	}
 
 	/**

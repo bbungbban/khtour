@@ -13,7 +13,11 @@ public interface CosMapper {
 	public List<Cos> getCosList(Map<String, Object> paramMap);
 	
 	// 카테고리별 코스 조회
-	public List<Cos> history(Map<String, Object> paramMap);
+	public List<Cos> cosHistory(Map<String, Object> paramMap);
+	public List<Cos> cosHumanities(Map<String, Object> paramMap);
+	public List<Cos> cosWar(Map<String, Object> paramMap);
+	public List<Cos> cosReligion(Map<String, Object> paramMap);
+	public List<Cos> cosFolklore(Map<String, Object> paramMap);
 	
 	// 코스 등록
 	public int addCos(Cos cos);

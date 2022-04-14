@@ -209,14 +209,166 @@
 	</select>
 
 	<!-- 카테고리역사별 코스 조회 -->
-	<select id="history" resultMap="cosResultMap">
-		SELECT 
-			*
+	<select id="cosHistory" resultMap="cosResultMap">
+		SELECT
+			 c.mus_code1
+			,c.mus_code2
+			,c.mus_code3
+			,c.mus_code4
+			,c.mus_code5
+			,c.cos_area1
+			,c.cos_area2
+			,c.cos_name
+			,c.cos_regist
+			,c.cos_open
+			,c.cos_share
+			,f.file_path
 		FROM
-			tb_suggest_cos_regist AS s
+			tb_suggest_cos_regist AS c
+		INNER JOIN
+			tb_member AS m
+		ON
+			c.member_id = m.member_id
+		LEFT JOIN 
+         	tb_file_control AS fc
+        	ON 
+         	c.cos_code = fc.reference_code
+         	LEFT JOIN 
+         	tb_file AS f
+         	ON 
+         	fc.file_idx = f.file_idx
 		WHERE
-		 	s.theme_category = '역사';
+			c.theme_category = '역사';
 	</select>
+	<!-- 카테고리인문별 코스 조회 -->
+	<select id="cosHumanities" resultMap="cosResultMap">
+		SELECT
+			 c.mus_code1
+			,c.mus_code2
+			,c.mus_code3
+			,c.mus_code4
+			,c.mus_code5
+			,c.cos_area1
+			,c.cos_area2
+			,c.cos_name
+			,c.cos_regist
+			,c.cos_open
+			,c.cos_share
+			,f.file_path
+		FROM
+			tb_suggest_cos_regist AS c
+		INNER JOIN
+			tb_member AS m
+		ON
+			c.member_id = m.member_id
+		LEFT JOIN 
+         	tb_file_control AS fc
+        	ON 
+         	c.cos_code = fc.reference_code
+         	LEFT JOIN 
+         	tb_file AS f
+         	ON 
+         	fc.file_idx = f.file_idx
+		WHERE
+			c.theme_category = '인문';
+	</select>
+	<!-- 카테고리전쟁별 코스 조회 -->
+	<select id="cosWar" resultMap="cosResultMap">
+		SELECT
+			 c.mus_code1
+			,c.mus_code2
+			,c.mus_code3
+			,c.mus_code4
+			,c.mus_code5
+			,c.cos_area1
+			,c.cos_area2
+			,c.cos_name
+			,c.cos_regist
+			,c.cos_open
+			,c.cos_share
+			,f.file_path
+		FROM
+			tb_suggest_cos_regist AS c
+		INNER JOIN
+			tb_member AS m
+		ON
+			c.member_id = m.member_id
+		LEFT JOIN 
+         	tb_file_control AS fc
+        	ON 
+         	c.cos_code = fc.reference_code
+         	LEFT JOIN 
+         	tb_file AS f
+         	ON 
+         	fc.file_idx = f.file_idx
+		WHERE
+			c.theme_category = '전쟁';
+	</select>
+	<!-- 카테고리종교사별 코스 조회 -->
+	<select id="cosReligion" resultMap="cosResultMap">
+		SELECT
+			 c.mus_code1
+			,c.mus_code2
+			,c.mus_code3
+			,c.mus_code4
+			,c.mus_code5
+			,c.cos_area1
+			,c.cos_area2
+			,c.cos_name
+			,c.cos_regist
+			,c.cos_open
+			,c.cos_share
+			,f.file_path
+		FROM
+			tb_suggest_cos_regist AS c
+		INNER JOIN
+			tb_member AS m
+		ON
+			c.member_id = m.member_id
+		LEFT JOIN 
+         	tb_file_control AS fc
+        	ON 
+         	c.cos_code = fc.reference_code
+         	LEFT JOIN 
+         	tb_file AS f
+         	ON 
+         	fc.file_idx = f.file_idx
+		WHERE
+			c.theme_category = '종교사';
+	</select>
+	<!-- 카테고리민속별 코스 조회 -->
+	<select id="cosFolklore" resultMap="cosResultMap">
+		SELECT
+			 c.mus_code1
+			,c.mus_code2
+			,c.mus_code3
+			,c.mus_code4
+			,c.mus_code5
+			,c.cos_area1
+			,c.cos_area2
+			,c.cos_name
+			,c.cos_regist
+			,c.cos_open
+			,c.cos_share
+			,f.file_path
+		FROM
+			tb_suggest_cos_regist AS c
+		INNER JOIN
+			tb_member AS m
+		ON
+			c.member_id = m.member_id
+		LEFT JOIN 
+         	tb_file_control AS fc
+        	ON 
+         	c.cos_code = fc.reference_code
+         	LEFT JOIN 
+         	tb_file AS f
+         	ON 
+         	fc.file_idx = f.file_idx
+		WHERE
+			c.theme_category = '민속';
+	</select>
+	
 
 	<!-- 코스 수정 SQL -->
 	<update id="modifyCos" parameterType="Cos">
