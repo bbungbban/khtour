@@ -1,7 +1,6 @@
 package ksmart42.khtour.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ksmart42.khtour.dto.AccomReview;
 import ksmart42.khtour.dto.Accommodation;
 import ksmart42.khtour.mapper.AccomReviewMapper;
-import ksmart42.khtour.mapper.AccommodationMapper;
+
 
 @Service
 @Transactional

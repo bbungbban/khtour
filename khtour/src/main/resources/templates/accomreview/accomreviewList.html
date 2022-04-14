@@ -430,7 +430,7 @@
 								th:text="${al.reviewTime}"></span>
 						</div>
 						<div class="ReviewNicknameInfo" style="opacity: 0.5;">
-							<span class="memberId" th:text="${al.memberId}"></span><span
+							<span class="memberId" th:text="${al.member.memberUserName}"></span><span
 								class="ReviewRoomName" th:text="${accommodation.ldgName}"></span>
 						</div>
 					</div>
@@ -446,9 +446,6 @@
 				</div>
 				<div class="card-footer"></div>
 			</article>
-			<div id="js-btn-wrap" class="btn-wrap">
-				<a href="javascript:;" class="btn">더보기</a>
-			</div>
 		</div>
 	</div>
 	<!-- 호텔 리뷰 표시 영역 끝 -->
@@ -547,27 +544,6 @@
 			});
 			
 		});
-	</script>
-	<script>
-		$(window).on('load', function () {
-		    load('#jReviewBox', '4');
-		    $("#js-btn-wrap .button").on("click", function () {
-		        load('#ReviewBox', '4', '#js-btn-wrap');
-		    })
-		});
-		 
-		function load(id, cnt, btn) {
-		    var girls_list = id + " .js-load:not(.active)";
-		    var girls_length = $(girls_list).length;
-		    var girls_total_cnt;
-		    if (cnt < girls_length) {
-		        girls_total_cnt = cnt;
-		    } else {
-		        girls_total_cnt = girls_length;
-		        $('.button').hide()
-		    }
-		    $(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
-		}
 	</script>
 	
 </th:block>

@@ -16,6 +16,11 @@
 		<result column="ldg_price_sta" 		property="ldgPriceSta"/>
 		<result column="review_contents" 	property="reviewContents"/>
 		<result column="review_time" 		property="reviewTime"/>
+		<association property="member" 			javaType="Member">
+			<id 	column="member_id"			property="memberId"/>
+			<result column="member_user_name"	property="memberUserName"/>
+			<result column="member_name"		property="memberName"/>
+		</association>
 	</resultMap>
 	
 	
@@ -44,9 +49,14 @@
 		   ,r.ldg_location   
 		   ,r.ldg_price_sta    
 		   ,r.review_contents    
-		   ,r.review_time    
+		   ,r.review_time 
+		   ,m.member_user_name   
 		FROM
 		  	tb_ldg_review AS r
+		INNER JOIN
+			tb_member AS m
+		ON
+			r.member_id = m.member_id
 		WHERE
 		  	r.ldg_code = #{ldgCode}
 	    Order BY 
@@ -77,16 +87,22 @@
 		   ,r.ldg_location   
 		   ,r.ldg_price_sta    
 		   ,r.review_contents    
-		   ,r.review_time    
+		   ,r.review_time
+		   ,m.member_user_name  
 		FROM
 		  tb_ldg_review AS r
+		INNER JOIN
+			tb_member AS m
+		ON
+			r.member_id = m.member_id
 		WHERE
-		  ldg_code = #{ldgCode}
-	Order BY 
+		  	ldg_code = #{ldgCode}
+		Order BY 
 			r.ldg_review_code DESC
 			LIMIT 2;	
 </select>
 
+<!-- 리뷰 등록  SQL -->
 <insert id="addAccomReview" parameterType="AccomReview">
 		INSERT INTO
 			tb_ldg_review
