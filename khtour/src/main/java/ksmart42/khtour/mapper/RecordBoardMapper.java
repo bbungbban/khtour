@@ -19,6 +19,12 @@ public interface RecordBoardMapper {
 	// 여행게시글 목록조회
 	public List<RecordBoard> getRecordBoardList(Map<String, Object> paramMap);
 	
+	// 여행상태별 목록조회 14:07
+	public List<RecordBoard> getRecordBoardByPlanStatus(String planStatusName);
+	
+	// 여행스타일별 목록조회 14:37
+	public List<RecordBoard> getRecordBoardByTravelStyle(String tavelStyle);
+	
 	// 게시글 코드에 따른 여행게시글 정보 조회
 	public RecordBoard getRecordBoardByCode(String recordBoardCode);
 

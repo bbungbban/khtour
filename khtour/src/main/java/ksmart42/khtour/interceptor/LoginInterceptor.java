@@ -38,23 +38,24 @@ public class LoginInterceptor implements HandlerInterceptor{
       authUser.add("/heritage/heritageDetail");				// 문화재 상세 페이지
       authUser.add("/heritage/heritageListSt");				// 문화재 (관리자) 리스트 조회 페이지
       authUser.add("/heritage/heritageModify");				// 문화재 리스트 수정 페이지
-      authUser.add("/recordBoard/recordBoardListSt");			// 여행 일정 (관리자) 리스트 조회 페이지
-      authUser.add("/recordBoard/recordBoardModify");			// 여행 일정 수정 페이지
-      authUser.add("/exhib/exhibInsert");						// 전시회 등록 페이지
-      authUser.add("/exhib/exhibModify");						// 전시회 수정 페이지
-      authUser.add("/mus/musInsert");							// 박물관 등록 페이지
-      authUser.add("/mus/musModify");							// 박물관 수정 페이지
+      authUser.add("/recordBoard/recordBoardListSt");		// 여행 일정 (관리자) 리스트 조회 페이지
+      authUser.add("/recordBoard/recordBoardModify");		// 여행 일정 수정 페이지
+      authUser.add("/exhib/exhibInsert");					// 전시회 등록 페이지
+      authUser.add("/exhib/exhibModify");					// 전시회 수정 페이지
+      authUser.add("/mus/musInsert");						// 박물관 등록 페이지
+      authUser.add("/mus/musModify");						// 박물관 수정 페이지
       authUser.add("/plan/planModify");						// 여행일정 수정 페이지
       authUser.add("/plan/planListSt");						// 여행일정 (관리자) 리스트 조회 페이지
-      authUser.add("/cos/cosInsert");							// 코스 등록 페이지
-      authUser.add("/cos/cosModify");							// 코스 수정 페이지
+      authUser.add("/cos/cosInsert");						// 코스 등록 페이지
+      authUser.add("/cos/cosModify");						// 코스 수정 페이지
       authUser.add("/heritage/heritageModify");				// 문화재 수정 페이지
-      authUser.add("/accommodation/accommodationListSt");		// 숙박업소 (관리자) 리스트 조회 페이지
-      authUser.add("/accommodation/accommodationModify");		// 숙박업소 수정 페이지
-      authUser.add("/accommodation/accommodationInsert");		// 숙박업소 등록 페이지
+      authUser.add("/accommodation/accommodationListSt");	// 숙박업소 (관리자) 리스트 조회 페이지
+      authUser.add("/accommodation/accommodationModify");	// 숙박업소 수정 페이지
+      authUser.add("/accommodation/accommodationInsert");	// 숙박업소 등록 페이지
       authUser.add("/room/roomModify");						// 객실 정보 수정 페이지
       authUser.add("/room/roomListSt");						// 객실 (관리자) 리스트 조회 페이지
-      authUser.add("/member/memberList");						// 회원 리스트조회 페이지
+      authUser.add("/member/memberList");					// 회원 리스트조회 페이지
+      authUser.add("/mypage/mypage");						// 마이페이지
       
       
       // 일반회원이라면 해당 페이지로 이동 불가

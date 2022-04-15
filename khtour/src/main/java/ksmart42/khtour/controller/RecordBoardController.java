@@ -155,6 +155,32 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 		return "recordBoard/recordBoardListSt";
 	}
 	
+	@GetMapping("/recordBoardListByPlanStatus")
+	public String getRecordBoardByPlanStatus(Model model
+			,@RequestParam(name="planStatusName", required=false) String planStatusName) {
+		
+		List<RecordBoard> recordBoardListByPlanStatus = recordBoardService.getRecordBoardByPlanStatus(planStatusName);
+
+		
+		model.addAttribute("title", "여행기록 게시판");
+		model.addAttribute("recordBoardList", recordBoardListByPlanStatus);
+
+		return "recordBoard/recordBoardList";
+	}
+	
+	@GetMapping("/recordBoardByTravelStyle")
+	public String getRecordBoardByTravelStyle(Model model
+			,@RequestParam(name="travelStyle", required=false) String travelStyle) {
+		
+		List<RecordBoard> recordBoardByTravelStyle = recordBoardService.getRecordBoardByTravelStyle(travelStyle);
+		
+		
+		model.addAttribute("title", "여행기록 게시판");
+		model.addAttribute("recordBoardList", recordBoardByTravelStyle);
+		
+		return "recordBoard/recordBoardList";
+	}
+	
 	/* 2. 리스트 조회 (유저 권한)
 	*  작성자 : 김민석
 	*  입  력 : Model, searchKey 검색키워드 종류, searchValue 검색키워드 값

@@ -56,6 +56,18 @@ public class RecordBoardService {
 		return recordBoardList;
 	}
 	
+	public List<RecordBoard> getRecordBoardByPlanStatus(String planStatusName){
+		List<RecordBoard> recordBoardListByPlanStatus = recordBoardMapper.getRecordBoardByPlanStatus(planStatusName);
+		
+		return recordBoardListByPlanStatus;
+	}
+	
+	public List<RecordBoard> getRecordBoardByTravelStyle(String tavelStyle){
+		List<RecordBoard> recordBoardByTravelStyle = recordBoardMapper.getRecordBoardByTravelStyle(tavelStyle);
+		
+		return recordBoardByTravelStyle;
+	}
+	
 	/**
 	 * 코드에 따른 여행게시글 조회
 	 * @author 김민석
