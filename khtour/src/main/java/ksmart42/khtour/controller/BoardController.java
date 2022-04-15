@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import ksmart42.khtour.dto.AccomReview;
 import ksmart42.khtour.dto.Board;
 import ksmart42.khtour.dto.BoardReply;
 import ksmart42.khtour.service.BoardService;
@@ -144,5 +143,18 @@ public class BoardController {
 	
 			return "redirect:/board/boardDetail";
 		}
-	
+	// 1:1문의 답글 삭제
+		@GetMapping("/deleteReply")
+		public String deleteReply(Model model, BoardReply boardReply, RedirectAttributes attr,
+				@RequestParam(name = "boardReplyCode", required = false) String boardReplyCode) {
+
+			log.info(boardReply + "리뷰삭제");
+			
+			boardService.deleteReply(boardReplyCode);
+			
+			attr.addAttribute("boardCode", boardReply.getBoardCode());
+			
+			return "redirect:/board/boardList";
+		
+		}	
 }
