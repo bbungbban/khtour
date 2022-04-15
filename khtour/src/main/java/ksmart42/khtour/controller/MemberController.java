@@ -162,11 +162,11 @@ public class MemberController {
 		//searchKey = memberAddr memberAddr -> m_addr  => searchKey = m_addr
 		if(searchKey != null) {
 			if("memberId".equals(searchKey)) {
-				searchKey = "m_id";
+				searchKey = "member_id";
 			}else if("memberName".equals(searchKey)) {
-				searchKey = "m_name";
-			}else if("memberAddr".equals(searchKey)) {
-				searchKey = "m_addr";
+				searchKey = "member_name";
+			}else if("memberBirthday".equals(searchKey)) {
+				searchKey = "birthday";
 			}
 		}
 		
