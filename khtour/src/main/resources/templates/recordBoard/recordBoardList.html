@@ -9,7 +9,7 @@
 	<h2>여행 게시판 리스트</h2>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="#">Home</a></li>
+			<li class="breadcrumb-item"><a href="/">Home</a></li>
 			<li class="breadcrumb-item active" aria-current="page">여행 일정 공유
 				게시판</li>
 		</ol>
@@ -90,11 +90,11 @@
 							<label for="customRange2" class="form-label">여행 유형</label>
 							<div class="card-footer" style="padding: 5px;"></div>
 							<div>
-								<button type="button" class="btn btn-outline-primary">여행전
+								<button type="button" value="여행전" class="planStatus btn btn-outline-primary">여행전
 								</button>
-								<button type="button" class="btn btn-outline-primary">여행중
+								<button type="button" value="여행중" class="planStatus btn btn-outline-primary">여행중
 								</button>
-								<button type="button" class="btn btn-outline-primary">여행후
+								<button type="button" value="여행후" class="planStatus btn btn-outline-primary">여행후
 								</button>
 
 							</div>
@@ -103,15 +103,13 @@
 							<label for="customRange2" class="form-label">여행 맴버</label>
 							<div class="card-footer" style="padding: 5px;"></div>
 							<div>
-								<button type="button" class="btn btn-outline-primary col-offset-2 col-10 col-md-offset-2 col-md-10 col-lg-offset-2 col-lg-10">모든여행
+								<button type="button" value="가족과여행" class="travelStyle btn btn-outline-primary">가족과여행
 								</button>
-								<button type="button" class="btn btn-outline-primary">가족과여행
+								<button type="button" value="친구와여행" class="travelStyle btn btn-outline-primary">친구와여행
 								</button>
-								<button type="button" class="btn btn-outline-primary">친구와여행
+								<button type="button" value="애인과여행" class="travelStyle btn btn-outline-primary">애인과여행
 								</button>
-								<button type="button" class="btn btn-outline-primary">애인과여행
-								</button>
-								<button type="button" class="btn btn-outline-primary">나홀로여행
+								<button type="button" value="나홀로여행" class="travelStyle btn btn-outline-primary">나홀로여행
 								</button>
 
 							</div>
@@ -213,6 +211,46 @@
 
 	<script th:src="@{/js/rangelider/ion.rangeSlider.min.js}"></script>
 	<script th:src="@{/js/prism/prism.js}"></script>
+	<script>
+		$(function(){
+			$(document).on('click', '.planStatus', function(){
+	               
+	               var planStatus = $(this).val();
+	               //console.log(planStatus);
+	               
+	               var planBtnForm = $('<form></form>');
+	               
+	               planBtnForm.attr("name", "planBtnForm");
+	               planBtnForm.attr("method", "get");
+	               planBtnForm.attr("action", "/recordBoard/recordBoardListByPlanStatus");
+	               
+	               planBtnForm.append($('<input/>', {type: 'hidden', name: 'planStatusName', value: planStatus}));
+	               
+	               planBtnForm.appendTo('body');
+	               
+	               planBtnForm.submit();
+	            });
+		});
+		$(function(){
+			$(document).on('click', '.travelStyle', function(){
+	               
+	               var travelStyle = $(this).val();
+	               //console.log(planStatus);
+	               
+	               var travelStyleBtnForm = $('<form></form>');
+	               
+	               travelStyleBtnForm.attr("name", "travelStyleBtnForm");
+	               travelStyleBtnForm.attr("method", "get");
+	               travelStyleBtnForm.attr("action", "/recordBoard/recordBoardByTravelStyle");
+	               
+	               travelStyleBtnForm.append($('<input/>', {type: 'hidden', name: 'travelStyle', value: travelStyle}));
+	               
+	               travelStyleBtnForm.appendTo('body');
+	               
+	               travelStyleBtnForm.submit();
+	            });
+		});
+	</script>
 </th:block>
 <!-- javascript 삽입 종료 -->
 </html>
