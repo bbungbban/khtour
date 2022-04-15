@@ -46,7 +46,9 @@
 		<div class="col-12 col-md-4 col-lg-3">
 			<!-- Component -->
 			<div class="card">
-				
+				<div class="card-title">
+					<div class="text" style="font-size:20px;"><strong>작성자 정보</strong></div>
+				</div>
 				<hr class="my-2">
 				<div class="card-body">
 					<div class="d-flex justify-content-center">
@@ -121,12 +123,11 @@
 														</div>
 												</div>
 												<div class="form-group">
-													<label for="feedTime">피드 시간</label>
-													<div class="input-group bootstrap-timepicker timepicker">
-														<input id="timepicker1" type="text"
-															class="form-control input-small"><span
-															class="input-group-prepend"><i
-															class="fa fa-clock-o"></i></span>
+													<label for="feedTime">일차 </label>
+													<div class="input-group">
+													<input type="text" placeholder="예) 4 Days"
+														id="feedPlanDays" class="form-control" name="feedPlanDays"
+														required="">
 													</div>
 												</div>
 												<div class="form-group">
@@ -165,7 +166,7 @@
 		<div class="col-12 col-md-8 col-lg-9">
 			<div class="card">
 				<div class="card-title">
-					<h3 th:text="${recordBoard.memberId} + ' 님의 게시글'"></h3>
+					<span th:text="${recordBoard.member.memberName} + ' 님의 게시글'" style="font-size:20px;	"></span>
 				</div>
 				<hr class="my-2">
 				<div class="card-body">
@@ -173,20 +174,20 @@
 					<p th:text="${recordBoard.content}"></p>
 				</div>
 				<div class="card-footer mb-4 pt-8">
-					<hr class="my-2">
-					<p class="pt-4"
+					<hr class="my-2" style="font-size:14px;">
+					<p class="pt-4"  style="font-size:14px;"
 						th:text="'여행 시작일 : ' + ${recordBoard.startDate} + ' | ' + '여행 종료일 : ' + ${recordBoard.endDate} + ' | ' + '여행 스타일  : ' + ${recordBoard.travelStyle}"></p>
-					<p
+					<p  style="font-size:14px;"
 						th:text="'게시글 등록 날짜 : ' + ${recordBoard.regDate} + ' | ' + '조회수 : ' + ${recordBoard.views}"></p>
 					<div class="d-flex flex-column comment-section" id="myGroup">
 						<div class="p-2">
 							<div class="d-flex flex-row fs-12">
-								<div class="like p-2 cursor action-collapse"
+								<div class="like p-2 cursor action-collapse"  style="font-size:14px;"
 									data-toggle="collapse" aria-expanded="true"
 									aria-controls="collapse-1" href="#collapse-1">
 									<i class="fa fa-commenting-o"></i><span class="ml-1">댓글</span>
 								</div>
-								<div class="like p-2 cursor action-collapse"
+								<div class="like p-2 cursor action-collapse"  style="font-size:14px;"
 									data-toggle="collapse" aria-expanded="true"
 									aria-controls="collapse-2" href="#collapse-2">
 									<i class="fa fa-share"></i><span class="ml-1">관리</span>
@@ -266,7 +267,7 @@
 				<div class="card-title">
 					<div class="card-title-left">
 						<h4 class="card-title-text"
-							th:text="${recordBoard.memberId} + ' 님의 피드'"></h4>
+							th:text="피드"></h4>
 					</div>
 				</div>
 				<hr class="my-2">
@@ -274,22 +275,21 @@
 					<ul class="timeline-left">
 						<li th:if="${not #lists.isEmpty(feedList)}"
 							th:each="f: ${feedList}">
-							<div class="time">
-								<span th:text="${f.feedTime}"></span><span th:text=${f.RegDate}></span>
-							</div>
+							<h3 th:text="${f.feedPlanDays}"></h3>
+							<div class="text pt-2" th:text="${f.regDate}"></div>
 							<div class="icon bg-primary">
 								<i class="zmdi zmdi-camera"></i>
 							</div>
 							<div class="info">
+							<div class="text pb-4" style="font-size:25px; color:black;" th:text="${f.feedTitle}"></div>
 								<div class="embed-responsive embed-responsive-16by9">
 									<img
 										th:src="@{${#strings.isEmpty(f.feedImagePath) ? '/images/traShare/여행이미지1.gif': '/' + #strings.replace(f.feedImagePath,'\','/')}}"
 										class="img-fluid embed-responsive-item" alt="...">
 								</div>
-								<h2 class="pt-5" th:text="${f.feedTitle}"></h2>
-								<div style="color: #AD8B73;">KOREA HERITAGETOUR (T)</div>
+								<div class="pt-3 pb-3" style="color: #AD8B73;">KOREA HERITAGETOUR (T)</div>
 								<div>
-									<p style="font-size: 18px;" th:text="${f.feedContent}"></p>
+									<p style="font-size: 18px; color:black;" th:text="${f.feedContent}"></p>
 									<div class="float-end pb-3">
 										<a><span>수정</span></a> <a th:href="@{/recordBoard/feedRemove(feedCode=${f.feedCode}, recordBoardCode=${recordBoard.recordBoardCode})}"><span style="margin-left: 5px;">삭제</span></a>
 									</div>

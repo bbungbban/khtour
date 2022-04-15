@@ -187,12 +187,12 @@
 								<div class="form-group col-3 text-right">
 									<h5 style="line-height:1.5;">종목별 검색</h5>
 								</div>
-								<div class="form-group col-8">
+								<div class="form-group col-9">
 									<div
 										class="custom-control custom-checkbox custom-control-inline">
 										<input type="checkbox" class="custom-control-input" name="checkValue"
 											id="swimmingPool" value="checked"> <label
-											class="custom-control-label" for="swimmingPool">국가등록문화재</label>
+											class="custom-control-label" for="swimmingPool">국가등록</label>
 									</div>
 									<div
 										class="custom-control custom-checkbox custom-control-inline">
@@ -210,7 +210,7 @@
 										class="custom-control custom-checkbox custom-control-inline">
 										<input type="checkbox" class="custom-control-input" name="checkValue" id="onDol"
 											value="checked"> <label class="custom-control-label"
-											for="onDol">문화재 자료</label>
+											for="onDol">자료</label>
 									</div>
 									<div
 										class="custom-control custom-checkbox custom-control-inline">
@@ -356,7 +356,8 @@
 	<!-- sweetalert2 custom -->
 	<script th:src="@{/js/sweetalert2/sweetalert2-custom.js}" aria-hidden="true"></script>	
 	<!-- 등록일 datepciker-->
-	<script th:src="@{https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/datedropper.js}"></script>
+	<script th:src="@{/js/kmsJs/datepickerKms.js}"></script>	
+
 	<script>
 		$(document).ready(function() {
 			$("#heritageDesignation").dateDropper({

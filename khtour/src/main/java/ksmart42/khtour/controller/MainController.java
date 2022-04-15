@@ -8,7 +8,9 @@ import java.net.URISyntaxException;
 import java.net.URLEncoder;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,10 +32,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import ksmart42.khtour.service.AccommodationService;
 import ksmart42.khtour.service.CommunityService;
+import ksmart42.khtour.service.CosService;
 import ksmart42.khtour.service.FileService;
 import ksmart42.khtour.service.RecordBoardService;
 import ksmart42.khtour.dto.Accommodation;
 import ksmart42.khtour.dto.CommPost;
+import ksmart42.khtour.dto.Cos;
 import ksmart42.khtour.dto.FileDto;
 import ksmart42.khtour.dto.RecordBoard;
 
@@ -42,14 +46,15 @@ public class MainController {
 	private RecordBoardService recordBoardService;
 	private CommunityService communityService;
 	private AccommodationService accommodationService;
-	
+	private CosService cosService;
 	
 	private FileService fileService;
 	
-	public MainController(RecordBoardService recordBoarService, CommunityService communityService, FileService fileService, AccommodationService accommodationService) {
+	public MainController(RecordBoardService recordBoarService,CosService cosService, CommunityService communityService, FileService fileService, AccommodationService accommodationService) {
 		this.recordBoardService = recordBoarService;
 		this.communityService = communityService;
 		this.accommodationService = accommodationService;
+		this.cosService = cosService;
 		
 		
 		this.fileService = fileService;
@@ -57,8 +62,11 @@ public class MainController {
 
 	@GetMapping("/")
 	public String main(Model model) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		
 		List<RecordBoard> TopRecordBoardList = recordBoardService.getTopRecordBoardList();
 		List<CommPost> dailyPostList = communityService.getDailyPostList();
+		List<Cos> cosHistory = cosService.cosHistory(paramMap);
 		List<Accommodation> topAccomodationList = accommodationService.getTopAccommodationList();
 		
 		
@@ -68,6 +76,7 @@ public class MainController {
 		model.addAttribute("TopRecordBoardList",TopRecordBoardList);
 		model.addAttribute("dailyPostList",dailyPostList);
 		model.addAttribute("topAccomodationList",topAccomodationList);
+		model.addAttribute("cosHistory", cosHistory);
 		return "main";
 	}
 	

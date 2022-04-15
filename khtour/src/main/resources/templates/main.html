@@ -168,7 +168,7 @@
 			<div class="card">
 				<div class="card-title">
 					<div class="card-title-left">
-						<h4 class="card-title-text">여행 일정 만들기</h4>
+						<h4 class="card-title-text" style="font-size:25px;"><strong>여행 일정 만들기</strong></h4>
 					</div>
 				</div>
 				<div class="card-body">
@@ -209,8 +209,7 @@
 							</select>
 						</div>
 						<div class="form-group text-center">
-							<a class="btn btn-light btn-block" th:href="@{/plan/planInsert}">여행계획
-								설정 페이지 바로가기</a>
+							<a class="btn btn-light btn-block" th:href="@{/plan/planInsert}">일정 만들기</a>
 						</div>
 					</form>
 				</div>
@@ -218,56 +217,23 @@
 			<div class="card">
 				<div class="card-title">
 					<div class="card-title-left">
-						<h4 class="card-title-text">4월 추천 코스 ( 지역: 경주여행 )</h4>
+						<h4 class="card-title-text" style="font-size:25px;"><strong>4월 역사별 추천 코스</strong></h4>
 					</div>
 				</div>
 				<div class="card-body">
 					<div class="activity">
-						<div class="activity-item">
-							<div class="date">Sep 25</div>
-							<div class="text">
-								Responded to need <a href="single-need.php">“Volunteer
-									opportunity”</a>
-							</div>
-						</div>
-						<div class="activity-item">
-							<div class="date">Sep 24</div>
-							<div class="text">Added an interest “Volunteer Activities”</div>
-						</div>
-						<div class="activity-item">
-							<div class="date">Sep 23</div>
-							<div class="text">
-								Joined the group <a href="single-group.php">“Boardsmanship
-									Forum”</a>
-							</div>
-						</div>
-						<div class="activity-item">
-							<div class="date">Sep 21</div>
-							<div class="text">
-								Responded to need <a href="single-need.php">“In-Kind
-									Opportunity”</a>
-							</div>
-						</div>
-						<div class="activity-item">
-							<div class="date">Sep 18</div>
-							<div class="text">
-								Created need <a href="single-need.php">“Volunteer
-									Opportunity”</a>
-							</div>
-						</div>
-						<div class="activity-item">
-							<div class="date">Sep 24</div>
-							<div class="text">Added an interest “Volunteer Activities”</div>
-						</div>
-						<div class="activity-item">
-							<div class="date">Sep 17</div>
-							<div class="text">
-								Attending the event <a href="single-event.php">“Some New
-									Event”</a>
-							</div>
+						<div class="activity-item" th:if="${not #lists.isEmpty(cosHistory)}" th:each="c : ${cosHistory}">
+							<div class="text" style="font-size:20px; color:blue;"  th:text="${c.cosName}"></div>
+							<hr>
+							<div class="text" style="font-size:15px;"  th:text="${c.cosArea1} + '  ,  ' + ${c.cosArea2}"></div>
+							<br>
+							<div class="text" style="font-size:13px;" th:text=" ${c.MusCode1} + '  ->  ' + ${c.MusCode2}"></div>							
+							<div class="text" style="font-size:13px;" th:text=" ${c.MusCode3} + '  ->  ' + ${c.MusCode4}"></div>							
+							<div class="text" style="font-size:13px;" th:text=" '->' + ${c.MusCode5}"></div>							
+							<hr>
 						</div>
 					</div>
-					<a class="btn btn-light btn-block" th:href="@{/cos/cosList}">추천
+					<a class="btn btn-light btn-block" th:href="@{/cos/cosBoardList}">추천
 						코스 페이지 바로가기</a>
 				</div>
 			</div>
