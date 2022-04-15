@@ -84,5 +84,17 @@ public class BoardService {
 			
 			return BoardReplyList;
 		}
+		/**
+		 * 코드에 따른 문의게시글 답글 삭제
+		 */
+		public int deleteReply(String boardReplyCode) {
+			
+			int result = boardMapper.deleteReply(boardReplyCode);
+			
+			result += boardMapper.deleteReply(boardReplyCode);
+			
+			return result;
+		}
+
 	
 }

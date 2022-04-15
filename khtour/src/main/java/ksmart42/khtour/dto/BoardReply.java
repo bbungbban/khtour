@@ -10,7 +10,7 @@ public class BoardReply {
 	private Member member;
 	
 	public String getBoardReplyCode() {
-		return boardReplyCode;
+		return boardReplyCode; 
 	}
 	public void setBoardReplyCode(String boardReplyCode) {
 		this.boardReplyCode = boardReplyCode;

@@ -35,6 +35,9 @@ public interface BoardMapper {
 	// 1:1문의 답글 조회
 	public List<BoardReply> getBoardReplyList(String boardCode);
 	
+	// 1:1 문의게시글 답글 삭제
+	public int deleteReply(String boardReplyCode);
+	
 
 
 	

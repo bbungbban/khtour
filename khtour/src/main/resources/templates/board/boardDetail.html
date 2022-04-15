@@ -123,9 +123,9 @@
 									<div class="card-footer"></div>
 									<div class="review-bottom"
 										style="display: flex; justify-content: flex-end; padding: 0px">
-										<button class="btn" id="swal-delete-accomreview"
+										<button class="btn" id="swal-delete-boardReply"
 											th:unless="${session.SID != rp.memberId}"
-											th:data-accomreviewCd="${rp.boardReplyCode}">삭제</button>
+											th:data-boardReplyCd="${rp.boardReplyCode}">삭제</button>
 									</div>
 								</div>
 							</li>
@@ -139,6 +139,11 @@
 
 </th:block>
 <th:block layout:fragment="customBodyScript">
+	<!-- delbtn -->
+	<script th:src="@{/js/sweetalert2/sweetalert2.min.js}"
+		aria-hidden="true"></script>
+	<script th:src="@{/js/sweetalert2/sweetalert2-custom.js}"
+		aria-hidden="true"></script>
 	<script type="text/javascript" th:inline="javascript">
 		$('#addRePlyBtn').click(function() {
 
@@ -155,6 +160,47 @@
 
 			if (isSubmit)
 				$('#addRePlyForm').submit();
+		});
+	</script>
+	<script>
+		$(function(){
+			$(document).on('click','#swal-delete-boardReply',function(){
+				var boardReplyCd = $(this).attr('data-boardReplyCd');
+			      const swalWithBootstrapButtons = swal.mixin({
+			          confirmButtonClass: 'btn btn-success',
+			          cancelButtonClass: 'btn btn-danger',
+			          buttonsStyling: false,
+			        });
+
+			        swalWithBootstrapButtons({
+			          title: '정말 삭제 하시겠습니까?',
+			          text: "삭제 클릭시 해당 정보는 복구 할 수 없습니다.",
+			          type: 'warning',
+			          showCancelButton: true,
+			          confirmButtonText: '네',
+			          cancelButtonText: '아니오',
+			          reverseButtons: false
+			        }).then((result) => {
+			          if (result.value) {
+			            swalWithBootstrapButtons(
+			              '삭제완료',
+			              '파일이 안전하게 삭제되었습니다.',
+			              'success'
+			            )
+			            location.href = '/board/deleteReply?boardReplyCode=' + boardReplyCd;
+			          } else if (
+			            // Read more about handling dismissals
+			            result.dismiss === swal.DismissReason.cancel
+			          ) {
+			            swalWithBootstrapButtons(
+			              '취소',
+			              '사진은 안전하게 보호됩니다.',
+			              'error'
+			            )
+			          }
+			        });	
+			});
+			
 		});
 	</script>
 </th:block>
