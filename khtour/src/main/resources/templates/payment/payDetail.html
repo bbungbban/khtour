@@ -81,7 +81,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr  th:if="${not #lists.isEmpty(payDetail)}" th:each="d : ${payDetail}">
+									<tr th:if="${not #lists.isEmpty(payDetail)}" th:each="d : ${payDetail}">
 										<td th:text="${d.pmtCode}"></td>
 										<td th:text="${d.pmtResvCode}"></td>
 										<td th:text="${d.pmtWayCode}"></td>
