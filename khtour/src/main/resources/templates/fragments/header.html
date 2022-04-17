@@ -12,6 +12,11 @@
 			</div>
 		</div>
 		<div class="header-topbar">
+		<div class="topbar-left">
+				<a class="side-toggle" href="#!">
+					<i class="la la-bars"></i>	
+				</a>
+			</div>
 			<div class="topbar-right">
 				<ul>
 					<li class="dropdown show user-profile" th:if="${session.SID == null}">
@@ -44,8 +49,6 @@
 											<a href="#"  th:text="'이메일 : ' + ${session.SEMAIL}"></a>
 											<hr>
 											<a href="#"  th:text="'권한 : '+${session.SLEVEL}"></a>
-											<hr>
-											<a href="#"  th:text="'닉네임  : '+${session.SUSERNAME}"></a>
 										</div>
 									</div>
 								</div>

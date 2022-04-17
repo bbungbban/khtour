@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ksmart42.khtour.dto.Accommodation;
+import ksmart42.khtour.dto.Cos;
 import ksmart42.khtour.dto.Plan;
 import ksmart42.khtour.service.AccommodationService;
+import ksmart42.khtour.service.CosService;
+import ksmart42.khtour.service.FileService;
 import ksmart42.khtour.service.PlanService;
 
 
@@ -23,10 +26,14 @@ public class PlanController {
 
 	private PlanService planService;
 	private AccommodationService accommodationService; 
+	private CosService cosService;
 	
-	public PlanController(PlanService planService, AccommodationService accommodationService) {
+	
+	public PlanController(PlanService planService,FileService fileService,CosService cosService, AccommodationService accommodationService) {
 		this.planService = planService;
 		this.accommodationService = accommodationService;
+		this.cosService = cosService;
+		
 	}
 /////POST 방식////	조회 -> 등록 -> 수정 -> 삭제 순	
 	
@@ -116,20 +123,22 @@ public class PlanController {
 		return "plan/planListSt";
 	}
 	
-	/* 2. 정보 등록 (관리자 권한)
+	/* 2. 여행 일정 등록(유저 권한)
 	*  작성자 : 김민석
 	*  입  력 : Model
 	*  출  력 : String (주소)
-	*  설  명 : 여행 계획 정보 등록(관리자페이지) - Get방식 전달
+	*  설  명 : 숙박업소, 코스 리스트조회, 여행일정 등록 - Get방식 전달
 	*/
 	@GetMapping("/planInsert")
 	public String addPlan(Model model) {
 		Map<String, Object> paramMap = new HashMap<String , Object>();
 		
 		List<Accommodation> accommodationList = accommodationService.getAccommodationList(paramMap);
+		List<Cos> cosHistory = cosService.cosHistory(paramMap);
 		
 		model.addAttribute("title", "여행 계획 등록");
 		model.addAttribute("accommodationList", accommodationList);
+		model.addAttribute("cosHistory", cosHistory);
 		
 		return "plan/planInsert";
 	}

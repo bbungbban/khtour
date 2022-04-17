@@ -60,8 +60,18 @@ public class MainController {
 		this.fileService = fileService;
 	}
 
+////GET 방식   ////
+	   
+  /* 1. 메인화면 리스트 조회
+  *  작성자 : 김민석
+  *  입  력 : Model
+  *  출  력 : String(주소)
+  *  설  명 : 여행기록게시판4개, 커뮤니티 포스트4개, 코스, 숙박업소4개 리스트 조회  get방식 전달
+  */
 	@GetMapping("/")
 	public String main(Model model) {
+		
+		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		
 		List<RecordBoard> TopRecordBoardList = recordBoardService.getTopRecordBoardList();
