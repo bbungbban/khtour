@@ -44,7 +44,7 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 	
 	/* 1. 등록 (관리자 권한)
 	*  작성자 : 김민석
-	*  입  력 : RecordBoard(여행게시글 리스트)
+	*  입  력 : RecordBoard(여행게시글 리스트), @RequestParam, HttpServletRequest
 	*  출  력 : String (주소)
 	*  설  명 : 여행게시글 정보 등록(관리자페이지) - post방식 전달
 	*/
@@ -54,6 +54,9 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 									, HttpServletRequest request) {
 		String serverName = request.getServerName();
 		String fileRealPath = "";
+		
+		log.info(serverName + "<-- 서버이름");
+		
 		if("localhost".equals(serverName)) {				
 			fileRealPath = System.getProperty("user.dir") + "/src/main/resources/static/";
 			//fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
@@ -82,7 +85,7 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 	
 	/* 3. 등록 (유저 권한)
 	*  작성자 : 김민석
-	*  입  력 : Feed(피드 리스트), RedirectAttributes
+	*  입  력 : Feed(피드 리스트), RedirectAttributes, @RequestParam
 	*  출  력 : String (주소)
 	*  설  명 : 피드 정보 등록(유저페이지) - post방식 전달
 	*/
@@ -90,8 +93,11 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 	public String addFeed(Feed feed, RedirectAttributes attr
 								, @RequestParam MultipartFile[] feedImageFiles
 								, HttpServletRequest request) {
+		
 		String serverName = request.getServerName();
 		String fileRealPath = "";
+		
+		
 		if("localhost".equals(serverName)) {				
 			fileRealPath = System.getProperty("user.dir") + "/src/main/resources/static/";
 			//fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
@@ -155,31 +161,6 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 		return "recordBoard/recordBoardListSt";
 	}
 	
-	@GetMapping("/recordBoardListByPlanStatus")
-	public String getRecordBoardByPlanStatus(Model model
-			,@RequestParam(name="planStatusName", required=false) String planStatusName) {
-		
-		List<RecordBoard> recordBoardListByPlanStatus = recordBoardService.getRecordBoardByPlanStatus(planStatusName);
-
-		
-		model.addAttribute("title", "여행기록 게시판");
-		model.addAttribute("recordBoardList", recordBoardListByPlanStatus);
-
-		return "recordBoard/recordBoardList";
-	}
-	
-	@GetMapping("/recordBoardByTravelStyle")
-	public String getRecordBoardByTravelStyle(Model model
-			,@RequestParam(name="travelStyle", required=false) String travelStyle) {
-		
-		List<RecordBoard> recordBoardByTravelStyle = recordBoardService.getRecordBoardByTravelStyle(travelStyle);
-		
-		
-		model.addAttribute("title", "여행기록 게시판");
-		model.addAttribute("recordBoardList", recordBoardByTravelStyle);
-		
-		return "recordBoard/recordBoardList";
-	}
 	
 	/* 2. 리스트 조회 (유저 권한)
 	*  작성자 : 김민석
@@ -251,7 +232,45 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 		return "/recordBoard/feedList";
 	}
 
-	/* 4. 정보 등록 (관리자 권한)
+	/* 4. 여행 상태에 따른 게시글 리스트 조회 (유저 권한)
+	*  작성자 : 김민석
+	*  입  력 : @RequestParam, Model
+	*  출  력 : String(주소)
+	*  설  명 : 여행 상태에 따른 게시글 조회 (유저- 검색 버튼 옵션- 페이지) - get방식 전달
+	*/
+	@GetMapping("/recordBoardListByPlanStatus")
+	public String getRecordBoardByPlanStatus(Model model
+			,@RequestParam(name="planStatusName", required=false) String planStatusName) {
+		
+		List<RecordBoard> recordBoardListByPlanStatus = recordBoardService.getRecordBoardByPlanStatus(planStatusName);
+		
+		
+		model.addAttribute("title", "여행기록 게시판");
+		model.addAttribute("recordBoardList", recordBoardListByPlanStatus);
+		
+		return "recordBoard/recordBoardList";
+	}
+	
+	/* 5. 여행 스타일에 따른 게시글 리스트 조회 (유저 권한)
+	*  작성자 : 김민석
+	*  입  력 : @RequestParam, Model
+	*  출  력 : String(주소)
+	*  설  명 : 여행 상태에 따른 게시글 조회 (유저 - 검색 버튼 옵션- 페이지) - get방식 전달
+	*/
+	@GetMapping("/recordBoardByTravelStyle")
+	public String getRecordBoardByTravelStyle(Model model
+			,@RequestParam(name="travelStyle", required=false) String travelStyle) {
+		
+		List<RecordBoard> recordBoardByTravelStyle = recordBoardService.getRecordBoardByTravelStyle(travelStyle);
+		
+		
+		model.addAttribute("title", "여행기록 게시판");
+		model.addAttribute("recordBoardList", recordBoardByTravelStyle);
+		
+		return "recordBoard/recordBoardList";
+		
+	}
+	/* 6. 정보 등록 (관리자 권한)
 	*  작성자 : 김민석
 	*  입  력 : Model
 	*  출  력 : String (주소)
@@ -268,7 +287,7 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 		return "recordBoard/recordBoardInsert";
 	}
 	
-	/* 5. 정보 수정 (관리자 권한)
+	/* 7. 정보 수정 (관리자 권한)
 	*  작성자 : 김민석
 	*  입  력 : @RequestParam, Model
 	*  출  력 : String (주소)
@@ -286,7 +305,7 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 		return "recordBoard/recordBoardModify";
 	}
 
-	/* 5. 정보 삭제 (관리자 권한)
+	/* 8. 정보 삭제 (관리자 권한)
 	*  작성자 : 김민석
 	*  입  력 : RecordBoard(여행 게시글 리스트)
 	*  출  력 : String (주소)
@@ -315,7 +334,7 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 
 	}
 	
-	/* 4. 정보 삭제 (관리자 권한)
+	/* 9. 정보 삭제 (관리자 권한)
 	*  작성자 : 김민석
 	*  입  력 : Plan(여행 계획 리스트)
 	*  출  력 : String (주소)
@@ -348,7 +367,13 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 	
 	
 /////댓글 관련
-    
+	
+	/* 10. 댓글 등록 (유저 권한, 관리자)
+	 *  작성자 : 김민석
+	 *  입  력 : RecordBoard(여행 게시글 리스트), RedirectAttributes
+	 *  출  력 : String (주소)
+	 *  설  명 : 여행 게시글 댓글 등록 후 원래 페이지로 - Get방식 전달
+	 */
 	//리뷰 등록(post 정보 전달) request명은 하나의 경로 -> form action 경로와 같아 주면 된다.
 	@RequestMapping("/commentInsert")
 	public String addComment(RecordBoardComment recordBoardComment, RedirectAttributes reAttr) {
@@ -359,11 +384,11 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 		return "redirect:/recordBoard/feedList";
 	} 
 	
-	/* 5. 정보 삭제 (관리자 권한)
+	/* 11. 정보 삭제 (유저 권한, 관리자)
 	 *  작성자 : 김민석
-	 *  입  력 : RecordBoard(여행 게시글 리스트)
+	 *  입  력 : RecordBoard(여행 게시글 리스트), @RequestParam, RedirectAttributes
 	 *  출  력 : String (주소)
-	 *  설  명 : 여행 게시글 정보 삭제(관리자페이지) - Get방식 전달
+	 *  설  명 : 여행 게시글 댓글 삭제 후 원래 페이지로 - Get방식 전달
 	 */
 	@GetMapping("/commentRemove")
 	public String removeRecordBoardComment(@RequestParam(value="commentNum", required = false) 		String commentNum

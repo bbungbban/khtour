@@ -353,12 +353,12 @@
 								<!-- 추천 숙박 리스트 시작-->
 								<ul style="list-style: none; padding-left: 0px; margin:5px; overflow: hidden;">
 									<li>
-										<div class="row " style="height: 80px;" th:if="${not #lists.isEmpty(accommodationList)}"
+										<div class="row border" th:if="${not #lists.isEmpty(accommodationList)}"
 					th:each="l : ${accommodationList}">
 											<div class="col-5 colnp">
-												<img class="img-fluid " th:src="@{/images/aco/sinla.jpg}" alt="...">
+												<img style="padding:10px;" class="img-fluid " th:src="@{${#strings.isEmpty(l.ldgImagePath) ? '/images/heritage/서울 숭례문.jpg': '/' + #strings.replace(l.ldgImagePath,'\','/')}}" alt="">
 											</div>
-											<div class="col-7">
+											<div class="col-7  pt-3">
 												<a th:href="@{/accommodation/acoommodationInfo(ldgCode=${l.ldgCode})}"
 									th:text="${l.ldgName}"> </a>
 												<p th:text="${l.ldgType}"></p>
@@ -381,15 +381,18 @@
 								</div>
 								<!-- 추천 코스 검색 종료 -->
 								<!-- 추천 코스 리스트 시작-->
-								<ul style="list-style: none; padding-left: 0px; overflow: hidden;">
+								<ul style="list-style: none; padding-left: 0px; margin:5px; overflow: hidden;">
 									<li>
-										<div class="row " style="height: 70px;">
+										<div class="row border" th:if="${not #lists.isEmpty(cosHistory)}"
+					th:each="c : ${cosHistory}">
 											<div class="col-5 colnp">
-												<img class="img-fluid " th:src="@{/images/aco/신라스테이해운대.jpg}" alt="...">
+												<img style="padding:10px;" class="img-fluid " th:src="@{/images/traShare/cos.png}">
 											</div>
-											<div class="col-7">
-												<p><strong>파자마 호텔</strong></p>
-												<p>pajama hotel</p>
+											<div class="col-7 pt-3">
+												<a href="#" th:text="${c.cosName}"> </a>
+												<br>
+												<br>
+												<p th:text="'1. ' + ${c.cosArea1} + ' 2. ' + ${c.cosArea2}"></p>
 											</div>
 										</div>
 									</li>

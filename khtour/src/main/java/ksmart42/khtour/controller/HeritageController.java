@@ -36,9 +36,9 @@ public class HeritageController {
    
    /* 1. 등록
    *  작성자 : 김민석
-   *  입  력 : Heritage(문화재 리스트)
+   *  입  력 : Heritage(문화재 리스트), @RequestParam, HttpServletRequest
    *  출  력 : String (주소)
-   *  설  명 : 문화재 정보 등록(관리자페이지) - post방식 전달
+   *  설  명 : 문화재 정보 등록, 사진 파일 등록(관리자페이지) - post방식 전달
    */
    @PostMapping("/heritageListByItem")
    public String addHeritage(Heritage heritage
@@ -92,7 +92,7 @@ public class HeritageController {
    *  작성자 : 김민석
    *  입  력 : Model, searchKey 검색키워드 종류, searchValue 검색키워드 값
    *  출  력 : String(주소)
-   *  설  명 : 문화재 조회 (관리자페이지) - get방식 전달
+   *  설  명 : 문화재 조회 (관리자페이지) + 검색기능 - get방식 전달
    */
    @GetMapping("/heritageListSt")
    public String getHeritageListSt(Model model
@@ -132,11 +132,11 @@ public class HeritageController {
       return "heritage/heritageListSt";
    }   
    
-   /* 2. 리스트 조회 (유저 권한)
+   /* 2. 리스트 조회 (유저 권한), 리스트 등록(관리자 권한)
    *  작성자 : 김민석
    *  입  력 : Model, searchKey 검색키워드 종류, searchValue 검색키워드 값
    *  출  력 : String(주소)
-   *  설  명 : 문화재 조회 - get방식 전달
+   *  설  명 : 문화재 조회 + 검색기능 - get방식 전달
    */
    @GetMapping("/heritageListByItem")
    public String getHeritageListByItem(Model model
@@ -224,7 +224,7 @@ public class HeritageController {
    
    /* 5. 정보 삭제 (관리자 권한)
    *  작성자 : 김민석
-   *  입  력 : Heritage(문화재 리스트)
+   *  입  력 : Heritage(문화재 리스트), HttpServletRequest
    *  출  력 : String (주소)
    *  설  명 : 문화재 정보 삭제(관리자페이지) - Get방식 전달
    */
@@ -234,6 +234,7 @@ public class HeritageController {
       
       String serverName = request.getServerName();
       String fileRealPath = "";
+      
       if("localhost".equals(serverName)) {            
          fileRealPath = System.getProperty("user.dir") + "/src/main/resources/static/";
          //fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
@@ -242,6 +243,7 @@ public class HeritageController {
       }
       
       int result = heritageService.removeHeritage(heritageCode, fileRealPath);
+      
       
       System.out.println("정보 삭제 포스트 전달" + result);
       
