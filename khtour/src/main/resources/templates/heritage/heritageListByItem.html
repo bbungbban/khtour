@@ -19,6 +19,11 @@
 </th:block>
 <th:block layout:fragment="customContents">
 <link th:href="@{https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/datedropper.css}" rel="stylesheet">
+<link rel="stylesheet" type="text/css" th:href="@{/css/plugins/lmyCss/addCssLmy.css}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" defer="defer"></script>
+<script th:src="@{/js/lmyJs/dayjs.min.js}"></script>
+<script th:src="@{/js/lmyJs/validate.min.js}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.12.0/validate.min.js"></script>
 <style>
 .custom-control-inline{width:10%;font-size:14px;}
 .btn-outline-danger:hover{background-color:#cb4946 !important;}
@@ -30,6 +35,8 @@
     background-image: none;
     border-color: #ed433e !important
 	}
+#addHeritageForm label.error { color: red; }
+      .loginsnsicon{width:20px;height:20px;margin-right:5px;}
 </style>
 	<!-- 첫번째 Row 시작 -->
 	<div class="row justify-content-center">
@@ -74,6 +81,7 @@
 														<label for="heritageName"> 문화재 명 </label> <input
 															type="text" class="form-control" id="heritageName"
 															name="heritageName" placeholder="문화재 명" required="">
+															<div class="check_font" id="idCheck"></div>
 													</div>
 													<div class="form-group"
 														th:if="${not #lists.isEmpty(heritageCategory)}">
@@ -346,6 +354,41 @@
 			if (isSubmit) $('#addHeritageForm').submit();
 			});
 		});
+		
+		$('#heritageName').keyup(function(){
+            var heritageName = $('input[name="heritageName"]').val();
+            
+            console.log(heritageName);
+            if(typeof heritageName == 'undefined' || heritageName == '' || heritageName == null){
+               return false;
+            }
+            
+            $.ajax({
+                url: '/heritage/isHeritageNameCheck'
+               ,type: 'POST'
+               ,data: {'heritageName' : heritageName}
+               ,dataType: 'json'
+               ,success: function(data){
+                  console.log(data);
+                  if(data){
+                     $('#heritageName').attr('data-idcheck', true);
+                     $("#idCheck").text("등록되지 않은 문화재 입니다");
+                     $("#idCheck").css("color", "blue");
+                     $("#addHeritageBtn").attr("disabled", false);
+                  }else{
+                     $('#heritageName').attr('data-idcheck', false);
+                     $("#idCheck").text("이미등록 된 문화재 입니다.");
+                     $("#idCheck").css("color", "red");
+                     $("#addHeritageBtn").attr("disabled", true);
+                  }
+               },error: function(xhr, status, errorThrown) {
+                  console.log(xhr);
+                  console.log(errorThrown);
+               }
+            });
+         });
+		
+		
 	</script>
 	<!-- custom -->
 	<script th:src="@{/js/custom.js}"></script>

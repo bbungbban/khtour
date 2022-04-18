@@ -32,4 +32,7 @@ public interface HeritageMapper {
    
    // 문화재 등록 파일 정보 조회
    public FileDto fileInfoByFileIdx(String heritageCode);
+   
+   //문화재 명 중복체크
+   public boolean isHeritageNameCheck(String heritageName);
 }

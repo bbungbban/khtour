@@ -195,48 +195,23 @@
 							</div>
 						</div>
 						<div id="collapse-1" class="p-2 collapse" data-parent="#myGroup">
-							<form id="addCommentForm" method="post"
-								th:action="@{/recordBoard/commentInsert}">
+							
 
-								<div class="d-flex flex-row align-items-start">
+								<div class="d-flex flex-row align-items-start" >
 									<img class="rounded-circle"
 										th:src="@{/images/heritage/member.jpg}" width="40">
 									<textarea class="form-control ml-1 shadow-none textarea"
-										name="content"></textarea>
+										name="content" id="recordBoardContent"></textarea>
 									<input type="hidden" name="recordBoardCode"
-										th:value="${param.recordBoardCode}"> <input
-										type="hidden" name="memberId" th:value="${session.SID}">
+										th:value="${param.recordBoardCode}" id="recordBoardCode"> <input
+										type="hidden" name="memberId" th:value="${session.SID}"  id="recordBoardMemberId">
 								</div>
 								<div class="mt-2 text-right">
 									<button class="btn btn-primary btn-sm shadow-none"
 										id="addCommentBtn" type="button">작성완료</button>
 								</div>
-							</form>
-							<div class="card p-3 mb-2"
-								th:if="${not #lists.isEmpty(recordBoardCommentList)}"
-								th:each="c : ${recordBoardCommentList}">
-								<div class="d-flex flex-row">
-									<div class="d-flex flex-column ms-2">
-										<h3 class="mb-1 text-primary"
-											th:text="'등록자 아이디 : ' + ${c.memberId}">\</h3>
-										<p class="comment-text" th:text="'내용: ' + ${c.content}">댓글
-											내용</p>
-									</div>
-									<div class="col-10 text-right">
-
-										<a th:unless="${session.SID != c.memberId}"
-											th:href="@{/recordBoard/commentRemove(commentNum=${c.commentNum}, recordBoardCode=${recordBoard.recordBoardCode})}"><i
-											class="fa fa-trash-o"></i></a>
-
-									</div>
-								</div>
-								<div class="d-flex justify-content-between">
-									<div class="d-flex flex-row gap-3 align-items-center"></div>
-									<div class="d-flex flex-row">
-										<span class="text-muted fw-normal fs-10"
-											th:text="'작성 시간:'+${c.regDate}"></span>
-									</div>
-								</div>
+							
+							<div id="commentInsert" th:replace="/recordBoard/recordBoardComment.html :: fragment-commentInsert">
 							</div>
 						</div>
 						<div id="collapse-2" class="p-2 collapse" data-parent="#myGroup">
@@ -315,6 +290,52 @@
 	<script th:src="@{/js/prism/prism.js}"></script>
 	<!-- 등록 버튼 자바스크립트 -->
 	<script type="text/javascript" th:inline="javascript">
+	$('#addCommentBtn').click(function(){
+		var
+		 recordBoardCode = $('#recordBoardCode').attr('value')
+		,content = $('#recordBoardContent').val()
+		,memberId = $('#recordBoardMemberId').attr('value');
+		
+		console.log(recordBoardCode);
+		console.log(content);
+		console.log(memberId);
+		
+	
+			 $.ajax({
+					url: '/recordBoard/commentInsert'
+					,type: 'POST'
+					,data: {"recordBoardCode" : recordBoardCode,
+							"content" : content,
+							"memberId" : memberId} 
+					,dataType: 'text'
+					,success: function(data){
+						console.log(data);
+						$('#commentInsert').replaceWith(data);
+						$('#recordBoardContent').val('');
+					}
+				});  
+			});
+	
+		$('.commentDelete').click(function(e){
+			
+			var commentNum = $(e.target).parent().attr('value');
+			var recordBoardCode = $('#recordBoardCode').attr('value')
+			
+			 $.ajax({
+					url: '/recordBoard/commentRemove'
+					,type: 'POST'
+					,data: {"commentNum" : commentNum
+							,"recordBoardCode" : recordBoardCode} 
+					,dataType: 'text'
+					,success: function(data){
+						console.log(data);
+						$('#commentInsert').replaceWith(data);
+					}
+				});   
+			
+			
+		});
+	
 		$('#addFeedBtn').click(function() {
 
 			var isSubmit = true;
@@ -344,29 +365,10 @@
 			}
 			return true;
 	}
-	$('#addCommentBtn').click(function() {
-
-			var isSubmit = true;
-			var inputObj = $('#addCommentForm').find('input');
-
-			$.each(inputObj, function() {
-				var inputId = $(this).attr('id');
-				var inputLabel = $('label[for="' + inputId + '"]').text();
-				var inputData = $(this).val();
-				var result = validationCheck(inputData);
-
-				// 사용자가 입력하지 않은 경우
-				if(!result){
-					alert(inputLabel + '을 입력해주세요');
-					$(this).focus();
-					isSubmit = false;
-					return false;
-				}
-			});
-
-			if (isSubmit) $('#addCommentForm').submit();
-			});
+	    
+	
 		});
+	
 	</script>
 	<script>
 		$(function(){

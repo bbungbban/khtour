@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import ksmart42.khtour.dto.Heritage;
 import ksmart42.khtour.dto.HeritageCategory;
+import ksmart42.khtour.mapper.HeritageMapper;
 import ksmart42.khtour.service.HeritageService;
 
 @Controller
@@ -26,9 +28,11 @@ import ksmart42.khtour.service.HeritageService;
 public class HeritageController {
    private static final Logger log = LoggerFactory.getLogger(CommunityController.class);
    private HeritageService heritageService;
+   private HeritageMapper heritageMapper;
    
-   public HeritageController(HeritageService heritageService) {
+   public HeritageController(HeritageService heritageService, HeritageMapper heritageMapper) {
       this.heritageService = heritageService;
+      this.heritageMapper = heritageMapper;
 
    }
    
@@ -59,6 +63,22 @@ public class HeritageController {
       
       return "redirect:/heritage/heritageListByItem";
    }
+   /*
+    * 문화재 중복 체크
+    */
+   
+     @PostMapping("/isHeritageNameCheck")
+     @ResponseBody 
+     public boolean isHeritageNameCheck(@RequestParam(value = "heritageName") String heritageName) { 
+        boolean isHeritageNameCheck = false;
+        log.info("문화재 이름 클릭시 요청 받는 heritageName 값 : {}", heritageName);
+     
+        boolean result = heritageMapper.isHeritageNameCheck(heritageName);
+        if(result) isHeritageNameCheck = true;
+        
+        log.info("문화재 이름  중복 체크 여부 : {}", isHeritageNameCheck);
+        return isHeritageNameCheck;
+     }
    
    /* 2. 수정
    *  작성자 : 김민석
