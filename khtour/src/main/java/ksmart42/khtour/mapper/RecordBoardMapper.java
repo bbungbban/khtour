@@ -75,6 +75,11 @@ public interface RecordBoardMapper {
 	// 여행게시글 피드 등록 파일 정보 조회
 	public FileDto fileInfoByFileIdx2(String feedCode);
 	
+	// 게시글 피드 개수 더하기
+	public int addFeedCount(String recordBoardCode);
+	
+	// 게시글 피드 개수 빼기
+	public int subtractFeedCount(String recordBoardCode);
 /*
  * 댓글 관련	
  */
@@ -93,5 +98,12 @@ public interface RecordBoardMapper {
 	
 	// 여행 게시글 코드에 따른 댓글 삭제
 	public int removeCommentByrCode(String recordBoardCode);
+
+	// 게시글 댓글 개수 더하기
+	public int addCommentCount(String recordBoardCode);
+	
+	// 게시글 댓글 개수 빼기
+	public int subtractCommentCount(String recordBoardCode);
+	
 
 }

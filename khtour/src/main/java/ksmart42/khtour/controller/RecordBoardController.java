@@ -108,6 +108,9 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 		attr.addAttribute("recordBoardCode", feed.getRecordBoardCode());
 		recordBoardService.addFeed(feed, feedImageFiles, fileRealPath);
 		System.out.println("-----------------------" + feed.getRecordBoardCode());
+		
+		recordBoardService.addFeedCount(feed.getRecordBoardCode());
+		
 		return "redirect:/recordBoard/feedList";
 	}
 	
@@ -189,10 +192,6 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 		paramMap.put("searchValue", searchValue);
 		
 		List<RecordBoard> recordBoardList = recordBoardService.getRecordBoardList(paramMap);
-		for(int i=0; i<recordBoardList.size(); i++) {
-		String feedCount =	recordBoardService.getrecordBoardByfeedCount(recordBoardList.get(i).getRecordBoardCode());
-		recordBoardList.get(i).setLikeCount(feedCount);
-		}
 		
 		paramMap = null;
 		
@@ -214,6 +213,7 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 		System.out.println(recordBoardCode + "recoardBoardCode 연결 확인 콘솔");
 
 		recordBoardService.updateViewsByCode(recordBoardCode);
+		
 		List<Feed> feedList = recordBoardService.getFeedListByRecordBoardCode(recordBoardCode);
 		List<PlanStatus> planStatusList = recordBoardService.getPlanStatusList();
 		List<RecordBoardComment> recordBoardCommentList = recordBoardService.getCommentListByrCode(recordBoardCode);
@@ -360,6 +360,8 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 		System.out.println(recordBoardService.removeFeed(feedCode, fileRealPath)+ "<------------피드 삭제 테스트");
 		reAttr.addAttribute("recordBoardCode", recordBoardCode);
 		
+		recordBoardService.subtractFeedCount(recordBoardCode);
+		
 		return "redirect:/recordBoard/feedList";
 	}
 
@@ -385,6 +387,7 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 		
 		String recordBoardCode = recordBoardComment.getRecordBoardCode();
 		List<RecordBoardComment> recordBoardCommentList = recordBoardService.getCommentListByrCode(recordBoardCode);
+		recordBoardService.addCommentCount(recordBoardCode);
 		
 		model.addAttribute("recordBoardCommentList", recordBoardCommentList);
 		
@@ -411,6 +414,7 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 		List<RecordBoardComment> recordBoardCommentList = recordBoardService.getCommentListByrCode(recordBoardCode);
 		model.addAttribute("recordBoardCommentList", recordBoardCommentList);
 		
+		recordBoardService.subtractCommentCount(recordBoardCode);
 		
 		return "/recordBoard/recordBoardComment";
 		

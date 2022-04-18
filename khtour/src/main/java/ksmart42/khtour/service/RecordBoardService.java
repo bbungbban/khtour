@@ -244,6 +244,7 @@ public class RecordBoardService {
 		return recordBoardMapper.modifyFeed(feed);
 	}
 	
+	
 	/**
 	 * 코드에 따른 피드 정보 삭제
 	 * @author 김민석
@@ -277,6 +278,27 @@ public class RecordBoardService {
 	      }
 	      return result;
 	}
+	
+	/**
+	 * 게시글의 피드 개수 더하기
+	 * @author 김민석
+	 * @param recordBoardCode
+	 */
+	public int addFeedCount(String recordBoardCode) {
+		return recordBoardMapper.addFeedCount(recordBoardCode);
+		
+		
+	}
+	
+	/**
+	  * 게시글의 피드 개수 빼기
+	 * @author 김민석
+	 * @param recordBoardCode
+	 */
+	public int subtractFeedCount(String recordBoardCode) {
+		return recordBoardMapper.subtractFeedCount(recordBoardCode);
+		
+	}
 //////////게시글 댓글 관련
 	
 	public List<RecordBoardComment> getCommentListByrCode(String recordBoardCode){
@@ -297,6 +319,27 @@ public class RecordBoardService {
 	public int removeRecordBoardComment(String commentNum) {
 		
 		return recordBoardMapper.removeRecordBoardComment(commentNum);
+	}
+	
+	/**
+	 * 게시글의 댓글 개수 더하기
+	 * @author 김민석
+	 * @param recordBoardCode
+	 */
+	public int addCommentCount(String recordBoardCode) {
+		return recordBoardMapper.addCommentCount(recordBoardCode);
+		
+		
+	}
+	
+	/**
+	  * 게시글의 댓글 개수 빼기
+	 * @author 김민석
+	 * @param recordBoardCode
+	 */
+	public int subtractCommentCount(String recordBoardCode) {
+		return recordBoardMapper.subtractCommentCount(recordBoardCode);
+		
 	}
 /////////그 외
 	
