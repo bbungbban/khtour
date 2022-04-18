@@ -168,6 +168,16 @@
    
    </insert>
    
+   <!-- 문화재 명 중복 체크 -->
+   <select id="isHeritageNameCheck" parameterType="String" resultType="boolean">
+      SELECT
+         IF(COUNT(1) = 1, 0, 1)
+      FROM 
+         tb_heritage_detail AS h
+      WHERE 
+         h.heritage_name = #{heritageName};
+   </select>
+   
    <!-- 문화재 수정 SQL -->
       <update id="modifyHeritage" parameterType="Heritage">
       UPDATE tb_heritage_detail

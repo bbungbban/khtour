@@ -225,7 +225,7 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 		model.addAttribute("planStatusList", planStatusList);
 		model.addAttribute("feedList", feedList);
 		model.addAttribute("recordBoardCommentList", recordBoardCommentList);
-
+		
 		System.out.println("정보 수정 겟방식 전달123" + recordBoard);
 		System.out.println(feedList+"<----------test feedList");
 		
@@ -376,12 +376,20 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 	 */
 	//리뷰 등록(post 정보 전달) request명은 하나의 경로 -> form action 경로와 같아 주면 된다.
 	@RequestMapping("/commentInsert")
-	public String addComment(RecordBoardComment recordBoardComment, RedirectAttributes reAttr) {
+	public String addComment(RecordBoardComment recordBoardComment, Model model) {
 
-		reAttr.addAttribute("recordBoardCode", recordBoardComment.getRecordBoardCode());
+		log.info("잘 받아지냐 : {}",recordBoardComment);
+		
+		//reAttr.addAttribute("recordBoardCode", recordBoardComment.getRecordBoardCode());
 		recordBoardService.addComment(recordBoardComment);
+		
+		String recordBoardCode = recordBoardComment.getRecordBoardCode();
+		List<RecordBoardComment> recordBoardCommentList = recordBoardService.getCommentListByrCode(recordBoardCode);
+		
+		model.addAttribute("recordBoardCommentList", recordBoardCommentList);
+		
 
-		return "redirect:/recordBoard/feedList";
+		return "/recordBoard/recordBoardComment";
 	} 
 	
 	/* 11. 정보 삭제 (유저 권한, 관리자)
@@ -390,15 +398,21 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 	 *  출  력 : String (주소)
 	 *  설  명 : 여행 게시글 댓글 삭제 후 원래 페이지로 - Get방식 전달
 	 */
-	@GetMapping("/commentRemove")
-	public String removeRecordBoardComment(@RequestParam(value="commentNum", required = false) 		String commentNum
-										  ,@RequestParam(value="recordBoardCode", required = false) String recordBoardCode
-										  ,RedirectAttributes reAttr) {
-		
+	@PostMapping("/commentRemove")
+	public String removeRecordBoardComment(@RequestParam(value="commentNum", required = false) String commentNum
+											,@RequestParam(value="recordBoardCode", required = false) String recordBoardCode
+											,Model model) 
+	{
+		//삭제하기
 		if(commentNum != null)	recordBoardService.removeRecordBoardComment(commentNum);
-		reAttr.addAttribute("recordBoardCode", recordBoardCode);
 		
-		return "redirect:/recordBoard/feedList";
+		
+		//select로 불러오기
+		List<RecordBoardComment> recordBoardCommentList = recordBoardService.getCommentListByrCode(recordBoardCode);
+		model.addAttribute("recordBoardCommentList", recordBoardCommentList);
+		
+		
+		return "/recordBoard/recordBoardComment";
 		
 	}	
 	
