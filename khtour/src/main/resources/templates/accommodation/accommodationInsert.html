@@ -153,13 +153,13 @@
 										class="form-control" name="businessNumber" id="businessNumber">
 								</div>
 								<div class="form-group col-12 col-md-6 col-lg-6">
-									<label for="ldgTel">전화번호</label> <input type="text"
-										class="form-control" name="ldgTel" id="ldgTel">
+									<label for="ldgTel">전화번호</label> <input type="tel"
+										class="form-control" name="ldgTel" id="ldgTel" onkeyup="test(this);">
 								</div></div>
 								<div class="row">
 								<div class="form-group col-12 col-md-6 col-lg-6">
-									<label for="ldgPhone">휴대폰번호</label> <input type="text"
-										class="form-control" name="ldgPhone" id="ldgPhone">
+									<label for="ldgPhone">휴대폰번호</label> <input type="tel"
+										class="form-control" name="ldgPhone" id="ldgPhone" onkeyup="test(this);">
 								</div></div>
 								<div class="row">
 								<div class="form-group col-12 col-md-6 col-lg-6"
@@ -392,6 +392,42 @@
 				}
 			});
 	</script>
+	
+	<!-- 전화번호 하이픈 생성 스크립트 -->
+	<script>
+    function test(e) {
+        var number = e.value.replace(/[^0-9]/g, "");
+        var phone = "";
+ 
+        if (number.length < 4) {
+            return number;
+        } else if (number.length < 7) {
+            phone += number.substr(0, 3);
+            phone += "-";
+            phone += number.substr(3);
+        } else if (number.length < 10) {
+            phone += number.substr(0, 2);
+            phone += "-";
+            phone += number.substr(2, 3);
+            phone += "-";
+            phone += number.substr(5);
+        } else if (number.length < 11) {
+            phone += number.substr(0, 3);
+            phone += "-";
+            phone += number.substr(3, 3);
+            phone += "-";
+            phone += number.substr(6);
+        } else {
+            phone += number.substr(0, 3);
+            phone += "-";
+            phone += number.substr(3, 4);
+            phone += "-";
+            phone += number.substr(7, 4);
+        }
+ 
+        e.value = phone;
+    }
+</script>
 	
 
 </th:block>

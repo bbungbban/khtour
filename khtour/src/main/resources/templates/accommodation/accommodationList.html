@@ -31,11 +31,15 @@
 }
 
 .mb-0 {
-	font-size: 15px;
+	font-size: 12px;
 }
 
 .btn-outline-danger:hover {
 	background-color: #cb4946 !important;
+}
+.accoInfo {
+	display: flex;
+	font-size: 18px;
 }
 </style>
 	<div class="row">
@@ -87,14 +91,22 @@
 					<div class="blog-info">
 						<div class="blog-title mt-3">
 							<h5 class="card-title">
-								<a
+								<i class="feather icon-navigation" style="color: red;"></i><a
 									th:href="@{/accommodation/acoommodationInfo(ldgCode=${l.ldgCode})}"
 									th:text="${l.ldgName}"></a>
 							</h5>
-							<p class="mb-0" th:text="${l.ldgType}"></p>
-							<p class="mb-0" th:text="${l.ldgAddr}"></p>
-							<p class="mb-0" th:text="${l.ldgDetailAddr}"></p>
-							<p class="mb-0" th:text="${l.ldgTel}"></p>
+							<div class="accoInfo">
+							<i class="feather icon-home" style="color: #28a745;"></i><p class="mb-0" th:text="${l.ldgType}"></p>
+							</div>
+							<div class="accoInfo">
+							<i class="feather icon-map-pin" style="color: #53cad8;"></i><p class="mb-0" th:text="${l.ldgAddr}"></p>
+							</div>
+							<div class="accoInfo">
+							<i class="feather icon-phone" style="color: #ffc107;"></i><p class="mb-0" id="me_phone" th:text="${l.ldgTel}"></p>
+							</div>
+							<div class="accoInfo" style="justify-content: flex-end;r">
+							<i class="feather icon-message-circle" style="color: #8000FF;"></i><span style="display: inline-block; float: left; font-size: 12px;">([[${l.reviewCnt}]]개)</span>
+							</div>
 						</div>
 					</div>
 				</div>

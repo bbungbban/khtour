@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<div class="sidebar-panel nicescrollbar sidebar-panel-light mainsidehover" th:fragment="sidebarFragment">
 		<ul class="sidebar-menu">
-			<li class="sidebar-header"> 메뉴(2022.03.22.배포파일) </li>
+			<li class="sidebar-header"> 메뉴 </li>
 			 <li>
 		         <a th:href="@{/mypage/mypage}">
 		           <i class="zmdi zmdi-account"></i><span>마이페이지 (김민석)</span>
@@ -70,17 +70,17 @@
 	               	<i class="fa fa-home"></i> <span>숙박업소 관리 (안창현)</span> <i class="la la-angle-right down-arrow"></i>
 	            </a>
 	            <ul class="sidebar-submenu">
-	               	<li><a th:href="@{/accommodation/accommodationList}"><i class="la la-minus"></i> <span> #숙박업소 리스트</span> </a></li>
-	               	<li><a th:if="${session.SID != null && session.SLEVEL == '관리자'}" th:href="@{/accommodation/accommodationListSt}"><i class="la la-minus"></i> <span> #숙박업소 상세관리(관리자용)</span> </a></li>
-	               	<li><a th:if="${session.SID != null && session.SLEVEL == '관리자'}" th:href="@{/room/roomListSt}"><i class="la la-minus"></i> <span>#객실정보 상세관리(관리자) </span> </a></li>
+	               	<li><a th:href="@{/accommodation/accommodationList}"><i class="la la-minus"></i> <span> 숙박업소 리스트</span> </a></li>
+	               	<li><a th:if="${session.SID != null && session.SLEVEL == '관리자'}" th:href="@{/accommodation/accommodationListSt}"><i class="la la-minus"></i> <span> 숙박업소 상세관리(관리자)</span> </a></li>
+	               	<li><a th:if="${session.SID != null && session.SLEVEL == '관리자'}" th:href="@{/room/roomListSt}"><i class="la la-minus"></i> <span>객실정보 상세관리(관리자) </span> </a></li>
 	            </ul>
          	</li>
         	<li>
 	            <a href="#">
-	               <i class="fa fa-edit"></i> <span> 1:1 문의게시판 관리 (안창현)</span> <i class="la la-angle-right down-arrow"></i>
+	               <i class="fa fa-edit"></i> <span> 1:1 문의게시판 (안창현)</span> <i class="la la-angle-right down-arrow"></i>
 	            </a>
 	            <ul class="sidebar-submenu">
-	               <li><a th:href="@{/board/boardList}"><i class="la la-minus"></i> <span>#1:1문의 관리</span> </a></li>
+	               <li><a th:href="@{/board/boardList}"><i class="la la-minus"></i> <span>1:1문의 관리</span> </a></li>
 	            </ul>
         	 </li>
         	 <li>
