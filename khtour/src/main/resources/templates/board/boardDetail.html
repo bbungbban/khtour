@@ -37,7 +37,7 @@
 					<div>
 						<a type="button" style="padding: 10px; padding-left: 0px;"
 							onclick="history.back(-1)">돌아가기</a> <a type="button"
-							class="btn addReview" data-toggle="modal"
+							class="btn addReview" data-toggle="modal" th:if="${session.SLEVEL != '일반회원'}"
 							data-target=".bd-example-modal-lg" style="float: right;">답글
 							작성하기</a>
 					</div>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ksmart42.khtour.dto.AccomReview;
@@ -43,6 +44,10 @@ public class AccomreviewController {
 		log.info(accomoReviewList + "리뷰리스트");
 		String avgGrade = accommodationService.avgGrade(ldgCode);
 		String avgCleanliness = accommodationService.avgCleanliness(ldgCode);
+		String avgKindness = accommodationService.avgKindness(ldgCode);
+		String avgConvenience = accommodationService.avgConvenience(ldgCode);
+		String avgLocation = accommodationService.avgLocation(ldgCode);
+		String avgPriceSta = accommodationService.avgPriceSta(ldgCode);
 
 		model.addAttribute("title", "리뷰 페이지 이동");
 		model.addAttribute("accomoReviewList", accomoReviewList);
@@ -50,6 +55,10 @@ public class AccomreviewController {
 		model.addAttribute("ldgCode", ldgCode);
 		model.addAttribute("avgGrade", avgGrade);
 		model.addAttribute("avgCleanliness", avgCleanliness);
+		model.addAttribute("avgKindness", avgKindness);
+		model.addAttribute("avgConvenience", avgConvenience);
+		model.addAttribute("avgLocation", avgLocation);
+		model.addAttribute("avgPriceSta", avgPriceSta);
 
 
 		return "/accomreview/accomreviewList";
@@ -68,21 +77,25 @@ public class AccomreviewController {
 		return "redirect:/accomreview/accomreviewList";
 	}
 
-	// 리뷰삭제 삭제처리
-	@GetMapping("/deleteReview")
-	public String deleteReview(Model model, AccomReview accomReview, RedirectAttributes attr,
-			@RequestParam(name = "ldgReviewCode", required = false) String ldgReviewCode) {
-		
-		String ldgCode = accomReviewService.getLdgCodeByReviewCode(ldgReviewCode);
-		accommodationService.subtractReviewCnt(ldgCode);
-		log.info(accomReview + "리뷰삭제");
-		
-		accomReviewService.deleteReview(ldgReviewCode);
-		
-		attr.addAttribute("ldgCode", accomReview.getLdgCode());
-		
-		return "redirect:/accommodation/accommodationList";
-
-	}
+	@PostMapping("/deleteReview")
+	@ResponseBody
+	public String deleteReview(@RequestParam(value="ldgReviewCode", required = false) String ldgReviewCode
+	                           ,@RequestParam(value="ldgCode", required = false) String ldgCode
+	                           ,Model model) 
+	{
+	//삭제하기
+	if(ldgReviewCode != null)   accomReviewService.deleteReview(ldgReviewCode);
+	      
+	      
+	//select로 불러오기
+	List<AccomReview> accomoReviewList = accomReviewService.getAccomReviewList(ldgCode);
+	model.addAttribute("accomoReviewList", accomoReviewList);
+	      
+	accommodationService.subtractReviewCnt(ldgCode);
+	      
+	return "/accomreview/accomreviewList?ldgCode="+ldgCode;
+	      
+	   }   
 
 }
+

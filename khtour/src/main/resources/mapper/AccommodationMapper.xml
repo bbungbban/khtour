@@ -97,6 +97,16 @@
 			,#{ldgHomepage}
 		);
 	</insert>
+	
+	<!-- 숙박업소 명 중복 체크 -->
+	<select id="isNameCheck" parameterType="String" resultType="boolean">
+		SELECT
+		   IF(COUNT(1) = 1, 0, 1)
+		FROM 
+		   tb_ldg_information AS l
+		WHERE 
+		   l.ldg_name = #{ldgName};
+	</select>
 
 	<!-- 숙박업소 목록 조회 SQL -->
 	<select id="getAccommodationList"
@@ -218,13 +228,13 @@
 
 	<!-- 숙박업소 평균 별점 조회 SQL(서브쿼리) -->
 	<select id="avgGrade" parameterType="String" resultType="String">
-	SELECT 
+	SELECT
 		(SELECT
 				ROUND(AVG(r.ldg_grade),1)
 			FROM
 				tb_ldg_review AS r
 			WHERE
-				r.ldg_code = ldg_code) AS ldg_avg_grade
+				r.ldg_code = i.ldg_code) AS ldg_avg_grade
 	FROM
 		tb_ldg_information AS i
 	WHERE
@@ -239,7 +249,67 @@
 			FROM
 				tb_ldg_review AS r
 			WHERE
-				r.ldg_code = ldg_code) AS ldg_avg_cleanliness
+				r.ldg_code = i.ldg_code) AS ldg_avg_cleanliness
+	FROM
+		tb_ldg_information AS i
+	WHERE
+		i.ldg_code = #{ldgCode};
+	</select>
+	
+	<!-- 숙박업소 친절도 평균 별점 조회 SQL(서브쿼리) -->
+	<select id="avgKindness" parameterType="String" resultType="String">
+	SELECT
+		(SELECT
+				ROUND(AVG(r.ldg_kindness),1)
+			FROM
+				tb_ldg_review AS r
+			WHERE
+				r.ldg_code = i.ldg_code) AS ldg_avg_kindness
+	FROM
+		tb_ldg_information AS i
+	WHERE
+		i.ldg_code = #{ldgCode};
+	</select>
+	
+	<!-- 숙박업소 편의성 평균 별점 조회 SQL(서브쿼리) -->
+	<select id="avgConvenience" parameterType="String" resultType="String">
+	SELECT
+		(SELECT
+				ROUND(AVG(r.ldg_convenience),1)
+			FROM
+				tb_ldg_review AS r
+			WHERE
+				r.ldg_code = i.ldg_code) AS ldg_avg_convenience
+	FROM
+		tb_ldg_information AS i
+	WHERE
+		i.ldg_code = #{ldgCode};
+	</select>
+	
+	<!-- 숙박업소 위치만족도 평균 별점 조회 SQL(서브쿼리) -->
+	<select id="avgLocation" parameterType="String" resultType="String">
+	SELECT
+		(SELECT
+				ROUND(AVG(r.ldg_location),1)
+			FROM
+				tb_ldg_review AS r
+			WHERE
+				r.ldg_code = i.ldg_code) AS ldg_avg_location
+	FROM
+		tb_ldg_information AS i
+	WHERE
+		i.ldg_code = #{ldgCode};
+	</select>
+	
+	<!-- 숙박업소 가격만족도 평균 별점 조회 SQL(서브쿼리) -->
+	<select id="avgPriceSta" parameterType="String" resultType="String">
+	SELECT
+		(SELECT
+				ROUND(AVG(r.ldg_price_sta),1)
+			FROM
+				tb_ldg_review AS r
+			WHERE
+				r.ldg_code = i.ldg_code) AS ldg_avg_price_sta
 	FROM
 		tb_ldg_information AS i
 	WHERE

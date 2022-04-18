@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import ksmart42.khtour.dto.AccomReview;
 import ksmart42.khtour.dto.Accommodation;
 import ksmart42.khtour.dto.Room;
+import ksmart42.khtour.mapper.AccommodationMapper;
 import ksmart42.khtour.service.AccomReviewService;
 import ksmart42.khtour.service.AccommodationService;
 import ksmart42.khtour.service.RoomService;
@@ -34,12 +36,14 @@ public class AccommodationController {
 	private AccommodationService accommodationService; 
 	private AccomReviewService accomReviewService;
 	private RoomService roomService;
+	private AccommodationMapper accommodationMapper;
 
 	
-	public AccommodationController(AccommodationService accommodationService, RoomService roomService, AccomReviewService accomReviewService) {
+	public AccommodationController(AccommodationService accommodationService, RoomService roomService, AccomReviewService accomReviewService, AccommodationMapper accommodationMapper) {
 		this.accommodationService = accommodationService;
 		this.roomService = roomService;
 		this.accomReviewService = accomReviewService;
+		this.accommodationMapper = accommodationMapper;
 	
 	}
 	/*
@@ -139,6 +143,10 @@ public class AccommodationController {
 		
 		String avgGrade = accommodationService.avgGrade(ldgCode);
 		String avgCleanliness = accommodationService.avgCleanliness(ldgCode);
+		String avgKindness = accommodationService.avgKindness(ldgCode);
+		String avgConvenience = accommodationService.avgConvenience(ldgCode);
+		String avgLocation = accommodationService.avgLocation(ldgCode);
+		String avgPriceSta = accommodationService.avgPriceSta(ldgCode);
 		
 		model.addAttribute("title", "리뷰 페이지 이동");
 		model.addAttribute("accomoReviewList", accomoReviewList);
@@ -153,6 +161,14 @@ public class AccommodationController {
 		log.info(avgGrade + "평균");
 		model.addAttribute("avgCleanliness", avgCleanliness);
 		log.info(avgCleanliness + "평균");
+		model.addAttribute("avgKindness", avgKindness);
+		log.info(avgKindness + "평균");
+		model.addAttribute("avgConvenience", avgConvenience);
+		log.info(avgConvenience + "평균");
+		model.addAttribute("avgLocation", avgLocation);
+		log.info(avgLocation + "평균");
+		model.addAttribute("avgPriceSta", avgPriceSta);
+		log.info(avgPriceSta + "평균");
 		
 		return "/accommodation/acoommodationInfo";
 	}
@@ -183,7 +199,6 @@ public class AccommodationController {
 		String fileRealPath = "";
 		if("localhost".equals(serverName)) {				
 			fileRealPath = System.getProperty("user.dir") + "/src/main/resources/static/";
-			//fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
 		}else {
 			fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
 		}
@@ -192,6 +207,24 @@ public class AccommodationController {
 		
 		return "redirect:/accommodation/accommodationListSt";
 	}
+
+	/*
+	 * 숙박업소 중복 체크
+	 */
+	
+	  @PostMapping("/isNameCheck")
+	  @ResponseBody 
+	  public boolean isNameCheck(@RequestParam(value = "ldgName") String ldgName) { 
+		  boolean isNameCheck = false;
+		  log.info("숙박업소 체크 클릭시 요청 받는 ldgName 값 : {}", ldgName);
+	  
+		  boolean result = accommodationMapper.isNameCheck(ldgName);
+		  if(result) isNameCheck = true;
+		  
+		  log.info("숙박업소  중복 체크 여부 : {}", result);
+		  return isNameCheck;
+	  }
+	
 	/*
 	 * 숙박업소 등록(Get 정보 전달)
 	 */
@@ -203,6 +236,9 @@ public class AccommodationController {
 		return "accommodation/accommodationInsert";
 	}
 	
+	/*
+	 * 숙박업소 코드에 맞는 리뷰페이지로 이동 
+	 */
 	@GetMapping("/accomreviewList")
 	public String getaccomReviewList(
 			@RequestParam(value="ldgCode", required = false)String ldgCode

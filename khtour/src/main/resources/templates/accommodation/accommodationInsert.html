@@ -20,6 +20,8 @@
 	</div>
 </th:block>
 <th:block layout:fragment="customContents">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/plugins/lmyCss/addCssLmy.css}">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" defer="defer"></script>
 <style>
 .form-group {
 	float: left;
@@ -106,6 +108,12 @@
 	width: 100% \9;
 	height: auto;
 }
+#addAccommodationForm label.error { 
+	color: red; 
+}
+.loginsnsicon{
+	width:20px;height:20px;margin-right:5px;
+}
 </style>
 
 	<link rel="stylesheet" type="text/css"
@@ -116,18 +124,19 @@
 			<div class="card">
 				<div class="card-body">
 					<div class="card-title">
-						<form id="addaccommodation"
-							th:action="@{/accommodation/accommodationInsert}" method="post" enctype="multipart/form-data">
+						<form id="addAccommodationForm" th:action="@{/accommodation/accommodationInsert}" method="post" enctype="multipart/form-data">
 							<div class="card-title-left">
 								<h4 class="card-title-text">등록 정보 입력</h4>
+								<div class="row">
 								<div class="form-group col-12 col-md-6 col-lg-6">
-									<label for="ldgName">숙박업소 명</label> <input type="text"
-										class="form-control" name="ldgName">
+									<label for="ldgName">숙박업소 명</label> 
+									<input type="text" data-idCheck="false" class="form-control" name="ldgName" id="ldgName">
+									<div class="check_font" id="idCheck"></div>
 								</div>
 								<div class="form-group col-12 col-md-6 col-lg-6">
 									<label for="ldgType">숙박시설 종류 선택</label> 
 									<select class="form-control border border-secondary"
-										id="exampleFormControlSelect1" name="ldgType">
+										 name="ldgType" id="ldgType">
 										<option value="5성급호텔">5성급호텔</option>
 										<option value="4성급호텔">4성급호텔</option>
 										<option value="호텔">호텔</option>
@@ -137,52 +146,60 @@
 										<option value="캠핑장">캥핑장</option>
 										<option value="모텔">모텔</option>
 									</select>
-								</div>
+								</div></div>
+								<div class="row">
 								<div class="form-group col-12 col-md-6 col-lg-6">
 									<label for="businessNumber">사업자번호</label> <input type="text"
-										class="form-control" name="businessNumber">
+										class="form-control" name="businessNumber" id="businessNumber">
 								</div>
 								<div class="form-group col-12 col-md-6 col-lg-6">
 									<label for="ldgTel">전화번호</label> <input type="text"
-										class="form-control" name="ldgTel">
-								</div>
+										class="form-control" name="ldgTel" id="ldgTel">
+								</div></div>
+								<div class="row">
 								<div class="form-group col-12 col-md-6 col-lg-6">
 									<label for="ldgPhone">휴대폰번호</label> <input type="text"
-										class="form-control" name="ldgPhone">
-								</div>
-								<div class="form-group col-12 col-md-12 col-lg-12"
+										class="form-control" name="ldgPhone" id="ldgPhone">
+								</div></div>
+								<div class="row">
+								<div class="form-group col-12 col-md-6 col-lg-6"
 									style="margin: 0;">
 									<label for="exampleInputEmail1">우편번호</label>
 									<div class="input-group mb-3">
 										<input name="zip" type="text" class="form-control"
 											aria-label="Recipient's username"
-											aria-describedby="button-addon">
+											aria-describedby="button-addon" id="exampleInputEmail1">
 										<button class="btn btn-primary" onclick="openZipSearch()"
 											type="button">검색</button>
 									</div>
 								</div>
-								<div class="form-group col-12 col-md-12 col-lg-12">
-									<label for="ldgAddr">주소</label> <input type="text"
-										class="form-control" name="ldgAddr" readonly>
 								</div>
+								<div class="row">
 								<div class="form-group col-12 col-md-12 col-lg-12">
-									<label for="ldgldgDetailAddr">상세주소</label> <input type="text"
-										class="form-control" name="ldgDetailAddr">
-								</div>
+									<label for="ldgAddr">주소</label> 
+									<input type="text" class="form-control" name="ldgAddr">
+								</div></div>
+								<div class="row">
 								<div class="form-group col-12 col-md-12 col-lg-12">
-									<label for="ldgEmail">이메일</label> <input type="text"
-										class="form-control" name="ldgEmail">
-								</div>
-
+									<label for="ldgldgDetailAddr">상세주소</label> 
+									<input type="text" class="form-control" name="ldgDetailAddr" id="ldgDetailAddr">
+								</div></div>
+								<div class="row">
+								<div class="form-group col-12 col-md-12 col-lg-12">
+									<label for="ldgEmail">이메일</label> 
+									<input type="text" class="form-control" name="ldgEmail" id="ldgEmail">
+								</div></div>
+								
+								<div class="row">
 								<label class="form-group col-12 col-md-12 col-lg-12"
 									style="margin-bottom: 6.5px;">홈페이지</label>
 								<div class="input-group mb-3 col-12 col-md-12 col-lg-12">
 									<div class="input-group-prepend">
 										<span class="input-group-text" id="ldgEmail">https://</span>
 									</div>
-									<input type="text" class="form-control" name="ldgHomepage"
-										aria-describedby="ldgEmail">
-								</div>
+									<input type="text" class="form-control" name="ldgHomepage" aria-describedby="ldgEmail">
+								</div></div>
+								<div class="row">
 								<label class="form-group col-12 col-md-12 col-lg-12"
 									style="margin-top: 0.5rem">숙박업체 대표사진등록</label>
 								<div class="filebox preview-image col-12 col-md-12 col-lg-12"
@@ -190,31 +207,27 @@
 									<input class="upload-name" value="파일선택" disabled="disabled">
 									<label for="ldgImg" style="margin-bottom: 0;">업로드</label> <input
 										 multiple="multiple" type="file" id="ldgImg" class="upload-hidden" name="accommodationImageFiles">
-								</div>
+								</div></div>
+								<div class="row">
 								<div class="form-group col-12 col-md-12 col-lg-12">
 									<label for="agree" style="margin-top: 0.5rem">업체상세정보입력</label>
-									<textarea id="ldgExplain1" name="ldgExplain1"
-										class="form-control" rows="1" placeholder="업체 상세 내용 입력"
-										required></textarea>
-								</div>
+									<input id="ldgExplain1" name="ldgExplain1" class="form-control"  placeholder="업체 상세 내용 입력">
+								</div></div>
+								<div class="row">
 								<div class="form-group col-12 col-md-12 col-lg-12">
 									<label for="agree" style="margin-top: 0.5rem">업체상세정보입력</label>
-									<textarea id="ldgExplain2" name="ldgExplain2"
-										class="form-control" rows="1" placeholder="업체 상세 내용 입력"
-										required></textarea>
-								</div>
+									<input id="ldgExplain2" name="ldgExplain2" class="form-control" placeholder="업체 상세 내용 입력">
+								</div></div>
+								<div class="row">
 								<div class="form-group col-12 col-md-12 col-lg-12">
 									<label for="agree" style="margin-top: 0.5rem">업체상세정보입력</label>
-									<textarea id="ldgExplain3" name="ldgExplain3"
-										class="form-control" rows="1" placeholder="업체 상세 내용 입력"
-										required></textarea>
-								</div>
+									<input id="ldgExplain3" name="ldgExplain3" class="form-control" placeholder="업체 상세 내용 입력">
+								</div></div>
+								<div class="row">
 								<div class="form-group col-12 col-md-12 col-lg-12">
 									<label for="agree" style="margin-top: 0.5rem">업체상세정보입력</label>
-									<textarea id="ldgExplain4" name="ldgExplain4"
-										class="form-control" rows="1" placeholder="업체 상세 내용 입력"
-										required></textarea>
-								</div>
+									<input id="ldgExplain4" name="ldgExplain4" class="form-control" placeholder="업체 상세 내용 입력">
+								</div></div>
 								<div class="col-12" style="display: flex; justify-content: space-around;">
 									<button type="submit" class="btn btn-primary" id="addAccommodation">신규등록</button>
 								</div>
@@ -227,17 +240,103 @@
 	</div>
 </th:block>
 <th:block layout:fragment="customBodyScript">
-	<!-- summernote -->
-	<script th:src="@{js/summernote/summernote.min.js}"></script>
-	<!-- summernote -->
-	<script th:src="@{js/simplemde/simplemde.min.js}"></script>
-	<script th:src="@{js/simplemde/simplemde.js}"></script>
-	<!-- PRISM -->
-	<script th:src="@{/js/custom.js}"></script>
-	<script th:src="@{/js/moment.min.js}"></script>
-	<script th:src="@{js/dropzone/dropzone.min.js}"></script>
-	<script th:src="@{/js/bootstrap-wizard/jquery.bootstrap.wizard.min.js}"></script>
-	<script th:src="@{/js/jquery-validation/jquery.validate.min.js}"></script>
+	  <!-- bootstrap -->
+      <script th:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script>
+      <!-- jquery-nicescroll -->
+      <script th:src="@{/js/jquery-nicescroll/jquery.nicescroll.min.js}"></script>
+      <!-- PRISM -->
+      <script th:src="@{/js/prism/prism.js}"></script>
+      <!-- Validation -->
+      <script th:src="@{/js/jquery-validation/jquery.validate.min.js}"></script>
+      <!-- custom -->
+      <script th:src="@{/js/custom.js}"></script>
+	<script>
+			
+			$(function(){
+				// 숙박업소 등록 validation
+				$('#addAccommodationForm').validate({
+					rules : {
+						ldgName : {required:true},
+						ldgType : {required:true},
+						ldgTel : {required:true},
+						businessNumber : {required:true},
+						exampleInputEmail1 : {required:true},
+						ldgDetailAddr : {required:true},
+						ldgAddr : {required:true},
+						ldgExplain1 : {required:true},
+						ldgEmail : {required:true, email:true},
+					},		
+					messages:{
+						ldgName:{
+							required : '숙박업소 명을 입력해주세요'
+						},
+						ldgType:{
+							required : '숙박업소 타입을 선택해주세요'
+						},
+						ldgTel:{
+							required : '전화번호를 입력해주세요'
+						},
+						businessNumber:{
+							required : '사업자번호를 입력해주세요'
+						},
+						exampleInputEmail1:{
+							required : '우편번호를 검색해주세요'
+						},
+						ldgAddr:{
+							required : '숙박업소 주소를 입력해주세요'
+						},
+						ldgDetailAddr:{
+							required : '숙박업소 상세주소를 입력해주세요'
+						},
+						ldgExplain1:{
+							required : '숙박업소 설명을 하나 이상 입력해주세요'
+						},
+						ldgEmail:{
+							required : '이메일을 입력해주세요',
+						    email : '이메일의 형식과 다릅니다'
+						}
+					},
+					
+				});
+				  	
+				$('#ldgName').keyup(function(){
+					var ldgName = $('input[name="ldgName"]').val();
+					
+					console.log(ldgName);
+					if(typeof ldgName == 'undefined' || ldgName == '' || ldgName == null){
+						return false;
+					}
+					
+					$.ajax({
+						 url: '/accommodation/isNameCheck'
+						,type: 'POST'
+						,data: {'ldgName' : ldgName}
+						,dataType: 'json'
+						,success: function(data){
+							console.log(data);
+							if(data){
+								$('#ldgName').attr('data-idcheck', true);
+								$("#idCheck").text("등록가능한 숙박업소 입니다");
+								$("#idCheck").css("color", "blue");
+								$("#addAccommodation").attr("disabled", false);
+							}else{
+								$('#ldgName').attr('data-idcheck', false);
+								$("#idCheck").text("이미등록 된 숙박업소 입니다.");
+								$("#idCheck").css("color", "red");
+								$("#addAccommodation").attr("disabled", true);
+							}
+						},error: function(xhr, status, errorThrown) {
+							console.log(xhr);
+							console.log(errorThrown);
+						}
+					});
+				});
+			});
+				
+				
+	  </script>
+	
+	
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script type="text/javascript">
@@ -251,6 +350,8 @@
 			}).open();
 		}
 	</script>
+	
+	<!-- 이미지 등록 스크립트 -->
 	<script>
 		$(document).ready(function() {
 			var fileTarget = $('.filebox .upload-hidden');
@@ -291,5 +392,6 @@
 				}
 			});
 	</script>
+	
 
 </th:block>

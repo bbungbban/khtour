@@ -357,33 +357,33 @@
 						<li class="star"><span style="padding-right: 0.5rem;">청결도</span>
 							<div class="progress progress-h-5" style="width: 5rem;">
 								<div class="progress-bar" role="progressbar"
-									style="width: 75%; background-color: #FFB900;"
+									
 									aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
 							</div> <span style="padding-left: 0.5rem;" th:text="${avgCleanliness}"></span></li>
 						<li class="star"><span style="padding-right: 0.5rem;">친절도</span>
 							<div class="progress progress-h-5" style="width: 5rem;">
 								<div class="progress-bar" role="progressbar"
-									style="width: 75%; background-color: #FFB900;"
+			
 									aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-							</div> <span style="padding-left: 0.5rem;">4.8</span></li>
+							</div> <span style="padding-left: 0.5rem;" th:text="${avgKindness}"></span></li>
 						<li class="star"><span style="padding-right: 0.5rem;">편의성</span>
 							<div class="progress progress-h-5" style="width: 5rem;">
 								<div class="progress-bar" role="progressbar"
-									style="width: 75%; background-color: #FFB900;"
+	
 									aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-							</div> <span style="padding-left: 0.5rem;">4.8</span></li>
+							</div> <span style="padding-left: 0.5rem;" th:text="${avgConvenience}"></span></li>
 						<li class="star"><span style="padding-right: 0.5rem;">위치만족도</span>
 							<div class="progress progress-h-5" style="width: 5rem;">
 								<div class="progress-bar" role="progressbar"
-									style="width: 75%; background-color: #FFB900;"
+									
 									aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-							</div> <span style="padding-left: 0.5rem;">4.8</span></li>
+							</div> <span style="padding-left: 0.5rem;" th:text="${avgLocation}"></span></li>
 						<li class="star"><span style="padding-right: 0.5rem;">가격만족도</span>
 							<div class="progress progress-h-5" style="width: 5rem;">
 								<div class="progress-bar" role="progressbar"
-									style="width: 75%; background-color: #FFB900;"
+									
 									aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-							</div> <span style="padding-left: 0.5rem;">4.8</span></li>
+							</div> <span style="padding-left: 0.5rem;" th:text="${avgPriceSta}"></span></li>
 					</ul>
 				</div>
 			</div>
@@ -440,9 +440,11 @@
 				</div>
 				<div class="review-bottom"
 					style="display: flex; justify-content: flex-end; padding: 0px">
-					<button class="btn" id="swal-delete-accomreview"
-						th:unless="${session.SID != al.memberId}"
-						th:data-accomreviewCd="${al.ldgReviewCode}">삭제</button>
+					<button type="button" id="swal-delete-accomreview"
+						th:unless="${session.SID != al.memberId && session.SLEVEL == '일반회원'}"
+						th:data-ldgReviewCode="${al.ldgReviewCode}"
+						th:data-ldgCode="${accommodation.ldgCode}"
+						class="btn reviewDelete">삭제</button>
 				</div>
 				<div class="card-footer"></div>
 			</article>
@@ -504,47 +506,26 @@
 				$('#addReviewForm').submit();
 		});
 	</script>
+	
 	<script>
-		$(function(){
-			$(document).on('click','#swal-delete-accomreview',function(){
-				var accomreviewCd = $(this).attr('data-accomreviewCd');
-			      const swalWithBootstrapButtons = swal.mixin({
-			          confirmButtonClass: 'btn btn-success',
-			          cancelButtonClass: 'btn btn-danger',
-			          buttonsStyling: false,
-			        });
-
-			        swalWithBootstrapButtons({
-			          title: '정말 삭제 하시겠습니까?',
-			          text: "삭제 클릭시 해당 정보는 복구 할 수 없습니다.",
-			          type: 'warning',
-			          showCancelButton: true,
-			          confirmButtonText: '네',
-			          cancelButtonText: '아니오',
-			          reverseButtons: false
-			        }).then((result) => {
-			          if (result.value) {
-			            swalWithBootstrapButtons(
-			              '삭제완료',
-			              '파일이 안전하게 삭제되었습니다.',
-			              'success'
-			            )
-			            location.href = '/accomreview/deleteReview?ldgReviewCode=' + accomreviewCd;
-			          } else if (
-			            // Read more about handling dismissals
-			            result.dismiss === swal.DismissReason.cancel
-			          ) {
-			            swalWithBootstrapButtons(
-			              '취소',
-			              '사진은 안전하게 보호됩니다.',
-			              'error'
-			            )
-			          }
-			        });	
-			});
-			
-		});
-	</script>
+   $('.reviewDelete').click(function(e){
+      
+      var ldgReviewCode = $(this).attr('data-ldgReviewCode');
+      var ldgCode = $(this).attr('data-ldgCode');
+      
+       $.ajax({
+            url: '/accomreview/deleteReview'
+            ,type: 'POST'
+            ,data: {"ldgReviewCode" : ldgReviewCode
+                  ,"ldgCode" : ldgCode} 
+            ,dataType: 'text'
+            ,success: function(data){
+               console.log(data);
+               location.href=data;
+            }
+         });   
+   });
+   </script>
 	
 </th:block>
 </html>

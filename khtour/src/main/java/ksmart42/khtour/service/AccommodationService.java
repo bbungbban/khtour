@@ -57,6 +57,38 @@ public class AccommodationService {
 	}
 	
 	/**
+	 * 코드에따른 숙박업소 친절도 평균 별점 조회 
+	 */
+	public String avgKindness(String ldgCode) {
+		
+		return accommodationMapper.avgKindness(ldgCode);
+	}
+	
+	/**
+	 * 코드에따른 숙박업소 편의성 평균 별점 조회 
+	 */
+	public String avgConvenience(String ldgCode) {
+		
+		return accommodationMapper.avgConvenience(ldgCode);
+	}
+	
+	/**
+	 * 코드에따른 숙박업소 위치만족도 평균 별점 조회 
+	 */
+	public String avgLocation(String ldgCode) {
+		
+		return accommodationMapper.avgLocation(ldgCode);
+	}
+	
+	/**
+	 * 코드에따른 숙박업소 가격만족도 평균 별점 조회 
+	 */
+	public String avgPriceSta(String ldgCode) {
+		
+		return accommodationMapper.avgPriceSta(ldgCode);
+	}
+	
+	/**
 	 * 숙박업소 등록
 	 */
 	public void addAccommodation(Accommodation accommodation, MultipartFile[] accommodationImageFiles, String fileRealPath) {
