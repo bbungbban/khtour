@@ -52,8 +52,10 @@ public class AccommodationController {
 	@GetMapping("/accommodationList")
 	public String getAccommodationList(Model model
 			,@RequestParam(name="searchKey", required=false) String searchKey
-			,@RequestParam(name="searchValue", required=false) String searchValue) {
+			,@RequestParam(name="searchValue", required=false) String searchValue
+			,@RequestParam(value="ldgCode", required = false) String ldgCode) {
 		
+		Accommodation accommodation = accommodationService.getLdgByCode(ldgCode);
 		Map<String, Object> paramMap = new HashMap<String , Object>();
 		
 		if(searchKey != null) {
@@ -69,6 +71,7 @@ public class AccommodationController {
 		paramMap.put("searchKey", searchKey);
 		paramMap.put("searchValue", searchValue);
 		log.info("입력 데이터 값 : {}",paramMap);
+		String avgGrade = accommodationService.avgGrade(ldgCode);
 		
 		
 		List<Accommodation> accommodationList = accommodationService.getAccommodationList(paramMap);
@@ -76,7 +79,9 @@ public class AccommodationController {
 		paramMap = null;
 		
 		model.addAttribute("title", "숙박업소 관리페이지");
+		model.addAttribute("accommodation", accommodation);
 		model.addAttribute("accommodationList", accommodationList);
+		model.addAttribute("avgGrade", avgGrade);
 		
 		return "accommodation/accommodationList";
 	}
@@ -131,8 +136,8 @@ public class AccommodationController {
 	public String getAcoommodationInfo(
 			@RequestParam(value="ldgCode", required = false) String ldgCode
 			,Model model) {
-		log.info(ldgCode + "숙박업소코드");
 		Accommodation accommodation = accommodationService.getLdgByCode(ldgCode);
+		log.info(ldgCode + "숙박업소코드");
 		
 		List<Room> roomList = roomService.getRoomListByldgCode(ldgCode);
 		log.info(roomList + "객실리스트");
