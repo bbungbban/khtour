@@ -15,9 +15,10 @@
 		<result column="start_date"				property="startDate"/>						<!-- 여행 출발일 -->
 		<result column="end_date" 				property="endDate"/>						<!-- 여행 종료일 -->
 		<result column="reg_date" 				property="regDate"/>						<!-- 게시글 등록 일자 -->
-		<result column="like_count" 			property="likeCount"/>						<!-- 좋아요 개수 -->
+		<result column="feed_count" 			property="feedCount"/>						<!-- 피드 개수 -->
 		<result column="views" 					property="views"/>							<!-- 조회수 -->					
 		<result column="travel_style" 			property="travelStyle"/>					<!-- 여행 스타일 -->	
+		<result column="comment_count" 			property="commentCount"/>					<!-- 댓글 개수 -->	
 		<association property="member" javaType="Member">
 			<id column ="member_id"				property="memberId"></id>
 			<result column="member_name" 		property="memberName"/>
@@ -131,8 +132,10 @@
 			 r.start_date,
 			 r.end_date,
 			 r.reg_date,
-			 r.like_count,
+			 r.feed_count,
 			 r.views,
+			 r.comment_count,
+			 m.member_user_name,
 			 p.plan_status_name,
 			 f.file_path    
 			From
@@ -169,9 +172,11 @@
 		 r.start_date,
 		 r.end_date,
 		 r.reg_date,
-		 r.like_count,
+		 r.feed_count,
 		 r.views,
+		 r.comment_count,
 		 p.plan_status_name,
+		 m.member_user_name,  
 		 f.file_path     
 	 From
 		 tb_record_board AS r
@@ -223,10 +228,12 @@
 		   ,r.start_date   
 		   ,r.end_date
 		   ,r.reg_date    
-		   ,r.like_count    
+		   ,r.feed_count    
 		   ,r.views
+		   ,r.comment_count
 		   ,r.travel_style 
-		   ,f.file_path     
+		   ,f.file_path
+		   ,m.member_user_name     
 		FROM
 		   tb_record_board AS r
 		   INNER JOIN 
@@ -264,8 +271,9 @@
 		   ,r.start_date   
 		   ,r.end_date
 		   ,r.reg_date    
-		   ,r.like_count    
+		   ,r.feed_count    
 		   ,r.views
+		   ,r.comment_count
 		   ,r.travel_style    
 		   ,f.file_path
 		   ,m.member_name
@@ -318,8 +326,9 @@
 		   ,r.start_date   
 		   ,r.end_date
 		   ,r.reg_date    
-		   ,r.like_count    
+		   ,r.feed_count    
 		   ,r.views
+		   ,r.comment_count
 		   ,r.travel_style
 			,c.file_idx
 			,f.file_path    
@@ -353,7 +362,7 @@
 		   ,start_date   
 		   ,end_date
 		   ,reg_date    
-		   ,like_count    
+		   ,feed_count    
 		   ,views
 		   ,travel_style    
 		) VALUES (
@@ -366,7 +375,7 @@
 		   ,#{startDate}
 		   ,#{endDate}
 		   ,CURDATE()
-		   ,#{likeCount}
+		   ,#{feedCount}
 		   ,#{views}
 		   ,#{travelStyle}
 		);
@@ -383,6 +392,46 @@
 		record_board_code = #{recordBoardCode};
 	</update>
 	
+	<!-- 게시글 댓글 개수 +업데이트 SQL -->
+	<update id="addCommentCount" parameterType="String">
+      UPDATE tb_record_board
+         SET
+         comment_count = comment_count + 1   
+             
+      WHERE
+         record_board_code = #{recordBoardCode};   
+    </update>
+	
+	<!-- 게시글 댓글 개수 -업데이트 SQL -->
+	<update id="subtractCommentCount" parameterType="String">
+      UPDATE tb_record_board
+         SET
+        comment_count = comment_count - 1   
+             
+      WHERE
+         record_board_code = #{recordBoardCode};   
+   </update>
+	
+	<!-- 게시글 피드 개수 +업데이트 SQL -->
+	<update id="addFeedCount" parameterType="String">
+      UPDATE tb_record_board
+         SET
+         	feed_count = feed_count + 1   
+             
+      WHERE
+         record_board_code = #{recordBoardCode};   
+    </update>
+	
+	<!-- 게시글 피드 개수 -업데이트 SQL -->
+	<update id="subtractFeedCount" parameterType="String">
+      UPDATE tb_record_board
+         SET
+        feed_count = feed_count - 1   
+             
+      WHERE
+         record_board_code = #{recordBoardCode};   
+   </update>
+   
 	<!-- 여행게시글에 피드갯수 구하는 SQL -->
 	<select id="getrecordBoardByfeedCount" parameterType="String" resultType="string">
 	SELECT
@@ -422,8 +471,8 @@
 			<if test="regDate != null and regDate != ''">
 				reg_date = #{regDate},
 			</if>				
-			<if test="likeCount != null and likeCount != ''">
-				like_count = #{likeCount},
+			<if test="feedCount != null and feedCount != ''">
+				feed_count = #{feedCount},
 			</if>				
 			<if test="views != null and views != ''">
 				views = #{views},

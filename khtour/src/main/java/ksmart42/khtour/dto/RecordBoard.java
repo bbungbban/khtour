@@ -10,7 +10,7 @@ public class RecordBoard {
 	//start_date, 
 	//end_date, 
 	//reg_date, 
-	//like_count, 
+	//feed_count, 
 	//views,
 	//travel_style
 	
@@ -23,8 +23,9 @@ public class RecordBoard {
 	private String startDate;
 	private String endDate;
 	private String regDate;
-	private String likeCount;
+	private int feedCount;
 	private int views;
+	private int commentCount;
 	private String travelStyle;
 	
 	private Member member;
@@ -113,12 +114,12 @@ public class RecordBoard {
 		this.regDate = regDate;
 	}
 
-	public String getLikeCount() {
-		return likeCount;
+	public int getFeedCount() {
+		return feedCount;
 	}
 
-	public void setLikeCount(String likeCount) {
-		this.likeCount = likeCount;
+	public void setFeedCount(int feedCount) {
+		this.feedCount = feedCount;
 	}
 
 	public int getViews() {
@@ -153,24 +154,25 @@ public class RecordBoard {
 	public void setTravelStyle(String travelStyle) {
 		this.travelStyle = travelStyle;
 	}
+	
+	public int getCommentCount() {
+		return commentCount;
+	}
+
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
+	}
 
 	@Override
 	public String toString() {
 		return "RecordBoard [recordBoardCode=" + recordBoardCode + ", memberId=" + memberId + ", recordBoardName="
 				+ recordBoardName + ", recordBoardSubName=" + recordBoardSubName + ", content=" + content
 				+ ", planStatusCode=" + planStatusCode + ", startDate=" + startDate + ", endDate=" + endDate
-				+ ", regDate=" + regDate + ", likeCount=" + likeCount + ", views=" + views + ", travelStyle="
-				+ travelStyle + ", member=" + member + ", recordBoardImagePath=" + recordBoardImagePath
-				+ ", planStatus=" + planStatus + ", getMember()=" + getMember() + ", getRecordBoardCode()="
-				+ getRecordBoardCode() + ", getMemberId()=" + getMemberId() + ", getRecordBoardName()="
-				+ getRecordBoardName() + ", getRecordBoardSubName()=" + getRecordBoardSubName() + ", getContent()="
-				+ getContent() + ", getPlanStatusCode()=" + getPlanStatusCode() + ", getStartDate()=" + getStartDate()
-				+ ", getEndDate()=" + getEndDate() + ", getRegDate()=" + getRegDate() + ", getLikeCount()="
-				+ getLikeCount() + ", getViews()=" + getViews() + ", getRecordBoardImagePath()="
-				+ getRecordBoardImagePath() + ", getPlanStatus()=" + getPlanStatus() + ", getTravelStyle()="
-				+ getTravelStyle() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+				+ ", regDate=" + regDate + ", feedCount=" + feedCount + ", views=" + views + ", commentCount="
+				+ commentCount + ", travelStyle=" + travelStyle + ", member=" + member + ", recordBoardImagePath="
+				+ recordBoardImagePath + ", planStatus=" + planStatus + "]";
 	}
+
 
 	
 
