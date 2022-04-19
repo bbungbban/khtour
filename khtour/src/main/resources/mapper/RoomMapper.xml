@@ -16,6 +16,10 @@
 		<result column="room_discount" 		property="roomDiscount"/>
 		<result column="room_final_price" 	property="roomFinalPrice"/>
 		<result column="file_path" 			property="roomImagePath"/>
+		<association property="accommodation" 	javaType="Accommodation">
+			<id 	column="ldg_code"			property="ldgCode"/>
+			<result column="ldg_name"			property="ldgName"/>
+		</association>
 	</resultMap>
 	
 	<!-- 객실 정보 삭제 SQL -->
@@ -40,17 +44,22 @@
 		   ,r.room_price    
 		   ,r.room_discount    
 		   ,r.room_final_price
-		   ,f.file_path   
+		   ,f.file_path
+		   ,l.ldg_name  
 		FROM
 		  tb_room_info AS r
 		LEFT JOIN 
 		   tb_file_control AS fc
-		   ON 
+		ON 
 		   r.ldg_code = fc.reference_code
-		   LEFT JOIN 
+		LEFT JOIN 
 		   tb_file AS f
-		   ON 
+		ON 
 		   fc.file_idx = f.file_idx
+		INNER JOIN
+			tb_ldg_information AS l
+		ON
+			r.ldg_code = l.ldg_code;
 	</select>
 	
 	<!-- 객실 조회 SQL -->
@@ -65,11 +74,16 @@
 		   ,r.room_checkin   
 		   ,r.room_price    
 		   ,r.room_discount    
-		   ,r.room_final_price    
+		   ,r.room_final_price 
+		   ,l.ldg_name  
 		FROM
 		  	tb_room_info AS r
+		INNER JOIN
+			tb_ldg_information AS l
+		ON
+			r.ldg_code = l.ldg_code
 		WHERE
-			room_code = #{roomCode};
+			r.room_code = #{roomCode};
 	</select>
 	
 	<!-- ldgCode에 맞는 객실 조회 SQL -->

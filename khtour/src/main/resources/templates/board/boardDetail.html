@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/default}">
+	layout:decorate="~{layout/default2}">
 <th:block layout:fragment="customTitle">
 	<title th:text="${title}"></title>
 </th:block>
@@ -139,6 +139,10 @@
 
 </th:block>
 <th:block layout:fragment="customBodyScript">
+	<!-- PRISM -->
+	<script th:src="@{/js/prism/prism.js}"></script>
+	<!-- custom -->
+	<script th:src="@{/js/custom.js}"></script>
 	<!-- delbtn -->
 	<script th:src="@{/js/sweetalert2/sweetalert2.min.js}"
 		aria-hidden="true"></script>
