@@ -52,6 +52,46 @@
          tb_heritage_category AS h;
    </select>
    
+   <!-- 문화재 항목 종류별 목록 조회 SQL -->
+   <select id="getHeritageByItem" resultMap="heritageResultMap">
+   SELECT
+	 h.heritage_code
+         ,h.member_id
+         ,h.heritage_name
+         ,h.heritage_sub_name     
+         ,h.heritage_location     
+         ,h.heritage_era
+         ,h.heritage_designation   
+         ,h.heritage_classification   
+         ,h.heritage_detail
+         ,h.heritage_owner
+         ,h.heritage_manager
+         ,h.heritage_category
+         ,h.heritage_area
+         ,f.file_path   
+	FROM
+		tb_heritage_detail AS h
+		INNER JOIN 
+         tb_member AS m
+         ON 
+         h.member_id = m.member_id
+         LEFT JOIN 
+         tb_file_control AS fc
+         ON 
+         h.heritage_code = fc.reference_code
+         LEFT JOIN 
+         tb_file AS f
+         ON 
+         fc.file_idx = f.file_idx
+		WHERE
+		h.heritage_category IN
+		 <foreach item="item" collection="list"
+	      open="(" separator="," close=")">
+	        #{item}
+	 	 </foreach>
+	 	ORDER BY h.heritage_code;  
+   </select>
+   
    
    <!-- 문화재 목록 조회 SQL -->
    <select id="getHeritageList"  resultMap="heritageResultMap">

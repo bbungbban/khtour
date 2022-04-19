@@ -270,4 +270,19 @@ public class HeritageController {
       return "redirect:/heritage/heritageListSt";
    }   
    
+   /* 5. 카테고리 항목에 체크된 문화재 정보 조회
+   *  작성자 : 김민석
+   *  입  력 : @RequestParam, List<String>
+   *  출  력 : heritageList(문화재 리스트)
+   *  설  명 : 카테고리 항목에 체크된 문화재 정보 조회 - Get방식 전달
+   */
+   @PostMapping("/itemSearchHeritageList")
+   @ResponseBody
+   public List<Heritage> getItemSearchHeritageList(@RequestParam(value="checkArr[]", required = false) List<String> checkList) {
+	   System.out.println(checkList);
+	   List<Heritage> heritageList = heritageService.getHeritageByItem(checkList);
+	   System.out.println(heritageList);
+	   return heritageList;
+   }
+   
 }

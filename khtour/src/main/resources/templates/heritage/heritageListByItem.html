@@ -19,10 +19,7 @@
 </th:block>
 <th:block layout:fragment="customContents">
 <link th:href="@{https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/datedropper.css}" rel="stylesheet">
-<link rel="stylesheet" type="text/css" th:href="@{/css/plugins/lmyCss/addCssLmy.css}">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" defer="defer"></script>
-<script th:src="@{/js/lmyJs/dayjs.min.js}"></script>
-<script th:src="@{/js/lmyJs/validate.min.js}"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.12.0/validate.min.js"></script>
 <style>
 .custom-control-inline{width:10%;font-size:14px;}
@@ -198,56 +195,56 @@
 								<div class="form-group col-9">
 									<div
 										class="custom-control custom-checkbox custom-control-inline">
-										<input type="checkbox" class="custom-control-input" name="checkValue"
-											id="swimmingPool" value="checked"> <label
-											class="custom-control-label" for="swimmingPool">국가등록</label>
+										<input type="checkbox" class="custom-control-input " id="customCheck1" name="checkValue"
+											 value="국가등록"> <label
+											class="custom-control-label" for="customCheck1" >국가등록</label>
 									</div>
 									<div
 										class="custom-control custom-checkbox custom-control-inline">
-										<input type="checkbox" class="custom-control-input" name="checkValue"
-											id="smoking" value="checked"> <label
-											class="custom-control-label" for="smoking">국보</label>
+										<input type="checkbox" class="custom-control-input" id="customCheck2" name="checkValue"
+											 value="국보"> <label
+											class="custom-control-label" for="customCheck2" >국보</label>
 									</div>
 									<div
 										class="custom-control custom-checkbox custom-control-inline">
-										<input type="checkbox" class="custom-control-input" name="checkValue"
-											id="solitary" value="checked"> <label
-											class="custom-control-label" for="solitary">명승</label>
+										<input type="checkbox" class="custom-control-input" id="customCheck3" name="checkValue"
+											 value="명승"> <label
+											class="custom-control-label" for="customCheck3">명승</label>
 									</div>
 									<div
 										class="custom-control custom-checkbox custom-control-inline">
-										<input type="checkbox" class="custom-control-input" name="checkValue" id="onDol"
-											value="checked"> <label class="custom-control-label"
-											for="onDol">자료</label>
+										<input type="checkbox" class="custom-control-input" id="customCheck4" name="checkValue"
+											value="자료"> <label class="custom-control-label" for="customCheck4"
+											>자료</label>
 									</div>
 									<div
 										class="custom-control custom-checkbox custom-control-inline">
-										<input type="checkbox" class="custom-control-input" name="checkValue" id="tub"
-											value="checked"> <label class="custom-control-label"
-											for="tub">보물</label>
+										<input type="checkbox" class="custom-control-input" id="customCheck5" name="checkValue"
+											value="보물"> <label class="custom-control-label" for="customCheck5"
+											>보물</label>
 									</div>
 									<div
 										class="custom-control custom-checkbox custom-control-inline">
-										<input type="checkbox" class="custom-control-input" name="checkValue"
-											id="amenities" value="checked"> <label
-											class="custom-control-label" for="amenities">사적</label>
+										<input type="checkbox" class="custom-control-input" id="customCheck6" name="checkValue"
+											value="사적"> <label
+											class="custom-control-label"  for="customCheck6">사적</label>
 									</div>
 									<div
 										class="custom-control custom-checkbox custom-control-inline">
-										<input type="checkbox" class="custom-control-input" name="checkValue" id="pet"
-											value="checked"> <label class="custom-control-label"
-											for="pet">신문</label>
+										<input type="checkbox" class="custom-control-input" id="customCheck7" name="checkValue" 
+											value="신문"> <label class="custom-control-label" for="customCheck7"
+											>신문</label>
 									</div>
 									<div
 										class="custom-control custom-checkbox custom-control-inline">
-										<input type="checkbox" class="custom-control-input" name="checkValue" id="wifi"
-											value="checked"> <label class="custom-control-label"
-											for="wifi">종이</label>
+										<input type="checkbox" class="custom-control-input" id="customCheck8" name="checkValue" 
+											value="종이"> <label class="custom-control-label" for="customCheck8"
+											>종이</label>
 									</div>
 								</div>
 							</div>
 							<div class="col text-center">
-								<button class="btn btn-danger"
+								<button class="btn btn-danger itemSearch" id="itemSearchBtn"
 									style="margin-top: 1rem !important;font-size:14px;" onclick="" type="button" >
 									포함 항목 검색</button>
 							</div>
@@ -258,7 +255,7 @@
 
 			<!-- 문화재 검색리스트 시작 -->
 			<div class="card">
-				<div class="card-body">
+				<div class="card-body" id="heritageCard">
 					<div class="row row-cols-1 row-cols-md-4 g-3">
 						<div class="col" th:if="${not #lists.isEmpty(heritageList)}"
 							th:each="l : ${heritageList}">
@@ -279,6 +276,7 @@
 								</div>
 							</div>
 						</div>
+						<div class="mr-5" id="heritageList"></div>
 						<div th:unless="${not #lists.isEmpty(heritageList)}">
 							<div>등록된 문화재의 정보가 없습니다.</div>
 						</div>
@@ -312,6 +310,42 @@
 <!-- javascript 삽입 시작 -->
 <th:block layout:fragment="customBodyScript">
 	<!-- 등록 버튼 자바스크립트 = 관리자만 등록 가능(유효성 검사) -->
+	<script>
+		function resultHtml(searchHeritageList) {
+			$("#heritageCard").empty();
+			
+			var html = '<div class="row row-cols-1 row-cols-md-4 g-3">';
+			if(searchHeritageList != null && searchHeritageList.length > 0){
+				$.each($(searchHeritageList), function(index, item){
+					html += '<div class="col">';
+					html += '	<div class="card h-80">';
+					html += '		<div class="embed-responsive embed-responsive-4by3">';
+					if(item.heritageImagePath == null){						
+						html += '		<img src="/images/heritage/서울 숭례문.jpg" class="card-img-top h-10 embed-responsive-item" alt="...">';
+					}else{
+						var heritageImagePath = item.heritageImagePath.replace(/\\/gi, '/');
+						html += '		<img src="/'+ heritageImagePath +'" class="card-img-top h-10 embed-responsive-item" alt="...">';
+					}
+					html += '		<a href="/heritage/heritageDetail?heritageCode='+ item.heritageCode +'" class="stretched-link"></a>';					
+					html += '	</div>';
+					html += '		<div class="card-body">';
+					html += '			<p class="card-text">'+ item.heritageCategory +'</p>';
+					html += '				<h5 class="card-title">';
+					html += '					<a href="/heritage/heritageDetail?heritageCode='+ item.heritageCode +'">'+ item.heritageName +'</a>';
+					html += '				</h5>';					
+					html += '			<p class="card-text">' + item.heritageSubName + '</p>';
+					html += '		</div>';
+					html += '	</div>';
+					html += '</div>';
+				});
+			}else{	
+				html += '<div>등록된 문화재의 정보가 없습니다.</div>';	
+			}
+			html += '</div>';
+			
+			$("#heritageCard").append(html);	
+		};
+	</script>
 	<script type="text/javascript" th:inline="javascript">
 		$(function(){
 		/*<![CDATA[*/
@@ -324,6 +358,7 @@
 			}
 			return true;
 		}
+
 		$('#addHeritageBtn').click(function() {
 		
 			if(sessionLevel != '관리자'){
@@ -352,8 +387,8 @@
 			console.log('유효여부 폼전송할건지?' + isSubmit )
 	
 			if (isSubmit) $('#addHeritageForm').submit();
-			});
 		});
+		
 		
 		$('#heritageName').keyup(function(){
             var heritageName = $('input[name="heritageName"]').val();
@@ -386,7 +421,30 @@
                   console.log(errorThrown);
                }
             });
+            
          });
+		
+         $('.itemSearch').click(function(){
+         	var checkArr = [];     // 배열 초기화
+      	    $('input[name="checkValue"]:checked').each(function(i) {
+      	        checkArr.push($(this).val());     // 체크된 것만 값을 뽑아서 배열에 push
+      	    });
+			console.log(checkArr);
+			$.ajax({
+                url: '/heritage/itemSearchHeritageList'
+               ,type: 'POST'
+               ,data: {'checkArr' : checkArr}
+               ,dataType: 'json'
+               ,success: function(data){ resultHtml(data); }
+                  
+               ,error: function(xhr, status, errorThrown) {
+                  console.log(xhr);
+                  console.log(errorThrown);
+               }
+            });
+         	
+         });
+		});
 		
 		
 	</script>

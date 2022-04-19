@@ -140,4 +140,17 @@ public class HeritageService {
       
       return result;
    }
+   
+   
+   /**
+    * 아이템에 따른 문화재 목록 조회
+    * @author 김민석
+    * @param paramMap
+    */
+   public List<Heritage> getHeritageByItem(List<String> checkList){
+      List<Heritage> heritageList = heritageMapper.getHeritageByItem(checkList);
+      
+      return heritageList;
+   }
+   
 }
