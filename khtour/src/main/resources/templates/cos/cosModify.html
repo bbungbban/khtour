@@ -130,7 +130,9 @@
 														<td th:text="|${l.musStart}~ ${l.musEnd}|"></td>
 														<td style="display: none;" th:text="${l.musDetail}"></td>
 														<td th:text="${l.musClose}"></td>
-														<td><input type="checkbox" class="musCheck" name="musCode1" th:value="${l.musName}" aria-label="Checkbox for following text input" ></td>
+														<td>
+															<input type="checkbox"  class="musCheck" name="musCode1" th:value="${l.musName}" th:checked="${l.musName == cosModify.musCode1}" aria-label="Checkbox for following text input" >
+														</td>
 													</tr>
 												</tbody>
 												<tfoot style="text-align: center;">
@@ -179,7 +181,7 @@
 														<td th:text="|${l.musStart}~ ${l.musEnd}|"></td>
 														<td style="display: none;" th:text="${l.musDetail}"></td>
 														<td th:text="${l.musClose}"></td>
-														<td><input type="checkbox" class="musCheck" name="musCode2" th:value="${l.musName}" aria-label="Checkbox for following text input" ></td>
+														<td><input type="checkbox" class="musCheck" name="musCode2" th:value="${l.musName}" th:checked="${l.musName == cosModify.musCode2}" aria-label="Checkbox for following text input" ></td>
 													</tr>
 												</tbody>
 												<tfoot style="text-align: center;">
@@ -228,7 +230,7 @@
 														<td th:text="|${l.musStart}~ ${l.musEnd}|"></td>
 														<td style="display: none;" th:text="${l.musDetail}"></td>
 														<td th:text="${l.musClose}"></td>
-														<td><input type="checkbox" class="musCheck" name="musCode3" th:value="${l.musName}" aria-label="Checkbox for following text input" ></td>
+														<td><input type="checkbox" class="musCheck" name="musCode3" th:value="${l.musName}" th:checked="${l.musName == cosModify.musCode3}" aria-label="Checkbox for following text input" ></td>
 													</tr>
 												</tbody>
 												<tfoot style="text-align: center;">
@@ -277,7 +279,7 @@
 														<td th:text="|${l.musStart}~ ${l.musEnd}|"></td>
 														<td style="display: none;" th:text="${l.musDetail}"></td>
 														<td th:text="${l.musClose}"></td>
-														<td><input type="checkbox" class="musCheck" name="musCode4" th:value="${l.musName}" aria-label="Checkbox for following text input" ></td>
+														<td><input type="checkbox" class="musCheck" name="musCode4" th:value="${l.musName}" th:checked="${l.musName == cosModify.musCode4}" aria-label="Checkbox for following text input" ></td>
 													</tr>
 												</tbody>
 												<tfoot style="text-align: center;">
@@ -326,7 +328,7 @@
 														<td th:text="|${l.musStart}~ ${l.musEnd}|"></td>
 														<td style="display: none;" th:text="${l.musDetail}"></td>
 														<td th:text="${l.musClose}"></td>
-														<td><input type="checkbox" class="musCheck" name="musCode5" th:value="${l.musName}" aria-label="Checkbox for following text input" ></td>
+														<td><input type="checkbox" class="musCheck" name="musCode5" th:value="${l.musName}" th:checked="${l.musName == cosModify.musCode5}" aria-label="Checkbox for following text input" ></td>
 													</tr>
 												</tbody>
 												<tfoot style="text-align: center;">

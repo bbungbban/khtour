@@ -45,6 +45,16 @@
 		);
 	</insert>
 
+	<!-- 전시회 명 중복 체크 -->
+   <select id="isNameCheck" parameterType="String" resultType="boolean">
+      SELECT
+         IF(COUNT(1) = 1, 0, 1)
+      FROM 
+         tb_exhib AS e
+      WHERE 
+         e.exhib_name = #{exhibName};
+   </select>
+
 	<!-- 코드에 따른 전시회 조회 SQL -->
 	<select id="getExhibByCode" parameterType="String" resultMap="exhibResultMap">
 		SELECT

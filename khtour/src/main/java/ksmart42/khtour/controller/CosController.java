@@ -116,13 +116,18 @@ public class CosController {
 			@RequestParam(value="cosCode", required = false) String cosCode
 			,Model model) {
 		Map<String, Object> paramMap = new HashMap<String , Object>();
-		List<Mus> musList = cosService.getMusList(paramMap);//박물관 리스트
+		
+		List<Mus> musList = cosService.getMusList();//박물관 리스트
 		List<Cos> cosInsert = cosService.categoryList(paramMap);//코스 카테고리
+		paramMap.put("searchKey", "cos_code");
+		paramMap.put("searchValue", cosCode);
+		List<Cos> cosModifyList = cosService.getCosList(paramMap);//코스 선택한 리스트
 		Cos cos = cosService.getCosByCode(cosCode);
 		model.addAttribute("title", "코스  수정 페이지");
 		model.addAttribute("cos", cos);
 		model.addAttribute("cosInsert", cosInsert);
 		model.addAttribute("musList", musList);
+		model.addAttribute("cosModify", cosModifyList.get(0));
 		System.out.println("정보 수정 겟방식 전달" + cos);
 		log.info("입력 데이터 값   : {}",cosInsert);
 		return "cos/cosModify";
@@ -187,7 +192,7 @@ public class CosController {
 	public String addCos(Model model) {
 		Map<String, Object> paramMap = new HashMap<String , Object>();
 		List<Cos> cosInsert = cosService.categoryList(paramMap);//코스 카테고리
-		List<Mus> musList = cosService.getMusList(paramMap);//박물관 리스트
+		List<Mus> musList = cosService.getMusList();//박물관 리스트
 		model.addAttribute("title", "코스등록");
 		model.addAttribute("cosInsert", cosInsert);
 		model.addAttribute("musList", musList);

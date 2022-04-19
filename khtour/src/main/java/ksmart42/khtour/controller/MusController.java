@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ksmart42.khtour.dto.Mus;
+import ksmart42.khtour.mapper.MusMapper;
 import ksmart42.khtour.service.MusService;
 
 @Controller
@@ -22,9 +24,10 @@ public class MusController {
 	private static final Logger log = LoggerFactory.getLogger(MusController.class);
 
 	private MusService musService;
-
-	public MusController(MusService musService) {
+	private MusMapper musMapper;
+	public MusController(MusService musService,MusMapper musMapper) {
 		this.musService = musService;
+		this.musMapper = musMapper;
 	}
 
 	/*
@@ -57,7 +60,7 @@ public class MusController {
 		paramMap.put("searchKey", searchKey);
 		paramMap.put("searchValue", searchValue);
 		log.info("입력 데이터 값 : {}",paramMap);		
-		List<Mus> musList = musService.getMusList(paramMap);
+		List<Mus> musList = musService.getMusList();
 		
 		paramMap = null;
 		
@@ -126,6 +129,24 @@ public class MusController {
 		return "redirect:/mus/musList";
 	}
 
+	/*
+    * 박물관 중복 체크
+    */
+	   
+     @PostMapping("/isNameCheck")
+     @ResponseBody 
+     public boolean isNameCheck(@RequestParam(value = "musName") String musName) { 
+        boolean isNameCheck = false;
+        log.info("박물관 체크 클릭시 요청 받는 musName 값 : {}", musName);
+     
+        boolean result = musMapper.isNameCheck(musName);
+        if(result) isNameCheck = true;
+        
+        log.info("박물관  중복 체크 여부 : {}", result);
+        return isNameCheck;
+     }
+	
+	
 	/*
 	 * 박물관 등록(Get 정보 전달)
 	 */
