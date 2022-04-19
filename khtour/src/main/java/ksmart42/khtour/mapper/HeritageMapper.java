@@ -35,4 +35,7 @@ public interface HeritageMapper {
    
    //문화재 명 중복체크
    public boolean isHeritageNameCheck(String heritageName);
+   
+   // 아이템 선택에 따른 문화재 목록 조회
+   public List<Heritage> getHeritageByItem(List<String> checkList);
 }
