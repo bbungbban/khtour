@@ -4,25 +4,35 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ksmart42.khtour.dto.Exhib;
 import ksmart42.khtour.dto.Mus;
+import ksmart42.khtour.mapper.ExhibMapper;
 import ksmart42.khtour.service.ExhibService;
+import ksmart42.khtour.service.MusService;
 
 @Controller
 @RequestMapping("/exhib")
 public class ExhibController {
+	private static final Logger log = LoggerFactory.getLogger(MusController.class);
 
+	private MusService musService; 
 	private ExhibService exhibService; 
+	private ExhibMapper exhibMapper; 
 	
-	public ExhibController(ExhibService exhibService) {
+	public ExhibController(ExhibService exhibService,ExhibMapper exhibMapper,MusService musService) {
+		this.musService = musService;
 		this.exhibService = exhibService;
+		this.exhibMapper = exhibMapper;
 	}
 	
 	/*
@@ -119,14 +129,30 @@ public class ExhibController {
 		
 		return "redirect:/exhib/exhibList";
 	}
+	
+	/*
+    * 전시회 중복 체크
+    */
+	   
+     @PostMapping("/isNameCheck")
+     @ResponseBody 
+     public boolean isNameCheck(@RequestParam(value = "exhibName") String exhibName) { 
+        boolean isNameCheck = false;
+        log.info("전시회 체크 클릭시 요청 받는 exhibName 값 : {}", exhibName);
+        boolean result = exhibMapper.isNameCheck(exhibName);
+        if(result) isNameCheck = true;
+        
+        return isNameCheck;
+     }
+	
 	/*
 	 * 전시회 등록(Get 정보 전달)
 	 */
 	@GetMapping("/exhibInsert")
 	public String addExhib(Model model) {
-		
+		List<Mus> musList = musService.getMusList();
 		model.addAttribute("title", "전시회  등록");
-		
+		model.addAttribute("musList", musList);
 		return "exhib/exhibInsert";
 	}
 	

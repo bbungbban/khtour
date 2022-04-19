@@ -18,6 +18,14 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/plugins/kmyCss/addCssKmy.css}">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" defer="defer"></script>
 <script th:src="@{/js/KmyJs/dayjs.min.js}"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/plugins/lmyCss/addCssLmy.css}">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" defer="defer"></script>
+   <script th:src="@{/js/lmyJs/dayjs.min.js}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.12.0/validate.min.js"></script>
+<style>
+#addaccommodation label.error { color: red; }
+      .loginsnsicon{width:20px;height:20px;margin-right:5px;}
+</style>
 	<div id="khtour">
 		<div class="row justify-content-center">
 			<div class="col-12 col-la-10 col-xl-7">
@@ -51,7 +59,8 @@
 							</div>
 							<div class="form-group">
 								<label for="exhibName">전시명</label>
-								<input type="text" class="form-control" name="exhibName" placeholder="전시명을 입력하세요.">
+								<input type="text" class="form-control" id="exhibName" name="exhibName" placeholder="전시명을 입력하세요.">
+								<div class="check_font" id="idCheck"></div>
 							</div>
 							<div class="form-row">
 								<div class="form-group col-6">
@@ -80,9 +89,8 @@
 							<div class="form-group">
 								<label for="musCode">전시관</label>
 								<div class="input-group mb-3">
-									<input type="text" class="form-control" name="musCode" value="mus_code001">
-									<a class="btn btn-primary" >검색</a>
-									
+									<input type="text" class="form-control" name="musCode" disabled="disabled" id="musInput">
+									<a class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">검색</a>
 								</div>
 							</div>
 							<div class="form-group">
@@ -101,6 +109,64 @@
 			</div>
 		</div>
 	</div>
+	
+	
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		<table id="table-selected" class="table table-striped table-bordered">
+			<thead style="text-align: center;">
+				<tr>
+					<th>카테고리</th>
+					<th>이름</th>
+					<th>주소</th>
+					<th style="display:none">홈페이지</th>
+					<th>전화번호</th>
+					<th>운영시간</th>
+					<th>휴관일</th>
+					<th style="display: none;">상세설명</th>
+					<th>선택</th>
+				</tr>
+			</thead>
+			<tbody class="text-center">
+				<tr th:if="${not #lists.isEmpty(musList)}" th:each="l:${musList}">
+					<td th:text="${l.musLargeCateName}"></td>
+					<td th:text="${l.musName}"></td>
+					<td th:text="${l.musAddr}"></td>
+					<td th:text="${l.musNum}"></td>
+					<td th:text="|${l.musStart}~ ${l.musEnd}|"></td>
+					<td th:text="${l.musClose}"></td>
+					<td><input type="checkbox" class="musCheck1" name="musCode1" th:value="${l.musName}" id="musRadio"></td>
+				</tr>
+			</tbody>
+			<tfoot style="text-align: center;">
+				<tr>
+					<th>코드</th>
+					<th>카테고리</th>
+					<th>이름</th>
+					<th>주소</th>
+					<th>전화번호</th>
+					<th>운영시간</th>
+					<th>선택</th>
+				</tr>
+			</tfoot>
+		</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancel">취소</button>
+        <button type="button" class="btn btn-primary" id="addMusBtn" data-dismiss="modal">선택</button>
+      </div>
+    </div>
+  </div>
+</div>
+	
 	<!-- **********************************  End ContentsWrap ********************************** -->
 </th:block>
 <th:block layout:fragment="customBodyScript">
@@ -111,7 +177,70 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 });
 </script>
-
+<script>
+$(function(){
+	var musInput = $('#musInput');
+	$('.musCheck1').click(function() {
+		musInput.val($(this).val());
+	});	
+	
+	$('#cancel').click(function(){
+		musInput.val('');
+	});
+$('#exhibName').keyup(function(){
+    var exhibName = $('input[name="exhibName"]').val();
+    
+    console.log(exhibName);
+    if(typeof exhibName == 'undefined' || exhibName == '' || exhibName == null){
+       return false;
+    }
+    
+    $.ajax({
+        url: '/exhib/isNameCheck'
+       ,type: 'POST'
+       ,data: {'exhibName' : exhibName}
+       ,dataType: 'json'
+       ,success: function(data){
+          console.log(data);
+          if(data){
+             $('#exhibName').attr('data-idcheck', true);
+             $("#idCheck").text("등록가능한 전시회 입니다");
+             $("#idCheck").css("color", "blue");
+             $("#addExhibBtn").attr("disabled", false);
+          }else{
+             $('#exhibName').attr('data-idcheck', false);
+             $("#idCheck").text("이미등록 된 전시회 입니다.");
+             $("#idCheck").css("color", "red");
+             $("#addExhibBtn").attr("disabled", true);
+          }
+       },error: function(xhr, status, errorThrown) {
+          console.log(xhr);
+          console.log(errorThrown);
+       }
+    });
+ });
+});
+$(document).on('click', '.musCheck1', function(){
+	$('.musCheck1').prop('checked', false);
+	$(this).prop('checked', true);
+});
+$(document).on('click', '.musCheck2', function(){
+	$('.musCheck2').prop('checked', false);
+	$(this).prop('checked', true);
+});
+$(document).on('click', '.musCheck3', function(){
+	$('.musCheck3').prop('checked', false);
+	$(this).prop('checked', true);
+});
+$(document).on('click', '.musCheck4', function(){
+	$('.musCheck4').prop('checked', false);
+	$(this).prop('checked', true);
+});
+$(document).on('click', '.musCheck5', function(){
+	$('.musCheck5').prop('checked', false);
+	$(this).prop('checked', true);
+});
+</script>
 	<script th:src="@{/js/custom.js}"></script>
 	<script th:src="@{/js/moment.min.js}"></script>
 	<script th:src="@{/js/KmyJs/datepicker-bs4.js}" defer="defer"></script>

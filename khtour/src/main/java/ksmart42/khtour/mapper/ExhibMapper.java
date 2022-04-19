@@ -24,4 +24,7 @@ public interface ExhibMapper {
 	
 	// 전시회 삭제
 	public int removeExhib(String exhibCode);
+	
+	//전시회 중복체크
+   public boolean isNameCheck(String exhibName);
 }

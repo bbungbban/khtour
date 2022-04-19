@@ -1,7 +1,6 @@
 package ksmart42.khtour.mapper;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -11,7 +10,7 @@ import ksmart42.khtour.dto.Mus;
 public interface MusMapper {
 
 	// 박물관 목록조회
-	public List<Mus> getMusList(Map<String, Object> paramMap);
+	public List<Mus> getMusList();
 	
 	// 박물관 등록
 	public int addMus(Mus mus);
@@ -24,4 +23,7 @@ public interface MusMapper {
 	
 	// 박물관 삭제
 	public int removeMus(String musCode);
+	
+	//박물관 중복체크
+   public boolean isNameCheck(String musName);
 }

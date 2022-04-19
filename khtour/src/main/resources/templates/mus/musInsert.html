@@ -15,8 +15,16 @@
 	<!-- 페이지 타이틀 종료 -->
 </th:block>
 <th:block layout:fragment="customContents">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/plugins/datepicker/daterangepicker.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/plugins/KmyCss/addCssKmy.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/plugins/lmyCss/addCssLmy.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/plugins/datepicker/daterangepicker.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/plugins/KmyCss/addCssKmy.css}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" defer="defer"></script>
+<script th:src="@{/js/lmyJs/dayjs.min.js}"></script>
+<script th:src="@{/js/lmyJs/validate.min.js}"></script>
+<style>
+#addMuseum label.error { 
+color: red; } .loginsnsicon{width:20px;height:20px;margin-right:5px;}
+</style>
 	<div id="exhibInsert">
 		<div class="row justify-content-center">
 			<div class="col-12 col-la-10 col-xl-7">
@@ -35,7 +43,8 @@
 								</div>
 								<div class="form-group col-8">
 									<label for="musName">박물관 명</label>
-									<input type="text" class="form-control" name="musName">
+									<input type="text" class="form-control" name="musName" id="musName">
+									<div class="check_font" id="idCheck"></div>
 								</div>
 							</div>
 							<div class="form">
@@ -82,7 +91,6 @@
 										<option value="무">무</option>
 									</select>
 								</div>
-
 							</div>
 							<div class="form-group">
 								<label for="musSite">홈페이지</label>
@@ -112,8 +120,7 @@
 								<em class="link"><a href="javascript:void(0);" onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')"> 혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요. </a> </em>
 							</p>
 
-							<script
-								src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+							<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 							<script type="text/javascript">
 								function openZipSearch() {
 									new daum.Postcode(
@@ -139,7 +146,7 @@
 							</div>
 							<div class="col-12">
 								<div class="add-new text-center mb-5">
-									<button class="btn btn-primary ftbtn" type="submit" id="addMuseum">등록</button>
+									<button class="btn btn-primary ftbtn" type="submit" id="addMuseumBtn">등록</button>
 								</div>
 							</div>
 						</form>
@@ -189,6 +196,42 @@ phoneNum.onkeyup = function(){
 console.log(this.value);
 this.value = autoHypenPhone( this.value ) ;  
 }
+</script>
+<script>
+$(function(){
+$('#musName').keyup(function(){
+    var musName = $('input[name="musName"]').val();
+    
+    console.log(musName);
+    if(typeof musName == 'undefined' || musName == '' || musName == null){
+       return false;
+    }
+    
+    $.ajax({
+        url: '/mus/isNameCheck'
+       ,type: 'POST'
+       ,data: {'musName' : musName}
+       ,dataType: 'json'
+       ,success: function(data){
+          console.log(data);
+          if(data){
+             $('#musName').attr('data-idcheck', true);
+             $("#idCheck").text("등록가능한 박물관 입니다");
+             $("#idCheck").css("color", "blue");
+             $("#addMuseumBtn").attr("disabled", false);
+          }else{
+             $('#musName').attr('data-idcheck', false);
+             $("#idCheck").text("이미등록 된 박물관 입니다.");
+             $("#idCheck").css("color", "red");
+             $("#addMuseumBtn").attr("disabled", true);
+          }
+       },error: function(xhr, status, errorThrown) {
+          console.log(xhr);
+          console.log(errorThrown);
+       }
+    });
+ });
+});
 </script>
 	<script th:src="@{/js/custom.js}"></script>
 	<script th:src="@{/js/moment.min.js}"></script>

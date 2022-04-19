@@ -35,8 +35,8 @@ public class MusService {
 	/**
 	 * 박물관 목록 조회
 	 */
-	public List<Mus> getMusList(Map<String, Object> paramMap){
-		List<Mus> musList = musMapper.getMusList(paramMap);
+	public List<Mus> getMusList(){
+		List<Mus> musList = musMapper.getMusList();
 		 
 		return musList;
 	}
