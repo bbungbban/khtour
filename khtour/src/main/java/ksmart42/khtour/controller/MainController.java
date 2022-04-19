@@ -8,9 +8,7 @@ import java.net.URISyntaxException;
 import java.net.URLEncoder;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -71,12 +69,9 @@ public class MainController {
 	@GetMapping("/")
 	public String main(Model model) {
 		
-		
-		Map<String, Object> paramMap = new HashMap<String, Object>();
-		
 		List<RecordBoard> TopRecordBoardList = recordBoardService.getTopRecordBoardList();
 		List<CommPost> dailyPostList = communityService.getDailyPostList();
-		List<Cos> cosHistory = cosService.cosHistory(paramMap);
+		List<Cos> cosHistory = cosService.cosHistory();
 		List<Accommodation> topAccomodationList = accommodationService.getTopAccommodationList();
 		
 		

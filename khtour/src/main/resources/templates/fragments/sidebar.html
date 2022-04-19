@@ -24,8 +24,8 @@
 					<i class="la la-bank"></i> <span>박물관(김문영)</span> <span class="sidebar-badge"></span> <i class="la la-angle-right down-arrow"></i>
 				</a>
 				<ul class="sidebar-submenu">
-					<li><a th:if="${session.SID != null && session.SLEVEL == '관리자'}" th:href="@{/mus/musInsert}"><i class="la la-minus"></i> <span> #adm박물관 등록</span> </a></li>
-					<li><a th:href="@{/mus/musList}"><i class="la la-minus"></i> <span> #adm박물관 조회 및 수정</span> </a></li>
+					<li><a th:if="${session.SID != null && session.SLEVEL == '관리자'}" th:href="@{/mus/musInsert}"><i class="la la-minus"></i> <span> 박물관 등록(관리자)</span> </a></li>
+					<li><a th:href="@{/mus/musList}"><i class="la la-minus"></i> <span>박물관 조회 및 수정</span> </a></li>
 				</ul>
 			</li>
 			<li>
@@ -33,8 +33,9 @@
 					<i class="la la-camera-retro"></i> <span>전시회 (김문영)</span> <span class="sidebar-badge"></span> <i class="la la-angle-right down-arrow"></i>
 				</a>
 				<ul class="sidebar-submenu">
-					<li><a th:if="${session.SID != null && session.SLEVEL == '관리자'}" th:href="@{/exhib/exhibInsert}"><i class="la la-minus"></i> <span> #adm전시회 등록 </span> </a></li>
-					<li><a th:href="@{/exhib/exhibList}"><i class="la la-minus"></i> <span> #adm전시회 조회 및 수정 </span> </a></li>
+					<li><a th:href="@{/exhib/exhibBoardList}"><i class="la la-minus"></i> <span> 전시회 </span> </a></li>
+					<li><a th:if="${session.SID != null && session.SLEVEL == '관리자'}" th:href="@{/exhib/exhibInsert}"><i class="la la-minus"></i> <span> 전시회 등록(관리자) </span> </a></li>
+					<li><a th:href="@{/exhib/exhibList}"><i class="la la-minus"></i> <span> 전시회 조회 및 수정(관리자) </span> </a></li>
 				</ul>
 			</li>
 			<li>
@@ -43,8 +44,8 @@
 				</a>
 				<ul class="sidebar-submenu">
 					<li><a th:href="@{/cos/cosBoardList}"><i class="la la-minus"></i> <span>코스</span> </a></li>
-					<li><a th:if="${session.SID != null && session.SLEVEL == '관리자'}" th:href="@{/cos/cosInsert}"><i class="la la-minus"></i> <span> adm코스 등록</span> </a></li>
-					<li><a th:href="@{/cos/cosList}"><i class="la la-minus"></i> <span> adm코스  조회 및 수정</span> </a></li>
+					<li><a th:if="${session.SID != null && session.SLEVEL == '관리자'}" th:href="@{/cos/cosInsert}"><i class="la la-minus"></i> <span>코스 등록(관리자)</span> </a></li>
+					<li><a th:href="@{/cos/cosList}"><i class="la la-minus"></i> <span>코스  조회 및 수정(관리자)</span> </a></li>
 				</ul>
 			</li>
 			<li>

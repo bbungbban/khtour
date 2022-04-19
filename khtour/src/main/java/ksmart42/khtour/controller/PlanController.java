@@ -134,7 +134,7 @@ public class PlanController {
 		Map<String, Object> paramMap = new HashMap<String , Object>();
 		
 		List<Accommodation> accommodationList = accommodationService.getAccommodationList(paramMap);
-		List<Cos> cosHistory = cosService.cosHistory(paramMap);
+		List<Cos> cosHistory = cosService.cosHistory();
 		
 		model.addAttribute("title", "여행 계획 등록");
 		model.addAttribute("accommodationList", accommodationList);
