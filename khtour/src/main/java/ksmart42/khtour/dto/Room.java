@@ -13,7 +13,15 @@ public class Room {
 	private String roomDiscount;
 	private String roomFinalPrice;
 	private String roomImagePath;
+	private Accommodation accommodation;
 	
+	
+	public Accommodation getAccommodation() {
+		return accommodation;
+	}
+	public void setAccommodation(Accommodation accommodation) {
+		this.accommodation = accommodation;
+	}
 	public String getRoomCode() {
 		return roomCode;
 	}
@@ -85,8 +93,9 @@ public class Room {
 		return "Room [roomCode=" + roomCode + ", ldgCode=" + ldgCode + ", roomName=" + roomName + ", roomExplain="
 				+ roomExplain + ", roomPersonnel=" + roomPersonnel + ", roomType=" + roomType + ", roomCheckin="
 				+ roomCheckin + ", roomPrice=" + roomPrice + ", roomDiscount=" + roomDiscount + ", roomFinalPrice="
-				+ roomFinalPrice + ", roomImagePath=" + roomImagePath + "]";
+				+ roomFinalPrice + ", roomImagePath=" + roomImagePath + ", accommodation=" + accommodation + "]";
 	}
+	
 	
 	
 }

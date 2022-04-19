@@ -27,8 +27,8 @@
 								class="table table-striped table-bordered">
 								<thead>
 									<tr>
-										<th style="width: 80px;">객실코드</th>
-										<th style="width: 100px;">숙박업소코드</th>
+										<th style="width: 70px;">객실코드</th>
+										<th style="width: 150px;">숙박업소이름</th>
 										<th style="width: 150px;">객실이름</th>
 										<th>객실설명</th>
 										<th style="width: 150px;">객실인원</th>
@@ -42,7 +42,7 @@
 								<tbody>
 									<tr th:if="${not #lists.isEmpty(roomList)}" th:each="l : ${roomList}">
 										<td th:text="${l.roomCode}"></td>
-										<td th:text="${l.ldgCode}"></td>
+										<td th:text="${l.accommodation.ldgName}"></td>
 										<td th:text="${l.roomName}"></td>
 										<td th:text="${l.roomExplain}"></td>
 										<td th:text="${l.roomPersonnel}"></td>
