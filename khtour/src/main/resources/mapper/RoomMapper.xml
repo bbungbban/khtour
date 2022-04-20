@@ -75,9 +75,18 @@
 		   ,r.room_price    
 		   ,r.room_discount    
 		   ,r.room_final_price 
-		   ,l.ldg_name  
+		   ,l.ldg_name
+		   ,f.file_path 
 		FROM
 		  	tb_room_info AS r
+		LEFT JOIN 
+		   tb_file_control AS fc
+		ON 
+		   r.room_code = fc.reference_code
+		LEFT JOIN 
+		   tb_file AS f
+		ON 
+		   fc.file_idx = f.file_idx
 		INNER JOIN
 			tb_ldg_information AS l
 		ON

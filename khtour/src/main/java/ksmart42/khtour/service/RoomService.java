@@ -62,11 +62,22 @@ public class RoomService {
 			return roomList;
 		}
 	
+		
 		/**
 		 * 코드에 따른 객실 조회
 		 */
-		
 		public Room getRoomByCode(String roomCode) {
+			Room room = roomMapper.getRoomByCode(roomCode);
+			NumberFormat numberFormat = NumberFormat.getInstance();
+			
+				int disc = Integer.parseInt(room.getRoomDiscount());
+				int price = Integer.parseInt(room.getRoomPrice());
+				int finalPrice = price-price*disc/100;
+			
+				String result = numberFormat.format(finalPrice);
+				room.setRoomFinalPrice(result+"원");
+				room.setRoomDiscount(disc+"%");
+				
 			return roomMapper.getRoomByCode(roomCode);
 		}
 		
