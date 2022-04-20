@@ -538,19 +538,11 @@ public class CommunityController {
 									  , @RequestParam(name="order",required=false) String order
 									  , @RequestParam(name="status",required=false) String status
 									  ,HttpSession session) {
-
 		//커뮤니티 이름에 맞는 커뮤니티 리스트,규칙 리스트,테그 리스트, 포스트 리스트 를 저장
 		Community community = communityService.getCommunityByCommCode(commCode);
 		List<Rule> ruleList = communityService.getRuleListByCommCode(commCode);
 		List<CommTag> tagList = communityService.getTagListByCommCode(commCode);
 		List<CommPost> postList = communityService.getPostListByCommCode(commCode,order);
-		
-		
-		
-		
-		
-		
-		
 		String isAdmin = "false";
 		if(session.getAttribute("SID") !=null &&session.getAttribute("SLEVEL")!=null)
 		{
@@ -584,9 +576,6 @@ public class CommunityController {
 		{
 			postList = communityService.getPostByTagCode(postList, tagCode);	
 		}
-		
-
-		
 		model.addAttribute("status",status);
 		model.addAttribute("isAdmin", isAdmin);
 		model.addAttribute("community",community);
@@ -679,7 +668,6 @@ public class CommunityController {
 	@PostMapping("updateReply")
 	public String updateReply(RedirectAttributes reAttr,CommReply commReply)
 	{
-		log.info("머야이거 : " + commReply.getReplyCode());
 		communityService.updateReply(commReply);
 		
 		reAttr.addAttribute("postCode",commReply.getPostCode());

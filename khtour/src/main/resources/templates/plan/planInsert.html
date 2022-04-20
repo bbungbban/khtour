@@ -248,6 +248,11 @@
 								name="planLocation">
 						</div>
 						<div class="form-group">
+							<label for="planMaterials">여행 준비물</label> <input type="text"
+								class="form-control" id="planMaterials" name="planMaterials" placeholder="예)현금, 운동화, 카메라"
+								required="">
+						</div>
+						<div class="form-group">
 							<label for="startDate"> 여행 시작 </label>
 							<div class="input-group mb-3">
 								<input id="startDate" type="text" class="form-control input-text" name="startDate">
@@ -271,18 +276,23 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="planMaterials">여행 준비물</label> <input type="text"
-								class="form-control" id="planMaterials" name="planMaterials" placeholder="예)현금, 운동화, 카메라"
-								required="">
+							<label for="planDays">여행 일수</label> <input type="text"
+								class="form-control" id="planDays" name="planDays" placeholder="예)1일차"
+								required="" readonly>
 						</div>
 						<div class="form-group">
-							<label for="soloParty">여행 인원수 </label> <input type="text"
-								class="form-control" id="soloParty" name="soloParty" required="" placeholder="예) 5인">
+							<label for="soloParty">여행 인원수 </label> <input type="number"
+								class="form-control" id="soloParty" name="soloParty" required="" placeholder="예) 5">
+						</div>
+						<div class="form-group">
+							<label for="planOneDaysExpenses">1일 경비</label> <input type="number"
+								class="form-control" id="planOneDaysExpenses" name="planOneDaysExpenses" placeholder="예) 20 -> 만원단위"
+								required="">
 						</div>
 						<div class="form-group">
 							<label for="planExpenses">여행 총 경비</label> <input type="text"
 								class="form-control" id="planExpenses" name="planExpenses" placeholder="예) 20 -> 만원단위"
-								required="">
+								required="" readonly>
 						</div>
 						<button type="button" id="addPlanBtn" class="btn btn-primary">등록</button>
 						<button type="button" class="btn btn-danger">취소</button>
@@ -424,6 +434,7 @@
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7cec08e17fcfb480dd452f2d9dd9df4c&libraries=services"></script>
 	<!-- 카카오맵 자바스크립트 시작 -->
+	
 	<script>
 		// 마커를 담을 배열입니다
 		var markers = [];
@@ -671,7 +682,8 @@
 					return false;
 				}
 				return true;
-		}	
+		}
+		    
 		$('#addPlanBtn').click(function() {
 
 			if(sessionLevel != '일반회원' && sessionLevel != '관리자'){
@@ -702,15 +714,32 @@
 		});
 	</script>
 	<!-- 등록 버튼 자바스크립트 종료 -->
-	<script th:src="@{/js/kmsJs/datepickerKms.js}"></script>
+	<script th:src="@{/js/kmsJs/datepickerKms2.js}"></script>
 	<!-- 출발 날짜 datepciker 자바스크립트 시작 -->
 	<script>
 		$(document).ready(function() {
-
+			
+			var dateDiffFn = function(){
+				var startDate = new Date($("#startDate").val());
+				var endDate = new Date($("#endDate").val());
+				var diff = Math.abs((endDate - startDate) / 1000 / 60 / 60 / 24);
+				//console.log(startDate, endDate);
+				$('#planDays').val(diff);
+				console.log(diff);
+			}
+			
+			$('#soloParty, #planOneDaysExpenses').keyup(function(){
+				var planDays = Number($('#planDays').val());
+				var soloParty = Number($('#soloParty').val());
+				var planOneDaysExpenses = Number($('#planOneDaysExpenses').val());
+				console.log(planDays, soloParty, planOneDaysExpenses);
+				$('#planExpenses').val(planDays * soloParty * planOneDaysExpenses +"만원")
+			})
+			
 			$("#startDate").dateDropper({
 				animate : true,
 				init_animation : "fadein",
-				format : "y-mm-dd",
+				format : "Y/m/d",
 				lang : "ko",
 				lock : false,
 				minYear : 1970,
@@ -724,7 +753,8 @@
 				dropBorderRadius : 8,
 				dropShadow : "0 0 10px 0 rgba(0, 136, 204, 0.45)",
 				dropWidth : 124,
-				dropTextWeight : 'bold'
+				dropTextWeight : 'bold',
+				onChange: dateDiffFn
 			});
 		
 	//출발 날짜 datepciker 자바스크립트 종료
@@ -734,7 +764,7 @@
 			$("#endDate").dateDropper({
 				animate : true,
 				init_animation : "fadein",
-				format : "y-mm-dd",
+				format : "Y/m/d",
 				lang : "ko",
 				lock : false,
 				minYear : 1970,
@@ -748,7 +778,8 @@
 				dropBorderRadius : 8,
 				dropShadow : "0 0 10px 0 rgba(0, 136, 204, 0.45)",
 				dropWidth : 124,
-				dropTextWeight : 'bold'
+				dropTextWeight : 'bold',
+				onChange: dateDiffFn
 			});
 		});
 	</script>
