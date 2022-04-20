@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import ksmart42.khtour.dto.BoardReply;
 import ksmart42.khtour.dto.Reservation;
 import ksmart42.khtour.dto.Room;
 import ksmart42.khtour.service.RoomService;
