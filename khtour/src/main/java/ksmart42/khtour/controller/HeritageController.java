@@ -270,7 +270,7 @@ public class HeritageController {
       return "redirect:/heritage/heritageListSt";
    }   
    
-   /* 5. 카테고리 항목에 체크된 문화재 정보 조회
+   /* 6. 카테고리 항목에 체크된 문화재 정보 조회
    *  작성자 : 김민석
    *  입  력 : @RequestParam, List<String>
    *  출  력 : heritageList(문화재 리스트)
