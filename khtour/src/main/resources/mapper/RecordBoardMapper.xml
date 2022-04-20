@@ -31,8 +31,7 @@
 		<association property="planStatus"	javaType="PlanStatus">
 			<id column="plan_status_code" property="planStatusCode"/>				
 			<result column="plan_status_name" property="planStatusName"/>																	
-			<result column="reg_date" property="regDate"/>					
-			<result column="plan_status_cnt" property="planStatusCnt"/>		
+			<result column="reg_date" property="regDate"/>						
 		</association>		
 	</resultMap> 
 	
@@ -40,8 +39,7 @@
 	<resultMap type="PlanStatus" id="PlanStatusResultMap">
 		<id column="plan_status_code" property="planStatusCode"/>				
 		<result column="plan_status_name" property="planStatusName"/>																	
-		<result column="reg_date" property="regDate"/>					
-		<result column="plan_status_cnt" property="planStatusCnt"/>																		
+		<result column="reg_date" property="regDate"/>																					
 	</resultMap>
 	
 	<!-- 여행게시글 댓글 resultMap -->
@@ -113,7 +111,6 @@
 		  s.plan_status_code
 		   ,s.plan_status_name
 		   ,s.reg_date
-		   ,s.plan_status_cnt
 		FROM
 		  tb_tra_status AS s;
 	</select>
@@ -208,7 +205,6 @@
 		  s.plan_status_code
 		   ,s.plan_status_name
 		   ,s.reg_date
-		   ,s.plan_status_cnt
 		FROM
 		   tb_tra_status AS s
 		WHERE
