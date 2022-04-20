@@ -17,7 +17,6 @@
 		<result column="cos_area1" 				property="cosArea1" />
 		<result column="cos_area2" 				property="cosArea2" />
 		<result column="file_path" 				property="cosImagePath"/>
-		<result column="cos_image" 				property="cosImage" />
 		<result column="cos_name" 				property="cosName" />
 		<result column="cos_regist" 			property="cosRegist" />
 		<result column="cos_open" 				property="cosOpen" />
@@ -36,7 +35,6 @@
 		<result column="mus_end" 				property="musEnd" />
 		<result column="mus_close" 				property="musClose" />
 	</resultMap>
-	<!-- 삭제 어려움 민석이오빠가 도와줄거 -->
 	<select id="fileInfoByFileIdx" resultType="FileDto">
       SELECT
           f.file_idx            AS fileIdx
@@ -103,7 +101,6 @@
 		,mus_code5
 		,cos_area1
 		,cos_area2
-		,cos_image
 		,cos_name
 		,cos_regist
 		,cos_open
@@ -120,7 +117,6 @@
 		,#{musCode5}
 		,#{cosArea1}
 		,#{cosArea2}
-		,#{cosImage}
 		,#{cosName}
 		,#{cosRegist}
 		,#{cosOpen}

@@ -61,9 +61,7 @@ public class MusController {
 		paramMap.put("searchValue", searchValue);
 		log.info("입력 데이터 값 : {}",paramMap);		
 		List<Mus> musList = musService.getMusList();
-		
 		paramMap = null;
-		
 		model.addAttribute("title", "박물관 조회 및 수정");
 		model.addAttribute("musList", musList);
 		

@@ -13,15 +13,37 @@
 		<result column="exhib_end"	 		property="exhibEnd" />			<!-- 전시회종료일 -->
 		<result column="exhib_con"			property="exhibCon" />			<!-- 전시회내용 -->
 		<result column="exhib_current" 		property="exhibCurrent" />		<!-- 전시회현황 -->
-		<result column="exhib_img" 			property="exhibImg" />			<!-- 포스터이미지-->
 		<result column="exhib_page" 		property="exhibPage" />			<!-- 전시회홈페이지-->
+		
+		<result column="file_path" 				property="exhibImagePath"/>
 	</resultMap>
-
+	<select id="fileInfoByFileIdx" resultType="FileDto">
+      SELECT
+          f.file_idx            AS fileIdx
+         ,f.file_new_name      	AS fileNewName
+         ,f.file_original_name	AS fileOriginalName
+         ,f.file_path         	AS filePath
+         ,f.file_size         	AS fileSize
+      FROM
+         tb_exhib AS h
+         LEFT JOIN 
+         tb_file_control AS fc
+         ON 
+         h.exhib_code = fc.reference_code
+         LEFT JOIN 
+         tb_file AS f   
+         ON 
+         f.file_idx = fc.file_idx
+      WHERE
+         h.exhib_code = #{exhibCode};
+   </select>
 	<!-- 전시회 등록 SQL -->
 	<insert id="addExhib" parameterType="Exhib">
-		INSERT INTO
-		tb_exhib
-		( exhib_code
+		<selectKey resultType="string" keyProperty="exhibCode" order="BEFORE">
+        SELECT sf_new_exhib_code() as exhibCode
+        </selectKey>
+		INSERT INTO tb_exhib
+		(exhib_code
 		,mus_code
 		,exhib_cate
 		,exhib_cate_name
@@ -32,7 +54,7 @@
 		,exhib_current
 		,exhib_page
 		) VALUES (
-		sf_new_exhib_code()
+		 #{exhibCode}
 		,#{musCode}
 		,#{exhibCate}
 		,#{exhibCateName}
@@ -90,6 +112,14 @@
 		,s.exhib_page
 		FROM
 		tb_exhib AS s
+		LEFT JOIN 
+         tb_file_control AS fc
+         ON 
+         s.exhib_code = fc.reference_code
+         LEFT JOIN 
+         tb_file AS f
+         ON 
+         fc.file_idx = f.file_idx
 		<trim prefix="WHERE" prefixOverrides="AND |OR ">
 			<if test="searchKey != null and searchKey != '' and searchValue != ''">
 		 		AND ${searchKey} LIKE CONCAT('%', #{searchValue}, '%')
@@ -98,6 +128,71 @@
 		ORDER BY s.exhib_code;
 	</select>
 	
+	
+	<!-- 유저 전시회 조회 -->
+	<select id="ingExhib" resultMap="exhibResultMap">
+		SELECT
+			s.exhib_name
+			,s.exhib_cate
+			,s.exhib_start
+			,s.exhib_end
+			,s.exhib_con
+			,f.file_path
+		FROM
+			tb_exhib AS s
+			INNER JOIN
+			tb_file_control AS fc
+			ON
+			s.exhib_code = fc.reference_code
+         	LEFT JOIN 
+         	tb_file AS f
+         	ON 
+         	fc.file_idx = f.file_idx
+		WHERE
+			s.exhib_current =  '전시중';
+	</select>
+	<select id="expectedExhib" resultMap="exhibResultMap">
+		SELECT
+			s.exhib_name
+			,s.exhib_cate
+			,s.exhib_start
+			,s.exhib_end
+			,s.exhib_con
+			,f.file_path
+		FROM
+			tb_exhib AS s
+			INNER JOIN
+			tb_file_control AS fc
+			ON
+			s.exhib_code = fc.reference_code
+         	LEFT JOIN 
+         	tb_file AS f
+         	ON 
+         	fc.file_idx = f.file_idx
+		WHERE
+			s.exhib_current = '전시예정';
+	</select>
+	<select id="endExhib" resultMap="exhibResultMap">
+		SELECT
+			s.exhib_name
+			,s.exhib_cate
+			,s.exhib_start
+			,s.exhib_end
+			,s.exhib_con
+			,f.file_path
+		FROM
+			tb_exhib AS s
+			INNER JOIN
+			tb_file_control AS fc
+			ON
+			s.exhib_code = fc.reference_code
+         	LEFT JOIN 
+         	tb_file AS f
+         	ON 
+         	fc.file_idx = f.file_idx
+		WHERE
+			s.exhib_current =  '전시완료';
+	</select>
 	<!-- 전시회 수정 SQL -->
 	<update id="modifyExhib" parameterType="Exhib">
 		UPDATE tb_exhib

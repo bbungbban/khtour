@@ -72,40 +72,40 @@ public class CosService {
 		fileMapper.addFileControl(addFileControlList);
 	}
 
-	public List<Cos> categoryList(Map<String, Object> paramMap) {
-		List<Cos> cosInsert = cosMapper.categoryList(paramMap);
+	public List<Cos> categoryList() {
+		List<Cos> cosInsert = cosMapper.categoryList();
 		return cosInsert;
 	}
 
 	/**
 	 * 코스 목록 조회
 	 */
-	public List<Cos> getCosList(Map<String, Object> paramMap) {
-		List<Cos> cosList = cosMapper.getCosList(paramMap);
+	public List<Cos> getCosList() {
+		List<Cos> cosList = cosMapper.getCosList();
 		return cosList;
 	}
 
 	/**
 	 * 카테고리별 코스 목록 조회
 	 */
-	public List<Cos> cosHistory(Map<String, Object> paramMap) {
-		List<Cos> cosHistory = cosMapper.cosHistory(paramMap);
+	public List<Cos> cosHistory() {
+		List<Cos> cosHistory = cosMapper.cosHistory();
 		return cosHistory;
 	}
-	public List<Cos> cosHumanities(Map<String, Object> paramMap) {
-		List<Cos> cosHumanities = cosMapper.cosHumanities(paramMap);
+	public List<Cos> cosHumanities() {
+		List<Cos> cosHumanities = cosMapper.cosHumanities();
 		return cosHumanities;
 	}
-	public List<Cos> cosWar(Map<String, Object> paramMap) {
-		List<Cos> cosWar = cosMapper.cosWar(paramMap);
+	public List<Cos> cosWar() {
+		List<Cos> cosWar = cosMapper.cosWar();
 		return cosWar;
 	}
-	public List<Cos> cosReligion(Map<String, Object> paramMap) {
-		List<Cos> cosReligion = cosMapper.cosReligion(paramMap);
+	public List<Cos> cosReligion() {
+		List<Cos> cosReligion = cosMapper.cosReligion();
 		return cosReligion;
 	}
-	public List<Cos> cosFolklore(Map<String, Object> paramMap) {
-		List<Cos> cosFolklore = cosMapper.cosFolklore(paramMap);
+	public List<Cos> cosFolklore() {
+		List<Cos> cosFolklore = cosMapper.cosFolklore();
 		return cosFolklore;
 	}
 

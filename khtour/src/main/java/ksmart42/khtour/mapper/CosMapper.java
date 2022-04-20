@@ -1,7 +1,6 @@
 package ksmart42.khtour.mapper;
 
 import java.util.List;
-import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import ksmart42.khtour.dto.Cos;
 import ksmart42.khtour.dto.FileDto;
@@ -10,18 +9,18 @@ import ksmart42.khtour.dto.FileDto;
 public interface CosMapper {
 
 	// 코스 조회
-	public List<Cos> getCosList(Map<String, Object> paramMap);
+	public List<Cos> getCosList();
 	
 	// 카테고리별 코스 조회
-	public List<Cos> cosHistory(Map<String, Object> paramMap);
-	public List<Cos> cosHumanities(Map<String, Object> paramMap);
-	public List<Cos> cosWar(Map<String, Object> paramMap);
-	public List<Cos> cosReligion(Map<String, Object> paramMap);
-	public List<Cos> cosFolklore(Map<String, Object> paramMap);
+	public List<Cos> cosHistory();
+	public List<Cos> cosHumanities();
+	public List<Cos> cosWar();
+	public List<Cos> cosReligion();
+	public List<Cos> cosFolklore();
 	
 	// 코스 등록
 	public int addCos(Cos cos);
-	public List<Cos> categoryList(Map<String, Object> paramMap);
+	public List<Cos> categoryList();
 
 	// 코스 조회(코스 코드)
 	public Cos getCosByCode(String cosCode);

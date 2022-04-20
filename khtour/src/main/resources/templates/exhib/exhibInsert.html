@@ -37,7 +37,7 @@
 						</div>
 					</div>
 					<div class="card-body">
-						<form id="addExhib" th:action="@{/exhib/exhibInsert}" method="post">
+						<form id="addExhib" th:action="@{/exhib/exhibInsert}" method="post" enctype="multipart/form-data">
 							<div class="form-row">
 								<div class="form-group col-6">
 									<label for="exhibCate">카테고리</label>
@@ -73,8 +73,8 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label>포스터업로드</label>
-								<input type="file" class="form-control" style="line-height:1.2;">
+							<label for="exhibImage">포스터 업로드</label>
+							<input style="line-height:1.2;" type="file" id="exhibImage" class="form-control" name="exhibImageFiles" required="">
 							</div>
 
 							<div class="form-group">
@@ -89,7 +89,8 @@
 							<div class="form-group">
 								<label for="musCode">전시관</label>
 								<div class="input-group mb-3">
-									<input type="text" class="form-control" name="musCode" disabled="disabled" id="musInput">
+								<input type="hidden" name="musCode" value="mus_code001"/>
+									<!-- <input type="text" class="form-control" name="musCode" disabled="disabled" id="musInput"> -->
 									<a class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">검색</a>
 								</div>
 							</div>
