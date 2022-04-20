@@ -29,7 +29,7 @@
 }
 
 .form-control {
-	margin-top: 1rem !important;
+	border-color: #e5e5e500;
 }
 
 .roomSummary {
@@ -52,7 +52,40 @@
 .discount {
 	color: red;
 }
+@media screen and (max-width: 375px) {
+   	.dateForm .form-control{font-size: 10px!important;}
+}
+.css-1be69yi {
+	background-color: #eee;
+	margin-bottom: 10px;
+	font-size: 15px;
+}
+.css-myk0ma{
+	margin-bottom: 10px;
+	margin-top : 10px;
+	font-size: 13px;
+	opacity: 0.5;
+}
+.btn.btn-primary {
+    background-color: #ec5552;
+    border-color: #ec5552;
+}
+.priceInput{
+	color: #161c2d;
+    border: none;
+    background: none;
+    text-align: right;
+    font-size: 20px;
+    outline: none;
+}
+.priceForm {
+	padding:11px 0 10px; 
+	display: flex; 
+	justify-content: space-between; 
+	margin: 18.577px;
+}
 </style>
+<form>
 	<div class="row">
 		<div class="col-12">
 			<div class="card">
@@ -88,28 +121,81 @@
 									style="font-size: 20px;"> </span> <span class="finalprice"
 									th:text="${r.roomFinalPrice}" style="font-size: 20px;">
 								</span>
+								<input type="hidden" id="roomFinalPrice" th:value="${r.roomFinalPrice}">
 							</div>
 						</div>
 					</div>
-					<div class="card-footer"></div>
+					<div class="card-footer" style="padding: 5px;"></div>
 					<div style="display: flex; justify-content: space-around;">
-							<i class="feather icon-log-in" style="font-size: 15px;"><span>체크인 날짜 선택</span></i>
-							<i class="feather icon-log-out" style="font-size: 15px;"><span>체크아웃 날짜 선택</span></i>
+					<input type="hidden" name="ldgCode" th:value="${room.ldgCode}" readonly="readonly">
+					<input type="hidden" name="memberId" th:value="${session.SID}" readonly="readonly">
+					<!-- <input class="form-control"  name="ldgCode" th:text="${room.ldgcode}" readonly="readonly"> -->
+							<i class="feather icon-log-in" style="font-size: 10px;"><span class="sapanFont">체크인 날짜 선택</span></i>
+							<i class="feather icon-log-out" style="font-size: 10px;"><span class="sapanFont">체크아웃 날짜 선택</span></i>
 					</div>
-					<div style="display: flex;">
+					<div class="dateForm" style="display: flex;">
 						<div class="col-6" style="margin-top: 20px;">
-							<input id="startDate" type="text" class="form-control input-text"
-								name="startDate" style="cursor: pointer; font-size: 15px; text-align: center;">
+							<input id="checkIn" type="text" class="form-control input-text"
+								name="checkIn" style="cursor: pointer; font-size: 15px; text-align: center; padding: 0px; background-color: #e9ecef00; color: #335eea;">
 						</div>
 						<div class="col-6" style="margin-top: 20px;">
-							<input id="endDate" type="text" class="form-control input-text"
-								name="endDate" style="cursor: pointer; font-size: 15px; text-align: center;">
+							<input id="checkOut" type="text" class="form-control input-text"
+								name="checkOut" style="cursor: pointer; font-size: 15px; text-align: center; padding: 0px; background-color: #e9ecef00; color: #335eea;">
 						</div>
+					</div>
+					<div class="card-footer"></div>
+					<div class="form-group">
+							<h5 style="padding-left: 15px;">예약자 정보<span style="color: red;">*</span></h5>
+							<label for="userName" style="opacity: 0.5; padding-left: 15px;">성명<span style="color: red;">*</span></label>
+							<input type="text" class="form-control" placeholder="예약자 성명을 입력해주세요." name="userName" style="border-bottom-color: #343a40; margin-bottom: 10px; outline: none;">
+							<label for="userName" style="opacity: 0.5; padding-left: 15px;">휴대전화 번호<span style="color: red;">*</span></label>
+							<input type="text" class="form-control" placeholder="휴대전화 번호를 입력해주세요." name="userName" style="border-bottom-color: #343a40; margin-bottom: 10px; outline: none;">
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-body">
+				<h5 style="padding-left: 15px;">이용자 정보<span style="color: red;">*</span></h5>
+					<div class="css-1be69yi">상품 이용 시 필요한 필수 정보입니다.</div>
+					<label for="userName" style="opacity: 0.5; padding-left: 15px;">성명<span style="color: red;">*</span></label>
+					<input type="text" class="form-control" placeholder="이용자 성명을 입력해주세요." name="userName" style="border-bottom-color: #343a40; margin-bottom: 10px; outline: none;">
+					<label for="userName" style="opacity: 0.5; padding-left: 15px;">휴대전화 번호<span style="color: red;">*</span></label>
+					<input type="text" class="form-control" placeholder="휴대전화 번호를 입력해주세요." name="userName" style="border-bottom-color: #343a40; margin-bottom: 10px; outline: none;">
+					<div class="css-myk0ma">입력하신 번호는 안심번호로 변경되어 숙소에 전달됩니다.<br> 단, 안심번호로 처리가 어려운 경우에 한해 제한적으로 개인정보 제공 동의에 근거하여, <br> 실제 휴대폰번호가 전달 될 수 있습니다.</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-body">
+					<h5 style="padding-left: 15px;">결제 금액</h5>
+					<div class="priceForm">
+					<div>총 숙박일수</div>
+						<div><input class="priceInput" id="day" readonly><span>일</span></div>
+					</div>
+					<div class="priceForm">
+						<div>총 예약 금액</div>
+						<div><input class="priceInput" id="totalPrice" readonly><span>원</span></div>
+					</div>
+					<div class="card-footer" style="padding: 0px;"></div>
+					<div class="priceForm">
+						<div><b>결제 금액</b></div>
+						<div><input class="priceInput" id="totalPrice2" style="color: red;" readonly><span>원</span></div>
+					</div>
+					<div style="display:grid;">
+						<button type="button" class="btn btn-primary">결제하기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
 
 </th:block>
 <th:block layout:fragment="customBodyScript">
@@ -121,7 +207,6 @@
 	<script th:src="@{/js/jquery-nicescroll/jquery.nicescroll.min.js}"></script>
 	<!-- bootstrap-datepicker -->
 	<script th:src="@{/js/moment.min.js}"></script>
-	<script th:src="@{/js/datepicker/daterangepicker.js}"></script>
 	<!-- bootstrap-timepicker -->
 	<script th:src="@{/js/datepicker/bootstrap-timepicker.js}"></script>
 	<script th:src="@{/js/kmsJs/datepickerKms2.js}"></script>
@@ -129,7 +214,7 @@
 	<script>
 		$(document).ready(function() {
 
-			$("#startDate").dateDropper({
+			$("#checkIn").dateDropper({
 				animate : true,
 				init_animation : "fadein",
 				format : "y-mm-dd",
@@ -152,7 +237,7 @@
 			//출발 날짜 datepciker 자바스크립트 종료
 			//도착 날짜 datepciker 자바스크립트 시작
 
-			$("#endDate").dateDropper({
+			$("#checkOut").dateDropper({
 				animate : true,
 				init_animation : "fadein",
 				format : "y-mm-dd",
@@ -171,8 +256,42 @@
 				dropWidth : 124,
 				dropTextWeight : 'bold'
 			});
+			//숙박 일수 와 객실의 가격을 곱하여 총 결제 금액을 구하는 스크립트
+			$("#checkOut, #checkIn").on('change', function(e) {
+				var startDate = $("#checkIn").val();
+				var endDate = $("#checkOut").val();
+				
+				var totalPrice = Number($('#roomFinalPrice').val().replaceAll('원', '').replaceAll(',', '').trim());
+				//문자와 공백 제거 후 String을 Number로 포맷
+				
+				var dayIndex1 = startDate.indexOf('일');
+				var dayIndex2 = endDate.indexOf('일');
+				startDate = startDate.substring(0,dayIndex1).replace('년','-').replace('월','-').replaceAll(' ','');
+				endDate = endDate.substring(0,dayIndex2).replace('년','-').replace('월','-').replaceAll(' ','');
+				//날짜 형식 String 제거 후에 숫자만 반환
+							
+				var newStartDate = new Date(startDate);
+				var newEndDate = new Date(endDate);
+			
+				var day = (newEndDate-newStartDate)/1000/60/60/24;
+				//처음 날짜와 두번째 날짜의 일수 계산
+				console.log(day);
+				if(isNaN(day) == true) day = 0;
+				console.log('체크체크',totalPrice, day);
+				var newTotalPrice = totalPrice * day;
+				console.log(newTotalPrice)
+				$("#totalPrice").val(numberWithCommas(newTotalPrice));
+				$("#totalPrice2").val(numberWithCommas(newTotalPrice));
+				$("#day").val(day);
+			});
 		});
+		function numberWithCommas(x) {
+			//숫자 3자리 수 마다 , 찍히는 포맷 스크립트
+		  if(!x) return 0;
+		  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
 	</script>
-	<!-- 도착 날짜 datepciker 자바스크립트 종료 -->
+	
+	
 </th:block>
 </html>

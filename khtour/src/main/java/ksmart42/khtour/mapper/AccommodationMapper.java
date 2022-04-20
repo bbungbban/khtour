@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import ksmart42.khtour.dto.Accommodation;
+import ksmart42.khtour.dto.FileDto;
 
 @Mapper
 public interface AccommodationMapper {
@@ -49,5 +50,8 @@ public interface AccommodationMapper {
 	
 	//숙박업소 중복체크
 	public boolean isNameCheck(String ldgName);
+	
+	//숙박업소 등록 파일 정보 조회
+	public FileDto fileInfoByFileIdx(String ldgCode);
 	
 }

@@ -1,5 +1,6 @@
 package ksmart42.khtour.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -182,11 +183,21 @@ public class AccommodationController {
 	 * 숙박업소 정보 삭제(post 정보 전달)
 	 */
 	@GetMapping("/accommodationRemove")
-	public String removeAccommodation(Accommodation accommodation) {
+	public String removeAccommodation(Accommodation accommodation, HttpServletRequest request) throws IOException {
 		String ldgCode = accommodation.getLdgCode();
 		
-		accommodationService.removeAccommodation(ldgCode);
-		System.out.println("정보 삭제 포스트 전달" + accommodationService.removeAccommodation(ldgCode));
+		String serverName = request.getServerName();
+	    String fileRealPath = "";
+	      if("localhost".equals(serverName)) {            
+	         fileRealPath = System.getProperty("user.dir") + "/src/main/resources/static/";
+	         //fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+	      }else {
+	         fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+	      }
+	    int result = accommodationService.removeAccommodation(ldgCode, fileRealPath);  
+		
+		accommodationService.removeAccommodation(ldgCode, fileRealPath);
+		System.out.println("정보 삭제 포스트 전달" + result);
 		
 		return "redirect:/accommodation/accommodationListSt";
 		
