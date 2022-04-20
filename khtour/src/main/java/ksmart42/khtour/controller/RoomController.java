@@ -34,6 +34,20 @@ public class RoomController {
 	}
 	
 	/*
+	 * 객실 예약 페이지(Get) 정보 전달 
+	 */
+	@GetMapping("/roomPayment")
+	public String getRoomPayment(Model model
+								,@RequestParam(value="roomCode", required = false) String roomCode) {
+		log.info(roomCode);
+		Room room = roomService.getRoomByCode(roomCode);
+		model.addAttribute("title", "객실예약페이지");
+		model.addAttribute("room", room);
+		
+		return "room/roomPayment";
+	}
+	
+	/*
 	 * 객실 정보 조회 (관리자)(Get 정보 전달)
 	 */
 	@GetMapping("/roomListSt")
