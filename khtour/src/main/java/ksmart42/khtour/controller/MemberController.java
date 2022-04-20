@@ -120,10 +120,10 @@ public class MemberController {
 	public String memberInsert(Model model) {
 		
 		//회원등급 목록 데이터
-		List<MemberLevel> memberLevelList = memberService.getMemberLevelList();
+		List<Member> memberList = memberService.getMemberList();
 		
 		model.addAttribute("title", "회원가입");
-		model.addAttribute("memberLevelList", memberLevelList);
+		model.addAttribute("memberList", memberList);
 		
 		return "member/memberInsert";
 	}
@@ -217,11 +217,11 @@ public class MemberController {
 		log.info("회원 수정화면 폼 쿼리스트링 memberName : {}", memberName);
 		
 		Member member = memberService.getMemberInfoById(memberId);
-		List<MemberLevel> memberLevelList = memberService.getMemberLevelList();
+		List<Member> memberList = memberService.getMemberList();
 		
 		model.addAttribute("title", "회원수정화면");
 		model.addAttribute("member", member);
-		model.addAttribute("levelList", memberLevelList);
+		model.addAttribute("levelList", memberList);
 		
 		return "member/memberModify";
 	}
