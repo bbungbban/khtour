@@ -1,5 +1,6 @@
 package ksmart42.khtour.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -140,13 +141,35 @@ public class AccommodationService {
 	/**
 	 * 숙박업소  정보 삭제
 	 */
-	public int removeAccommodation(String ldgCode) {
-		int result = accommodationMapper.removeAccommodation(ldgCode);
+	public int removeAccommodation(String ldgCode, String fileRootPath) throws IOException {
+		 
+		FileDto fileDto = accommodationMapper.fileInfoByFileIdx(ldgCode);
+	      
+	     int result = 0;
 		
-		result += accommodationMapper.removeAccommodation(ldgCode);
+	     if(fileDto != null) {
+	         
+	         String fileIdx = fileDto.getFileIdx();
+	         String filePath = fileDto.getFilePath();
+	   
+	         if(fileIdx != null) {
+	            
+	            fileMapper.removeFileControl(fileIdx);
+	            
+	            fileMapper.removeFile(fileIdx);
+	            
+	            result += accommodationMapper.removeAccommodation(ldgCode);
+	            
+	            if(result > 0) fileUtil.fileDelete(fileRootPath, filePath);
+	         }
+	      }else {
+	         
+	         result += accommodationMapper.removeAccommodation(ldgCode);
+	         
+	      }
+	      return result;
+	   }
 		
-		return result;
-	}
 	
 	/**
 	 * 숙박업소 리뷰 + 

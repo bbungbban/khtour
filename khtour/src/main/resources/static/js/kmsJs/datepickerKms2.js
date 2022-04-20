@@ -1960,7 +1960,6 @@
 		});
 
 		$.fn.dateDropper = function(options) {
-			
 			return $(this).each(function(){
 				if($(this).is('input')&&!$(this).hasClass('picker-input')) {
 
@@ -1975,11 +1974,11 @@
 						'type':'text',
 						'readonly' : true
 					});
-					
+
 					var
 						picker_default_date = (input.data('default-date')&&is_date(input.data('default-date'))) ? input.data('default-date') : null,
 						picker_disabled_days = (input.data('disabled-days')) ? input.data('disabled-days').split(',') : null,
-						picker_format = input.data('format') || options.format,
+						picker_format = input.data('format') || 'Y년 m월 d일 D요일',
 						picker_fx = (input.data('fx')===false) ? input.data('fx') : true,
 						picker_fx_class = (input.data('fx')===false) ? '' : 'picker-fxs',
 						picker_fx_mobile = (input.data('fx-mobile')===false) ? input.data('fx-mobile') : true,
@@ -2038,10 +2037,7 @@
 								today : 0
 							}
 						},
-						translate : picker_translate_mode,
-						onChange: function (res) {
-						    console.log('Current date ' + (res.date.m + '/' + res.date.d + '/' + res.date.Y));
-						}
+						translate : picker_translate_mode
 					};
 
 					if(picker_default_date) {
@@ -2180,10 +2176,6 @@
 				if(picker.element.hasClass('picker-modal'))
 					$('body').append('<div class="picker-modal-overlay"></div>')
 
-			}).change(function(e){
-				if(options.onChange != undefined && typeof options.onChange== 'function'){	
-					options.onChange($(this).val(), e);
-				}
 			});
 		};
 	}(jQuery));

@@ -11,8 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import ksmart42.khtour.dto.FileDto;
+import ksmart42.khtour.dto.Reservation;
 import ksmart42.khtour.dto.Room;
 import ksmart42.khtour.mapper.FileMapper;
+import ksmart42.khtour.mapper.ReservationMapper;
 import ksmart42.khtour.mapper.RoomMapper;
 import ksmart42.khtour.util.FileUtil;
 
@@ -21,17 +23,28 @@ import ksmart42.khtour.util.FileUtil;
 public class RoomService {
 		//DI 의존성 주입
 		private RoomMapper roomMapper;
+		private ReservationMapper reservationMapper;
 		
 		//파일 업로드 테이블 
 		private FileUtil fileUtil;
 		
 		private FileMapper fileMapper;
 		
-		public RoomService(RoomMapper roomMapper, FileUtil fileUtil, FileMapper fileMapper) {
+		public RoomService(RoomMapper roomMapper, FileUtil fileUtil, FileMapper fileMapper, ReservationMapper reservationMapper) {
 			this.roomMapper = roomMapper;
 			this.fileUtil = fileUtil;
 			this.fileMapper = fileMapper;
+			this.reservationMapper = reservationMapper;
 		}
+		/** 
+		 * 예약정보 등록 
+		 */
+		public void addReservation(Reservation reservation) {
+			
+			reservationMapper.addReservation(reservation);
+		}
+		
+		
 		
 		/**
 		 * 이것은 바로 세자리 콤마와 원과 %를 붙여주는 메서드

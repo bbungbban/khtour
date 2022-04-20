@@ -22,6 +22,66 @@
 		</association>
 	</resultMap>
 	
+	<resultMap type="Reservation" 				id="reservationResultMap">
+		<id column="room_reservation_code"  	property="roomReservationCode"/>
+		<result column="member_id" 				property="memberId"/>
+		<result column="ldg_code" 				property="ldgCode"/>
+		<result column="checkin_date" 			property="checkInDate"/>
+		<result column="chekout_date" 			property="chekOutDate"/>
+		<result column="reservation_name" 		property="reservationName"/>
+		<result column="reservation_phone" 		property="reservationPhone"/>
+		<result column="user_name" 				property="userName"/>
+		<result column="usre_phone" 			property="usrePhone"/>
+		<result column="room_name" 				property="roomName"/>
+		<result column="lodgment_day" 			property="lodgmentDay"/>
+		<result column="total_price" 			property="totalPrice"/>
+		<result column="reservation_date" 		property="reservationDate"/>
+		<association property="accommodation" 		javaType="Accommodation">
+			<id 	column="ldg_code"				property="ldgCode"/>
+			<result column="ldg_name"				property="ldgName"/>
+		</association>
+	
+	</resultMap>
+	
+	<!-- 예약정보 등록 SQL -->
+	<insert id="addReservation" parameterType="Reservation">
+	<selectKey resultType="string" keyProperty="roomReservationCode" order="BEFORE">
+			SELECT sf_room_reservation_code() as roomReservationCode
+	</selectKey>
+		INSERT INTO 
+			tb_room_reservation
+		(   
+			room_reservation_code
+		   ,member_id
+		   ,ldg_code  
+		   ,checkin_date    
+		   ,chekout_date
+		   ,reservation_name   
+		   ,reservation_phone   
+		   ,user_name    
+		   ,usre_phone    
+		   ,lodgment_day   
+		   ,total_price   
+		   ,reservation_date   
+		) 
+		VALUES 
+		(
+		    #{roomReservationCode}
+		   ,#{memberId}
+		   ,#{ldgCode}
+		   ,#{checkInDate}
+		   ,#{chekOutDate}
+		   ,#{reservationName}
+		   ,#{reservationPhone}
+		   ,#{userName}
+		   ,#{usrePhone}
+		   ,#{roomName}
+		   ,#{lodgmentDay}
+		   ,#{totalPrice}
+		   ,CURDATE(
+		);
+	</insert>
+	
 	<!-- 객실 정보 삭제 SQL -->
 	<delete id="removeRoom" parameterType="String">
 		DELETE
