@@ -137,22 +137,18 @@ public class CommunityService {
 		} else if (order.equals("new")) {
 			postList = communityMapper.getPostListByCommCodeNew(CommCode);
 		}
-
-		for (int i = 0; i < postList.size(); i++) {
-			String postCode = postList.get(i).getPostCode();
-			postList.get(i).setFilePath(communityMapper.getFileControllerByPostCode(postCode));
-
-		}
 		return postListMod(postList);
 	}
 
 	/*
 	 * 작성자 : 한경수 입 력 : List<CommPost> (포스트 리스트) 출 력 : List<CommPost> (포스트 리스트) 설 명 :
-	 * 포스트 리스트에, 1) 테그리스트에 맞는 커뮤니티 테그클래스 를 찾아서 저장, 2) 포스트에 숫자를 K/M 형식으로 변환
+	 * 포스트 리스트에, 1) 테그리스트에 맞는 커뮤니티 테그클래스 를 찾아서 저장 2) 포스트 리스트에 포스트 마다 코드에 해당하는 파일 컨트롤러들을 넣어준다.
 	 */
 	public List<CommPost> postListMod(List<CommPost> postList) {
 		for (int i = 0; i < postList.size(); i++) {
+			String postCode = postList.get(i).getPostCode();
 			CommPost commPost = postList.get(i);
+			postList.get(i).setFilePath(communityMapper.getFileControllerByPostCode(postCode));
 			commPost.setCommTag(communityMapper.getCommTagByTagCode(commPost.getTagCode()));
 		}
 		return postList;
