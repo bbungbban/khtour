@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import ksmart42.khtour.dto.Exhib;
 import ksmart42.khtour.dto.Mus;
@@ -33,6 +36,26 @@ public class ExhibController {
 		this.musService = musService;
 		this.exhibService = exhibService;
 		this.exhibMapper = exhibMapper;
+	}
+	
+	/* 
+	 * 전시회 조회 (유저 권한)
+	*/
+	@GetMapping("/exhibBoardList")
+	public String getExhibBoardList(Model model) {
+
+		List<Exhib> exhibList = exhibService.getExhibList();
+		List<Exhib> ingExhib = exhibService.ingExhib();
+		List<Exhib> expectedExhib = exhibService.expectedExhib();
+		List<Exhib> endExhib = exhibService.endExhib();
+		
+		model.addAttribute("title", "전시회 조회 페이지");
+		model.addAttribute("exhibList",exhibList);
+		model.addAttribute("ingExhib",ingExhib);
+		model.addAttribute("expectedExhib",expectedExhib);
+		model.addAttribute("endExhib",endExhib);
+		
+		return "exhib/exhibBoardList";
 	}
 	
 	/*
@@ -61,7 +84,7 @@ public class ExhibController {
 		
 		paramMap.put("searchKey", searchKey);
 		paramMap.put("searchValue", searchValue);
-		List<Exhib> exhibList = exhibService.getExhibList(paramMap);
+		List<Exhib> exhibList = exhibService.getExhibList();
 		
 		paramMap = null;
 		
@@ -119,13 +142,23 @@ public class ExhibController {
 	 * 전시회 등록(Post 정보 전달)
 	 */
 	@PostMapping("/exhibInsert")
-	public String addExhib(Exhib exhib) {
+	public String addExhib(Exhib exhib, @RequestParam MultipartFile[] exhibImageFiles
+            , HttpServletRequest request) {
 		if(exhib.getExhibCate().equals("exhib_theme")) {
 			exhib.setExhibCateName("테마전시");
 		} else if(exhib.getExhibCate().equals("exhib_special")) {
 			exhib.setExhibCateName("특별전시");
 		}
-		exhibService.addExhib(exhib);
+		
+		String serverName = request.getServerName();
+	    String fileRealPath = "";
+	      if("localhost".equals(serverName)) {            
+	         fileRealPath = System.getProperty("user.dir") + "/src/main/resources/static/";
+	         //fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+	      }else {
+	         fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
+	      }
+		exhibService.addExhib(exhib, exhibImageFiles, fileRealPath);
 		
 		return "redirect:/exhib/exhibList";
 	}

@@ -24,8 +24,8 @@ import ksmart42.khtour.service.CosService;
 @Controller
 @RequestMapping("/cos")
 public class CosController {
-	private CosService cosService; 
 	private static final Logger log = LoggerFactory.getLogger(CosController.class);
+	private CosService cosService; 
 
 	public CosController(CosService cosService) {
 		this.cosService = cosService;
@@ -35,17 +35,15 @@ public class CosController {
 	 * 코스 조회 (유저 권한)
 	*/
 	@GetMapping("/cosBoardList")
-	public String getRecordBoardList(Model model) {
-		Map<String, Object> paramMap = new HashMap<String, Object>();
+	public String getCosBoardList(Model model) {
 
-		List<Cos> cosList = cosService.getCosList(paramMap);
-		List<Cos> cosHistory = cosService.cosHistory(paramMap);
-		List<Cos> cosHumanities = cosService.cosHumanities(paramMap);
-		List<Cos> cosWar = cosService.cosWar(paramMap);
-		List<Cos> cosReligion = cosService.cosReligion(paramMap);
-		List<Cos> cosFolklore = cosService.cosFolklore(paramMap);
+		List<Cos> cosList = cosService.getCosList();
+		List<Cos> cosHistory = cosService.cosHistory();
+		List<Cos> cosHumanities = cosService.cosHumanities();
+		List<Cos> cosWar = cosService.cosWar();
+		List<Cos> cosReligion = cosService.cosReligion();
+		List<Cos> cosFolklore = cosService.cosFolklore();
 		
-		paramMap = null;
 		
 		model.addAttribute("title", "코스 조회 페이지");
 	    model.addAttribute("cosHistory", cosHistory);
@@ -86,7 +84,7 @@ public class CosController {
 		paramMap.put("searchKey", searchKey);
 		paramMap.put("searchValue", searchValue);
 		log.info("입력 데이터 값 : {}",paramMap);		
-		List<Cos> cosList = cosService.getCosList(paramMap);
+		List<Cos> cosList = cosService.getCosList();
 		
 		paramMap = null;
 		
@@ -118,10 +116,10 @@ public class CosController {
 		Map<String, Object> paramMap = new HashMap<String , Object>();
 		
 		List<Mus> musList = cosService.getMusList();//박물관 리스트
-		List<Cos> cosInsert = cosService.categoryList(paramMap);//코스 카테고리
+		List<Cos> cosInsert = cosService.categoryList();//코스 카테고리
 		paramMap.put("searchKey", "cos_code");
 		paramMap.put("searchValue", cosCode);
-		List<Cos> cosModifyList = cosService.getCosList(paramMap);//코스 선택한 리스트
+		List<Cos> cosModifyList = cosService.getCosList();//코스 선택한 리스트
 		Cos cos = cosService.getCosByCode(cosCode);
 		model.addAttribute("title", "코스  수정 페이지");
 		model.addAttribute("cos", cos);
@@ -178,7 +176,6 @@ public class CosController {
 	      }else {
 	         fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
 	      }
-	    cos.setMemberId("id004");
 		
 	    cosService.addCos(cos, cosImageFiles, fileRealPath);
 		
@@ -190,8 +187,7 @@ public class CosController {
 	 */
 	@GetMapping("/cosInsert")
 	public String addCos(Model model) {
-		Map<String, Object> paramMap = new HashMap<String , Object>();
-		List<Cos> cosInsert = cosService.categoryList(paramMap);//코스 카테고리
+		List<Cos> cosInsert = cosService.categoryList();//코스 카테고리
 		List<Mus> musList = cosService.getMusList();//박물관 리스트
 		model.addAttribute("title", "코스등록");
 		model.addAttribute("cosInsert", cosInsert);
