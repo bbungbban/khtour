@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import ksmart42.khtour.dto.Reservation;
 import ksmart42.khtour.dto.Room;
 
 @Mapper
