@@ -32,7 +32,9 @@ import ksmart42.khtour.mapper.FileMapper;
 import ksmart42.khtour.service.CommunityService;
 import ksmart42.khtour.service.FileService;
 
-
+/*
+ * sadfsadf
+ * */
 @Controller
 public class CommunityController {
 	private static final Logger log = LoggerFactory.getLogger(CommunityController.class);
