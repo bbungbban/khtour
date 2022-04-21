@@ -29,8 +29,6 @@
 				},
 				dataType : 'json',
 				success : function(data) {	
-					console.log(data.title);
-				
 						$('#titleRuleModal').val(data.title);							
 						$('#detailRuleModal').val(data.detail);							
 					}	
@@ -44,8 +42,6 @@
 				},
 				dataType : 'json',
 				success : function(data) {	
-					console.log(data.title);
-				
 						$('#tagNameModal').val(data.tagName);							
 						$('#tagColorModal').val(data.tagColor);							
 					}	
@@ -62,8 +58,6 @@
 					},
 					dataType : 'json',
 					success : function(data) {	
-						console.log(data.title);
-					
 							$('#titleRuleModal').val(data.title);							
 							$('#detailRuleModal').val(data.detail);							
 						}	
@@ -79,8 +73,6 @@
 						},
 						dataType : 'json',
 						success : function(data) {	
-							console.log(data.title);
-						
 								$('#tagNameModal').val(data.tagName);							
 								$('#tagColorModal').val(data.tagColor);							
 							}	
@@ -525,8 +517,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">규칙 삭제</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>

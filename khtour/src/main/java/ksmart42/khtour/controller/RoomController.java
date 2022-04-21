@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import ksmart42.khtour.dto.Reservation;
 import ksmart42.khtour.dto.Room;
 import ksmart42.khtour.service.RoomService;
 
@@ -31,6 +33,33 @@ public class RoomController {
 	
 	public RoomController(RoomService roomService) {
 		this.roomService = roomService;
+	}
+	/*
+	 * 예약정보등록(post 정보 전달)
+	 */ 
+	@PostMapping("/roomPayment")
+	public String addReservation(Reservation reservation, RedirectAttributes attr) {
+
+		roomService.addReservation(reservation);
+		log.info(reservation + "예약정보등록");
+		
+		attr.addAttribute("ldgCode", reservation.getLdgCode());
+		
+		return "redirect:/accommodation/acoommodationinfo";
+	}
+	
+	/*
+	 * 객실 예약 페이지(Get) 정보 전달 
+	 */
+	@GetMapping("/roomPayment")
+	public String getRoomPayment(Model model
+								,@RequestParam(value="roomCode", required = false) String roomCode) {
+		log.info(roomCode);
+		Room room = roomService.getRoomByCode(roomCode);
+		model.addAttribute("title", "객실예약페이지");
+		model.addAttribute("room", room);
+		
+		return "room/roomPayment";
 	}
 	
 	/*

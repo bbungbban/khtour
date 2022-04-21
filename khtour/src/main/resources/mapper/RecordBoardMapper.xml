@@ -31,8 +31,7 @@
 		<association property="planStatus"	javaType="PlanStatus">
 			<id column="plan_status_code" property="planStatusCode"/>				
 			<result column="plan_status_name" property="planStatusName"/>																	
-			<result column="reg_date" property="regDate"/>					
-			<result column="plan_status_cnt" property="planStatusCnt"/>		
+			<result column="reg_date" property="regDate"/>						
 		</association>		
 	</resultMap> 
 	
@@ -40,8 +39,7 @@
 	<resultMap type="PlanStatus" id="PlanStatusResultMap">
 		<id column="plan_status_code" property="planStatusCode"/>				
 		<result column="plan_status_name" property="planStatusName"/>																	
-		<result column="reg_date" property="regDate"/>					
-		<result column="plan_status_cnt" property="planStatusCnt"/>																		
+		<result column="reg_date" property="regDate"/>																					
 	</resultMap>
 	
 	<!-- 여행게시글 댓글 resultMap -->
@@ -58,7 +56,6 @@
 		<id column="feed_code" 					property="feedCode"/>			<!-- 문화재 코드 -->
 		<result column="record_board_code" 		property="recordBoardCode"/>	<!-- 문화재 명 -->
 		<result column="feed_title" 			property="feedTitle"/>			<!-- 문화재 한문명 -->
-		<result column="feed_idx" 				property="feedIdx"/>			<!-- 문화재 소재지 -->
 		<result column="feed_content" 			property="feedContent"/>		<!-- 문화재 시대명 -->
 		<result column="file_path" 				property="feedImagePath"/>		<!-- 피드 이미지 -->
 		<result column="feed_time" 				property="feedTime"/>			<!-- 문화재 지정일 -->
@@ -114,7 +111,6 @@
 		  s.plan_status_code
 		   ,s.plan_status_name
 		   ,s.reg_date
-		   ,s.plan_status_cnt
 		FROM
 		  tb_tra_status AS s;
 	</select>
@@ -209,7 +205,6 @@
 		  s.plan_status_code
 		   ,s.plan_status_name
 		   ,s.reg_date
-		   ,s.plan_status_cnt
 		FROM
 		   tb_tra_status AS s
 		WHERE
@@ -538,7 +533,6 @@
         f.feed_code
          ,f.record_board_code
          ,f.feed_title
-         ,f.feed_idx
          ,f.feed_content  
          ,f.feed_time    
          ,f.feed_reg_date
@@ -568,7 +562,6 @@
       (   feed_code
          ,record_board_code
          ,feed_title
-         ,feed_idx 
          ,feed_content 
          ,feed_time
          ,feed_reg_date   
@@ -577,7 +570,6 @@
           #{feedCode}
          ,#{recordBoardCode}
          ,#{feedTitle}
-         ,#{feedIdx}
          ,#{feedContent}
          ,#{feedTime}
          ,CURDATE()

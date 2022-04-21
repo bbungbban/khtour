@@ -37,7 +37,7 @@
 						</div>
 					</div>
 					<div class="card-body">
-						<form id="addExhib" th:action="@{/exhib/exhibInsert}" method="post">
+						<form id="addExhib" th:action="@{/exhib/exhibInsert}" method="post" enctype="multipart/form-data">
 							<div class="form-row">
 								<div class="form-group col-6">
 									<label for="exhibCate">카테고리</label>
@@ -73,8 +73,8 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label>포스터업로드</label>
-								<input type="file" class="form-control" style="line-height:1.2;">
+							<label for="exhibImage">포스터 업로드</label>
+							<input style="line-height:1.2;" type="file" id="exhibImage" class="form-control" name="exhibImageFiles" required="">
 							</div>
 
 							<div class="form-group">
@@ -87,10 +87,11 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="musCode">전시관</label>
+								<label for="musName">전시관</label>
 								<div class="input-group mb-3">
-									<input type="text" class="form-control" name="musCode" disabled="disabled" id="musInput">
-									<a class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">검색</a>
+									<input type="text" class="form-control" disabled="disabled" id="musInput">
+									<input type="hidden" class="form-control" name="musCode" id="musCode">
+									<a class="btn btn-primary" data-toggle="modal" data-target="#musModal">검색</a>
 								</div>
 							</div>
 							<div class="form-group">
@@ -111,7 +112,7 @@
 	</div>
 	
 	
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade" id="musModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -127,41 +128,40 @@
 					<th>카테고리</th>
 					<th>이름</th>
 					<th>주소</th>
-					<th style="display:none">홈페이지</th>
 					<th>전화번호</th>
 					<th>운영시간</th>
 					<th>휴관일</th>
-					<th style="display: none;">상세설명</th>
 					<th>선택</th>
 				</tr>
 			</thead>
 			<tbody class="text-center">
 				<tr th:if="${not #lists.isEmpty(musList)}" th:each="l:${musList}">
 					<td th:text="${l.musLargeCateName}"></td>
+					<td th:text="${l.musCode}" style="display:none;"></td>
 					<td th:text="${l.musName}"></td>
 					<td th:text="${l.musAddr}"></td>
 					<td th:text="${l.musNum}"></td>
 					<td th:text="|${l.musStart}~ ${l.musEnd}|"></td>
 					<td th:text="${l.musClose}"></td>
-					<td><input type="checkbox" class="musCheck1" name="musCode1" th:value="${l.musName}" id="musRadio"></td>
+					<td><input type="checkbox" class="musCheck1" name="musCode1" th:value="${l.musCode}" th:data-musName="${l.musName}"></td>
 				</tr>
 			</tbody>
 			<tfoot style="text-align: center;">
 				<tr>
-					<th>코드</th>
 					<th>카테고리</th>
 					<th>이름</th>
 					<th>주소</th>
 					<th>전화번호</th>
 					<th>운영시간</th>
+					<th>휴관일</th>
 					<th>선택</th>
 				</tr>
 			</tfoot>
 		</table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancel">취소</button>
-        <button type="button" class="btn btn-primary" id="addMusBtn" data-dismiss="modal">선택</button>
+        <button type="button" class="btn btn-primary" id="addMusBtn">선택</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" id="cancel">취소</button>
       </div>
     </div>
   </div>
@@ -179,13 +179,21 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 <script>
 $(function(){
-	var musInput = $('#musInput');
-	$('.musCheck1').click(function() {
-		musInput.val($(this).val());
-	});	
+	var musInput = $('#musInput'), musCode = $('#musCode');
+	
+	$('#addMusBtn').click(function(){
+		var musCheck1 = $('.musCheck1:checked');
+		var code = musCheck1.val();
+		var name = musCheck1.attr('data-musName');
+		console.log(code, name);
+		musCode.val(code);
+		musInput.val(name);
+		$('#musModal').modal('hide');
+	});
 	
 	$('#cancel').click(function(){
 		musInput.val('');
+		musCode.val('');
 	});
 $('#exhibName').keyup(function(){
     var exhibName = $('input[name="exhibName"]').val();
@@ -222,22 +230,6 @@ $('#exhibName').keyup(function(){
 });
 $(document).on('click', '.musCheck1', function(){
 	$('.musCheck1').prop('checked', false);
-	$(this).prop('checked', true);
-});
-$(document).on('click', '.musCheck2', function(){
-	$('.musCheck2').prop('checked', false);
-	$(this).prop('checked', true);
-});
-$(document).on('click', '.musCheck3', function(){
-	$('.musCheck3').prop('checked', false);
-	$(this).prop('checked', true);
-});
-$(document).on('click', '.musCheck4', function(){
-	$('.musCheck4').prop('checked', false);
-	$(this).prop('checked', true);
-});
-$(document).on('click', '.musCheck5', function(){
-	$('.musCheck5').prop('checked', false);
 	$(this).prop('checked', true);
 });
 </script>

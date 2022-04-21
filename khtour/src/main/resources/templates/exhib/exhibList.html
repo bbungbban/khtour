@@ -45,7 +45,6 @@
 									<tr>
 										<th>전시회코드</th>
 										<th>카테고리</th>
-										<th>포스터이미지</th>
 										<th>전시명</th>
 										<th>전시기간</th>
 										<th>전시현황</th>
@@ -59,7 +58,6 @@
 										th:each="l:${exhibList}">
 										<td th:text="${l.exhibCode}"></td>
 										<td th:text="${l.exhibCateName}"></td>
-										<td>포스터이미지</td>
 										<td th:text="${l.exhibName}"></td>
 										<td th:text="|${l.exhibStart}~${l.exhibEnd}|"></td>
 										<td th:text="${l.exhibCurrent}"></td>
@@ -79,7 +77,6 @@
 									<tr>
 										<th>전시회코드</th>
 										<th>카테고리</th>
-										<th>포스터이미지</th>
 										<th>전시명</th>
 										<th>전시기간</th>
 										<th>전시현황</th>

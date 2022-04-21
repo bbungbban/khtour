@@ -356,33 +356,28 @@
 					<ul style="list-style: none; padding-left: 0px;">
 						<li class="star"><span style="padding-right: 0.5rem;">청결도</span>
 							<div class="progress progress-h-5" style="width: 5rem;">
-								<div class="progress-bar" role="progressbar"
-									
-									aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+								<div th:if="${not #strings.isEmpty(avgCleanliness)}" class="progress-bar" th:style="'width: ' + ${avgCleanliness}/5*100 + '%; background-color : #FFB900;'" role="progressbar"></div>
+								<div th:if="${#strings.isEmpty(avgCleanliness)}" class="progress-bar bg-warning" style="width: 0%;" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
 							</div> <span style="padding-left: 0.5rem;" th:text="${avgCleanliness}"></span></li>
 						<li class="star"><span style="padding-right: 0.5rem;">친절도</span>
 							<div class="progress progress-h-5" style="width: 5rem;">
-								<div class="progress-bar" role="progressbar"
-			
-									aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+								<div th:if="${not #strings.isEmpty(avgKindness)}" class="progress-bar" th:style="'width: ' + ${avgKindness}/5*100 + '%; background-color : #FFB900;'" role="progressbar"></div>
+								<div th:if="${#strings.isEmpty(avgKindness)}" class="progress-bar bg-warning" style="width: 0%;" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
 							</div> <span style="padding-left: 0.5rem;" th:text="${avgKindness}"></span></li>
 						<li class="star"><span style="padding-right: 0.5rem;">편의성</span>
 							<div class="progress progress-h-5" style="width: 5rem;">
-								<div class="progress-bar" role="progressbar"
-	
-									aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+								<div th:if="${not #strings.isEmpty(avgConvenience)}" class="progress-bar" th:style="'width: ' + ${avgConvenience}/5*100 + '%; background-color : #FFB900;'" role="progressbar"></div>
+								<div th:if="${#strings.isEmpty(avgConvenience)}" class="progress-bar bg-warning" style="width: 0%;" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
 							</div> <span style="padding-left: 0.5rem;" th:text="${avgConvenience}"></span></li>
 						<li class="star"><span style="padding-right: 0.5rem;">위치만족도</span>
 							<div class="progress progress-h-5" style="width: 5rem;">
-								<div class="progress-bar" role="progressbar"
-									
-									aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+								<div th:if="${not #strings.isEmpty(avgLocation)}" class="progress-bar" th:style="'width: ' + ${avgLocation}/5*100 + '%; background-color : #FFB900;'" role="progressbar"></div>
+								<div th:if="${#strings.isEmpty(avgLocation)}" class="progress-bar bg-warning" style="width: 0%;" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
 							</div> <span style="padding-left: 0.5rem;" th:text="${avgLocation}"></span></li>
 						<li class="star"><span style="padding-right: 0.5rem;">가격만족도</span>
 							<div class="progress progress-h-5" style="width: 5rem;">
-								<div class="progress-bar" role="progressbar"
-									
-									aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+								<div th:if="${not #strings.isEmpty(avgPriceSta)}" class="progress-bar" th:style="'width: ' + ${avgPriceSta}/5*100 + '%; background-color : #FFB900;'" role="progressbar"></div>
+								<div th:if="${#strings.isEmpty(avgPriceSta)}" class="progress-bar bg-warning" style="width: 0%;" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
 							</div> <span style="padding-left: 0.5rem;" th:text="${avgPriceSta}"></span></li>
 					</ul>
 				</div>

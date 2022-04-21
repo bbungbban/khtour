@@ -33,4 +33,5 @@ public interface RoomMapper {
 	
 	//객실 목록조화 관리자 페이지
 	public List<Room> getRoomListSt(Map<String, Object> paramMap);
+
 }

@@ -13,7 +13,6 @@ public class Feed {
 	private String feedCode;
 	private String recordBoardCode;
 	private String feedTitle;
-	private String feedIdx;
 	private String feedContent;
 	private String feedTime;
 	private String regDate;
@@ -45,12 +44,6 @@ public class Feed {
 	public void setFeedTitle(String feedTitle) {
 		this.feedTitle = feedTitle;
 	}
-	public String getFeedIdx() {
-		return feedIdx;
-	}
-	public void setFeedIdx(String feedIdx) {
-		this.feedIdx = feedIdx;
-	}
 	public String getFeedContent() {
 		return feedContent;
 	}
@@ -78,7 +71,7 @@ public class Feed {
 	@Override
 	public String toString() {
 		return "Feed [feedCode=" + feedCode + ", recordBoardCode=" + recordBoardCode + ", feedTitle=" + feedTitle
-				+ ", feedIdx=" + feedIdx + ", feedContent=" + feedContent + ", feedTime=" + feedTime + ", regDate="
+				+ ", feedIdx=" + ", feedContent=" + feedContent + ", feedTime=" + feedTime + ", regDate="
 				+ regDate + ", feedPlanDays=" + feedPlanDays + ", feedImagePath=" + feedImagePath + "]";
 	}
 	
