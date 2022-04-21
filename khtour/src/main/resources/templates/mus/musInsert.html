@@ -15,12 +15,11 @@
 	<!-- 페이지 타이틀 종료 -->
 </th:block>
 <th:block layout:fragment="customContents">
-<link rel="stylesheet" type="text/css" th:href="@{/css/plugins/lmyCss/addCssLmy.css}">
 <link rel="stylesheet" type="text/css" th:href="@{/css/plugins/datepicker/daterangepicker.css}">
 <link rel="stylesheet" type="text/css" th:href="@{/css/plugins/KmyCss/addCssKmy.css}">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" defer="defer"></script>
 <script th:src="@{/js/lmyJs/dayjs.min.js}"></script>
-<script th:src="@{/js/lmyJs/validate.min.js}"></script>
+
 <style>
 #addMuseum label.error { 
 color: red; } .loginsnsicon{width:20px;height:20px;margin-right:5px;}
@@ -196,8 +195,6 @@ phoneNum.onkeyup = function(){
 console.log(this.value);
 this.value = autoHypenPhone( this.value ) ;  
 }
-</script>
-<script>
 $(function(){
 $('#musName').keyup(function(){
     var musName = $('input[name="musName"]').val();
@@ -235,7 +232,6 @@ $('#musName').keyup(function(){
 </script>
 	<script th:src="@{/js/custom.js}"></script>
 	<script th:src="@{/js/moment.min.js}"></script>
-	<script th:src="@{/js/datepicker/daterangepicker.js}"></script>
 	<script th:src="@{/js/datepicker/bootstrap-timepicker.js}"></script>
 </th:block>
 </html>
