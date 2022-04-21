@@ -24,8 +24,6 @@ import ksmart42.khtour.service.PlanService;
 @RequestMapping("/plan")
 public class PlanController {
 
-	
-	
 	private PlanService planService;
 	private AccommodationService accommodationService; 
 	private CosService cosService;
