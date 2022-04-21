@@ -63,9 +63,13 @@ public class HeritageController {
       
       return "redirect:/heritage/heritageListByItem";
    }
-   /*
-    * 문화재 중복 체크
-    */
+   
+   /* 2. 문화재 명 중복 체크
+   *  작성자 : 김민석
+   *  입  력 : @RequestParam, heritageName
+   *  출  력 : boolean
+   *  설  명 : 문화재 명 중복 체크 - post방식 전달
+   */
    
      @PostMapping("/isHeritageNameCheck")
      @ResponseBody 
@@ -80,7 +84,7 @@ public class HeritageController {
         return isHeritageNameCheck;
      }
    
-   /* 2. 수정
+   /* 3. 수정
    *  작성자 : 김민석
    *  입  력 : Heritage(문화재 리스트)
    *  출  력 : String (주소)
@@ -274,7 +278,7 @@ public class HeritageController {
    *  작성자 : 김민석
    *  입  력 : @RequestParam, List<String>
    *  출  력 : heritageList(문화재 리스트)
-   *  설  명 : 카테고리 항목에 체크된 문화재 정보 조회 - Get방식 전달
+   *  설  명 : 카테고리 항목에 체크된 문화재 정보 조회 - Post방식 전달
    */
    @PostMapping("/itemSearchHeritageList")
    @ResponseBody

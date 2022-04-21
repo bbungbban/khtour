@@ -6,13 +6,16 @@
 	<title th:text="${title}"></title>
 </th:block>
 <th:block layout:fragment="contentsTitle">
-<img th:src="@{'/images/team3.png'}" alt="3팀프로젝트소개글"/>
-	<h2 style="opacity: 0.8;">MAIN &lt;- KHtour</h2>
-	<h4 style="padding-left: 40px; opacity: 0.7;">
-		KHtour = 기능설명 : <a href="#">한경수(커뮤니티)</a>, <a href="#">김문영(코스,
-			박물관, 전시회)</a>, <a href="#">안창현(숙박, 문의게시판)</a>, <a href="#">이민영(회원,
-			로그인)</a>, <a href="#">김민석(마이페이지, 문화재, 여행계획, 여행게시판, 날씨)</a>
-	</h4>
+	<div style="width:100%;height:100px;text-align:center;line-height:100px;font-weight:bold;">
+		<span style="font-size:20px;">문화재 활성화 및 관광 플랫폼</span>
+	</div>
+	<div style="font-size:15px;width:100%;height:150px;text-align:center;">
+		안창현 : 숙박, 문의게시판<br/>
+		한경수 : 커뮤니티 <br/>
+		이민영 : 회원<br/>
+		김민석(마이페이지, 문화재, 여행계획, 여행게시판, 날씨)<br/>
+		김문영 : 코스, 박물관, 전시회<br/>
+	</div>
 </th:block>
 <th:block layout:fragment="customContents">
 <style>

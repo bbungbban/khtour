@@ -46,7 +46,6 @@ public class PlanController {
 	@PostMapping("/planInsert")
 	public String addPlan(Plan plan) {
 		
-		plan.setMemberId("id001");
 		planService.addPlan(plan);
 		
 		return "redirect:/plan/planListSt";
@@ -78,9 +77,9 @@ public class PlanController {
 	
 	/* 1. 리스트 조회 (관리자 권한)
 	*  작성자 : 김민석
-	*  입  력 : Model
+	*  입  력 : Model, @Requestparam
 	*  출  력 : String (주소)
-	*  설  명 : 여행 계획 조회(관리자페이지) - get방식 전달
+	*  설  명 : 여행 계획 조회(관리자페이지), 키워드별 검색 - get방식 전달
 	*/
 	@GetMapping("/planListSt")
 	public String getPlanListSt(Model model

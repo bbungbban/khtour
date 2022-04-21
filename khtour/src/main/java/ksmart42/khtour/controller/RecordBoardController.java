@@ -46,7 +46,7 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 	*  작성자 : 김민석
 	*  입  력 : RecordBoard(여행게시글 리스트), @RequestParam, HttpServletRequest
 	*  출  력 : String (주소)
-	*  설  명 : 여행게시글 정보 등록(관리자페이지) - post방식 전달
+	*  설  명 : 여행게시글 정보 등록(관리자페이지), 사진 파일 등록 - post방식 전달
 	*/
 	@PostMapping("/recordBoardInsert")
 	public String addRecordBoard(RecordBoard recordBoard
@@ -87,7 +87,7 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 	*  작성자 : 김민석
 	*  입  력 : Feed(피드 리스트), RedirectAttributes, @RequestParam
 	*  출  력 : String (주소)
-	*  설  명 : 피드 정보 등록(유저페이지) - post방식 전달
+	*  설  명 : 피드 정보 등록, 사진 파일 등록(유저페이지) - post방식 전달
 	*/
 	@PostMapping("/feedList")
 	public String addFeed(Feed feed, RedirectAttributes attr
@@ -130,7 +130,7 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 	*  작성자 : 김민석
 	*  입  력 : Model, searchKey 검색키워드 종류, searchValue 검색키워드 값
 	*  출  력 : String(주소)
-	*  설  명 : 여행 게시글 조회 (관리자페이지) - get방식 전달
+	*  설  명 : 여행 게시글 조회, 키워드별 검색 기능 (관리자페이지) - get방식 전달
 	*/
 	@GetMapping("/recordBoardListSt")
 	public String getRecordBoardListSt(Model model
@@ -169,7 +169,7 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 	*  작성자 : 김민석
 	*  입  력 : Model, searchKey 검색키워드 종류, searchValue 검색키워드 값
 	*  출  력 : String(주소)
-	*  설  명 : 여행 게시글 조회 (유저페이지) - get방식 전달
+	*  설  명 : 여행 게시글 조회, 키워드별 검색, 여행 유형, 스타일별 검색 (유저페이지) - get방식 전달
 	*/
 	@GetMapping("/recordBoardList")
 	public String getRecordBoardList(Model model
@@ -205,7 +205,7 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 	*  작성자 : 김민석
 	*  입  력 : @RequestParam, Model
 	*  출  력 : String(주소)
-	*  설  명 : 피드 조회 (유저 페이지) - get방식 전달
+	*  설  명 : 게시글 코드에 따른 피드 조회, 여행 상태 조회 (유저 페이지) - get방식 전달
 	*/
 	@GetMapping("/feedList")
 	public String getFeedList(@RequestParam(value = "recordBoardCode") String recordBoardCode, Model model) {
@@ -255,7 +255,7 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 	*  작성자 : 김민석
 	*  입  력 : @RequestParam, Model
 	*  출  력 : String(주소)
-	*  설  명 : 여행 상태에 따른 게시글 조회 (유저 - 검색 버튼 옵션- 페이지) - get방식 전달
+	*  설  명 : 여행 스타일에 따른 게시글 조회 (유저 - 검색 버튼 옵션- 페이지) - get방식 전달
 	*/
 	@GetMapping("/recordBoardByTravelStyle")
 	public String getRecordBoardByTravelStyle(Model model
@@ -270,11 +270,11 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 		return "recordBoard/recordBoardList";
 		
 	}
-	/* 6. 정보 등록 (관리자 권한)
+	/* 6. 여행 게시글 정보 등록 (관리자 권한)
 	*  작성자 : 김민석
 	*  입  력 : Model
 	*  출  력 : String (주소)
-	*  설  명 : 여행 게시글 정보 수정(관리자페이지) - Get방식 전달
+	*  설  명 : 여행 게시글 정보 등록(관리자페이지) - Get방식 전달
 	*/
 	@GetMapping("/recordBoardInsert")
 	public String addRecordBoard(Model model) {
@@ -287,11 +287,11 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 		return "recordBoard/recordBoardInsert";
 	}
 	
-	/* 7. 정보 수정 (관리자 권한)
+	/* 7. 여행 게시글 정보 수정 (관리자 권한)
 	*  작성자 : 김민석
 	*  입  력 : @RequestParam, Model
 	*  출  력 : String (주소)
-	*  설  명 : 여행 게시글 정보 수정(관리자페이지) - Get방식 전달
+	*  설  명 : 여행 게시글 코드에 따른 게시글 정보 수정(관리자페이지) - Get방식 전달
 	*/
 	@GetMapping("/recordBoardModify")
 	public String modifyRecordBoard(@RequestParam(value = "recordBoardCode", required = false) String recordBoardCode,
@@ -305,11 +305,11 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 		return "recordBoard/recordBoardModify";
 	}
 
-	/* 8. 정보 삭제 (관리자 권한)
+	/* 8. 여행 게시글 정보 삭제 (관리자 권한)
 	*  작성자 : 김민석
-	*  입  력 : RecordBoard(여행 게시글 리스트)
+	*  입  력 : RecordBoard(여행 게시글 리스트), HttpServletRequest
 	*  출  력 : String (주소)
-	*  설  명 : 여행 게시글 정보 삭제(관리자페이지) - Get방식 전달
+	*  설  명 : 여행 게시글 정보 삭제, 사진 파일 삭제(관리자페이지) - Get방식 전달
 	*/
 	@GetMapping("/recordBoardRemove")
 	public String removeRecordBoard(RecordBoard recordBoard, HttpServletRequest request) throws IOException {
@@ -334,11 +334,11 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 
 	}
 	
-	/* 9. 정보 삭제 (관리자 권한)
+	/* 9. 피드 정보 삭제 (관리자 권한)
 	*  작성자 : 김민석
-	*  입  력 : Plan(여행 계획 리스트)
-	*  출  력 : String (주소)
-	*  설  명 : 여행 계획 정보 삭제(관리자페이지) - Get방식 전달
+	*  입  력 : RedirectAttributes,HttpServletRequest , @RequestParam(String, String)
+	*  출  력 : String(주소)
+	*  설  명 : 코드에따른 여행 게시글 내에 피드 삭제, 해당 사진 파일 삭제(관리자페이지) - Get방식 전달
 	*/
 	@GetMapping("/feedRemove")
 	public String removeFeed(@RequestParam(value="feedCode", required = false) 			String feedCode
@@ -380,7 +380,7 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 	@RequestMapping("/commentInsert")
 	public String addComment(RecordBoardComment recordBoardComment, Model model) {
 
-		log.info("잘 받아지냐 : {}",recordBoardComment);
+		log.info("게시글 댓글 : {}",recordBoardComment);
 		
 		//reAttr.addAttribute("recordBoardCode", recordBoardComment.getRecordBoardCode());
 		recordBoardService.addComment(recordBoardComment);
@@ -395,7 +395,7 @@ private static final Logger log = LoggerFactory.getLogger(RecordBoardController.
 		return "/recordBoard/recordBoardComment";
 	} 
 	
-	/* 11. 정보 삭제 (유저 권한, 관리자)
+	/* 11. 댓글 정보 삭제 (유저 권한, 관리자)
 	 *  작성자 : 김민석
 	 *  입  력 : RecordBoard(여행 게시글 리스트), @RequestParam, RedirectAttributes
 	 *  출  력 : String (주소)
