@@ -41,7 +41,7 @@ public class MypageController {
   *  설  명 : 여행게시판, 여행일정 리스트 - get방식 전달
   */
 	@GetMapping("/mypage")
-	public String getPayInsert(Model model) {
+	public String getMypageList(Model model) {
 
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 
