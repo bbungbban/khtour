@@ -15,6 +15,7 @@ public class AccomReview {
 	private String reviewContents;
 	private String reviewTime;
 	private Member member;
+	
 	public String getLdgReviewCode() {
 		return ldgReviewCode;
 	}

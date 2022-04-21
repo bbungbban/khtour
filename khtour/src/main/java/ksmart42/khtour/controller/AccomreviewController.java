@@ -76,7 +76,8 @@ public class AccomreviewController {
 		accommodationService.addReviewCnt(accomReview.getLdgCode());
 		return "redirect:/accomreview/accomreviewList";
 	}
-
+	
+	//리뷰 삭제 처리
 	@PostMapping("/deleteReview")
 	@ResponseBody
 	public String deleteReview(@RequestParam(value="ldgReviewCode", required = false) String ldgReviewCode
