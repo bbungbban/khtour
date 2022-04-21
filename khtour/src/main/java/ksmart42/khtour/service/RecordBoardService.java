@@ -312,7 +312,7 @@ public class RecordBoardService {
 	
 
 	/**
-	 * 코드에 따른 피드 정보 삭제
+	 * 댓글 삭제
 	 * @author 김민석
 	 * @param feedCode
 	 */

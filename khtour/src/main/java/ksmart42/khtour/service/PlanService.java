@@ -38,6 +38,8 @@ public class PlanService {
 	
 	/**
 	 * 여행계획 목록 조회
+	 * @author 김민석
+	 * @param List<Plan>
 	 */
 	public List<Plan> getPlanList(Map<String, Object> paramMap){
 		List<Plan> planList = planMapper.getPlanList(paramMap);

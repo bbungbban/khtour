@@ -423,13 +423,6 @@
 	<script th:src="@{/js/prism/prism.js}"></script>
 	<!-- custom -->
 	<script th:src="@{/js/custom.js}"></script>
-	<!-- jquery-nicescroll -->
-	<script th:src="@{/js/jquery-nicescroll/jquery.nicescroll.min.js}"></script>
-	<!-- bootstrap-datepicker -->
-	<script th:src="@{/js/moment.min.js}"></script>
-	<script th:src="@{/js/datepicker/daterangepicker.js}"></script>
-	<!-- bootstrap-timepicker -->
-	<script th:src="@{/js/datepicker/bootstrap-timepicker.js}"></script>
 
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7cec08e17fcfb480dd452f2d9dd9df4c&libraries=services"></script>
@@ -657,16 +650,6 @@
 				el.removeChild(el.lastChild);
 			}
 		}
-		/* $(function(){
-			$(document).on('click','버튼의 선택자',function(){
-				var datetime = $('input[name="datetimes"]').val();
-				//날짜 시간을 subString 문자열 잘라요
-				var  startDate,endDate;
-				$('#startDate').val(startDate);
-				$('#endDate').val(endDate);
-				$('퓨ㅗㅁ선택자').submit();
-			});
-		}); */
 	</script>
 	<!-- 카카오맵 자바스크립트 종료 -->
 	
@@ -714,7 +697,7 @@
 		});
 	</script>
 	<!-- 등록 버튼 자바스크립트 종료 -->
-	<script th:src="@{/js/kmsJs/datepickerKms2.js}"></script>
+	<script th:src="@{/js/kmsJs/datepickerKmsV2.js}"></script>
 	<!-- 출발 날짜 datepciker 자바스크립트 시작 -->
 	<script>
 		$(document).ready(function() {
