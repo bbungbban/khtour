@@ -4,18 +4,18 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ksmart42.khtour.mapper.RoomMapper">
 
-	<resultMap type="Room" 					id="roomResultMap">
-		<id 	column="room_code" 			property="roomCode"/>
-		<result column="ldg_code" 			property="ldgCode"/>
-		<result column="room_name" 			property="roomName"/>
-		<result column="room_explain" 		property="roomExplain"/>
-		<result column="room_personnel" 	property="roomPersonnel"/>
-		<result column="room_type" 			property="roomType"/>
-		<result column="room_checkin" 		property="roomCheckin"/>
-		<result column="room_price" 		property="roomPrice"/>
-		<result column="room_discount" 		property="roomDiscount"/>
-		<result column="room_final_price" 	property="roomFinalPrice"/>
-		<result column="file_path" 			property="roomImagePath"/>
+	<resultMap 	type="Room" 					id="roomResultMap">
+		<id 	column="room_code" 				property="roomCode"/>
+		<result column="ldg_code" 				property="ldgCode"/>
+		<result column="room_name" 				property="roomName"/>
+		<result column="room_explain" 			property="roomExplain"/>
+		<result column="room_personnel" 		property="roomPersonnel"/>
+		<result column="room_type" 				property="roomType"/>
+		<result column="room_checkin" 			property="roomCheckin"/>
+		<result column="room_price" 			property="roomPrice"/>
+		<result column="room_discount" 			property="roomDiscount"/>
+		<result column="room_final_price" 		property="roomFinalPrice"/>
+		<result column="file_path" 				property="roomImagePath"/>
 		<association property="accommodation" 	javaType="Accommodation">
 			<id 	column="ldg_code"			property="ldgCode"/>
 			<result column="ldg_name"			property="ldgName"/>
@@ -40,14 +40,10 @@
 			<id 	column="ldg_code"				property="ldgCode"/>
 			<result column="ldg_name"				property="ldgName"/>
 		</association>
-	
 	</resultMap>
 	
 	<!-- 예약정보 등록 SQL -->
 	<insert id="addReservation" parameterType="Reservation">
-	<selectKey resultType="string" keyProperty="roomReservationCode" order="BEFORE">
-			SELECT sf_room_reservation_code() as roomReservationCode
-	</selectKey>
 		INSERT INTO 
 			tb_room_reservation
 		(   
@@ -59,14 +55,15 @@
 		   ,reservation_name   
 		   ,reservation_phone   
 		   ,user_name    
-		   ,usre_phone    
+		   ,usre_phone
+		   ,room_name  
 		   ,lodgment_day   
 		   ,total_price   
 		   ,reservation_date   
 		) 
 		VALUES 
 		(
-		    #{roomReservationCode}
+		    sf_room_reservation_code()
 		   ,#{memberId}
 		   ,#{ldgCode}
 		   ,#{checkInDate}
@@ -78,7 +75,7 @@
 		   ,#{roomName}
 		   ,#{lodgmentDay}
 		   ,#{totalPrice}
-		   ,CURDATE(
+		   ,CURDATE()
 		);
 	</insert>
 	

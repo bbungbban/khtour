@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import ksmart42.khtour.dto.Reservation;
 import ksmart42.khtour.dto.Room;
 
 @Mapper
@@ -33,5 +34,8 @@ public interface RoomMapper {
 	
 	//객실 목록조화 관리자 페이지
 	public List<Room> getRoomListSt(Map<String, Object> paramMap);
+	
+	
+	public void addReservation(Reservation reservation);
 
 }
