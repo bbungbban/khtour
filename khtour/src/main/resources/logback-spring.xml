@@ -79,12 +79,12 @@
 	</logger> 
 	
 	<!-- ResultSet을 포함한 모든 JDBC 호출 정보를 로그로 남기므로 매우 방대한 양의 로그가 생성된다. --> 
-	<logger name="jdbc.resultset" level="OFF" additivity="false">
+	<logger name="jdbc.resultset" level="off" additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger> 
 	
 	<!-- SQL 결과 조회된 데이터의 table로 표현하여 로그 출력 --> 
-	<logger name="jdbc.resultsettable" level="OFF" additivity="false">
+	<logger name="jdbc.resultsettable" level="info" additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger>
 
