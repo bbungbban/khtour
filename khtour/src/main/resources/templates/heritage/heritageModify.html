@@ -27,6 +27,7 @@
 					</div>
 				</div>
 				<div class="card-body">
+					<!-- 문화재 수정 폼 시작 -->
 					<form th:action="@{/heritage/modifyHeritage}" method="post">
 
 						<input type="hidden" class="form-control" id="heritageCode"
@@ -111,6 +112,7 @@
 						<a type="button" class="btn btn-danger"
 							th:href="@{/heritage/heritageListByItem}">취소</a>
 					</form>
+					<!-- 문화재 수정 폼 종료 -->
 				</div>
 			</div>
 		</div>

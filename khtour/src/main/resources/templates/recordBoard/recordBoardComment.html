@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-
+	<!-- 댓글 등록 시작 -->
 	<div id="commentInsert" th:fragment="fragment-commentInsert">
 		<div class="card p-3 mb-2"
 			th:if="${not #lists.isEmpty(recordBoardCommentList)}"
@@ -27,7 +27,7 @@
 			</div>
 		</div>
 	</div>
-	
+	<!-- 댓글 등록 종료 -->
 
 <th:block layout:fragment="customBodyScript">
 	<script>

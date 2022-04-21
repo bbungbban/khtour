@@ -79,16 +79,6 @@
 								class="form-control" id="planMaterials" name="planMaterials" th:value="${plan.planMaterials}"
 								required="">
 						</div>
-<!-- 						<div class="form-group">
-							<label for="">여행</label> <select
-								class="form-control" name="">
-								<option>:: 여행 일행 유형::</option>
-								<option value="">친구</option>
-								<option value="">혼자</option>
-								<option value="">애인</option>
-								<option value="">가족</option>
-							</select>
-						</div> -->
 						<div class="form-group">
 							<label for="soloParty">여행 인원수 </label> <input type="text"
 								class="form-control" id="soloParty" name="soloParty" required="" th:value="${plan.soloParty}">
@@ -118,10 +108,7 @@
 	<!-- bootstrap-datepicker -->
 	<script th:src="@{/js/moment.min.js}"></script>
 	<script th:src="@{/js/datepicker/daterangepicker.js}"></script>
-	<!-- bootstrap-timepicker -->
-	<script th:src="@{/js/datepicker/bootstrap-timepicker.js}"></script>
-	
-		<script th:src="@{https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/datedropper.js}"></script>
+	<script th:src="@{https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/datedropper.js}"></script>
 	<!-- 출발 날짜 datepciker 자바스크립트 시작 -->
 	<script>
 		$(document).ready(function() {

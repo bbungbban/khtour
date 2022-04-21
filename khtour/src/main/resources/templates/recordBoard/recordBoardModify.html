@@ -6,6 +6,7 @@
 	<title th:text="${title}"></title>
 </th:block>
 <th:block layout:fragment="contentsTitle">
+	<!-- 페이지 타이틀 시작 -->
 	<div class="row justify-content-center">
 		<div class="col-12 col-la-12 col-xl-12">
 			<h2>여행 게시글 수정 페이지</h2>
@@ -19,9 +20,8 @@
 			</nav>
 		</div>
 	</div>
+	<!-- 페이지 타이틀 시작 -->
 </th:block>
-
-
 <th:block layout:fragment="customContents">
 <link th:href="@{https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/datedropper.css}" rel="stylesheet">
 <style>
@@ -41,6 +41,7 @@
 					</div>
 				</div>
 				<div class="card-body">
+					<!-- 여행 게시글 수정 폼 시작 -->
 					<form id="modifyRecordBoardForm"
 						th:action="@{/recordBoard/recordBoardModify}" method="post">
 						<input type="hidden" class="form-control" id="planCode"
@@ -104,6 +105,7 @@
 							th:href="@{/recordBoard/recordBoardListSt}">취소</a>
 						</div>	
 					</form>
+					<!-- 여행 게시글 수정 폼 종료 -->
 
 				</div>
 			</div>
