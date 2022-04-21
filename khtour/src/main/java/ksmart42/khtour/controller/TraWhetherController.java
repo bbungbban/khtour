@@ -11,7 +11,7 @@ public class TraWhetherController {
 	*  작성자 : 김민석
 	*  입  력 : Model
 	*  출  력 : String(주소)
-	*  설  명 : 문화재 조회 (유저페이지) - get방식 전달
+	*  설  명 : API 날씨 정보 조회 (유저페이지) - get방식 전달
 	*/
 	@GetMapping("/traWhether/traWhetherList")
 	public String getWhetherList(Model model) {
