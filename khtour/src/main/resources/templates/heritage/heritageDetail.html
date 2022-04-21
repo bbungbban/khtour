@@ -32,6 +32,8 @@
 		</div>
 		<!-- 문화재 타이틀 종료 -->
 		
+	
+		
 	<!-- 두번째 Row 시작 -->
 	<div class="row justify-content-center">
 		<!-- 문화재 이미지 시작 -->
@@ -39,8 +41,8 @@
 			<div class="card">
 				<div class="card-body text-center">
 					<div class="blog-image">
-						<img th:src="@{${#strings.isEmpty(heritage.heritageImagePath) ? '/images/heritage/서울 숭례문.jpg': '/' + #strings.replace(heritage.heritageImagePath,'\','/')}}" 
-						class="img-fluid" style="height: 420px; line-height: 280px;" alt="...">
+						<img th:src="@{${#strings.isEmpty(heritage.heritageImagePath) ? '/images/heritage/서울 숭례문.jpg': '/' + #strings.replace(heritage.heritageImagePath,'\','/')}}" class="img-fluid"
+							style="height: 420px; line-height: 280px;" alt="...">
 					</div>
 				</div>
 			</div>
@@ -55,7 +57,8 @@
 					<div class="table-responsive text-center">
 						<table class="table">
 							<colgroup>
-								<col style="width: 125px"><col>
+								<col style="width: 125px">
+								<col>
 							</colgroup>
 							<tbody>
 								<tr>
