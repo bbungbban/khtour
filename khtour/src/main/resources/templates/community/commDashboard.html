@@ -11,7 +11,6 @@
 <th:block layout:fragment="customScript">
 	
 	<script>
-
 	$(function() {
 		$(".upVote").on("click",function(){
 			var postCode = $(this).attr('data-postCode');
@@ -189,7 +188,7 @@
 												</div>
 											</td>
 											<td class="text-right pl-0 pr-0">
-											<a th:href="@{/addCommMemberReg(memberId=${session.SID},commCode=${l.commCode})}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" style="z-index: 2; position: relative;">가입</a> 
+										<a th:href="@{/addCommMemberReg(memberId=${session.SID},commCode=${l.commCode})}" class="btn btn-primary btn-sm" role="button" aria-pressed="true" style="z-index: 2; position: relative;">가입</a> 
 										</tr>
 									</tbody>
 								</table>
