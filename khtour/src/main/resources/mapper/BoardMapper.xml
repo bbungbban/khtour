@@ -52,7 +52,7 @@
 				b.member_id = m.member_id;
     </select>
 
- 	<!-- 코드에 따른 1:1문의 게시판 조회 SQL -->
+ 	<!-- 1:1문의 게시판 조회 SQL -->
    	<select id="getBoardByCode" parameterType="String" resultMap="boardResultMap">
       	SELECT
 			b.board_code

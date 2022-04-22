@@ -33,7 +33,40 @@ public class RoomService {
 		this.fileUtil = fileUtil;
 		this.fileMapper = fileMapper;
 	}
+	
+	/**
+	 * 예약정보 관리자 페이지 삭제
+	 */
+	public int deletReservationSt(String roomReservationCode) {
+		
+		int result = roomMapper.deletReservationSt(roomReservationCode);
+		
+		result += roomMapper.deletReservationSt(roomReservationCode);
+		
+		return result;
+	}
+	
+	/**
+	 * 마이페이지 예약 취소 
+	 */
+	public int deletReservation(String roomReservationCode) {
 
+		int result = roomMapper.deletReservation(roomReservationCode);
+
+		result += roomMapper.deletReservation(roomReservationCode);
+
+		return result;
+	}
+	
+	/**
+	 * 예약자 정보 조회
+	 */
+	public List<Reservation> getReservationList(Map<String, Object> paramMap) {
+		List<Reservation> reservationList = roomMapper.getReservationList(paramMap);
+
+		return reservationList;
+	}
+	
 	/**
 	 * 예약정보 등록
 	 */
@@ -137,5 +170,7 @@ public class RoomService {
 
 		return result;
 	}
+
+	
 
 }

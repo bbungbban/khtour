@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import ksmart42.khtour.dto.Plan;
 import ksmart42.khtour.dto.RecordBoard;
+import ksmart42.khtour.dto.Reservation;
 import ksmart42.khtour.service.PlanService;
 import ksmart42.khtour.service.RecordBoardService;
+import ksmart42.khtour.service.RoomService;
 
 @Controller
 @RequestMapping("/mypage")
@@ -25,20 +27,22 @@ public class MypageController {
 	
 	private PlanService planService;
 	private RecordBoardService recordBoardService;
+	private RoomService roomService;
 	
-	public MypageController(PlanService planService, RecordBoardService recordBoardService) {
+	public MypageController(PlanService planService, RecordBoardService recordBoardService, RoomService roomService) {
 		this.planService = planService;
 		this.recordBoardService = recordBoardService;
+		this.roomService = roomService;
 
 	}
 	
 ////GET 방식   ////
 	   
   /* 1. 리스트 조회 (권한별로 확인)
-  *  작성자 : 김민석
+  *  작성자 : 김민석, 안창현
   *  입  력 : Model
   *  출  력 : String(주소)
-  *  설  명 : 여행게시판, 여행일정 리스트 - get방식 전달
+  *  설  명 : 여행게시판, 여행일정 리스트, 예약정보리스트- get방식 전달
   */
 	@GetMapping("/mypage")
 	public String getMypageList(Model model) {
@@ -48,11 +52,12 @@ public class MypageController {
 
 		List<RecordBoard> recordBoardList = recordBoardService.getRecordBoardList(paramMap);
 		List<Plan> planList = planService.getPlanList(paramMap);
-		
-		
+		List<Reservation> reservationList = roomService.getReservationList(paramMap);
+
 		model.addAttribute("title", "결제 정보 등록 페이지");
 		model.addAttribute("recordBoardList", recordBoardList);
 		model.addAttribute("planList", planList);
+		model.addAttribute("reservationList", reservationList);
 		
 		return "/mypage/mypage";
 	}

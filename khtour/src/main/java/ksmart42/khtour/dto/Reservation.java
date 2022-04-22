@@ -15,6 +15,7 @@ public class Reservation {
 	private String lodgmentDay;
 	private String totalPrice;
 	private String reservationDate;
+	private Accommodation accommodation;
 	
 	public String getRoomReservationCode() {
 		return roomReservationCode;
@@ -94,15 +95,21 @@ public class Reservation {
 	public void setReservationDate(String reservationDate) {
 		this.reservationDate = reservationDate;
 	}
+	public Accommodation getAccommodation() {
+		return accommodation;
+	}
+	public void setAccommodation(Accommodation accommodation) {
+		this.accommodation = accommodation;
+	}
 	@Override
 	public String toString() {
 		return "Reservation [roomReservationCode=" + roomReservationCode + ", memberId=" + memberId + ", ldgCode="
 				+ ldgCode + ", checkInDate=" + checkInDate + ", chekOutDate=" + chekOutDate + ", reservationName="
 				+ reservationName + ", reservationPhone=" + reservationPhone + ", userName=" + userName + ", usrePhone="
 				+ usrePhone + ", roomName=" + roomName + ", lodgmentDay=" + lodgmentDay + ", totalPrice=" + totalPrice
-				+ ", reservationDate=" + reservationDate + "]";
-	}	
+				+ ", reservationDate=" + reservationDate + ", accommodation=" + accommodation + "]";
+	}
 	
-
+	
 
 }

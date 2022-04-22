@@ -33,6 +33,75 @@ public class RoomController {
 	public RoomController(RoomService roomService) {
 		this.roomService = roomService;
 	}
+	
+	/*
+	 * 객실  예약 취소 (마이페이지 Get정보 전달)
+	 */
+	@GetMapping("/deletReservationSt")
+	public String deletReservationSt(Reservation reservation) {
+		String roomReservationCode = reservation.getRoomReservationCode();
+		
+		roomService.deletReservationSt(roomReservationCode);
+		System.out.println("정보 삭제 포스트 전달" + roomService.deletReservationSt(roomReservationCode));
+		
+		return "redirect:/room/roomReservationSt";
+		
+	}
+	
+	/*
+	 * 객실  예약 취소 (마이페이지 Get정보 전달)
+	 */
+	@GetMapping("/deletReservation")
+	public String deletReservation(Reservation reservation) {
+		String roomReservationCode = reservation.getRoomReservationCode();
+		
+		roomService.deletReservation(roomReservationCode);
+		System.out.println("정보 삭제 포스트 전달" + roomService.deletReservation(roomReservationCode));
+		
+		return "redirect:/mypage/mypage";
+		
+	}
+	
+	/*
+	 * 예약자 정보 조회(관리자)(Get 정보 전달)
+	 */
+	@GetMapping("/roomReservationSt")
+	public String getReservationList(Model model
+									,@RequestParam(name="searchKey", required=false) String searchKey
+									,@RequestParam(name="searchValue", required=false) String searchValue) {
+
+		Map<String, Object> paramMap = new HashMap<String , Object>();
+		
+		if(searchKey != null) {
+			if("ldgName".equals(searchKey)) {
+				searchKey = "ldg_name";
+			}else if("memberId".equals(searchKey)) {
+				searchKey = "member_id";
+			}else if("reservationName".equals(searchKey)) {
+			searchKey = "reservation_name";
+			}else if("userName".equals(searchKey)) {
+				searchKey = "user_name";
+			}else if("reservationPhone".equals(searchKey)) {
+				searchKey = "reservation_phone";
+			}else if("usrePhone".equals(searchKey)) {
+				searchKey = "usre_phone";
+			}
+		}
+		
+		paramMap.put("searchKey", searchKey);
+		paramMap.put("searchValue", searchValue);
+		log.info("입력 데이터 값 : {}",paramMap);
+		
+		List<Reservation> reservationList = roomService.getReservationList(paramMap);
+		log.info(reservationList + "{}" + "예약자 정보 리스트 조회");
+		
+		model.addAttribute("title", "예약자 정보 관리 페이지");
+		model.addAttribute("reservationList", reservationList);
+		
+		return "room/roomReservationSt";
+	}
+
+	
 	/*
 	 * 예약정보등록(post 정보 전달)
 	 */ 
