@@ -130,8 +130,7 @@
 	</select>
 
 	<!-- 숙박업소 목록 조회 SQL -->
-	<select id="getAccommodationList"
-		resultMap="accommodationResultMap">
+	<select id="getAccommodationList" resultMap="accommodationResultMap">
 		SELECT
 			l.ldg_code
 			,l.ldg_name

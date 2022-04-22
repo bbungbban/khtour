@@ -35,7 +35,16 @@ public interface RoomMapper {
 	//객실 목록조화 관리자 페이지
 	public List<Room> getRoomListSt(Map<String, Object> paramMap);
 	
-	
+	//객실 예약정보 등록
 	public void addReservation(Reservation reservation);
+	
+	//객실 예약정보 조회
+	public List<Reservation> getReservationList(Map<String, Object> paramMap);
+	
+	//객실 예약 취소
+	public int deletReservation(String roomReservationCode);
+	
+	//객실 예약자 정보 삭제(관리자페이지)
+	public int deletReservationSt(String roomReservationCode);
 
 }

@@ -57,6 +57,7 @@ public class LoginInterceptor implements HandlerInterceptor{
       authUser.add("/member/memberList");					// 회원 리스트조회 페이지
       authUser.add("/mypage/mypage");						// 마이페이지
       authUser.add("/board/boardList");						// 1:1문의 게시판 리스트
+      authUser.add("/room/roomReservationSt");				// 예약자 정보 조회 관리자페이지
       
       
       // 일반회원이라면 해당 페이지로 이동 불가

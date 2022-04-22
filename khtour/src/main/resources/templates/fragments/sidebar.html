@@ -68,12 +68,13 @@
 			</li>
 			<li>
 	            <a href="#">
-	               	<i class="fa fa-home"></i> <span>숙박업소 관리 (안창현)</span> <i class="la la-angle-right down-arrow"></i>
+	               	<i class="fa fa-home"></i> <span>숙박업소(안창현)</span> <i class="la la-angle-right down-arrow"></i>
 	            </a>
 	            <ul class="sidebar-submenu">
 	               	<li><a th:href="@{/accommodation/accommodationList}"><i class="la la-minus"></i> <span> 숙박업소 리스트</span> </a></li>
 	               	<li><a th:if="${session.SID != null && session.SLEVEL == '관리자'}" th:href="@{/accommodation/accommodationListSt}"><i class="la la-minus"></i> <span> 숙박업소 상세관리(관리자)</span> </a></li>
 	               	<li><a th:if="${session.SID != null && session.SLEVEL == '관리자'}" th:href="@{/room/roomListSt}"><i class="la la-minus"></i> <span>객실정보 상세관리(관리자) </span> </a></li>
+	               	<li><a th:if="${session.SID != null && session.SLEVEL == '관리자'}" th:href="@{/room/roomReservationSt}"><i class="la la-minus"></i> <span>객실예약정보 관리(관리자) </span> </a></li>
 	            </ul>
          	</li>
         	<li>

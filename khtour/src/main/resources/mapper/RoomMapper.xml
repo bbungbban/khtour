@@ -39,8 +39,63 @@
 		<association property="accommodation" 		javaType="Accommodation">
 			<id 	column="ldg_code"				property="ldgCode"/>
 			<result column="ldg_name"				property="ldgName"/>
+			<result column="ldg_tel"				property="ldgTel"/>
 		</association>
 	</resultMap>
+	
+	 <!-- 예약자 정보 삭제 SQL -->
+  	<delete id="deletReservationSt" parameterType="String">
+  	
+  		DELETE 
+  		FROM 
+  			tb_room_reservation
+  		WHERE 
+  			room_reservation_code = #{roomReservationCode};
+  		
+  	</delete>
+  	
+	 <!-- 예약 취소 SQL -->
+  	<delete id="deletReservation" parameterType="String">
+  	
+  		DELETE 
+  		FROM 
+  			tb_room_reservation
+  		WHERE 
+  			room_reservation_code = #{roomReservationCode};
+  		
+  	</delete>
+	
+	<!-- 예약자 정보 조회 SQL -->
+	<select id="getReservationList" resultMap="reservationResultMap">
+        	SELECT
+				 re.room_reservation_code
+		   		,re.member_id 
+		   		,re.ldg_code 
+		   		,re.checkin_date 
+		   		,re.chekout_date 
+		   		,re.reservation_name 
+		   		,re.reservation_phone 
+		   		,re.user_name 
+		   		,re.usre_phone 
+		   		,re.room_name 
+		   		,re.lodgment_day 
+		   		,re.total_price 
+		   		,re.reservation_date
+		   		,l.ldg_name
+		   		,l.ldg_tel 
+			FROM
+				tb_room_reservation AS re
+			INNER JOIN
+				tb_ldg_information AS l
+			ON
+				re.ldg_code = l.ldg_code
+			<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="searchKey != null and searchKey != '' and searchValue != ''">
+				${searchKey} LIKE CONCAT('%', #{searchValue}, '%')
+		 	</if>
+		</trim>
+		ORDER BY re.room_reservation_code;
+    </select>
 	
 	<!-- 예약정보 등록 SQL -->
 	<insert id="addReservation" parameterType="Reservation">
@@ -75,7 +130,7 @@
 		   ,#{roomName}
 		   ,#{lodgmentDay}
 		   ,#{totalPrice}
-		   ,CURDATE()
+		   ,NOW()
 		);
 	</insert>
 	
