@@ -35,7 +35,7 @@ public class RoomController {
 	}
 	
 	/*
-	 * 객실  예약 취소 (마이페이지 Get정보 전달)
+	 * 관리자 페이지 예약자 정보 삭제
 	 */
 	@GetMapping("/deletReservationSt")
 	public String deletReservationSt(Reservation reservation) {
