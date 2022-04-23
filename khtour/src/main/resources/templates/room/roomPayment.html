@@ -12,7 +12,8 @@
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="#">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page">객실 예약 진행</li>
+					<li class="breadcrumb-item active" aria-current="page">객실 예약
+						진행</li>
 				</ol>
 			</nav>
 		</div>
@@ -20,186 +21,235 @@
 </th:block>
 
 <th:block layout:fragment="customContents">
-	<link th:href="@{https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/datedropper.css}"rel="stylesheet">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/plugins/lmyCss/addCssLmy.css}">
+	<link
+		th:href="@{https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/datedropper.css}"
+		rel="stylesheet">
+	<link rel="stylesheet" type="text/css"
+		th:href="@{/css/plugins/lmyCss/addCssLmy.css}">
 	<style>
 .blog-info {
-	height: 200px;
+ height: 200px;
 }
 
 .form-control {
-	border-color: #e5e5e500;
+ border-color: #e5e5e500;
 }
 
 .roomSummary {
-	font-size: 1rem;
+ font-size: 1rem;
 }
 
 .roomPersonnel {
-	font-size: 0.8rem;
-	opacity: 0.5;
+ font-size: 0.8rem;
+ opacity: 0.5;
 }
 
 .roomCheckIn {
-	font-size: 1rem;
+ font-size: 1rem;
 }
 
 .price {
-	font-size: 20px;
+ font-size: 20px;
 }
 
 .discount {
-	color: red;
+ color: red;
 }
+
 @media screen and (max-width: 375px) {
-   	.dateForm .form-control{font-size: 10px!important;}
+ .dateForm .form-control {
+  font-size: 10px !important;
+ }
 }
+
 .css-1be69yi {
-	background-color: #eee;
-	margin-bottom: 10px;
-	font-size: 15px;
+ background-color: #eee;
+ margin-bottom: 10px;
+ font-size: 15px;
 }
-.css-myk0ma{
-	margin-bottom: 10px;
-	margin-top : 10px;
-	font-size: 13px;
-	opacity: 0.5;
+
+.css-myk0ma {
+ margin-bottom: 10px;
+ margin-top: 10px;
+ font-size: 13px;
+ opacity: 0.5;
 }
+
 .btn.btn-primary {
-    background-color: #ec5552;
-    border-color: #ec5552;
+ background-color: #ec5552;
+ border-color: #ec5552;
 }
-.priceInput{
-	color: #161c2d;
-    border: none;
-    background: none;
-    text-align: right;
-    font-size: 20px;
-    outline: none;
+
+.priceInput {
+ color: #161c2d;
+ border: none;
+ background: none;
+ text-align: right;
+ font-size: 20px;
+ outline: none;
 }
+
 .priceForm {
-	padding:11px 0 10px; 
-	display: flex; 
-	justify-content: space-between; 
-	margin: 18.577px;
+ padding: 11px 0 10px;
+ display: flex;
+ justify-content: space-between;
+ margin: 18.577px;
 }
-#roomReservationForm label.error { 
-	color: red;
-	display: flex;
-    justify-content: flex-end;
+
+#roomReservationForm label.error {
+ color: red;
+ display: flex;
+ justify-content: flex-end;
 }
 </style>
-<form id="roomReservationForm" th:action="@{/room/roomPayment}" method="post">
-	<div class="row">
-		<div class="col-12">
-			<div class="card">
-				<div class="card-body">
-					<div class="row" th:each="r,index: ${room}"
-						style="justify-content: space-between;">
-						<!-- 호텔 객실 세부 내역 -->
-						<div class="col-12 col-md-5 col-lg-5" style="cursor: pointer;">
-							<div class="embed-responsive embed-responsive-4by3">
-								<img
-									th:src="@{${#strings.isEmpty(r.roomImagePath) ? '/images/heritage/서울 숭례문.jpg': '/' + #strings.replace(r.roomImagePath,'\','/')}}"
-									class="card-img-top h-20 embed-responsive-item" alt="...">
+	<form id="roomReservationForm" th:action="@{/room/roomPayment}"
+		method="post">
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="row" th:each="r,index: ${room}"
+							style="justify-content: space-between;">
+							<!-- 호텔 객실 세부 내역 -->
+							<div class="col-12 col-md-5 col-lg-5" style="cursor: pointer;">
+								<div class="embed-responsive embed-responsive-4by3">
+									<img
+										th:src="@{${#strings.isEmpty(r.roomImagePath) ? '/images/heritage/서울 숭례문.jpg': '/' + #strings.replace(r.roomImagePath,'\','/')}}"
+										class="card-img-top h-20 embed-responsive-item" alt="...">
+								</div>
+							</div>
+							<div class="col-12 col-md-7 col-lg-7" style="cursor: pointer;">
+								<div class="">
+									<h3 class="roomName" th:text="${r.roomName}"></h3>
+								</div>
+								<h4 class="roomSummary" th:text="${r.roomExplain}"></h4>
+								<h5 class="roomPersonnel" th:text="${r.roomPersonnel}"></h5>
+								<div class="" style="margin-top: 1.5rem;">
+									<h4 style="display: inline;" th:text="${r.roomType}"></h4>
+									<span id="checkInTime"
+										style="margin-top: 0.3rem; opacity: 0.5; display: inline;"
+										th:text="${r.roomCheckin}"></span> <span id="roomPrice"
+										style="float: right; margin-top: 0.3rem; opacity: 0.5; padding-right: 30px;"
+										th:text="${r.roomPrice}"></span>
+								</div>
+								<div class="" style="float: right; padding-right: 30px;">판매가</div>
+								<div class="col-12"
+									style="text-align: right; float: right; padding-right: 30px;">
+									<span class="discount" th:text="${r.roomDiscount}"
+										style="font-size: 20px;"> </span> <span class="finalprice"
+										th:text="${r.roomFinalPrice}" style="font-size: 20px;">
+									</span> <input type="hidden" id="roomFinalPrice"
+										th:value="${r.roomFinalPrice}">
+								</div>
 							</div>
 						</div>
-						<div class="col-12 col-md-7 col-lg-7" style="cursor: pointer;">
-							<div class="">
-								<h3 class="roomName" th:text="${r.roomName}"></h3>
+						<div class="card-footer" style="padding: 5px;"></div>
+						<div style="display: flex; justify-content: space-around;">
+							<input type="hidden" name="ldgCode" th:value="${room.ldgCode}"
+								readonly="readonly"> <input type="hidden"
+								name="roomName" th:value="${room.roomName}" readonly="readonly">
+							<input type="hidden" name="memberId" th:value="${session.SID}"
+								readonly="readonly"> <i class="feather icon-log-in"
+								style="font-size: 10px;"><span class="sapanFont">체크인
+									날짜 선택</span></i> <i class="feather icon-log-out" style="font-size: 10px;"><span
+								class="sapanFont">체크아웃 날짜 선택</span></i>
+						</div>
+						<div class="dateForm" style="display: flex;">
+							<div class="col-6" style="margin-top: 20px;">
+								<input id="checkIn" type="date" class="form-control input-text"
+									name="checkInDate"
+									style="cursor: pointer; font-size: 15px; text-align: center; padding: 0px; background-color: #e9ecef00; color: #335eea;">
 							</div>
-							<h4 class="roomSummary" th:text="${r.roomExplain}"></h4>
-							<h5 class="roomPersonnel" th:text="${r.roomPersonnel}"></h5>
-							<div class="" style="margin-top: 1.5rem;">
-								<h4 style="display: inline;" th:text="${r.roomType}"></h4>
-								<span id="checkInTime"
-									style="margin-top: 0.3rem; opacity: 0.5; display: inline;"
-									th:text="${r.roomCheckin}"></span> <span id="roomPrice"
-									style="float: right; margin-top: 0.3rem; opacity: 0.5; padding-right: 30px;"
-									th:text="${r.roomPrice}"></span>
-							</div>
-							<div class="" style="float: right; padding-right: 30px;">판매가</div>
-							<div class="col-12"
-								style="text-align: right; float: right; padding-right: 30px;">
-								<span class="discount" th:text="${r.roomDiscount}"
-									style="font-size: 20px;"> </span> <span class="finalprice"
-									th:text="${r.roomFinalPrice}" style="font-size: 20px;">
-								</span>
-								<input type="hidden" id="roomFinalPrice" th:value="${r.roomFinalPrice}">
+							<div class="col-6" style="margin-top: 20px;">
+								<input id="checkOut" type="date" class="form-control input-text"
+									name="chekOutDate"
+									style="cursor: pointer; font-size: 15px; text-align: center; padding: 0px; background-color: #e9ecef00; color: #335eea;">
 							</div>
 						</div>
-					</div>
-					<div class="card-footer" style="padding: 5px;"></div>
-					<div style="display: flex; justify-content: space-around;">
-					<input type="hidden" name="ldgCode" th:value="${room.ldgCode}" readonly="readonly">
-					<input type="hidden" name="roomName" th:value="${room.roomName}" readonly="readonly">
-					<input type="hidden" name="memberId" th:value="${session.SID}" readonly="readonly">
-							<i class="feather icon-log-in" style="font-size: 10px;"><span class="sapanFont">체크인 날짜 선택</span></i>
-							<i class="feather icon-log-out" style="font-size: 10px;"><span class="sapanFont">체크아웃 날짜 선택</span></i>
-					</div>
-					<div class="dateForm" style="display: flex;">
-						<div class="col-6" style="margin-top: 20px;">
-							<input id="checkIn" type="text" class="form-control input-text"
-								name="checkInDate" style="cursor: pointer; font-size: 15px; text-align: center; padding: 0px; background-color: #e9ecef00; color: #335eea;">
+						<div class="card-footer"></div>
+						<div class="form-group">
+							<h5 style="padding-left: 15px;">
+								예약자 정보<span style="color: red;">*</span>
+							</h5>
+							<label for="reservationName"
+								style="opacity: 0.5; padding-left: 15px;">성명<span
+								style="color: red;">*</span></label> <input type="text"
+								class="form-control" placeholder="예약자 성명을 입력해주세요."
+								name="reservationName"
+								style="border-bottom-color: #343a40; margin-bottom: 10px; outline: none;">
+							<label for="reservationPhone"
+								style="opacity: 0.5; padding-left: 15px;">휴대전화 번호<span
+								style="color: red;">*</span></label> <input type="tel"
+								onkeyup="test(this);" class="form-control"
+								placeholder="휴대전화 번호를 입력해주세요." name="reservationPhone"
+								style="border-bottom-color: #343a40; margin-bottom: 10px; outline: none;">
 						</div>
-						<div class="col-6" style="margin-top: 20px;">
-							<input id="checkOut" type="text" class="form-control input-text"
-								name="chekOutDate" style="cursor: pointer; font-size: 15px; text-align: center; padding: 0px; background-color: #e9ecef00; color: #335eea;">
-						</div>
-					</div>
-					<div class="card-footer"></div>
-					<div class="form-group">
-							<h5 style="padding-left: 15px;">예약자 정보<span style="color: red;">*</span></h5>
-							<label for="reservationName" style="opacity: 0.5; padding-left: 15px;">성명<span style="color: red;">*</span></label>
-							<input type="text" class="form-control" placeholder="예약자 성명을 입력해주세요." name="reservationName" style="border-bottom-color: #343a40; margin-bottom: 10px; outline: none;">
-							<label for="reservationPhone" style="opacity: 0.5; padding-left: 15px;">휴대전화 번호<span style="color: red;">*</span></label>
-							<input type="tel" onkeyup="test(this);" class="form-control" placeholder="휴대전화 번호를 입력해주세요." name="reservationPhone" style="border-bottom-color: #343a40; margin-bottom: 10px; outline: none;">
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-12">
-			<div class="card">
-				<div class="card-body">
-				<h5 style="padding-left: 15px;">이용자 정보<span style="color: red;">*</span></h5>
-					<div class="css-1be69yi">상품 이용 시 필요한 필수 정보입니다.</div>
-					<label for="userName" style="opacity: 0.5; padding-left: 15px;">성명<span style="color: red;">*</span></label>
-					<input type="text" class="form-control" placeholder="이용자 성명을 입력해주세요." name="userName" style="border-bottom-color: #343a40; margin-bottom: 10px; outline: none;">
-					<label for="userName" style="opacity: 0.5; padding-left: 15px;">휴대전화 번호<span style="color: red;">*</span></label>
-					<input type="tel" onkeyup="test(this);" class="form-control" placeholder="휴대전화 번호를 입력해주세요." name="usrePhone" style="border-bottom-color: #343a40; margin-bottom: 10px; outline: none;">
-					<div class="css-myk0ma">입력하신 번호는 안심번호로 변경되어 숙소에 전달됩니다.<br> 단, 안심번호로 처리가 어려운 경우에 한해 제한적으로 개인정보 제공 동의에 근거하여, <br> 실제 휴대폰번호가 전달 될 수 있습니다.</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-12">
-			<div class="card">
-				<div class="card-body">
-					<h5 style="padding-left: 15px;">결제 금액</h5>
-					<div class="priceForm">
-					<div>총 숙박일수</div>
-						<div><input class="priceInput" id="day" readonly name="lodgmentDay"><span>일</span></div>
-					</div>
-					<div class="priceForm">
-						<div>총 예약 금액</div>
-						<div><input class="priceInput" id="totalPrice" readonly><span>원</span></div>
-					</div>
-					<div class="card-footer" style="padding: 0px;"></div>
-					<div class="priceForm">
-						<div><b>결제 금액</b></div>
-						<div><input class="priceInput" id="totalPrice2" style="color: red;" readonly name="totalPrice"><span>원</span></div>
-					</div>
-					<div style="display:grid;">
-						<button type="submit" class="btn btn-primary" id="roomReservationForm">예약하기</button>
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-body">
+						<h5 style="padding-left: 15px;">
+							이용자 정보<span style="color: red;">*</span>
+						</h5>
+						<div class="css-1be69yi">상품 이용 시 필요한 필수 정보입니다.</div>
+						<label for="userName" style="opacity: 0.5; padding-left: 15px;">성명<span
+							style="color: red;">*</span></label> <input type="text"
+							class="form-control" placeholder="이용자 성명을 입력해주세요."
+							name="userName"
+							style="border-bottom-color: #343a40; margin-bottom: 10px; outline: none;">
+						<label for="userName" style="opacity: 0.5; padding-left: 15px;">휴대전화
+							번호<span style="color: red;">*</span>
+						</label> <input type="tel" onkeyup="test(this);" class="form-control"
+							placeholder="휴대전화 번호를 입력해주세요." name="usrePhone"
+							style="border-bottom-color: #343a40; margin-bottom: 10px; outline: none;">
+						<div class="css-myk0ma">
+							입력하신 번호는 안심번호로 변경되어 숙소에 전달됩니다.<br> 단, 안심번호로 처리가 어려운 경우에 한해
+							제한적으로 개인정보 제공 동의에 근거하여, <br> 실제 휴대폰번호가 전달 될 수 있습니다.
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</form>
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-body">
+						<h5 style="padding-left: 15px;">결제 금액</h5>
+						<div class="priceForm">
+							<div>총 숙박일수</div>
+							<div>
+								<input class="priceInput" id="day" readonly name="lodgmentDay"><span>일</span>
+							</div>
+						</div>
+						<div class="priceForm">
+							<div>총 예약 금액</div>
+							<div>
+								<input class="priceInput" id="totalPrice" readonly><span>원</span>
+							</div>
+						</div>
+						<div class="card-footer" style="padding: 0px;"></div>
+						<div class="priceForm">
+							<div>
+								<b>결제 금액</b>
+							</div>
+							<div>
+								<input class="priceInput" id="totalPrice2" style="color: red;"
+									readonly name="totalPrice"><span>원</span>
+							</div>
+						</div>
+						<div style="display: grid;">
+							<button type="submit" class="btn btn-primary"
+								id="roomReservationForm">예약하기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
 
 </th:block>
 <th:block layout:fragment="customBodyScript">
@@ -210,7 +260,7 @@
 	<!-- jquery-nicescroll -->
 	<script th:src="@{/js/jquery-nicescroll/jquery.nicescroll.min.js}"></script>
 	<!-- Validation -->
-    <script th:src="@{/js/jquery-validation/jquery.validate.min.js}"></script>
+	<script th:src="@{/js/jquery-validation/jquery.validate.min.js}"></script>
 	<!-- bootstrap-datepicker -->
 	<script th:src="@{/js/moment.min.js}"></script>
 	<!-- bootstrap-timepicker -->
@@ -326,7 +376,7 @@
 			});
 	</script>
 	<!-- 전화번호 하이픈 생성 스크립트 -->
- <script>
+	<script>
     function test(e) {
       var number = e.value.replace(/[^0-9]/g, "");
       var phone = "";
@@ -360,6 +410,6 @@
       e.value = phone;
     }
   </script>
-	
+
 </th:block>
 </html>

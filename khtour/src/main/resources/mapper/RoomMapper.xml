@@ -54,7 +54,7 @@
   		
   	</delete>
   	
-	 <!-- 예약 취소 SQL -->
+	<!-- 예약 취소 SQL -->
   	<delete id="deletReservation" parameterType="String">
   	
   		DELETE 
