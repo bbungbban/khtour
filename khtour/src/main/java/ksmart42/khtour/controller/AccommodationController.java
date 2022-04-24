@@ -47,9 +47,12 @@ public class AccommodationController {
 		this.accommodationMapper = accommodationMapper;
 	
 	}
-	/*
-	 * 숙박업소 조회 페이지이동(Get 정보 전달)
-	 */
+	/* 1. 숙박업소 리스트 페이지(일반회원)
+	*  작성자 : 안창현
+	*  입  력 : Model, searchKey 검색키워드 종류, searchValue 검색키워드 값
+	*  출  력 : String(주소)
+	*  설  명 : 숙박업소 리스트 조회, 키워드별 검색 기능  - get방식 전달
+	*/
 	@GetMapping("/accommodationList")
 	public String getAccommodationList(Model model
 			,@RequestParam(name="searchKey", required=false) String searchKey
@@ -87,12 +90,32 @@ public class AccommodationController {
 		return "accommodation/accommodationList";
 	}
 	
-	/*
-	 * 숙박업소 조회 (관리자)(Get 정보 전달)
-	 */
+	/* 2. 숙박업소 리스트 페이지 (관리자)
+	*  작성자 : 안창현
+	*  입  력 : Model, searchKey 검색키워드 종류, searchValue 검색키워드 값
+	*  출  력 : String(주소)
+	*  설  명 : 숙박업소 리스트 조회, 키워드별 검색 기능  - get방식 전달
+	*/
 	@GetMapping("/accommodationListSt")
-	public String getAccommodationListSt(Model model) {
+	public String getAccommodationListSt(Model model
+										,@RequestParam(name="searchKey", required=false) String searchKey
+										,@RequestParam(name="searchValue", required=false) String searchValue) {
 		Map<String, Object> paramMap = new HashMap<String , Object>();
+		
+
+		if(searchKey != null) {
+			if("ldgName".equals(searchKey)) {
+				searchKey = "ldg_name";
+			}else if("ldgType".equals(searchKey)) {
+				searchKey = "ldg_type";
+			}else if("ldgAddr".equals(searchKey)) {
+			searchKey = "ldg_addr";
+			}
+		}
+		
+		paramMap.put("searchKey", searchKey);
+		paramMap.put("searchValue", searchValue);
+		log.info("입력 데이터 값 : {}",paramMap);
 		
 		List<Accommodation> accommodationList = accommodationService.getAccommodationList(paramMap);
 		
@@ -102,9 +125,13 @@ public class AccommodationController {
 		return "accommodation/accommodationListSt";
 	}
 	
-	/*
-	 * 숙박업소 정보 수정 (관리자) (Post 정보 전달)
-	 */
+
+	/* 3. 숙박업소 정보 수정 (관리자 권한)
+	*  작성자 : 안창현
+	*  입  력 : Accommodation(숙박업소 리스트)
+	*  출  력 : String (주소)
+	*  설  명 : 숙박업소 정보 수정(관리자페이지) - Post방식
+	*/
 	@PostMapping("/modifyAccommodation")
 	public String modifyAccommodation(Accommodation accommodation) {
 		
@@ -114,9 +141,12 @@ public class AccommodationController {
 		return "redirect:/accommodation/accommodationListSt";
 	}
 	
-	/*
-	 * 숙박업소 정보 수정 (관리자) (Get 정보 전달)
-	 */
+	/* 4. 숙박업소 정보 수정 (관리자 권한)
+	*  작성자 : 안창현
+	*  입  력 : @RequestParam, Model
+	*  출  력 : String (주소)
+	*  설  명 : 숙박업소 코드에 따른 게시글 정보 수정(관리자페이지) - Get방식 전달
+	*/
 	@GetMapping("/accommodationModify")
 	public String modifyAccommodation(
 			@RequestParam(value="ldgCode", required = false) String ldgCode
@@ -130,9 +160,12 @@ public class AccommodationController {
 		return "accommodation/accommodationModify";
 	}
 	
-	/*
-	 * 숙박업소 정보 페이지(코드 번호에 따른) 조회
-	 */
+	/* 4. 숙박업소 상세 페이지(일반회원)
+	*  작성자 : 안창현
+	*  입  력 : @RequestParam, Model
+	*  출  력 : String (주소)
+	*  설  명 : 숙박업소 코드에 따른 상세페이지 조회 - Get방식 전달
+	*/
 	@GetMapping("/acoommodationInfo")
 	public String getAcoommodationInfo(
 			@RequestParam(value="ldgCode", required = false) String ldgCode
@@ -179,9 +212,12 @@ public class AccommodationController {
 		return "/accommodation/acoommodationInfo";
 	}
 	
-	/*
-	 * 숙박업소 정보 삭제(post 정보 전달)
-	 */
+	/* 5. 숙박업소 정보 삭제 (관리자 권한)
+	*  작성자 : 안창현
+	*  입  력 : Accommodation(숙박업소리스트), HttpServletRequest
+	*  출  력 : String (주소)
+	*  설  명 : 숙박업소코드에 따른  정보삭제, 사진 파일 삭제(관리자페이지) - Get방식 전달
+	*/
 	@GetMapping("/accommodationRemove")
 	public String removeAccommodation(Accommodation accommodation, HttpServletRequest request) throws IOException {
 		String ldgCode = accommodation.getLdgCode();
@@ -194,18 +230,24 @@ public class AccommodationController {
 	      }else {
 	         fileRealPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/static/");
 	      }
-	    int result = accommodationService.removeAccommodation(ldgCode, fileRealPath);  
+	    int result = accommodationService.removeRoomByrCode(ldgCode);
+	    result += accommodationService.removeReviewByrCode(ldgCode);
+	    result += accommodationService.removeReservationByrCode(ldgCode);
+	    result += accommodationService.removeAccommodation(ldgCode, fileRealPath);
 		
-		accommodationService.removeAccommodation(ldgCode, fileRealPath);
+		
 		System.out.println("정보 삭제 포스트 전달" + result);
 		
 		return "redirect:/accommodation/accommodationListSt";
 		
 	}
 			
-	/*
-	 * 숙박업소 등록(Post 정보 전달)
-	 */
+	/* 6. 숙박업소 등록 (관리자 권한)
+	*  작성자 : 안창현
+	*  입  력 : Accommodation(여행게시글 리스트), @RequestParam, HttpServletRequest
+	*  출  력 : String (주소)
+	*  설  명 : 숙박업소 정보 등록(관리자페이지), 사진 파일 등록 - post방식 전달
+	*/
 	@PostMapping("/accommodationInsert")
 	public String addAccommodation(Accommodation accommodation
 								   ,@RequestParam MultipartFile[] accommodationImageFiles
@@ -224,10 +266,12 @@ public class AccommodationController {
 		return "redirect:/accommodation/accommodationListSt";
 	}
 
-	/*
-	 * 숙박업소 중복 체크
-	 */
-	
+	/* 7. 숙박업소명 중복체크 (관리자 권한)
+	*  작성자 : 안창현
+	*  입  력 : @RequestParam, ldgName
+	*  출  력 : boolean(중복 체크 후 true 또는  false)
+	*  설  명 : 숙박업소 명 중복체크- post방식 전달
+	*/
 	  @PostMapping("/isNameCheck")
 	  @ResponseBody 
 	  public boolean isNameCheck(@RequestParam(value = "ldgName") String ldgName) { 
@@ -241,9 +285,12 @@ public class AccommodationController {
 		  return isNameCheck;
 	  }
 	
-	/*
-	 * 숙박업소 등록(Get 정보 전달)
-	 */
+	  /* 8. 숙박업소 등록 페이지 (관리자 권한)
+		*  작성자 : 안창현
+		*  입  력 : Model
+		*  출  력 : String
+		*  설  명 : 숙박업소 등록페이지 - Get방식 전달
+		*/
 	@GetMapping("/accommodationInsert")
 	public String addAccommodation(Model model) {
 		
@@ -252,9 +299,12 @@ public class AccommodationController {
 		return "accommodation/accommodationInsert";
 	}
 	
-	/*
-	 * 숙박업소 코드에 맞는 리뷰페이지로 이동 
-	 */
+	/* 9. 숙박업소 코드에 따른 리뷰살세페이지
+	*  작성자 : 안창현
+	*  입  력 : Model, @RequestParam
+	*  출  력 : String
+	*  설  명 : 숙박업소 코드에 따른 리뷰 상세페이지 이동 - Get방식 전달
+	*/
 	@GetMapping("/accomreviewList")
 	public String getaccomReviewList(
 			@RequestParam(value="ldgCode", required = false)String ldgCode

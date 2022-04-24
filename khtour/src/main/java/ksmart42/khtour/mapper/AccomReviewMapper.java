@@ -12,7 +12,6 @@ public interface AccomReviewMapper {
 	
 	// ldg_code에 맞는 리뷰 조회
 	public List<AccomReview> getAccomReviewList(String ldgCode);
-	
 	//리뷰조회
 	public Accommodation getLdgByCode(String ldgCode);
 	

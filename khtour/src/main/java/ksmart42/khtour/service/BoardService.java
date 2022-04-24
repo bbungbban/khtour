@@ -59,6 +59,16 @@ public class BoardService {
 
 		return result;
 	}
+	
+	/**
+	 * 1:1 문의게시판 코드에 따른 답글 정보 삭제
+	 * @author 안창현
+	 * @param boardCode
+	 */
+	public int removeReplyBybCode(String boardCode) {
+		
+		return boardMapper.removeReplyBybCode(boardCode);
+	}
 
 	/**
 	 * 1:1문의 게시판 조회수 증가

@@ -32,8 +32,12 @@ public class AccomreviewController {
 		this.accommodationService = accommodationService;
 
 	}
-
-	// ldgCode(숙박업소)에 따른 리뷰를 화면에 조회
+	/* 1. 숙박업소코드에 따른 리뷰 상세 페이지(일반회원)
+	*  작성자 : 안창현
+	*  입  력 : @RequestParam, Model
+	*  출  력 : String (주소)
+	*  설  명 : 숙박업소코드에 따른 리뷰 페이지 조회 - Get방식 전달
+	*/
 	@GetMapping("/accomreviewList")
 	public String getaccomReviewList(Model model,
 			@RequestParam(value = "ldgCode", required = false) String ldgCode) {
@@ -64,7 +68,12 @@ public class AccomreviewController {
 		return "/accomreview/accomreviewList";
 	}
 
-	// 리뷰 등록(post 정보 전달)
+	/* 2. 숙박업소 리뷰 등록 
+	*  작성자 : 안창현
+	*  입  력 : Accommodation(여행게시글 리스트), RedirectAttributes
+	*  출  력 : String (주소)
+	*  설  명 : 숙박업소 리뷰 등록 (관리자페이지) - post방식 전달
+	*/
 	@PostMapping("/accomreviewList")
 	public String addAccomReview(AccomReview accomReview, RedirectAttributes attr) {
 
@@ -77,7 +86,13 @@ public class AccomreviewController {
 		return "redirect:/accomreview/accomreviewList";
 	}
 	
-	//리뷰 삭제 처리
+
+	/* 3. 숙박업소 리뷰 삭제
+	*  작성자 : 안창현
+	*  입  력 : Model, @RequestParam
+	*  출  력 : String (주소)
+	*  설  명 : 숙박업소 리뷰 삭제 - Post방식 전달
+	*/
 	@PostMapping("/deleteReview")
 	@ResponseBody
 	public String deleteReview(@RequestParam(value="ldgReviewCode", required = false) String ldgReviewCode
@@ -86,7 +101,6 @@ public class AccomreviewController {
 	{
 	//삭제하기
 	if(ldgReviewCode != null)   accomReviewService.deleteReview(ldgReviewCode);
-	      
 	      
 	//select로 불러오기
 	List<AccomReview> accomoReviewList = accomReviewService.getAccomReviewList(ldgCode);

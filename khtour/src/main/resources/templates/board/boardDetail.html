@@ -25,6 +25,7 @@
 	background-color: #f3f5f700;
 	border-color: #f3f5f700;
 }
+
 .replyContent {
 	font-size: 20px;
 	margin: 10px;
@@ -37,7 +38,8 @@
 					<div>
 						<a type="button" style="padding: 10px; padding-left: 0px;"
 							onclick="history.back(-1)">돌아가기</a> <a type="button"
-							class="btn addReview" data-toggle="modal" th:if="${session.SLEVEL != '일반회원'}"
+							class="btn addReview" data-toggle="modal"
+							th:if="${session.SLEVEL != '일반회원'}"
 							data-target=".bd-example-modal-lg" style="float: right;">답글
 							작성하기</a>
 					</div>
@@ -64,6 +66,12 @@
 					<div>
 						<p style="font-size: 18px; margin: 40px"
 							th:text="${board.boardContent}"></p>
+					</div>
+					<div class="review-bottom"
+						style="display: flex; justify-content: flex-end; padding: 0px">
+						<button class="btn" id="swal-delete-board"
+							th:unless="${session.SID != board.memberId}"
+							th:data-boardCd="${board.boardCode}">삭제</button>
 					</div>
 					<div class="card-footer"></div>
 
@@ -119,12 +127,12 @@
 									</div>
 									<div class="card-footer"></div>
 									<p style="font-size: 18px; margin: 40px"
-											th:text="${rp.boardReplyContent}"></p>
+										th:text="${rp.boardReplyContent}"></p>
 									<div class="card-footer"></div>
 									<div class="review-bottom"
 										style="display: flex; justify-content: flex-end; padding: 0px">
 										<button class="btn" id="swal-delete-boardReply"
-											th:unless="${session.SID != rp.memberId}"
+											th:unless="${session.SLEVEL == '일반회원'}"
 											th:data-boardReplyCd="${rp.boardReplyCode}">삭제</button>
 									</div>
 								</div>
@@ -188,7 +196,7 @@
 			          if (result.value) {
 			            swalWithBootstrapButtons(
 			              '삭제완료',
-			              '파일이 안전하게 삭제되었습니다.',
+			              '문의 답글이 삭제되었습니다.',
 			              'success'
 			            )
 			            location.href = '/board/deleteReply?boardReplyCode=' + boardReplyCd;
@@ -198,7 +206,46 @@
 			          ) {
 			            swalWithBootstrapButtons(
 			              '취소',
-			              '사진은 안전하게 보호됩니다.',
+			              'error'
+			            )
+			          }
+			        });	
+			});
+			
+		});
+	</script>
+	<script>
+		$(function(){
+			$(document).on('click','#swal-delete-board',function(){
+				var boardCd = $(this).attr('data-boardCd');
+			      const swalWithBootstrapButtons = swal.mixin({
+			          confirmButtonClass: 'btn btn-success',
+			          cancelButtonClass: 'btn btn-danger',
+			          buttonsStyling: false,
+			        });
+
+			        swalWithBootstrapButtons({
+			          title: '정말 삭제 하시겠습니까?',
+			          text: "삭제 클릭시 해당 정보는 복구 할 수 없습니다.",
+			          type: 'warning',
+			          showCancelButton: true,
+			          confirmButtonText: '네',
+			          cancelButtonText: '아니오',
+			          reverseButtons: false
+			        }).then((result) => {
+			          if (result.value) {
+			            swalWithBootstrapButtons(
+			              '삭제완료',
+			              '1:1문의 게시글이 삭제되었습니다.',
+			              'success'
+			            )
+			            location.href = '/board/boardRemove?boardCode=' + boardCd;
+			          } else if (
+			            // Read more about handling dismissals
+			            result.dismiss === swal.DismissReason.cancel
+			          ) {
+			            swalWithBootstrapButtons(
+			              '취소',
 			              'error'
 			            )
 			          }

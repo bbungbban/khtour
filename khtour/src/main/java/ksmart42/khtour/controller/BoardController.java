@@ -95,7 +95,8 @@ public class BoardController {
 	@GetMapping("/boardRemove")
 	public String removeBoard(Board board) {
 		String boardCode = board.getBoardCode();
-
+		
+		boardService.removeReplyBybCode(boardCode);
 		boardService.removeBoard(boardCode);
 		System.out.println("정보 삭제 포스트 전달" + boardService.removeBoard(boardCode));
 
@@ -146,7 +147,7 @@ public class BoardController {
 	public String deleteReply(Model model, BoardReply boardReply, RedirectAttributes attr,
 			@RequestParam(name = "boardReplyCode", required = false) String boardReplyCode) {
 
-		log.info(boardReply + "리뷰삭제");
+		log.info(boardReply + "답글삭제");
 
 		boardService.deleteReply(boardReplyCode);
 

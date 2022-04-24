@@ -25,6 +25,13 @@ public interface AccommodationMapper {
 	
 	//숙박업소 삭제
 	public int removeAccommodation(String ldgCode);
+	//숙박업소 코드에 따른 댓글 삭제
+	public int removeReviewByrCode(String ldgCode);
+	//숙박업소 코드에 따른 객실 삭제
+	public int removeRoomByrCode(String ldgCode);
+	//숙박업소 코드에 따른 객실예약 정보 삭제
+	public int removeReservationByrCode(String ldgCode);
+		
 	
 	//숙박업소 수정
 	public int modifyAccommodation(Accommodation accommodation);
@@ -53,5 +60,6 @@ public interface AccommodationMapper {
 	
 	//숙박업소 등록 파일 정보 조회
 	public FileDto fileInfoByFileIdx(String ldgCode);
+
 	
 }

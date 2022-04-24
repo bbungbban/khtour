@@ -171,7 +171,13 @@
 		INNER JOIN
 			tb_ldg_information AS l
 		ON
-			r.ldg_code = l.ldg_code;
+			r.ldg_code = l.ldg_code
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="searchKey != null and searchKey != '' and searchValue != ''">
+				${searchKey} LIKE CONCAT('%', #{searchValue}, '%')
+		 	</if>
+		</trim>
+		ORDER BY r.room_code;
 	</select>
 	
 	<!-- 객실 조회 SQL -->
