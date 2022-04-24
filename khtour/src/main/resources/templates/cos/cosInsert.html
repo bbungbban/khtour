@@ -174,7 +174,7 @@
 									</div>
 									<div class="tab-content">
 										<div class="tab-pane active" id="tab10">
-											<table id="table-selected" class="table table-striped table-bordered">
+											<table class="table table-striped table-bordered">
 												<thead style="text-align: center;">
 													<tr>
 														<th>코드</th>
@@ -223,7 +223,7 @@
 											</table>
 										</div>
 										<div class="tab-pane" id="tab11">
-											<table id="table-selected" class="table table-striped table-bordered">
+											<table class="table table-striped table-bordered">
 												<thead style="text-align: center;">
 													<tr>
 														<th>코드</th>
@@ -272,7 +272,7 @@
 											</table>
 										</div>
 										<div class="tab-pane" id="tab12">
-											<table id="table-selected" class="table table-striped table-bordered">
+											<table class="table table-striped table-bordered">
 												<thead style="text-align: center;">
 													<tr>
 														<th>코드</th>
@@ -321,7 +321,7 @@
 											</table>
 										</div>
 										<div class="tab-pane" id="tab13">
-											<table id="table-selected" class="table table-striped table-bordered">
+											<table class="table table-striped table-bordered">
 												<thead style="text-align: center;">
 													<tr>
 														<th>코드</th>
@@ -370,7 +370,7 @@
 											</table>
 										</div>
 										<div class="tab-pane" id="tab14">
-											<table id="table-selected" class="table table-striped table-bordered">
+											<table class="table table-striped table-bordered">
 												<thead style="text-align: center;">
 													<tr>
 														<th>코드</th>
@@ -477,7 +477,6 @@
 	<!-- **********************************  End ContentsWrap ********************************** -->
 </th:block>
 <th:block layout:fragment="customBodyScript">
-	<script th:src="@{/js/KmyJs/postcode.v2.js}"></script>
 	<script>
 		$(function(){
 			$(document).on('click', '.musCheck1', function(){
@@ -510,11 +509,6 @@
 	<script th:src="@{/js/moment.min.js}"></script>
 
 	<!--  datepicker  -->
-	<script th:src="@{/js/datepicker/daterangepicker.js}"></script>
 	<script th:src="@{/js/datepicker/bootstrap-timepicker.js}"></script>
-
-	<!-- summernote -->
-	<script th:src="@{/js/simplemde/simplemde.min.js}"></script>
-	<script th:src="@{/js/simplemde/simplemde.js}"></script>
 </th:block>
 </html>

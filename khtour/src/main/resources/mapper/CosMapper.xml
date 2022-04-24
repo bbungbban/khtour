@@ -364,7 +364,6 @@
 		WHERE
 			c.theme_category = '민속';
 	</select>
-	
 
 	<!-- 코스 수정 SQL -->
 	<update id="modifyCos" parameterType="Cos">

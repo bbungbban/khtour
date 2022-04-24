@@ -68,6 +68,15 @@ public class ExhibService {
 	}
 	
 	/**
+	 * 유저 전시회 날짜 검색
+	 * @param exhibEnd 
+	 * @param exhibStart 
+	 */
+	public List<Exhib> exhibDate(String exhibStart, String exhibEnd) {
+		List<Exhib> exhibDate = exhibMapper.exhibDate(exhibStart,exhibEnd);
+		return exhibDate;
+	}
+	/**
 	 * 유저 전시회 조회
 	 */
 	public List<Exhib> ingExhib(){

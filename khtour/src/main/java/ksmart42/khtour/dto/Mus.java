@@ -6,7 +6,9 @@ public class Mus {
 	private String musLargeCateCode;
 	private String musLargeCateName;
 	private String musName;
+	private String zip;
 	private String musAddr;
+	private String addr2;
 	private String musDetail;
 	private String musSite;
 	private String musNum;
@@ -41,11 +43,24 @@ public class Mus {
 		this.musName = musName;
 	}
 	
+	public String getZip() {
+		return zip;
+	}
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
 	public String getMusAddr() {
 		return musAddr;
 	}
 	public void setMusAddr(String musAddr) {
 		this.musAddr = musAddr;
+	}
+	
+	public String getAddr2() {
+		return addr2;
+	}
+	public void setAddr2(String addr2) {
+		this.addr2 = addr2;
 	}
 	public String getMusDetail() {
 		return musDetail;
@@ -92,9 +107,9 @@ public class Mus {
 	@Override
 	public String toString() {
 		return "Mus [musCode=" + musCode + ", musLargeCateCode=" + musLargeCateCode + ", musLargeCateName="
-				+ musLargeCateName + ", musName=" + musName + ", musAddr=" + musAddr + ", musDetail=" + musDetail
-				+ ", musSite=" + musSite + ", musNum=" + musNum + ", musDisclose=" + musDisclose + ", musStart="
-				+ musStart + ", musEnd=" + musEnd + ", musClose=" + musClose + "]힘들다아아아아악";
+				+ musLargeCateName + ", musName=" + musName + ", zip=" + zip + ", musAddr=" + musAddr + ", addr2="
+				+ addr2 + ", musDetail=" + musDetail + ", musSite=" + musSite + ", musNum=" + musNum + ", musDisclose="
+				+ musDisclose + ", musStart=" + musStart + ", musEnd=" + musEnd + ", musClose=" + musClose + "]";
 	}
 	
 	

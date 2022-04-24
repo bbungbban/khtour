@@ -76,7 +76,26 @@
       WHERE 
          e.exhib_name = #{exhibName};
    </select>
-
+	
+	<!-- 전시회 날짜별 조회 -->
+	<select id="exhibDate" resultMap="exhibResultMap">
+	SELECT 
+		 exhib_code
+		,mus_code
+		,exhib_cate
+		,exhib_cate_name
+		,exhib_name
+		,exhib_start
+		,exhib_end
+		,exhib_con
+		,exhib_current
+		,exhib_page
+	FROM
+		tb_exhib
+	WHERE
+	 <![CDATA[exhib_start>= #{exhibStart} AND exhib_end <=#{exhibEnd}]]> ;
+	</select>
+	
 	<!-- 코드에 따른 전시회 조회 SQL -->
 	<select id="getExhibByCode" parameterType="String" resultMap="exhibResultMap">
 		SELECT

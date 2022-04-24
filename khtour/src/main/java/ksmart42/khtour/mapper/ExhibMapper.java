@@ -24,6 +24,9 @@ public interface ExhibMapper {
 	public List<Exhib> expectedExhib();
 	public List<Exhib> endExhib();
 	
+	//유저 전시회 날짜로 조회
+	public List<Exhib> exhibDate(String exhibStart, String exhibEnd);
+	
 	// 전시회 수정(전시회코드)
 	public int modifyExhib(Exhib exhib);
 	

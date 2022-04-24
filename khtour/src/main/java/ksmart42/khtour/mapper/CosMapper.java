@@ -33,4 +33,6 @@ public interface CosMapper {
 	
 	// 코스 이미지 등록 파일 정보 조회
 	public FileDto fileInfoByFileIdx(String cosCode);
+	
+	
 }

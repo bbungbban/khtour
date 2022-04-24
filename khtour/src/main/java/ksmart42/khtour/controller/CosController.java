@@ -44,7 +44,6 @@ public class CosController {
 		List<Cos> cosReligion = cosService.cosReligion();
 		List<Cos> cosFolklore = cosService.cosFolklore();
 		
-		
 		model.addAttribute("title", "코스 조회 페이지");
 	    model.addAttribute("cosHistory", cosHistory);
 	    model.addAttribute("cosHumanities", cosHumanities);
@@ -52,8 +51,10 @@ public class CosController {
 	    model.addAttribute("cosReligion", cosReligion);
 	    model.addAttribute("cosFolklore", cosFolklore);
 	    model.addAttribute("cosList", cosList);
+	    
 	    log.info("코스유저:{}",cosList);
 	    log.info("카테고리 별 코스 조회:{}",cosHistory);
+	    
 		return "cos/cosBoardList";
 	}
 	
