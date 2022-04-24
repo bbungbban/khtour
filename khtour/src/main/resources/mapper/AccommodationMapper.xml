@@ -76,6 +76,48 @@
 		WHERE
 		ldg_code = #{ldgCode};
 	</delete>
+	
+	<!-- 숙박업소 코드에 따른 객실 삭제 SQL -->
+	<delete id="removeRoomByrCode" parameterType="String">
+		DELETE 
+			r
+		FROM
+			tb_ldg_information AS l
+			INNER join
+			tb_room_info AS r
+			on
+			l.ldg_code = r.ldg_code
+		where
+			r.ldg_code = #{ldgCode};
+	</delete>
+	
+	<!-- 숙박업소 코드에 따른 리뷰 삭제 SQL -->
+	<delete id="removeReviewByrCode" parameterType="String">
+		DELETE 
+			lr
+		FROM
+			tb_ldg_information AS l
+			INNER join
+			tb_ldg_review AS lr
+			on
+			l.ldg_code = lr.ldg_code
+		where
+			lr.ldg_code = #{ldgCode};
+	</delete>
+	
+	<!-- 숙박업소 코드에 따른 예약정보 삭제 SQL -->
+	<delete id="removeReservationByrCode" parameterType="String">
+		DELETE 
+			r
+		FROM
+			tb_ldg_information AS l
+			INNER join
+			tb_room_reservation AS r
+			on
+			l.ldg_code = r.ldg_code
+		where
+			r.ldg_code = #{ldgCode};
+	</delete>
 
 	<!-- 숙박업소 등록 SQL -->
 	<insert id="addAccommodation" parameterType="Accommodation">

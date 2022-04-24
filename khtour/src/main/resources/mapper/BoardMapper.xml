@@ -74,6 +74,31 @@
          	board_code = #{boardCode};
    	</select>
    	
+   	<!-- 1:1문의 게시글 삭제 -->
+  	<delete id="removeBoard" parameterType="String">
+  	
+  		DELETE 
+  		FROM 
+  			tb_board
+  		WHERE 
+  			board_code = #{boardCode};
+  		
+  	</delete>
+   	
+   	<!-- 1:1문의 게시클 코드에 따른 문의답글 삭제 SQL -->
+	<delete id="removeReplyBybCode" parameterType="String">
+		DELETE 
+			br
+		FROM
+			tb_board AS b
+			INNER join
+			tb_board_reply AS br
+			on
+			b.board_code = br.board_code
+		where
+			br.board_code = #{boardCode};
+	</delete>
+   	
    	<!-- 1:1문의 등록 SQL -->
 	<insert id="addBoard" parameterType="Board">
 	<selectKey resultType="String" keyProperty="boardReRef" order="BEFORE">  

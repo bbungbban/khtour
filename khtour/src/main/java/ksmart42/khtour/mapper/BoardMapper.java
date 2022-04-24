@@ -25,6 +25,8 @@ public interface BoardMapper {
 		
 	// 1:1문의게시판 삭제
 	public int removeBoard(String boardCode);
+	// 1:1문의 코드에 따른 답글 삭제
+	public int removeReplyBybCode(String ldgCode);
 	
 	// 1:1문의 조회수 업데이트
 	public int boardHitUpdate(String boardCode);

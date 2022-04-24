@@ -11,9 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import ksmart42.khtour.dto.AccomReview;
 import ksmart42.khtour.dto.Plan;
 import ksmart42.khtour.dto.RecordBoard;
 import ksmart42.khtour.dto.Reservation;
+import ksmart42.khtour.service.AccomReviewService;
 import ksmart42.khtour.service.PlanService;
 import ksmart42.khtour.service.RecordBoardService;
 import ksmart42.khtour.service.RoomService;
@@ -42,7 +44,7 @@ public class MypageController {
   *  작성자 : 김민석, 안창현
   *  입  력 : Model
   *  출  력 : String(주소)
-  *  설  명 : 여행게시판, 여행일정 리스트, 예약정보리스트- get방식 전달
+  *  설  명 : 여행게시판, 여행일정 리스트, 예약정보리스트, 리뷰리스트 - get방식 전달
   */
 	@GetMapping("/mypage")
 	public String getMypageList(Model model) {

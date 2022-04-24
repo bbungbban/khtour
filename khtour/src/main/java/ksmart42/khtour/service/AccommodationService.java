@@ -169,6 +169,37 @@ public class AccommodationService {
 	      }
 	      return result;
 	   }
+	
+	/**
+	 * 숙박업소 코드에 따른 댓글 정보 삭제
+	 * @author 안창현
+	 * @param ldgCode
+	 */
+	public int removeReviewByrCode(String ldgCode) {
+		
+		return accommodationMapper.removeReviewByrCode(ldgCode);
+	}
+	
+	/**
+	 * 숙박업소 코드에 따른 객실 정보 삭제
+	 * @author 안창현
+	 * @param ldgCode
+	 */
+	public int removeRoomByrCode(String ldgCode) {
+		
+		return accommodationMapper.removeRoomByrCode(ldgCode);
+	}
+	
+	/**
+	 * 숙박업소 코드에 따른 객실예약 정보 삭제
+	 * @author 안창현
+	 * @param ldgCode
+	 */
+	public int removeReservationByrCode(String ldgCode) {
+		
+		return accommodationMapper.removeReservationByrCode(ldgCode);
+	}
+	
 		
 	
 	/**

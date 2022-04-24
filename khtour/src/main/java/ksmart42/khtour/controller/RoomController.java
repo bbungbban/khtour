@@ -133,12 +133,25 @@ public class RoomController {
 	 * 객실 정보 조회 (관리자)(Get 정보 전달)
 	 */
 	@GetMapping("/roomListSt")
-	public String getRoomList(Model model) {
+	public String getRoomList(Model model
+							,@RequestParam(name="searchKey", required=false) String searchKey
+							,@RequestParam(name="searchValue", required=false) String searchValue) {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 
-		List<Room> roomList = roomService.getRoomList(paramMap);
+		
+		if(searchKey != null) {
+			if("ldgName".equals(searchKey)) {
+				searchKey = "ldg_name";
+			}
+		}
+		
+		paramMap.put("searchKey", searchKey);
+		paramMap.put("searchValue", searchValue);
+		log.info("입력 데이터 값 : {}",paramMap);
 
+		List<Room> roomList = roomService.getRoomList(paramMap);
 		log.info("객실관리자페이지" + roomList);
+		
 		model.addAttribute("title", "객실 관리자페이지");
 		model.addAttribute("roomList", roomList);
 

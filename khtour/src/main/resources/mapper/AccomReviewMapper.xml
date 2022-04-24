@@ -58,10 +58,7 @@
 		ON
 			r.member_id = m.member_id
 		WHERE
-		  	r.ldg_code = #{ldgCode}
-	    Order BY 
-			r.ldg_review_code DESC
-			LIMIT 10;	
+		  	r.ldg_code = #{ldgCode};
 </select>
 
 <!-- 리뷰 개수 조회  -->
