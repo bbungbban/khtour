@@ -48,7 +48,6 @@
 										<th>카테고리</th>
 										<th>이름</th>
 										<th>주소</th>
-										<th>홈페이지</th>
 										<th>전화번호</th>
 										<th>체험활동유/무</th>
 										<th>운영시간</th>
@@ -62,8 +61,7 @@
 										<td th:text="${l.musCode}"></td>
 										<td th:text="${l.musLargeCateName}"></td>
 										<td th:text="${l.musName}"></td>
-										<td th:text="${l.musAddr}"></td>
-										<td th:text="${l.musSite}"></td>
+										<td th:text="|${l.musAddr},${l.addr2}|"></td>
 										<td th:text="${l.musNum}"></td>
 										<td th:text="${l.musDisclose}"></td>
 										<td th:text="|${l.musStart}~ ${l.musEnd}|"></td>
@@ -71,7 +69,7 @@
 										<td th:text="${l.musClose}"></td>
 										<td>
 											<a class="btn btn-primary btn-icon btn-sm mb-1 mr-2 mb-1" th:href="@{/mus/musModify(musCode=${l.musCode})}">
-												<i class="la la-edit"></i>
+												<i class="la la-edit" style="line-height:2.3;"></i>
 											</a>
 											<button class="btn btn-danger btn-icon btn-sm mb-1" id="swal-delete-mus" th:data-musCd="${l.musCode}">
 												<i class="fa fa-trash-o"></i>
@@ -85,7 +83,6 @@
 										<th>카테고리</th>
 										<th>이름</th>
 										<th>주소</th>
-										<th>홈페이지</th>
 										<th>전화번호</th>
 										<th>체험활동유/무</th>
 										<th>운영시간</th>
@@ -147,27 +144,14 @@
 		});
 	</script>
 	<!-- delbtn -->
-	<script th:src="@{/js/sweetalert2/sweetalert2.min.js}"
-		aria-hidden="true"></script>
-	<script th:src="@{/js/sweetalert2/sweetalert2-custom.js}"
-		aria-hidden="true"></script>
+	<script th:src="@{/js/sweetalert2/sweetalert2.min.js}" aria-hidden="true"></script>
+	<script th:src="@{/js/sweetalert2/sweetalert2-custom.js}" aria-hidden="true"></script>
 	<!-- datatables -->
 	<script th:src="@{/js/datatables/datatables.js}"></script>
-	<script th:src="@{/js/datatables/dataTables.buttons.min.js}"></script>
-	<script th:src="@{/js/datatables/buttons.flash.min.js}"></script>
-	<script th:src="@{/js/datatables/jszip.min.js}"></script>
-	<script th:src="@{/js/datatables/pdfmake.min.js}"></script>
-	<script th:src="@{/js/datatables/vfs_fonts.js}"></script>
-	<script th:src="@{/js/datatables/buttons.html5.min.js}"></script>
-	<script th:src="@{/js/datatables/buttons.print.min.js}"></script>
 	<!-- fixedHeader -->
 	<script th:src="@{/js/datatables/dataTables.fixedHeader.min.js}"></script>
-	<!-- dataTables select -->
-	<script th:src="@{/js/datatables/dataTables.select.min.js}"></script>
 	<!-- dataTables.fixedColumns.min -->
 	<script th:src="@{/js/datatables/dataTables.fixedColumns.min.js}"></script>
-	<!-- dataTables.rowGroup.min -->
-	<script th:src="@{/js/datatables/dataTables.rowGroup.min.js}"></script>
 	<!-- custom -->
 	<script th:src="@{/js/custom.js}"></script>
 </th:block>

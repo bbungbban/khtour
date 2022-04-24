@@ -42,18 +42,29 @@ public class ExhibController {
 	 * 전시회 조회 (유저 권한)
 	*/
 	@GetMapping("/exhibBoardList")
-	public String getExhibBoardList(Model model) {
-
+	public String getExhibBoardList(Model model
+			 ,@RequestParam(value="exhibStart",required = false) String exhibStart
+			,@RequestParam(value="exhibEnd",required = false) String exhibEnd) {
+		 
 		List<Exhib> exhibList = exhibService.getExhibList();
 		List<Exhib> ingExhib = exhibService.ingExhib();
 		List<Exhib> expectedExhib = exhibService.expectedExhib();
 		List<Exhib> endExhib = exhibService.endExhib();
+		
+		List<Exhib> exhibDate = exhibService.exhibDate(exhibStart,exhibEnd);
 		
 		model.addAttribute("title", "전시회 조회 페이지");
 		model.addAttribute("exhibList",exhibList);
 		model.addAttribute("ingExhib",ingExhib);
 		model.addAttribute("expectedExhib",expectedExhib);
 		model.addAttribute("endExhib",endExhib);
+		
+		model.addAttribute("exhibDate", exhibDate);
+		
+		log.info("exhibStart:{}",exhibStart);
+		log.info("exhibEnd:{}",exhibEnd);
+		log.info("exhibDate:{}",exhibDate);
+		
 		
 		return "exhib/exhibBoardList";
 	}

@@ -8,7 +8,9 @@
 		<result column="mus_large_cate_code" 	property="musLargeCateCode" />
 		<result column="mus_large_cate_name" 	property="musLargeCateName" />
 		<result column="mus_name" 				property="musName" />
+		<result column="zip" 					property="zip" />
 		<result column="mus_addr" 				property="musAddr" />
+		<result column="addr2" 					property="addr2" />
 		<result column="mus_detail" 			property="musDetail" />
 		<result column="mus_site" 				property="musSite" />
 		<result column="mus_num" 				property="musNum" />
@@ -26,7 +28,9 @@
 		,mus_large_cate_code
 		,mus_large_cate_name
 		,mus_name
+		,zip
 		,mus_addr
+		,addr2
 		,mus_detail
 		,mus_site
 		,mus_num
@@ -39,7 +43,9 @@
 		,#{musLargeCateCode}
 		,#{musLargeCateName}
 		,#{musName}
+		,#{zip}
 		,#{musAddr}
+		,#{addr2}
 		,#{musDetail}
 		,#{musSite}
 		,#{musNum}
@@ -67,7 +73,9 @@
 		,m.mus_large_cate_code
 		,m.mus_large_cate_name
 		,m.mus_name
+		,m.zip
 		,m.mus_addr
+		,m.addr2
 		,m.mus_detail
 		,m.mus_site
 		,m.mus_num
@@ -89,6 +97,7 @@
 		,m.mus_large_cate_name
 		,m.mus_name
 		,m.mus_addr
+		,m.addr2
 		,m.mus_detail
 		,m.mus_site
 		,m.mus_num
@@ -119,8 +128,14 @@
 			<if test="musName != null and musName != ''">
 				mus_name = #{musName},
 			</if>
+			<if test="zip != null and zip != ''">
+				zip = #{zip},
+			</if>
 			<if test="musAddr != null and musAddr != ''">
 				mus_addr = #{musAddr},
+			</if>
+			<if test="addr2 != null and addr2 != ''">
+				addr2 = #{addr2},
 			</if>
 			<if test="musDetail != null and musDetail != ''">
 				mus_detail = #{musDetail},
