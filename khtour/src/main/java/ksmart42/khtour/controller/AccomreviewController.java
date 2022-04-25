@@ -1,6 +1,8 @@
 package ksmart42.khtour.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -110,7 +112,21 @@ public class AccomreviewController {
 	      
 	return "/accomreview/accomreviewList?ldgCode="+ldgCode;
 	      
-	   }   
-
+	   }
+	
+	/*
+	 * 예약자 정보 조회(관리자)(Get 정보 전달)
+	 */
+	@GetMapping("/accomReviewListMy")
+	public String getaccomReviewListMy(Model model) {
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		
+		List<AccomReview> accomoReviewListMy = accomReviewService.getaccomReviewListMy(paramMap);
+		log.info(accomoReviewListMy + "{}" + "예약자 정보 리스트 조회");
+		model.addAttribute("accomoReviewListMy", accomoReviewListMy);
+		
+		return "accomreview/accomReviewListMy";
+	}
 }
 

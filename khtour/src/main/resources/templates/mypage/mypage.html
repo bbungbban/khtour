@@ -23,6 +23,72 @@
 	font-size: 20px;
 	color: blue;
 }
+
+.ReviewContentsBox {
+	display: flex;
+	position: relative;
+	align-items: center;
+	padding: 0px;
+	padding-left: 18.577px;
+}
+
+.ReviewIcon {
+	width: 3.8rem;
+	height: 3.8rem;
+	display: inline-block;
+	margin-right: 1.4rem;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.ReviewRoomName::before {
+	content: "|";
+	border: none;
+	border-right: 1px;
+	height: 1rem;
+	margin: 0 0.6rem;
+	display: inline-block;
+}
+
+.ReviewContentsBox-ReviewContent {
+	font-size: 15px;
+	line-height: normal;
+	overflow: hidden;
+	position: relative;
+	color: #616161;
+	white-space: nowrap;
+	word-break: break-all;
+	padding-right: 18.577px;
+	padding-left: 18.577px;
+	margin-top: 10px;
+	margin-bottom: 0px;
+}
+
+.feather-on {
+	color: #FFB900;
+	font-size: 20px;
+}
+
+.feather-off {
+	color: #f0f1f6;
+	font-size: 20px;
+}
+
+.star {
+	font-size: 1.0rem;
+	line-height: 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.form-review {
+	height: calc(2em + 1px);
+	border-radius: 100px;
+	padding: 0.775rem 3rem 0.775rem 1.2rem;
+	border-color: #e5e5e5;
+	transition: all 0.5s ease-in-out;
+}
 </style>
 	<div class="row">
 		<!-- 로그인 된 회원의 정보 표시 시작 -->
@@ -81,12 +147,12 @@
 							</a></li>
 							<li class="nav-item"><a class="nav-link" id="profile-tab-08"
 								data-toggle="tab" href="#profile-08" role="tab"
-								aria-controls="profile" aria-selected="false"><i class="feather icon-shopping-cart"></i>나의 예약 정보
-							</a></li>
-							<li class="nav-item"><a class="nav-link" id="profile-tab-08"
-								data-toggle="tab" href="#profile-08" role="tab"
-								aria-controls="profile" aria-selected="false"><i class="feather icon-shopping-cart"></i>내가 쓴 리뷰
-							</a></li>
+								aria-controls="profile" aria-selected="false"><i
+									class="feather icon-shopping-cart"></i>나의 예약 정보 </a></li>
+							<li class="nav-item"><a class="nav-link" id="profile-tab-09"
+								data-toggle="tab" href="#profile-09" role="tab"
+								aria-controls="profile" aria-selected="false"><i
+									class="feather icon-shopping-cart"></i>내가 쓴 리뷰 </a></li>
 						</ul>
 						<div class="tab-content" id="myTabContent-07">
 							<!-- 첫번째 tap 시작 -->
@@ -224,7 +290,7 @@
 										th:each="re : ${reservationList}"
 										th:unless="${session.SID != re.memberId}">
 										<div class="blog-info">
-										<input type="hidden" th:value="${re.roomReservationCode}">
+											<input type="hidden" th:value="${re.roomReservationCode}">
 											<div class="blog-title mt-3">
 												<h5 class="card-title">
 													<i class="feather icon-navigation" style="color: red;"></i><a
@@ -235,47 +301,102 @@
 													<p class="mb-0" th:text="${re.roomName}"></p>
 												</div>
 												<div>
-													<i class="feather icon-phone" style="color: #007bff;">숙박업소 전화번호</i>
+													<i class="feather icon-phone" style="color: #007bff;">숙박업소
+														전화번호</i>
 													<p class="mb-0" th:text="${re.accommodation.ldgTel}"></p>
 												</div>
 												<div>
-													<i class="feather icon-log-in" style="color: #dc3545;">CHECK IN</i>
+													<i class="feather icon-log-in" style="color: #dc3545;">CHECK
+														IN</i>
 													<p class="mb-0" th:text="${re.checkInDate}"></p>
 												</div>
 												<div>
-													<i class="feather icon-log-out" style="color: #17a2b8;">CHECK OUT</i>
+													<i class="feather icon-log-out" style="color: #17a2b8;">CHECK
+														OUT</i>
 													<p class="mb-0" id="me_phone" th:text="${re.chekOutDate}"></p>
 												</div>
 												<div>
-													<i class="feather icon-calendar" style="color: #50d294;">총 숙박일수</i>
-													<p class="mb-0" id="me_phone" th:text="${re.lodgmentDay} + 일"></p>
+													<i class="feather icon-calendar" style="color: #50d294;">총
+														숙박일수</i>
+													<p class="mb-0" id="me_phone"
+														th:text="${re.lodgmentDay} + 일"></p>
 												</div>
 												<div>
-													<i class="feather icon-dollar-sign" style="color: #dc3545;">예약 금액</i>
-													<p class="mb-0" id="me_phone" th:text="${re.totalPrice} + 원"></p>
+													<i class="feather icon-dollar-sign" style="color: #dc3545;">예약
+														금액</i>
+													<p class="mb-0" id="me_phone"
+														th:text="${re.totalPrice} + 원"></p>
 												</div>
 												<div>
-													<i class="feather icon-clock" style="color: #ffc107;">예약 일시</i>
-													<p class="mb-0" id="me_phone" th:text="${re.reservationDate}"></p>
+													<i class="feather icon-clock" style="color: #ffc107;">예약
+														일시</i>
+													<p class="mb-0" id="me_phone"
+														th:text="${re.reservationDate}"></p>
 												</div>
 												<div style="text-align: center;">
-												<button class="btn"
-												id="swal-delete-reservation"
-												th:data-reservationCd="${re.roomReservationCode}">
-												예약취소</button>
+													<button class="btn" id="swal-delete-reservation"
+														th:data-reservationCd="${re.roomReservationCode}">
+														예약취소</button>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
+							</div>
+							<!-- 세번쨰 tap 종료 -->
+							<h2>내가 쓴 리뷰 모아모기</h2>
+							<div class="row" id="profile-09" role="tabpanel"
+								aria-labelledby="profile-tab-09">
+								<div class="ReviewBox col-12 col-md-12 col-lg-12"
+									th:if="${not #lists.isEmpty(accomoReviewListMy)}"
+									th:each="al,index: ${accomoReviewListMy}"
+									th:unless="${session.SID != al.memberId}">
+									<div class="blog-info">
+										<div class="ReviewContentsBox">
+											<input type="hidden" th:value="${al.ldgReviewCode}">
+											<span class="ReviewIcon"><i class="fa fa-smile-o"
+												style="font-size: 50px; color: #FFB900;"></i></span>
+											<div class="ReviewHeader">
+												<div style="position: relative; display: inline-flex;">
+													<th:block th:each="num : ${#numbers.sequence(1,5)}">
+														<i
+															th:if="${num <= #conversions.convert(al.ldgGrade, 'java.lang.Integer')}"
+															class="feather icon-star-on feather-on"
+															style="font-size: 1.2rem;"></i>
+														<i
+															th:unless="${num <= #conversions.convert(al.ldgGrade, 'java.lang.Integer')}"
+															class="feather icon-star-on feather-off"
+															style="font-size: 1.2rem;"></i>
+													</th:block>
+												</div>
+												<div class="ReviewTime"
+													style="display: inline-block; font-size: 1.2rem;">
+													<span style="font-weight: 100; margin-left: 0.8rem;"></span>
+													<span
+														style="position: absolute; right: 0; line-height: 1.8rem; padding-right: 15px; font-size: 13px; opacity: 0.5;"
+														th:text="${al.reviewTime}"></span>
+												</div>
+												<div class="ReviewNicknameInfo" style="opacity: 0.5;">
+													<span class="memberId"
+														th:text="${al.member.memberUserName}"></span>
+												</div>
+											</div>
+										</div>
+										<div class="ReviewContentsBox-ReviewContent">
+											<p th:text="${al.reviewContents}" style="margin: 0px;"></p>
+										</div>
+										<div class="card-footer"></div>
+									</div>
 								</div>
-								<!-- 세번쨰 tap 종료 -->
 							</div>
 						</div>
+						<!-- 세번쨰 tap 종료 -->
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
+	</div>
 </th:block>
 <th:block layout:fragment="customBodyScript">
 	<!-- delbtn -->
@@ -283,10 +404,14 @@
 		aria-hidden="true"></script>
 	<script th:src="@{/js/sweetalert2/sweetalert2-custom.js}"
 		aria-hidden="true"></script>
+	<!-- rating -->
+	<script th:src="@{/js/rating/jquery.barrating.min.js}"></script>
 	<!-- PRISM -->
 	<script th:src="@{/js/prism/prism.js}"></script>
 	<!-- custom -->
 	<script th:src="@{/js/custom.js}"></script>
+	<!-- rating custom -->
+	<script th:src="@{/js/rating/rating.js}"></script>
 	<script>
 		$(function(){
 			$(document).on('click','#swal-delete-reservation',function(){

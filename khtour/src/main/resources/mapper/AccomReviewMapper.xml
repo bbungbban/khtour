@@ -61,6 +61,36 @@
 		  	r.ldg_code = #{ldgCode};
 </select>
 
+<!-- 마이페이지리뷰조회 SQL -->
+<select id="getaccomReviewListMy"  resultMap="accomReviewResultMap">
+		SELECT
+		  	r.ldg_review_code
+		   ,r.member_id
+		   ,r.ldg_code
+		   ,r.ldg_grade
+		   ,r.ldg_cleanliness    
+		   ,r.ldg_kindness
+		   ,r.ldg_convenience   
+		   ,r.ldg_location   
+		   ,r.ldg_price_sta    
+		   ,r.review_contents    
+		   ,r.review_time 
+		   ,m.member_user_name   
+		FROM
+		  	tb_ldg_review AS r
+		INNER JOIN
+			tb_member AS m
+		ON
+			r.member_id = m.member_id
+		INNER JOIN
+			tb_ldg_information AS l
+		ON
+			r.ldg_code = l.ldg_code
+			
+		ORDER BY r.ldg_review_code;
+</select>
+
+
 <!-- 리뷰 개수 조회  -->
 <select id="getLdgCodeByReviewCode"  resultType="String">
 		SELECT
@@ -115,7 +145,7 @@
 			 ,review_contents
 			 ,review_time
 		)VALUES (
-			sf_ldg_review_code()
+			 sf_ldg_review_code()
 			,#{memberId}
 			,#{ldgCode}
 			,#{ldgGrade}

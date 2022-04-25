@@ -10,12 +10,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ksmart42.khtour.dto.AccomReview;
+import ksmart42.khtour.dto.Accommodation;
 import ksmart42.khtour.dto.Plan;
 import ksmart42.khtour.dto.RecordBoard;
 import ksmart42.khtour.dto.Reservation;
 import ksmart42.khtour.service.AccomReviewService;
+import ksmart42.khtour.service.AccommodationService;
 import ksmart42.khtour.service.PlanService;
 import ksmart42.khtour.service.RecordBoardService;
 import ksmart42.khtour.service.RoomService;
@@ -30,11 +33,15 @@ public class MypageController {
 	private PlanService planService;
 	private RecordBoardService recordBoardService;
 	private RoomService roomService;
+	private AccomReviewService accomReviewService;
+	private AccommodationService accommodationService;
 	
-	public MypageController(PlanService planService, RecordBoardService recordBoardService, RoomService roomService) {
+	public MypageController(PlanService planService, RecordBoardService recordBoardService, RoomService roomService, AccomReviewService accomReviewService, AccommodationService accommodationService) {
 		this.planService = planService;
 		this.recordBoardService = recordBoardService;
 		this.roomService = roomService;
+		this.accomReviewService = accomReviewService;
+		this.accommodationService = accommodationService;
 
 	}
 	
@@ -47,19 +54,23 @@ public class MypageController {
   *  설  명 : 여행게시판, 여행일정 리스트, 예약정보리스트, 리뷰리스트 - get방식 전달
   */
 	@GetMapping("/mypage")
-	public String getMypageList(Model model) {
+	public String getMypageList(Model model,
+								@RequestParam(value = "ldgCode", required = false) String ldgCode) {
 
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 
-
+		Accommodation accommodation = accommodationService.getLdgByCode(ldgCode);
 		List<RecordBoard> recordBoardList = recordBoardService.getRecordBoardList(paramMap);
 		List<Plan> planList = planService.getPlanList(paramMap);
 		List<Reservation> reservationList = roomService.getReservationList(paramMap);
+		List<AccomReview> accomoReviewListMy = accomReviewService.getaccomReviewListMy(paramMap);
 
 		model.addAttribute("title", "결제 정보 등록 페이지");
 		model.addAttribute("recordBoardList", recordBoardList);
 		model.addAttribute("planList", planList);
 		model.addAttribute("reservationList", reservationList);
+		model.addAttribute("accomoReviewListMy", accomoReviewListMy);
+		model.addAttribute("accommodation", accommodation);
 		
 		return "/mypage/mypage";
 	}
