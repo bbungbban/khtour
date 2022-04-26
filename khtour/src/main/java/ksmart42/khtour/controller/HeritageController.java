@@ -49,7 +49,7 @@ public class HeritageController {
                      , @RequestParam MultipartFile[] heritageImageFiles
                      , HttpServletRequest request) {
       
-      log.info("{}",heritage);
+      log.info("{}",heritage,heritageImageFiles);
       String serverName = request.getServerName();
       String fileRealPath = "";
       if("localhost".equals(serverName)) {            
