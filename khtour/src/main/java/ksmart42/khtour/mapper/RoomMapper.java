@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import ksmart42.khtour.dto.FileDto;
 import ksmart42.khtour.dto.Reservation;
 import ksmart42.khtour.dto.Room;
 
@@ -46,5 +47,8 @@ public interface RoomMapper {
 	
 	//객실 예약자 정보 삭제(관리자페이지)
 	public int deletReservationSt(String roomReservationCode);
+	
+	//객실 등록 이미지 파일 정보 조회
+	public FileDto fileInfoByFileIdx(String roomCode);
 
 }
