@@ -1,5 +1,6 @@
 package ksmart42.khtour.service;
 
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -163,12 +164,33 @@ public class RoomService {
 	/**
 	 * 객실 정보 삭제
 	 */
-	public int removeRoom(String roomCode) {
-		int result = roomMapper.removeRoom(roomCode);
-
-		result += roomMapper.removeRoom(roomCode);
-
-		return result;
+	public int removeRoom(String roomCode, String fileRootPath) throws IOException {
+		
+		FileDto fileDto = roomMapper.fileInfoByFileIdx(roomCode);
+		
+		 int result = 0;
+			
+	     if(fileDto != null) {
+	         
+	         String fileIdx = fileDto.getFileIdx();
+	         String filePath = fileDto.getFilePath();
+	   
+	         if(fileIdx != null) {
+	            
+	            fileMapper.removeFileControl(fileIdx);
+	            
+	            fileMapper.removeFile(fileIdx);
+	            
+	            result += roomMapper.removeRoom(roomCode);
+	            
+	            if(result > 0) fileUtil.fileDelete(fileRootPath, filePath);
+	         }
+	      }else {
+	         
+	         result += roomMapper.removeRoom(roomCode);
+	         
+	      }
+	      return result;
 	}
 
 	
