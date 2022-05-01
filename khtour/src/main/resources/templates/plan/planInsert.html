@@ -701,6 +701,12 @@
 	<!-- 출발 날짜 datepciker 자바스크립트 시작 -->
 	<script>
 		$(document).ready(function() {
+			function numberWithCommas(x) {
+				//숫자 3자리 수 마다 , 찍히는 포맷 스크립트
+			  if(!x) return 0;
+			  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			};
+			
 			
 			var dateDiffFn = function(){
 				var startDate = new Date($("#startDate").val());
@@ -716,7 +722,8 @@
 				var soloParty = Number($('#soloParty').val());
 				var planOneDaysExpenses = Number($('#planOneDaysExpenses').val());
 				console.log(planDays, soloParty, planOneDaysExpenses);
-				$('#planExpenses').val(planDays * soloParty * planOneDaysExpenses +"만원")
+				$('#planExpenses').val(numberWithCommas(planDays * soloParty * planOneDaysExpenses))
+				alert("경비는 만원 단위로 입력해주세요.")
 			})
 			
 			$("#startDate").dateDropper({
